@@ -11,7 +11,6 @@ $factory->define(App\Models\Project::class, function (Faker $faker) {
         'ended_at'   => $faker->dateTimeThisDecade,
         'status'     => true,
         'budget'     => $faker->randomElement([10000, 50000, 100000]),
-        'price'      => $faker->randomElement([10000, 50000, 100000]),
         'created_at' => $faker->dateTimeThisDecade,
         'updated_at' => $faker->dateTimeThisYear,
     ];

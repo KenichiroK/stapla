@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TaskCompanysTableSeeder extends Seeder
+class TaskCompaniesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class TaskCompanysTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create('ja_JP');
-        factory(App\Models\TaskCompanyPIC::class, 10)->create(); 
+        factory(App\Models\TaskCompany::class, 10)->create(); 
     }
 }

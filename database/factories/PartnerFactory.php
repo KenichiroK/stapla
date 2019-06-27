@@ -4,6 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Partner::class, function (Faker $faker) {
     return [
+        'company_id'        => App\Models\Company::all()->random()->id,
         'partner_id' => function() {
             return factory(App\Models\PartnerAuth::class)->create()->id;
         },

@@ -2,7 +2,7 @@
 namespace App\Models;
 class ProjectCompany extends BaseUuid
 {
-    protected $table = 'project_company_pics';
+    protected $table = 'project_companies';
     
     protected $fillable = [
         'user_id', 'project_id'

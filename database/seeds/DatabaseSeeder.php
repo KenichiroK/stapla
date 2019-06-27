@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
           ProjectPartnersTableSeeder::class,
           TaskPartnersTableSeeder::class,
           TaskRoleRelationsTableSeeder::class,
-          AgreementsTableSeeder::class,
         ]);
         
     }

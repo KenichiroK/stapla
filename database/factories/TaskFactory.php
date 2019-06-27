@@ -3,9 +3,10 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Models\Task::class, function (Faker $faker) {
+    $project = App\Models\Project::all()->random();
     return [
-        'company_id'        => App\Models\Company::all()->random()->id,
-        'project_id'        => App\Models\Project::all()->random()->id,
+        'company_id'        => $project->company_id,
+        'project_id'        => $project->id,
         'name'              => $faker->randomElement(['要件定義', '調査', 'コーディング']),
         'content'           => $faker->sentence,
         'started_at'        => $faker->dateTimeThisDecade,

@@ -2,7 +2,7 @@
 namespace App\Models;
 class TaskPartner extends BaseUuid
 {
-    protected $table = 'task_partner_pics';
+    protected $table = 'task_partners';
     
     protected $fillable = [
         'user_id', 'task_id'
