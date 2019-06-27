@@ -13,6 +13,7 @@ class CreateProjectPartnersTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('project_partners');
         Schema::create('project_partners', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary();
@@ -20,8 +21,8 @@ class CreateProjectPartnersTable extends Migration
             $table->uuid('project_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->referenses('id')->on('users')->onDelete('cascade');
-            $table->uuid('project_id')->referenses('id')->on('projects')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('partners');
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 

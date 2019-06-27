@@ -40,6 +40,7 @@ class CreatePartnersTable extends Migration
             $table->timestamps();
 
             $table->foreign('partner_id')->references('id')->on('partner_auths');
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 

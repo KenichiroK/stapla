@@ -8,6 +8,7 @@ class CreateCompanyUsersTable extends Migration
 {
     public function up()
     {
+        Schema::dropIfExists('company_users');
         Schema::create('company_users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary();

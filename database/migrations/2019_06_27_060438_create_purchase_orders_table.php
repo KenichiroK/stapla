@@ -17,8 +17,8 @@ class CreatePurchaseOrdersTable extends Migration
             $table->dateTime('ordered_at');
             $table->timestamps();
 
-            // $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            // $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
 

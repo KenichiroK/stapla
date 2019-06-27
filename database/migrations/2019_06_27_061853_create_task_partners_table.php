@@ -13,17 +13,17 @@ class CreateTaskPartnersTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('task_partners');
+
         Schema::create('task_partners', function (Blueprint $table) {
-            Schema::create('task_partner_pics', function (Blueprint $table) {
-                $table->engine = 'InnoDB';
-                $table->uuid('id')->primary();
-                $table->uuid('user_id');
-                $table->uuid('task_id');
-                $table->timestamps();
-    
-                $table->uuid('user_id')->foreign('id')->references("partners")->ondelete('cascade');
-                $table->uuid('task_id')->foreign('id')->references("tasks")->ondelete('cascade');
-            });
+            $table->engine = 'InnoDB';
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
+            $table->uuid('task_id');
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('partners');
+            $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
 
