@@ -8,7 +8,7 @@ $factory->define(App\Models\Company::class, function (Faker $faker) {
         'representive_name'         => $faker->name,
         'zip_code'                  => $faker->postcode,
         'tel'                       => $faker->phoneNumber,
-        'address_prefecture'        => '東京都',
+        'address_prefecture'        => $faker->prefecture,
         'address_city'              => $faker->city,
         'address_streetAddress'     => $faker->streetAddress,
         'tel'                       => $faker->phoneNumber,
