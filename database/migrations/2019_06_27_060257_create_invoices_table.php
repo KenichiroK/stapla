@@ -6,24 +6,21 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateInvoicesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary();
+            $table->uuid('company_id');
+            $table->uuid('task_id');
+            $table->integer('status');
+            $table->integer('expenses');
             $table->timestamps();
+
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('invoices');

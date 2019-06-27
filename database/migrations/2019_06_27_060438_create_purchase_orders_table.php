@@ -6,24 +6,22 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePurchaseOrdersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
-            $table->increments('id');
+            $table->engine = 'InnoDB';
+            $table->uuid('id')->primary();
+            $table->uuid('company_id');
+            $table->uuid('task_id');
+            $table->integer('status');
+            $table->dateTime('ordered_at');
             $table->timestamps();
+
+            // $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            // $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('purchase_orders');
