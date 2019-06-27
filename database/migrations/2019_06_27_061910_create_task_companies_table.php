@@ -19,6 +19,9 @@ class CreateTaskCompaniesTable extends Migration
             $table->uuid('user_id');
             $table->uuid('task_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('company_users');
+            $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
 

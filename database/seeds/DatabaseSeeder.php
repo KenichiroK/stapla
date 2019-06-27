@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
           TaskCompaniesTableSeeder::class,
           ProjectPartnersTableSeeder::class,
           TaskPartnersTableSeeder::class,
-          TaskRoleRelationsTableSeeder::class,
         ]);
         
     }
