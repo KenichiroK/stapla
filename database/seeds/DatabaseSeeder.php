@@ -4,13 +4,25 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call([
+          CompaniesTableSeeder::class,
+          CompanyUserAuthsTableSeeder::class,
+          CompanyUsersTableSeeder::class,
+          ProjectsTableSeeder::class,
+          TasksTableSeeder::class,
+          TaskRoleRelationsTableSeeder::class,
+          PartnersTableSeeder::class,
+          UserRoleRelationsTableSeeder::class,
+          ProjectRoleRelationsTableSeeder::class,
+          ProjectCompaniesTableSeeder::class,
+          TaskCompaniesTableSeeder::class,
+          ProjectPartnersTableSeeder::class,
+          TaskPartnersTableSeeder::class,
+          TaskRoleRelationsTableSeeder::class,
+          AgreementsTableSeeder::class,
+        ]);
+        
     }
 }
