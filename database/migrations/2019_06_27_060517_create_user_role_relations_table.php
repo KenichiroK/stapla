@@ -14,7 +14,12 @@ class CreateUserRoleRelationsTable extends Migration
     public function up()
     {
         Schema::create('user_role_relations', function (Blueprint $table) {
-            $table->increments('id');
+            $table->engine = 'InnoDB';
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
+            $table->uuid('superior_id');
+            $table->uuid('accounting_id');
+            $table->uuid('manager_id');
             $table->timestamps();
         });
     }

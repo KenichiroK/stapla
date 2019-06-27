@@ -14,8 +14,14 @@ class CreateProjectPartnersTable extends Migration
     public function up()
     {
         Schema::create('project_partners', function (Blueprint $table) {
-            $table->increments('id');
+            $table->engine = 'InnoDB';
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
+            $table->uuid('project_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->referenses('id')->on('users')->onDelete('cascade');
+            $table->uuid('project_id')->referenses('id')->on('projects')->onDelete('cascade');
         });
     }
 

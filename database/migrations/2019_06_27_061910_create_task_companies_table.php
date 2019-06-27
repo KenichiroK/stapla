@@ -14,7 +14,10 @@ class CreateTaskCompaniesTable extends Migration
     public function up()
     {
         Schema::create('task_companies', function (Blueprint $table) {
-            $table->increments('id');
+            $table->engine = 'InnoDB';
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
+            $table->uuid('task_id');
             $table->timestamps();
         });
     }

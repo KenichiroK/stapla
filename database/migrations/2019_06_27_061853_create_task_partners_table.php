@@ -14,8 +14,16 @@ class CreateTaskPartnersTable extends Migration
     public function up()
     {
         Schema::create('task_partners', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            Schema::create('task_partner_pics', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->uuid('id')->primary();
+                $table->uuid('user_id');
+                $table->uuid('task_id');
+                $table->timestamps();
+    
+                $table->uuid('user_id')->foreign('id')->references("partners")->ondelete('cascade');
+                $table->uuid('task_id')->foreign('id')->references("tasks")->ondelete('cascade');
+            });
         });
     }
 

@@ -14,7 +14,11 @@ class CreateTaskRoleRelationsTable extends Migration
     public function up()
     {
         Schema::create('task_role_relations', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary();
+            $table->uuid('task_id');
+            $table->uuid('superior_id');
+            $table->uuid('accounting_id');
+            $table->uuid('manager_id');
             $table->timestamps();
         });
     }
