@@ -10,11 +10,11 @@ class Task extends BaseUuid
     public function project(){
         return $this->belongsTo('App\Models\Project', 'project_id', 'id');
     }
-    public function taskCompany()
+    public function taskCompanies()
     {
         return $this->hasMany('App\Models\TaskCompany', 'task_id', 'id');
     }
-    public function taskPartner()
+    public function taskPartners()
     {
         return $this->hasMany('App\Models\TaskPartner', 'task_id', 'id');
     }

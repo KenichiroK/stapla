@@ -23,40 +23,47 @@
 </head>
 <body>
     <div id="app">
-        <header>
-            <nav class="navbar" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
+        <div class="top">
+            <div class="top__container">
+                <header>
+                    <nav class="navbar" role="navigation" aria-label="main navigation">
+                        <div class="navbar-brand">
 
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarHomeHeader">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
+                        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarHomeHeader">
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </a>
+                        </div>
+
+                        <div id="navbarHomeHeader" class="navbar-menu">
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="navbar-item">
+                                辻 佳佑
+                            </div>
+                            <div class="navbar-item">
+                                <img src="./images/dummy_user.jpeg" alt="プロフィール画像">
+                            </div>
+                        </div>
+                        </div>
+                    </nav>
+                </header>
+
+
+                <div>
+                    @yield('sidebar')
                 </div>
+            </div>
 
-                <div id="navbarHomeHeader" class="navbar-menu">
-                <div class="navbar-end">
-                    <div class="navbar-item">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <div class="navbar-item">
-                        辻 佳佑
-                    </div>
-                    <div class="navbar-item">
-                        <img src="./images/dummy_user.jpeg" alt="プロフィール画像">
-                    </div>
+            <main class="main__container">
+                <div class="main__container__wrapper">
+                @yield('content')
                 </div>
-                </div>
-            </nav>
-        </header>
-
-
-        <div>
-            @yield('sidebar')
+            </main>
         </div>
-        <main class="py-4">
-            @yield('content')
-        </main>
     </div>
 </body>
 </html>
