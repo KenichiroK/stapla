@@ -1,0 +1,32 @@
+.sidebar__container {
+    position: fixed;
+    width: 20%;
+    height: 100%;
+    // padding: 8px;
+    background-color: #43425d;
+  
+    &__wrapper {
+      // color: white;
+      // opacity: 0.5;
+      .menu__container {
+        &--label {
+          display: flex;
+          align-items: center;
+          height: 56px;
+          margin-bottom: 8px;
+          border-bottom: 1px solid #4d4c4c;
+        }
+        &__menu-list a {
+          color: #ffffff;
+          padding: 24px;
+        }
+        &__menu-list a:hover {
+          background-color: #252433;
+          border-left: 5px solid #a3a0fb;
+        }
+        &__menu-list i {
+          margin-right: 16px;
+        }
+      }
+    }
+  }
