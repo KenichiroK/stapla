@@ -1,0 +1,39 @@
+header {
+  background-color: #ffffff;
+  font-weight: bold;
+  padding: 8px;
+  position: fixed;
+  height: 64px;
+  width: 80%;
+  left: 20%;
+  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.6);
+  nav.navbar {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #ffffff;
+    &-menu {
+      .navbar-item {}
+    }
+    .navbar__item--logo {
+      font-size: 24px;
+      letter-spacing: 5px;
+      color: #03A1EB;
+    }
+    .buttons__btn--login {
+      border: 1px solid #03A1EB;
+      background-color: #03A1EB;
+      color: white;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    img{
+      border-radius: 50%;
+      border: 1px solid;
+      overflow: hidden;
+      position: relative;
+    }
+  }
+}
