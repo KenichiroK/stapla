@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Partner;
 use App\Models\CompanyUser;
 use Illuminate\Http\Request;
 use Validator;
@@ -35,13 +36,18 @@ class TaskController extends Controller
     {
         return Task::where('project_id', $project_uid)->get();
     }
-
     public function create()
     {
-        //
+        // $user = Auth::user();
+        // $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+        // $tasks = Task::where('company_id', $company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+        // $tasks = Task::all();
+        $tasks = Task::with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+        $companyUsers = CompanyUser::all();
+        $partners = Partner::all();
+        // return $tasks;
+        return view('company/task/create', compact('tasks','companyUsers', 'partners'));
     }
-
-
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -74,15 +80,18 @@ class TaskController extends Controller
     {
         return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->findOrFail($id);
     }
+
     public function edit($id)
     {
         return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->findOrFail($id);
     }
+
     public function update(Request $request, $id)
     {
         Task::findOrFail($id)->update($request->all());
         return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->get();
     }
+    
     public function destroy($id)
     {
         Task::findOrFail($id)->delete();
