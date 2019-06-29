@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Partner;
 use App\Models\CompanyUser;
+use App\Models\TaskCompany;
+use App\Models\TaskPartner;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -35,54 +38,85 @@ class TaskController extends Controller
     {
         return Task::where('project_id', $project_uid)->get();
     }
-
     public function create()
     {
-        //
+        $user = Auth::user();
+        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+        $tasks = Task::where('company_id', $company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+       
+        
+        $companyUsers = CompanyUser::where('company_id', $company_id)->get();
+        $partners = Partner::where('company_id', $company_id)->get();
+        return view('company/task/create', compact('tasks','companyUsers', 'partners'));
     }
-
-
+    
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'company_id'      => 'required',
+        $request->validate([
+            'company_user_id' => 'required',
             'project_id'      => 'required',
-            'name'            => 'required',
-            'content'         => 'required',
-            'started_at'      => 'required',
-            'ended_at'        => 'required',
-            'status'          => 'required',
-            'purchaseorder'   => 'required',
-            'invoice'         => 'required',
-            'budget'          => 'required',
+            'partner_id'      => 'required',
+            'task_name'       => 'required',
+            'task_content'    => 'required',
             'price'           => 'required',
-            'comment'         => 'required',
-            'inspection_date' => 'required',
             'fee_format'      => 'required',
-            'delivery_format' => 'required',
-            'payment_terms'   => 'required',
-            'rating'          => 'required',
         ]);
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());
-        }
-        $task = Task::create($request->all());
-        return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->get();
+
+        
+        $task = new Task;
+        $task->project_id      = $request->project_id;
+
+        $user = Auth::user();
+        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+        $task->company_id      = $company_id;
+        $task->task_name            = $request->task_name;
+        $task->task_content         = $request->task_content;
+        $task->started_at      = '2019-06-27 12:00:00';
+        $task->ended_at        = '2019-06-30 12:00:00';
+        $task->status          = 0;
+        $task->purchaseorder   = false;
+        $task->invoice         = false;
+        $task->budget          = 100000;
+        $task->price           = $request->price;
+        $task->comment         = $request->comment;
+        $task->inspection_date = $request->inspection_date;
+        $task->fee_format      = $request->fee_format;
+        $task->delivery_format = $request->delivery_format;
+        $task->payment_terms   = $request->payment_terms;
+        $task->rating          = $request->rating;
+        $task->save();
+
+        $taskCompany = new TaskCompany;
+
+        $taskCompany->user_id = $request->company_user_id;
+        $task_id = $task->id;
+        $taskCompany->task_id = $task_id;
+        $taskCompany->save();
+
+        $taskPartner = new TaskPartner;
+        $taskPartner->user_id = $request->partner_id;
+        $taskPartner->task_id = $task_id;
+        $taskPartner->save();
+
+        return redirect('/task');
     }
 
     public function show($id)
     {
         return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->findOrFail($id);
     }
+
     public function edit($id)
     {
         return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->findOrFail($id);
     }
+
     public function update(Request $request, $id)
     {
         Task::findOrFail($id)->update($request->all());
         return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->get();
     }
+    
     public function destroy($id)
     {
         Task::findOrFail($id)->delete();
