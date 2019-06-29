@@ -11142,8 +11142,338 @@ header nav.navbar img {
   position: relative;
 }
 
+.sidebar__container {
+  position: fixed;
+  width: 20%;
+  height: 100%;
+  background-color: #43425d;
+}
+
+.sidebar__container__wrapper .menu__container--label {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  height: 56px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #4d4c4c;
+}
+
+.sidebar__container__wrapper .menu__container__menu-list a {
+  color: #ffffff;
+  padding: 24px;
+}
+
+.sidebar__container__wrapper .menu__container__menu-list a:hover {
+  background-color: #252433;
+  border-left: 5px solid #a3a0fb;
+}
+
+.sidebar__container__wrapper .menu__container__menu-list i {
+  margin-right: 16px;
+}
+
+.task-container__wrapper__table-wrapper__table {
+  margin: auto;
+}
+
+.task-container__wrapper__table-wrapper__table__headerrow {
+  background-color: #F5F6FA;
+  font-size: 12px;
+  height: 48px;
+}
+
+.task-container__wrapper__table-wrapper__table__headerrow__tableheader {
+  vertical-align: middle;
+  text-align: center;
+  color: #A3A6B4;
+}
+
+.task-container__wrapper__table-wrapper__table__headerrow__tableheader__arrow {
+  margin: 0 8px;
+}
+
+.task-container__wrapper__table-wrapper__table__headerrow__tableheader__checkboxarea {
+  width: 120px;
+  text-align: center;
+}
+
+.task-container__wrapper__table-wrapper__table__datarow {
+  font-size: 12px;
+  height: 80px;
+  border-bottom: 1px solid #F1F1F3;
+}
+
+.task-container__wrapper__table-wrapper__table__datarow__tabledata {
+  vertical-align: middle;
+  text-align: center;
+  color: #4D4F5C;
+}
+
+.task-container__wrapper__table-wrapper__table__datarow__tabledata__statusaction__status {
+  height: 40px;
+  width: 120px;
+  border-radius: 25px;
+  margin: auto;
+  padding: 11px 0;
+  font-weight: bold;
+}
+
+.complete {
+  background-color: #A9F5D0;
+}
+
+.repair {
+  background-color: #F8E0F7;
+}
+
+.request {
+  background-color: #F2F5A9;
+}
+
+.doing {
+  background-color: #F5D0A9;
+}
+
+.draft {
+  background-color: #E6E6E6;
+}
+
+.main__container {
+  width: 80%;
+  background-color: #F0F0F7;
+  font-size: 14px;
+}
+
+.main__container__wrapper {
+  padding: 40px 40px;
+}
+
+.title-name {
+  font-size: 16px;
+}
+
+.item-name-wrapper {
+  padding: 16px 0 16px 16px;
+}
+
+.item-name-wrapper__item-name {
+  font-size: 14px;
+  color: #43425D;
+}
+
+.status-container {
+  margin-bottom: 24px;
+}
+
+.status-container__wrapper {
+  background-color: #ffffff;
+}
+
+.task-container__wrapper {
+  background-color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.task-container__wrapper__table-wrapper {
+  padding: 16px;
+}
+
+.task-container__wrapper__table-wrapper__more__area {
+  text-align: center;
+  padding: 56px 0 40px 0;
+}
+
+.task-container__wrapper__table-wrapper__more__area__showmore {
+  color: #3B86FF;
+  cursor: pointer;
+}
+
+.page-title-container {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.page-title-container__page-title {
+  font-size: 24px;
+}
+
+.top-container {
+  margin-bottom: 32px;
+  display: -webkit-box;
+  display: flex;
+}
+
+.top-container__titlearea {
+  width: 160px;
+  text-align: center;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.top-container__field {
+  widows: 100%;
+  margin: auto;
+}
+
+.top-container__field__control {
+  width: 640px;
+}
+
+.top-container__createarea {
+  width: 120px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.top-container__createarea__buttonarea {
+  margin-right: 24px;
+}
+
+.top-container__createarea__buttonarea__button {
+  width: 140px;
+  border-radius: 18px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #43425D;
+}
+
+.top-container__createarea__buttonarea__button a {
+  color: #fff;
+}
+
+.top-container__createarea__buttonarea__button:hover {
+  opacity: 0.8;
+}
+
+.content {
+  height: 120px;
+  display: -webkit-box;
+  display: flex;
+  padding: 16px;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.parts-container {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.parts-container__wrapper__numberdisplayarea {
+  height: 60px;
+  width: 60px;
+  margin-bottom: 8px;
+}
+
+.parts-container__wrapper__numberdisplayarea__numberdisplay {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: rgba(59, 134, 255, 0.25);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.parts-container__wrapper__numberdisplayarea__numberdisplay__number {
+  font-size: 14px;
+  color: #3b86ff;
+}
+
+.parts-container__wrapper__textdisplayarea {
+  height: 60px;
+  width: 60px;
+}
+
+.parts-container__wrapper__textdisplayarea__textdisplay {
+  text-align: center;
+}
+
+.parts-container__wrapper__textdisplayarea__textdisplay__text {
+  font-size: 12px;
+}
+
+.next {
+  height: 30px;
+  width: 16px;
+  border-bottom: 2px solid #E9E9F0;
+}
+
+.task-container__wrapper__table-wrapper__table {
+  width: 100%;
+  margin: auto;
+}
+
+.task-container__wrapper__table-wrapper__table__headerrow {
+  background-color: #F5F6FA;
+  font-size: 12px;
+  height: 48px;
+}
+
+.task-container__wrapper__table-wrapper__table__headerrow__tableheader {
+  vertical-align: middle;
+  text-align: center;
+  color: #A3A6B4;
+}
+
+.task-container__wrapper__table-wrapper__table__headerrow__tableheader__arrow {
+  margin: 0 8px;
+}
+
+.task-container__wrapper__table-wrapper__table__headerrow__tableheader__checkboxarea {
+  width: 120px;
+  text-align: center;
+}
+
+.task-container__wrapper__table-wrapper__table__datarow {
+  font-size: 12px;
+  height: 80px;
+  border-bottom: 1px solid #F1F1F3;
+}
+
+.task-container__wrapper__table-wrapper__table__datarow__tabledata {
+  vertical-align: middle;
+  text-align: center;
+  color: #4D4F5C;
+}
+
+.task-container__wrapper__table-wrapper__table__datarow__tabledata__statusaction__status {
+  height: 40px;
+  width: 120px;
+  border-radius: 25px;
+  margin: auto;
+  padding: 11px 0;
+  font-weight: bold;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.top .top__container {
+  position: absolute;
+}
+
+.top .main__container {
+  position: relative;
+  top: 30px;
+  right: -20%;
 }
 
