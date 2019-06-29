@@ -11,14 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-    public function taskIndex()
+    public function index()
     {
-        // $user = Auth::user();
-        // $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        // $tasks = Task::where('company_id', $company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
-        
-        $tasks = Task::with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
-        
+        $user = Auth::user();
+        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+        $tasks = Task::where('company_id', $company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+            
         $status_arr = [];
         for ($i = 0; $i < 10; $i++) {
             $status_arr[strval($i)] = 0;
@@ -28,23 +26,10 @@ class TaskController extends Controller
         }
 
         $statusName_arr = [
-            '下書き',
-            '提案中',
-            '依頼前',
-            '依頼中',
-            '開始前',
-            '作業中',
-            '提出前',
-            '修正中','完了', 'キャンセル'
+            '下書き', '提案中', '依頼前', '依頼中', '開始前','作業中', '提出前', '修正中', '完了', 'キャンセル'
         ];
 
-
-
         return view('company/task/index', compact('tasks','statusName_arr', 'status_arr'));
-        
-        // $user = Auth::user();
-        // $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        // return Task::where('company_id', $company_id)->with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner', 'taskRoleRelation'])->get();
     }
     public function projectTaskIndex($project_uid)
     {
