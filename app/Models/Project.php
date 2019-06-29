@@ -5,7 +5,7 @@ class Project extends BaseUuid
     protected $table = 'projects';
     
     protected $fillable = [
-        'company_id', 'name', 'detail', 'started_at', 'ended_at', 'status', 'budget'
+        'company_id', 'name', 'detail', 'started_at', 'ended_at', 'status', 'budget' ,'price'
     ];
     public function company()
     {

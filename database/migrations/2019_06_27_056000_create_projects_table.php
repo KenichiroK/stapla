@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->dateTime('ended_at');
             $table->integer('status');
             $table->integer('budget');
+            $table->integer('price');
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies');
