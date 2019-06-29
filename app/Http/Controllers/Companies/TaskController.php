@@ -106,7 +106,9 @@ class TaskController extends Controller
 
     public function show($id)
     {
-        return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->findOrFail($id);
+        $task = Task::with(['project', 'taskCompanies.companyUser', 'taskPartners.partner'])->findOrFail($id);
+        return view('/company/task/show', compact('task'));
+        // return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->findOrFail($id);
     }
 
     public function edit($id)

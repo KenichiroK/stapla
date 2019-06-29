@@ -48,7 +48,8 @@ Route::group(['prefix' => 'company'], function(){
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-		Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.create');
+        Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.create');
+        Route::get('/task/{id}', 'Companies\TaskController@show');
 		
 		// partner
 		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
