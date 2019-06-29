@@ -20,3 +20,4 @@ Route::get('/task', 'TaskController@index');
 Route::get('/task/create', 'TaskController@create');
 Route::post('/task/create', 'TaskController@store');
 
+Route::get('/partner', 'PartnerController@index');
