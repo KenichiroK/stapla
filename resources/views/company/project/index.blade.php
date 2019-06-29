@@ -26,9 +26,8 @@
 @endsection
 
 @section('content')
-<div class="main__container">
-		<div class="main__container__wrapper">
-			<!--main__container__wrapperに記述していく-->
+<div class="project__main__container">
+		<div class="project__main__container__wrapper">
 			<div class="top-container">
 				<h1 class="top-container__title">プロジェクト</h1>
 				<div>
@@ -60,19 +59,25 @@
                 </div>
 
                 <div class="project-container__content">
+                    @foreach( $projects as $project )
                     <ul class="project-container__content__list" >
-                        <li></li>
+                        <li>{{ $project->name }}</li>
                         <li>
-                            <p></p>
+                            <p>{{ $project->company->representive_name }}</p>
                         </li>
                         <li>
-                            <p></p>
+                            @foreach( $project->projectPartners as $projectPartner )
+                            <p>{{ $projectPartner->partner->name }}</p>
+                            @endforeach
                         </li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                        <li>
+                            {{ $task_count_arr[$loop->index] }}件
+                        </li>
+                        <li>{{ $project->ended_at }}</li>
+                        <li>¥{{ $project->budget }}</li>
+                        <li>¥{{ $project->price }}</li>
                     </ul>
+                    @endforeach
                 </div>
 
                 <div class="project-container__content__showmore">

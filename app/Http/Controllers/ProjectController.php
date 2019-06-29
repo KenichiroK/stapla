@@ -13,11 +13,19 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        // $user = Auth::user();
-        // $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        // return Project::where('company_id', $company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartnerPics.partner', 'projectCompanyPics.companyUser'])->get();
+        $user = Auth::user();
+        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+        $projects = Project::where('company_id', $company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();
 
-        return view('company/project/index');
+        $task_count_arr = []; 
+        for($i = 0; $i < count($projects); $i++){
+            $taskCount = count($projects[$i]->tasks);
+            array_push($task_count_arr, $taskCount);
+        }
+
+        $projectCount = $projects;
+
+        return view('company/project/index', compact('projects', 'task_count_arr'));
     }
 
     public function create()
