@@ -148,8 +148,8 @@ return [
         'email' => 'メールアドレス',
         'company_user_id' => '担当者',
         'project_id'      => 'プロジェクト',
-        'task_name'            => 'タスク名',
-        'task_content'         => 'タスク内容',
+        'task_name'       => 'タスク名',
+        'task_content'    => 'タスク内容',
         'started_at'      => '開始日',
         'ended_at'        => '終了予定日',
         'status'          => 'ステータス',
@@ -157,7 +157,7 @@ return [
         'price'           => '金額',
         'fee_format'      => '報酬形式',
         'payment_terms'   => '支払い条件',
-        'partner_id'   => 'パートナー',
+        'partner_id'      => 'パートナー',
 
     ],
 

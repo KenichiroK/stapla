@@ -58,20 +58,10 @@ class TaskController extends Controller
             'partner_id'      => 'required',
             'task_name'       => 'required',
             'task_content'    => 'required',
-            // 'started_at'      => 'required',
-            // 'ended_at'        => 'required',
             'price'           => 'required',
             'fee_format'      => 'required',
         ]);
-        // $validator = Validator::make($request->all(),[
-            
-        // ]);
 
-        // if($validator->fails()){
-        //     $error_messages = $validator->errors();
-        //     // return view('company/task/create', $error_messages);
-        //     // return $this->sendError('Validation Error.', $validator->errors());
-        // }
         
         $task = new Task;
         $task->project_id      = $request->project_id;
@@ -81,9 +71,7 @@ class TaskController extends Controller
         $task->company_id      = $company_id;
         $task->task_name            = $request->task_name;
         $task->task_content         = $request->task_content;
-        // $tasks->started_at = $request->started_at;
         $task->started_at      = '2019-06-27 12:00:00';
-        // $tasks->ended_at = $request->ended_at;
         $task->ended_at        = '2019-06-30 12:00:00';
         $task->status          = 0;
         $task->purchaseorder   = false;
