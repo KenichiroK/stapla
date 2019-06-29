@@ -13,8 +13,6 @@ class CreateTaskPartnersTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('task_partners');
-
         Schema::create('task_partners', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary();

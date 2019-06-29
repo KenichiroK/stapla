@@ -7,8 +7,8 @@ $factory->define(App\Models\Task::class, function (Faker $faker) {
     return [
         'company_id'        => $project->company_id,
         'project_id'        => $project->id,
-        'name'              => $faker->randomElement(['要件定義', '調査', 'コーディング']),
-        'content'           => $faker->sentence,
+        'task_name'         => $faker->randomElement(['要件定義', '調査', 'コーディング']),
+        'task_content'      => $faker->sentence,
         'started_at'        => $faker->dateTimeThisDecade,
         'ended_at'          => $faker->dateTimeThisDecade,
         'status'            => $faker->numberBetween($min = 0, $max = 10),
@@ -22,6 +22,8 @@ $factory->define(App\Models\Task::class, function (Faker $faker) {
         'delivery_format'   => $faker->randomElement(['データによる送付', 'その他']),
         'payment_terms'     => $faker->randomElement(['当月末締め翌月末払い', 'その他']),
         'rating'            => $faker->numberBetween($min = 1, $max = 5),
+        'rating_comment'    => $faker->sentence,
+        'remarks'           => $faker->sentence,
         'created_at'        => $faker->dateTimeThisDecade,
         'updated_at'        => $faker->dateTimeThisYear,
     ];

@@ -5,7 +5,9 @@ class Task extends BaseUuid
     protected $table = 'tasks';
     
     protected $fillable = [
-        'project_id', 'company_id', 'name', 'content', 'started_at', 'ended_at','status', 'purchaseorder', 'invoice','budget','price', 'comment', 'inspection_date', 'fee_format', 'delivery_format', 'payment_terms', 'rating'
+        'project_id', 'company_id', 'task_name', 'task_content', 'started_at', 'ended_at','status', 
+        'purchaseorder', 'invoice','budget','price', 'comment', 'inspection_date', 'fee_format', 
+        'delivery_format', 'payment_terms', 'rating', 'rating_comment', 'remarks'
     ];
     public function project(){
         return $this->belongsTo('App\Models\Project', 'project_id', 'id');

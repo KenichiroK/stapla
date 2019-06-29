@@ -18,8 +18,8 @@ class CreateTasksTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('company_id');
             $table->uuid('project_id');
-            $table->string('name', 64);
-            $table->text('content');
+            $table->string('task_name', 64);
+            $table->text('task_content');
             $table->dateTime('started_at');
             $table->dateTime('ended_at');
             $table->integer('status');
@@ -27,12 +27,14 @@ class CreateTasksTable extends Migration
             $table->boolean('invoice');
             $table->integer('budget');
             $table->integer('price');
-            $table->text('comment');
-            $table->dateTime('inspection_date');
+            $table->text('comment')->nullable();
+            $table->dateTime('inspection_date')->nullable();
             $table->string('fee_format');
-            $table->string('delivery_format');
-            $table->string('payment_terms');
-            $table->integer('rating');
+            $table->string('delivery_format')->nullable();
+            $table->string('payment_terms')->nullable();
+            $table->integer('rating')->nullable();
+            $table->text('rating_comment')->nullable();
+            $table->text('remarks')->nullable();
             $table->timestamps();
         });
     }
