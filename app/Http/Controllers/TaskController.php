@@ -18,7 +18,7 @@ class TaskController extends Controller
         $tasks = Task::where('company_id', $company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
             
         $status_arr = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 11; $i++) {
             $status_arr[strval($i)] = 0;
         }
         for ($i = 0; $i < $tasks->count(); $i++) {

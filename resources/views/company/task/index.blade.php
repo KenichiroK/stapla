@@ -132,13 +132,13 @@
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">
                                     <div class="task-container__wrapper__table-wrapper__table__datarow__tabledata__statusaction">
                                         <div id ="state" class="task-container__wrapper__table-wrapper__table__datarow__tabledata__statusaction__status">
-                                            @if($task->status == 1)
+                                            @if($task->status == 0)
                                                 下書き
-                                            @elseif($task->status == 2)
+                                            @elseif($task->status == 1)
                                                 提案中
-                                            @elseif($task->status == 3)
+                                            @elseif($task->status == 2)
                                                 依頼前
-                                            @elseif($task->status == 4)
+                                            @elseif($task->status == 3)
                                                 依頼中
                                             @elseif($task->status == 4)
                                                 開始前
@@ -150,7 +150,9 @@
                                                 修正中
                                             @elseif($task->status == 8)
                                                 完了
-                                            @else
+                                            @elseif($task->status == 9)
+                                                完了
+                                            @elseif($task->status == 10)
                                                 キャンセル
                                             @endif    
                                    
