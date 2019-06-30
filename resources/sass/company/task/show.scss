@@ -1,0 +1,323 @@
+.main__container {
+    background-color: #F0F0F7;
+    font-size: 14px;
+    &__wrapper {
+        padding: 40px;
+        width:80%;
+    }
+}
+
+// 共通部分
+.page-title-container {
+    &__page-title {
+        font-size: 24px;
+    }
+}
+.item-name-wrapper {
+    width: 100%;
+    margin-bottom: 16px;
+    &__item-name {
+        font-size: 14px;
+        color: #43425D;
+    }
+}
+
+// header部分
+.header {
+    &__wrapper {
+        margin-bottom:32px;
+        &__main {
+            display: flex;
+            &__project-name {
+                font-size:16px;
+                margin:12px 0 0 4px;
+            }
+        }
+        &__edited-date {
+            margin-top:8px;
+        }
+    }
+}
+// middle部分
+.middle {
+    margin-bottom: 24px;
+    display: flex;
+    &__main {
+        width: 70%;
+        background-color : #ffffff;
+        padding: 16px 24px;
+        margin-right: 24px;
+        &__wrapper {
+            // テーブル
+            &__table-container {
+                &__table {
+                    width: 100%;
+                    margin: auto;
+                    border-bottom: 1px solid #F1F1F3;
+                    &__table-row {
+                        &__table-header {
+                            background-color: #F5F6FA;
+                            padding: 16px 0;
+                            text-align: center;
+                            font-size:12px;
+                            color: #A3A6B4;
+                        }
+                        &__table-data {
+                            padding: 16px 0;
+                            text-align: center;
+                            vertical-align: middle;
+                            &__status-icon {
+                                padding:8px 16px;;
+                                width: 80px;
+                                border-radius: 25px;
+
+                                margin: auto;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size:12px;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+            // タスク内容
+            &__task-content {
+                margin-top:16px;
+                border-bottom: 1px solid #F1F1F3;
+                &__textarea-wrapper textarea {
+                    border-color: #3B86FF;
+                    caret-color: #3B86FF;
+                    resize: none;
+                }
+                &__detail-container {
+                    padding: 16px 0;
+                    &__item {
+                        margin-top: 8px;
+                        display: flex;
+                        align-items: center;
+                        &__icon {
+                            height: 40px;
+                            width: 40px;
+                            margin-right: 16px;
+                            img{
+                                border-radius: 50%;
+                                overflow: hidden;
+                                position: relative;
+                            }
+                        }
+                        &__comment {
+                            margin-left: 80px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+            }
+            // タスクに関するコメント
+            &__task-comment {
+                margin-top: 16px;
+            } 
+            // 資料
+            &__document-container {
+                margin-top: 16px;
+                &__wrapper {
+                    &__update-container {
+                        padding: 0 40px;
+                    }
+                }
+            } 
+        }     
+    }
+    &__side {
+        width: 30%;
+        &__wrapper {
+            width: 100%;
+            &__1 {
+                background-color: #ffffff;
+                padding: 16px ;
+                margin-bottom:16px;
+                &__input-container {
+                    &__wrapper {
+                        &__select {
+                            width: 100%;
+                            margin-bottom: 16px;
+                        }
+                        &__select select {
+                            width: 100%;
+                            border-color: #3B86FF;
+                        }
+                        &__btn-wrapper {
+                            &__btn {
+                                height: 24px;
+                                width: 56px;
+                                border-radius: 25px;
+                                background-color: #43425D;
+                                color: #ffffff;
+                                font-weight: bold;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                margin-left: auto;
+                            }
+                        }
+                        &__detail-container {
+                            padding: 8px 40px 0 24px;
+                            &__item-wrapper {
+                                border-bottom: 1px solid #F1F1F3;
+                                display: flex;
+                                &__item-content {
+                                    margin-left: auto;
+                                }
+                            }
+                            .top{
+                                margin-bottom: 8px;
+                            }
+                        }
+                    }
+                }
+                &__select-area {
+                    width: 100%;
+
+                }
+                &__btn-wrapper {
+                    &__btn {
+                        height: 24px;
+                        width: 56px;
+                        border-radius: 25%;
+                        background-color: #43425D;
+                    }
+                }
+            }
+        }
+    }
+        
+}
+.bottom {
+    margin-bottom: 24px;
+    &__wrapper {
+        padding: 16px;
+        background-color: #ffffff;
+        &__table-wrapper {
+            width: 100%;
+            margin: auto;
+            margin-bottom: 24px;
+            &__table {
+                width: 100%;
+                &__headerrow {
+                    background-color: #F5F6FA;
+                    font-size: 12px;
+                    height: 48px;
+                    &__tableheader {
+                        padding: 8px 0;
+                        vertical-align: middle;
+                        text-align: center;
+                        color: #A3A6B4;
+                        &__arrow {
+                            margin: 0 8px;
+                        }
+                        &__checkboxarea {
+                            width: 120px;
+                            text-align: center;
+                        }
+                    }
+                }
+                &__datarow {
+                    font-size: 12px;
+                    height: 80px;
+                    padding: 8px 0;
+                    border-bottom: 1px solid #F1F1F3;
+                    &__tabledata {
+                        vertical-align: middle;
+                        text-align: center;
+                        color: #4D4F5C;                
+                        &__statusaction {
+                            height: 40px;
+                            width: 120px;
+                            border-radius: 25px;
+                            background-color: rgba(255,114,133,0.2);
+                            margin: auto;
+                            padding: 11px 0;
+                        }
+                    }
+                }
+            }
+        }
+        &__more {
+            &__area {
+                text-align: center;
+            }
+        } 
+    }
+}
+
+input[type=checkbox] {
+    display: none;
+}
+.control {
+    text-align: center;
+}
+.checkbox {
+    box-sizing: border-box;
+    -webkit-transition: background-color 0.2s linear;
+    transition: background-color 0.2s linear;
+    position: relative;
+    display: inline-block;
+    margin: 4px 10px;
+    padding: 12px 12px 12px 42px;
+    border-radius: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.checkbox:after {
+    -webkit-transition: border-color 0.2s linear;
+    transition: border-color 0.2s linear;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    display: block;
+    margin-top: -10px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #bbb;
+    border-radius: 6px;
+    content: '';
+}
+.checkbox:before {
+    -webkit-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+    position: absolute;
+    top: 50%;
+    left: 21px;
+    display: block;
+    margin-top: -7px;
+    width: 5px;
+    height: 9px;
+    border-right: 3px solid #53b300;
+    border-bottom: 3px solid #53b300;
+    content: '';
+    opacity: 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+input[type=checkbox]:checked + .checkbox:before {
+    opacity: 1;
+}
+
+
+// ステータス色分け
+.complete{
+    background-color: #A9F5D0;
+}
+.repair{
+    background-color: #F8E0F7;
+}
+.request{
+    background-color: #F2F5A9;
+}
+.doing{
+    background-color: #F5D0A9;
+}

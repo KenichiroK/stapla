@@ -1,5 +1,10 @@
 @extends('index')
 
+@section('assets')
+<link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/task/show.css') }}">
+@endsection
+
 @section('sidebar')
 
 <div class="sidebar__container">
@@ -16,7 +21,7 @@
                 <li><a href="/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
                 <li><a href="/task"><i class="fas fa-tasks"></i>タスク</a></li>
                 <li><a href="/document"><i class="fas fa-newspaper"></i>書類</a></li>
-                <li><a href="#"><i class="fas fa-user-circle"></i>パートナー</a></li>
+                <li><a href="/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
@@ -28,17 +33,18 @@
 @endsection
 
 @section('content')
+
 <div class="main__container">
     <div class="main__container__wrapper">
         <div class="header">
             <div class="header__wrapper">
                 <div class="header__wrapper__main">
                     <div class="page-title-container">
-                        <div class="page-title-container__page-title">{{ $task->name }}</div>
+                        <div class="page-title-container__page-title">{{ $tasks->name }}</div>
                     </div>
-                    <div class="header__wrapper__main__project-name">【{{ $task->project->name }}】</div>
+                    <div class="header__wrapper__main__project-name">【{{ $tasks->project->name }}】</div>
                 </div>
-                <div class="header__wrapper__edited-date">タスク作成日：{{ explode(' ', $task->created_at)[0] }}</div>
+                <div class="header__wrapper__edited-date">タスク作成日：{{ explode(' ', $tasks->created_at)[0] }}</div>
             </div>
         </div>
         <div class="middle">
@@ -56,33 +62,33 @@
                             <tr class="middle__main__table-container__table__table-row">
                                 <td class="middle__main__wrapper__table-container__table__table-row__table-data">
                                     <div id="state" class="middle__main__wrapper__table-container__table__table-row__table-data__status-icon">
-                                        @if(($task->status) === 0)
+                                        @if(($tasks->status) === 0)
                                             下書き
-                                        @elseif(($task->status) === 1)
+                                        @elseif(($tasks->status) === 1)
                                             提案中
-                                        @elseif(($task->status) === 2)
+                                        @elseif(($tasks->status) === 2)
                                             依頼前
-                                        @ielsef(($task->status) === 3)
+                                        @elseif(($tasks->status) === 3)
                                             依頼中
-                                        @elseif(($task->status) === 4)
+                                        @elseif(($tasks->status) === 4)
                                             開始前
-                                        @ielsef(($task->status) === 5)
+                                        @elseif(($tasks->status) === 5)
                                             作業中
-                                        @elseif(($task->status) === 6)
+                                        @elseif(($tasks->status) === 6)
                                             提出前
-                                        @elseif(($task->status) === 7)
+                                        @elseif(($tasks->status) === 7)
                                             修正中
-                                        @elseif(($task->status) === 8)
+                                        @elseif(($tasks->status) === 8)
                                             完了
-                                        @elseif(($task->status) === 9)
+                                        @elseif(($tasks->status) === 9)
                                             キャンセル
                                         @endif
                                     </div>
                                 </td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $task->ended_at)[0] }}</td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $task->inspection_date)[0] }}</td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $task->inspection_date)[0] }}</td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ $task->delivery_format }}</td>
+                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $tasks->ended_at)[0] }}</td>
+                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $tasks->inspection_date)[0] }}</td>
+                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $tasks->inspection_date)[0] }}</td>
+                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ $tasks->delivery_format }}</td>
                             </tr>
                         </table>
                     </div>
@@ -106,7 +112,7 @@
                             <div class="middle__main__wrapper__task-content__detail-container__item">
                                 <div class="middle__main__wrapper__task-content__detail-container__item__icon"><img src="https://image.freepik.com/free-icon/no-translate-detected_318-37825.jpg" alt=""></div>
                                 <div class="middle__main__wrapper__task-content__detail-container__item__name">
-                                    <div class="">2018年11月11日18:00</div>
+                                    <div class="">{{ explode(' ', $tasks->updated_at)[0] }}</div>
                                     <div class="">永瀬 達也</div>
                                 </div>
                                 <div class="middle__main__wrapper__task-content__detail-container__item__comment">担当者へ依頼しました。</div>
@@ -166,8 +172,9 @@
                                 <div class="middle__side__wrapper__1__input-container__wrapper__select select">
                                     <select>
                                         <option></option>
-                                        <option>With options</option>
-                                        <option>With options</option>
+                                        @foreach($companyUsers as $companyUser)
+                                            <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
+                                        @endforeach
                                     </select> 
                                 </div>
                                 <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
@@ -185,8 +192,11 @@
                                 <div class="middle__side__wrapper__1__input-container__wrapper__select select">
                                     <select>
                                         <option></option>
-                                        <option>With options</option>
-                                        <option>With options</option>
+                                        @foreach($partners as $partner)
+                                            <option value="{{ $partner->id }}">
+                                                {{ $partner->name }}
+                                            </option>
+                                        @endforeach
                                     </select> 
                                 </div>
                                 <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
@@ -226,8 +236,9 @@
                                 <div class="middle__side__wrapper__1__input-container__wrapper__select select">
                                     <select>
                                         <option></option>
-                                        <option>With options</option>
-                                        <option>With options</option>
+                                        @foreach($companyUsers as $companyUser)
+                                            <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
+                                        @endforeach
                                     </select> 
                                 </div>
                                 <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
@@ -245,8 +256,11 @@
                                 <div class="middle__side__wrapper__1__input-container__wrapper__select select">
                                     <select>
                                         <option></option>
-                                        <option>With options</option>
-                                        <option>With options</option>
+                                        @foreach($partners as $partner)
+                                            <option value="{{ $partner->id }}">
+                                                {{ $partner->name }}
+                                            </option>
+                                        @endforeach
                                     </select> 
                                 </div>
                                 <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
@@ -277,13 +291,16 @@
                             <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">請求額</th>
                         </tr>
                         <tr class="bottom__wrapper__table-wrapper__table__datarow">
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">ios化プロジェクト</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">永瀬 達也</td>
+                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">{{ $tasks->project->name }}</td>
+                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">
+                             
+                            {{ $taskCompanyUsers[0]->name }}
+                            </td>
                             <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">M</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">2件</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">2019年12月1日11時</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">¥100,000</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">30,000</td>
+                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">{{ $project_count }}件</td>
+                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">{{ explode(' ', $tasks->ended_at)[0] }}</td>
+                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">¥{{ $tasks->budget }}</td>
+                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">¥{{ $tasks->price }}</td>
                         </tr>
                     </table>
                 </div>
