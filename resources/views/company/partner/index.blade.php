@@ -1,5 +1,10 @@
 @extends('index')
 
+@section('assets')
+<link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/partner/index.css') }}">
+@endsection
+
 @section('sidebar')
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
@@ -61,6 +66,7 @@
         
         <div class="profile-list">
         @foreach( $partners as $partner )
+        <a href="/partner/{{ $partner->id }}">
             <div class="profile-card-container">
            
                 <div class="profile-card-container__wrapper">
@@ -93,6 +99,7 @@
                 </div>
                 
             </div>
+            </a>
             @endforeach
         </div>
 

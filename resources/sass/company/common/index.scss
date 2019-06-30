@@ -1,0 +1,32 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import '../../variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import '../../header/index';
+@import '../../sidebar/index';
+
+.navbar-laravel {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  }
+  
+  .top {
+    .top__container {
+        position: absolute;
+    }
+    .main__container {
+        position: relative;
+        top: 30px;
+        right: -20%;
+        &__wrapper {
+            // padding: 8px;
+            // margin: 8px;
+        }
+    }
+  }
