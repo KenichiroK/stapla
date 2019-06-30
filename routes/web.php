@@ -15,10 +15,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
  
-Route::get('/task', 'TaskController@index');
+Route::get('/task', 'Companies\TaskController@index');
 
-Route::get('/task/create', 'TaskController@create');
-Route::post('/task/create', 'TaskController@store');
+Route::get('/task/create', 'Companies\TaskController@create');
+Route::post('/task/create', 'Companies\TaskController@store');
 
-Route::get('/partner', 'PartnerController@index');
-Route::get('/partner/{id}', 'PartnerController@show');
+Route::get('/partner', 'Companies\PartnerController@index');
+Route::get('/partner/{id}', 'Companies\PartnerController@show');

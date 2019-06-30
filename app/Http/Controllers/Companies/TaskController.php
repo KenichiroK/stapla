@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Companies;
 
 use App\Models\Task;
 use App\Models\Partner;
@@ -9,6 +9,7 @@ use App\Models\TaskCompany;
 use App\Models\TaskPartner;
 use Illuminate\Http\Request;
 use Validator;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -69,8 +70,8 @@ class TaskController extends Controller
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
         $task->company_id      = $company_id;
-        $task->task_name            = $request->task_name;
-        $task->task_content         = $request->task_content;
+        $task->name            = $request->task_name;
+        $task->content         = $request->task_content;
         $task->started_at      = '2019-06-27 12:00:00';
         $task->ended_at        = '2019-06-30 12:00:00';
         $task->status          = 0;
