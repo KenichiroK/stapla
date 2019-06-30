@@ -68,7 +68,6 @@ class TaskController extends Controller
         
         $task = new Task;
         $task->project_id      = $request->project_id;
-
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
         $task->company_id      = $company_id;
@@ -106,22 +105,15 @@ class TaskController extends Controller
 
     public function show($id)
     {
-        // task
-        $tasks = Task::with(['project', 'taskCompanies.companyUser', 'taskPartners.partner'])->findOrFail($id);
-        // CompanyUesr
-        $user_id = TaskCompany::where('task_id', $id)->get()->first()->user_id;
-        $taskCompanyUsers = CompanyUser::where('id', $user_id)->get();
-        // 同一 project の task 数
-        $project_id = Task::where('id', $id)->get()->first()->project_id;
-        $project_count = Task::where('project_id', $project_id)->get()->count();
-        // Project::where('')->count()
-        // CompanyUser一覧
+        $task = Task::with(['project', 'taskCompanies.companyUser', 'taskPartners.partner'])->findOrFail($id);
+
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
-        // Partnerの一覧
+
         $partners = Partner::where('company_id', $company_id)->get();
-        return view('/company/task/show', compact('tasks', 'taskCompanyUsers', 'project_count', 'companyUsers', 'partners'));
+
+        return view('/company/task/show', compact('task', 'project_count', 'companyUsers', 'partners'));
     }
 
     public function edit($id)
