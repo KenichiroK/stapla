@@ -1,9 +1,14 @@
 <?php
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\Companies;
+
+use App\Models\Task;
 use App\Models\Partner;
+use App\Models\TaskPartner;
 use App\Models\CompanyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class PartnerController extends Controller
 {
@@ -13,9 +18,6 @@ class PartnerController extends Controller
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
         $partners = Partner::where('company_id', $company_id)->with(['projectPartners.project', 'TaskPartners.task'])->get();
         return view('company/partner/index', compact('partners'));
-        // $user = Auth::user();
-        // $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        // return Partner::where('company_id', $company_id)->with(['projectPartnerPics.project', 'TaskPartnerPics.task'])->get();
     }
 
     public function store(Request $request)
@@ -58,11 +60,13 @@ class PartnerController extends Controller
     }
     public function show($id)
     {
-        return Partner::with(['projectPartnerPics.project', 'TaskPartnerPics.task', ])->findOrFail($id);
+        $tasks = TaskPartner::where('user_id', $id)->with(['task', 'task.project'])->get();
+        $partners = Partner::with(['projectPartners.project', 'TaskPartners.task', ])->findOrFail($id);
+        return view('company/partner/show', compact('partners', 'tasks'));
     }
     public function edit($id)
     {
-        return Partner::with(['projectPartnerPics.project', 'TaskPartnerPics.task', ])->findOrFail($id);
+        return Partner::with(['projectPartners.project', 'TaskPartners.task', ])->findOrFail($id);
     }
     public function update(Request $request, $id)
     {

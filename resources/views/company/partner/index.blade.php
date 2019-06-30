@@ -61,6 +61,7 @@
         
         <div class="profile-list">
         @foreach( $partners as $partner )
+        <a href="/partner/{{ $partner->id }}">
             <div class="profile-card-container">
            
                 <div class="profile-card-container__wrapper">
@@ -93,6 +94,7 @@
                 </div>
                 
             </div>
+            </a>
             @endforeach
         </div>
 
