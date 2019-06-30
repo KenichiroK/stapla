@@ -1,5 +1,10 @@
 @extends('index')
 
+@section('assets')
+<link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/task/index.css') }}">
+@endsection
+
 @section('sidebar')
 
 <div class="sidebar__container">

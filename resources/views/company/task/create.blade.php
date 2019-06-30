@@ -1,5 +1,10 @@
 @extends('index')
 
+@section('assets')
+<link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/task/create.css') }}">
+@endsection
+
 @section('sidebar')
 
 <h1>ポスト作成</h1>
