@@ -4,72 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <title>Impro</title>
+    <link href="{{ mix('css/auth/login/index.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <style>
+        body: {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="main__container">
-        <div class="main__container__wrapper">
-            <!--main__container__wrapperに記述していく-->
-            <div class="left-area">
-                <h1 class="left-area__title">Impro</h1>
-            </div>
-            <div class="right-area">
-
-            <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                <div class="right-area__box">
-                    <p class="right-area__box__text">Welcome back! Please login to your account.</p>
-                    <div class="user-name-container">
-                        <p>User Name</p>
-                        <input id="email" type="email" class="input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                    </div>
-                    <div class="password-container">
-                        <p>Password</p>
-                        <input id="password" type="password" class="input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                    </div>
-                    <div class="login-menu">
-                        <div class="left-side">
-                            <input class="check" type="checkbox"><span>Remember me</span>
-                        </div>
-                        <div class="right-side">
-                            <p>Forgot Password</p>
-                        </div>
-                    </div>
-                    <div class="btn-container">
-                        <button type="submit" class="btn-container__login-btn button btn btn-primary">
-                            {{ __('Login') }}
-                        </button>
-                            
-                        <!-- <div @click="this.handleLogin" class="btn-container__login-btn button">Login</div> -->
-                        <router-link to="/sign_up">
-                            <div class="btn-container__sign-up-btn button">
-                                Sign up
-                            </div>
-                        </router-link>
-                    </div>
-                    @if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                    @endif
-                    <p class ="policy">Term of use. Privacy policy</p>
-                </div>
-            </form>
+    <header>
+        <div class="logo_container">
+            <p class="logo">impro</p>
         </div>
-    </div>
+    </header>
+
+    <main>
+        <div class="main_container">
+            <div class="title_wrapper">
+                <h1 class="text">ログイン</h1>
+            </div>
+
+            <div class="form_wrapper">
+                <form action="">
+                    @csrf
+                    <div class="input_wrapper">
+                        <h4 class="title">メールアドレス</h4>
+                        <input class="input_text" type="email" name="email" placeholder="メールアドレス">
+                    </div>
+
+                    <div class="input_wrapper">
+                        <h4 class="title">パスワード</h4>
+                        <input class="input_text" type="password" name="password">
+                    </div>
+
+                    <div class="checkbox_wrapper">
+                        <input id="check" type="checkbox">
+                        <label for="check">ログインしたままにする</label>
+                    </div>
+
+                    <div class="button_wrapper">
+                        <button class="text">ログイン</button>
+                    </div>
+                </form>
+
+                <div class="signup_wrapper">
+                    <a href="/register">新規会員登録</a>
+                </div>
+
+                <div class="forget_password_wrapper">
+                    <a href="#">パスワードをお忘れの場合はこちら</a>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <span>ご利用規約</span>
+        <span>プライバシーポリシー</span>
+    </footer>
 </body>
 </html>
