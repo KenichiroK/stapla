@@ -35,10 +35,12 @@ class TaskController extends Controller
 
         return view('company/task/index', compact('tasks','statusName_arr', 'status_arr'));
     }
+
     public function projectTaskIndex($project_uid)
     {
         return Task::where('project_id', $project_uid)->get();
     }
+
     public function create()
     {
         $user = Auth::user();
@@ -99,7 +101,7 @@ class TaskController extends Controller
         $taskPartner->task_id = $task_id;
         $taskPartner->save();
 
-        return redirect('/task');
+        return redirect('/company/task');
     }
 
     public function show($id)

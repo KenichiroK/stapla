@@ -58,16 +58,19 @@ class PartnerController extends Controller
         return Partner::where('company_id', $company_id)->with(['projectPartnerPics.project', 'TaskPartnerPics.task'])->get();
         
     }
+
     public function show($id)
     {
         $tasks = TaskPartner::where('user_id', $id)->with(['task', 'task.project'])->get();
         $partners = Partner::with(['projectPartners.project', 'TaskPartners.task', ])->findOrFail($id);
         return view('company/partner/show', compact('partners', 'tasks'));
     }
+
     public function edit($id)
     {
         return Partner::with(['projectPartners.project', 'TaskPartners.task', ])->findOrFail($id);
     }
+
     public function update(Request $request, $id)
     {
         $partner = Partner::findOrFail($id);
@@ -104,6 +107,7 @@ class PartnerController extends Controller
         $partner->update($request->all());
         return $partner::with(['projectPartnerPics.project', 'TaskPartnerPics.task', ])->findOrFail($id);
     }
+
     public function destroy($id)
     {
         Partner::findOrFail($id)->delete();

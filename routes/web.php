@@ -13,12 +13,48 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
- 
-Route::get('/task', 'Companies\TaskController@index');
+Route::group(['prefix' => 'partner'], function(){
+	//login   
+	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
+	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
 
-Route::get('/task/create', 'Companies\TaskController@create');
-Route::post('/task/create', 'Companies\TaskController@store');
+	//register
+	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
+	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
 
-Route::get('/partner', 'Companies\PartnerController@index');
-Route::get('/partner/{id}', 'Companies\PartnerController@show');
+	Route::group(['middleware' => 'auth:partner'], function() {
+		//dashboard
+		Route::get('dashboard', function() {
+			return view('partner/dashboard/index');
+		});
+		// logout
+		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
+	});
+	
+});
+  
+
+Route::group(['prefix' => 'company'], function(){
+	// login
+	Route::get('login', 'Companies\Auth\LoginController@showLoginForm')->name('company.login');
+	Route::post('login', 'Companies\Auth\LoginController@login')->name('company.login');
+
+	//register
+	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
+	Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
+
+	
+	Route::group(['middleware' => 'auth:company'], function() {
+		// task
+		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
+		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
+		Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.create');
+		
+		// partner
+		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
+		Route::get('/partner/{id}', 'Companies\PartnerController@show')->name('company.partner.show');
+		// logout
+		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');
+
+	});  
+});
