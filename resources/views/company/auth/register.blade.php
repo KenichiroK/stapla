@@ -6,13 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Impro</title>
     <link href="{{ mix('css/auth/login/index.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
-    <style>
-        body: {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 </head>
 <body>
     <header>
@@ -28,7 +22,8 @@
             </div>
 
             <div class="form_wrapper">
-                <form action="">
+                <form method="POST" action="{{ route('company.register') }}">
+                    @csrf
                     <div class="input_wrapper">
                         <h4 class="title">メールアドレス</h4>
                         <input class="input_text" type="email" name="email" placeholder="impro@example.com">
@@ -45,12 +40,12 @@
                     </div>
 
                     <div class="button_wrapper">
-                        <button class="text">新規会員登録</button>
+                        <button type="submit" class="text">新規会員登録</button>
                     </div>
                 </form>
 
                 <div class="signup_wrapper">
-                    <a href="/login">ログイン</a>
+                    <a href="/company/login">ログイン</a>
                 </div>
                 
             </div>

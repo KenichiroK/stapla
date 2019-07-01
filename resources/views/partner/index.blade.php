@@ -18,14 +18,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     @yield('assets')
-    <style>
-        body: {
-            margin: 0;
-            padding: 0;
-        }
-    </style＞
 </head>
 <body>
     <div id="app">
@@ -48,7 +42,7 @@
                                 <i class="fas fa-bell"></i>
                             </div>
                             <div class="navbar-item">
-                                辻 佳佑
+                                user name
                             </div>
                             <div class="navbar-item">
                                 <img src="./images/dummy_user.jpeg" alt="プロフィール画像">
@@ -65,6 +59,10 @@
             </div>
 
             <main class="main__container">
+                <form method="POST" action="{{ route('partner.logout') }}">
+                @csrf
+                <button type="submit">ログアウト</button>
+                </form>
                 <div class="main__container__wrapper">
                 @yield('content')
                 </div>
