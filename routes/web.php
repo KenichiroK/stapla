@@ -55,6 +55,8 @@ Route::group(['prefix' => 'company'], function(){
 	Route::group(['middleware' => 'auth:company'], function() {
 		// project
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
+		Route::get('/project/create', 'ProjectController@create')->name('company.project.create');
+		Route::post('/project/create', 'ProjectController@store')->name('company.project.create');
 
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
