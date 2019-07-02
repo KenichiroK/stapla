@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\CompanyUser;
+use App\Models\Partner;
+use App\Models\ProjectCompany;
+use App\Models\ProjectPartner;
+
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Auth;
@@ -23,34 +27,60 @@ class ProjectController extends Controller
             array_push($task_count_arr, $taskCount);
         }
 
-        $projectCount = $projects;
-
         return view('company/project/index', compact('projects', 'task_count_arr'));
     }
 
     public function create()
     {
-        //
+        $user = Auth::user();
+        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+
+        $company_infos = CompanyUser::where('company_id', $company_id)->get();
+
+        $partner_infos = Partner::where('company_id', $company_id)->get();
+        
+        return view('company/project/create', compact('company_infos', 'partner_infos'));
     }
 
     public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name'          => 'required|string|max:64ired',
-            'detail'        => 'required|string',
-            'started_at'    => 'required|date',
-            'ended_at'      => 'required|date',
-            'status'        => 'required|boolean',
-            'budget'        => 'required|regex:/^[0-9]+$/',
-            'price'         => 'required|regex:/^[0-9]+$/'
+    {        
+        $request->validate([
+            'name'             => 'required',
+            'detail'           => 'required',
+            'company_user_id'  => 'required',
+            'partner_id'       => 'required',
+            'started_at'       => 'required',
+            'ended_at'         => 'required',
+            'budget'           => 'required',
         ]);
 
-        if($validator->fails()){
-            return $validator->errors();
-        }
+        $user = Auth::user();
+        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
 
-        $project = Project::create($request->all());
-        return Project::with(['company', 'tasks', 'projectRoleRelation', 'projectPartnerPics.partner', 'projectCompanyPics.companyUser'])->get();
+        $project = new Project;
+        $project->company_id   = $company_id;
+        $project->name         = $request->name;
+        $project->detail       = $request->detail;
+        $project->started_at   = $request->started_at;
+        $project->ended_at     = $request->ended_at;
+        $project->status       = 0;
+        $project->budget       = $request->budget;
+        $project->price        = 0;
+        $project->save();
+
+        $project_id = $project->id;
+        
+        $projectCompany = new ProjectCompany;
+        $projectCompany->user_id = $request->company_user_id;
+        $projectCompany->project_id = $project_id;
+        $projectCompany->save();
+
+        $projectPartner = new ProjectPartner;
+        $projectPartner->user_id = $request->partner_id;
+        $projectPartner->project_id = $project_id;
+        $projectPartner->save();
+        
+        return redirect('/project');
     }
 
     public function show($id)
