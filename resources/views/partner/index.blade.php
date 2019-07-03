@@ -41,12 +41,7 @@
                             <div class="navbar-item">
                                 <i class="fas fa-bell"></i>
                             </div>
-                            <div class="navbar-item">
-                                user name
-                            </div>
-                            <div class="navbar-item">
-                                <img src="./images/dummy_user.jpeg" alt="プロフィール画像">
-                            </div>
+                            @yield('header-profile')
                         </div>
                         </div>
                     </nav>
@@ -59,10 +54,6 @@
             </div>
 
             <main class="main__container">
-                <form method="POST" action="{{ route('partner.logout') }}">
-                @csrf
-                <button type="submit">ログアウト</button>
-                </form>
                 <div class="main__container__wrapper">
                 @yield('content')
                 </div>

@@ -15,10 +15,16 @@ mix.js('resources/js/app.js', 'public/js');
 
 mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common')
    .sass('resources/sass/auth/login/index.scss', 'public/css/auth/login')
+   
+   // company
    .sass('resources/sass/company/task/index.scss', 'public/css/company/task')
    .sass('resources/sass/company/task/create.scss', 'public/css/company/task')
+   .sass('resources/sass/company/task/show.scss', 'public/css/company/task')
    .sass('resources/sass/company/partner/index.scss', 'public/css/company/partner')
    .sass('resources/sass/company/partner/show.scss', 'public/css/company/partner')
+
+   // partner
+   .sass('resources/sass/partner/dashboard/index.scss', 'public/css/partner/dashboard');
 
 mix.options({
       publicPath: 'public'

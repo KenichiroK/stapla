@@ -107,6 +107,7 @@
             </div>
             </a>
             @endforeach
+            {{ $partners->links() }}
         </div>
 
     </div>

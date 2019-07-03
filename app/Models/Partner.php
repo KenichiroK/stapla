@@ -9,20 +9,44 @@ class Partner extends BaseUuid
         'sex', 'picture', 'occupations', 'academic', 'slack', 'chatwork', 'twitter', 'facebook', 'careersummary', 'jobcareer', 
         'portfolio', 'introduction', 'possible', 'skill', 'feature', 'language', 'qualification', 'relatedlinks', 'attachment' 
     ];
+    
     public function taskPartners()
     {
         return $this->hasMany('App\Models\TaskPartner', 'user_id', 'id');
     }
+
     public function projectPartners()
     {
         return $this->hasMany('App\Models\ProjectPartner', 'user_id', 'id');
     }
+
     public function partnerAuth()
     {
         return $this->belongsTo('App\Models\PartnerAuth', 'partner_id', 'id');
     }
+
     public function company()
     {
         return $this->belongsTo('App\Models\Company', 'company_id', 'id');
+    }
+
+    public function purchaseOrders()
+    {
+        return $this->hasMany('App\Models\PurchaseOrder', 'partner_id', 'id');
+    }
+
+    public function contracts()
+    {
+        return $this->hasMany('App\Models\Contract', 'partner_id', 'id');
+    }
+
+    public function ndas()
+    {
+        return $this->hasMany('App\Models\Nda', 'partner_id', 'id');
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany('App\Models\Invoice', 'partner_id', 'id');
     }
 }
