@@ -1,4 +1,9 @@
-@extends('index')
+@extends('company.index')
+
+@section('assets')
+<link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/project/index.css') }}">
+@endsection
 
 @section('sidebar')
 <div class="sidebar__container">
@@ -26,8 +31,8 @@
 @endsection
 
 @section('content')
-<div class="project__main__container">
-		<div class="project__main__container__wrapper">
+<div class="main__container">
+		<div class="main__container__wrapper">
 			<div class="top-container">
 				<h1 class="top-container__title">プロジェクト</h1>
 				<div>
@@ -42,7 +47,6 @@
 					<button class="button btn"><a href="project/create">プロジェクト作成</a></button>
 				</div>
 			</div>
-
 
             <div class="project-container">
                 <h2 class="project-container__item__title">Project</h2>

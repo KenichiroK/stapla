@@ -1,4 +1,9 @@
-@extends('index')
+@extends('company.index')
+
+@section('assets')
+<link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/project/create.css') }}">
+@endsection
 
 @section('sidebar')
 <div class="sidebar__container">
@@ -26,10 +31,10 @@
 @endsection
 
 @section('content')
-<div class="project__create__main__container">
+<div class="main__container">
     <form aciton="{{ url('/project/create') }}" method='POST'>
     {{ csrf_field() }}
-    <div class="project__create__main__container__wrapper">
+    <div class="main__container__wrapper">
         <div class="top-container">
             <h1 class="top-container__title">プロジェクト作成</h1>
         </div>
