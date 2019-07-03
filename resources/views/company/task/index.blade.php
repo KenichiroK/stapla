@@ -41,9 +41,6 @@
 <div class="main__container">
     <div class="main__container__wrapper">
         <!-- page header -->
-        <div>
-            <a href="/company/mail/company-index">担当者を招待する</a>
-        </div>
         <div class="top-container">
             <div class="page-title-container">
                 <div class="page-title-container__page-title">タスク一覧</div>
