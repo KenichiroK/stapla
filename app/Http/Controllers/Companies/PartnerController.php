@@ -16,7 +16,7 @@ class PartnerController extends Controller
     {
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        $partners = Partner::where('company_id', $company_id)->with(['projectPartners.project', 'TaskPartners.task'])->get();
+        $partners = Partner::where('company_id', $company_id)->with(['projectPartners.project', 'TaskPartners.task'])->paginate(6);;
         return view('company/partner/index', compact('partners'));
     }
 
