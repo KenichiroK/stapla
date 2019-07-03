@@ -39,7 +39,7 @@
 					</p>
 				</div>
 				<div class="control">
-					<button class="button btn"><a src="project/create">プロジェクト作成</a></button>
+					<button class="button btn"><a href="project/create">プロジェクト作成</a></button>
 				</div>
 			</div>
 
@@ -60,7 +60,7 @@
 
                 <div class="project-container__content">
                     @foreach( $projects as $project )
-                    <ul class="project-container__content__list" >
+                    <ul class="item-list project-container__content__list" >
                         <li>{{ $project->name }}</li>
                         <li>
                             <p>{{ $project->company->representive_name }}</p>
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="project-container__content__showmore">
-                    <p class="project-container__content__showmore__btn">Show More</p>
+                    <p id="showmore_btn" class="project-container__content__showmore__btn">もっと見る</p>
                 </div>
             </div> 
 		</div>
