@@ -24,9 +24,7 @@ Route::group(['prefix' => 'partner'], function(){
 
 	Route::group(['middleware' => 'auth:partner'], function() {
 		//dashboard
-		Route::get('dashboard', function() {
-			return view('partner/dashboard/index');
-		});
+		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard.index');
 		// logout
 		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});

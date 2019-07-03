@@ -45,7 +45,7 @@
                                 user name
                             </div>
                             <div class="navbar-item">
-                                <img src="./images/dummy_user.jpeg" alt="プロフィール画像">
+                                <img src="../images/dummy_user.jpeg" alt="プロフィール画像">
                             </div>
                         </div>
                         </div>
@@ -59,10 +59,6 @@
             </div>
 
             <main class="main__container">
-                <form method="POST" action="{{ route('partner.logout') }}">
-                @csrf
-                <button type="submit">ログアウト</button>
-                </form>
                 <div class="main__container__wrapper">
                 @yield('content')
                 </div>
