@@ -56,9 +56,6 @@
                     </span>
                 </p>
             </div>
-            <div class="top-container__searcharea field">
-                <input class="input font-awesome" type="text" placeholder="Search Name…">
-            </div>
             <div class="top-container__createarea">
                 <div class="top-container__createarea__buttonarea control">
                     <button class="top-container__createarea__buttonarea__button button"><a href="/company/task/create">タスク作成</a></button>
