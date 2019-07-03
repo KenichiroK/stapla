@@ -104,14 +104,14 @@
                 </div>
             </div>
         </div>
-            <!-- Task -->
-            <div class="task-container">
-                <div class="task-container__wrapper">
-                    <!-- タイトル -->
-                    <div class="item-name-wrapper">
-                        <div class="item-name-wrapper__item-name">Task</div>
-                    </div>
-                    <div class="task-container__wrapper__table-wrapper">
+        <!-- Task -->
+        <div class="task-container">
+            <div class="task-container__wrapper">
+                <!-- タイトル -->
+                <div class="item-name-wrapper">
+                    <div class="item-name-wrapper__item-name">Task</div>
+                </div>
+                <div class="task-container__wrapper__table-wrapper">
                     <table class="task-container__wrapper__table-wrapper__table">
                         <!-- タイトルヘッダー部分 -->
                         <tr class="task-container__wrapper__table-wrapper__table__headerrow">
