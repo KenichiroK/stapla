@@ -68,7 +68,6 @@ class TaskController extends Controller
         
         $task = new Task;
         $task->project_id      = $request->project_id;
-
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
         $task->company_id      = $company_id;
@@ -106,7 +105,15 @@ class TaskController extends Controller
 
     public function show($id)
     {
-        return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->findOrFail($id);
+        $task = Task::with(['project', 'taskCompanies.companyUser', 'taskPartners.partner'])->findOrFail($id);
+
+        $user = Auth::user();
+        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+        $companyUsers = CompanyUser::where('company_id', $company_id)->get();
+
+        $partners = Partner::where('company_id', $company_id)->get();
+
+        return view('/company/task/show', compact('task', 'project_count', 'companyUsers', 'partners'));
     }
 
     public function edit($id)
