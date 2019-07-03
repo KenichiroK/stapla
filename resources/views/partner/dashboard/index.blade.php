@@ -163,25 +163,25 @@
                         @endforeach
                     </li>
                     @if($task->task->status == 0)
-                    <li><div class="state">下書き</div></li>
+                    <li><div class="state default">下書き</div></li>
                     @elseif ($task->task->status == 1)
-                    <li><div class="state">提案中</div></li>
+                    <li><div class="state default">提案中</div></li>
                     @elseif ($task->task->status == 2)
-                    <li><div class="state">依頼前</div></li>
+                    <li><div class="state default">依頼前</div></li>
                     @elseif ($task->task->status == 3)
-                    <li><div class="state">依頼中</div></li>
+                    <li><div class="state default">依頼中</div></li>
                     @elseif ($task->task->status == 4)
-                    <li><div class="state">開始前</div></li>
+                    <li><div class="state default">開始前</div></li>
                     @elseif ($task->task->status == 5)
-                    <li><div class="state">作業中</div></li>
+                    <li><div class="state default">作業中</div></li>
                     @elseif ($task->task->status == 6)
-                    <li><div class="state">提出前</div></li>
+                    <li><div class="state default">提出前</div></li>
                     @elseif ($task->task->status == 7)
-                    <li><div class="state">修正中</div></li>
+                    <li><div class="state default">修正中</div></li>
                     @elseif ($task->task->status == 8)
-                    <li><div class="state">完了</div></li>
+                    <li><div class="state complete">完了</div></li>
                     @else
-                    <li><div class="state">キャンセル</div></li>
+                    <li><div class="state cancel">キャンセル</div></li>
                     @endif
                     <li>¥{{ $task->task->price }}</li>
                 </ul>
