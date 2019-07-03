@@ -3,7 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Nda extends BaseUuid
 {
-    protected $table = 'confidentiality_agreements';
+    protected $table = 'ndas';
     protected $fillable = [
         'company_id', 'task_id', 'status',
     ];
