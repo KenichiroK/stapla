@@ -5,6 +5,15 @@
 <link rel="stylesheet" href="{{ mix('css/partner/dashboard/index.css') }}">
 @endsection
 
+@section('header-profile')
+<div class="navbar-item">
+    {{ $partner->name }}
+</div>
+<div class="navbar-item">
+    <img src="../images/dummy_user.jpeg" alt="プロフィール画像">
+</div>
+@endsection
+
 @section('sidebar')
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
