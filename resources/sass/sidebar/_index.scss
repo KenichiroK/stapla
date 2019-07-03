@@ -21,7 +21,7 @@
           padding: 24px;
         }
         &__menu-list a:hover {
-          background-color: #252433;
+          background-color: rgba(37, 36, 51, 0.5);
           border-left: 5px solid #a3a0fb;
         }
         &__menu-list i {
@@ -74,6 +74,11 @@
             }
         }
     }
+}
+
+.isActive {
+  background-color: #252433!important;
+  border-left: 5px solid #a3a0fb;
 }
 // ステータス色分け
 .complete{

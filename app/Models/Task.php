@@ -32,9 +32,9 @@ class Task extends BaseUuid
     {
         return $this->hasOne('App\Models\Contract', 'task_id', 'id');
     }
-    public function confidentialityAgreement()
+    public function nda()
     {
-        return $this->hasOne('App\Models\ConfidentialityAgreement', 'task_id', 'id');
+        return $this->hasOne('App\Models\Nda', 'task_id', 'id');
     }
     public function invoice()
     {

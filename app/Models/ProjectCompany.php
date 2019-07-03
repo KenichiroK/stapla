@@ -13,6 +13,6 @@ class ProjectCompany extends BaseUuid
     }
     public function companyUser()
     {
-        return $this->belongsTo('App\Models\CompanyUser', 'user_id','id');
+        return $this->belongsTo('App\Models\CompanyUser', 'user_id', 'id');
     }
 }
