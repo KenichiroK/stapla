@@ -7,8 +7,8 @@ $factory->define(App\Models\Task::class, function (Faker $faker) {
     return [
         'company_id'        => $project->company_id,
         'project_id'        => $project->id,
-        'task_name'         => $faker->randomElement(['要件定義', '調査', 'コーディング']),
-        'task_content'      => $faker->sentence,
+        'name'              => $faker->randomElement(['要件定義', '調査', 'コーディング']),
+        'content'           => $faker->sentence,
         'started_at'        => $faker->dateTimeThisDecade,
         'ended_at'          => $faker->dateTimeThisDecade,
         'status'            => $faker->numberBetween($min = 0, $max = 10),

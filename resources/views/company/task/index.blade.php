@@ -1,4 +1,9 @@
-@extends('index')
+@extends('company.index')
+
+@section('assets')
+<link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/task/index.css') }}">
+@endsection
 
 @section('sidebar')
 
@@ -13,13 +18,19 @@
                 <ul class="menu-list menu menu__container__menu-list">
                     <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
                     <li><a href="/"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                    <li><a href="/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                    <li><a href="/task"><i class="fas fa-tasks"></i>タスク</a></li>
-                    <li><a href="/document"><i class="fas fa-newspaper"></i>書類</a></li>
-                    <li><a href="#"><i class="fas fa-user-circle"></i>パートナー</a></li>
+                    <li><a href="/company/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
+                    <li><a href="/company/task"><i class="fas fa-tasks"></i>タスク</a></li>
+                    <li><a href="/company/document"><i class="fas fa-newspaper"></i>書類</a></li>
+                    <li><a href="/company/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
                     <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                     <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
                     <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('company.logout') }}">
+                            @csrf
+                            <button type="submit">ログアウト</button>
+                        </form>
+                    </li>
                 </ul>
             </aside>
         </div>
@@ -52,7 +63,7 @@
         </div> -->
         <div class="top-container__createarea">
             <div class="top-container__createarea__buttonarea control">
-                <button class="top-container__createarea__buttonarea__button button"><a href="task/create">タスク作成</a></button>
+                <button class="top-container__createarea__buttonarea__button button"><a href="/company/task/create">タスク作成</a></button>
             </div>
         </div>
     </div>

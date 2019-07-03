@@ -18,8 +18,8 @@ class CreateTasksTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('company_id');
             $table->uuid('project_id');
-            $table->string('task_name', 64);
-            $table->text('task_content');
+            $table->string('name', 64);
+            $table->text('content');
             $table->dateTime('started_at');
             $table->dateTime('ended_at');
             $table->integer('status');
