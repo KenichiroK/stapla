@@ -11,10 +11,17 @@ class Invoice extends BaseUuid
     {
         return $this->belongsTo('App\Models\Company', 'company_id', 'id');
     }
+
+    public function partner()
+    {
+        return $this->belongsTo('App\Models\Partner', 'partners_id', 'id');
+    }
+
     public function task()
     {
         return $this->belongsTo('App\Models\Task', 'task_id', 'id');
     }
+    
     public function companyUserAccountSetting()
     {
         return $this->hasOne('App\Models\CompanyUserAcountSetting', 'company_user_id', 'id');

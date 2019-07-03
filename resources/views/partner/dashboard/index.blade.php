@@ -75,7 +75,7 @@
                 <div class="bottom-container__invoice">
                     <div class="bottom-container__invoice__left">icon</div>
                     <div class="bottom-container__invoice__center">
-                        <div class="count">0</div>
+                        <div class="count">{{ $invoices->count() }}</div>
                         <div class="alert-name">請求書未対応</div>
                     </div>
                     <div class="bottom-container__invoice__right">
@@ -85,7 +85,7 @@
                 <div class="bottom-container__order">
                     <div class="bottom-container__order__left"><i class="fas fa-shopping-cart"></i></div>
                     <div class="bottom-container__order__center">
-                        <div class="count">0</div>
+                        <div class="count">{{ $purchaseOrders->count() }}</div>
                         <div class="alert-name">発注書未対応</div>
                     </div>
                     <div class="bottom-container__order__right">
@@ -95,7 +95,7 @@
                 <div class="bottom-container__nda">
                     <div class="bottom-container__nda__left"><i class="fas fa-shopping-bag"></i></div>
                     <div class="bottom-container__nda__center">
-                        <div class="count">0</div>
+                        <div class="count">{{ $ndas->count() }}</div>
                         <div class="alert-name">機密保持契約書未対応</div>
                     </div>
                     <div class="bottom-container__nda__right">

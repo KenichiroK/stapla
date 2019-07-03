@@ -34,9 +34,9 @@ class Company extends BaseUuid
     {
         return $this->hasMany('App\Models\Contract', 'company_id', 'id');
     }
-    public function confidentialityAgreements()
+    public function ndas()
     {
-        return $this->hasMany('App\Models\ConfidentialityAgreement', 'company_id', 'id');
+        return $this->hasMany('App\Models\Nda', 'company_id', 'id');
     }
     public function invoices()
     {
