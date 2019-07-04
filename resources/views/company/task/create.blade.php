@@ -6,40 +6,34 @@
 @endsection
 
 @section('sidebar')
-
-<h1>ポスト作成</h1>
-
-
-
 <div class="sidebar__container">
-        <div class="sidebar__container__wrapper">
-            <aside class="menu menu__container">
-                <div class="menu__container--label">
-                    <div class="menu-label">
-                        fms
-                    </div>
+    <div class="sidebar__container__wrapper">
+        <aside class="menu menu__container">
+            <div class="menu__container--label">
+                <div class="menu-label">
+                    fms
                 </div>
-                <ul class="menu-list menu menu__container__menu-list">
-                    <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="/"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                    <li><a href="/company/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                    <li><a href="/company/task"><i class="fas fa-tasks"></i>タスク</a></li>
-                    <li><a href="/company/document"><i class="fas fa-newspaper"></i>書類</a></li>
-                    <li><a href="/company/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
-                    <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
-                    <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                    <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
-                    <li>
-                        <form method="POST" action="{{ route('company.logout') }}">
-                            @csrf
-                            <button type="submit">ログアウト</button>
-                        </form>
-                    </li>
-                </ul>
-            </aside>
-        </div>
+            </div>
+            <ul class="menu-list menu menu__container__menu-list">
+                <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="/"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
+                <li><a href="/company/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
+                <li><a href="/company/task"><i class="fas fa-tasks"></i>タスク</a></li>
+                <li><a href="/company/document"><i class="fas fa-newspaper"></i>書類</a></li>
+                <li><a href="/company/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
+                <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
+                <li>
+                    <form method="POST" action="{{ route('company.logout') }}">
+                        @csrf
+                        <button type="submit">ログアウト</button>
+                    </form>
+                </li>
+            </ul>
+        </aside>
     </div>
-
+</div>
 @endsection
 
 @section('content')
@@ -50,7 +44,6 @@
         <div class="page-title-container">
             <div class="page-title-container__page-title">タスク作成</div>
         </div>
-
         <!-- プロジェクトを選択する エリア -->
         <div class="select-container">
             <div class="select-container__wrapper">
@@ -72,9 +65,9 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('project_id'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong style='color: #e3342f'>{{ $errors->first('project_id') }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong style='color: #e3342f'>{{ $errors->first('project_id') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -82,8 +75,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="content-container">
             <div class="content-container__wrapper">
                 <!-- main -->
@@ -101,9 +92,9 @@
                                     <div class="main-container__wrapper__item-container__inputarea__field__control">
                                         <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" placeholder="タスク名">
                                         @if ($errors->has('task_name'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong style='color: #e3342f'>{{ $errors->first('task_name') }}</strong>
-                                                </span>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong style='color: #e3342f'>{{ $errors->first('task_name') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -120,11 +111,10 @@
                                 <!-- <textarea class="textarea" placeholder="タスク内容" v-model="taskInfo.taskContent"></textarea> -->
                                 <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content' placeholder="タスク内容"></textarea>
                                 @if ($errors->has('task_content'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong style='color: #e3342f'>{{ $errors->first('task_content') }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong style='color: #e3342f'>{{ $errors->first('task_content') }}</strong>
+                                    </span>
                                 @endif
-                                
                             </div>
                         </div>
                         <!-- 項目：締め切り -->
@@ -210,7 +200,6 @@
                                     <div class="select-container__wrapper__select-area__field field">
                                         <div class="select-container__wrapper__select-area__field__control control">
                                             <div class="select-container__wrapper__select-area__field__control__select select is-info">
-                                            <!-- <select v-model="taskInfo.template">  -->
                                             <select> 
                                                 <option></option>
                                                 @foreach($tasks as $task)
@@ -239,7 +228,6 @@
                                                 <div class="select-container__wrapper__select-area__field__control control">
                                                     <div class="select-container__wrapper__select-area__field__control__select select is-info">
                                                     <!-- <select v-model="taskInfo.staff"> -->
-                                                    
                                                     <select name='company_user_id' class="form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
                                                         <option></option>
                                                         @foreach($companyUsers as $companyUser)
@@ -271,20 +259,20 @@
                                             <div class="select-container__wrapper__select-area__field field">
                                                 <div class="select-container__wrapper__select-area__field__control control">
                                                     <div class="select-container__wrapper__select-area__field__control__select select is-info">
-                                                    <!-- <select v-model="taskInfo.partner"> -->
-                                                    <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                                        <option></option>
-                                                        @foreach($partners as $partner)
-                                                            <option value={{ $partner->id }} >
-                                                                {{ $partner->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                    @if ($errors->has('partner_id'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong style='color: #e3342f'>{{ $errors->first('partner_id') }}</strong>
-                                                        </span>
-                                                    @endif
+                                                        <!-- <select v-model="taskInfo.partner"> -->
+                                                        <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
+                                                            <option></option>
+                                                            @foreach($partners as $partner)
+                                                                <option value={{ $partner->id }} >
+                                                                    {{ $partner->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if ($errors->has('partner_id'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong style='color: #e3342f'>{{ $errors->first('partner_id') }}</strong>
+                                                            </span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -387,9 +375,9 @@
                                         <textarea class="textarea side-container__wrapper__agreement-container__wrapper__fee-container__control__textarea" placeholder="備考"></textarea>
                                     </div>
                                 </div>
-                            <div class="button-wrapper">
-                                <button type='submit' class="button-wrapper__btn button">依頼</button>
-                            </div>
+                                <div class="button-wrapper">
+                                    <button type='submit' class="button-wrapper__btn button">依頼</button>
+                                </div>
                             </div>
                         </div>
                     </div>
