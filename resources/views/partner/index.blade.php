@@ -23,42 +23,36 @@
 </head>
 <body>
     <div id="app">
-        <div class="top">
-            <div class="top__container">
-                <header>
-                    <nav class="navbar" role="navigation" aria-label="main navigation">
-                        <div class="navbar-brand">
-
-                        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarHomeHeader">
-                            <span aria-hidden="true"></span>
-                            <span aria-hidden="true"></span>
-                            <span aria-hidden="true"></span>
-                        </a>
-                        </div>
-
-                        <div id="navbarHomeHeader" class="navbar-menu">
-                        <div class="navbar-end">
-                            <div class="navbar-item">
-                                <i class="fas fa-bell"></i>
-                            </div>
-                            @yield('header-profile')
-                        </div>
-                        </div>
-                    </nav>
-                </header>
-
-
-                <div>
-                    @yield('sidebar')
+        <header>
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarHomeHeader">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
                 </div>
+
+                <div id="navbarHomeHeader" class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        @yield('header-profile')
+                    </div>
+                </div>
+            </nav>
+        </header>      
+
+        <main>
+            <div class="sidebar-wrapper">
+                @yield('sidebar')
             </div>
 
-            <main class="main__container">
-                <div class="main__container__wrapper">
-                @yield('content')
-                </div>
-            </main>
-        </div>
+            <div class="content-wrapper">
+            @yield('content')
+            </div>
+        </main>
     </div>
 
     <!-- Scripts -->

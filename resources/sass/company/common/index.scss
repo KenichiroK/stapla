@@ -12,26 +12,33 @@
 @import '../../sidebar/index';
 
 body {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 .navbar-laravel {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
   }
   
-  .top {
-    .top__container {
-        position: absolute;
-    }
-    .main__container {
-        position: relative;
-        top: 30px;
-        right: -20%;
-        &__wrapper {
-            // padding: 8px;
-            // margin: 8px;
-        }
-    }
-  }
+main {
+	width: 100%;
+	position: relative;
+
+	.sidebar-wrapper {
+		width: 20%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		background-color: #43425d;
+	}
+
+	.content-wrapper {
+		width: 80%;
+		position: absolute;
+		top: 64px;
+		right: 0;
+		background-color: #F0F0F7;
+	}
+}
