@@ -22,14 +22,14 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
 
-	Route::group(['middleware' => 'auth:partner'], function() {
-		//dashboard
-		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard.index');
-		// logout
-		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
-	});
-	
+    //dashboard
+    Route::get('dashboard', function() {
+        return view('partner/dashboard/index');
+    });
+    // logout
+    Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 });
+	
   
 
 Route::group(['prefix' => 'company'], function(){
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'company'], function(){
 
 	//register
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
-	Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
+    Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
 
 	
 	Route::group(['middleware' => 'auth:company'], function() {
@@ -51,9 +51,20 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// partner
 		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
-		Route::get('/partner/{id}', 'Companies\PartnerController@show')->name('company.partner.show');
-		// logout
+        Route::get('/partner/{id}', 'Companies\PartnerController@show')->name('company.partner.show');
+        
+        // mail(CompnayUser)
+        Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
+        Route::post('/mail/company-send', 'Companies\CompanyUserMailController@send')->name('company.mail.company-send');
+
+        // mail(Partner)
+        Route::get('/mail/partner-index', 'Companies\PartnerMailController@index')->name('company.mail.partner-index');
+        Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
+        
+        // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');
 
 	});  
 });
+
+
