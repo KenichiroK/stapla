@@ -25,7 +25,7 @@
             </div>
             <ul class="menu-list menu menu__container__menu-list">
                 <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="/partner/dashboard"  class="isActive"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
+                <li><a href="/partner/dashboard" class="isActive"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
                 <li><a href="/partner/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
                 <li><a href="/partner/task"><i class="fas fa-tasks"></i>タスク</a></li>
                 <li><a href="/partner/document"><i class="fas fa-newspaper"></i>書類</a></li>
@@ -33,11 +33,11 @@
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
                 <li>
-                <form method="POST" action="{{ route('partner.logout') }}">
-                    @csrf
-                    <button type="submit">ログアウト</button>
-                </form>
-            </li>
+                    <form method="POST" action="{{ route('partner.logout') }}">
+                        @csrf
+                        <button type="submit">ログアウト</button>
+                    </form>
+                </li>
             </ul>
         </aside>
     </div>

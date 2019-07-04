@@ -20,7 +20,7 @@
                 <li><a href="/company/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
                 <li><a href="/company/task"><i class="fas fa-tasks"></i>タスク</a></li>
                 <li><a href="/company/document"><i class="fas fa-newspaper"></i>書類</a></li>
-                <li><a href="/company/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
+                <li><a href="/company/partner" class="isActive"><i class="fas fa-user-circle"></i>パートナー</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
