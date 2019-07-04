@@ -1,4 +1,5 @@
 $(function(){
+    //もっと見る
     let defaultCount = 4;
     const allListCount = $(".item-list").length;
     const itemList = $('.project-container__content').children('ul');

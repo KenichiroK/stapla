@@ -32,8 +32,8 @@
 
 @section('content')
 <div class="main__container">
-    <form aciton="{{ url('/project/create') }}" method='POST'>
-    {{ csrf_field() }}
+    <form aciton="{{ url('/project') }}" method='POST'>
+    @csrf
     <div class="main__container__wrapper">
         <div class="top-container">
             <h1 class="top-container__title">プロジェクト作成</h1>

@@ -32,62 +32,62 @@
 
 @section('content')
 <div class="main__container">
-		<div class="main__container__wrapper">
-			<div class="top-container">
-				<h1 class="top-container__title">プロジェクト</h1>
-				<div>
-					<p class="control has-icons-left">
-						<input class="search-project input" type="text" placeholder="Search project">
-						<span class="icon is-small is-left">
-						<i class="fas fa-search"></i>
-						</span>
-					</p>
-				</div>
-				<div class="control">
-					<button class="button btn"><a href="project/create">プロジェクト作成</a></button>
-				</div>
-			</div>
+    <div class="main__container__wrapper">
+        <div class="top-container">
+            <h1 class="top-container__title">プロジェクト</h1>
+            <div>
+                <p class="control has-icons-left">
+                    <input class="search-project input" type="text" placeholder="Search project">
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-search"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="control">
+                <button class="button btn"><a href="project/create">プロジェクト作成</a></button>
+            </div>
+        </div>
 
-            <div class="project-container">
-                <h2 class="project-container__item__title">Project</h2>
-                <div class="project-container__item">
-                    <ul class="project-container__item__list">
-                        <li>プロジェクト</li>
-                        <li>担当者<i class="arrow fas fa-angle-down"></i></li>
-                        <li>パートナー<i class="arrow fas fa-angle-down"></i></li>
-                        <li>タスク</li>
-                        <li>期限<i class="arrow fas fa-angle-down"></i></li>
-                        <li>予算</li>
-                        <li>請求額</li>
-                    </ul>
-                </div>
+        <div class="project-container">
+            <h2 class="project-container__item__title">Project</h2>
+            <div class="project-container__item">
+                <ul class="project-container__item__list">
+                    <li>プロジェクト</li>
+                    <li>担当者<i class="arrow fas fa-angle-down"></i></li>
+                    <li>パートナー<i class="arrow fas fa-angle-down"></i></li>
+                    <li>タスク</li>
+                    <li>期限<i class="arrow fas fa-angle-down"></i></li>
+                    <li>予算</li>
+                    <li>請求額</li>
+                </ul>
+            </div>
 
-                <div class="project-container__content">
-                    @foreach( $projects as $project )
-                    <ul class="item-list project-container__content__list" >
-                        <li>{{ $project->name }}</li>
-                        <li>
-                            <p>{{ $project->company->representive_name }}</p>
-                        </li>
-                        <li>
-                            @foreach( $project->projectPartners as $projectPartner )
-                            <p>{{ $projectPartner->partner->name }}</p>
-                            @endforeach
-                        </li>
-                        <li>
-                            {{ $task_count_arr[$loop->index] }}件
-                        </li>
-                        <li>{{ $project->ended_at }}</li>
-                        <li>¥{{ $project->budget }}</li>
-                        <li>¥{{ $project->price }}</li>
-                    </ul>
-                    @endforeach
-                </div>
+            <div class="project-container__content">
+                @foreach( $projects as $project )
+                <ul class="item-list project-container__content__list" >
+                    <li>{{ $project->name }}</li>
+                    <li>
+                        <p>{{ $project->company->representive_name }}</p>
+                    </li>
+                    <li>
+                        @foreach( $project->projectPartners as $projectPartner )
+                        <p>{{ $projectPartner->partner->name }}</p>
+                        @endforeach
+                    </li>
+                    <li>
+                        {{ $task_count_arr[$loop->index] }}件
+                    </li>
+                    <li>{{ $project->ended_at }}</li>
+                    <li>¥{{ $project->budget }}</li>
+                    <li>¥{{ $project->price }}</li>
+                </ul>
+                @endforeach
+            </div>
 
-                <div class="project-container__content__showmore">
-                    <p id="showmore_btn" class="project-container__content__showmore__btn">もっと見る</p>
-                </div>
-            </div> 
-		</div>
-	</div>
+            <div class="project-container__content__showmore">
+                <p id="showmore_btn" class="project-container__content__showmore__btn">もっと見る</p>
+            </div>
+        </div> 
+    </div>
+</div>
 @endsection
