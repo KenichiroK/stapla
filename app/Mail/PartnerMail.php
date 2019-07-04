@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CompanyUserMail extends Mailable
+class PartnerMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -20,6 +20,6 @@ class CompanyUserMail extends Mailable
     {
         return $this->from('test@impro.com')
                     ->subject('テスト送信完了')
-                    ->view('company/companyUserMail/mailContent');
+                    ->view('company/PartnerMail/mailContent');
     }
 }

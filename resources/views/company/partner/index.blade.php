@@ -37,6 +37,9 @@
 @endsection
 
 @section('content')
+<div>
+    <a href="/company/mail/partner-index">担当者を招待する</a>
+</div>
 <div class="main__container">
     <div class="main__container__wrapper">
         <div class="top-container">
@@ -71,45 +74,38 @@
         </div>
         
         <div class="profile-list">
-        @foreach( $partners as $partner )
-        <a href="/company/partner/{{ $partner->id }}">
-            <div class="profile-card-container">
-           
-                <div class="profile-card-container__wrapper">
-                    
-                    
-                    <div class="main-content">
-                        <div class="main-content__img-container">
-                            <img class="main-content__img-container__img" src="" alt="">
-                        </div>
-                        <div class="main-content__info-list">
-                            <div class="main-content__info-list__name">{{ $partner->name }}</div>
-                            <div class="main-content__info-list__job">{{ $partner->occupations }}</div>
-                        </div>
-                        <div class="main-content__right-icons">
-                            <div>
-                                <a href="/partner/profile_setting"><i class="main-content__right-icons__pen fas fa-pen"></i></a>
+            @foreach( $partners as $partner )
+            <a href="/company/partner/{{ $partner->id }}">
+                <div class="profile-card-container">
+                    <div class="profile-card-container__wrapper">
+                        <div class="main-content">
+                            <div class="main-content__img-container">
+                                <img class="main-content__img-container__img" src="" alt="">
+                            </div>
+                            <div class="main-content__info-list">
+                                <div class="main-content__info-list__name">{{ $partner->name }}</div>
+                                <div class="main-content__info-list__job">{{ $partner->occupations }}</div>
+                            </div>
+                            <div class="main-content__right-icons">
+                                <div>
+                                    <a href="/partner/profile_setting"><i class="main-content__right-icons__pen fas fa-pen"></i></a>
+                                </div>
                             </div>
                         </div>
-                       
-                    </div>
-                    
-                    <div class="icon-list">
-                        <div class="icon-list__img_width"></div>
-                        <div><a class="default-color github"><i class="fab fa-github icon"></i></a></div>
-                        <div><a class="default-color twitter"><i class="fab fa-twitter icon"></i></a></div>
-                        <div><a class="default-color facebook"><i class="fab fa-facebook icon"></i></a></div>
-                        <div><a class="default-color instagram"><i class="fab fa-instagram icon"></i></a></div>
-                        <div><a class="default-color mail"><i class="far fa-envelope icon"></i></a></div>
+                        <div class="icon-list">
+                            <div class="icon-list__img_width"></div>
+                            <div><a class="default-color github"><i class="fab fa-github icon"></i></a></div>
+                            <div><a class="default-color twitter"><i class="fab fa-twitter icon"></i></a></div>
+                            <div><a class="default-color facebook"><i class="fab fa-facebook icon"></i></a></div>
+                            <div><a class="default-color instagram"><i class="fab fa-instagram icon"></i></a></div>
+                            <div><a class="default-color mail"><i class="far fa-envelope icon"></i></a></div>
+                        </div>
                     </div>
                 </div>
-                
-            </div>
             </a>
             @endforeach
             {{ $partners->links() }}
         </div>
-
     </div>
 </div>
 @endsection
