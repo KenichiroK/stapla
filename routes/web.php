@@ -21,13 +21,12 @@ Route::group(['prefix' => 'partner'], function(){
 	//register
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
-
-    //dashboard
-    Route::get('dashboard', function() {
-        return view('partner/dashboard/index');
-    });
+	Route::group(['middleware' => 'auth:partner'], function() {
+		//dashboard
+    Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
     // logout
     Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
+	});
 });
 	
   
@@ -66,5 +65,3 @@ Route::group(['prefix' => 'company'], function(){
 
 	});  
 });
-
-
