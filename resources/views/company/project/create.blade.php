@@ -17,7 +17,7 @@
             <ul class="menu-list menu menu__container__menu-list">
                 <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
                 <li><a href="/"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li><a href="/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
+                <li class="isActive"><a href="/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
                 <li><a href="/task"><i class="fas fa-tasks"></i>タスク</a></li>
                 <li><a href="/document"><i class="fas fa-newspaper"></i>書類</a></li>
                 <li><a href="#"><i class="fas fa-user-circle"></i>パートナー</a></li>
