@@ -83,13 +83,4 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');
 
 	});  
-<<<<<<< HEAD
 });
-=======
-<<<<<<< HEAD
-});
-=======
-});
-
->>>>>>> rebase時の修正漏れ
->>>>>>> rebase時の修正漏れ
