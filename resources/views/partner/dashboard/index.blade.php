@@ -31,7 +31,7 @@
                 <li><a href="/partner/document"><i class="fas fa-newspaper"></i>書類</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
+                <li><a href="/partner/setting/invoice"><i class="fas fa-cog"></i>設定</a></li>
                 <li>
                     <form method="POST" action="{{ route('partner.logout') }}">
                         @csrf

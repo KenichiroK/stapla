@@ -1,0 +1,221 @@
+.main-wrapper {
+  width: 80%;
+  margin: auto;
+  padding: 40px;
+  
+  .title-container {
+    margin-bottom: 40px;
+
+    h3 {
+      font-weight: bold;
+      color: #43425d;
+    }
+  }
+
+  .menu-container {
+    margin-bottom: 64px;
+
+    ul {
+      width: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+
+      li {
+        width: 25%;
+        margin: auto;
+        text-align: center;
+
+        a {
+          width: 100%;
+          font-size: 12px;
+          display: block;
+          color: #aaa;
+          padding-bottom: 4px;
+          border-bottom: 1px solid #aaa;
+          text-decoration: none;
+        }
+
+        a:hover {
+          color: rgba(67, 66, 93, 0.7);
+          font-weight: bold;
+          border-bottom: 3px solid rgba(67, 66, 93, 0.7);
+        }
+
+        .isActive {
+          color: #43425d!important;
+          font-weight: bold!important;
+          border-bottom: 3px solid #43425d!important;
+        } 
+      }
+    }
+  }
+
+  .profile-container {
+    width: 100%;
+    background-color: #fff;
+    padding: 48px;
+    margin-bottom: 48px;
+
+    .title-container {
+      margin-bottom: 24px;
+
+      h4 {
+        font-size: 16px;
+        color: #43425d;
+        font-weight: bold;
+      }
+    }
+
+    .name-container {
+      margin-bottom: 24px;
+
+      p {
+        font-size: 16px;
+        color: #43425d;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        outline-color: #43425d;
+        font-size: 16px;
+        padding: 4px;
+      }
+    }
+
+    .above-address-container {
+      display: flex;
+      margin-bottom: 24px;
+
+      .zipcode-container {
+        width: 40%;
+
+        p {
+          font-size: 16px;
+          color: #43425d;
+          font-weight: bold;
+        }
+  
+        input {
+          width: 80%;
+          outline-color: #43425d;
+          font-size: 16px;
+          padding: 4px;
+        }
+      }
+
+      .prefecture-container {
+        width: 40%;
+
+        p {
+          font-size: 16px;
+          color: #43425d;
+          font-weight: bold;
+        }
+
+        .selectbox-container{
+          width: 80%;
+          position: relative;
+          display: inline-block;
+        }
+
+        .selectbox-container::after {
+          content: '';
+          width: 6px;
+          height: 6px;
+          border: 0px;
+          border-bottom: solid 2px #b4b3b3;
+          border-right: solid 2px #b4b3b3;
+          -ms-transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          margin-top: -4px;
+        }
+  
+        select {
+          width: 100%;
+          outline-color: #43425d;
+          font-size: 16px;
+          padding: 4px;
+          appearance:none;
+          background-color: transparent;
+          z-index: 1;
+        }
+      }
+    }
+
+    .below-address-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+
+      .city-container {
+        width: 45%;
+
+        p {
+          font-size: 16px;
+          color: #43425d;
+          font-weight: bold;
+        }
+  
+        input {
+          width: 100%;
+          outline-color: #43425d;
+          font-size: 16px;
+          padding: 4px;
+        }
+      }
+
+      .building-container {
+        width: 45%;
+
+        p {
+          font-size: 16px;
+          color: #43425d;
+          font-weight: bold;
+        }
+  
+        input {
+          width: 100%;
+          outline-color: #43425d;
+          font-size: 16px;
+          padding: 4px;
+        }
+      }
+    }
+
+    .tel-container {
+      margin-bottom: 24px;
+
+      p {
+        font-size: 16px;
+        color: #43425d;
+        font-weight: bold;
+      }
+
+      input {
+        width: 45%;
+        outline-color: #43425d;
+        font-size: 16px;
+        padding: 4px;
+      }
+    }
+  }
+
+  .btn-container {
+    width: 100%;
+    text-align: center;
+
+    button {
+      background-color: #43425d;
+      color: #fff;
+      padding: 8px 32px;
+      font-size: 16px;
+      border-radius: 48px;
+    }
+  }
+}
