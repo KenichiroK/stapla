@@ -14,6 +14,7 @@ class CreatePartnersTable extends Migration
             $table->uuid('company_id');
             $table->uuid('partner_id');
             $table->string('name', 64);
+            $table->string('nickname', 64)->nullable();
             $table->string('zip_code', 64);
             $table->string('address', 64);
             $table->string('tel');
