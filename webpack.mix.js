@@ -26,7 +26,7 @@ mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common'
 
    // partner
    .sass('resources/sass/partner/dashboard/index.scss', 'public/css/partner/dashboard')
-   .sass('resources/sass/partner/setting/index.scss', 'public/css/partner/setting');
+   .sass('resources/sass/partner/setting/invoice/index.scss', 'public/css/partner/setting/invoice');
 
 mix.options({
    publicPath: 'public'

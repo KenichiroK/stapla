@@ -9,7 +9,7 @@ $factory->define(App\Models\Partner::class, function (Faker $faker) {
             return factory(App\Models\PartnerAuth::class)->create()->id;
         },
         'name'          => $faker->name,
-        'zip_code'      => str_random(10),
+        'zip_code'      => $faker->postcode,
         'prefecture'    => $faker->prefecture,
         'city'          => $faker->city,
         'building'      => $faker->streetAddress,

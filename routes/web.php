@@ -25,7 +25,8 @@ Route::group(['prefix' => 'partner'], function(){
 		//dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
 		//  setting
-		Route::get('setting/invoice', 'Partners\SettingController@index')->name('partner.setting');
+		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
+		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
     // logout
     Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
