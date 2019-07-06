@@ -14,14 +14,14 @@ class CreatePartnerInvoicesTable extends Migration
     public function up()
     {
         Schema::create('partner_invoices', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id')->primary();
             $table->uuid('partner_id');
             $table->string('financial_institution');
             $table->string('branch');
             $table->string('deposit_type');
             $table->integer('account_number');
             $table->string('account_holder');
-            $table->string('mark');
+            $table->string('mark_image');
             $table->timestamps();
 
             $table->foreign('partner_id')->references('id')->on('partners');

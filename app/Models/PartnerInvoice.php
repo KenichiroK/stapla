@@ -4,7 +4,7 @@ namespace App\Models;
 
 class PartnerInvoice extends BaseUuid
 {
-    protected $table = 'partner_invoice';
+    protected $table = 'partner_invoices';
 
     protected $fillable = [
         'partner_id', 'financial_institution', 'branch', 'deposit_type', 

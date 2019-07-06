@@ -17,13 +17,16 @@ Route::group(['prefix' => 'partner'], function(){
 	//login   
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
-
 	//register
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
+	
 	Route::group(['middleware' => 'auth:partner'], function() {
 		//dashboard
-    Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
+		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
+		//  setting
+		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
+		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
     // logout
     Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
