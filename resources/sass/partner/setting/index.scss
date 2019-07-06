@@ -81,6 +81,8 @@
         outline-color: #43425d;
         font-size: 16px;
         padding: 4px;
+        border: 1px solid #a6a6a6;
+        border-radius: 4px;
       }
     }
 
@@ -102,6 +104,8 @@
           outline-color: #43425d;
           font-size: 16px;
           padding: 4px;
+          border: 1px solid #a6a6a6;
+          border-radius: 4px;
         }
       }
 
@@ -144,6 +148,7 @@
           appearance:none;
           background-color: transparent;
           z-index: 1;
+          border-radius: 4px;
         }
       }
     }
@@ -167,6 +172,8 @@
           outline-color: #43425d;
           font-size: 16px;
           padding: 4px;
+          border: 1px solid #a6a6a6;
+          border-radius: 4px;
         }
       }
 
@@ -184,6 +191,8 @@
           outline-color: #43425d;
           font-size: 16px;
           padding: 4px;
+          border: 1px solid #a6a6a6;
+          border-radius: 4px;
         }
       }
     }
@@ -202,6 +211,180 @@
         outline-color: #43425d;
         font-size: 16px;
         padding: 4px;
+        border: 1px solid #a6a6a6;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .invoice-container {
+    width: 100%;
+    background-color: #fff;
+    padding: 48px;
+    margin-bottom: 48px;
+
+    .title-container {
+      margin-bottom: 24px;
+
+      h4 {
+        font-size: 16px;
+        color: #43425d;
+        font-weight: bold;
+      }
+    }
+
+    .financial-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+
+      .financialInstitution-container {
+        width: 65%;
+
+        p {
+          font-size: 16px;
+          color: #43425d;
+          font-weight: bold;
+        }
+  
+        input {
+          width: 100%;
+          outline-color: #43425d;
+          font-size: 16px;
+          padding: 4px;
+          border: 1px solid #a6a6a6;
+          border-radius: 4px;
+        }
+      }
+
+      .branch-container {
+        width: 30%;
+
+        p {
+          font-size: 16px;
+          color: #43425d;
+          font-weight: bold;
+        }
+  
+        input {
+          width: 100%;
+          outline-color: #43425d;
+          font-size: 16px;
+          padding: 4px;
+          border: 1px solid #a6a6a6;
+          border-radius: 4px;
+        }
+      }
+    }
+
+    .depositType-container {
+      width: 50%;
+      margin-bottom: 24px;
+      
+      p {
+        font-size: 16px;
+        color: #43425d;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        outline-color: #43425d;
+        font-size: 16px;
+        padding: 4px;
+        border: 1px solid #a6a6a6;
+        border-radius: 4px;
+      }
+    }
+
+    .accountNumber-container{
+      width: 50%;
+      margin-bottom: 24px;
+
+      p {
+        font-size: 16px;
+        color: #43425d;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        outline-color: #43425d;
+        font-size: 16px;
+        padding: 4px;
+        border: 1px solid #a6a6a6;
+        border-radius: 4px;
+      }
+    }
+
+    .accountHolder-container {
+      width: 50%;
+      margin-bottom: 24px;
+
+      p {
+        font-size: 16px;
+        color: #43425d;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        outline-color: #43425d;
+        font-size: 16px;
+        padding: 4px;
+        border: 1px solid #a6a6a6;
+        border-radius: 4px;
+      }
+    }
+
+    .mark-container {
+      width: 50%;
+      margin-bottom: 24px;
+
+      .title {
+        font-size: 16px;
+        color: #43425d;
+        font-weight: bold;
+      }
+
+      .caution {
+        font-size: 12px;
+      }
+
+      .image-container {
+        margin-bottom: 24px;
+
+        label {
+          border: 1px solid #43425d;
+          border-radius: 48px;
+          font-weight: bold;
+          color: #43425d;
+          padding: 4px 24px;
+          font-size: 12px;
+          background-color: transparent;
+          margin-left: 12px;
+          margin-bottom: 0;
+          cursor: pointer;
+        }
+
+        label:hover {
+          opacity: 0.7;
+          transition: 0.3s;
+        }
+      }
+
+      .imprint-container {
+        width: 140px;
+        text-align: center;
+
+        button {
+          background-color: #43425d;
+          font-weight: bold;
+          color: #fff;
+          border-radius: 48px;
+          padding: 4px 24px;
+          font-size: 12px;
+        }
       }
     }
   }
@@ -212,6 +395,7 @@
 
     button {
       background-color: #43425d;
+      font-weight: bold;
       color: #fff;
       padding: 8px 32px;
       font-size: 16px;

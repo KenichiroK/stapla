@@ -3,7 +3,21 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/partner/setting/index.css') }}">
+<script>
+const setPreview = (input) => {
+  const preview = document.getElementById('preview');
 
+  if (input.files && input.files[0]) {
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      console.log(e)
+      preview.src = e.target.result;
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
 @endsection
 
 @section('header-profile')
@@ -154,7 +168,52 @@
 		</div>
 
 		<div class="invoice-container">
+			<div class="title-container">
+				<h4>請求情報</h4>
+			</div>
 
+			<div class="financial-container">
+				<div class="financialInstitution-container">
+					<p>金融機関</p>
+					<input type="text" name="financial_institution">
+				</div>
+
+				<div class="branch-container">
+					<p>支店</p>
+					<input type="text" name="branch">
+				</div>
+			</div>
+
+			<div class="depositType-container">
+				<p>預金種類</p>
+				<input type="text" name="deposit_type">
+			</div>
+
+			<div class="accountNumber-container">
+				<p>口座番号</p>
+				<input type="text" name="account_number">
+			</div>
+
+			<div class="accountHolder-container">
+				<p>口座名義</p>
+				<input type="text" name="account_holder">
+			</div>
+			
+			<div class="mark-container">
+				<p class="title">請求書印</p>
+				<p class="caution">背景が透明な140px以上の正方形のpng画像を用意してください。</p>
+				<div class="image-container">
+					<img id="preview" src="../../images/preview.jpeg" alt="プレビュー画像" width="140px" height="140px">
+					<label for="mark_image">
+					 画像をアップロード
+					<input type="file" id="mark_image" style="display: none;" onchange="setPreview(this)" name="mark">
+				</label>
+				</div>
+
+				<div class="imprint-container">
+					<button>電子印影を作成</button>
+				</div>
+			</div>
 		</div>
 
 		<div class="btn-container">
