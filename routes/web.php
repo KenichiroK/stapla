@@ -22,11 +22,13 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
 	
 	Route::group(['middleware' => 'auth:partner'], function() {
-		//dashboard
+		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
-		//  setting
+		// setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
 		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
+		// profile
+		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
     // logout
     Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
