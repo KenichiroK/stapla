@@ -47,154 +47,197 @@
 @endsection
 
 @section('content')
-<div class="main__container">
-    <div class="main__container__wrapper">
-        <!--main__container__wrapperに記述していく-->
+<div class="main-wrapper">
+    <div class="title-container">
+        <h3>ダッシュボード</h3>
+    </div>
+
+    <div class="alert-container">
+        <div class="icon-container">
+            <i class="fas fa-exclamation-circle"></i>
+        </div>
+        <div class="project-alert-container">
+            <p>プロジェクトアラート</p>
+            <h4 class="alert-text">3</h4>
+        </div>
+
+        <div class="task-alert-container">
+            <p>タスクアラート</p>
+            <h4>0</h4>
+        </div>
+    </div>
+
+    <div class="incomplete-container">
+        <div class="section-container">
+            <div class="icon-container">
+                <i class="fas fa-receipt"></i>
+            </div>
+            <div class="text-container">
+                <h4>未請求書</h4>
+                <p>{{ $invoices->count() }}</p>
+            </div>
+            <div class="btn-container">
+                <button>確認</button>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="icon-container">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="text-container">
+                <h4>発注書未対応</h4>
+                <p>{{ $purchaseOrders->count() }}</p>
+            </div>
+            <div class="btn-container">
+                <button>作成</button>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="icon-container">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="text-container">
+                <h4>機密保持契約書未対応</h4>
+                <p>{{ $ndas->count() }}</p>
+            </div>
+            <div class="btn-container">
+                <button>作成</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-container">
         <div class="title-container">
-            <h1 class="title-container__title">パートナーダッシュボード</h1>
+            <h4>プロジェクト</h4>
         </div>
 
-        <div class="alert-container">
-            <div class="top-container">
-                <div class="top-container__project">
-                    <div class="top-container__project__left"><i class="fas fa-exclamation-circle"></i></div>
-                    <div class="top-container__project__center">
-                        <div class="count">0</div>
-                        <div class="alert-name">プロジェクトアラート</div>
-                    </div>
-                    <div class="top-container__project__right">btn</div>
-                </div>
-                <div class="top-container__task">
-                    <div class="top-container__task__left">icon</div>
-                    <div class="top-container__task__center">
-                        <div class="count">0</div>
-                        <div class="alert-name">タスクアラート</div>
-                    </div>
-                    <div class="top-container__task__right"></div>
-                </div>
-            </div>
-            <div class="bottom-container">
-                <div class="bottom-container__invoice">
-                    <div class="bottom-container__invoice__left">icon</div>
-                    <div class="bottom-container__invoice__center">
-                        <div class="count">{{ $invoices->count() }}</div>
-                        <div class="alert-name">請求書未対応</div>
-                    </div>
-                    <div class="bottom-container__invoice__right">
-                        <button class="btn">作成</button>
-                    </div>
-                </div>
-                <div class="bottom-container__order">
-                    <div class="bottom-container__order__left"><i class="fas fa-shopping-cart"></i></div>
-                    <div class="bottom-container__order__center">
-                        <div class="count">{{ $purchaseOrders->count() }}</div>
-                        <div class="alert-name">発注書未対応</div>
-                    </div>
-                    <div class="bottom-container__order__right">
-                        <button class="btn">承認</button>
-                    </div>
-                </div>
-                <div class="bottom-container__nda">
-                    <div class="bottom-container__nda__left"><i class="fas fa-shopping-bag"></i></div>
-                    <div class="bottom-container__nda__center">
-                        <div class="count">{{ $ndas->count() }}</div>
-                        <div class="alert-name">機密保持契約書未対応</div>
-                    </div>
-                    <div class="bottom-container__nda__right">
-                        <button class="btn">承認</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>プロジェクト</th>
+                    <th>担当者</th>
+                    <th>パートナー</th>
+                    <th>タスク</th>
+                    <th>期限</th>
+                    <th>予算</th>
+                    <th>請求額</th>
+                </tr>
+            </thead>
 
-        <div class="project-container">
-            <h2 class="project-container__item__title">Project</h2>
-            <div class="project-container__item">
-                <ul class="project-container__item__list">
-                    <li>プロジェクト<i class="arrow fas fa-angle-down"></i></li>
-                    <li>担当者<i class="arrow fas fa-angle-down"></i></li>
-                    <li>パートナー<i class="arrow fas fa-angle-down"></i></li>
-                    <li>タスク</li>
-                    <li>期限<i class="arrow fas fa-angle-down"></i></li>
-                    <li>請求額</li>
-                </ul>
-            </div>
-
-            <div class="project-container__content">
+            <tbody>
                 @foreach($projects as $project)
-                <ul class="project-container__content__list" >
-                    <li>{{ $project->project->name }}</li>
-                    <li>
-                        @foreach($project->project->projectCompanies as $project_company)
-                            <p>{{ $project_company->companyUser->name }}</p>
-                        @endforeach
-                    </li>
-                    <li>yamada</li>
-                    <li>{{ $project->project->tasks->count() }}件</li>
-                    <li>{{ explode(' ', $project->project->ended_at)[0] }}</li>
-                    <li>¥{{ $project->project->budget }}</li>
-                </ul>
+                <tr>
+                    <td class="project_name">{{ $project->project->name }}</td>
+                    <td>
+                        <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px">
+                        @if ($project->project->projectCompanies->count() > 1) 
+                            <p>
+                                {{ $project->project->projectCompanies[0]->companyUser->name }} 
+                                他{{ $project->project->projectCompanies->count() - 1 }}名
+                            </p>
+                        @else
+                            <p>{{ $project->project->projectCompanies[0]->companyUser->name }}</p>
+                        @endif
+                    </td>
+                    <td>
+                        <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px">
+                        @if ($project->project->projectPartners->count() > 1) 
+                            <p>
+                                {{ $project->project->projectPartners[0]->partner->name }} 
+                                他{{ $project->project->projectPartners->count() - 1 }}名
+                            </p>
+                        @else
+                            <p>{{ $project->project->projectPartners[0]->partner->name }}</p>
+                        @endif
+                    </td>
+                    <td>{{ $project->project->tasks->count() }}件</td>
+                    <td>{{ explode(' ', $project->project->ended_at)[0] }}</td>
+                    <td>¥{{ $project->project->budget }}</td>
+                    <td>¥{{ $project->project->budget }}</td>
+                </tr>
                 @endforeach
-            </div>
+            </tbody>
+            
+        </table>
 
-            <div class="project-container__content__showmore">
-                <p @click="showMoreProject(4)" class="project-container__content__showmore__btn">Show More</p>
-            </div>
+        <div class="more-btn-container">
+            <button>
+                もっと見る
+                <i class="fas fa-angle-down"></i>
+            </button>
         </div>
-                            
-        <div class="task-container">
-            <h2 class="task-container__item__title">task</h2>
-            <div class="task-container__item">
-                <ul class="task-container__item__list">
-                    <li>プロジェクト<i class="arrow fas fa-angle-down"></i></li>
-                    <li>タスク<i class="arrow fas fa-angle-down"></i></li>
-                    <li>パートナー<i class="arrow fas fa-angle-down"></i></li>
-                    <li>ステータス<i class="arrow fas fa-angle-down"></i></li>
-                    <li>請求額</li>
-                </ul>
-            </div>
+    </div>
 
-            <div class="task-container__content">
+    <div class="task-container">
+        <div class="title-container">
+            <h4>タスク</h4>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>プロジェクト</th>
+                    <th>タスク</th>
+                    <th>パートナー</th>
+                    <th>ステータス</th>
+                    <th>請求額</th>
+                </tr>
+            </thead>
+            
+            <tbody>
                 @foreach($tasks as $task)
-                <ul class="task-container__content__list" >
-                    <li>{{ $task->task->project->name }}</li>
-                    <li>{{ $task->task->name }}</li>
-                    <li>
-                        @foreach($task->task->taskPartners as $task_partner)
-                            <p>{{ $task_partner->partner->name }}</p>
-                        @endforeach
-                    </li>
-                    @if($task->task->status == 0)
-                    <li><div class="state default">下書き</div></li>
-                    @elseif ($task->task->status == 1)
-                    <li><div class="state default">提案中</div></li>
-                    @elseif ($task->task->status == 2)
-                    <li><div class="state default">依頼前</div></li>
-                    @elseif ($task->task->status == 3)
-                    <li><div class="state default">依頼中</div></li>
-                    @elseif ($task->task->status == 4)
-                    <li><div class="state default">開始前</div></li>
-                    @elseif ($task->task->status == 5)
-                    <li><div class="state default">作業中</div></li>
-                    @elseif ($task->task->status == 6)
-                    <li><div class="state default">提出前</div></li>
-                    @elseif ($task->task->status == 7)
-                    <li><div class="state default">修正中</div></li>
-                    @elseif ($task->task->status == 8)
-                    <li><div class="state complete">完了</div></li>
-                    @else
-                    <li><div class="state cancel">キャンセル</div></li>
-                    @endif
-                    <li>¥{{ $task->task->price }}</li>
-                </ul>
+                <tr>
+                    <td class="project_name">{{ $task->task->project->name }}</td>
+                    <td>{{ $task->task->name }}</td>
+                    <td>
+                        <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px">
+                        @if ($task->task->taskPartners->count() > 1) 
+                            <p>
+                                {{ $task->task->taskPartners[0]->partner->name }} 
+                                他{{ $task->task->taskPartners->count() - 1 }}名
+                            </p>
+                        @else
+                            <p>{{ $task->task->taskPartners[0]->partner->name }}</p>
+                        @endif
+                    </td>
+                    <td>
+                        @if($task->task->status == 0)
+                            <p class="default">下書き</p>
+                        @elseif ($task->task->status == 1)
+                            <p class="default">提案中</p>
+                        @elseif ($task->task->status == 2)
+                            <p class="default">依頼前</p>
+                        @elseif ($task->task->status == 3)
+                            <p class="default">依頼中</p>
+                        @elseif ($task->task->status == 4)
+                            <p class="default">開始前</p>
+                        @elseif ($task->task->status == 5)
+                            <p class="default">作業中</p>
+                        @elseif ($task->task->status == 6)
+                            <p class="default">提出前</p>
+                        @elseif ($task->task->status == 7)
+                            <p class="default">修正中</p>
+                        @elseif ($task->task->status == 8)
+                            <p class="complete">完了</p>
+                        @else
+                            <p class="cancel">キャンセル</p>
+                        @endif
+                    </td>
+                    <td>¥{{ $task->task->price }}</td>
+                </tr>
                 @endforeach
-            </div>
+            </tbody>
+            
+        </table>
 
-            <div class="task-container__content__showmore">
-                <p @click="showMoreTask(4)" class="task-container__content__showmore__btn">Show More</p>
-            </div>
+        <div class="more-btn-container">
+            <button>
+                もっと見る
+                <i class="fas fa-angle-down"></i>
+            </button>
         </div>
-                            
     </div>
 </div>
 @endsection
