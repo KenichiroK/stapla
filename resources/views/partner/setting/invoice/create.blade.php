@@ -318,9 +318,9 @@ const setPreview = (input) => {
 				<p class="caution">背景が透明な140px以上の正方形のpng画像を用意してください。</p>
 				<div class="image-container">
 					@if ($partner_invoice)
-						<img id="preview" src="/{{ $mark_image }}" alt="プレビュー画像" width="140px" height="140px">
+						<img id="preview" src="/{{ str_replace('public/', 'storage/', $partner_invoice->mark_image) }}" alt="プレビュー画像" width="140px" height="140px">
 					@else
-						<img id="preview" src="../../images/preview.jpeg" alt="プレビュー画像" width="140px" height="140px">
+						<img id="preview" src="/storage/images/default/preview.jpeg" alt="プレビュー画像" width="140px" height="140px">
 					@endif
 					<label for="mark_image">
 						画像をアップロード

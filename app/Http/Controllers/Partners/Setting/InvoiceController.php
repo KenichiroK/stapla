@@ -32,11 +32,9 @@ class InvoiceController extends Controller
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
-        if ($partner_invoice) {
-            $mark_image = str_replace('public/', 'storage/', $partner_invoice->mark_image);
-        }
+
         $completed = '';
-        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'mark_image', 'completed'));
+        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed'));
     }
 
     /**
@@ -49,30 +47,19 @@ class InvoiceController extends Controller
     {
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
-        $partner->name       = $request->name;
-        $partner->zip_code   = $request->zip_code;
-        $partner->prefecture = $request->prefecture;
-        $partner->city       = $request->city;
-        $partner->building   = $request->building;
-        $partner->tel        = $request->tel;
-        $partner->save();
+        $partner->update($request->all());
 
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
         if ($partner_invoice) {
             $time = date("Y_m_d_H_i_s");
-            $partner_invoice->financial_institution = $request->financial_institution;
-            $partner_invoice->branch                = $request->branch;
-            $partner_invoice->deposit_type          = $request->deposit_type;
-            $partner_invoice->account_number        = $request->account_number;
-            $partner_invoice->account_holder        = $request->account_holder;
-            $partner_invoice->mark_image            = $request->file('mark_image')->storeAs('public/images/partner/invoice_mark', $time.'_'.Auth::user()->id . '.png');
-            $partner_invoice->save();
-
-            $mark_image = str_replace('public/', 'storage/', $partner_invoice->mark_image);
-
+            $partner_invoice->udpate($request->all());
+            if ($request->mark_image) {
+                $partner_invoice->mark_image = $request->file('mark_image')->storeAs('public/images/partner/invoice_mark', $time.'_'.Auth::user()->id . '.png'); 
+                $partner_invoice->save();  
+            }
 
             $completed = '変更を保存しました。';
-            return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'mark_image', 'completed'));
+            return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed'));
         }
 
         $new_partner_invoice = new PartnerInvoice;
@@ -86,9 +73,10 @@ class InvoiceController extends Controller
         $new_partner_invoice->mark_image            = $request->mark_image->storeAs('public/images/partner/invoice_mark', $time.'_'.Auth::user()->id . '.png');
         $new_partner_invoice->save();
 
-        $mark_image = str_replace('public/', 'storage/', $new_partner_invoice->mark_image);
+        $partner_invoice = $new_partner_invoice;
+
         $completed = '変更を保存しました。';
-        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'mark_image', 'completed'));
+        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed'));
     }
 
     /**
