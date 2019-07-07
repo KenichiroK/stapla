@@ -1,12 +1,13 @@
 <?php
 namespace App\Models;
+
 class Partner extends BaseUuid
 {   
     protected $table = 'partners';
     
     protected $fillable = [
         'company_id', 'partner_id', 'name', 'nickname', 'zip_code', 'prefecture', 'city', 'building', 'tel', 'age',
-        'sex', 'picture', 'occupations', 'academic', 'slack', 'chatwork', 'twitter', 'facebook', 'careersummary', 'jobcareer', 
+        'sex', 'picture', 'occupations', 'academic', 'slack', 'chatwork', 'twitter', 'facebook', 'github', 'instagram', 'careersummary', 'jobcareer', 
         'portfolio', 'introduction', 'possible', 'skill', 'feature', 'language', 'qualification', 'relatedlinks', 'attachment' 
     ];
     

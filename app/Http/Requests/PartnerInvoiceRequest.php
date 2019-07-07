@@ -41,7 +41,7 @@ class PartnerInvoiceRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'                  => "名前は必須項目です。",
+            'name.required'                  => "屋号 / 名前は必須項目です。",
             'zip_code.required'              => "郵便番号は必須項目です。",
             'prefecture.required'            => "住所は必須項目です。",
             'city.required'                  => "住所は必須項目です。",
