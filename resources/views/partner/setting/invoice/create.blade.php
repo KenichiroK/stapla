@@ -25,7 +25,9 @@ const setPreview = (input) => {
     {{ $partner->name }}
 </div>
 <div class="navbar-item">
-    <img src="../../images/dummy_user.jpeg" alt="プロフィール画像">
+	<a href="/partner/profile">
+		<img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
+	</a>
 </div>
 @endsection
 
@@ -324,7 +326,7 @@ const setPreview = (input) => {
 					@endif
 					<label for="mark_image">
 						画像をアップロード
-						<input type="file" id="mark_image" style="display: none;" onchange="setPreview(this)" name="mark_image">
+						<input type="file" id="mark_image" name="mark_image" style="display: none;" onchange="setPreview(this)">
 					</label>
 				@if ($errors->has('mark_image'))
 					<div>

@@ -3,6 +3,22 @@
   margin: auto;
   padding: 40px;
 
+  .complete-container {
+    p {
+      color: #09c221;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+
+  .error-container {
+    p {
+      color: #e3342f;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+
   .title-container {
     margin-bottom: 40px;
 
@@ -128,28 +144,14 @@
     width: 100%;
     margin-bottom: 40px;
     text-align: center;
-
-    .preview-btn {
-      background-color: #fff;
-      color: #43425d;
-      border: 1px solid #43425d;
-      font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 48px;
-      font-size: 16px;
-      margin-right: 12px;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .submit-btn {
+    
+    button {
       background-color: #43425d;
       color: #fff;
       font-weight: bold;
       padding: 8px 40px;
       border-radius: 48px;
       font-size: 16px;
-      margin-left: 12px;
       cursor: pointer;
       outline: none;
     }

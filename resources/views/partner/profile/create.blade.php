@@ -3,14 +3,31 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/partner/profile/index.css') }}">
+<script>
+const setPreview = (input) => {
+  const preview = document.getElementById('profile_image_preview');
+
+  if (input.files && input.files[0]) {
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      console.log(e)
+      preview.src = e.target.result;
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
 @endsection
 
 @section('header-profile')
 <div class="navbar-item">
-  user name
+    {{ $partner->name }}
 </div>
 <div class="navbar-item">
-    <img src="../images/dummy_user.jpeg" alt="プロフィール画像">
+    <a href="/partner/profile">
+        <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
+    </a>
 </div>
 @endsection
 
@@ -46,11 +63,22 @@
 
 @section('content')
 <div class="main-wrapper">
+    @if ($completed)
+        <div class="complete-container">
+            <p>{{ $completed }}</p>
+        </div>
+        @endif
+
+        @if(count($errors) > 0)
+        <div class="error-container">
+            <p>入力に問題があります。再入力して下さい。</p>
+        </div>
+    @endif
     <div class="title-container">
         <h3>プロフィール管理画面</h3>
     </div>
 
-    <form action="" method="POST">
+    <form action="{{ url('/partner/profile') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body-container">
             <div class="title-container">
@@ -60,59 +88,174 @@
         
             <div class="edit-container">
                 <div class="image-container">
-                    <img src="../../images/preview.jpeg" alt="プレビュー画像" id="preview" width="140px" height="140px">
-                    <label for="profile_image">
+                    @if ($partner)
+                        <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                    @else
+                        <img src="/{{ str_replace('public/', 'storage/', 'images/default/preview.jpeg') }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                    @endif
+                    <label for="picture">
                         画像をアップロード
-                        <input type="file" id="profile_image" style="display: none;" name="profile_image">
+                        <input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="setPreview(this)">
                     </label>
                 </div>
 
                 <div class="profile-container">
                     <div class="short-input-container">
-                        <p>名前・ニックネーム</p>
-                        <input type="text" name="name">
+                        <p>名前 / ニックネーム</p>
+                        @if ($partner)
+                            <input type="text" name="nickname" value="{{ old('nickname', $partner->nickname) }}">
+                            @if ($errors->has('nickname'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('nickname') }}</strong>
+                                </div>
+                            @endif
+                        @else
+                            <input type="text" name="nickname" value="{{ old('nickname') }}">
+                            @if ($errors->has('nickname'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('nickname') }}</strong>
+                                </div>					
+                            @endif
+                        @endif
                     </div>
 
                     <div class="short-input-container">
                         <p>職種</p>
-                        <input type="text" name="occupations">
+                        @if ($partner)
+                            <input type="text" name="occupations" value="{{ old('occupations', $partner->occupations) }}">
+                            @if ($errors->has('occupations'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('occupations') }}</strong>
+                                </div>
+                            @endif
+                        @else
+                            <input type="text" name="occupations" value="{{ old('occupations') }}">
+                            @if ($errors->has('occupations'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('occupations') }}</strong>
+                                </div>					
+                            @endif
+                        @endif
                     </div>
 
                     <div class="long-input-container">
                         <p>Twitter</p>
-                        <input type="text" name="twitter">
+                        @if ($partner)
+                            <input type="text" name="twitter" value="{{ old('twitter', $partner->twitter) }}">
+                            @if ($errors->has('twitter'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('twitter') }}</strong>
+                                </div>
+                            @endif
+                        @else
+                            <input type="text" name="twitter" value="{{ old('twitter') }}">
+                            @if ($errors->has('twitter'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('twitter') }}</strong>
+                                </div>					
+                            @endif
+                        @endif
                     </div>
 
                     <div class="long-input-container">
                         <p>Facebook</p>
-                        <input type="text" name="facebook">
+                        @if ($partner)
+                            <input type="text" name="facebook" value="{{ old('facebook', $partner->facebook) }}">
+                            @if ($errors->has('facebook'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('facebook') }}</strong>
+                                </div>
+                            @endif
+                        @else
+                            <input type="text" name="facebook" value="{{ old('facebook') }}">
+                            @if ($errors->has('facebook'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('facebook') }}</strong>
+                                </div>					
+                            @endif
+                        @endif
                     </div>
 
                     <div class="long-input-container">
                         <p>Github</p>
-                        <input type="text" name="github">
+                        @if ($partner)
+                            <input type="text" name="github" value="{{ old('github') }}">
+                            @if ($errors->has('github'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('github') }}</strong>
+                                </div>
+                            @endif
+                        @else
+                            <input type="text" name="github" value="{{ old('github') }}">
+                            @if ($errors->has('github'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('github') }}</strong>
+                                </div>					
+                            @endif
+                        @endif
                     </div>
 
                     <div class="long-input-container">
                         <p>Instagram</p>
-                        <input type="text" name="instagram">
+                        @if ($partner)
+                            <input type="text" name="instagram" value="{{ old('instagram', $partner->instagram) }}">
+                            @if ($errors->has('instagram'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('instagram') }}</strong>
+                                </div>
+                            @endif
+                        @else
+                            <input type="text" name="instagram" value="{{ old('instagram') }}">
+                            @if ($errors->has('instagram'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('instagram') }}</strong>
+                                </div>					
+                            @endif
+                        @endif
                     </div>
 
                     <div class="long-input-container">
                         <p>Webサイト・ブログ</p>
-                        <input type="text" name="relatedlinks">
+                        @if ($partner)
+                            <input type="text" name="relatedlinks" value="{{ old('relatedlinks', $partner->relatedlinks) }}">
+                            @if ($errors->has('relatedlinks'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('relatedlinks') }}</strong>
+                                </div>
+                            @endif
+                        @else
+                            <input type="text" name="relatedlinks" value="{{ old('relatedlinks') }}">
+                            @if ($errors->has('relatedlinks'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('relatedlinks') }}</strong>
+                                </div>					
+                            @endif
+                        @endif
                     </div>
 
                     <div class="textarea-container">
                         <p>自己紹介</p>
-                        <textarea name="self_production" id="" cols="30" rows="10"></textarea>
+                        @if ($partner)
+                            <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction', $partner->introduction) }}</textarea>                            
+                            @if ($errors->has('introduction'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('introduction') }}</strong>
+                                </div>
+                            @endif
+                        @else
+                            <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction') }}</textarea>                            
+                            @if ($errors->has('introduction'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('introduction') }}</strong>
+                                </div>					
+                            @endif
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
         <div class="btn-container">
-            <button class="preview-btn" type="button">プレビュー</button>
-            <button class="submit-btn" type="submit">保存</button>
+            <button type="submit">保存</button>
         </div>
     </form>
 </div>

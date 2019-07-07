@@ -3,12 +3,14 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Models\Partner::class, function (Faker $faker) {
+    $name = $faker->name;
     return [
         'company_id'        => App\Models\Company::all()->random()->id,
         'partner_id' => function() {
             return factory(App\Models\PartnerAuth::class)->create()->id;
         },
-        'name'          => $faker->name,
+        'name'          => $name,
+        'nickname'      => $name,
         'zip_code'      => $faker->postcode,
         'prefecture'    => $faker->prefecture,
         'city'          => $faker->city,
@@ -16,7 +18,7 @@ $factory->define(App\Models\Partner::class, function (Faker $faker) {
         'tel'           => $faker->phoneNumber,
         'age'           => $faker->randomNumber,
         'sex'           => $faker->numberBetween($min = 0, $max = 1),
-        'picture'       => 'defaultPicture.png',
+        'picture'       => 'public/images/default/dummy_user.jpeg',
         'occupations'   => 'エンジニア',
         'academic'      => '東京大学 経済学部 経済学科 卒業',
         'careersummary' => 'エンジニア歴 3年',

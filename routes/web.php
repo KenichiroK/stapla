@@ -29,6 +29,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
 		// profile
 		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
+		Route::post('profile', 'Partners\ProfileController@store')->name('partner.profile.store');
     // logout
     Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
