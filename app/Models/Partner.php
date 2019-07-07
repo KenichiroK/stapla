@@ -55,4 +55,9 @@ class Partner extends BaseUuid
     {
         return $this->hasOne('App\Models\PartnerInvoice', 'partner_id', 'id');
     }
+
+    public function partnerAccountSetting()
+    {
+        return $this->hasOne('App\Models\PartnerAccountSetting', 'partner_id', 'id');
+    }
 }
