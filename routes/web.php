@@ -24,13 +24,17 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::group(['middleware' => 'auth:partner'], function() {
 		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
-		// setting
-		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
-		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
 		// profile
 		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
 		Route::post('profile', 'Partners\ProfileController@store')->name('partner.profile.store');
-    // logout
+		//  invoice setting
+		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
+		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
+		// notification setting
+		Route::get('setting/notification', 'Partners\Setting\NotificationController@create')->name('partner.setting.notification.create');
+
+		
+		// logout
     Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
 });
