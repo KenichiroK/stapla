@@ -124,7 +124,7 @@
                         <tr class="task-container__wrapper__table-wrapper__table__datarow">
                             
                                 
-                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><a href="task/detail">{{ $task->name }}</a></td>
+                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><a href="task/{$task->id}">{{ $task->name }}</a></td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">{{ $task->project->name }}</td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">
                                     @foreach($task->taskPartners as $taskPartner)
