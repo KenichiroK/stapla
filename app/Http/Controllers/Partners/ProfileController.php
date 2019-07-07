@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Partners;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\Partners\ProfileRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Support\Facades\Auth;

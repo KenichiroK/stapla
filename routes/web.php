@@ -32,6 +32,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
 		// notification setting
 		Route::get('setting/notification', 'Partners\Setting\NotificationController@create')->name('partner.setting.notification.create');
+		Route::post('setting/notification', 'Partners\Setting\NotificationController@store')->name('partner.setting.notification.store');
 
 		
 		// logout
