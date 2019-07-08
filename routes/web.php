@@ -17,13 +17,19 @@ Route::group(['prefix' => 'partner'], function(){
 	//login   
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
-
 	//register
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
+	
 	Route::group(['middleware' => 'auth:partner'], function() {
-		//dashboard
-    Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
+		// dashboard
+		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
+		// setting
+		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
+		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
+		// profile
+		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
+		Route::post('profile', 'Partners\ProfileController@store')->name('partner.profile.store');
     // logout
     Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
@@ -50,7 +56,10 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// partner
 		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
-        Route::get('/partner/{id}', 'Companies\PartnerController@show')->name('company.partner.show');
+		Route::get('/partner/{id}', 'Companies\PartnerController@show')->name('company.partner.show');
+		
+		// document
+		Route::get('document', 'Companies\DocumentController@index')->name('company.document.index');
         
         // mail(CompnayUser)
         Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');

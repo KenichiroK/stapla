@@ -23,10 +23,13 @@ mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common'
    .sass('resources/sass/company/partner/index.scss', 'public/css/company/partner')
    .sass('resources/sass/company/partner/show.scss', 'public/css/company/partner')
    .sass('resources/sass/company/partnerMail/index.scss', 'public/css/company/partnerMail')
+   .sass('resources/sass/company/document/index.scss', 'public/css/company/document')
 
    // partner
-   .sass('resources/sass/partner/dashboard/index.scss', 'public/css/partner/dashboard');
+   .sass('resources/sass/partner/dashboard/index.scss', 'public/css/partner/dashboard')
+   .sass('resources/sass/partner/setting/invoice/index.scss', 'public/css/partner/setting/invoice')
+   .sass('resources/sass/partner/profile/index.scss', 'public/css/partner/profile');
 
 mix.options({
-      publicPath: 'public'
-   });
+   publicPath: 'public'
+});
