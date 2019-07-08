@@ -4,7 +4,7 @@ namespace App\Models;
 
 class PartnerAccountSetting extends BaseUuid
 {
-    protected $table = 'partner_acount_settings';
+    protected $table = 'partner_account_settings';
 
     protected $fillable= [
         'partner_id', 'email_notification', 'daily_mail', 'slack'

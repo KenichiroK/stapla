@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Partners;
+namespace App\Http\Controllers\Partners\Setting;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\Partners\ProfileRequest;
+use App\Http\Requests\Partners\PartnerNotificationRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
+use App\Models\PartnerAccountSetting;
 use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
+
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,9 +31,10 @@ class ProfileController extends Controller
     {
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
-        $completed = '';
+        $setting = PartnerAccountSetting::where('partner_id', $partner->id)->get()->first();
 
-        return view('partner/profile/create', compact(['partner', 'completed']));
+        $completed = '';
+        return view('partner/setting/notification/create', compact('partner', 'setting', 'completed'));
     }
 
     /**
@@ -40,25 +43,25 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProfileRequest $request)
+    public function store(PartnerNotificationRequest $request)
     {
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
-        if ($partner) {
-            $partner->update($request->all());
-            $time = date("Y_m_d_H_i_s");
+        $setting = PartnerAccountSetting::where('partner_id', $partner->id)->get()->first();
 
-            if ($request->picture) {
-                $partner->picture = $request->picture->storeAs('public/images/partner/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
-                $partner->save();
-            }
+        if ($setting) {
+            $setting->update($request->all());
             $completed = '変更を保存しました。';
-            
-            return view('partner/profile/create', compact(['partner', 'completed']));   
-        } else {
-            $errors = '入力に問題があります。再入力して下さい。';
-            return view('partner/profile/create', compact(['partner', 'errors'])); 
+            return view('partner/setting/notification/create', compact('partner', 'setting', 'completed'));
         }
+        $setting = new PartnerAccountSetting;
+        $setting->partner_id         = $partner->id;
+        $setting->email_notification = $request->email_notification;
+        $setting->daily_mail         = $request->daily_mail;
+        $setting->slack              = $request->slack;
+        $setting->save();
+        $completed = '変更を保存しました。';
+        return view('partner/setting/notification/create', compact('partner', 'setting', 'completed'));
     }
 
     /**
