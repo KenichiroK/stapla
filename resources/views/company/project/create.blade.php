@@ -32,7 +32,7 @@
 
 @section('content')
 <div class="main__container">
-    <form aciton="{{ url('/project') }}" method='POST'>
+    <form action="{{ url('/company/project') }}" method='POST'>
     @csrf
     <div class="main__container__wrapper">
         <div class="top-container">

@@ -56,7 +56,7 @@ Route::group(['prefix' => 'company'], function(){
 		// project
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
 		Route::get('/project/create', 'Companies\ProjectController@create')->name('company.project.create');
-		Route::post('/project/create', 'Companies\ProjectController@store')->name('company.project.create');
+		Route::post('/project', 'Companies\ProjectController@store')->name('company.project.create');
 
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
