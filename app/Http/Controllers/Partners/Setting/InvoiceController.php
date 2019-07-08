@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Partners\Setting;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\PartnerInvoiceRequest;
+use App\Http\Requests\Partners\PartnerInvoiceRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use App\Models\PartnerInvoice;

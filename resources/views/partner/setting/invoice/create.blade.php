@@ -98,18 +98,13 @@ const setPreview = (input) => {
 				<p>屋号 / 名前</p>
 				@if ($partner)
 					<input type="text" name="name" value="{{ old('name', $partner->name) }}">
-					@if ($errors->has('name'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('name') }}</strong>
-						</div>
-					@endif
 				@else
 					<input type="text" name="name" value="{{ old('name') }}">
-					@if ($errors->has('name'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('name') }}</strong>
-						</div>					
-					@endif
+				@endif
+				@if ($errors->has('name'))
+					<div>
+						<strong style='color: #e3342f;'>{{ $errors->first('name') }}</strong>
+					</div>
 				@endif
 			</div>
 
@@ -118,18 +113,13 @@ const setPreview = (input) => {
 					<p>郵便番号</p>
 					@if ($partner)
 						<input type="text" name="zip_code" value="{{ old('zip_code', $partner->zip_code) }}">
-						@if ($errors->has('zip_code'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
-							</div>
-						@endif
 					@else
 						<input type="text" name="zip_code" value="{{ old('zip_code') }}">
-						@if ($errors->has('zip_code'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
-							</div>
-						@endif
+					@endif
+					@if ($errors->has('zip_code'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
+						</div>
 					@endif
 				</div>
 
@@ -137,18 +127,13 @@ const setPreview = (input) => {
 					<p>都道府県</p>
 					@if ($partner)
 						<input type="text" name="prefecture" value="{{ old('prefecture', $partner->prefecture) }}">
-						@if ($errors->has('prefecture'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('prefecture') }}</strong>
-							</div>
-						@endif
 					@else
 						<input type="text" name="prefecture" value="{{ old('prefecture') }}">
-						@if ($errors->has('prefecture'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('prefecture') }}</strong>
-							</div>
-						@endif
+					@endif
+					@if ($errors->has('prefecture'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('prefecture') }}</strong>
+						</div>
 					@endif
 				</div>
 			</div>
@@ -158,18 +143,13 @@ const setPreview = (input) => {
 					<p>市区町村・番地</p>
 					@if ($partner)
 						<input type="text" name="city" value="{{ old('city', $partner->city) }}">
-						@if ($errors->has('city'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('city') }}</strong>
-							</div>
-						@endif
 					@else
 						<input type="text" name="city" value="{{ old('city') }}">
-						@if ($errors->has('city'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('city') }}</strong>
-							</div>
-						@endif
+					@endif
+					@if ($errors->has('city'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('city') }}</strong>
+						</div>
 					@endif
 				</div>
 
@@ -177,18 +157,13 @@ const setPreview = (input) => {
 					<p>建物名・部屋番号</p>
 					@if ($partner)
 						<input type="text" name="building" value="{{ old('building', $partner->building) }}">
-						@if ($errors->has('building'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('building') }}</strong>
-							</div>
-						@endif
 					@else
 						<input type="text" name="building" value="{{ old('building') }}">
-						@if ($errors->has('building'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('building') }}</strong>
-							</div>
-						@endif
+					@endif
+					@if ($errors->has('building'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('building') }}</strong>
+						</div>
 					@endif
 				</div>
 			</div>
@@ -197,18 +172,13 @@ const setPreview = (input) => {
 				<p>電話番号</p>
 				@if ($partner)
 					<input type="text" name="tel" value="{{ old('tel', $partner->tel) }}">
-					@if ($errors->has('tel'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
-						</div>
-					@endif
 				@else
 					<input type="text" name="tel" value="{{ old('tel') }}">
-					@if ($errors->has('tel'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
-						</div>					
-					@endif
+				@endif
+				@if ($errors->has('tel'))
+					<div>
+						<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
+					</div>					
 				@endif
 			</div>
 		</div>
@@ -223,18 +193,13 @@ const setPreview = (input) => {
 					<p>金融機関</p>
 					@if ($partner_invoice)
 						<input type="text" name="financial_institution" value="{{ old('financial_institution', $partner_invoice->financial_institution) }}">
-						@if ($errors->has('financial_institution'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('financial_institution') }}</strong>
-							</div>
-						@endif
 					@else
 						<input type="text" name="financial_institution" value="{{ old('financial_institution') }}">
-						@if ($errors->has('financial_institution'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('financial_institution') }}</strong>
-							</div>						
-						@endif
+					@endif
+					@if ($errors->has('financial_institution'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('financial_institution') }}</strong>
+						</div>
 					@endif
 				</div>
 
@@ -242,18 +207,13 @@ const setPreview = (input) => {
 					<p>支店</p>
 					@if ($partner_invoice)
 						<input type="text" name="branch" value="{{ old('branch', $partner_invoice->branch) }}">
-						@if ($errors->has('branch'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('branch') }}</strong>
-							</div>
-						@endif
 					@else
 						<input type="text" name="branch" value="{{ old('branch') }}">
-						@if ($errors->has('branch'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('branch') }}</strong>
-							</div>
-						@endif
+					@endif
+					@if ($errors->has('branch'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('branch') }}</strong>
+						</div>
 					@endif
 				</div>
 			</div>
@@ -262,18 +222,13 @@ const setPreview = (input) => {
 				<p>預金種類</p>
 				@if ($partner_invoice)
 					<input type="text" name="deposit_type" value="{{ old('deposit_type', $partner_invoice->deposit_type) }}">
-					@if ($errors->has('deposit_type'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('deposit_type') }}</strong>
-						</div>
-					@endif
 				@else
 					<input type="text" name="deposit_type" value="{{ old('deposit_type') }}">
-					@if ($errors->has('deposit_type'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('deposit_type') }}</strong>
-						</div>
-					@endif
+				@endif
+				@if ($errors->has('deposit_type'))
+					<div>
+						<strong style='color: #e3342f;'>{{ $errors->first('deposit_type') }}</strong>
+					</div>
 				@endif
 			</div>
 
@@ -281,18 +236,13 @@ const setPreview = (input) => {
 				<p>口座番号</p>
 				@if ($partner_invoice)
 					<input type="text" name="account_number" value="{{ old('account_number', $partner_invoice->account_number) }}">
-					@if ($errors->has('account_number'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('account_number') }}</strong>
-						</div>
-					@endif
 				@else
 					<input type="text" name="account_number" value="{{ old('account_number') }}">
-					@if ($errors->has('account_number'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('account_number') }}</strong>
-						</div>
-					@endif
+				@endif
+				@if ($errors->has('account_number'))
+					<div>
+						<strong style='color: #e3342f;'>{{ $errors->first('account_number') }}</strong>
+					</div>
 				@endif
 			</div>
 
@@ -300,18 +250,13 @@ const setPreview = (input) => {
 				<p>口座名義</p>
 				@if ($partner_invoice)
 					<input type="text" name="account_holder" value="{{ old('account_holder', $partner_invoice->account_holder) }}">
-					@if ($errors->has('account_holder'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('account_holder') }}</strong>
-						</div>
-					@endif
 				@else
 					<input type="text" name="account_holder" value="{{ old('account_holder') }}">
-					@if ($errors->has('account_holder'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('account_holder') }}</strong>
-						</div>
-					@endif
+				@endif
+				@if ($errors->has('account_holder'))
+					<div>
+						<strong style='color: #e3342f;'>{{ $errors->first('account_holder') }}</strong>
+					</div>
 				@endif
 			</div>
 			
@@ -326,7 +271,7 @@ const setPreview = (input) => {
 					@endif
 					<label for="mark_image">
 						画像をアップロード
-						<input type="file" id="mark_image" name="mark_image" style="display: none;" onchange="setPreview(this)">
+						<input type="file" id="mark_image" name="mark_image" style="display: none;" accept="image/png" onchange="setPreview(this)">
 					</label>
 				@if ($errors->has('mark_image'))
 					<div>

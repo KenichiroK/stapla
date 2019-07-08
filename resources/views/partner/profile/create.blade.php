@@ -97,6 +97,11 @@ const setPreview = (input) => {
                         画像をアップロード
                         <input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="setPreview(this)">
                     </label>
+                    @if ($errors->has('picture'))
+                        <div>
+                            <strong style='color: #e3342f;'>{{ $errors->first('picture') }}</strong>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="profile-container">
@@ -104,18 +109,13 @@ const setPreview = (input) => {
                         <p>名前 / ニックネーム</p>
                         @if ($partner)
                             <input type="text" name="nickname" value="{{ old('nickname', $partner->nickname) }}">
-                            @if ($errors->has('nickname'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('nickname') }}</strong>
-                                </div>
-                            @endif
                         @else
                             <input type="text" name="nickname" value="{{ old('nickname') }}">
-                            @if ($errors->has('nickname'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('nickname') }}</strong>
-                                </div>					
-                            @endif
+                        @endif
+                        @if ($errors->has('nickname'))
+                            <div>
+                                <strong style='color: #e3342f;'>{{ $errors->first('nickname') }}</strong>
+                            </div>
                         @endif
                     </div>
 
@@ -123,18 +123,13 @@ const setPreview = (input) => {
                         <p>職種</p>
                         @if ($partner)
                             <input type="text" name="occupations" value="{{ old('occupations', $partner->occupations) }}">
-                            @if ($errors->has('occupations'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('occupations') }}</strong>
-                                </div>
-                            @endif
                         @else
                             <input type="text" name="occupations" value="{{ old('occupations') }}">
-                            @if ($errors->has('occupations'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('occupations') }}</strong>
-                                </div>					
-                            @endif
+                        @endif
+                        @if ($errors->has('occupations'))
+                            <div>
+                                <strong style='color: #e3342f;'>{{ $errors->first('occupations') }}</strong>
+                            </div>
                         @endif
                     </div>
 
@@ -142,18 +137,13 @@ const setPreview = (input) => {
                         <p>Twitter</p>
                         @if ($partner)
                             <input type="text" name="twitter" value="{{ old('twitter', $partner->twitter) }}">
-                            @if ($errors->has('twitter'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('twitter') }}</strong>
-                                </div>
-                            @endif
                         @else
                             <input type="text" name="twitter" value="{{ old('twitter') }}">
-                            @if ($errors->has('twitter'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('twitter') }}</strong>
-                                </div>					
-                            @endif
+                        @endif
+                        @if ($errors->has('twitter'))
+                            <div>
+                                <strong style='color: #e3342f;'>{{ $errors->first('twitter') }}</strong>
+                            </div>
                         @endif
                     </div>
 
@@ -161,18 +151,13 @@ const setPreview = (input) => {
                         <p>Facebook</p>
                         @if ($partner)
                             <input type="text" name="facebook" value="{{ old('facebook', $partner->facebook) }}">
-                            @if ($errors->has('facebook'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('facebook') }}</strong>
-                                </div>
-                            @endif
                         @else
                             <input type="text" name="facebook" value="{{ old('facebook') }}">
-                            @if ($errors->has('facebook'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('facebook') }}</strong>
-                                </div>					
-                            @endif
+                        @endif
+                        @if ($errors->has('facebook'))
+                            <div>
+                                <strong style='color: #e3342f;'>{{ $errors->first('facebook') }}</strong>
+                            </div>
                         @endif
                     </div>
 
@@ -180,18 +165,13 @@ const setPreview = (input) => {
                         <p>Github</p>
                         @if ($partner)
                             <input type="text" name="github" value="{{ old('github') }}">
-                            @if ($errors->has('github'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('github') }}</strong>
-                                </div>
-                            @endif
                         @else
                             <input type="text" name="github" value="{{ old('github') }}">
-                            @if ($errors->has('github'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('github') }}</strong>
-                                </div>					
-                            @endif
+                        @endif
+                        @if ($errors->has('github'))
+                            <div>
+                                <strong style='color: #e3342f;'>{{ $errors->first('github') }}</strong>
+                            </div>
                         @endif
                     </div>
 
@@ -199,18 +179,13 @@ const setPreview = (input) => {
                         <p>Instagram</p>
                         @if ($partner)
                             <input type="text" name="instagram" value="{{ old('instagram', $partner->instagram) }}">
-                            @if ($errors->has('instagram'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('instagram') }}</strong>
-                                </div>
-                            @endif
                         @else
                             <input type="text" name="instagram" value="{{ old('instagram') }}">
-                            @if ($errors->has('instagram'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('instagram') }}</strong>
-                                </div>					
-                            @endif
+                        @endif
+                        @if ($errors->has('instagram'))
+                            <div>
+                                <strong style='color: #e3342f;'>{{ $errors->first('instagram') }}</strong>
+                            </div>
                         @endif
                     </div>
 
@@ -218,18 +193,13 @@ const setPreview = (input) => {
                         <p>Webサイト・ブログ</p>
                         @if ($partner)
                             <input type="text" name="relatedlinks" value="{{ old('relatedlinks', $partner->relatedlinks) }}">
-                            @if ($errors->has('relatedlinks'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('relatedlinks') }}</strong>
-                                </div>
-                            @endif
                         @else
                             <input type="text" name="relatedlinks" value="{{ old('relatedlinks') }}">
-                            @if ($errors->has('relatedlinks'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('relatedlinks') }}</strong>
-                                </div>					
-                            @endif
+                        @endif
+                        @if ($errors->has('relatedlinks'))
+                            <div>
+                                <strong style='color: #e3342f;'>{{ $errors->first('relatedlinks') }}</strong>
+                            </div>
                         @endif
                     </div>
 
@@ -237,18 +207,13 @@ const setPreview = (input) => {
                         <p>自己紹介</p>
                         @if ($partner)
                             <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction', $partner->introduction) }}</textarea>                            
-                            @if ($errors->has('introduction'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('introduction') }}</strong>
-                                </div>
-                            @endif
                         @else
-                            <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction') }}</textarea>                            
-                            @if ($errors->has('introduction'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('introduction') }}</strong>
-                                </div>					
-                            @endif
+                            <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction') }}</textarea>
+                        @endif
+                        @if ($errors->has('introduction'))
+                            <div>
+                                <strong style='color: #e3342f;'>{{ $errors->first('introduction') }}</strong>
+                            </div>
                         @endif
                     </div>
                 </div>
