@@ -10,9 +10,10 @@
 			justify-content: space-between;
 			&__title{
 				font-size:24px;
+				font-weight: bold;
 			}
 			.search-project{
-				width:640px;
+				width:420px;
 			}
 			.btn{
 				background-color: #43425D;
@@ -36,6 +37,7 @@
 			&__title{
 				font-size:16px;
 				padding-bottom:16px;
+				font-weight: bold;
 			}
 			&__list{
 				height:48px;
@@ -64,6 +66,9 @@
 				align-items: center;
 				justify-content: space-around;
 				border-bottom: 1px solid #F1F1F3;
+				p{
+					margin-bottom:0;
+				}
 			}
 			li{
 				text-align: center;
@@ -78,6 +83,9 @@
 					cursor: pointer;
 				}
 			}
+		}
+		ul{
+			margin-bottom:0;
 		}
 	}
 }

@@ -49,7 +49,7 @@
         </div>
 
         <div class="project-container">
-            <h2 class="project-container__item__title">Project</h2>
+            <h2 class="project-container__item__title">プロジェクト</h2>
             <div class="project-container__item">
                 <ul class="project-container__item__list">
                     <li>プロジェクト</li>

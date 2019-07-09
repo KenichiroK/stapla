@@ -8,6 +8,7 @@
             .top-container{
                 &__title{
                     font-size:24px;
+                    font-weight: bold;
                 }
             }
             .project-create__container{
@@ -19,26 +20,23 @@
                         margin-top:40px;
                         display:flex;
                         &__name{
-                            width:180px;
+                            width:20%;
+                            font-weight: bold;
                         }
                         &__input{
-                            width:800px;
-                            padding:10px;
-                            border-color :#3B86FF;
-                        }
-                        .under-border{
-                            border: none;
-                            box-shadow: none;
-                            border-radius: 0;
-                            border-bottom:solid 3px #3B86FF;
+                            width:100%;
+                            border:1px solid #E9E9F0;
+                            padding: 4px;
                         }
                         &__textarea{
-                            width:800px;
-                            border-color :#3B86FF;
+                            width:100%;
+                            height:98px;
+                            padding: 4px;
+                            border-color :#E9E9F0;
                         }
                         &__select{
                             width:800px;
-                            border-color :#3B86FF;
+                            border-color :#E9E9F0;
                         }
                         &__wrapper{
                             &__filearea{
@@ -46,17 +44,25 @@
                             }
                         }
                         .calendars{
-                            width:640px;
+                            width:80%;
                             display:flex;
-                            justify-content: space-between;
                             &__wrapper{
                                 &__select{
                                     margin-top:8px;
                                 }
                             }
+                            .right{
+                                margin-left:80px;
+                            }
                         }
-                        .select-box{
-                            width:240px;
+                        .budget-container{
+                            &__yen{
+                                margin-left:4px;
+                                font-size: 12px;
+                            }
+                        }
+                        .file-name{
+                            width:224px;
                         }
                     }
                 }
@@ -78,106 +84,23 @@
             .margin--none{
                 margin-top:0;
             }
-        }
-    }
-
-    .p-modal {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        overflow-y: auto;
-        visibility: hidden;
-        opacity: 0;
-        z-index: -1;
-        &.is-open {
-            visibility: visible;
-            opacity: 1;
-            z-index: 100;
-        }
-    }
-
-    .modal-mask {
-        position: fixed;
-        z-index: 100;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-        display: table;
-        transition: opacity .3s ease;
-        &__wrapper{
-            display: table-cell;
-            vertical-align: middle;
-            &__container{
-                width: 560px;
-                margin: 0px auto;
-                padding: 20px 30px;
-                background-color: #fff;
-                border-radius: 2px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-                transition: all .3s ease;
-                &__title{
-                    font-weight:bold;
-                    font-size:24px;
-                    margin-bottom:24px;
-                    text-align: center;
-                }
-                &__row{
-                    display:flex;
-                    margin-bottom:8px;
-                    &__item{
-                        font-size:16px;
-                        width:160px;
-                    }
-                    &__content{
-                        font-size:16px;
-                    }
-                }
-                &__button-wrapper{
-                    text-align: center;
-                    &__ng-btn{
-                        width:140px;
-                        border-radius: 18px;
-                        color:#fff;
-                        font-weight:bold;
-                        background: rgb(110, 110, 110);
-                        margin-top: 32px;
-                    }
-                    &__ok-btn{
-                        width:140px;
-                        border-radius: 18px;
-                        color:#fff;
-                        font-weight:bold;
-                        background: #43425D;
-                        margin-top: 32px;
-                    }
-                    &__btn:hover{
-                        opacity:0.8;
-                    }
-                }
-                .close{
-                    margin-bottom:16px;
-                    font-size: 24px;
-                }
-
-                &__register{
-                    color:#31B404;
-                    font-weight: bold;
-                    font-size:24px;
-                }
-                &__item{
-                    color:red;
-                    font-size:16px;
-                    margin-bottom:4px;
-                }
-                &__uninput{
-                    text-align: center;
-                    margin-bottom:24px;
-                    font-weight: bold;
-                    font-size:24px;
+            textarea{
+                resize: none;
+                outline: none;
+            }
+            .input-container{
+                width:80%;
+            }
+            .textarea-container{
+                width:80%;
+            }
+            .select-container{
+                width:80%;
+            }
+            .select{
+                width:80%;
+                select{
+                    width:100%;
                 }
             }
         }
