@@ -20,7 +20,7 @@ class ProjectController extends Controller
     {
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        $projects = Project::where('company_id', $company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();
+        $projects = Project::where('company_id', $company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();        
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
@@ -35,18 +35,18 @@ class ProjectController extends Controller
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
 
-        $company_infos = CompanyUser::where('company_id', $company_id)->get();
+        $company_users = CompanyUser::where('company_id', $company_id)->get();
 
-        $partner_infos = Partner::where('company_id', $company_id)->get();
+        $partner_users = Partner::where('company_id', $company_id)->get();
         
-        return view('company/project/create', compact('company_infos', 'partner_infos'));
+        return view('company/project/create', compact('company_users', 'partner_users'));
     }
 
     public function store(Request $request)
     {        
         $request->validate([
-            'name'             => 'required',
-            'detail'           => 'required',
+            'project_name'     => 'required',
+            'project_detail'   => 'required',
             'company_user_id'  => 'required',
             'partner_id'       => 'required',
             'started_at'       => 'required',
@@ -59,8 +59,8 @@ class ProjectController extends Controller
 
         $project = new Project;
         $project->company_id   = $company_id;
-        $project->name         = $request->name;
-        $project->detail       = $request->detail;
+        $project->name         = $request->project_name;
+        $project->detail       = $request->project_detail;
         $project->started_at   = $request->started_at;
         $project->ended_at     = $request->ended_at;
         $project->status       = 0;
