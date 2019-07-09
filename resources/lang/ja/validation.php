@@ -158,7 +158,8 @@ return [
         'fee_format'      => '報酬形式',
         'payment_terms'   => '支払い条件',
         'partner_id'      => 'パートナー',
-
+        'project_name'    => 'プロジェクト名',
+        'project_detail'  => 'プロジェクト詳細',
     ],
 
 ];
