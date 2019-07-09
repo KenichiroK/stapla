@@ -10,7 +10,7 @@ $factory->define(App\Models\Company::class, function (Faker $faker) {
         'tel'                       => $faker->phoneNumber,
         'address_prefecture'        => $faker->prefecture,
         'address_city'              => $faker->city,
-        'address_streetAddress'     => $faker->streetAddress,
+        'address_building'          => $faker->streetAddress,
         'tel'                       => $faker->phoneNumber,
         'expire'                    => true,
         'expire2'                   => $faker->dateTimeThisMonth,
