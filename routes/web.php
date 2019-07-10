@@ -35,6 +35,9 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('setting/notification', 'Partners\Setting\NotificationController@store')->name('partner.setting.notification.store');
 		// purchase-order
 		Route::get('order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.purchaseOrder.show');
+		// invoice
+		Route::get('invoice/create', 'Partners\InvoiceController@create')->name('partner.invoice.create');
+		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
 		
 		// logout
     Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
