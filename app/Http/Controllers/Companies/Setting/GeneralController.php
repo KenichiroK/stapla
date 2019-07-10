@@ -22,7 +22,8 @@ class GeneralController extends Controller
     {
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->first()->company_id;
-        $company = Company::where('id', $company_id)->get();
+        $company = Company::findOrFail($company_id);
+        
         return view('company/setting/general/create', compact('company'));
     }
 
@@ -46,9 +47,8 @@ class GeneralController extends Controller
     {
         $auth = Auth::user();
         $company_id = CompanyUser::where('auth_id', $auth->id)->first()->company_id;
-        $company = Company::where('id', $company_id)->first();
+        $company = Company::findOrFail($company_id);
         $company->update($request->all());
-        return $company = Company::where('id', $company_id)->first();
 
         return view('company/setting/general/create', compact('company'));
     }

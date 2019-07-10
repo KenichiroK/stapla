@@ -29,9 +29,11 @@ class CompanyGeneralRequest extends FormRequest
             'zip_code'              => 'required',
             'address_prefecture'    => 'required',
             'address_city'          => 'required',
-            'address_street'        => 'required',
+            'address_building'      => 'required',
         ];
     }
 
-    
+
 }
+
+

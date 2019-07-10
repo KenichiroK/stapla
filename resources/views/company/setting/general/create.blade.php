@@ -65,12 +65,12 @@ const setPreview = (input) => {
 			<li><a href="/company/setting/personal">個人情報の設定</a></li>
 		</ul>
 	</div>
-	<form action="{{ url('/company/setting/general/create') }}" method="POST">
-	{{ csrf_field() }}
+	<form action="{{ url('/company/setting/general') }}" method="POST">
+	@csrf
 		<div class="name-container">
 			<p>会社名</p>
 			@if($company)
-				<input class="top-input input" type="" name="company_name" value="{{ old('company_name', $company[0]->company_name) }}" placeholder="">
+				<input class="top-input input" type="" name="company_name" value="{{ old('company_name', $company->company_name) }}" placeholder="">
 			@else
 				<input class="top-input input" type="" name="company_name" value="{{ old('company_name') }}" placeholder="">
 			@endif
@@ -83,7 +83,7 @@ const setPreview = (input) => {
 		<div class="name-container">
 			<p>代表者名</p>
 			@if($company)
-				<input class="top-input input" type="text" name="representive_name" value="{{ old('representive_name', $company[0]->representive_name) }}" placeholder="">
+				<input class="top-input input" type="text" name="representive_name" value="{{ old('representive_name', $company->representive_name) }}" placeholder="">
 			@else
 				<input class="top-input input" type="text" name="representive_name" value="{{ old('representive_name') }}" placeholder="">
 			@endif
@@ -97,7 +97,7 @@ const setPreview = (input) => {
 			<div class="zipcode-container">
 				<p>郵便番号</p>
 				@if($company)
-					<input class="top-input input" type="text" name="zip_code" value="{{ old('zip_code', $company[0]->zip_code) }}" placeholder="">
+					<input class="top-input input" type="text" name="zip_code" value="{{ old('zip_code', $company->zip_code) }}" placeholder="">
 				@else
 					<input class="top-input input" type="text" name="zip_code" value="{{ old('zip_code') }}" placeholder="">
 				@endif
@@ -111,7 +111,7 @@ const setPreview = (input) => {
 			<div class="prefecture-container">
 				<p>都道府県</p>
 				@if($company)
-					<input class="top-input input" type="text" name="address_prefecture" value="{{ old('address_prefecture', $company[0]->address_prefecture) }}" placeholder="">
+					<input class="top-input input" type="text" name="address_prefecture" value="{{ old('address_prefecture', $company->address_prefecture) }}" placeholder="">
 				@else
 					<input class="top-input input" type="text" name="address_prefecture" value="{{ old('address_prefecture') }}" placeholder="">
 				@endif
@@ -126,7 +126,7 @@ const setPreview = (input) => {
 			<div class="city-container">
 				<p>市区町村・番地</p>
 				@if($company)
-					<input class="top-input input" type="text" name="address_city" value="{{ old('address_city', $company[0]->address_city) }}" placeholder="">
+					<input class="top-input input" type="text" name="address_city" value="{{ old('address_city', $company->address_city) }}" placeholder="">
 				@else
 					<input class="top-input input" type="text" name="address_city" value="{{ old('address_city') }}" placeholder="">
 				@endif
@@ -140,7 +140,7 @@ const setPreview = (input) => {
 			<div class="building-container">
 				<p>建物名・部屋番号</p>
 				@if ($company)
-					<input type="text" name="address_building" value="{{ old('address_building', $company[0]->address_building) }}">
+					<input type="text" name="address_building" value="{{ old('address_building', $company->address_building) }}">
 				@else
 					<input type="text" name="address_building" value="{{ old('address_building') }}">
 				@endif
