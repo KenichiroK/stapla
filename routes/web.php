@@ -33,7 +33,8 @@ Route::group(['prefix' => 'partner'], function(){
 		// notification setting
 		Route::get('setting/notification', 'Partners\Setting\NotificationController@create')->name('partner.setting.notification.create');
 		Route::post('setting/notification', 'Partners\Setting\NotificationController@store')->name('partner.setting.notification.store');
-
+		// purchase-order
+		Route::get('order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.purchaseOrder.show');
 		
 		// logout
     Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
