@@ -1,6 +1,6 @@
 <?php
 namespace App\Models;
-use Illuminate\Database\Eloquent\Model;
+
 class PurchaseOrder extends BaseUuid
 {
     protected $table = 'purchase_orders';

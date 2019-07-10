@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Partners;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PurchaseOrder;
+use App\Models\Partner;
+use Illuminate\Support\Facades\Auth;
 
 class PurchaseOrderController extends Controller
 {
@@ -46,7 +49,13 @@ class PurchaseOrderController extends Controller
      */
     public function show($id)
     {
-        return view('partner/purchaseOrder/show');
+        $purchaseOrder = PurchaseOrder::findOrFail($id);
+        $auth_id = Auth::user()->id;
+        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        if ($partner->company_id !== $purchaseOrder->company_id) {
+            return 'no data';
+        }
+        return view('partner/purchaseOrder/show', compact('purchaseOrder', 'partner'));
     }
 
     /**

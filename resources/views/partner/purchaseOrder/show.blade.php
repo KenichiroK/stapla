@@ -7,11 +7,11 @@
 
 @section('header-profile')
 <div class="navbar-item">
-    user name
+    {{ $partner->name }}
 </div>
 <div class="navbar-item">
     <a href="/partner/profile">
-        <img src="/storage/images/default/dummy_user.jpeg" alt="">
+        <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
     </a>
 </div>
 @endsection
@@ -52,105 +52,107 @@
         <h3>確認画面</h3>
     </div>
 
-    <div class="message-container">
-        <h3>株式会社◯◯様からiosのコーディング作業の以来が来ています。</h3>
-    </div>
-
-    <div class="document-container">
-        <div class="title-container">
-            <h4>発注書</h4>
+    <form action="">
+        <div class="message-container">
+            <h3>{{ $purchaseOrder->company->company_name }}様から{{ $purchaseOrder->task->name }}の以来が来ています。</h3>
         </div>
 
-        <div class="partnerName-container">
-            <h4>山田 太郎 様</h4>
-        </div>
-
-        <div class="company-container">
-            <div class="right">
-                <p class="text">下記の通り、発注します。</p>
-                <p class="name">件名: iosのコーディング作業</p>
-                <p class="date">納期: 2019年3月12日</p>
+        <div class="document-container">
+            <div class="title-container">
+                <h4>発注書</h4>
             </div>
 
-            <div class="left">
-                <p class="date">発注日: 2019年1月10日</p>
-                <p clss="name">株式会社◯◯</p>
-                <p class="tel">03-1234-5678</p>
-                <p classs="address">〒000-0000 東京都千代田区千代田1-1-1</p>
-                <p class="building">◯◯◯◯◯◯◯◯ビル</p>
-                <p class="symbol">印</p>
+            <div class="partnerName-container">
+                <h4>{{ $purchaseOrder->partner->name }} 様</h4>
             </div>
-        </div>
 
-        <div class="order-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>商品名</th>
-                        <th>数量</th>
-                        <th>単価</th>
-                        <th>合計</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>iosコーディング作業</td>
-                        <td>1</td>
-                        <td>20,000</td>
-                        <td>20,000</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="total-container">
-                <div class="text-container">
-                    <p>合計</p>
+            <div class="company-container">
+                <div class="right">
+                    <p class="text">下記の通り、発注します。</p>
+                    <p class="name">件名: {{ $purchaseOrder->task->name }}</p>
+                    <p class="date">納期: {{ explode(' ', $purchaseOrder->task->ended_at)[0] }}</p>
                 </div>
 
-                <div class="section-container">
-                    <p class="sub-column">税抜</p>
-                    <p>20,000</p>
-                </div>
-
-                <div class="section-container">
-                    <p class="sub-column">消費税</p>
-                    <p>1,600</p>
-                </div>
-
-                <div class="section-container">
-                    <p class="sub-column">総額</p>
-                    <p class="total-text">¥21,600</p>
+                <div class="left">
+                    <p class="date">発注日: {{ explode(' ', $purchaseOrder->task->started_at)[0] }}</p>
+                    <p clss="name">{{ $purchaseOrder->company->company_name }}</p>
+                    <p class="tel">{{ $purchaseOrder->company->tel }}</p>
+                    <p classs="address">〒{{ $purchaseOrder->company->zip_code }} {{ $purchaseOrder->company->address_prefecture }}{{ $purchaseOrder->company->address_city }}{{ $purchaseOrder->company->address_streetAddress }}</p>
+                    <p class="building">{{ $purchaseOrder->company->address_streetAddress }}</p>
+                    <p class="symbol">印</p>
                 </div>
             </div>
 
-            <div class="sub-container">
-                <span>備考</span>
+            <div class="order-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>商品名</th>
+                            <th>数量</th>
+                            <th>単価</th>
+                            <th>合計</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>{{ $purchaseOrder->task->name }}</td>
+                            <td>1</td>
+                            <td>{{ number_format($purchaseOrder->task->price) }}</td>
+                            <td>{{ number_format($purchaseOrder->task->price) }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="total-container">
+                    <div class="text-container">
+                        <p>合計</p>
+                    </div>
+
+                    <div class="section-container">
+                        <p class="sub-column">税抜</p>
+                        <p>{{ number_format($purchaseOrder->task->price) }}</p>
+                    </div>
+
+                    <div class="section-container">
+                        <p class="sub-column">消費税</p>
+                        <p>{{ number_format($purchaseOrder->task->price * $purchaseOrder->task->tax) }}</p>
+                    </div>
+
+                    <div class="section-container">
+                        <p class="sub-column">総額</p>
+                        <p class="total-text">{{ number_format($purchaseOrder->task->price * (1 + $purchaseOrder->task->tax)) }}</p>
+                    </div>
+                </div>
+
+                <div class="sub-container">
+                    <span>備考</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="button-container">
-        <button type="submit" class="cancel">断る</button>
-        <button type="submit" class="approve">この案件を受ける</button>
-    </div>
+        <div class="button-container">
+            <button type="submit" class="cancel">断る</button>
+            <button type="submit" class="approve">この案件を受ける</button>
+        </div>
+    </form>
 </div>
 @endsection
