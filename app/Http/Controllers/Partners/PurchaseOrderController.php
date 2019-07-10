@@ -55,7 +55,7 @@ class PurchaseOrderController extends Controller
         if ($partner->company_id !== $purchaseOrder->company_id) {
             return 'no data';
         }
-        return view('partner/purchaseOrder/show', compact('purchaseOrder', 'partner'));
+        return view('partner/document/purchaseOrder/show', compact('purchaseOrder', 'partner'));
     }
 
     /**

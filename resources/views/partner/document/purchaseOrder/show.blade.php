@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/partner/purchaseOrder/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/partner/document/purchaseOrder/index.css') }}">
 @endsection
 
 @section('header-profile')
