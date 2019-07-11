@@ -43,9 +43,4 @@ class Task extends BaseUuid
     {
         return $this->hasOne('App\Models\Nda', 'task_id', 'id');
     }
-
-    public function invoice()
-    {
-        return $this->hasOne('App\Models\Invoice', 'task_id', 'id');
-    }
 }

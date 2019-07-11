@@ -11,15 +11,18 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('company_id');
+            $table->uuid('companyUser_id');
             $table->uuid('partner_id');
-            $table->uuid('task_id');
+            $table->string('project_name');
+            $table->date('requested_at');
+            $table->date('deadline_at');
+            $table->boolean('tax');
             $table->integer('status');
-            $table->integer('expenses');
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('partner_id')->references('id')->on('partners');
-            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('companyUser_id')->references('id')->on('company_users');
         });
     }
 
