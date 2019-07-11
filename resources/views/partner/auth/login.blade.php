@@ -24,7 +24,7 @@
     <main>
         <div class="main_container">
             <div class="title_wrapper">
-                <h1 class="text">パートナーログイン</h1>
+                <h1 class="text">フリーランスの方用 ログイン</h1>
             </div>
 
             <div class="form_wrapper">

@@ -18,7 +18,7 @@
     <main>
         <div class="main_container">
             <div class="title_wrapper">
-                <h1 class="text">新規会員登録</h1>
+                <h1 class="text">企業の方用 新規会員登録</h1>
             </div>
 
             <div class="form_wrapper">
