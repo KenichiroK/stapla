@@ -1,15 +1,22 @@
 <?php
 namespace App\Models;
-use Illuminate\Database\Eloquent\Model;
+
 class Invoice extends BaseUuid
 {
     protected $table = 'invoices';
+
     protected $fillable = [
-        'company_id', 'task_id', 'status', 'expenses'
+        'company_id', 'companyUser_id', 'partner_id', 'project_name', 'requested_at', 'deadline_at', 'tax', 'status'
     ];
+
     public function company()
     {
         return $this->belongsTo('App\Models\Company', 'company_id', 'id');
+    }
+
+    public function companyUser()
+    {
+        return $this->belongsTo('App\Models\CompanyUser', 'companyUser_id', 'id');
     }
 
     public function partner()
@@ -17,13 +24,13 @@ class Invoice extends BaseUuid
         return $this->belongsTo('App\Models\Partner', 'partners_id', 'id');
     }
 
-    public function task()
+    public function requestTasks()
     {
-        return $this->belongsTo('App\Models\Task', 'task_id', 'id');
+        return $this->hasMany('App\Models\RequestTask', 'invoice_id', 'id');
     }
-    
-    public function companyUserAccountSetting()
+
+    public function requestExpences()
     {
-        return $this->hasOne('App\Models\CompanyUserAcountSetting', 'company_user_id', 'id');
+        return $this->hasMany('App\Models\requestExpence', 'invoice_id', 'id');
     }
 }
