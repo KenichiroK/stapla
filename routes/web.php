@@ -54,6 +54,8 @@ Route::group(['prefix' => 'company'], function(){
 
 	
 	Route::group(['middleware' => 'auth:company'], function() {
+		// dashboard
+		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
 		// project
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
 		Route::get('/project/create', 'Companies\ProjectController@create')->name('company.project.create');
@@ -76,13 +78,13 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/setting/general/create', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
 		Route::post('/setting/general', 'Companies\Setting\GeneralController@update')->name('company.setting.general.update');
         
-        // mail(CompnayUser)
-        Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
-        Route::post('/mail/company-send', 'Companies\CompanyUserMailController@send')->name('company.mail.company-send');
+		// mail(CompnayUser)
+		Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
+		Route::post('/mail/company-send', 'Companies\CompanyUserMailController@send')->name('company.mail.company-send');
 
-        // mail(Partner)
-        Route::get('/mail/partner-index', 'Companies\PartnerMailController@index')->name('company.mail.partner-index');
-        Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
+		// mail(Partner)
+		Route::get('/mail/partner-index', 'Companies\PartnerMailController@index')->name('company.mail.partner-index');
+		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
         
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');
