@@ -31,21 +31,21 @@ const checkDeadline = () => {
 const calculateSumPrice = (e) => {
   let sum = document.getElementById('sum');
   let taskNums = document.getElementsByName('task_num');
-  let taskTotals = document.getElementsByName('task_total');
+  let taskUnitPrices = document.getElementsByName('task_unit_price');
   let expencesNums = document.getElementsByName('expences_num');
-  let expencesTotals = document.getElementsByName('expences_total');
+  let expencesUnitPrices = document.getElementsByName('expences_unit_price');
   let taskSum = 0;
   let expencesSum = 0;
   for (i = 0; i < taskNums.length; i++) {
 	taskNums[i].value = taskNums[i].value === undefined ? 0 : Number(taskNums[i].value);
-	taskTotals[i].value = taskTotals[i].value === undefined ? 0 : Number(taskTotals[i].value);
-	taskSum += taskNums[i].value * taskTotals[i].value;
+	taskUnitPrices[i].value = taskUnitPrices[i].value === undefined ? 0 : Number(taskUnitPrices[i].value);
+	taskSum += taskNums[i].value * taskUnitPrices[i].value;
   }
 
   for (i = 0; i < expencesNums.length; i++) {
 	expencesNums[i].value = expencesNums[i].value === undefined ? 0 : Number(expencesNums[i].value);
-	expencesTotals[i].value = expencesTotals[i].value === undefined ? 0 : Number(expencesTotals[i].value);
-	expencesSum += expencesNums[i].value * expencesTotals[i].value;
+	expencesUnitPrices[i].value = expencesUnitPrices[i].value === undefined ? 0 : Number(expencesUnitPrices[i].value);
+	expencesSum += expencesNums[i].value * expencesUnitPrices[i].value;
   }
   sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
 }
@@ -125,12 +125,12 @@ const calculateSumPrice = (e) => {
 									<option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
 								@endforeach
 							</select>
-							@if ($errors->has('companyUser_id'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('companyUser_id') }}</strong>
-								</div>					
-							@endif
 						</div>
+						@if ($errors->has('companyUser_id'))
+							<div>
+								<strong style='color: #e3342f;'>{{ $errors->first('companyUser_id') }}</strong>
+							</div>					
+						@endif
 					</dd>
 				</dl>
 
@@ -220,8 +220,8 @@ const calculateSumPrice = (e) => {
 						<tr>
 							<td class="item"><input type="text" name="task_name" value="{{ old('task_name') }}"></td>
 							<td class="num"><input type="text" name="task_num" value="{{ old('task_num') }}" onchange="calculateSumPrice(this.value)"></td>
-							<td class="unit-price"><input type="text" name="task_unit_price" value="{{ old('task_unit_price') }}"><span>円</span></td>
-							<td class="total"><input type="text" name="task_total" value="{{ old('task_total') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+							<td class="unit-price"><input type="text" name="task_unit_price" value="{{ old('task_unit_price') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+							<td class="total"><input type="text" name="task_total" value="{{ old('task_total') }}"><span>円</span></td>
 						</tr>
 					</tbody>
 
@@ -249,8 +249,8 @@ const calculateSumPrice = (e) => {
 						<tr>
 							<td class="item"><input type="text" name="expences_name" value="{{ old('expences_name') }}"></td>
 							<td class="num"><input type="text" name="expences_num" value="{{ old('expences_num') }}" onchange="calculateSumPrice(this.value)"></td>
-							<td class="unit-price"><input type="text" name="expences_unit_price" value="{{ old('expences_unit_price') }}"><span>円</span></td>
-							<td class="total"><input type="text" name="expences_total" value="{{ old('expences_total') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+							<td class="unit-price"><input type="text" name="expences_unit_price" value="{{ old('expences_unit_price') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+							<td class="total"><input type="text" name="expences_total" value="{{ old('expences_total') }}"><span>円</span></td>
 						</tr>
 					</tbody>
 
