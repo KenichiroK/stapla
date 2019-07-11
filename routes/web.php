@@ -70,7 +70,11 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/partner/{id}', 'Companies\PartnerController@show')->name('company.partner.show');
 		
 		// document
-		Route::get('document', 'Companies\DocumentController@index')->name('company.document.index');
+		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');
+
+		// setting
+		Route::get('/setting/general/create', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
+		Route::post('/setting/general', 'Companies\Setting\GeneralController@update')->name('company.setting.general.update');
         
         // mail(CompnayUser)
         Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');

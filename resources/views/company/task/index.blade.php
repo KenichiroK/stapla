@@ -24,7 +24,7 @@
                 <li><a href="/company/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
+                <li><a href="/company/setting/general/create"><i class="fas fa-cog"></i>設定</a></li>
                 <li>
                     <form method="POST" action="{{ route('company.logout') }}">
                         @csrf
@@ -124,7 +124,7 @@
                         <tr class="task-container__wrapper__table-wrapper__table__datarow">
                             
                                 
-                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><a href="task/{$task->id}">{{ $task->name }}</a></td>
+                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><a href="task/{{ $task->id }}">{{ $task->name }}</a></td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">{{ $task->project->name }}</td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">
                                     @foreach($task->taskPartners as $taskPartner)
