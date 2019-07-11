@@ -34,10 +34,12 @@ mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common'
    .sass('resources/sass/company/partnerMail/index.scss', 'public/css/company/partnerMail')
    .sass('resources/sass/company/document/index.scss', 'public/css/company/document')
    .sass('resources/sass/company/setting/general/index.scss', 'public/css/company/setting/general')
+   .sass('resources/sass/company/setting/companyElse/index.scss', 'public/css/company/setting/companyElse')
    .sass('resources/sass/company/setting/account/index.scss', 'public/css/company/setting/account')
    .sass('resources/sass/company/setting/userSetting/index.scss', 'public/css/company/setting/userSetting')
    .sass('resources/sass/company/setting/personalInfo/index.scss', 'public/css/company/setting/personalInfo')
    .sass('resources/sass/company/userMail/index.scss', 'public/css/company/userMail')
+   
 
    // partner
    .sass('resources/sass/partner/dashboard/index.scss', 'public/css/partner/dashboard')

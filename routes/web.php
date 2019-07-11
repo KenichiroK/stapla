@@ -82,11 +82,11 @@ Route::group(['prefix' => 'company'], function(){
 		// setting
 		Route::get('/setting/general', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
 		Route::post('/setting/general', 'Companies\Setting\GeneralController@update')->name('company.setting.general.update');
+		Route::get('/setting/companyElse', 'Companies\Setting\CompanyElseController@index');
 		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create');
 		Route::get('/setting/account', 'Companies\Setting\AccountController@create');
 		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@edit')->name('company.setting.personalInfo.edit');
 		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@update')->name('company.setting.personalInfo.update');
-
         
 		// mail(CompnayUser)
 		Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
