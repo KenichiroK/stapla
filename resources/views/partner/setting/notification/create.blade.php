@@ -10,7 +10,9 @@
     {{ $partner->name }}
 </div>
 <div class="navbar-item">
-    <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
+	<a href="/partner/profile">
+		<img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
+    </a>
 </div>
 @endsection
 
