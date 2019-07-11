@@ -82,11 +82,17 @@ Route::group(['prefix' => 'company'], function(){
 		// setting
 		Route::get('/setting/general/create', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
 		Route::post('/setting/general', 'Companies\Setting\GeneralController@update')->name('company.setting.general.update');
-		Route::get('/setting/account/create', 'Companies\Setting\AccountController@create');
+		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create');
+		Route::get('/setting/account', 'Companies\Setting\AccountController@create');
         
 		// mail(CompnayUser)
 		Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
 		Route::post('/mail/company-send', 'Companies\CompanyUserMailController@send')->name('company.mail.company-send');
+		
+
+        // mail(CompnayUser)
+        Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
+        Route::post('/mail/company-send', 'Companies\CompanyUserMailController@send')->name('company.mail.company-send');
 
 		// mail(Partner)
 		Route::get('/mail/partner-index', 'Companies\PartnerMailController@index')->name('company.mail.partner-index');
