@@ -19,7 +19,7 @@
     <main>
         <div class="main_container">
             <div class="title_wrapper">
-                <h1 class="text">ログイン</h1>
+                <h1 class="text">企業の方用 ログイン</h1>
             </div>
 
             <div class="form_wrapper">
