@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/setting/userSettng/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/setting/userSetting/index.css') }}">
 <script>
 const setPreview = (input) => {
   const preview = document.getElementById('preview');
@@ -55,35 +55,41 @@ const setPreview = (input) => {
 	</div>
 	<div class="menu-container">
 		<ul>
-			<li><a href="/company/setting/general/create" class="isActive">会社基本情報設定</a></li>
-			<li><a href="/company/setting/email">会社その他の設定</a></li>
-			<li><a href="/company/setting/notification">会社担当者設定</a></li>
+			<li><a href="/company/setting/general/create">会社基本情報設定</a></li>
+			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
+			<li><a href="/company/setting/userSetting/create"  class="isActive">会社担当者設定</a></li>
 			<li><a href="/company/setting/personal">アカウント設定</a></li>
 			<li><a href="/company/setting/personal">個人情報の設定</a></li>
 		</ul>
   </div>
-  <div>
-  <div class="charge-container__item">
-        <ul class="charge-container__item__list">
-            <li></li>
-            <li>担当者名</li>
-            <li>メールアドレス</li>
-            <li>パートナー依頼中</li>
-            <li>ステータス</li>
+  <div id="charge" class="charge-container">
+    <div class="charge-container__top-wrapper">
+        <div class="title-container">
+            <h3>会社担当者設定</h3>
+        </div>
+    </div>
+    <div class="charge-container__item">
+        <ul class="charge-container__item__list" style="display: flex">
+            <li style="width: 140px;"></li>
+            <li style="width: 140px;">担当者名</li>
+            <li style="width: 140px;">メールアドレス</li>
         </ul>
     </div>
     <div class="charge-container__content">
-        <ul v-for="(item , index) in charge_list" :key="item.id" v-show="index < charge_displayNumber" class="charge-container__content__list" >
-            <li><span class="icon">item.charge_icon</span></li>
-            <li>item.charge_name </li>
-            <li>item.charge_email</li>
-            <li>item.charge_partner_request</li>
-            <li>item.charge_status</li>
+        @foreach($companyUsers as $companyUser)
+        <ul class="charge-container__content__list" style="display: flex">
+            <li style="width: 140px;"><span class="icon">icon</span></li>
+            <li style="width: 140px;">{{ $companyUser->name }}</li>
+            <li style="width: 140px;">{{ $companyUser->companyUserAuth->email }}</li>
         </ul>
+        @endforeach
+        
         <div class="charge-container__content__showmore">
-            <p class="charge-container__content__showmore__btn" @click="showMoreCharge(4)">Show More</p>
+            <p class="charge-container__content__showmore__btn">Show More</p>
         </div>
     </div>
-  </div>
+    <div class="btn-container">
+        <button type="submit">担当者追加</button>
+    </div>
 </div>
 @endsection
