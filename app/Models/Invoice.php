@@ -21,7 +21,7 @@ class Invoice extends BaseUuid
 
     public function partner()
     {
-        return $this->belongsTo('App\Models\Partner', 'partners_id', 'id');
+        return $this->belongsTo('App\Models\Partner', 'partner_id', 'id');
     }
 
     public function requestTasks()

@@ -97,12 +97,23 @@ class InvoiceController extends Controller
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
         $invoice = Invoice::findOrFail($id);
-
+        $total_sum = 0;
         if ($partner->id !== $invoice->partner_id) {
             return 'no data';
         }
+        
+        if ($invoice->requestTasks->count() > 0) {
+            foreach($invoice->requestTasks as $requestTask) {
+                $total_sum += $requestTask->total;
+            }
+        }
+        if ($invoice->requestExpences->count() > 0) {
+            foreach($invoice->requestExpences as $requestExpence) {
+                $total_sum += $requestExpence->total;
+            }
+        }
 
-        return view('/partner/document/invoice/show', compact('partner', 'invoice'));
+        return view('/partner/document/invoice/show', compact('partner', 'invoice', 'total_sum'));
     }
 
     /**

@@ -4,26 +4,29 @@
 	padding: 40px;
 
 	.title-container {
-		margin-bottom: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
 		h3 {
 			font-weight: bold;
-			color: #43425d;
-		}
-  }
-  
-  .message-container {
-    width: 100%;
-    background-color: #fff;
-    text-align: center;
-    padding: 32px;
-    margin-bottom: 48px;
-    
-    h3 {
       color: #43425d;
-      font-weight: bold;
-      font-size: 20px;
       margin-bottom: 0;
+    }
+    
+    button {
+      color: #43425d;
+      background-color: #fff;
+      border: 1px solid #43425d;
+      border-radius: 48px;
+      font-weight: bold;
+      padding: 8px 40px;
+    }
+
+    button:hover {
+      opacity: 0.7;
+      transition: 0.3s;
     }
   }
 
@@ -31,63 +34,45 @@
     width: 100%;
     background-color: #fff;
     padding: 48px;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
 
     .title-container {
-      text-align: right;
-      font-size: 20px;
-
       h4 {
-        color: #43425d;
-      }
-    }
-
-    .partnerName-container {
-      text-align: left;
-      font-size: 20px;
-      margin-bottom: 48px;
-
-      h4 {
+        font-size: 20px;
+        width: 100%;
+        text-align: right;
         color: #43425d;
       }
     }
 
     .company-container {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      flex-direction: column;
       margin-bottom: 24px;
 
-      p {
-        color: #43425d;
-        font-size: 12px;
-        margin-bottom: 4px;
-        font-weight: bold;
+      .left {
+        font-size: 16px;
+        text-align: left;
+
+        p {
+          margin-bottom: 8px;
+        }
       }
 
       .right {
-        .text {
-          margin-bottom: 24px;
-        }
-  
-        .name {
-          margin-bottom: 0;
-          font-weight: normal;
-        }
-
-        .date {
-          margin-bottom: 0;
-          font-weight: normal;
-        }
-      }
-
-      .left {
+        font-size: 12px;
+        font-weight: bold;
         text-align: right;
+
+        p {
+          margin-bottom: 8px;
+        }
       }
     }
 
-    .order-container {
+    .invoice-container {
       width: 100%;
+      margin-bottom: 36px;
       border-top: 1px solid #43425d;
       border-bottom: 1px solid #43425d;
       border-right: 3px solid #43425d;
@@ -192,30 +177,51 @@
         }
       }
     }
+
+    .deadline-container {
+      width: 30%;
+      margin-left: auto;
+      border: 1px solid #aaa;
+
+      .header-container {
+        text-align: center;
+        font-size: 12px;
+        border-bottom: 1px solid #aaa;
+
+        p {
+          margin-bottom: 0;
+        }
+      }
+
+      .content-container {
+        padding: 8px;
+
+        p {
+          font-size: 12px;
+          margin-bottom: 4px;
+        }
+      }
+    }
   }
 
   .button-container {
     width: 100%;
     text-align: center;
 
-    .cancel {
-      border: 2px solid #43425d;
-      color: #43425d;
-      font-weight: bold;
-      background-color: #fff;
-      border-radius: 48px;
-      font-size: 16px;
-      padding: 8px 64px;
-      margin-right: 32px;
-    }
-
-    .approve {
+    button {
+      background-color: #43425d;
       color: #fff;
       font-weight: bold;
-      background-color: #09c221;
+      padding: 8px 40px;
       border-radius: 48px;
       font-size: 16px;
-      padding: 8px 16px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    button:hover {
+      opacity: 0.7;
+      transition: 0.3s;
     }
   }
 }
