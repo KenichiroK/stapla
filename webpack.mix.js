@@ -11,13 +11,21 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js');
+mix.js([
+   'resources/js/app.js',
+   'resources/js/company/project/index.js',
+   'resources/js/company/project/create.js',
+   'resources/js/company/project/show.js',
+],'public/js/app.js')
+
+
 
 mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common')
    .sass('resources/sass/auth/login/index.scss', 'public/css/auth/login')
    .sass('resources/sass/company/dashboard/index.scss', 'public/css/company/dashboard')
    .sass('resources/sass/company/project/index.scss', 'public/css/company/project')
    .sass('resources/sass/company/project/create.scss', 'public/css/company/project')
+   .sass('resources/sass/company/project/show.scss', 'public/css/company/project')
    .sass('resources/sass/company/task/index.scss', 'public/css/company/task')
    .sass('resources/sass/company/task/create.scss', 'public/css/company/task')
    .sass('resources/sass/company/task/show.scss', 'public/css/company/task')
