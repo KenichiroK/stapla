@@ -75,8 +75,8 @@ const calculateSumPrice = (e) => {
             <ul class="menu-list menu menu__container__menu-list">
                 <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
                 <li><a href="/partner/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li><a href="/partner/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                <li><a href="/partner/task"><i class="fas fa-tasks"></i>タスク</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i>プロジェクト</a></li>
+                <li><a href="#"><i class="fas fa-tasks"></i>タスク</a></li>
                 <li><a href="/partner/invoice/create" class="isActive"><i class="fas fa-newspaper"></i>書類</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>

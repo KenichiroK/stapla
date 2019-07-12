@@ -43,8 +43,8 @@ const setPreview = (input) => {
             <ul class="menu-list menu menu__container__menu-list">
                 <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
                 <li><a href="/partner/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li><a href="/partner/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                <li><a href="/partner/task"><i class="fas fa-tasks"></i>タスク</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i>プロジェクト</a></li>
+                <li><a href="#"><i class="fas fa-tasks"></i>タスク</a></li>
                 <li><a href="/partner/invoice/create"><i class="fas fa-newspaper"></i>書類</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
@@ -82,9 +82,9 @@ const setPreview = (input) => {
 	<div class="menu-container">
 		<ul>
 			<li><a href="/partner/setting/invoice" class="isActive">請求情報設定</a></li>
-			<li><a href="/partner/setting/email">メールアドレス・パスワード設定</a></li>
+			<li><a href="#">メールアドレス・パスワード設定</a></li>
 			<li><a href="/partner/setting/notification">通知設定</a></li>
-			<li><a href="/partner/setting/personal">個人情報の設定</a></li>
+			<li><a href="#">個人情報の設定</a></li>
 		</ul>
 	</div>
 
