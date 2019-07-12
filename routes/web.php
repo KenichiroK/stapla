@@ -75,6 +75,7 @@ Route::group(['prefix' => 'company'], function(){
 		// setting
 		Route::get('/setting/general/create', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
 		Route::post('/setting/general', 'Companies\Setting\GeneralController@update')->name('company.setting.general.update');
+		Route::get('/setting/account/create', 'Companies\Setting\AccountController@create');
         
         // mail(CompnayUser)
         Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
