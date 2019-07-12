@@ -8,7 +8,7 @@ class Company extends BaseUuid
         'company_name', 'representive_name', 'zip_code', 'address_prefecture',
         'address_city', 'address_building', 'tel', 'expire', 'expire2', 
         'approval_setting', 'income_tax_setting', 'remind_setting',
-        'purchase_order_setting', 'confidential_setting'
+        'purchase_order_setting', 'confidential_setting', 'account_setting'
     ];
     public function companyUsers()
     {

@@ -25,6 +25,7 @@ class CreateCompaniesTable extends Migration
             $table->boolean("remind_setting");
             $table->boolean("purchase_order_setting");
             $table->boolean("confidential_setting");
+            $table->boolean("account_setting");
             $table->timestamps();
         });
     }

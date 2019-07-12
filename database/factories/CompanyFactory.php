@@ -19,6 +19,7 @@ $factory->define(App\Models\Company::class, function (Faker $faker) {
         'remind_setting'            => true,
         'purchase_order_setting'    => true,
         'confidential_setting'      => true,
+        'account_setting'           => true,
         'created_at'                => $faker->dateTimeThisDecade,
         'updated_at'                => $faker->dateTimeThisYear,
     ];
