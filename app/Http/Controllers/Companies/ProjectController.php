@@ -7,6 +7,7 @@ use App\Models\CompanyUser;
 use App\Models\Partner;
 use App\Models\ProjectCompany;
 use App\Models\ProjectPartner;
+use App\Models\Task;
 
 use Illuminate\Http\Request;
 use Validator;
@@ -85,7 +86,10 @@ class ProjectController extends Controller
 
     public function show($id)
     {
-        return $projects = Project::with(['company', 'tasks', 'projectRoleRelation', 'projectPartnerPics.partner', 'projectCompanyPics.companyUser'])->findOrFail($id);
+        $projects = Project::with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->findOrFail($id);
+        $tasks = Task::where('project_id',$projects->id)->with(['project','taskCompanies','taskPartners','taskRoleRelation','purchaseOrder','contract','nda','invoice'])->get();
+        
+        return view('/company/project/show', compact('projects','tasks'));
     }
 
     public function edit($id)

@@ -27,4 +27,9 @@ class Project extends BaseUuid
     {
         return $this->hasMany('App\Models\ProjectCompany', 'project_id', 'id');
     }
+
+    protected $dates = [
+        'started_at',
+        'ended_at',
+    ];
 }
