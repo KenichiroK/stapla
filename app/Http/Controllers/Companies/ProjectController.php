@@ -44,7 +44,7 @@ class ProjectController extends Controller
     }
 
     public function store(Request $request)
-    {        
+    {      
         $request->validate([
             'project_name'     => 'required',
             'project_detail'   => 'required',
@@ -54,6 +54,7 @@ class ProjectController extends Controller
             'ended_at'         => 'required',
             'budget'           => 'required',
         ]);
+        $time = date("Y_m_d_H_i_s");
 
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
@@ -67,6 +68,13 @@ class ProjectController extends Controller
         $project->status       = 0;
         $project->budget       = $request->budget;
         $project->price        = 0;
+
+        if($request->file){
+            $file_name = $time.'_'.Auth::user()->id .'.'. $request->file->getClientOriginalExtension();
+            $project->file = $file_name;
+            $request->file('file')->storeAs('public/images/company/project/file' , $file_name);
+        }
+
         $project->save();
 
         $project_id = $project->id;
@@ -86,7 +94,10 @@ class ProjectController extends Controller
 
     public function show($id)
     {
-        $projects = Project::with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->findOrFail($id);
+        $user = Auth::user();
+        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+
+        $projects = Project::where('company_id', $company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->findOrFail($id);
         $tasks = Task::where('project_id',$projects->id)->with(['project','taskCompanies','taskPartners','taskRoleRelation','purchaseOrder','contract','nda','invoice'])->get();
         
         return view('/company/project/show', compact('projects','tasks'));
