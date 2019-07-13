@@ -24,7 +24,7 @@
                 <li><a href="/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
+                <li><a href="/company/setting/general"><i class="fas fa-cog"></i>設定</a></li>
             </ul>
         </aside>
     </div>
