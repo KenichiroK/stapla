@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/setting/general/create.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/setting/general/index.css') }}">
 <script>
 const setPreview = (input) => {
   const preview = document.getElementById('preview');
@@ -59,9 +59,9 @@ const setPreview = (input) => {
 	<div class="menu-container">
 		<ul>
 			<li><a href="/company/setting/general/create" class="isActive">会社基本情報設定</a></li>
-			<li><a href="/company/setting/email">会社その他の設定</a></li>
-			<li><a href="/company/setting/notification">会社担当者設定</a></li>
-			<li><a href="/company/setting/personal">アカウント設定</a></li>
+			<li><a href="/company/setting/companyElse/create">会社その他の設定</a></li>
+			<li><a href="/company/setting/userSetting/create">会社担当者設定</a></li>
+			<li><a href="/company/setting/account/create">アカウント設定</a></li>
 			<li><a href="/company/setting/personal">個人情報の設定</a></li>
 		</ul>
 	</div>
