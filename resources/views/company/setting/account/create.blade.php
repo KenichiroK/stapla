@@ -66,11 +66,13 @@ const setPreview = (input) => {
     </div>
     <!-- アカウント設定 -->
     <div id="setting" class="setting-container">
-        <h2 class="setting-container__title">アカウント設定</h2>
-        <div class="setting-container__plan-wrapper">
-            <div class="setting-container__plan">プラン</div>
-            <div class="setting-container__plan-name">ライトプラン</div>
-        </div>
+      <div class="title-container">
+        <h3>アカウント設定</h3>
+      </div>
+      <div class="plan-wrapper">
+          <div class="plan">プラン</div>
+          <div class="plan-name">ライトプラン</div>
+      </div>
 		<div class="btn-container">
 			<button type="submit">プラン変更</button>
 		</div>
