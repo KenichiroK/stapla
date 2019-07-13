@@ -1,0 +1,205 @@
+.main__container {
+    &__wrapper {
+        margin: auto;
+        width:80%;
+        font-size:14px;
+        background-color: #F0F0F7;
+        display:flex;
+        .left-area{
+            position: sticky;
+            top: 10px;
+            height: 100vh;
+            width:20%;
+            background-color: #212020;
+            color:#fff;
+            .basic-info{
+                width:80%;
+                margin:auto;
+                text-align: center;
+                &__img-container{
+                    &__img{
+                        background-color: #fff;
+                        width:124px;
+                        height:124px;
+                        border-radius:50%;
+                        margin:auto;
+                        margin-top:40px;
+                    }
+                }
+                &__name{
+                    font-size:18px;
+                    margin-top:8px;
+                }
+                &__evaluation{
+                    margin-top:8px;
+                }
+                &__job{
+                    margin-top:8px;
+                }
+                &__icons{
+                    margin-top:8px;
+                    display:flex;
+                    justify-content: space-around;
+                    .icon{
+                        cursor:pointer;
+                        font-size:20px;
+                    }
+                }
+            }
+            .border{
+                margin-top:16px;
+                border-bottom: 1px solid #fff;
+            }
+            .skill{
+                width:80%;
+                margin:auto;
+                margin-top:16px;
+                &__sub-title{
+                    margin-bottom:8px;
+                    font-size:16px;
+                }
+                &__list{
+                    li{
+                        font-size:12px;
+                    }
+                }
+            }
+            .works{
+                width:80%;
+                margin:auto;
+                margin-top:16px;
+                &__sub-title{
+                    margin-bottom:8px;
+                    font-size:16px;
+                }
+                &__list{
+                    li{
+                        font-size:12px;
+                    }
+                }
+            }
+            .about-me{
+                width:80%;
+                margin:auto;
+                margin-top:16px; 
+                &__sub-title{
+                    margin-bottom:8px;
+                    font-size:16px;
+                }
+                &__content{
+                    font-size:12px;
+                }
+            }
+            .contact{
+                width:80%;
+                margin:auto;
+                margin-top:16px;
+                &__sub-title{
+                    margin-bottom:8px;
+                    font-size:16px;
+                }
+            }
+        }
+        .center-area{
+            width:20%;
+            background-color: #EDEDED;
+            font-size:14px;
+            padding-top:16px;
+            .project-container{
+                margin-top:8px;
+                display:flex;
+                &__separate{
+                    margin-left:8px;
+                    &__circle{
+                        width:16px;
+                        height:16px;
+                        border-radius:50%;
+                        background-color: red;
+                        border: solid 1px #888282;
+                    }
+                    &__line-container{
+                        height:100%;
+                        .line{
+                            border-right:solid 1px #707070;
+                            height:100%;
+                            margin-right:8px;
+                        }
+                    }
+                }
+                &__wrapper{
+                    margin-left:8px;
+                    .date-container{
+                        &__date{
+                            font-size: 14px;
+                        }
+                    }
+                    .project{
+                        width:160px;
+                        word-wrap: break-word;
+                        &__item{
+                            color:#707070;
+                            margin-top:8px;
+                            font-size:12px;
+                        }
+                        &__name{
+                            font-weight: bold;
+                        }
+                    }
+                    .task{
+                        width:160px;
+                        word-wrap: break-word;
+                        &__item{
+                            color:#707070;
+                            margin-top:16px;
+                            font-size:12px;
+                        }
+                        &__name{
+                            font-weight: bold;
+                        }
+                    }
+                    .role{
+                        width:160px;
+                        word-wrap: break-word;
+                        &__item{
+                            color:#707070;
+                            margin-top:16px;
+                            font-size:12px;
+                        }
+                        &__name{
+                            font-weight: bold;
+                        }
+                    }
+                    .evaluation{
+                        margin-top:16px;
+                        padding:4px;
+                        width:160px;
+                        border: 1px solid #707070;
+                        background-color: #fff;
+                        word-wrap: break-word;
+                    }
+                }
+            }
+        }
+        .right-area{
+            width:60%;
+            .portfolio{
+                &__img-container{
+                    width:480px;
+                    height:320px;
+                    margin:auto;
+                    margin-top:32px;
+                    background-color: #fff;
+                }
+                &__title{
+                    font-weight:bold;
+                    text-align: center;
+                    font-size:24px;
+                }
+                &__description{
+                    text-align: center;
+                    font-size:18px;
+                }
+            }
+        }
+    }
+}

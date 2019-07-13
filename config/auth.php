@@ -45,6 +45,16 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'company' => [
+            'driver' => 'session',
+            'provider' => 'companies',
+        ],
+
+        'partner' => [
+            'driver' => 'session',
+            'provider' => 'partners',
+        ],
     ],
 
     /*
@@ -65,15 +75,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'companies' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\CompanyUserAuth::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'partners' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\PartnerAuth::class,
+        ],
     ],
 
     /*
@@ -92,8 +102,14 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'companies' => [
+            'provider' => 'company_users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        
+        'partners' => [
+            'provider' => 'partner_users',
             'table' => 'password_resets',
             'expire' => 60,
         ],

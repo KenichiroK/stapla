@@ -10,7 +10,7 @@ $factory->define(App\Models\Company::class, function (Faker $faker) {
         'tel'                       => $faker->phoneNumber,
         'address_prefecture'        => $faker->prefecture,
         'address_city'              => $faker->city,
-        'address_streetAddress'     => $faker->streetAddress,
+        'address_building'          => $faker->streetAddress,
         'tel'                       => $faker->phoneNumber,
         'expire'                    => true,
         'expire2'                   => $faker->dateTimeThisMonth,
@@ -19,6 +19,7 @@ $factory->define(App\Models\Company::class, function (Faker $faker) {
         'remind_setting'            => true,
         'purchase_order_setting'    => true,
         'confidential_setting'      => true,
+        'account_setting'           => true,
         'created_at'                => $faker->dateTimeThisDecade,
         'updated_at'                => $faker->dateTimeThisYear,
     ];

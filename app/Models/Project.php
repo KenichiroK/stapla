@@ -5,7 +5,7 @@ class Project extends BaseUuid
     protected $table = 'projects';
     
     protected $fillable = [
-        'company_id', 'name', 'detail', 'started_at', 'ended_at', 'status', 'budget'
+        'company_id', 'name', 'detail', 'started_at', 'ended_at', 'status', 'budget' ,'price','file'
     ];
     public function company()
     {
@@ -27,4 +27,9 @@ class Project extends BaseUuid
     {
         return $this->hasMany('App\Models\ProjectCompany', 'project_id', 'id');
     }
+
+    protected $dates = [
+        'started_at',
+        'ended_at',
+    ];
 }

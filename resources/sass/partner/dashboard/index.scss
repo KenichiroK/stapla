@@ -1,0 +1,295 @@
+.main-wrapper {
+	width: 80%;
+	margin: auto;
+	padding: 40px;
+
+	.title-container {
+		margin-bottom: 40px;
+
+		h3 {
+			font-weight: bold;
+			color: #43425d;
+		}
+	}
+
+	.alert-container {
+		width: 100%;
+		background-color: #fff;
+		display: flex;
+		position: relative;
+		padding: 8px;
+		margin-bottom: 24px;
+
+		.icon-container {
+			width: 4%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.project-alert-container {
+			width: 48%;
+			text-align: center;
+
+			p {
+				margin-bottom: 12px;
+			}
+
+			.alert-text {
+				color: #f14d1c;
+				font-weight: bold;
+			}
+		}
+
+		.task-alert-container {
+			width: 48%;
+			text-align: center;
+
+			p {
+				margin-bottom: 12px;
+			}
+
+			.alert-text {
+				color: #f14d1c;
+				font-weight: bold;
+			}
+		}
+	}
+
+	.alert-container:before {
+		content: '';
+		position: absolute;
+		top: 4px;
+		left: 0;
+		right: 0;
+		bottom: 4px;
+		width: 1px;
+		height: 64px;
+		margin: auto;
+		background-color: #aaa;
+	}
+
+	.incomplete-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 48px;
+
+		.section-container {
+			display: flex;
+			justify-content: space-between;
+			width: 30%;
+			background-color: #fff;
+			padding: 16px;
+
+			.icon-container {
+				width: 18%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.text-container {
+				width: 64%;
+				text-align: center;
+
+				h4 {
+					font-size: 12px;
+					font-weight: bold;
+					margin-bottom: 4px;
+				}
+
+				p {
+					margin-bottom: 0;
+				}
+			}
+
+			.btn-container {
+				width: 18%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				button {
+					background-color: #43425d;
+					border-radius: 40px;
+					color: #fff;
+					font-size: 8px;
+					padding: 2px 8px;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+
+	.project-container {
+		width: 100%;
+		background-color: #fff;
+		padding: 24px 24px 0;
+		margin-bottom: 48px;
+
+		.title-container {
+			margin-bottom: 24px;
+
+			h4 {
+				font-size: 16px;
+				color: #43425d;
+				font-weight: bold;
+			}
+		}
+
+		table {
+			width: 90%;
+			margin: auto;
+
+			thead {
+				background-color: #F0F0F7;
+				padding: 12px;
+
+				th {
+					color: #aaa;
+					padding: 12px;
+					font-size: 12px;
+					text-align: center;
+				}
+			}
+
+			tbody {
+				tr {
+					border-bottom: 1px solid #F0F0F7;
+
+					td {
+						padding: 12px;
+						font-size: 12px;
+						text-align: center;
+						vertical-align: middle;
+
+						img {
+							border-radius: 50%;
+							margin-bottom: 4px;
+						}
+
+						p {
+							margin-bottom: 0;
+						}
+					}
+
+					.project_name {
+						font-weight: bold;
+					}
+				}
+			}
+		}
+		.more-btn-container {
+			width: 90%;
+			margin: auto;
+			text-align: center;
+			padding: 24px;
+
+			button {
+				border-right-color: transparent;
+				color: #43425d;
+				font-weight: bold;
+				border: none;
+				font-size: 12px;
+			}
+		}
+	}
+
+	.task-container {
+		width: 100%;
+		background-color: #fff;
+		padding: 24px 24px 0;
+		margin-bottom: 48px;
+
+		.title-container {
+			margin-bottom: 24px;
+
+			h4 {
+				font-size: 16px;
+				color: #43425d;
+				font-weight: bold;
+			}
+		}
+
+		table {
+			width: 90%;
+			margin: auto;
+
+			thead {
+				background-color: #F0F0F7;
+				padding: 12px;
+
+				th {
+					color: #aaa;
+					padding: 12px;
+					font-size: 12px;
+					text-align: center;
+				}
+			}
+
+			tbody {
+				tr {
+					border-bottom: 1px solid #F0F0F7;
+
+					td {
+						padding: 12px;
+						font-size: 12px;
+						text-align: center;
+						vertical-align: middle;
+
+						img {
+							border-radius: 50%;
+							margin-bottom: 4px;
+						}
+
+						p {
+							margin-bottom: 0;
+						}
+					}
+
+					.project_name {
+						font-weight: bold;
+					}
+				}
+			}
+		}
+		.more-btn-container {
+			width: 90%;
+			margin: auto;
+			text-align: center;
+			padding: 24px;
+
+			button {
+				border-right-color: transparent;
+				color: #43425d;
+				font-weight: bold;
+				border: none;
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+// ステータス色分け
+.complete{
+	color: #09c221;
+	font-weight: bold;
+	margin-bottom: 0;
+	border-radius: 4px;
+	padding: 4px;
+}
+.cancel{
+	color: #f14d1c;
+	font-weight: bold;
+	margin-bottom: 0;
+	border-radius: 4px;
+	padding: 4px;
+}
+.default {
+	color: #43425d;
+	font-weight: bold;
+	margin-bottom: 0;
+	border-radius: 4px;
+	padding: 4px;
+}

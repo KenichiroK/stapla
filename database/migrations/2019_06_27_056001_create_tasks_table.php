@@ -27,12 +27,15 @@ class CreateTasksTable extends Migration
             $table->boolean('invoice');
             $table->integer('budget');
             $table->integer('price');
-            $table->text('comment');
-            $table->dateTime('inspection_date');
+            $table->float('tax', 3, 2);
+            $table->text('comment')->nullable();
+            $table->dateTime('inspection_date')->nullable();
             $table->string('fee_format');
-            $table->string('delivery_format');
-            $table->string('payment_terms');
-            $table->integer('rating');
+            $table->string('delivery_format')->nullable();
+            $table->string('payment_terms')->nullable();
+            $table->integer('rating')->nullable();
+            $table->text('rating_comment')->nullable();
+            $table->text('remarks')->nullable();
             $table->timestamps();
         });
     }

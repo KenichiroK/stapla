@@ -15,8 +15,8 @@ class CreateCompaniesTable extends Migration
             $table->string("representive_name", 64);
             $table->string("zip_code", 64);
             $table->string("address_prefecture", 64);
-            $table->string("address_city");
-            $table->string("address_streetAddress");
+            $table->string("address_city", 64);
+            $table->string("address_building", 64)->nullable();
             $table->string("tel");
             $table->boolean("expire");
             $table->string("expire2");
@@ -25,6 +25,7 @@ class CreateCompaniesTable extends Migration
             $table->boolean("remind_setting");
             $table->boolean("purchase_order_setting");
             $table->boolean("confidential_setting");
+            $table->boolean("account_setting");
             $table->timestamps();
         });
     }

@@ -1,8 +1,4 @@
 .sidebar__container {
-    position: fixed;
-    width: 20%;
-    height: 100%;
-    // padding: 8px;
     background-color: #43425d;
   
     &__wrapper {
@@ -21,7 +17,11 @@
           padding: 24px;
         }
         &__menu-list a:hover {
-          background-color: #252433;
+          background-color: rgba(37, 36, 51, 0.5);
+          border-left: 5px solid #a3a0fb;
+        }
+        &__menu-list .isActive {
+          background-color: #252433!important;
           border-left: 5px solid #a3a0fb;
         }
         &__menu-list i {
@@ -30,3 +30,64 @@
       }
     }
   }
+
+
+  .task-container__wrapper__table-wrapper__table {
+    // width: 100%;
+    margin: auto;
+    &__headerrow {
+        background-color: #F5F6FA;
+        font-size: 12px;
+        height: 48px;
+        &__tableheader {
+            vertical-align: middle;
+            text-align: center;
+            color: #A3A6B4;
+            &__arrow {
+                margin: 0 8px;
+            }
+            &__checkboxarea {
+                width: 120px;
+                text-align: center;
+                &__checkbox {
+                }
+            }
+        }
+    }
+    &__datarow {
+        font-size: 12px;
+        height: 80px;
+        border-bottom: 1px solid #F1F1F3;
+        &__tabledata {
+            vertical-align: middle;
+            text-align: center;
+            color: #4D4F5C;                
+            &__statusaction {
+                &__status {
+                    height: 40px;
+                    width: 120px;
+                    border-radius: 25px;
+                    margin: auto;
+                    padding: 11px 0;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+// ステータス色分け
+.complete{
+    background-color: #A9F5D0;
+}
+.repair{
+    background-color: #F8E0F7;
+}
+.request{
+    background-color: #F2F5A9;
+}
+.doing{
+    background-color: #F5D0A9;
+}
+.draft{
+    background-color: #E6E6E6;
+}

@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
           TaskCompaniesTableSeeder::class,
           ProjectPartnersTableSeeder::class,
           TaskPartnersTableSeeder::class,
+          ContractsTableSeeder::class,
+          NdasTableSeeder::class,
+          PurchaseOrdersTableSeeder::class,
+          InvoicesTableSeeder::class,
         ]);
         
     }

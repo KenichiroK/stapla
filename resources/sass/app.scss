@@ -14,7 +14,32 @@
 // Sidebar
 @import '../sass/sidebar/index';
 
+// Company/Project/Index
+@import '../sass/company/project/index';
+// Company/Project/Create
+@import '../sass/company/project/create';
+
+// Company/Task/Index
+@import '../sass/company/task/index';
+// task
+@import '../sass/company/task/create';
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.top {
+  .top__container {
+      position: absolute;
+  }
+  .main__container {
+      position: relative;
+      top: 30px;
+      right: -20%;
+      &__wrapper {
+          // padding: 8px;
+          // margin: 8px;
+      }
+  }
 }

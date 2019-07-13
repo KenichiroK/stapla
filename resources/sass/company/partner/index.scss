@@ -1,0 +1,197 @@
+.main__container {
+    height: 100vh;
+    background-color: #f0f0f7;
+    &__wrapper {
+      margin: auto;
+      width: 80%;
+      font-size: 14px;
+      background-color: #f0f0f7;
+      padding: 40px;
+      .top-container {
+        display: flex;
+        justify-content: space-between;
+        &__title {
+          font-size: 24px;
+        }
+        .search-name {
+          width: 640px;
+        }
+      }
+      .profile-list {
+        display: flex;
+        margin: auto;
+        width: 1040px;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+
+.paginate {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .paginate-container {
+    margin-top: 32px;
+    font-size: 16px;
+  }
+  .page-item {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    text-align: center;
+    margin: 0 2px;
+    border-radius: 4px;
+    a {
+      font-weight: bold;
+      color: #7a7a7a;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .prev {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    margin: 0 2px;
+    border-radius: 4px;
+    a {
+      font-weight: bold;
+      color: #7a7a7a;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .next {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    text-align: center;
+    margin: 0 2px;
+    border-radius: 4px;
+    a {
+      font-weight: bold;
+      color: #7a7a7a;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .active {
+    background-color: #3b86ff;
+    a {
+      color: #fff;
+    }
+  }
+  .page-link:focus,
+  .prev-link:focus,
+  .next-link:focus {
+    outline: none;
+  }
+
+
+
+.profile-card-container{
+    margin:40px 20px 0 20px;
+    width: 480px;
+    background-color: #fff;
+    box-shadow: 0 0 2px gray;
+    &__wrapper{
+        padding:16px;
+        .main-content{
+            display: flex;
+            margin-bottom:16px;
+            &__img-container{
+                border: solid 1px #4a4a4a;
+                position:relative;
+                overflow: hidden;
+                width:96px;
+                height:96px;
+                border-radius:50%;
+                &__img{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    -webkit-transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                    height:100%;
+                }
+            }
+            &__info-list{
+                margin-left:16px;
+                &__name{
+                    margin-top: 12px;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+                &__job{
+                    font-size:16px;
+                    margin-top: 8px;
+                }
+                &__under-wrapper{
+                    margin-top: 8px;
+                    display: flex;
+                }
+            }
+            &__right-icons{
+                color: #CECFD0;
+                font-size:20px;
+                display:flex;
+                margin: 0 0 0 auto;
+                &__pen:hover{
+                    color:#3490dc;
+                }
+            }
+        }
+        .icon-list{
+            display: flex;
+            justify-content: space-between;
+            padding:8px 0;
+            border-top:solid 2px #F0F0F7; 
+            font-size: 22px;
+            &__img_width{
+                width: 96px;
+            }
+        }
+    }
+}
+
+// 下記、iconColor()で変化
+.ableAccess{
+    color: #4a4a4a;
+}
+.ableAccess:hover{
+    border-bottom:2px solid #4a4a4a;
+}
+.unableAccess{
+    color: #CECFD0;
+    cursor: auto;
+    pointer-events: none;
+}
+
+// 共通
+a{
+    color:#4a4a4a;
+}

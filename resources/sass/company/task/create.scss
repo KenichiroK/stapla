@@ -1,0 +1,314 @@
+.main__container {
+    width:80%;
+    margin: auto;
+    background-color: #F0F0F7;
+    font-size: 14px;
+    &__wrapper{
+        padding:40px 40px;
+    }
+}
+
+// 共通部分
+.page-title-container {
+    &__page-title {
+        font-size: 24px;
+        margin-bottom:32px;
+    }
+}
+.item-name-wrapper {
+    // width: 100%;
+    &__item-name {
+        margin-bottom:8px;
+        font-size: 14px;
+        color: #43425D;
+    }
+}
+
+// プロジェクトを選択する エリア
+.select-container {
+    margin-bottom: 24px;
+    &__wrapper {
+        padding:16px 0;
+        background-color: #ffffff;
+        display: flex;
+        &__textarea {
+            padding: 0 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &__text {
+                &__control {
+                    &__select select {
+                        width: 480px;
+                        border-color: #3B86FF;
+                    }
+                }
+            }
+        }
+        // セレクトエリア
+        &__select-area {
+            justify-content: center;
+            align-items: center;
+            &__field {
+                &__control {
+                    &__select select {
+                        width: 640px;
+                        border-color: #3B86FF;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.content-container {
+    &__wrapper {
+        display: flex;
+    }
+}
+.main-container {
+    width: 70%;
+    margin-right: 24px;
+    &__wrapper {
+        background-color: #ffffff;
+        padding: 16px;
+        &__item-container {
+            margin-bottom: 40px;
+            // タスク名
+            &__inputarea {
+                &__field {
+                    &__control input {
+                        border: 0;
+                        box-shadow: none;
+                        border-radius: 0;
+                        border-bottom: 3px solid #3B86FF;
+                        caret-color: #3B86FF;
+                    }
+                }
+            }
+            // タスク内容
+            &__textarea {
+                height: 120px;
+            }
+            &__textarea textarea {
+                border-color: #3B86FF;
+                caret-color: #3B86FF;
+                resize: none;
+            }
+            // 締め切り
+            &__calendar-content {
+                display: flex;
+                justify-content: space-evenly;
+            }
+            // 資料
+            &__uploadarea {
+                &__uploadname {
+                }
+            }
+            &__filearea {
+                &__label {
+                    &__file-cta {
+                        height: 170px;
+                    }
+                }
+            }
+        }    
+    }
+}
+.side-container {
+        width: 30%;
+    &__wrapper {
+        // テンプレート
+        &__template-container {
+            background-color: #ffffff;
+            padding: 16px 16px 32px;
+            margin-bottom: 24px;
+            &__wrapper {
+                
+            }
+        }
+        // 担当者・パートナー
+        &__tanpa-container {
+            background-color: #ffffff;
+            padding: 16px 16px 32px;
+            margin-bottom: 24px;
+            &__wrapper {
+                .staff{
+                    margin-bottom:8px;
+                }
+            }
+        }
+        // 契約内容
+        &__agreement-container {     
+            background-color: #ffffff;
+            padding: 16px 16px 32px;
+            margin-bottom: 24px;
+            &__wrapper {
+                // 報酬形式
+                &__fee-container {
+                    margin-bottom: 24px;
+                    &__name {
+                        padding: 8px 0;
+                    }
+                    &__control {
+                        display: flex;
+                        justify-content: space-evenly;
+                        &__textarea {
+                            border-color: #808495;
+                            resize: none;
+                        }
+                    }
+                }
+                // 発注額
+                &__order-container {
+                    &__content {
+                        border: 1px solid #707070;
+                        padding: 8px;
+                        margin-bottom: 24px;
+                        &__inputitem {
+                            margin-bottom: 8px;
+                            display: flex;
+                            &__class {
+                                margin-left: 8px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                        }
+                        &__hr {
+                            width: 95%;
+                            margin: 16px auto;
+                            border-bottom: 1px solid #F1F1F3;
+                        }
+                        &__item-wrapper {
+                            &__item {
+                                margin-bottom: 8px;
+                                display: flex;
+                                &__item-amount {
+                                    margin-left: auto;
+                                }
+                            }
+                        }
+                    }   
+                }
+                .button-wrapper{
+                    text-align: center;
+                    &__btn{
+                        width:140px;
+                        border-radius: 18px;
+                        color:#fff;
+                        font-weight:bold;
+                        background: #43425D;
+                        margin-top: 32px;
+                    }
+                    &__btn:hover{
+                        opacity:0.8;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//作成確認用モーダル
+.p-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+  &.is-open {
+    visibility: visible;
+    opacity: 1;
+    z-index: 100;
+  }
+}
+
+.modal-mask {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: table;
+    transition: opacity .3s ease;
+    &__wrapper{
+        display: table-cell;
+        vertical-align: middle;
+        &__container{
+            width: 560px;
+            margin: 0px auto;
+            padding: 20px 30px;
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+            transition: all .3s ease;
+            &__title{
+                font-weight:bold;
+                font-size:24px;
+                margin-bottom:24px;
+                text-align: center;
+            }
+            &__row{
+                display:flex;
+                margin-bottom:8px;
+                &__item{
+                    font-size:16px;
+                    width:160px;
+                }
+                &__content{
+                    font-size:16px;
+                }
+            }
+            &__button-wrapper{
+                text-align: center;
+                &__ng-btn{
+                    width:140px;
+                    border-radius: 18px;
+                    color:#fff;
+                    font-weight:bold;
+                    background: rgb(110, 110, 110);
+                    margin-top: 32px;
+                }
+                &__ok-btn{
+                    width:140px;
+                    border-radius: 18px;
+                    color:#fff;
+                    font-weight:bold;
+                    background: #43425D;
+                    margin-top: 32px;
+                }
+                &__btn:hover{
+                    opacity:0.8;
+                }
+            }
+            .close{
+                margin-bottom:16px;
+                font-size: 24px;
+            }
+
+            &__register{
+                color:#31B404;
+                font-weight: bold;
+                font-size:24px;
+            }
+            &__item{
+                color:red;
+                font-size:16px;
+                margin-bottom:4px;
+            }
+            &__uninput{
+                text-align: center;
+                margin-bottom:24px;
+                font-weight: bold;
+                font-size:24px;
+            }
+        }
+    }
+}

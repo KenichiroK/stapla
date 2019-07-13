@@ -1,0 +1,427 @@
+.main-wrapper {
+	width: 80%;
+	margin: auto;
+	padding: 40px;
+
+	.title-container {
+		margin-bottom: 40px;
+
+		h3 {
+			font-weight: bold;
+			color: #43425d;
+		}
+  }
+
+  .invoice-container {
+    width: 100%;
+    padding: 32px;
+    background-color: #fff;
+    margin-bottom: 24px;
+
+    .invoiceTo-container {
+      width: 80%;
+      margin: 0 auto 36px;
+
+      dl {
+        display: flex;
+        align-items: center;
+
+        dt {
+          color: #43425d;
+          font-weight: normal;
+          width: 36px;
+          font-size: 12px;
+          text-align: right;
+        }
+
+        dd {
+          color: #43425d;
+          font-weight: bold;
+          font-size: 16px;
+          text-align: left;
+          margin-bottom: 0;
+          margin-left: 12px;
+        }
+      }
+    }
+
+    .form-container {
+      padding: 32px 0;
+      margin-bottom: 24px;
+      border-top: 1px solid #F0F0F7;
+      border-bottom: 1px solid #F0F0F7;
+
+      dl {
+        display: flex;
+        align-items: center;
+        margin-bottom: 24px;
+        
+        dt {
+          color: #43425d;
+          font-weight: bold;
+          width: 64px;
+          font-size: 12px;
+          text-align: right;
+        }
+
+        dd {
+          width: calc(100% - 60px);
+          margin-left: 12px;
+          margin-bottom: 0;
+          display: flex;
+          align-items: center;
+
+          .selectbox-container {
+            width: 70%;
+            position: relative;
+            display: inline-block;
+          }
+
+          .selectbox-container::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border: 0px;
+            border-bottom: solid 2px #b4b3b3;
+            border-right: solid 2px #b4b3b3;
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            margin-top: -4px;
+          }
+
+          select {
+            width: 100%;
+            font-size: 16px;
+            padding: 4px;
+            outline-color: #43425d;
+            border: 1px solid #F0F0F7;
+            border-radius: 4px;
+            appearance: none;
+            background-color: transparent;
+            z-index: 1;
+          }
+
+          .task-name {
+            width: 70%;
+            border: 1px solid #F0F0F7;
+            border-radius: 4px;
+          }
+
+          input {
+            border: 1px solid #F0F0F7;
+            border-radius: 4px;
+            padding: 4px;
+            outline-color: #43425d;
+          }
+
+          .radio-container {
+            margin-left: 12px;
+          }
+
+          label {
+            margin-bottom: 0;
+          }
+
+          .radio-input {
+            display: none;
+          }
+
+          .radio-input + label {
+            padding-left: 25px;
+            position:relative;
+            margin-right: 20px;
+          }
+    
+          .radio-input + label::before{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #F0F0F7;
+            border-radius: 50%;
+          }
+          
+          .radio-input:checked + label::after{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 12px;
+            height: 12px;
+            background: #09c221;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+
+    .task-container {
+      width: 100%;
+      margin-bottom: 36px;
+
+      .title-container {
+        h4 {
+          font-size: 16px;
+          font-weight: bold;
+          color: #43425d;
+        }
+      }
+
+      table {
+        width: 100%;
+        margin-bottom: 12px;
+
+        thead {
+          tr {
+            background-color: #F0F0F7;
+
+            th {
+              color: #565561;
+              padding: 8px;
+              text-align: center;
+              font-size: 12px;
+            }
+
+            .item {
+              width: 40%;
+            }
+
+            .num {
+              width: 10%;
+            }
+
+            .unit-price, .total {
+              width: 25%;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+
+            td {
+              padding: 12px 8px;
+              text-align: center;
+              font-size: 12px;
+              text-align: center;
+              position: relative;
+
+              span {
+                position: absolute;
+                bottom: 4px;
+                right: 4px;
+              }
+            }
+
+            input {
+              width: 80%;
+              font-size: 16px;
+              padding: 4px;
+              outline-color: #43425d;
+              border: 1px solid #F0F0F7;
+              border-radius: 4px;
+            }
+
+            .item {
+              width: 40%;
+            }
+
+            .num {
+              width: 10%;
+            }
+
+            .unit-price, .total {
+              width: 25%;
+            }
+          }
+        }
+      }
+
+      .addButton-container {
+        width: 100%;
+        text-align: left;
+
+        button {
+          border: 1px solid #43425d;
+          color: #43425d;
+          background-color: #fff;
+          border-radius: 48px;
+          padding: 8px 30px;
+          font-size: 12px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+
+        button:hover {
+          opacity: 0.7;
+          transition: 0.3s;
+        }
+      }
+    }
+
+    .expences-container {
+      width: 100%;
+      border-bottom: 1px solid #F0F0F7;
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+
+      .title-container {
+        h4 {
+          font-size: 16px;
+          font-weight: bold;
+          color: #43425d;
+        }
+      }
+
+      table {
+        width: 100%;
+        margin-bottom: 12px;
+
+        thead {
+          tr {
+            background-color: #F0F0F7;
+
+            th {
+              color: #565561;
+              padding: 8px;
+              text-align: center;
+              font-size: 12px;
+            }
+
+            .item {
+              width: 40%;
+            }
+
+            .num {
+              width: 10%;
+            }
+
+            .unit-price, .total {
+              width: 25%;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+
+            td {
+              padding: 12px 8px;
+              text-align: center;
+              font-size: 12px;
+              text-align: center;
+              position: relative;
+
+              span {
+                position: absolute;
+                bottom: 4px;
+                right: 4px;
+              }
+            }
+
+            input {
+              width: 80%;
+              font-size: 16px;
+              padding: 4px;
+              outline-color: #43425d;
+              border: 1px solid #F0F0F7;
+              border-radius: 4px;
+            }
+
+            .item {
+              width: 40%;
+            }
+
+            .num {
+              width: 10%;
+            }
+
+            .unit-price, .total {
+              width: 25%;
+            }
+          }
+        }
+      }
+
+      .addButton-container {
+        width: 100%;
+        text-align: left;
+
+        button {
+          border: 1px solid #43425d;
+          color: #43425d;
+          background-color: #fff;
+          border-radius: 48px;
+          padding: 8px 36px;
+          font-size: 12px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+
+        button:hover {
+          opacity: 0.7;
+          transition: 0.3s;
+        }
+      }
+    }
+
+    .total-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .head {
+        color: #43425d;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .sum-container {
+        
+        span {
+          color: #43425d;
+          font-weight: bold;
+          font-size: 20px;
+          margin-left: 4px;
+        }
+
+        p {
+          margin-bottom: 0;
+          color: #43425d;
+          font-weight: bold;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .button-container {
+    width: 100%;
+    text-align: center;
+
+    button {
+      background-color: #43425d;
+      color: #fff;
+      font-weight: bold;
+      padding: 8px 40px;
+      border-radius: 48px;
+      font-size: 16px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    button:hover {
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+  }
+}
