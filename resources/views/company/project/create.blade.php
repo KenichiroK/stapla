@@ -15,11 +15,11 @@
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
-                <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="/company/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li class="isActive"><a href="/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                <li><a href="/task"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/document"><i class="fas fa-newspaper"></i>書類</a></li>
+            <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
+                <li class="isActive"><a href="project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
+                <li><a href="task"><i class="fas fa-tasks"></i>タスク</a></li>
+                <li><a href="document"><i class="fas fa-newspaper"></i>書類</a></li>
                 <li><a href="#"><i class="fas fa-user-circle"></i>パートナー</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
@@ -32,7 +32,7 @@
 
 @section('content')
 <div class="main__container">
-    <form action="{{ url('/company/project') }}" method='POST'>
+    <form action="{{ url('/company/project') }}" method='POST' enctype="multipart/form-data">
     @csrf
     <div class="main__container__wrapper">
         <div class="top-container">
@@ -134,7 +134,7 @@
                         <div class="project-create__container__list__item__wrapper__description">アップロード</div>
                         <div class="file has-name is-boxed">
                         <label class="file-label">
-                            <input id="inputFile" class="file-input" type="file" name="resume">
+                            <input id="inputFile" class="file-input" type="file" name="file">
                             <span id="upload-btn" class="file-cta">
                             <span class="file-icon">
                                 <i class="fas fa-upload"></i>

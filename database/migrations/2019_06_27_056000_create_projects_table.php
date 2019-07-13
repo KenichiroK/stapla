@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->integer('status');
             $table->integer('budget');
             $table->integer('price');
+            $table->string('file')->nullable();
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies');
