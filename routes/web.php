@@ -80,7 +80,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');
 
 		// setting
-		Route::get('/setting/general/create', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
+		Route::get('/setting/general', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
 		Route::post('/setting/general', 'Companies\Setting\GeneralController@update')->name('company.setting.general.update');
 		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create');
 		Route::get('/setting/account', 'Companies\Setting\AccountController@create');
@@ -90,8 +90,8 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/mail/company-send', 'Companies\CompanyUserMailController@send')->name('company.mail.company-send');
 
         // mail(CompnayUser)
-        Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
-        Route::post('/mail/company-send', 'Companies\CompanyUserMailController@send')->name('company.mail.company-send');
+        Route::get('/companyMail', 'Companies\CompanyUserMailController@index')->name('company.companyMail.index');
+        Route::post('/companyMail/send', 'Companies\CompanyUserMailController@send')->name('company.mail.companyMail.send');
 
 		// mail(Partner)
 		Route::get('/mail/partner-index', 'Companies\PartnerMailController@index')->name('company.mail.partner-index');

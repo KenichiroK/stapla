@@ -37,7 +37,7 @@ const setPreview = (input) => {
                 <li><a href="/company/document"><i class="fas fa-newspaper"></i>書類</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="/company/setting/general/create" class="isActive"><i class="fas fa-cog"></i>設定</a></li>
+                <li><a href="/company/setting/general" class="isActive"><i class="fas fa-cog"></i>設定</a></li>
                 <li>
 					<form method="POST" action="{{ route('company.logout') }}">
 						@csrf
@@ -58,10 +58,10 @@ const setPreview = (input) => {
 	</div>
 	<div class="menu-container">
 		<ul>
-			<li><a href="/company/setting/general/create" class="isActive">会社基本情報設定</a></li>
-			<li><a href="/company/setting/companyElse/create">会社その他の設定</a></li>
-			<li><a href="/company/setting/userSetting/create">会社担当者設定</a></li>
-			<li><a href="/company/setting/account/create">アカウント設定</a></li>
+			<li><a href="/company/setting/general" class="isActive">会社基本情報設定</a></li>
+			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
+			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
+			<li><a href="/company/setting/acount">アカウント設定</a></li>
 			<li><a href="/company/setting/personal">個人情報の設定</a></li>
 		</ul>
 	</div>

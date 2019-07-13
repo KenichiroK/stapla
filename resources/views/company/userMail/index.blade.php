@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/setting/userSetting/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/userMail/index.css') }}">
 <script>
 const setPreview = (input) => {
   const preview = document.getElementById('preview');
@@ -48,48 +48,30 @@ const setPreview = (input) => {
 </div>
 @endsection
 
-@section('content');
+@section('content')
 <div class="main-wrapper">
 	<div class="title-container">
-		<h3>会社担当者設定</h3>
+		<h3>設定</h3>
 	</div>
 	<div class="menu-container">
 		<ul>
-			<li><a href="/company/setting/general/create">会社基本情報設定</a></li>
+			<li><a href="/company/setting/general" class="isActive">会社基本情報設定</a></li>
 			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
-			<li><a href="/company/setting/userSetting/create"  class="isActive">会社担当者設定</a></li>
-			<li><a href="/company/setting/personal">アカウント設定</a></li>
+			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
+			<li><a href="/company/setting/acount">アカウント設定</a></li>
 			<li><a href="/company/setting/personal">個人情報の設定</a></li>
 		</ul>
-  </div>
-  <div id="charge" class="charge-container">
-    <div class="charge-container__top-wrapper">
-        <div class="title-container">
-            <h3>会社担当者設定</h3>
-        </div>
-    </div>
-    <div class="charge-container__item">
-        <ul class="charge-container__item__list" style="display: flex">
-            <li style="width: 140px;"></li>
-            <li style="width: 140px;">担当者名</li>
-            <li style="width: 140px;">メールアドレス</li>
-        </ul>
-    </div>
-    <div class="charge-container__content">
-        @foreach($companyUsers as $companyUser)
-        <ul class="charge-container__content__list" style="display: flex">
-            <li style="width: 140px;"><span class="icon">icon</span></li>
-            <li style="width: 140px;">{{ $companyUser->name }}</li>
-            <li style="width: 140px;">{{ $companyUser->companyUserAuth->email }}</li>
-        </ul>
-        @endforeach
-        
-        <div class="charge-container__content__showmore">
-            <p class="charge-container__content__showmore__btn">Show More</p>
-        </div>
-    </div>
-    <div class="btn-container">
-        <a href="/company/companyMail">担当者追加</a>
-    </div>
+	</div>
+	<form action="{{ url('/company/companyMail/send') }}" method="POST">
+	@csrf
+		<div class="name-container">
+			<p>招待する担当者のアドレスを入力してて下さい</p>
+            <input class="top-input input" type="" name="email" value="{{ old('email') }}" placeholder="">
+		</div>
+		<div class="btn-container">
+			<button type="submit">招待メール送信</button>
+		</div>
+	</form>
 </div>
 @endsection
+
