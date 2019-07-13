@@ -94,7 +94,7 @@ Route::group(['prefix' => 'company'], function(){
         Route::post('/companyMail/send', 'Companies\CompanyUserMailController@send')->name('company.mail.companyMail.send');
 
 		// mail(Partner)
-		Route::get('/mail/partner-index', 'Companies\PartnerMailController@index')->name('company.mail.partner-index');
+		Route::get('/userMail', 'Companies\PartnerMailController@index')->name('company.userMail.index');
 		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
         
         // logout

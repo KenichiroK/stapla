@@ -25,7 +25,7 @@ class CompanyUserMailController extends Controller
 
         $auth = Auth::user(); 
         $company_id = CompanyUser::where('auth_id', $auth->id)->first()->company_id;
-        return $companyUsers = CompanyUser::where('company_id', $company_id)->get();
+        $companyUsers = CompanyUser::where('company_id', $company_id)->get();
 
         return view('company/setting/userSetting/create', compact('companyUsers'));
     }
