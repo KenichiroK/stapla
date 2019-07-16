@@ -80,20 +80,19 @@ const setPreview = (input) => {
 				<h4>会社情報のその他設定</h4>
 			</div>
 
-            <div>{{ $company }}</div>
 			<div class="radio-container">
                 <p class="text">上長、経理による書類・タスクの承認</p>
-                @if ($company && $company[0]->approval_setting == true)
+                @if ($company && $company->approval_setting == true)
                     <input type="radio" name="approval_setting" value="1" id="approval_true" checked>
                     <label class="left-btn" for="approval_true">有効</label>
                     <input type="radio" name="approval_setting" value="0" id="approval_false">
                     <label for="approval_false">無効</label>
-                @elseif ($company && $company[0]->approval_setting == false)
+                @elseif ($company && $company->approval_setting == false)
                     <input type="radio" name="approval_setting" value="1" id="approval_true">
                     <label class="left-btn" for="approval_true">有効</label>
                     <input type="radio" name="approval_setting" value="0" id="approval_false" checked>
                     <label for="approval_false">無効</label>
-                @else ($company && $company[0]->approval_setting == true)
+                @else ($company && $company->approval_setting == true)
                     <input type="radio" name="approval_setting" value="1" id="approval_true">
                     <label class="left-btn" for="approval_true">有効</label>
                     <input type="radio" name="approval_setting" value="0" id="approval_false">
@@ -104,17 +103,17 @@ const setPreview = (input) => {
 			<div class="radio-container">
 				<p class="text">請求書の源泉所得税の有無</p>
 				<p class="sub-text">請求書作成時に、経費を源泉徴収の対象にするかどうか選択できます。</p>
-                @if ($company && $company[0]->income_tax_setting == true)
+                @if ($company && $company->income_tax_setting == true)
                     <input type="radio" name="income_tax_setting" value="1" id="income_true" checked>
                     <label class="left-btn" for="income_true">有効</label>
                     <input type="radio" name="income_tax_setting" value="0" id="income_false">
                     <label for="income_false">無効</label>
-                @elseif ($company && $company[0]->income_tax_setting == false)
+                @elseif ($company && $company->income_tax_setting == false)
                     <input type="radio" name="income_tax_setting" value="1" id="income_true">
                     <label class="left-btn" for="income_true">有効</label>
                     <input type="radio" name="income_tax_setting" value="0" id="income_false" checked>
                     <label for="income_false">無効</label>
-                @else ($company && $company[0]->income_tax_setting == true)
+                @else ($company && $company->income_tax_setting == true)
                     <input type="radio" name="income_tax_setting" value="1" id="income_true">
                     <label class="left-btn" for="income_true">有効</label>
                     <input type="radio" name="income_tax_setting" value="0" id="income_false">
@@ -125,17 +124,17 @@ const setPreview = (input) => {
 			<div class="radio-container">
 				<p class="text">リマインド設定</p>
 				<p class="sub-text">締め日を有効にし登録すると、締め日に「申請されていない請求書」「請求書に紐づけられていないタスク」がある場合、自動通知が行なわれます。</p>
-                @if ($company && $company[0]->remind_setting == true)
+                @if ($company && $company->remind_setting == true)
                     <input type="radio" name="remind_setting" value="1" id="remind_true" checked>
                     <label class="left-btn" for="remind_true">有効</label>
                     <input type="radio" name="remind_setting" value="0" id="remind_false">
                     <label for="remind_false">無効</label>
-                @elseif ($company && $company[0]->remind_setting == false)
+                @elseif ($company && $company->remind_setting == false)
                     <input type="radio" name="remind_setting" value="1" id="remind_true">
                     <label class="left-btn" for="remind_true">有効</label>
                     <input type="radio" name="remind_setting" value="0" id="remind_false" checked>
                     <label for="remind_false">無効</label>
-                @else ($company && $company[0]->income_tax_setting == true)
+                @else ($company && $company->income_tax_setting == true)
                     <input type="radio" name="remind_setting" value="1" id="remind_true">
                     <label class="left-btn" for="remind_true">有効</label>
                     <input type="radio" name="remind_setting" value="0" id="remind_false">
@@ -174,17 +173,17 @@ const setPreview = (input) => {
                 <div>
                     <div class="radio-container">
                         <p class="text">発注書</p>
-                        @if ($company && $company[0]->purchase_order_setting == true)
+                        @if ($company && $company->purchase_order_setting == true)
                             <input type="radio" name="purchase_order_setting" value="1" id="purchase_true" checked>
                             <label class="left-btn" for="purchase_true">有効</label>
                             <input type="radio" name="purchase_order_setting" value="0" id="purchase_false">
                             <label for="purchase_false">無効</label>
-                        @elseif ($company && $company[0]->purchase_order_setting == false)
+                        @elseif ($company && $company->purchase_order_setting == false)
                             <input type="radio" name="purchase_order_setting" value="1" id="purchase_true">
                             <label class="left-btn" for="purchase_true">有効</label>
                             <input type="radio" name="purchase_order_setting" value="0" id="purchase_false" checked>
                             <label for="purchase_false">無効</label>
-                        @else ($company && $company[0]->purchase_order_setting == true)
+                        @else ($company && $company->purchase_order_setting == true)
                             <input type="radio" name="purchase_order_setting" value="1" id="purchase_true">
                             <label class="left-btn" for="purchase_true">有効</label>
                             <input type="radio" name="purchase_order_setting" value="0" id="purchase_false">
@@ -196,17 +195,17 @@ const setPreview = (input) => {
                 <div>
                     <div class="radio-container">
                         <p class="text">機密保持契約書</p>
-                        @if ($company && $company[0]->confidential_setting == true)
+                        @if ($company && $company->confidential_setting == true)
                             <input type="radio" name="confidential_setting" value="1" id="confidential_true" checked>
                             <label class="left-btn" for="confidential_true">有効</label>
                             <input type="radio" name="confidential_setting" value="0" id="confidential_false">
                             <label for="confidential_false">無効</label>
-                        @elseif ($company && $company[0]->confidential_setting == false)
+                        @elseif ($company && $company->confidential_setting == false)
                             <input type="radio" name="confidential_setting" value="1" id="confidential_true">
                             <label class="left-btn" for="confidential_true">有効</label>
                             <input type="radio" name="confidential_setting" value="0" id="confidential_false" checked>
                             <label for="confidential_false">無効</label>
-                        @else ($company && $company[0]->confidential_setting == true)
+                        @else ($company && $company->confidential_setting == true)
                             <input type="radio" name="confidential_setting" value="1" id="confidential_true">
                             <label class="left-btn" for="confidential_true">有効</label>
                             <input type="radio" name="confidential_setting" value="0" id="confidential_false">
