@@ -24,6 +24,11 @@ class Invoice extends BaseUuid
         return $this->belongsTo('App\Models\Partner', 'partner_id', 'id');
     }
 
+    public function task()
+    {
+        return $this->belongsTo('App\Models\Task', 'task_id', 'id');
+    }
+
     public function requestTasks()
     {
         return $this->hasMany('App\Models\RequestTask', 'invoice_id', 'id');
