@@ -19,7 +19,8 @@ class CompanyUsersTableSeeder extends Seeder
             'company_id' => Company::all()->random()->id,
             'name'       => 'テストユーザー',
             'department' => 'sample sample',
-            'image'      => '',
+            'occupation' => 'sample sample',
+            'picture'      => '',
             'created_at' => '2019-02-10 00:41:14',
             'updated_at' => '2019-02-10 00:41:14',
         ]);

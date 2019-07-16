@@ -84,7 +84,8 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/setting/general', 'Companies\Setting\GeneralController@update')->name('company.setting.general.update');
 		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create');
 		Route::get('/setting/account', 'Companies\Setting\AccountController@create');
-		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@create')->name('company.setting.personalInfo.create');
+		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@edit')->name('company.setting.personalInfo.edit');
+		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@update')->name('company.setting.personalInfo.update');
 
         
 		// mail(CompnayUser)

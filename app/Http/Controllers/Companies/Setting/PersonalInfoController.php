@@ -3,82 +3,67 @@
 namespace App\Http\Controllers\Companies\Setting;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
+use App\Models\CompanyUser;
+
 
 class PersonalInfoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $completed = '';
-        return view('/company/setting/personalInfo/create', ('completed'));
+        // 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $auth = Auth::user();
+        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+
+        $completed = '';
+
+        return view('/company/setting/personalInfo/create', compact('companyUser', 'completed'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $auth = Auth::user();
+        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        
+        if($companyUser) {
+            $companyUser->update($request->all());
+            $time = date("Y_m_d_H_i_s");
+
+            if($request->picture) {
+                $companyUser->picture = $request->picture->storeAs('public/images/company/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
+                $companyUser->save();
+            }
+
+            $completed = '変更を保存しました。';
+
+            return view('/company/setting/personalInfo/create', compact('companyUser', 'completed'));
+        } else {
+            $error = '入力に問題があります。再入力して下さい。';
+            return view('/company/setting/personalInfo/create', compact('companyUser', 'completed'));
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
