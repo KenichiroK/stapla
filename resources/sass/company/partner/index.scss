@@ -1,31 +1,41 @@
 .main__container {
-    height: 100vh;
-    background-color: #f0f0f7;
     &__wrapper {
-      margin: auto;
-      width: 80%;
-      font-size: 14px;
-      background-color: #f0f0f7;
-      padding: 40px;
+      margin:auto;
+      width:90%;
+      font-size:14px;
+      background-color: #F0F0F7;
+      padding:40px;
       .top-container {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         &__title {
           font-size: 24px;
+          font-weight:bold;
         }
         .search-name {
           width: 640px;
+        }
+        .btn-container{
+          font-weight: bold;
         }
       }
       .profile-list {
         display: flex;
         margin: auto;
-        width: 1040px;
         flex-wrap: wrap;
+        .pagenate-container{
+          width:100%;
+          &__wrapper{
+            margin-top:40px;
+            .pagination{
+              justify-content: center;
+            }
+          }
+        }
       }
     }
   }
-
 
 .paginate {
     display: flex;
@@ -114,7 +124,9 @@
 
 .profile-card-container{
     margin:40px 20px 0 20px;
-    width: 480px;
+    max-width: 45%;
+    min-width: 280px;
+    width:100%;
     background-color: #fff;
     box-shadow: 0 0 2px gray;
     &__wrapper{
