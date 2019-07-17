@@ -22,7 +22,7 @@
                     <li><a href="/company/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
                     <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                     <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                    <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
+                    <li><a href="/company/setting/general"><i class="fas fa-cog"></i>設定</a></li>
                     <li>
                         <form method="POST" action="{{ route('company.logout') }}">
                             @csrf
@@ -207,8 +207,8 @@
                     </div>
                 </div>
             </div>
-            <!-- 発注書 -->
-            <div class="main-container">
+             <!-- 発注書 -->
+             <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper">
                         <div class="item-name-wrapper__item-name">発注書</div>
