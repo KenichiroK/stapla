@@ -36,6 +36,7 @@ mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common'
    .sass('resources/sass/company/setting/general/index.scss', 'public/css/company/setting/general')
    .sass('resources/sass/company/setting/account/index.scss', 'public/css/company/setting/account')
    .sass('resources/sass/company/setting/userSetting/index.scss', 'public/css/company/setting/userSetting')
+   .sass('resources/sass/company/setting/personalInfo/index.scss', 'public/css/company/setting/personalInfo')
    .sass('resources/sass/company/userMail/index.scss', 'public/css/company/userMail')
 
    // partner

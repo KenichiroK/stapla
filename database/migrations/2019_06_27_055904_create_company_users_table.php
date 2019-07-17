@@ -16,7 +16,8 @@ class CreateCompanyUsersTable extends Migration
             $table->uuid('company_id');
             $table->string('name', 64);
             $table->string('department',64);
-            $table->string('image', 64);
+            $table->string('occupation',64);
+            $table->string('picture');
             $table->timestamps();
 
             $table->foreign('auth_id')->references('id')->on('company_user_auths');

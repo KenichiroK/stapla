@@ -61,7 +61,7 @@ const setPreview = (input) => {
 			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
 			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
 			<li><a href="/company/setting/acount">アカウント設定</a></li>
-			<li><a href="/company/setting/personal">個人情報の設定</a></li>
+			<li><a href="/company/setting/personalInfo">個人情報の設定</a></li>
 		</ul>
 	</div>
 	<form action="{{ url('/company/setting/general') }}" method="POST">
