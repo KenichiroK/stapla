@@ -81,6 +81,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document/nda', 'Companies\Document\NdaController@create')->name('company.document.nda.create');
 		Route::post('/document/nda', 'Companies\Document\NdaController@store')->name('company.document.nda.store');
 		Route::get('/document/nda/{id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
+		Route::get('/document/purchaseOrder/{id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');
 
 		// setting
 		Route::get('/setting/general', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
