@@ -37,46 +37,24 @@
 @endsection
 
 @section('content')
-<div>
-    <a href="/company/mail/partner-index">担当者を招待する</a>
-</div>
 <div class="main__container">
     <div class="main__container__wrapper">
         <div class="top-container">
             <h1 class="top-container__title">パートナー</h1>
             <div>
                 <p class="control has-icons-left">
-                    <input class="search-name input" type="text" placeholder="Search name">
+                    <input class="search-name input" type="text" placeholder="パートナーを検索">
                     <span class="icon is-small is-left">
                     <i class="fas fa-search"></i>
                     </span>
                 </p>
             </div>
         </div>
-
-        <div class="paginate-container">
-            <!-- <paginate
-                class= "paginate"
-                :page-class="'page-item'"
-                :page-link-class="'page-link'"
-                :prev-class="'prev'"
-                :prev-link-class="'prev-link'"
-                :next-class="'next'"
-                :next-link-class="'next-link'"
-                :active-class="'active'"
-                :page-count= pageCount
-                :click-handler="clickCallback"
-                :prev-text="'＜'"
-                :next-text="'＞'"
-                :container-class="'className'"
-            >
-            </paginate> -->
-        </div>
         
         <div class="profile-list">
             @foreach( $partners as $partner )
-            <a href="/company/partner/{{ $partner->id }}">
-                <div class="profile-card-container">
+            <div class="profile-card-container">
+                <!-- <a href="/company/partner/{{ $partner->id }}"> -->
                     <div class="profile-card-container__wrapper">
                         <div class="main-content">
                             <div class="main-content__img-container">
@@ -93,7 +71,6 @@
                             </div>
                         </div>
                         <div class="icon-list">
-                            <div class="icon-list__img_width"></div>
                             <div><a class="default-color github"><i class="fab fa-github icon"></i></a></div>
                             <div><a class="default-color twitter"><i class="fab fa-twitter icon"></i></a></div>
                             <div><a class="default-color facebook"><i class="fab fa-facebook icon"></i></a></div>
@@ -101,10 +78,17 @@
                             <div><a class="default-color mail"><i class="far fa-envelope icon"></i></a></div>
                         </div>
                     </div>
-                </div>
-            </a>
+                <!-- </a> -->
+            </div>
             @endforeach
-            {{ $partners->links() }}
+            <div class="pagenate-container">
+                <div class="pagenate-container__wrapper">
+                    {{ $partners->links() }}
+                </div>
+            </div>
+            <div class="btn-container">
+                <a href="/company/mail/partner-index">担当者を招待する</a>
+            </div>
         </div>
     </div>
 </div>
