@@ -16,6 +16,19 @@ class CreatePurchaseOrdersTable extends Migration
             $table->uuid('task_id');
             $table->integer('status');
             $table->dateTime('ordered_at');
+            $table->string('company_name');
+            $table->string('company_tel');
+            $table->string('company_zip_code');
+            $table->string('company_prefecture');
+            $table->string('company_city');
+            $table->string('company_building');
+            $table->string('company_user_name');
+            $table->string('partner_name');
+            $table->string('task_name');
+            $table->dateTime('task_ended_at');
+            $table->integer('task_price');
+            $table->integer('task_tax');
+
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies');
