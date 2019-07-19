@@ -144,11 +144,14 @@
       }
 
       .date-container{
+
         &__wrapper{
           display: flex;
           align-items: flex-end;
         }
+        
         &__list{
+          font-size: 14px;
           padding: 8px 0;
           display: flex;
           justify-content: center;

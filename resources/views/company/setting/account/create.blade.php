@@ -56,9 +56,9 @@ const setPreview = (input) => {
 	</div>
 	<div class="menu-container">
 		<ul>
-			<li><a href="/company/setting/general/create">会社基本情報設定</a></li>
-			<li><a href="/company/setting/email">会社その他の設定</a></li>
-			<li><a href="/company/setting/notification">会社担当者設定</a></li>
+			<li><a href="/company/setting/general">会社基本情報設定</a></li>
+			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
+			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
 			<li><a href="/company/setting/account" class="isActive">アカウント設定</a></li>
 			<li><a href="/company/setting/personalInfo">個人情報の設定</a></li>
 		</ul>

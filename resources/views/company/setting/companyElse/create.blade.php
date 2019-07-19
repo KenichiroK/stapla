@@ -48,7 +48,7 @@ const setPreview = (input) => {
 </div>
 @endsection
 
-@section('content');
+@section('content')
 <div class="main-wrapper">
     @if ($completed)
 		<div class="complete-container">
@@ -69,8 +69,8 @@ const setPreview = (input) => {
 			<li><a href="/company/setting/general">会社基本情報設定</a></li>
 			<li><a href="/company/setting/companyElse" class="isActive">会社その他の設定</a></li>
 			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
-			<li><a href="/company/setting/personal">アカウント設定</a></li>
-			<li><a href="/company/setting/personal">個人情報の設定</a></li>
+			<li><a href="/company/setting/account">アカウント設定</a></li>
+			<li><a href="/company/setting/personalInfo">個人情報の設定</a></li>
 		</ul>
     </div>
     <form action="{{ url('company/setting/companyElse') }}" method="POST">
@@ -176,7 +176,7 @@ const setPreview = (input) => {
             <div class="other-info-container__list__item__menu">
                 <div>
                     <div class="radio-container">
-                        <p class="text">発注書</p>
+                        <p>発注書</p>
                         @if ($company && $company->purchase_order_setting == true)
                             <input type="radio" name="purchase_order_setting" value="1" id="purchase_true" checked>
                             <label class="left-btn" for="purchase_true">フォーマット活用</label>
@@ -197,7 +197,7 @@ const setPreview = (input) => {
                 </div>
                 <div>
                     <div class="radio-container last-container">
-                        <p class="text">機密保持契約書</p>
+                        <p>機密保持契約書</p>
                         @if ($company && $company->confidential_setting == true)
                             <input type="radio" name="confidential_setting" value="1" id="confidential_true" checked>
                             <label class="left-btn" for="confidential_true">フォーマット活用</label>

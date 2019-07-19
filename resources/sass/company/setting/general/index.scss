@@ -11,17 +11,45 @@
       }
     }
 
+    .complete-container {
+      p {
+        color: #09c221;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+  
+    .error-container {
+      p {
+        color: #e3342f;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+    
+    .title-container {
+      margin-bottom: 40px;
+  
+      h3 {
+        font-weight: bold;
+        color: #43425d;
+      }
+    }
+  
     .menu-container {
       margin-bottom: 64px;
+  
       ul {
         width: 100%;
         margin: auto;
         display: flex;
         justify-content: space-between;
+  
         li {
           width: 25%;
           margin: auto;
           text-align: center;
+  
           a {
             width: 100%;
             font-size: 12px;
@@ -31,11 +59,13 @@
             border-bottom: 1px solid #aaa;
             text-decoration: none;
           }
+  
           a:hover {
             color: rgba(67, 66, 93, 0.7);
             font-weight: bold;
             border-bottom: 3px solid rgba(67, 66, 93, 0.7);
           }
+  
           .isActive {
             color: #43425d!important;
             font-weight: bold!important;
@@ -48,6 +78,8 @@
     .profile-container{
       background-color: #fff;
       padding:40px;
+      margin-bottom: 48px;
+
         .top-area{
           display: flex;
           flex-wrap: wrap;
@@ -68,6 +100,7 @@
           margin-right:16px;
           width: 45%;
           min-width: 300px;
+
           p {
             font-size: 16px;
             color: #43425d;
@@ -89,6 +122,7 @@
 
           .zipcode-container {
             margin-right:16px;
+
             &__wrapper{
               display: flex;
               align-items: center;
@@ -98,11 +132,13 @@
                 margin: 0 8px;
               }
             }
+
             p {
               font-size: 16px;
               color: #43425d;
               font-weight: bold;
             }
+
             input {
               width: 80px;
               outline-color: #43425d;
@@ -115,11 +151,13 @@
 
           .prefecture-container {
             width: 40%;
+
             p {
               font-size: 16px;
               color: #43425d;
               font-weight: bold;
             }
+
             input {
               width: 60%;
               min-width: 96px;
@@ -136,16 +174,19 @@
             display: flex;
             flex-wrap: wrap;
             margin-bottom: 24px;
+
             .city-container {
               width: 45%;
               min-width: 300px;
               margin-right: 16px;
               margin-bottom: 16px;
+
               p {
                 font-size: 16px;
                 color: #43425d;
                 font-weight: bold;
               }
+
               input {
                 width: 100%;
                 outline-color: #43425d;
@@ -159,11 +200,13 @@
             .building-container {
               width: 45%;
               min-width: 300px;
+
               p {
                 font-size: 16px;
                 color: #43425d;
                 font-weight: bold;
               }
+
               input {
                 width: 100%;
                 outline-color: #43425d;
@@ -177,11 +220,13 @@
       
           .tel-container {
             margin-bottom: 24px;
+
             p {
               font-size: 16px;
               color: #43425d;
               font-weight: bold;
             }
+
             input {
               width: 45%;
               outline-color: #43425d;
@@ -197,25 +242,31 @@
           background-color: #fff;
           padding: 48px;
           margin-bottom: 48px;
+
           .title-container {
             margin-bottom: 24px;
+
             h4 {
               font-size: 16px;
               color: #43425d;
               font-weight: bold;
             }
           }
+
           .financial-container {
             display: flex;
             justify-content: space-between;
             margin-bottom: 24px;
+
             .financialInstitution-container {
               width: 65%;
+
               p {
                 font-size: 16px;
                 color: #43425d;
                 font-weight: bold;
               }
+
               input {
                 width: 100%;
                 outline-color: #43425d;
@@ -228,6 +279,7 @@
       
             .branch-container {
               width: 30%;
+
               p {
                 font-size: 16px;
                 color: #43425d;
@@ -248,11 +300,13 @@
           .depositType-container {
             width: 50%;
             margin-bottom: 24px;
+
             p {
               font-size: 16px;
               color: #43425d;
               font-weight: bold;
             }
+
             input {
               width: 100%;
               outline-color: #43425d;
@@ -262,14 +316,17 @@
               border-radius: 4px;
             }
           }
+
           .accountNumber-container{
             width: 50%;
             margin-bottom: 24px;
+
             p {
               font-size: 16px;
               color: #43425d;
               font-weight: bold;
             }
+
             input {
               width: 100%;
               outline-color: #43425d;
@@ -283,11 +340,13 @@
           .accountHolder-container {
             width: 50%;
             margin-bottom: 24px;
+
             p {
               font-size: 16px;
               color: #43425d;
               font-weight: bold;
-            }  
+            }
+
             input {
               width: 100%;
               outline-color: #43425d;
@@ -301,16 +360,20 @@
           .mark-container {
             width: 50%;
             margin-bottom: 24px;
+
             .title {
               font-size: 16px;
               color: #43425d;
               font-weight: bold;
             }
+
             .caution {
               font-size: 12px;
             }
+
             .image-container {
               margin-bottom: 24px;
+
               label {
                 border: 1px solid #43425d;
                 border-radius: 48px;
@@ -323,6 +386,7 @@
                 margin-bottom: 0;
                 cursor: pointer;
               }
+
               label:hover {
                 opacity: 0.7;
                 transition: 0.3s;
@@ -332,6 +396,7 @@
             .imprint-container {
               width: 140px;
               text-align: center;
+
               button {
                 background-color: #43425d;
                 font-weight: bold;
@@ -341,6 +406,7 @@
                 font-size: 12px;
                 outline: none;
               }
+
               button:hover {
                 opacity: 0.7;
                 transition: 0.3s;
@@ -348,23 +414,24 @@
             }
           }
         }
-      
-        .btn-container {
-          width: 100%;
-          text-align: center;
-          button {
-            background-color: #43425d;
-            font-weight: bold;
-            color: #fff;
-            padding: 8px 40px;
-            font-size: 16px;
-            border-radius: 48px;
-            outline: none;
-          }
-          button:hover {
-            opacity: 0.7;
-            transition: 0.3s;
-          }
+      }
+      .btn-container {
+        width: 100%;
+        text-align: center;
+
+        button {
+          background-color: #43425d;
+          font-weight: bold;
+          color: #fff;
+          padding: 8px 40px;
+          font-size: 16px;
+          border-radius: 48px;
+          outline: none;
+        }
+        
+        button:hover {
+          opacity: 0.7;
+          transition: 0.3s;
         }
       }
     }

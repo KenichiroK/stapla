@@ -49,7 +49,7 @@ const setPreview = (input) => {
 </div>
 @endsection
 
-@section('content');
+@section('content')
 <div class="main-wrapper">
     @if ($completed)
         <div class="complete-container">
@@ -74,15 +74,12 @@ const setPreview = (input) => {
 			<li><a href="/company/setting/personalInfo" class="isActive">個人情報の設定</a></li>
 		</ul>
     </div>
-    <div class="title-container">
-        <h3>プロフィール管理画面</h3>
-    </div>
 
     <form action="{{ url('/company/setting/personalInfo') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body-container">
             <div class="title-container">
-                <h4>プロフィール</h4>
+                <h4>個人情報の設定</h4>
             </div>
 
             <div class="edit-container">
@@ -105,7 +102,7 @@ const setPreview = (input) => {
             
                 <div class="profile-container">
                     <div class="short-input-container">
-                        <p>名前 / ニックネーム</p>
+                        <p>名前・ニックネーム</p>
                         @if ($companyUser)
                             <input type="text" name="name" value="{{ old('name', $companyUser->name) }}">
                         @else
