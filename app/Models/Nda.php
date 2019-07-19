@@ -1,12 +1,14 @@
 <?php
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
+
 class Nda extends BaseUuid
 {
     protected $table = 'ndas';
 
     protected $fillable = [
-        'company_id', 'task_id', 'status', 'company_name', 'partner_name',
+        'company_id', 'companyUser_id', 'task_id', 'status', 'company_name', 'partner_name',
     ];
 
     public function company()

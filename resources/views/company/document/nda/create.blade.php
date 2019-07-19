@@ -55,60 +55,63 @@ const setPreview = (input) => {
             <div class="page-title-container__page-title">機密保持契約書</div>
         </div>
         <div class="main-container">
-            <div class="main-container__wrapper">
-                <!-- タスク -->
-                <div class="item-name-wrapper">
-                    <div class="item-name-wrapper__item-name">
-                        タスク
+            <form action="{{ url('company/document/nda') }}" method="post">
+            @csrf
+                <div class="main-container__wrapper">
+                    <!-- タスク -->
+                    <div class="item-name-wrapper">
+                        <div class="item-name-wrapper__item-name">
+                            タスク
+                        </div>
+                    </div>
+                    <div class="select-container">
+                        <div class="select-container__wrapper select">
+                            <select class="select-container__wrapper__select" name="task_id">
+                                <option></option>
+                                @foreach($tasks as $task)
+                                <option value="{{ $task->id }}">{{ $task->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 担当者 -->
+                    <div class="item-name-wrapper">
+                        <div class="item-name-wrapper__item-name">
+                            担当者
+                        </div>
+                    </div>
+                    <div class="select-container">
+                        <div class="select-container__wrapper select">
+                            <select class="select-container__wrapper__select" name='companyUser_id'>
+                                <option></option>
+                                @foreach($companyUsers as $companyUser)
+                                <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
+                                @endforeach                            
+                            </select>
+                        </div>
+                    </div>
+                    <!-- パートナー -->
+                    <div class="item-name-wrapper">
+                        <div class="item-name-wrapper__item-name">
+                            パートナー
+                        </div>
+                    </div>
+                    <div class="select-container">
+                        <div class="select-container__wrapper select">
+                            <select class="select-container__wrapper__select" name='partner_id'>
+                                <option></option>
+                                @foreach($partners as $partner)
+                                <option value="{{ $partner->id }}">{{ $partner->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 作成ボタン -->
+                    <div class="button-container">
+                        <button type="submit">作成</button>
                     </div>
                 </div>
-                <div class="select-container">
-                    <div class="select-container__wrapper select">
-                        <select class="select-container__wrapper__select">
-                            <option></option>
-                            @foreach($tasks as $task)
-                            <option value="">{{ $task->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <!-- 担当者 -->
-                <div class="item-name-wrapper">
-                    <div class="item-name-wrapper__item-name">
-                        担当者
-                    </div>
-                </div>
-                <div class="select-container">
-                    <div class="select-container__wrapper select">
-                        <select class="select-container__wrapper__select">
-                            <option></option>
-                            @foreach($companyUsers as $companyUser)
-                            <option>{{ $companyUser->name }}</option>
-                            @endforeach                            
-                        </select>
-                    </div>
-                </div>
-                <!-- パートナー -->
-                <div class="item-name-wrapper">
-                    <div class="item-name-wrapper__item-name">
-                        パートナー
-                    </div>
-                </div>
-                <div class="select-container">
-                    <div class="select-container__wrapper select">
-                        <select class="select-container__wrapper__select">
-                            <option></option>
-                            @foreach($partners as $partner)
-                            <option>{{ $partner->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <!-- 作成ボタン -->
-                <div class="main-container__wrapper__create-btn-container">
-                    <router-link to="/document/secrecy" class="button main-container__wrapper__create-btn-container__button">作成</router-link>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

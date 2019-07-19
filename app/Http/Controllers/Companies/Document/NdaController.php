@@ -32,7 +32,22 @@ class NdaController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $auth = Auth::user();
+        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $company = Company::findOrFail($companyUser->company_id);
+
+        $nda= new Nda;
+        $nda->company_id = $company->id;
+        $nda->companyUser_id = $request->companyUser_id;
+        $nda->partner_id =$request->partner_id;
+        $nda->task_id =$request->task_id;
+        $nda->status = 0;
+        $nda->company_name =$company->company_name;
+        $nda->partner_name = Partner::findOrFail($request->partner_id)->name;
+        $nda->save();
+
+        return redirect('/company/document');
+
     }
 
     public function show($id)
