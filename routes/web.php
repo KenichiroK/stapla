@@ -78,6 +78,7 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// document
 		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');
+		Route::get('/document/nda/{id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
 
 		// setting
 		Route::get('/setting/general', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');

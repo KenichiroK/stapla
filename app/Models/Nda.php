@@ -6,7 +6,7 @@ class Nda extends BaseUuid
     protected $table = 'ndas';
 
     protected $fillable = [
-        'company_id', 'task_id', 'status',
+        'company_id', 'task_id', 'status', 'company_name', 'partner_name',
     ];
 
     public function company()
