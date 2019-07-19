@@ -46,7 +46,7 @@ class NdaController extends Controller
         $nda->partner_name = Partner::findOrFail($request->partner_id)->name;
         $nda->save();
 
-        return redirect('/company/document');
+        return redirect()->route('company.document.nda', [$nda->id]);
 
     }
 
