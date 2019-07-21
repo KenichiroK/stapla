@@ -53,8 +53,7 @@
         
         <div class="main-container">
             <div class="main-container__wrapper">
-
-                    <!-- pdf -->
+                <!-- pdf -->
                 <div id="print" class="A4 landscape">
                     <div class="secrecy-container">
                         <div class="secrecy-container__wrapper">
@@ -103,9 +102,7 @@
                                                 各当事者は、不正確又は不完全な機密情報を提供しないように注意を払うものとするが、当該機密情報の正確性及び完全性について保証しないものとする。
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -115,9 +112,8 @@
         </div>
         <!-- submitボタン -->
         <div class="submit-btn-container">
-            <a @click="toggleModal()" class="button submit-btn-container__button">提出</a>
+            <a href="" class="button submit-btn-container__button">提出</a>
         </div>
-
     </div>
 </div>
 @endsection
