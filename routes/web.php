@@ -39,9 +39,9 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('invoice/create', 'Partners\InvoiceController@create')->name('partner.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
 		Route::get('invoice/{id}', 'Partners\InvoiceController@show')->name('partner.invoice.show');
-		
+
 		// logout
-    Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
+    	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
 });
 	
@@ -100,7 +100,13 @@ Route::group(['prefix' => 'company'], function(){
 		// mail(Partner)
 		Route::get('/userMail', 'Companies\PartnerMailController@index')->name('company.userMail.index');
 		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
-        
+		
+		// personal register
+		Route::get('register/personal', 'Companies\InitialRegisterController@personal')->name('company.register.personal');
+		Route::get('register/company', 'Companies\InitialRegisterController@company')->name('company.register.company');
+		Route::get('register/preview', 'Companies\InitialRegisterController@preview')->name('company.register.preview');
+		Route::get('register/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
+
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');
 
