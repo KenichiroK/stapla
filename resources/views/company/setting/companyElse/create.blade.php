@@ -48,7 +48,7 @@ const setPreview = (input) => {
 </div>
 @endsection
 
-@section('content');
+@section('content')
 <div class="main-wrapper">
     @if ($completed)
 		<div class="complete-container">
@@ -69,8 +69,8 @@ const setPreview = (input) => {
 			<li><a href="/company/setting/general">会社基本情報設定</a></li>
 			<li><a href="/company/setting/companyElse" class="isActive">会社その他の設定</a></li>
 			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
-			<li><a href="/company/setting/personal">アカウント設定</a></li>
-			<li><a href="/company/setting/personal">個人情報の設定</a></li>
+			<li><a href="/company/setting/account">アカウント設定</a></li>
+			<li><a href="/company/setting/personalInfo">個人情報の設定</a></li>
 		</ul>
     </div>
     <form action="{{ url('company/setting/companyElse') }}" method="POST">
@@ -122,8 +122,9 @@ const setPreview = (input) => {
 			</div>
 
 			<div class="radio-container">
-				<p class="text">リマインド設定</p>
-				<p class="sub-text">締め日を有効にし登録すると、締め日に「申請されていない請求書」「請求書に紐づけられていないタスク」がある場合、自動通知が行なわれます。</p>
+                <p class="text">リマインド設定</p>
+                <p class="sub-text-title">締め日の設定</p>
+				<p class="sub-text">締め日を有効にし登録すると、締め日に「申請されていない請求書」「請求書に紐づけられていないタスク」がある場合、自動通知が行なわれます。 設定された締め日をもとにタスクは３日前、請求書は１日前に通知が有効になります。</p>
                 @if ($company && $company->remind_setting == true)
                     <input type="radio" name="remind_setting" value="1" id="remind_true" checked>
                     <label class="left-btn" for="remind_true">有効</label>
@@ -140,79 +141,80 @@ const setPreview = (input) => {
                     <input type="radio" name="remind_setting" value="0" id="remind_false">
                     <label for="remind_false">無効</label>
                 @endif
-			</div>
-            <div style="display:flex">
-                <div style="margin-right: 16px">
-                    毎月
-                    <select name="" id="">
-                        <option value=""></option>
-                        <option value="">15</option>
-                        <option value="">20</option>
-                    </select>
-                    日締め
+
+                <div class="date-container" style="display:flex">
+                    <div class="date-container__wrapper" style="margin-right: 16px">
+                        毎月
+                            <div class="select">
+                                <select name="" id="">
+                                    <option value=""></option>
+                                    <option value="">15</option>
+                                    <option value="">20</option>
+                                </select>
+                            </div>
+                        日締め
+                    </div>
+                    <div class="date-container__list">
+                        <div class="date-container__list__item-container" style="margin-right: 16px">
+                            <div class="item">次回締め日</div>
+                            <div>2019年2月28日</div>
+                        </div>
+                        <div class="date-container__list__item-container" style="margin-right: 16px">
+                            <div class="item">タスク通知日</div>
+                            <div>2019年2月25日</div>
+                        </div>
+                        <div class="date-container__list__item-container" style="margin-right: 16px">
+                            <div class="item">請求書通知日</div>
+                            <div>2019年2月27日</div>
+                        </div>
+                    </div>           
                 </div>
-                <div style="display:flex; margin-right: 16px">
-                    <div style="margin-right: 16px">
-                        <div class="other-info-container__list__item__date-container__wrapper__heading">次回締め日</div>
-                        <div>2019年2月28日</div>
-                    </div>
-                    <div style="margin-right: 16px">
-                        <div class="other-info-container__list__item__date-container__wrapper__heading">タスク通知日</div>
-                        <div>2019年2月25日</div>
-                    </div>
-                    <div style="margin-right: 16px">
-                        <div class="other-info-container__list__item__date-container__wrapper__heading">請求書通知日</div>
-                        <div>2019年2月27日</div>
-                    </div>
-                </div>           
-            </div>
+			</div>
             <div class="title-container">
 				<h4>会社情報のその他設定</h4>
 			</div>
             <div class="other-info-container__list__item__menu">
                 <div>
                     <div class="radio-container">
-                        <p class="text">発注書</p>
+                        <p>発注書</p>
                         @if ($company && $company->purchase_order_setting == true)
                             <input type="radio" name="purchase_order_setting" value="1" id="purchase_true" checked>
-                            <label class="left-btn" for="purchase_true">有効</label>
+                            <label class="left-btn" for="purchase_true">フォーマット活用</label>
                             <input type="radio" name="purchase_order_setting" value="0" id="purchase_false">
-                            <label for="purchase_false">無効</label>
+                            <label for="purchase_false">自社の活用</label>
                         @elseif ($company && $company->purchase_order_setting == false)
                             <input type="radio" name="purchase_order_setting" value="1" id="purchase_true">
-                            <label class="left-btn" for="purchase_true">有効</label>
+                            <label class="left-btn" for="purchase_true">フォーマット活用</label>
                             <input type="radio" name="purchase_order_setting" value="0" id="purchase_false" checked>
-                            <label for="purchase_false">無効</label>
+                            <label for="purchase_false">自社の活用</label>
                         @else ($company && $company->purchase_order_setting == true)
                             <input type="radio" name="purchase_order_setting" value="1" id="purchase_true">
-                            <label class="left-btn" for="purchase_true">有効</label>
+                            <label class="left-btn" for="purchase_true">フォーマット活用</label>
                             <input type="radio" name="purchase_order_setting" value="0" id="purchase_false">
-                            <label for="purchase_false">無効</label>
+                            <label for="purchase_false">自社の活用</label>
                         @endif
                     </div>
-                    <div class="form-select-container__drag-drop">drag&drop</div>
                 </div>
                 <div>
-                    <div class="radio-container">
-                        <p class="text">機密保持契約書</p>
+                    <div class="radio-container last-container">
+                        <p>機密保持契約書</p>
                         @if ($company && $company->confidential_setting == true)
                             <input type="radio" name="confidential_setting" value="1" id="confidential_true" checked>
-                            <label class="left-btn" for="confidential_true">有効</label>
+                            <label class="left-btn" for="confidential_true">フォーマット活用</label>
                             <input type="radio" name="confidential_setting" value="0" id="confidential_false">
-                            <label for="confidential_false">無効</label>
+                            <label for="confidential_false">自社の活用</label>
                         @elseif ($company && $company->confidential_setting == false)
                             <input type="radio" name="confidential_setting" value="1" id="confidential_true">
-                            <label class="left-btn" for="confidential_true">有効</label>
+                            <label class="left-btn" for="confidential_true">フォーマット活用</label>
                             <input type="radio" name="confidential_setting" value="0" id="confidential_false" checked>
-                            <label for="confidential_false">無効</label>
+                            <label for="confidential_false">自社の活用</label>
                         @else ($company && $company->confidential_setting == true)
                             <input type="radio" name="confidential_setting" value="1" id="confidential_true">
-                            <label class="left-btn" for="confidential_true">有効</label>
+                            <label class="left-btn" for="confidential_true">フォーマット活用</label>
                             <input type="radio" name="confidential_setting" value="0" id="confidential_false">
-                            <label for="confidential_false">無効</label>
+                            <label for="confidential_false">自社の活用</label>
                         @endif
                     </div>
-                    <div class="form-select-container__drag-drop">drag&drop</div>
                 </div>
             </div>
 		</div>

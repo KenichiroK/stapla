@@ -47,10 +47,10 @@ const setPreview = (input) => {
 </div>
 @endsection
 
-@section('content');
+@section('content')
 <div class="main-wrapper">
 	<div class="title-container">
-		<h3>会社担当者設定</h3>
+		<h3>設定</h3>
 	</div>
 	<div class="menu-container">
 		<ul>
@@ -69,22 +69,27 @@ const setPreview = (input) => {
     </div>
     <div class="charge-container__item">
         <ul class="charge-container__item__list" style="display: flex">
-            <li style="width: 140px;"></li>
-            <li style="width: 140px;">担当者名</li>
-            <li style="width: 140px;">メールアドレス</li>
+            <li>担当者名</li>
+            <li>メールアドレス</li>
         </ul>
     </div>
     <div class="charge-container__content">
         @foreach($companyUsers as $companyUser)
-        <ul class="charge-container__content__list" style="display: flex">
-            <li style="width: 140px;"><span class="icon">icon</span></li>
-            <li style="width: 140px;">{{ $companyUser->name }}</li>
-            <li style="width: 140px;">{{ $companyUser->companyUserAuth->email }}</li>
+        <ul class="charge-container__content__list">
+            <li>
+                <div class="name-container">
+                    <div class="name-container__img-container">
+                        <img class="icon" src="" alt="">
+                    </div>
+                    {{ $companyUser->name }}
+                </div>
+            </li>
+            <li>{{ $companyUser->companyUserAuth->email }}</li>
         </ul>
         @endforeach
         
         <div class="charge-container__content__showmore">
-            <p class="charge-container__content__showmore__btn">Show More</p>
+            <p class="charge-container__content__showmore__btn">もっと見る<i class="arrow fas fa-angle-down"></i></p>
         </div>
     </div>
     <div class="btn-container">

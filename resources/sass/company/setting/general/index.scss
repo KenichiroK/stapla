@@ -1,8 +1,16 @@
 .main-wrapper {
-    width: 80%;
+    width: 90%;
     margin: auto;
     padding: 40px;
-  
+
+    .title-container {
+      margin-bottom: 40px;
+      h3 {
+        font-weight: bold;
+        color: #43425d;
+      }
+    }
+
     .complete-container {
       p {
         color: #09c221;
@@ -66,345 +74,367 @@
         }
       }
     }
-  
-    .profile-container {
-      width: 100%;
+
+    .profile-container{
       background-color: #fff;
-      padding: 48px;
+      padding:40px;
       margin-bottom: 48px;
-  
-      .title-container {
-        margin-bottom: 24px;
-  
-        h4 {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
+
+        .top-area{
+          display: flex;
+          flex-wrap: wrap;
         }
-      }
-  
-      .name-container {
-        margin-bottom: 24px;
-  
-        p {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        input {
-          width: 100%;
-          outline-color: #43425d;
-          font-size: 16px;
-          padding: 4px;
-          border: 1px solid #a6a6a6;
-          border-radius: 4px;
-        }
-      }
-  
-      .above-address-container {
-        display: flex;
-        margin-bottom: 24px;
-  
-        .zipcode-container {
-          width: 40%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-    
-          input {
-            width: 80%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
-          }
-        }
-  
-        .prefecture-container {
-          width: 40%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-  
-          input {
-            width: 80%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
-          }
-        }
-      }
-  
-      .below-address-container {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 24px;
-  
-        .city-container {
-          width: 45%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-    
-          input {
-            width: 100%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
-          }
-        }
-  
-        .building-container {
-          width: 45%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-    
-          input {
-            width: 100%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
-          }
-        }
-      }
-  
-      .tel-container {
-        margin-bottom: 24px;
-  
-        p {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        input {
-          width: 45%;
-          outline-color: #43425d;
-          font-size: 16px;
-          padding: 4px;
-          border: 1px solid #a6a6a6;
-          border-radius: 4px;
-        }
-      }
-    }
-  
-    .invoice-container {
-      width: 100%;
-      background-color: #fff;
-      padding: 48px;
-      margin-bottom: 48px;
-  
-      .title-container {
-        margin-bottom: 24px;
-  
-        h4 {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-      }
-  
-      .financial-container {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 24px;
-  
-        .financialInstitution-container {
-          width: 65%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-    
-          input {
-            width: 100%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
-          }
-        }
-  
-        .branch-container {
-          width: 30%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-    
-          input {
-            width: 100%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
-          }
-        }
-      }
-  
-      .depositType-container {
-        width: 50%;
-        margin-bottom: 24px;
-        
-        p {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        input {
-          width: 100%;
-          outline-color: #43425d;
-          font-size: 16px;
-          padding: 4px;
-          border: 1px solid #a6a6a6;
-          border-radius: 4px;
-        }
-      }
-  
-      .accountNumber-container{
-        width: 50%;
-        margin-bottom: 24px;
-  
-        p {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        input {
-          width: 100%;
-          outline-color: #43425d;
-          font-size: 16px;
-          padding: 4px;
-          border: 1px solid #a6a6a6;
-          border-radius: 4px;
-        }
-      }
-  
-      .accountHolder-container {
-        width: 50%;
-        margin-bottom: 24px;
-  
-        p {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        input {
-          width: 100%;
-          outline-color: #43425d;
-          font-size: 16px;
-          padding: 4px;
-          border: 1px solid #a6a6a6;
-          border-radius: 4px;
-        }
-      }
-  
-      .mark-container {
-        width: 50%;
-        margin-bottom: 24px;
-  
-        .title {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        .caution {
-          font-size: 12px;
-        }
-  
-        .image-container {
+      
+        .title-container {
           margin-bottom: 24px;
-  
-          label {
-            border: 1px solid #43425d;
-            border-radius: 48px;
-            font-weight: bold;
+
+          h4 {
+            font-size: 16px;
             color: #43425d;
-            padding: 4px 24px;
-            font-size: 12px;
-            background-color: transparent;
-            margin-left: 12px;
-            margin-bottom: 0;
-            cursor: pointer;
-          }
-  
-          label:hover {
-            opacity: 0.7;
-            transition: 0.3s;
-          }
-        }
-  
-        .imprint-container {
-          width: 140px;
-          text-align: center;
-  
-          button {
-            background-color: #43425d;
             font-weight: bold;
-            color: #fff;
-            border-radius: 48px;
-            padding: 4px 24px;
-            font-size: 12px;
-            outline: none;
           }
-  
-          button:hover {
-            opacity: 0.7;
-            transition: 0.3s;
+        }
+
+        .name-container {
+          margin-bottom: 24px;
+          margin-right:16px;
+          width: 45%;
+          min-width: 300px;
+
+          p {
+            font-size: 16px;
+            color: #43425d;
+            font-weight: bold;
+          }
+
+          input {
+            outline-color: #43425d;
+            font-size: 16px;
+            padding: 4px;
+            border: 1px solid #a6a6a6;
+            border-radius: 4px;
+          }
+        }
+
+        .above-address-container {
+          display: flex;
+          margin-bottom: 24px;
+
+          .zipcode-container {
+            margin-right:16px;
+
+            &__wrapper{
+              display: flex;
+              align-items: center;
+              .hyphen{
+                display: flex;
+                max-height: 36px;
+                margin: 0 8px;
+              }
+            }
+
+            p {
+              font-size: 16px;
+              color: #43425d;
+              font-weight: bold;
+            }
+
+            input {
+              width: 80px;
+              outline-color: #43425d;
+              font-size: 16px;
+              padding: 4px;
+              border: 1px solid #a6a6a6;
+              border-radius: 4px;
+            }
+          }
+
+          .prefecture-container {
+            width: 40%;
+
+            p {
+              font-size: 16px;
+              color: #43425d;
+              font-weight: bold;
+            }
+
+            input {
+              width: 60%;
+              min-width: 96px;
+              outline-color: #43425d;
+              font-size: 16px;
+              padding: 4px;
+              border: 1px solid #a6a6a6;
+              border-radius: 4px;
+            }
+          }
+        }
+      
+          .below-address-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+
+            .city-container {
+              width: 45%;
+              min-width: 300px;
+              margin-right: 16px;
+              margin-bottom: 16px;
+
+              p {
+                font-size: 16px;
+                color: #43425d;
+                font-weight: bold;
+              }
+
+              input {
+                width: 100%;
+                outline-color: #43425d;
+                font-size: 16px;
+                padding: 4px;
+                border: 1px solid #a6a6a6;
+                border-radius: 4px;
+              }
+            }
+      
+            .building-container {
+              width: 45%;
+              min-width: 300px;
+
+              p {
+                font-size: 16px;
+                color: #43425d;
+                font-weight: bold;
+              }
+
+              input {
+                width: 100%;
+                outline-color: #43425d;
+                font-size: 16px;
+                padding: 4px;
+                border: 1px solid #a6a6a6;
+                border-radius: 4px;
+              }
+            }
+          }
+      
+          .tel-container {
+            margin-bottom: 24px;
+
+            p {
+              font-size: 16px;
+              color: #43425d;
+              font-weight: bold;
+            }
+
+            input {
+              width: 45%;
+              outline-color: #43425d;
+              font-size: 16px;
+              padding: 4px;
+              border: 1px solid #a6a6a6;
+              border-radius: 4px;
+            }
+          }
+      
+        .invoice-container {
+          width: 100%;
+          background-color: #fff;
+          padding: 48px;
+          margin-bottom: 48px;
+
+          .title-container {
+            margin-bottom: 24px;
+
+            h4 {
+              font-size: 16px;
+              color: #43425d;
+              font-weight: bold;
+            }
+          }
+
+          .financial-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+
+            .financialInstitution-container {
+              width: 65%;
+
+              p {
+                font-size: 16px;
+                color: #43425d;
+                font-weight: bold;
+              }
+
+              input {
+                width: 100%;
+                outline-color: #43425d;
+                font-size: 16px;
+                padding: 4px;
+                border: 1px solid #a6a6a6;
+                border-radius: 4px;
+              }
+            }
+      
+            .branch-container {
+              width: 30%;
+
+              p {
+                font-size: 16px;
+                color: #43425d;
+                font-weight: bold;
+              }
+        
+              input {
+                width: 100%;
+                outline-color: #43425d;
+                font-size: 16px;
+                padding: 4px;
+                border: 1px solid #a6a6a6;
+                border-radius: 4px;
+              }
+            }
+          }
+      
+          .depositType-container {
+            width: 50%;
+            margin-bottom: 24px;
+
+            p {
+              font-size: 16px;
+              color: #43425d;
+              font-weight: bold;
+            }
+
+            input {
+              width: 100%;
+              outline-color: #43425d;
+              font-size: 16px;
+              padding: 4px;
+              border: 1px solid #a6a6a6;
+              border-radius: 4px;
+            }
+          }
+
+          .accountNumber-container{
+            width: 50%;
+            margin-bottom: 24px;
+
+            p {
+              font-size: 16px;
+              color: #43425d;
+              font-weight: bold;
+            }
+
+            input {
+              width: 100%;
+              outline-color: #43425d;
+              font-size: 16px;
+              padding: 4px;
+              border: 1px solid #a6a6a6;
+              border-radius: 4px;
+            }
+          }
+      
+          .accountHolder-container {
+            width: 50%;
+            margin-bottom: 24px;
+
+            p {
+              font-size: 16px;
+              color: #43425d;
+              font-weight: bold;
+            }
+
+            input {
+              width: 100%;
+              outline-color: #43425d;
+              font-size: 16px;
+              padding: 4px;
+              border: 1px solid #a6a6a6;
+              border-radius: 4px;
+            }
+          }
+      
+          .mark-container {
+            width: 50%;
+            margin-bottom: 24px;
+
+            .title {
+              font-size: 16px;
+              color: #43425d;
+              font-weight: bold;
+            }
+
+            .caution {
+              font-size: 12px;
+            }
+
+            .image-container {
+              margin-bottom: 24px;
+
+              label {
+                border: 1px solid #43425d;
+                border-radius: 48px;
+                font-weight: bold;
+                color: #43425d;
+                padding: 4px 24px;
+                font-size: 12px;
+                background-color: transparent;
+                margin-left: 12px;
+                margin-bottom: 0;
+                cursor: pointer;
+              }
+
+              label:hover {
+                opacity: 0.7;
+                transition: 0.3s;
+              }
+            }
+      
+            .imprint-container {
+              width: 140px;
+              text-align: center;
+
+              button {
+                background-color: #43425d;
+                font-weight: bold;
+                color: #fff;
+                border-radius: 48px;
+                padding: 4px 24px;
+                font-size: 12px;
+                outline: none;
+              }
+
+              button:hover {
+                opacity: 0.7;
+                transition: 0.3s;
+              }
+            }
           }
         }
       }
-    }
-  
-    .btn-container {
-      width: 100%;
-      text-align: center;
-  
-      button {
-        background-color: #43425d;
-        font-weight: bold;
-        color: #fff;
-        padding: 8px 40px;
-        font-size: 16px;
-        border-radius: 48px;
-        outline: none;
+      .btn-container {
+        width: 100%;
+        text-align: center;
+
+        button {
+          background-color: #43425d;
+          font-weight: bold;
+          color: #fff;
+          padding: 8px 40px;
+          font-size: 16px;
+          border-radius: 48px;
+          outline: none;
+        }
+        
+        button:hover {
+          opacity: 0.7;
+          transition: 0.3s;
+        }
       }
-  
-      button:hover {
-        opacity: 0.7;
-        transition: 0.3s;
-      }
     }
-  }
+
+
   

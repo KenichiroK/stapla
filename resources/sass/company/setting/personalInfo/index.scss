@@ -1,5 +1,5 @@
 .main-wrapper {
-  width: 80%;
+  width: 90%;
   margin: auto;
   padding: 40px;
 
@@ -28,6 +28,45 @@
     }
   }
 
+  .menu-container {
+    margin-bottom: 64px;
+
+    ul {
+      width: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+
+      li {
+        width: 25%;
+        margin: auto;
+        text-align: center;
+
+        a {
+          width: 100%;
+          font-size: 12px;
+          display: block;
+          color: #aaa;
+          padding-bottom: 4px;
+          border-bottom: 1px solid #aaa;
+          text-decoration: none;
+        }
+
+        a:hover {
+          color: rgba(67, 66, 93, 0.7);
+          font-weight: bold;
+          border-bottom: 3px solid rgba(67, 66, 93, 0.7);
+        }
+
+        .isActive {
+          color: #43425d!important;
+          font-weight: bold!important;
+          border-bottom: 3px solid #43425d!important;
+        } 
+      }
+    }
+  }
+
   .body-container {
     width: 100%;
     background-color: #fff;
@@ -38,7 +77,7 @@
       margin-bottom: 24px;
 
       h4 {
-        font-size: 16px;
+        font-size: 18px;
         color: #43425d;
         font-weight: bold;
       }
