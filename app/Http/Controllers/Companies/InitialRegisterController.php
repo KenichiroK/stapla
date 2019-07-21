@@ -16,4 +16,9 @@ class InitialRegisterController extends Controller
     {
         return view('company/auth/initialRegister/company');
     }
+
+    public function preview()
+    {
+        return view('company/auth/initialRegister/preview');
+    }
 }
