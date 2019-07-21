@@ -23,6 +23,7 @@ mix.js([
 mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common')
    .sass('resources/sass/auth/login/index.scss', 'public/css/auth/login')
    .sass('resources/sass/auth/initialRegister/personal.scss', 'public/css/auth/initialRegister')
+   .sass('resources/sass/auth/initialRegister/company.scss', 'public/css/auth/initialRegister')
    .sass('resources/sass/company/dashboard/index.scss', 'public/css/company/dashboard')
    .sass('resources/sass/company/project/index.scss', 'public/css/company/project')
    .sass('resources/sass/company/project/create.scss', 'public/css/company/project')

@@ -103,6 +103,7 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// personal register
 		Route::get('register/personal', 'Companies\InitialRegisterController@personal')->name('company.register.personal');
+		Route::get('register/company', 'Companies\InitialRegisterController@company')->name('company.register.company');
 
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');
