@@ -3,18 +3,6 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/document/nda/show.css') }}">
-<script>
-const setPreview = (input) => {
-  const preview = document.getElementById('preview');
-  if (input.files && input.files[0]) {
-    let reader = new FileReader();
-    reader.onload = (e) => {
-      preview.src = e.target.result;
-    }
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-</script>
 @endsection
 
 @section('sidebar')
@@ -129,20 +117,6 @@ const setPreview = (input) => {
         <div class="submit-btn-container">
             <a @click="toggleModal()" class="button submit-btn-container__button">提出</a>
         </div>
-        
-        <!-- 送信確認モーダル -->
-        <document-submit
-            :isModalActive = this.isModalActive
-            documentName = "機密保持契約書"
-            @toggleModal="toggleModal"
-            @okClick="okClick"
-        ></document-submit>
-
-        <!-- 送信完了モーダル -->
-        <document-submit-complete
-            :isSendModalActive = this.isSendModalActive
-            @sendToggleModal="sendToggleModal"
-        ></document-submit-complete>
 
     </div>
 </div>
