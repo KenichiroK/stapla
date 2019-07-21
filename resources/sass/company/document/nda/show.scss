@@ -1,0 +1,135 @@
+.main__container {
+    background-color: #F0F0F7;
+    font-size: 14px;
+    &__wrapper {
+        width:80%;
+        padding: 8px;
+    }
+}
+
+// 共通部分
+.page-title-container {
+    padding: 24px 0;
+    &__page-title {
+        font-size: 24px;
+    }
+}
+.item-name-wrapper {
+    width: 100%;
+    padding: 16px 0;
+    &__item-name {
+        font-size: 14px;
+        color: #43425D;
+    }
+}
+// select
+.select-container {
+    margin-bottom: 16px;
+    &__wrapper {
+        width: 100%;
+        &__select {
+
+            width: 100%;
+            border-color: #3B86FF;
+        }
+        &__select:hover {
+            border-color: #3B86FF;
+        }
+    }
+}
+// input
+.input-container {
+    margin-bottom: 16px;
+    &__control input {
+        border: 0;
+        border-radius: 0;
+        border-bottom: 3px solid #3B86FF;
+        caret-color: #3B86FF;
+    }
+}
+
+.head-container {
+    padding: 0 40px;
+    &__wrapper {
+        // padding: 0 16px;
+        display: flex;
+        &__print-btn-container {
+            margin-left: auto;
+            &__button {
+                height: 40px;
+                width: 120px;
+                background-color: #43425D;
+                color: #ffffff;
+                margin: 24px 0;
+            }
+        }
+    }
+}
+.main-container {
+    padding: 0 40px;
+    margin-bottom: 24px;
+    &__wrapper {
+        padding: 0 16px;
+        &__pdf-container {
+            padding: 24px;
+            &__pdf {
+                height: 560px;
+                background-color: whitesmoke;
+                border: 1px solid #43425D;
+            }
+        }
+    }
+}
+.submit-btn-container {
+    text-align: right;
+    padding: 0 40px;
+    &__button {
+        height: 40px;
+        width: 120px;
+        background-color: #43425D;
+        color: #ffffff;
+        margin: 24px 0;
+    }
+}
+
+//PDF
+.shrink{
+    zoom:86%;
+}
+.pageout {
+    position: fixed;
+    top: 200vh;
+}
+
+
+.secrecy-container {
+    &__wrapper {
+        margin: 0 32px;
+        .pdf-container {
+            margin:auto;
+            box-shadow: 0 0 8px gray;
+            &__pdf {
+                background-color: #ffffff;
+                padding: 32px;
+                &__contract-type{
+                    text-align: center;
+                    font-size:30px;
+                    margin-top:32px;
+                }
+                &__main{
+                    padding:64px;
+                    &__Paragraph2{
+                        margin-top:40px;
+                    }
+                    &__Paragraph3{
+                        margin-top:40px;
+                    }
+                    &__Paragraph4{
+                        margin-top:40px;
+                    }
+                }
+            }
+        }
+    }
+}
+

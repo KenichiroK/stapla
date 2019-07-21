@@ -14,6 +14,8 @@ class CreateNdasTable extends Migration
             $table->uuid('partner_id');
             $table->uuid('task_id');
             $table->integer('status');
+            $table->string('company_name');
+            $table->string('partner_name');
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies');
