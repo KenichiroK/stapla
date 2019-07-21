@@ -272,9 +272,11 @@
                                         <div class="order-table__data-row__table-data__create-container">
                                             <div class="order-table__data-row__table-data__create-container__create">
                                                 @if($purchaseOrder->status === 3)
-                                                    <a href="document/invoice/create">詳細</a>
+                                                    <!-- show -->
+                                                    <a href="/company/document/purchaseOrder/{{ $purchaseOrder->id }}">詳細</a>  
                                                 @else
-                                                    <a href="document/invoice/create">作成</a>
+                                                    <!-- edit -->
+                                                    <a href="/company/document/purchaseOrder/{{ $purchaseOrder->id }}">作成</a>
                                                 @endif
                                             </div>
                                         </div>

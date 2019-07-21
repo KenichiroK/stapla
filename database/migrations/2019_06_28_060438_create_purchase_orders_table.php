@@ -12,10 +12,11 @@ class CreatePurchaseOrdersTable extends Migration
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary();
             $table->uuid('company_id');
+            $table->uuid('companyUser_id');
             $table->uuid('partner_id');
             $table->uuid('task_id');
             $table->integer('status');
-            $table->dateTime('ordered_at');
+            $table->dateTime('ordered_at')->nullable();
             $table->string('company_name');
             $table->string('company_tel');
             $table->string('company_zip_code');
@@ -25,6 +26,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('companyUser_name');
             $table->string('partner_name');
             $table->string('task_name');
+            $table->string('task_delivery_format');
             $table->dateTime('task_ended_at');
             $table->integer('task_price');
             $table->integer('task_tax');
