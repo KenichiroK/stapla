@@ -13,6 +13,10 @@ header {
   background-color: #43425D;
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
 
   .logo_container {
     width: 70%;
@@ -31,7 +35,7 @@ main {
   .main-wrapper {
     width: 80%;
     padding: 40px;
-    margin: auto;
+    margin: 80px auto 0;
 
     .title-container {
       margin-bottom: 40px;
