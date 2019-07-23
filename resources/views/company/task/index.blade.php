@@ -38,26 +38,12 @@
 @endsection
 
 @section('content')
-<a href="s"></a>
 <div class="main__container">
     <div class="main__container__wrapper">
         <!-- page header -->
         <div class="top-container">
             <div class="page-title-container">
-                <div class="page-title-container__page-title">タスク一覧</div>
-            </div>
-            <div class="field top-container__field">
-                <p class="control has-icons-left top-container__field__control">
-                    <input class="input top-container__field__control__input" placeholder="Search Name...">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-search"></i>
-                    </span>
-                </p>
-            </div>
-            <div class="top-container__createarea">
-                <div class="top-container__createarea__buttonarea control">
-                    <button class="top-container__createarea__buttonarea__button button"><a href="/company/task/create">タスク作成</a></button>
-                </div>
+                <div class="page-title-container__page-title">タスク</div>
             </div>
         </div>
         <!-- ステータス -->
@@ -65,14 +51,22 @@
             <div class="status-container__wrapper">
                 <!-- タイトル -->
                 <div class="item-name-wrapper">
-                    <div class="item-name-wrapper__title-name">ステータス</div>
+                    <div class="item-name-wrapper__item-name">ステータス</div>
                 </div>
                 <!-- ステータス表示部分 -->
                 <div class="content">
                     <!-- ステータス各部分 -->
-                    <div class="parts-container">
+                    <ul class="parts-container">
                     @for($i = 0; $i < 10; $i++)
-                        <div class="parts-container__wrapper"> 
+                        <li class="parts-container__wrapper"> 
+                            <!-- ステータス名表示 -->
+                            <div class="parts-container__wrapper__textdisplayarea">
+                                <div class="parts-container__wrapper__textdisplayarea__textdisplay">
+                                    <div class="parts-container__wrapper__textdisplayarea__textdisplay__text">
+                                        {{ $statusName_arr[$i] }}
+                                    </div>
+                                </div>
+                            </div>
                             <!-- ステータス表示数部分 -->
                             
                             <div class="parts-container__wrapper__numberdisplayarea">
@@ -83,88 +77,100 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- ステータス名表示 -->
-                            <div class="parts-container__wrapper__textdisplayarea">
-                                <div class="parts-container__wrapper__textdisplayarea__textdisplay">
-                                    <div class="parts-container__wrapper__textdisplayarea__textdisplay__text">
-                                        {{ $statusName_arr[$i] }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div  class="next">
-                        </div>
-                        @endfor 
-                        <!-- 次へ -->
-                        
-                    </div>
+                        </li>
+                        @endfor
+                    </ul>
                 </div>
             </div>
         </div>
         <!-- Task -->
         <div class="task-container">
+            <ul id="tab-button" class="tab-button">
+                <li class="all"><a href="#tab01">タスク一覧</a></li>
+                <li class="done"><a href="#tab02">完了したタスク</a></li>
+            </ul>
+            <div class="task-container__createarea">
+                <div class="task-container__createarea__buttonarea control">
+                    <button class="task-container__createarea__buttonarea__button button"><a href="/company/task/create">タスク作成</a></button>
+                </div>
+            </div>
             <div class="task-container__wrapper">
                 <!-- タイトル -->
-                <div class="item-name-wrapper">
-                    <div class="item-name-wrapper__item-name">Task</div>
+                <div class="item-name-select-wrapper">
+                    <div class="item-name-wrapper">
+                        <div class="item-name-wrapper__item-name">タスク</div>
+                    </div>
+                    <div class="selectWrap">
+                        <select class="select" name="" id="">
+                            <option value="">全てのステータス</option>
+                            <option value="">下書き</option>
+                            <option value="">提案中</option>
+                            <option value="">依頼前</option>
+                            <option value="">依頼中</option>
+                            <option value="">開始前</option>
+                            <option value="">作業中</option>
+                            <option value="">提出前</option>
+                            <option value="">修正中</option>
+                            <option value="">完了</option>
+                            <option value="">キャンセル</option>
+                        </select>
+                    </div>
                 </div>
+                
                 <div class="task-container__wrapper__table-wrapper">
                     <table class="task-container__wrapper__table-wrapper__table">
                         <!-- タイトルヘッダー部分 -->
                         <tr class="task-container__wrapper__table-wrapper__table__headerrow">
+                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">プロジェクト</th>
                             <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">タスク</th>
-                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">プロジェクト<i class="task-container__table__headerrow__tableheader__arrow fas fa-angle-down"></i></th>
                             <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">パートナー</th>
-                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">期限</th>
-                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">ステータス<i class="task-container__table__headerrow__tableheader__arrow fas fa-angle-down"></i></th>
+                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">ステータス</th>
                             <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">請求額</th>
+                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">ステータス変更</th>
                         </tr>
                         <!-- テーブルデータ部分 -->
                         @foreach($tasks as $task)
                         <tr class="task-container__wrapper__table-wrapper__table__datarow">
                             
-                                
+                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata  project">{{ $task->project->name }}</td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><a href="task/{{ $task->id }}">{{ $task->name }}</a></td>
-                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">{{ $task->project->name }}</td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">
                                     @foreach($task->taskPartners as $taskPartner)
                                         {{ $taskPartner->partner->name }}
                                     @endforeach
                                 </td>
-                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">{{ $task->ended_at }}</td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">
                                     <div class="task-container__wrapper__table-wrapper__table__datarow__tabledata__statusaction">
                                         <div id ="state" class="task-container__wrapper__table-wrapper__table__datarow__tabledata__statusaction__status">
                                             @if($task->status == 0)
-                                                下書き
+                                                <div class="color01">下書き</div>
                                             @elseif($task->status == 1)
-                                                提案中
+                                                <div class="color01">提案中</div>
                                             @elseif($task->status == 2)
-                                                依頼前
+                                                <div class="color01">依頼前</div>
                                             @elseif($task->status == 3)
-                                                依頼中
+                                                <div class="color01">依頼中</div>
                                             @elseif($task->status == 4)
-                                                開始前
+                                                <div class="color01">開始前</div>
                                             @elseif($task->status == 5)
-                                                作業中
+                                                <div class="color01">作業中</div>
                                             @elseif($task->status == 6)
-                                                提出前
+                                                <div class="color01">提出前</div>
                                             @elseif($task->status == 7)
-                                                修正中
+                                                <div class="color01">修正中</div>
                                             @elseif($task->status == 8)
-                                                完了
+                                                <div class="color02">完了</div>
                                             @elseif($task->status == 9)
-                                                完了
+                                                <div class="color02">完了</div>
                                             @elseif($task->status == 10)
-                                                キャンセル
+                                                <div class="color03">キャンセル</div>
                                             @endif    
                                    
                                         </div>
                                     </div>
                                 </td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">¥{{ $task->price }}</td>
-                            
+                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><button><a href="">完了</a></button></td>
                         </tr>
                         @endforeach
                     </table>
@@ -172,7 +178,7 @@
                         <div class="task-container__wrapper__table-wrapper__more">
                             <div class="task-container__wrapper__table-wrapper__more__area">
                                 <!-- <p @click="showMoreTask(4)" class="task-container__wrapper__table-wrapper__more__area__showmore" >Show More</p> -->
-                                <p class="task-container__wrapper__table-wrapper__more__area__showmore" >Show More</p>
+                                <p class="task-container__wrapper__table-wrapper__more__area__showmore" >もっと見る</p>
                             </div>
                         </div>
                     </div>
