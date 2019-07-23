@@ -10,6 +10,7 @@ use App\Models\CompanyUser;
 use App\Models\Partner;
 use App\Models\Task;
 use App\Models\Nda;
+use App\Models\ProjectPartner;
 
 class NdaController extends Controller
 {
@@ -26,27 +27,40 @@ class NdaController extends Controller
 
         $companyUsers = CompanyUser::where('company_id', $company->id)->get();
         $partners = Partner::where('company_id', $company->id)->get();
+
         $tasks = Task::where('company_id', $companyUser->company_id)->orderBy('project_id')->get();
 
         $ndas = Nda::where('company_id', $company->id)->get();
-
         $ndaDoneTasks = array();
         foreach($ndas as $nda){
             array_push($ndaDoneTasks, Task::where('id', $nda->task_id)->first());
         }
-        // $ndaDoneTasksCollect = collect($ndaDoneTasks);
-        // return $ndaDoneTasksSorted = $ndaDoneTasksCollect->sortBy('project_id');
-
         $arry_Tasks = array();
         foreach($tasks as $task){
             array_push($arry_Tasks, $task);
         }
-
-        $ndaUnDoneTasks = array();
         $ndaUnDoneTasks = array_diff($arry_Tasks, $ndaDoneTasks);
-        // return $ndaUnDoneTasksSorted = sortBy($ndaUnDoneTask->project->name);
 
-        return view('company/document/nda/create', compact('companyUsers', 'partners', 'tasks', 'ndaUnDoneTasks', 'ndaDoneTasks'));
+        // return ProjectPartner::where('user_id', $partner->id)->first()->id;
+        $asignedProjectPartners = array();
+        foreach($partners as $partner){
+            array_push($asignedProjectPartners, ProjectPartner::where('user_id', $partner->id)->first());
+        }
+        // return $asignedProjectPartners;
+
+        // $test_array = array();
+        // foreach($asignedProjectPartners as $asignedProjectPartner){
+        //     echo $asig
+        // }
+        // return $test_array;
+        
+        // $asignedPartner = array();
+        // foreach($asignedProjectPartners as $asignedProjectPartner){
+        //     array_push($asignedPartner, Partner::where('id', $asignedProjectPartner->user_id)->first());
+        // }
+        // return $asignedPartner;
+
+        return view('company/document/nda/create', compact('companyUsers', 'partners', 'tasks', 'ndaUnDoneTasks', 'ndaDoneTasks', 'asignedProjectPartners'));
     }
 
     public function store(Request $request)

@@ -48,6 +48,17 @@ const setPreview = (input) => {
 @endsection
 
 @section('content')
+
+@foreach($asignedProjectPartners as $asignedProjectPartner)
+    <div>{{ $asignedProjectPartner->id }}</div>
+@endforeach
+
+<div>------------------------------------------------</div>
+
+@foreach($companyUsers as $companyUser)
+    <div>{{ $companyUser }}</div>
+@endforeach
+
 <div class="main__container">
     <div class="main__container__wrapper">
         <!--main__container__wrapperに記述していく-->
@@ -68,9 +79,11 @@ const setPreview = (input) => {
                         <div class="select-container__wrapper select">
                             <select class="select-container__wrapper__select" name="task_id">
                                 <option disabled selected></option>
+                                <option disabled>-- 機密保持契約書 未作成 --</option>
                                 @foreach($ndaUnDoneTasks as $ndaUnDoneTask)
                                 <option value="{{ $ndaUnDoneTask->id }}">{{ $ndaUnDoneTask->name }}　[ {{ $ndaUnDoneTask->project->name }} ]</option>
                                 @endforeach
+                                <option disabled>-- 機密保持契約書 作成済み --</option>
                                 @foreach($ndaDoneTasks as $ndaDoneTask)
                                 <option value="{{ $ndaDoneTask->id }}">* {{ $ndaDoneTask->name }}　[ {{ $ndaDoneTask->project->name }} ]</option>
                                 @endforeach
