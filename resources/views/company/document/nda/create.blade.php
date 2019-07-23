@@ -67,9 +67,12 @@ const setPreview = (input) => {
                     <div class="select-container">
                         <div class="select-container__wrapper select">
                             <select class="select-container__wrapper__select" name="task_id">
-                                <option></option>
-                                @foreach($tasks as $task)
-                                <option value="{{ $task->id }}">{{ $task->name }}</option>
+                                <option disabled selected></option>
+                                @foreach($ndaUnDoneTasks as $ndaUnDoneTask)
+                                <option value="{{ $ndaUnDoneTask->id }}">{{ $ndaUnDoneTask->name }}　[ {{ $ndaUnDoneTask->project->name }} ]</option>
+                                @endforeach
+                                @foreach($ndaDoneTasks as $ndaDoneTask)
+                                <option value="{{ $ndaDoneTask->id }}">* {{ $ndaDoneTask->name }}　[ {{ $ndaDoneTask->project->name }} ]</option>
                                 @endforeach
                             </select>
                         </div>
@@ -83,7 +86,7 @@ const setPreview = (input) => {
                     <div class="select-container">
                         <div class="select-container__wrapper select">
                             <select class="select-container__wrapper__select" name='companyUser_id'>
-                                <option></option>
+                                <option disabled selected></option>
                                 @foreach($companyUsers as $companyUser)
                                 <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
                                 @endforeach                            
@@ -99,7 +102,7 @@ const setPreview = (input) => {
                     <div class="select-container">
                         <div class="select-container__wrapper select">
                             <select class="select-container__wrapper__select" name='partner_id'>
-                                <option></option>
+                                <option disabled selected></option>
                                 @foreach($partners as $partner)
                                 <option value="{{ $partner->id }}">{{ $partner->name }}</option>
                                 @endforeach

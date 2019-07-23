@@ -175,6 +175,7 @@
                                         完了
                                     @endif
                                 </td>
+                                
                                 <td class="invoice-table__data-row__table-data">{{ $invoice->task->name }}</td>
                                 <td class="invoice-table__data-row__table-data">{{ explode(' ', $invoice->task->ended_at)[0] }}</td>
                                 <td class="invoice-table__data-row__table-data">
@@ -237,12 +238,10 @@
                                             完了
                                         @endif
                                     </td>
-                                    <td class="invoice-table__data-row__table-data">{{ $purchaseOrder->task->name }}</td>
-                                    <td class="invoice-table__data-row__table-data">{{ explode(' ', $purchaseOrder->task->ended_at)[0] }}</td>
+                                    <td class="invoice-table__data-row__table-data">{{ $purchaseOrder->task_name }}</td>
+                                    <td class="invoice-table__data-row__table-data">{{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</td>
                                     <td class="invoice-table__data-row__table-data">
-                                        @foreach($purchaseOrder->task->taskCompanies as $taskCompany)
-                                            {{ $taskCompany->companyUser->name }}
-                                        @endforeach
+                                        {{ $purchaseOrder->company_user_name }}
                                     </td>
                                     <td class="invoice-table__data-row__table-data">{{ $purchaseOrder->task->price }}</td>
                                     <td class="invoice-table__data-row__table-data">

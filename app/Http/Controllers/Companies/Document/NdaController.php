@@ -26,8 +26,27 @@ class NdaController extends Controller
 
         $companyUsers = CompanyUser::where('company_id', $company->id)->get();
         $partners = Partner::where('company_id', $company->id)->get();
-        $tasks = Task::where('company_id', $companyUser->company_id)->get();
-        return view('company/document/nda/create', compact('companyUsers', 'partners', 'tasks'));
+        $tasks = Task::where('company_id', $companyUser->company_id)->orderBy('project_id')->get();
+
+        $ndas = Nda::where('company_id', $company->id)->get();
+
+        $ndaDoneTasks = array();
+        foreach($ndas as $nda){
+            array_push($ndaDoneTasks, Task::where('id', $nda->task_id)->first());
+        }
+        // $ndaDoneTasksCollect = collect($ndaDoneTasks);
+        // return $ndaDoneTasksSorted = $ndaDoneTasksCollect->sortBy('project_id');
+
+        $arry_Tasks = array();
+        foreach($tasks as $task){
+            array_push($arry_Tasks, $task);
+        }
+
+        $ndaUnDoneTasks = array();
+        $ndaUnDoneTasks = array_diff($arry_Tasks, $ndaDoneTasks);
+        // return $ndaUnDoneTasksSorted = sortBy($ndaUnDoneTask->project->name);
+
+        return view('company/document/nda/create', compact('companyUsers', 'partners', 'tasks', 'ndaUnDoneTasks', 'ndaDoneTasks'));
     }
 
     public function store(Request $request)
