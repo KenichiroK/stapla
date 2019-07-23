@@ -48,17 +48,6 @@ const setPreview = (input) => {
 @endsection
 
 @section('content')
-
-@foreach($asignedProjectPartners as $asignedProjectPartner)
-    <div>{{ $asignedProjectPartner->id }}</div>
-@endforeach
-
-<div>------------------------------------------------</div>
-
-@foreach($companyUsers as $companyUser)
-    <div>{{ $companyUser }}</div>
-@endforeach
-
 <div class="main__container">
     <div class="main__container__wrapper">
         <!--main__container__wrapperに記述していく-->
@@ -116,8 +105,11 @@ const setPreview = (input) => {
                         <div class="select-container__wrapper select">
                             <select class="select-container__wrapper__select" name='partner_id'>
                                 <option disabled selected></option>
-                                @foreach($partners as $partner)
-                                <option value="{{ $partner->id }}">{{ $partner->name }}</option>
+                                @foreach($asignedPartners as $asignedPartner)
+                                <option value="{{ $asignedPartner->id }}">{{ $asignedPartner->name }}</option>
+                                @endforeach
+                                @foreach($unAsignedPartners as $unAsignedPartner)
+                                <option value="{{ $unAsignedPartner->id }}">{{ $unAsignedPartner->name }}</option>
                                 @endforeach
                             </select>
                         </div>

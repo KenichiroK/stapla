@@ -41,26 +41,25 @@ class NdaController extends Controller
         }
         $ndaUnDoneTasks = array_diff($arry_Tasks, $ndaDoneTasks);
 
-        // return ProjectPartner::where('user_id', $partner->id)->first()->id;
         $asignedProjectPartners = array();
         foreach($partners as $partner){
-            array_push($asignedProjectPartners, ProjectPartner::where('user_id', $partner->id)->first());
+            if(ProjectPartner::where('user_id', $partner->id)->first() !== null){
+                array_push($asignedProjectPartners, ProjectPartner::where('user_id', $partner->id)->first());
+            }
         }
-        // return $asignedProjectPartners;
 
-        // $test_array = array();
-        // foreach($asignedProjectPartners as $asignedProjectPartner){
-        //     echo $asig
-        // }
-        // return $test_array;
-        
-        // $asignedPartner = array();
-        // foreach($asignedProjectPartners as $asignedProjectPartner){
-        //     array_push($asignedPartner, Partner::where('id', $asignedProjectPartner->user_id)->first());
-        // }
-        // return $asignedPartner;
+        $asignedPartners = array();
+        foreach($asignedProjectPartners as $asignedProjectPartner){
+            array_push($asignedPartners, Partner::where('id', $asignedProjectPartner->user_id)->first());
+        }
 
-        return view('company/document/nda/create', compact('companyUsers', 'partners', 'tasks', 'ndaUnDoneTasks', 'ndaDoneTasks', 'asignedProjectPartners'));
+        $partners_all =array();
+        foreach($partners as $partner){
+            array_push($partners_all, $partner);
+        }
+        $unAsignedPartners = array_diff($partners_all, $asignedPartners);
+
+        return view('company/document/nda/create', compact('companyUsers', 'partners', 'tasks', 'ndaUnDoneTasks', 'ndaDoneTasks', 'asignedPartners', 'unAsignedPartners'));
     }
 
     public function store(Request $request)
@@ -79,7 +78,7 @@ class NdaController extends Controller
         $nda->partner_name = Partner::findOrFail($request->partner_id)->name;
         $nda->save();
 
-        return redirect()->route('company.document.nda', [$nda->id]);
+        return redirect()->route('company.document.nda.show', [$nda->id]);
 
     }
 
