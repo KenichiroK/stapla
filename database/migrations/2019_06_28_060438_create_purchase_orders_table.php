@@ -22,7 +22,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('company_prefecture');
             $table->string('company_city');
             $table->string('company_building');
-            $table->string('company_user_name');
+            $table->string('companyUser_name');
             $table->string('partner_name');
             $table->string('task_name');
             $table->dateTime('task_ended_at');
