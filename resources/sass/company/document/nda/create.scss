@@ -1,0 +1,73 @@
+.main__container {
+    &__wrapper {
+        width:80%;
+        font-size:14px;
+        background-color: #F0F0F7;
+        padding:40px;
+    }
+}
+
+// 共通部分
+.page-title-container {
+    margin-bottom:24px;
+    &__page-title {
+        font-size: 24px;
+    }
+}
+.item-name-wrapper {
+    width: 100%;
+    padding: 16px 0;
+    &__item-name {
+        font-size: 14px;
+        color: #43425D;
+    }
+}
+// select
+.select-container {
+    margin-bottom: 16px;
+    &__wrapper {
+        width: 100%;
+        &__select {
+            // outline: 0;
+            width: 100%;
+            border-color: #3B86FF;
+        }
+        // &__select select {
+        //     color: #3B86FF;
+        // }
+        &__select:hover {
+            border-color: #3B86FF;
+        }
+    }
+}
+// input
+.input-container {
+    margin-bottom: 16px;
+    &__control {
+    }
+    &__control input {
+        border: 0;
+        border-radius: 0;
+        border-bottom: 3px solid #3B86FF;
+        caret-color: #3B86FF;
+    }
+}
+
+// input-container__control
+.main-container {
+    margin-bottom: 24px;
+    &__wrapper {
+        padding: 0 16px;
+        background-color: #ffffff;
+        &__create-btn-container {
+            text-align: center;
+            &__button {
+                height: 40px;
+                width: 120px;
+                background-color: #43425D;
+                color: #ffffff;
+                margin: 24px 0;
+            }
+        }
+    }
+}
