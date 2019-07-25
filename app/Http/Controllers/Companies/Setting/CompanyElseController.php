@@ -19,26 +19,26 @@ class CompanyElseController extends Controller
     public function create()
     {
         $auth = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $auth->id)->get()->first()->company_id;
-        $company = Company::findOrFail($company_id);
+        $company_user = CompanyUser::where('auth_id', $auth->id)->get()->first();
+        $company = Company::findOrFail($company_user->company_id);
 
         $completed = '';
 
-        return view('company/setting/companyElse/create', compact('company', 'completed'));
+        return view('company/setting/companyElse/create', compact('company', 'completed', 'company_user'));
     }
 
     public function store(Request $request)
     {
         $auth = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $auth->id)->first()->company_id;
-        $company = Company::findOrFail($company_id);
+        $company_user = CompanyUser::where('auth_id', $auth->id)->get()->first();
+        $company = Company::findOrFail($company_user->company_id);
 
         if($company) {
             $company->update($request->all());
 
             $completed = '変更を保存しました。';
 
-            return view('company/setting/companyElse/create', compact('company', 'completed'));
+            return view('company/setting/companyElse/create', compact('company', 'completed', 'company_user'));
         }
     }
 
