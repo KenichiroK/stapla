@@ -14,8 +14,8 @@ class CreateProjectsTable extends Migration
             $table->uuid('company_id');
             $table->string('name', 64);
             $table->text('detail');
-            $table->dateTime('started_at');
-            $table->dateTime('ended_at');
+            $table->date('started_at');
+            $table->date('ended_at');
             $table->integer('status');
             $table->integer('budget');
             $table->integer('price');
