@@ -20,7 +20,7 @@ class CompanyUsersTableSeeder extends Seeder
             'name'       => 'テストユーザー',
             'department' => 'sample sample',
             'occupation' => 'sample sample',
-            'picture'      => '',
+            'picture'      => 'public/images/default/dummy_user.jpeg',
             'created_at' => '2019-02-10 00:41:14',
             'updated_at' => '2019-02-10 00:41:14',
         ]);
