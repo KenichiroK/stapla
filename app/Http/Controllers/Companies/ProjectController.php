@@ -20,27 +20,27 @@ class ProjectController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        $projects = Project::where('company_id', $company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();        
+        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $projects = Project::where('company_id', $company_user->company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();        
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
             $taskCount = count($projects[$i]->tasks);
             array_push($task_count_arr, $taskCount);
         }
-        return view('company/project/index', compact('projects', 'task_count_arr'));
+        return view('company/project/index', compact('projects', 'task_count_arr', 'company_user'));
     }
 
     public function create()
     {
         $user = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
 
-        $company_users = CompanyUser::where('company_id', $company_id)->get();
+        $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
 
-        $partner_users = Partner::where('company_id', $company_id)->get();
+        $partner_users = Partner::where('company_id', $company_user->company_id)->get();
         
-        return view('company/project/create', compact('company_users', 'partner_users'));
+        return view('company/project/create', compact('company_users', 'partner_users', 'company_user'));
     }
 
     public function store(Request $request)
@@ -95,12 +95,12 @@ class ProjectController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
 
-        $projects = Project::where('company_id', $company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->findOrFail($id);
+        $projects = Project::where('company_id', $company_user->company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->findOrFail($id);
         $tasks = Task::where('project_id',$projects->id)->with(['project','taskCompanies','taskPartners','taskRoleRelation','purchaseOrder','contract','nda','invoice'])->get();
         
-        return view('/company/project/show', compact('projects','tasks'));
+        return view('/company/project/show', compact('projects','tasks', 'company_user'));
     }
 
     public function edit($id)
