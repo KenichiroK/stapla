@@ -1,28 +1,31 @@
 .main__container {
 	&__wrapper {
 		margin:auto;
-		width:80%;
+		width:100%;
 		font-size:14px;
 		background-color: #F0F0F7;
 		padding:40px;
-		.top-container{
-			display:flex;
+
+		.top-container {
+			display: flex;
 			justify-content: space-between;
-			&__title{
-				font-size:24px;
+			&__title {
+				font-size: 28px;
 				font-weight: bold;
 			}
-			.search-project{
-				width:420px;
+			.search-project {
+				width: 540px;
 			}
-			.btn{
+			.button {
 				background-color: #43425D;
 				font-weight: bold;
-				border-radius:18px;
+				border-radius:100px;
+				padding: 4px 16px;
 				color:#fff;
 			}
-			.btn:hover{
+			.button:hover {
 				opacity: 0.8;
+				transition: 0.3s;
 			}
 		}         
 	}
@@ -92,4 +95,3 @@
 		}
 	}
 }
-

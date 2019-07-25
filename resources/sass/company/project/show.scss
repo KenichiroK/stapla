@@ -1,7 +1,7 @@
 .main__container {
     position: relative;
     &__wrapper {
-        width:80%;
+        width:100%;
         margin:auto;
         font-size:14px;
         background-color: #F0F0F7;
@@ -10,7 +10,7 @@
             display:flex;
             justify-content: space-between;
             &__title{
-                font-size:24px;
+                font-size:28px;
                 font-weight: bold;
             }
             &__edit-btn{
