@@ -72,6 +72,8 @@ Route::group(['prefix' => 'company'], function(){
 		// register_flow
 		Route::get('/registerInfo', 'Companies\InitialRegisterController@personal')->name('company.registerInfo');
 		Route::post('/registerInfo', 'Companies\InitialRegisterController@StorePersonal')->name('company.registerInfo');
+		Route::get('/previewInfo', 'Companies\InitialRegisterController@preview')->name('company.previewInfo');
+		Route::get('/done', 'Companies\InitialRegisterController@done')->name('company.done');
 
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');

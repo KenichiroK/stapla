@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\CompanyUser;
-use Illuminate\Support\Facades\Auth;
 
 class InitialRegisterController extends Controller
 {
@@ -17,12 +16,8 @@ class InitialRegisterController extends Controller
 
     public function StorePersonal()
     {
-        return  $auth = Auth::user();
-    }
-
-    public function company()
-    {
-        return view('company/auth/initialRegister/company');
+        $auth = Auth::user();
+        return redirect('/company/previewInfo');
     }
 
     public function preview()
@@ -35,15 +30,8 @@ class InitialRegisterController extends Controller
         return view('company/auth/initialRegister/done');
     }
 
-    public function invite()
+    public function company()
     {
-        $auth_id = Auth::user()->id;
-        $company_user = CompanyUser::where('auth_id', $auth_id)->get()->first();
-        return view('company/invite/company/create', compact('company_user'));
-    }
-
-    public function resetPassword()
-    {
-        return view('company/inviteRegister/reset-password'); 
+        return view('company/auth/initialRegister/company');
     }
 }

@@ -71,8 +71,8 @@
 			</form>
 
 			<div class="btn-container">
-				<button type="button">戻る</button>
-				<button type="submit">登録</button>
+				<button type="button"><a type="button" href="/company/registerInf">戻る</a></button>
+				<button type="submit"><a type="submit" href="/company/done">登録</a></button>
 			</div>
         </div>
     </main>

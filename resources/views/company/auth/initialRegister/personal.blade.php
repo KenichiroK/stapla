@@ -35,7 +35,7 @@
 				<h3>プロフィール登録</h3>
 			</div>
 
-			<form action="" method="POST">
+			<form action="/company/registerInfo" method="POST">
 				@csrf
 				<div class="edit-container">
 					<div class="image-container">
