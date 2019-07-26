@@ -69,7 +69,7 @@ const calculateSumPrice = (e) => {
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-                    fms
+										<img src="../../../images/logo.png" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">

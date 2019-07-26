@@ -8,9 +8,16 @@
         &--label {
           display: flex;
           align-items: center;
-          height: 56px;
-          margin-bottom: 8px;
-          border-bottom: 1px solid #4d4c4c;
+          background: #3B3A53;
+					height: 70px;
+					box-shadow: 0 2px 3px rgba(0,0,0,0.04);
+					margin-bottom: 0;
+					border-bottom: none;
+					.menu-label{
+						padding-left: 20px;
+						padding-top: 2px;
+						width: 135px;
+					}
         }
         &__menu-list a {
           color: #ffffff;

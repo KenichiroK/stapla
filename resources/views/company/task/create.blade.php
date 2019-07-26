@@ -20,7 +20,7 @@
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="">
+                    <img src="../../../images/logo.png" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
