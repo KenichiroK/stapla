@@ -25,23 +25,26 @@
 				<div class="edit-container">
 					<div class="personal-container">
 						<div class="image-container">
-							<img src="/images/preview.jpeg" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+							<img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
 						</div>
+						<!-- <div class="image-container">
+							<img src="/images/preview.jpeg" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+						</div> -->
 
 						<div class="profile-container">
 							<div class="section-container">
 								<p>名前</p>
-								<h4>山田太郎</h4>
+								<h4>{{ $companyUser->name }}</h4>
 							</div>
 
 							<div class="section-container">
 								<p>担当</p>
-								<h4>営業1課</h4>
+								<h4>{{ $companyUser->department }}</h4>
 							</div>
 
 							<div class="section-container">
 								<p>自己紹介</p>
-								<h4>2016年入社の山田太郎です。</h4>
+								<h4>{{ $companyUser->self_introduction }}</h4>
 							</div>
 						</div>
 					</div>
@@ -49,29 +52,33 @@
 					<div class="company-container">
 						<div class="section-container">
 							<p>会社名</p>
-							<h4>株式会社◯◯◯◯◯◯</h4>
+							<h4>{{ $company->company_name }}</h4>
 						</div>
 
 						<div class="section-container">
 							<p>代表者名</p>
-							<h4>山田花子</h4>
+							<h4>{{ $company->representive_name }}</h4>
 						</div>
 
 						<div class="section-container">
 							<p>郵便番号</p>
-							<h4>◯◯◯-◯◯◯◯</h4>
+							<h4>{{ $company->zip_code }}</h4>
 						</div>
 
 						<div class="section-container">
 							<p>住所</p>
-							<h4>東京都千代田区有楽町2-2-2</h4>
+							<h4>
+								{{ $company->address_prefecture }}
+								{{ $company->address_city }}
+								{{ $company->address_building }}
+							</h4>
 						</div>
 					</div>
 				</div>
 			</form>
 
 			<div class="btn-container">
-				<button type="button"><a type="button" href="/company/registerInf">戻る</a></button>
+				<button type="button"><a type="button" href="/company/registerInfo">戻る</a></button>
 				<button type="submit"><a type="submit" href="/company/done">登録</a></button>
 			</div>
         </div>
@@ -80,6 +87,20 @@
     <footer>
         <span>ご利用規約</span>
         <span>プライバシーポリシー</span>
-    </footer>
+	</footer>
+	
+	<script>
+	const setPreview = (input) => {
+		const preview = document.getElementById('profile_image_preview');
+		if (input.files && input.files[0]) {
+			let reader = new FileReader();
+			reader.onload = (e) => {
+			preview.src = e.target.result;
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	</script>
 </body>
 </html>

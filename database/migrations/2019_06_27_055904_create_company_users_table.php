@@ -16,7 +16,8 @@ class CreateCompanyUsersTable extends Migration
             $table->uuid('company_id');
             $table->string('name', 64);
             $table->string('department',64);
-            $table->string('occupation',64);
+            $table->string('occupation',64)->nullable();
+            $table->text('self_introduction');
             $table->string('picture');
             $table->timestamps();
 

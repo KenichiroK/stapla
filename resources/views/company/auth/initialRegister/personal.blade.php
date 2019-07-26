@@ -39,17 +39,30 @@
 				@csrf
 				<div class="edit-container">
 					<div class="image-container">
-						<img src="/images/preview.jpeg" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
-						<label for="picture">
-							画像をアップロード
-							<input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="setPreview(this)">
-						</label>
+					@if ($companyUser)
+                        <img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                    @else
+                        <img src="/{{ str_replace('public/', 'storage/', 'images/default/preview.jpeg') }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                    @endif
+                    <label for="picture">
+                        画像をアップロード
+                        <input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="setPreview(this)">
+                    </label>
+                    @if ($errors->has('picture'))
+                        <div>
+                            <strong style='color: #e3342f;'>{{ $errors->first('picture') }}</strong>
+                        </div>
+                    @endif	
 					</div>
 
 					<div class="profile-container">
 						<div class="input-container">
 							<p>名前</p>
-							<input type="text" name="name" value="{{ old('name') }}">
+							@if ($companyUser)
+								<input type="text" name="name" value="{{ old('name', $companyUser->name) }}">
+							@else
+								<input type="text" name="name" value="{{ old('name') }}">
+							@endif
 							@if ($errors->has('name'))
 								<div>
 									<strong style='color: #e3342f;'>{{ $errors->first('name') }}</strong>
@@ -59,8 +72,12 @@
 
 						<div class="input-container">
 							<p>担当</p>
-							<input type="text" name="name" value="{{ old('department') }}">
-							@if ($errors->has('department'))
+							@if ($companyUser)
+								<input type="text" name="department" value="{{ old('department', $companyUser->department) }}">
+							@else
+								<input type="text" name="department" value="{{ old('department') }}">
+							@endif
+=							@if ($errors->has('department'))
 								<div>
 									<strong style='color: #e3342f;'>{{ $errors->first('department') }}</strong>
 								</div>
@@ -69,7 +86,11 @@
 
 						<div class="input-container">
 							<p>自己紹介</p>
-							<textarea type="text" name="name" cols="30" rows="10">{{ old('self_introduction') }}</textarea>
+							@if ($companyUser)
+								<textarea type="text" name="self_introduction" cols="30" rows="10">{{ old('department', $companyUser->department) }}</textarea>
+							@else
+								<textarea type="text" name="self_introduction" cols="30" rows="10">{{ old('self_introduction') }}</textarea>
+							@endif
 							@if ($errors->has('self_introduction'))
 								<div>
 									<strong style='color: #e3342f;'>{{ $errors->first('self_introduction') }}</strong>
@@ -77,39 +98,93 @@
 							@endif
 						</div>
 					</div>
-					
 				</div>
+				
 				<div class="edit-container-company">
 					<div class="top-container">
 						<div class="input-container">
 							<p>会社名</p>
-							<input type="text" name="company_name" value="{{ old('company_name') }}">
+							@if ($company)
+								<input type="text" name="company_name" value="{{ old('company_name', $company->company_name) }}">
+							@else
+								<input type="text" name="company_name" value="{{ old('company_name') }}">
+							@endif
+							@if ($errors->has('company_name'))
+								<div>
+									<strong style='color: #e3342f;'>{{ $errors->first('company_name') }}</strong>
+								</div>
+							@endif
 						</div>
 						<div class="input-container">
 							<p>代表者名</p>
-							<input type="text" name="representive_name" value="{{ old('representive_name') }}">
+							@if ($company)
+								<input type="text" name="representive_name" value="{{ old('representive_name', $company->representive_name) }}">
+							@else
+								<input type="text" name="representive_name" value="{{ old('representive_name') }}">
+							@endif
+							@if ($errors->has('representive_name'))
+								<div>
+									<strong style='color: #e3342f;'>{{ $errors->first('representive_name') }}</strong>
+								</div>
+							@endif
 						</div>
 					</div>
 
 					<div class="middle-container">
 						<div class="input-container">
 							<p>郵便番号</p>
-							<input type="tel" name="zip_code" value="{{ old('zip_code') }}">
+							@if ($company)
+								<input type="text" name="zip_code" value="{{ old('zip_code', $company->zip_code) }}">
+							@else
+								<input type="text" name="zip_code" value="{{ old('zip_code') }}">
+							@endif
+							@if ($errors->has('zip_code'))
+								<div>
+									<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
+								</div>
+							@endif
 						</div>
 						<div class="input-container">
 							<p>都道府県</p>
-							<input type="text" name="address_prefecture" value="{{ old('address_prefecture') }}">
+							@if ($company)
+								<input type="text" name="address_prefecture" value="{{ old('address_prefecture', $company->address_prefecture) }}">
+							@else
+								<input type="text" name="address_prefecture" value="{{ old('address_prefecture') }}">
+							@endif
+							@if ($errors->has('address_prefecture'))
+								<div>
+									<strong style='color: #e3342f;'>{{ $errors->first('address_prefecture') }}</strong>
+								</div>
+							@endif
 						</div>
 					</div>
 
 					<div class="bottom-container">
 						<div class="input-container">
 							<p>市区町村・番地</p>
-							<input type="text" name="address_city" value="{{ old('address_city') }}">
+							@if ($company)
+								<input type="text" name="address_city" value="{{ old('address_city', $company->address_city) }}">
+							@else
+								<input type="text" name="address_city" value="{{ old('address_city') }}">
+							@endif
+							@if ($errors->has('address_city'))
+								<div>
+									<strong style='color: #e3342f;'>{{ $errors->first('address_city') }}</strong>
+								</div>
+							@endif
 						</div>
 						<div class="input-container">
 							<p>建物名・部屋番号</p>
-							<input type="text" name="address_building" value="{{ old('address_building') }}">
+							@if ($company)
+								<input type="text" name="address_building" value="{{ old('address_building', $company->address_building) }}">
+							@else
+								<input type="text" name="address_building" value="{{ old('address_building') }}">
+							@endif
+							@if ($errors->has('address_building'))
+								<div>
+									<strong style='color: #e3342f;'>{{ $errors->first('address_building') }}</strong>
+								</div>
+							@endif
 						</div>
 					</div>
 				</div>
