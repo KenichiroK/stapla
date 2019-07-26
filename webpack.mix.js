@@ -16,6 +16,7 @@ mix.js([
    'resources/js/company/project/index.js',
    'resources/js/company/project/create.js',
    'resources/js/company/project/show.js',
+   'resources/js/company/task/index.js',
 ],'public/js/app.js')
 
 
