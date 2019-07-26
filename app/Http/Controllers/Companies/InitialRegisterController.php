@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Companies;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\CompanyUser;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,11 @@ class InitialRegisterController extends Controller
     public function personal()
     {
         return view('company/auth/initialRegister/personal');
+    }
+
+    public function StorePersonal()
+    {
+        return  $auth = Auth::user();
     }
 
     public function company()

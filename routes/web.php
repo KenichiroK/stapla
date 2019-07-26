@@ -69,6 +69,10 @@ Route::group(['prefix' => 'company'], function(){
 
 	
 	Route::group(['middleware' => 'auth:company'], function() {
+		// register_flow
+		Route::get('/registerInfo', 'Companies\InitialRegisterController@personal')->name('company.registerInfo');
+		Route::post('/registerInfo', 'Companies\InitialRegisterController@StorePersonal')->name('company.registerInfo');
+
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
 		// project

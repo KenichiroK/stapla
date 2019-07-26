@@ -36,6 +36,7 @@
 			</div>
 
 			<form action="" method="POST">
+				@csrf
 				<div class="edit-container">
 					<div class="image-container">
 						<img src="/images/preview.jpeg" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
@@ -74,6 +75,41 @@
 									<strong style='color: #e3342f;'>{{ $errors->first('self_introduction') }}</strong>
 								</div>
 							@endif
+						</div>
+					</div>
+					
+				</div>
+				<div class="edit-container-company">
+					<div class="top-container">
+						<div class="input-container">
+							<p>会社名</p>
+							<input type="text" name="company_name" value="{{ old('company_name') }}">
+						</div>
+						<div class="input-container">
+							<p>代表者名</p>
+							<input type="text" name="representive_name" value="{{ old('representive_name') }}">
+						</div>
+					</div>
+
+					<div class="middle-container">
+						<div class="input-container">
+							<p>郵便番号</p>
+							<input type="tel" name="zip_code" value="{{ old('zip_code') }}">
+						</div>
+						<div class="input-container">
+							<p>都道府県</p>
+							<input type="text" name="address_prefecture" value="{{ old('address_prefecture') }}">
+						</div>
+					</div>
+
+					<div class="bottom-container">
+						<div class="input-container">
+							<p>市区町村・番地</p>
+							<input type="text" name="address_city" value="{{ old('address_city') }}">
+						</div>
+						<div class="input-container">
+							<p>建物名・部屋番号</p>
+							<input type="text" name="address_building" value="{{ old('address_building') }}">
 						</div>
 					</div>
 				</div>

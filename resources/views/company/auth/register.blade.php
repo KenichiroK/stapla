@@ -29,16 +29,38 @@
                     @csrf
                     <div class="input_wrapper">
                         <h4 class="title">メールアドレス</h4>
-                        <input class="input_text" type="email" name="email" placeholder="impro@example.com">
+                        <div class="col-md-6">
+                            <input id="email" type="email" class="input_text" name="email" value="{{ old('email') }}" placeholder="impro@example.com">
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="input_wrapper last">
                         <h4 class="title">パスワード</h4>
-                        <div class="pass-input-wrp">
-                            <input class="input_text" type="password" name="password">
-                            <p>表示</p>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
+                    <div class="input_wrapper">
+                        <h4 class="title">パスワード確認</h4>
+
+                            <input id="password-confirm" type="password" class="input_text" name="password_confirmation">
+
+                            @if ($errors->has('password_confirmation'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+ 
 
                     <div class="tos_wrapper">
                         <a href="#">ご利用規約</a>
