@@ -1,5 +1,5 @@
 .main-wrapper {
-	width: 80%;
+	width: 100%;
 	margin: auto;
 	padding: 40px;
 
@@ -8,7 +8,8 @@
 
 		h3 {
 			font-weight: bold;
-			color: #43425d;
+      color: #43425d;
+      font-size: 28px;
 		}
   }
 
@@ -29,8 +30,8 @@
         dt {
           color: #43425d;
           font-weight: normal;
-          width: 36px;
-          font-size: 12px;
+          width: 52px;
+          font-size: 16px;
           text-align: right;
         }
 
@@ -59,8 +60,8 @@
         dt {
           color: #43425d;
           font-weight: bold;
-          width: 64px;
-          font-size: 12px;
+          width: 84px;
+          font-size: 16px;
           text-align: right;
         }
 
@@ -97,7 +98,6 @@
             width: 100%;
             font-size: 16px;
             padding: 4px;
-            outline-color: #43425d;
             border: 1px solid #F0F0F7;
             border-radius: 4px;
             appearance: none;
@@ -115,7 +115,6 @@
             border: 1px solid #F0F0F7;
             border-radius: 4px;
             padding: 4px;
-            outline-color: #43425d;
           }
 
           .radio-container {
@@ -225,7 +224,6 @@
               width: 80%;
               font-size: 16px;
               padding: 4px;
-              outline-color: #43425d;
               border: 1px solid #F0F0F7;
               border-radius: 4px;
             }
@@ -331,7 +329,6 @@
               width: 80%;
               font-size: 16px;
               padding: 4px;
-              outline-color: #43425d;
               border: 1px solid #F0F0F7;
               border-radius: 4px;
             }
