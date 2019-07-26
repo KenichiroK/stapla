@@ -55,7 +55,7 @@
                 </div>
                 <!-- printボタン -->
                 <div class="head-container__wrapper__print-btn-container">
-                    <a @click="download()" class="button head-container__wrapper__print-btn-container__button">Print</a>
+                    <a href="" @click="download()" class="button head-container__wrapper__print-btn-container__button">プリント</a>
                 </div>
             </div>
         </div>
