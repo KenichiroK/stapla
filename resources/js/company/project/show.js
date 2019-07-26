@@ -1,7 +1,7 @@
 $(function(){
     //もっと見る
     let defaultCount = 2;
-    const allListCount = $(".task-item-list").length;
+    const allListCount = $('.task-show-link').children('ul').length;
     const taskItemList = $('.task-show-link').children('ul');
 
     const defaultShowList = () => {
