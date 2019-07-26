@@ -105,7 +105,7 @@ class TaskController extends Controller
 
     public function show($id)
     {
-        $task = Task::with(['project', 'taskCompanies.companyUser', 'taskPartners.partner'])->findOrFail($id);
+        $task = Task::findOrFail($id);
 
         $user = Auth::user();
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();

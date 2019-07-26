@@ -84,21 +84,14 @@
                     担当者
                 </dt>
                 <dd class="flex01">
+                @foreach($task->taskCompanies as $taskCompany)
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="">
+                            <img src="/{{ str_replace('public/', 'storage/', $taskCompany->companyUser->picture) }}" alt="担当者プロフィール画像">
                         </div>
-                        <p>@foreach($task->taskCompanies as $taskCompany)
-                                {{ $taskCompany->companyUser->name }}
-                            @endforeach
-                        </p>
+                        <p>{{ $taskCompany->companyUser->name }}</p>
                     </div>
-                    <div class="person-item">
-                        <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="">
-                        </div>
-                        <p>永瀬達也</p>
-                    </div>
+                @endforeach
                 </dd>
             </dl>
             <dl>
@@ -106,18 +99,14 @@
                     上長
                 </dt>
                 <dd class="flex01">
+                @foreach($task->taskCompanies as $taskCompany)
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="">
+                            <img src="/{{ str_replace('public/', 'storage/', $taskCompany->companyUser->picture) }}" alt="上長プロフィール画像">
                         </div>
-                        <p>永瀬達也</p>
+                        <p>{{ $taskCompany->companyUser->name }}</p>
                     </div>
-                    <div class="person-item">
-                        <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="">
-                        </div>
-                        <p>永瀬達也</p>
-                    </div>
+                @endforeach
                 </dd>
             </dl>
             <dl class="term">
@@ -136,7 +125,7 @@
                     予算
                 </dt>
                 <dd>
-                    {{ $task->budget }}円
+                    {{ number_format($task->budget) }}円
                 </dd>
             </dl>
             <dl>
@@ -156,15 +145,14 @@
                     パートナー
                 </dt>
                 <dd class="flex01">
+                @foreach($task->taskPartners as $taskPartner)
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="">
+                            <img src="/{{ str_replace('public/', 'storage/', $taskCompany->companyUser->picture) }}" alt="パートナープロフィール画像">
                         </div>
-                        <p>@foreach($task->taskPartners as $taskPartner)
-                                {{ $taskPartner->partner->name }}
-                            @endforeach
-                        </p>
+                        <p>{{ $taskPartner->partner->name }}</p>
                     </div>
+                @endforeach
                 </dd>
             </dl>
             <dl>
@@ -180,7 +168,7 @@
                     発注単価<span>(税抜)</span>
                 </dt>
                 <dd>
-                    12,000,000円
+                    {{ number_format($task->budget) }}円
                 </dd>
             </dl>
             <dl>
@@ -196,7 +184,7 @@
                     発注額
                 </dt>
                 <dd class="orderprice">
-                    <span class="tax">税込</span><span class="yen">￥</span>216,000 
+                    <span class="tax">税込</span><span class="yen">￥</span>{{ number_format($task->price * (1 + $task->tax)) }}
                 </dd>
             </dl>
             <dl>
