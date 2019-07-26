@@ -112,7 +112,7 @@
             <h4>プロジェクト</h4>
         </div>
 
-        <table>
+        <table class="project-container__table">
             <thead>
                 <tr>
                     <th>プロジェクト</th>
@@ -162,7 +162,7 @@
         </table>
 
         <div class="more-btn-container">
-            <button>
+            <button id="projectShowMoreBtn">
                 もっと見る
                 <i class="fas fa-angle-down"></i>
             </button>
@@ -189,7 +189,7 @@
             <h4>タスク</h4>
         </div>
 
-        <table>
+        <table class="task-container__table">
             <thead>
                 <tr>
                     <th>プロジェクト</th>
@@ -247,7 +247,7 @@
         </table>
 
         <div class="more-btn-container">
-            <button>
+            <button id="taskShowMoreBtn">
                 もっと見る
                 <i class="fas fa-angle-down"></i>
             </button>
