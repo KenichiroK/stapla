@@ -1,5 +1,19 @@
+// ロゴ
+.sidebar__container__wrapper .menu__container--label{
+    background: #3B3A53;
+    height: 70px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.04);
+    margin-bottom: 0;
+    border-bottom: none;
+    .menu-label{
+        padding-left: 20px;
+        padding-top: 2px;
+        width: 135px;
+    }
+}
+
 .main__container {
-    width:80%;
+    width:100%;
     margin: auto;
     background-color: #F0F0F7;
     font-size: 14px;
@@ -11,48 +25,136 @@
 // 共通部分
 .page-title-container {
     &__page-title {
-        font-size: 24px;
-        margin-bottom:32px;
+        font-size: 28px;
+        font-weight: bold;
+        font-family: 'Source Sans Pro';
+        color: #43425D;
+        margin-bottom:26px;
     }
 }
 .item-name-wrapper {
-    // width: 100%;
+    width: 22%;
+    display: table;
+    height: 48px;
+    padding-right: 30px;
     &__item-name {
         margin-bottom:8px;
-        font-size: 14px;
+        vertical-align: middle;
+        display: table-cell;
         color: #43425D;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: "Source Sans Pro";
+        text-align: right;
+        span.tax{
+            font-size: 12px;
+            margin-left: -5px;
+        }
     }
+    &__item-name.document{
+        vertical-align: top;
+    }
+}
+.item-name-wrapper.unitname{
+    padding-right: 23px;
+}
+
+
+// セレクトボックス＋アイコン
+.select-plusicon {
+	overflow: hidden;
+    text-align: center;
+    position: relative;
+	border: 1px solid #E9E9F0;
+	border-radius: 2px;
+    background: #ffffff;
+    select {
+        width: 100%;
+        padding-right: 1em;
+        cursor: pointer;
+        text-indent: 0.01px;
+        text-overflow: ellipsis;
+        border: none;
+        outline: none;
+        background: transparent;
+        background-image: none;
+        box-shadow: none;
+        -webkit-appearance: none;
+        appearance: none;
+        padding: 8px 38px 8px 8px;
+	    color: #666666;
+    }
+    select::-ms-expand {
+        display: none;
+    }
+    &::before {
+        position: absolute;
+        top: 15px;
+        right: 22px;
+        width: 2px;
+        height: 5px;
+        padding: 0;
+        content: "";
+        border-top: 16px solid #A4AFB7;
+        pointer-events: none;
+    }
+    &::after {
+        position: absolute;
+        top: 22px;
+        right: 15px;
+        width: 16px;
+        height: 2px;
+        padding: 0;
+        content: "";
+        border-top: 2px solid #A4AFB7;
+        pointer-events: none;
+    }
+}
+
+// タスク内容
+.item-name-wrapper.contentsname{
+    height: 120px;
+}
+
+.item-name-wrapper.numbername{
+    width: 100%;
+    margin-left: 74px;
 }
 
 // プロジェクトを選択する エリア
 .select-container {
     margin-bottom: 24px;
     &__wrapper {
-        padding:16px 0;
+        padding:22px 40px;
         background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
         display: flex;
         &__textarea {
-            padding: 0 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: table;
+            height: 48px;
+            padding-right: 10px;
             &__text {
-                &__control {
-                    &__select select {
-                        width: 480px;
-                        border-color: #3B86FF;
-                    }
-                }
+                vertical-align: middle;
+                display: table-cell;
+                color: #43425D;
+                font-size: 15px;
+                font-weight: bold;
+                font-family: 'Source Sans Pro';
             }
         }
         // セレクトエリア
+        &__select-area.staff{
+            width: 66%;
+        }
         &__select-area {
-            justify-content: center;
-            align-items: center;
+            width: 70%;
             &__field {
                 &__control {
                     &__select select {
-                        width: 640px;
+                        width: 100%;
+                        height: 48px;
+                        border-radius: 2px;
                         border-color: #3B86FF;
                     }
                 }
@@ -60,63 +162,271 @@
         }
     }
 }
-
-.content-container {
-    &__wrapper {
-        display: flex;
-    }
+.select.is-info select{
+    border-color: #E9E9F0;
+}
+.select:not(.is-multiple){
+    height: 48px;
+    width: 100%;
+}
+.select.is-info:not(:hover)::after {
+    border-color: #A4AFB7;
 }
 .main-container {
-    width: 70%;
-    margin-right: 24px;
+    width: 100%;
+    margin-bottom: 60px;
     &__wrapper {
         background-color: #ffffff;
-        padding: 16px;
+        padding:  40px 16px 1px;
+        border-radius: 4px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
         &__item-container {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            display: flex;
             // タスク名
             &__inputarea {
+                width: 66%;
                 &__field {
                     &__control input {
-                        border: 0;
                         box-shadow: none;
-                        border-radius: 0;
-                        border-bottom: 3px solid #3B86FF;
-                        caret-color: #3B86FF;
+                        border-radius: 2px;
+                        border: 1px solid #E9E9F0;
+                        height: 48px;
+                    }
+                }
+            }
+            // タスク作成日
+            &__datewrapper{
+                display: table;
+                height: 48px;
+                &__date{
+                    vertical-align: middle;
+                    display: table-cell;
+                    font-size: 18px;
+                    color: #4D4F5C;
+                    font-family: 'Source Sans Pro';
+                    i{
+                        color: #A5A4BF;
+                        padding-left: 16px;
                     }
                 }
             }
             // タスク内容
             &__textarea {
                 height: 120px;
+                width: 66%;
             }
             &__textarea textarea {
-                border-color: #3B86FF;
-                caret-color: #3B86FF;
+                border-radius: 2px;
+                border: 1px solid #E9E9F0;
+                box-shadow: none;
                 resize: none;
             }
             // 締め切り
             &__calendar-content {
-                display: flex;
-                justify-content: space-evenly;
-            }
-            // 資料
-            &__uploadarea {
-                &__uploadname {
+                margin-top: 10px;
+                &__content{
+                    display: inline-block;
+                    &__item-name-wrapper__item-name{
+                        font-size: 18px;
+                        i{
+                            color: #A5A4BF;
+                            padding-left: 26px;
+                        }
+                    }
+                    &__item-name-wrapper__item-name.start{
+                        padding-right: 180px;  
+                    }
                 }
             }
+            // 予算
+            &__inputarea__field__control.budget{
+                position: relative;
+                width: 40%;
+                input{
+                    display: inline-block;
+                    width: 100%;
+                }
+            }
+            &__inputarea__field__control-yen{
+                display: inline-block;
+                position: absolute;
+                bottom: 0px;
+                right: -25px;
+            }
+            // 資料
             &__filearea {
-                &__label {
-                    &__file-cta {
-                        height: 170px;
-                    }
+                padding: 20px 30px 30px;
+                background: #fff;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+                .uplaod{
+                    font-size: 18px;
+                    color: #4D4F5C;
+                    font-family: 'Source Sans Pro';
                 }
             }
         }    
     }
 }
+.partner-container{
+    width: 100%;
+    background-color: #ffffff;
+    padding: 30px 20px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+    &__title{
+        font-weight: bold;
+        font-size: 18px;
+        color: #4D4F5C;
+        font-family: 'Source Sans Pro';
+        margin-bottom: 25px;
+    }
+    &__wrpper{
+        &__item-container.fee{
+            margin-bottom: 0;
+        }
+        &__item-container.price{
+            border-top: 1px solid #F1F1F3;
+            padding-top: 25px;
+            .item-name-wrapper{
+                padding-right:0;
+            }
+        }
+        &__item-container{
+            margin-bottom: 30px;
+            display: flex;
+            // 発注単価・件数
+            &__order{
+                display: flex;
+                &-uninum{
+                    display: flex;
+                    // 発注単位
+                    &__unit__contents{
+                        position: relative;
+                        height: 48px;
+                        input{
+                            display: inline-block;
+                            height: 48px;
+                            width: 200px;
+                            box-shadow: none;
+                            border-radius: 2px;
+                            border: 1px solid #E9E9F0;
+                        }
+                        &__class{
+                            display: inline-block;
+                            position: absolute;
+                            bottom: 0px;
+                            right: -25px;
+                        }
+                    }
+                    // 件数
+                    &__number__contents{
+                        position: relative;
+                        height: 48px;
+                        input{
+                            display: inline-block;
+                            height: 48px;
+                            width: 200px;
+                            box-shadow: none;
+                            border-radius: 2px;
+                            border: 1px solid #E9E9F0;
+                        }
+                        &__class{
+                            display: inline-block;
+                            position: absolute;
+                            bottom: 0px;
+                            right: -25px;
+                        }
+                    }
+                }
+            }
+            .price-item{
+                text-align: right;
+                width: 100%;
+                p{
+                    font-size: 30px;
+                    color: #43425D;
+                    font-family: 'Source Sans Pro';
+                    margin-bottom: 0;
+                    span.tax{
+                        font-size: 14px;
+                        font-weight: bold;
+                        padding-right: 5px;
+                    }
+                    span.yen{
+                        font-size: 20px;
+                        padding-right: 4px;
+                    }
+                }
+            }
+        }
+        &__item-container.order__unit-number{
+            display: block;
+        }
+    }
+}
+// 報酬形式
+.fee-container__control{
+    label {
+        margin-right: 20px;
+        display: inline-block;
+        margin-bottom: 10px;
+        margin-top: 15px;
+        .title{
+          font-size: 15px; 
+          font-weight: 400; 
+        }
+        .radio01-input {
+            display: none;
+        }
+        .radio01-parts {
+            padding-left: 20px;
+            position: relative;
+            margin-right: 20px;
+            line-height: 1;
+        }
+        .radio01-input:checked + .radio01-parts {
+            color: #009a9a;
+        }
+        .radio01-parts::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -31px;
+            left: 40px;
+            width: 32px;
+            height: 32px;
+            border: 1px solid #E9E9F0;
+            border-radius: 50%;
+        }
+        .radio01-input:checked + .radio01-parts::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -23px;
+            left: 48px;
+            width: 16px;
+            height: 16px;
+            background: #00CC47;
+            border-radius: 50%;
+        }
+        .radio01-parts.date::before{
+            left: 25px;
+        }
+        .radio01-input:checked + .radio01-parts.date::after{
+            left: 32px;
+        }
+    }
+}
+
+
+
+
+
+  
 .side-container {
-        width: 30%;
+        width: 100%;
+        margin-top: 30px;
     &__wrapper {
         // テンプレート
         &__template-container {
@@ -127,22 +437,10 @@
                 
             }
         }
-        // 担当者・パートナー
-        &__tanpa-container {
-            background-color: #ffffff;
-            padding: 16px 16px 32px;
-            margin-bottom: 24px;
-            &__wrapper {
-                .staff{
-                    margin-bottom:8px;
-                }
-            }
-        }
         // 契約内容
         &__agreement-container {     
             background-color: #ffffff;
             padding: 16px 16px 32px;
-            margin-bottom: 24px;
             &__wrapper {
                 // 報酬形式
                 &__fee-container {
@@ -162,7 +460,6 @@
                 // 発注額
                 &__order-container {
                     &__content {
-                        border: 1px solid #707070;
                         padding: 8px;
                         margin-bottom: 24px;
                         &__inputitem {
@@ -191,22 +488,25 @@
                         }
                     }   
                 }
-                .button-wrapper{
-                    text-align: center;
-                    &__btn{
-                        width:140px;
-                        border-radius: 18px;
-                        color:#fff;
-                        font-weight:bold;
-                        background: #43425D;
-                        margin-top: 32px;
-                    }
-                    &__btn:hover{
-                        opacity:0.8;
-                    }
-                }
             }
         }
+    }
+}
+
+.button-wrapper{
+    text-align: center;
+    margin-top: 60px;
+    &__btn{
+        width: 140px;
+        border-radius: 100px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+        background: #43425D;
+    }
+    &__btn:hover{
+        opacity:0.8;
+        color: #fff;
     }
 }
 
