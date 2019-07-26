@@ -116,10 +116,10 @@ const setPreview = (input) => {
                         <dd>
                         <div class="select-container">
                             <div class="select-container__wrapper select-plusicon">
-                                <select class="select-container__wrapper__select" name='companyUser_id'>
+                                <select class="select-container__wrapper__select" name='partner_id'>
                                     <option disabled selected></option>
-                                    @foreach($companyUsers as $companyUser)
-                                    <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
+                                    @foreach($partners as $partner)
+                                    <option value="{{ $partner->id }}">{{ $partner->name }}</option>
                                     @endforeach                            
                                 </select>
                             </div>
