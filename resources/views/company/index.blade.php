@@ -38,12 +38,7 @@
                         <div class="navbar-item">
                             <i class="fas fa-bell"></i>
                         </div>
-                        <div class="navbar-item">
-                            user name
-                        </div>
-                        <div class="navbar-item">
-                            <img src="./images/dummy_user.jpeg" alt="プロフィール画像">
-                        </div>
+                        @yield('header-profile')
                     </div>
                 </div>
             </nav>

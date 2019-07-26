@@ -18,8 +18,8 @@ class TaskController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        $tasks = Task::where('company_id', $company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $tasks = Task::where('company_id', $company_user->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
             
         $status_arr = [];
         for ($i = 0; $i < 11; $i++) {
@@ -33,7 +33,7 @@ class TaskController extends Controller
             '下書き', '提案中', '依頼前', '依頼中', '開始前','作業中', '提出前', '修正中', '完了', 'キャンセル'
         ];
 
-        return view('company/task/index', compact('tasks','statusName_arr', 'status_arr'));
+        return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'company_user'));
     }
 
     public function projectTaskIndex($project_uid)
@@ -44,13 +44,13 @@ class TaskController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        $tasks = Task::where('company_id', $company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $tasks = Task::where('company_id', $company_user->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
        
         
-        $companyUsers = CompanyUser::where('company_id', $company_id)->get();
-        $partners = Partner::where('company_id', $company_id)->get();
-        return view('company/task/create', compact('tasks','companyUsers', 'partners'));
+        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
+        $partners = Partner::where('company_id', $company_user->company_id)->get();
+        return view('company/task/create', compact('tasks','companyUsers', 'partners', 'company_user'));
     }
     
     public function store(Request $request)
@@ -108,12 +108,12 @@ class TaskController extends Controller
         $task = Task::with(['project', 'taskCompanies.companyUser', 'taskPartners.partner'])->findOrFail($id);
 
         $user = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        $companyUsers = CompanyUser::where('company_id', $company_id)->get();
+        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
 
-        $partners = Partner::where('company_id', $company_id)->get();
+        $partners = Partner::where('company_id', $company_user->company_id)->get();
 
-        return view('/company/task/show', compact('task', 'project_count', 'companyUsers', 'partners'));
+        return view('/company/task/show', compact('task', 'project_count', 'companyUsers', 'partners', 'company_user'));
     }
 
     public function edit($id)

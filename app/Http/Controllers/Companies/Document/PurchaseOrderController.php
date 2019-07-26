@@ -29,7 +29,9 @@ class PurchaseOrderController extends Controller
     public function show($id)
     {
         $purchaseOrder = PurchaseOrder::findOrFail($id);
-        return view('company/document/purchaseOrder/show', compact('purchaseOrder'));
+        $auth = Auth::user();
+        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        return view('company/document/purchaseOrder/show', compact('purchaseOrder', 'company_user'));
     }
 
     public function edit($id)

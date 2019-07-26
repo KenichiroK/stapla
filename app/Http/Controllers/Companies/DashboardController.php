@@ -27,9 +27,9 @@ class DashboardController extends Controller
     public function index()
     {
         $auth_id = Auth::user()->id;
-        $companyUser = CompanyUser::where('auth_id', $auth_id)->get()->first();
-        $companyUser_id = $companyUser->id;
-        $company_id = $companyUser->company_id;
+        $company_user = CompanyUser::where('auth_id', $auth_id)->get()->first();
+        $companyUser_id = $company_user->id;
+        $company_id = $company_user->company_id;
         $projects = ProjectCompany::where('user_id', $companyUser_id)->get();
         $tasks = TaskCompany::where('user_id', $companyUser_id)->get();
         $invoices = Invoice::where('company_id', $company_id)->get();
@@ -47,7 +47,7 @@ class DashboardController extends Controller
             '下書き', '提案中', '依頼前', '依頼中', '開始前','作業中', '提出前', '修正中', '完了', 'キャンセル'
         ];
         
-        return view('company/dashboard/index', compact('projects', 'tasks', 'status_arr', 'statusName_arr', 'invoices', 'purchaseOrders', 'contacts', 'ndas'));
+        return view('company/dashboard/index', compact('projects', 'tasks', 'status_arr', 'statusName_arr', 'invoices', 'purchaseOrders', 'contacts', 'ndas', 'company_user'));
     }
 
     /**

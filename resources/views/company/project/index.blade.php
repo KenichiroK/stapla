@@ -5,6 +5,15 @@
 <link rel="stylesheet" href="{{ mix('css/company/project/index.css') }}">
 @endsection
 
+@section('header-profile')
+<div class="navbar-item">
+    {{ $company_user->name }}
+</div>
+<div class="navbar-item">
+    <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+</div>
+@endsection
+
 @section('sidebar')
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">

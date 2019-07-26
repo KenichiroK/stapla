@@ -22,13 +22,13 @@ class NdaController extends Controller
     public function create()
     {
         $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
-        $company = Company::findOrFail($companyUser->company_id);
+        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company = Company::findOrFail($company_user->company_id);
 
         $companyUsers = CompanyUser::where('company_id', $company->id)->get();
         $partners = Partner::where('company_id', $company->id)->get();
 
-        $tasks = Task::where('company_id', $companyUser->company_id)->orderBy('project_id')->get();
+        $tasks = Task::where('company_id', $company_user->company_id)->orderBy('project_id')->get();
 
         $ndas = Nda::where('company_id', $company->id)->get();
         $ndaDoneTasks = array();
@@ -59,7 +59,7 @@ class NdaController extends Controller
         }
         $unAsignedPartners = array_diff($partners_all, $asignedPartners);
 
-        return view('company/document/nda/create', compact('companyUsers', 'partners', 'tasks', 'ndaUnDoneTasks', 'ndaDoneTasks', 'asignedPartners', 'unAsignedPartners'));
+        return view('company/document/nda/create', compact('companyUsers', 'partners', 'tasks', 'ndaUnDoneTasks', 'ndaDoneTasks', 'asignedPartners', 'unAsignedPartners', 'company_user'));
     }
 
     public function store(Request $request)
@@ -85,7 +85,9 @@ class NdaController extends Controller
     public function show($id)
     {
         $nda = Nda::findOrFail($id);
-        return view('company/document/nda/show', compact('nda'));
+        $auth = Auth::user();
+        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        return view('company/document/nda/show', compact('nda', 'company_user'));
     }
 
     public function edit($id)

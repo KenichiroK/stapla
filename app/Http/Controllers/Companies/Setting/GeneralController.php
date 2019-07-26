@@ -21,10 +21,10 @@ class GeneralController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $user->id)->first()->company_id;
-        $company = Company::findOrFail($company_id);
+        $company_user = CompanyUser::where('auth_id', $user->id)->first();
+        $company = Company::findOrFail($company_user->company_id);
         
-        return view('company/setting/general/create', compact('company'));
+        return view('company/setting/general/create', compact('company', 'company_user'));
     }
 
     public function store(CompanyGeneralRequest $request)
@@ -46,11 +46,11 @@ class GeneralController extends Controller
     public function update(CompanyGeneralRequest $request)
     {
         $auth = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $auth->id)->first()->company_id;
-        $company = Company::findOrFail($company_id);
+        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company = Company::findOrFail($company_user->company_id);
         $company->update($request->all());
 
-        return view('company/setting/general/create', compact('company'));
+        return view('company/setting/general/create', compact('company', 'company_user'));
     }
 
     public function destroy($id)
