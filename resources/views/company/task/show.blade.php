@@ -36,280 +36,190 @@
 
 <div class="main__container">
     <div class="main__container__wrapper">
-        <div class="header">
-            <div class="header__wrapper">
-                <div class="header__wrapper__main">
-                    <div class="page-title-container">
-                        <div class="page-title-container__page-title">{{ $task->name }}</div>
-                    </div>
-                    <div class="header__wrapper__main__project-name">【{{ $task->project->name }}】</div>
-                </div>
-                <div class="header__wrapper__edited-date">タスク作成日：{{ explode(' ', $task->created_at)[0] }}</div>
+        <div class="top">
+            <div class="page-title-container">
+                <div class="page-title-container__page-title">タスク詳細</div>
+            </div>
+            <div class="button-wrapper">
+                <button type='submit' class="button-wrapper__btn button">編集</button>
             </div>
         </div>
-        <div class="middle">
-            <div class="middle__main">
-                <div class="middle__main__wrapper">
-                    <div class="middle__main__wrapper__table-container">
-                        <table class="middle__main__wrapper__table-container__table">
-                            <tr class="middle__main__wrapper__table-container__table__table-row">
-                                <th class="middle__main__wrapper__table-container__table__table-row__table-header">ステータス</th>
-                                <th class="middle__main__wrapper__table-container__table__table-row__table-header">締め切り</th>
-                                <th class="middle__main__wrapper__table-container__table__table-row__table-header">検収日</th>
-                                <th class="middle__main__wrapper__table-container__table__table-row__table-header">提出日</th>
-                                <th class="middle__main__wrapper__table-container__table__table-row__table-header">納品形式</th>
-                            </tr>
-                            <tr class="middle__main__table-container__table__table-row">
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">
-                                    <div id="state" class="middle__main__wrapper__table-container__table__table-row__table-data__status-icon">
-                                        @if(($task->status) === 0)
-                                            下書き
-                                        @elseif(($task->status) === 1)
-                                            提案中
-                                        @elseif(($task->status) === 2)
-                                            依頼前
-                                        @elseif(($task->status) === 3)
-                                            依頼中
-                                        @elseif(($task->status) === 4)
-                                            開始前
-                                        @elseif(($task->status) === 5)
-                                            作業中
-                                        @elseif(($task->status) === 6)
-                                            提出前
-                                        @elseif(($task->status) === 7)
-                                            修正中
-                                        @elseif(($task->status) === 8)
-                                            完了
-                                        @elseif(($task->status) === 9)
-                                            キャンセル
-                                        @endif
-                                    </div>
-                                </td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $task->ended_at)[0] }}</td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $task->inspection_date)[0] }}</td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $task->inspection_date)[0] }}</td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ $task->delivery_format }}</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="middle__main__wrapper__task-content">
-                        <div class="middle__main__wrapper__task-content__wrapper">
-                            <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
-                                    タスク内容：
-                                </div>
-                            </div>
-                        </div>
-                        <div class="middle__main__wrapper__task-content__textarea-wrapper">
-                            <textarea class="textarea" placeholder="Placeholder"></textarea>
-                        </div>
-                        <div class="middle__main__wrapper__task-content__detail-container">
-                            <div class="middle__main__wrapper__task-content__detail-container__item-name-wrapper">
-                                <div class="middle__main__wrapper__task-content__detail-container__item-name-wrappre__item-name">
-                                    アクティビティログ
-                                </div>
-                            </div>
-                            <div class="middle__main__wrapper__task-content__detail-container__item">
-                                <div class="middle__main__wrapper__task-content__detail-container__item__icon"><img src="https://image.freepik.com/free-icon/no-translate-detected_318-37825.jpg" alt=""></div>
-                                <div class="middle__main__wrapper__task-content__detail-container__item__name">
-                                    <div class="">{{ explode(' ', $task->updated_at)[0] }}</div>
-                                    <div class="">永瀬 達也</div>
-                                </div>
-                                <div class="middle__main__wrapper__task-content__detail-container__item__comment">担当者へ依頼しました。</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="middle__main__wrapper__task-comment">
-                        <div class="middle__main__wrapper__task-comment__wrapper">
-                            <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
-                                    タスクに関するコメント：
-                                </div>
-                            </div>
-                            <div class="middle__main__wrapper__task-content__textarea-wrapper">
-                                <textarea class="textarea" placeholder="Placeholder"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="middle__main__wrapper__document-container">
-                        <div class="middle__main__wrapper__document-container__wrapper">
-                            <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
-                                    資料：
-                                </div>
-                            </div>
-                            <div class="middle__main__wrapper__document-container__wrapper__update-container">
-                                <div class="file has-name is-boxed">
-                                    <label class="file-label">
-                                        <input class="file-input" type="file" name="resume">
-                                        <span class="file-cta">
-                                        <span class="file-icon">
-                                            <i class="fas fa-upload"></i>
-                                        </span>
-                                        <span class="file-label">
-                                            Choose a file…
-                                        </span>
-                                        </span>
-                                        <span class="file-name">
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="middle__side">
-                <div class="middle__side__wrapper">
-                    <div class="middle__side__wrapper__1">
-                        <div class="middle__side__wrapper__1__input-container">
-                            <div class="middle__side__wrapper__1__input-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                        担当者：
-                                    </div>
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__select select">
-                                    <select>
-                                        <option></option>
-                                        @foreach($companyUsers as $companyUser)
-                                            <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
-                                        @endforeach
-                                    </select> 
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper__btn">追加</div>
-                                </div>
-                            </div>
-                        </div >
-                        <div class="middle__side__wrapper__1__input-container">
-                            <div class="middle__side__wrapper__1__input-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                    パートナー：
-                                    </div>
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__select select">
-                                    <select>
-                                        <option></option>
-                                        @foreach($partners as $partner)
-                                            <option value="{{ $partner->id }}">
-                                                {{ $partner->name }}
-                                            </option>
-                                        @endforeach
-                                    </select> 
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper__btn">追加</div>
-                                </div>
-                            </div>
-                        </div >
 
-                        <div class="middle__side__wrapper__1__input-container">
-                            <div class="middle__side__wrapper__1__input-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                    パートナー契約内容：
-                                    </div>
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__detail-container">
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper top">
-                                        <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper__item-name">報酬形式</div>
-                                        <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper__item-content">時間</div>
-                                    </div>  
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper">
-                                        <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper__item-name">発注額(税込)</div>
-                                        <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper__item-content">¥100,000</div>
-                                    </div>  
-                                </div>
-                            </div>
+        <div class="detail">
+            <dl class="first">
+                <dt>
+                    プロジェクト名
+                </dt>
+                <dd>
+                    {{ $task->project->name }}
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    タスク作成日
+                </dt>
+                <dd>
+                    {{ explode(' ', $task->created_at)[0] }}
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    タスク内容
+                </dt>
+                <dd>
+                    {{ $task->name }}
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    担当者
+                </dt>
+                <dd class="flex01">
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="../../../images/photoimg.png" alt="">
                         </div>
-                    </div>
-                    <div class="middle__side__wrapper__1">
-                        <div class="middle__side__wrapper__1__input-container">
-                            <div class="middle__side__wrapper__1__input-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                        上長に承認を取る：
-                                    </div>
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__select select">
-                                    <select>
-                                        <option></option>
-                                        @foreach($companyUsers as $companyUser)
-                                            <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
-                                        @endforeach
-                                    </select> 
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper__btn">承認</div>
-                                </div>
-                            </div>
-                        </div >
-                        <div class="middle__side__wrapper__1__input-container">
-                            <div class="middle__side__wrapper__1__input-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                    パートナーに依頼を取る：
-                                    </div>
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__select select">
-                                    <select>
-                                        <option></option>
-                                        @foreach($partners as $partner)
-                                            <option value="{{ $partner->id }}">
-                                                {{ $partner->name }}
-                                            </option>
-                                        @endforeach
-                                    </select> 
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper__btn">承認</div>
-                                </div>
-                            </div>
-                        </div >
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bottom">
-            <div class="bottom__wrapper">
-                <div class="item-name-wrapper">
-                    <div class="item-name-wrapper__item-name">
-                        タスク内容：
-                    </div>
-                </div>
-                <div class="bottom__wrapper__table-container">
-                    <table class="bottom__wrapper__table-wrapper__table">
-                        <tr class="bottom__wrapper__table-wrapper__table__headerrow">
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">プロジェクト<i class="task-container__table__headerrow__tableheader__arrow fas fa-angle-down"></i></th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">担当者</th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">パートナー</th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">タスク</th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">期限</th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">予算</th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">請求額</th>
-                        </tr>
-                        <tr class="bottom__wrapper__table-wrapper__table__datarow">
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">{{ $task->project->name }}</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">
-                            @foreach($task->taskCompanies as $taskCompany)
+                        <p>@foreach($task->taskCompanies as $taskCompany)
                                 {{ $taskCompany->companyUser->name }}
                             @endforeach
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">
-                            @foreach($task->taskPartners as $taskPartner)
+                        </p>
+                    </div>
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="../../../images/photoimg.png" alt="">
+                        </div>
+                        <p>永瀬達也</p>
+                    </div>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    上長
+                </dt>
+                <dd class="flex01">
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="../../../images/photoimg.png" alt="">
+                        </div>
+                        <p>永瀬達也</p>
+                    </div>
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="../../../images/photoimg.png" alt="">
+                        </div>
+                        <p>永瀬達也</p>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="term">
+                <dt>
+                    プロジェクト期間
+                </dt>
+                <dd>
+                    <div class="flex01 term-desc">
+                        <p class="start"><span>開始日</span>{{ explode(' ', $task->inspection_date)[0] }}</p>
+                        <p><span>終了日</span>{{ explode(' ', $task->ended_at)[0] }}</p>
+                    </div>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    予算
+                </dt>
+                <dd>
+                    {{ $task->budget }}円
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    資料
+                </dt>
+                <dd>
+                    
+                </dd>
+            </dl>
+        </div>
+
+        <div class="patner">
+            <p class="ptnr-title">パートナー契約内容</p>
+            <dl>
+                <dt>
+                    パートナー
+                </dt>
+                <dd class="flex01">
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="../../../images/photoimg.png" alt="">
+                        </div>
+                        <p>@foreach($task->taskPartners as $taskPartner)
                                 {{ $taskPartner->partner->name }}
                             @endforeach
-                            </td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">{{ $task->project->tasks->count() }}件</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">{{ explode(' ', $task->ended_at)[0] }}</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">¥{{ $task->budget }}</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">¥{{ $task->price }}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+                        </p>
+                    </div>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    報酬形式
+                </dt>
+                <dd>
+                    固定
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    発注単価<span>(税抜)</span>
+                </dt>
+                <dd>
+                    12,000,000円
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    件数
+                </dt>
+                <dd>
+                    {{ $task->project->tasks->count() }}件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    発注額
+                </dt>
+                <dd class="orderprice">
+                    <span class="tax">税込</span><span class="yen">￥</span>216,000 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    ステータス
+                </dt>
+                <dd class="status-desc">
+                    @if(($task->status) === 0)
+                        下書き
+                    @elseif(($task->status) === 1)
+                        提案中
+                    @elseif(($task->status) === 2)
+                        依頼前
+                    @elseif(($task->status) === 3)
+                        依頼中
+                    @elseif(($task->status) === 4)
+                        開始前
+                    @elseif(($task->status) === 5)
+                        作業中
+                    @elseif(($task->status) === 6)
+                        提出前
+                    @elseif(($task->status) === 7)
+                        修正中
+                    @elseif(($task->status) === 8)
+                        完了
+                    @elseif(($task->status) === 9)
+                        キャンセル
+                    @endif
+                </dd>
+            </dl>
         </div>
+        
     </div>
 </div>
 @endsection
