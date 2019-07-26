@@ -68,65 +68,70 @@ const setPreview = (input) => {
             @csrf
                 <div class="main-container__wrapper">
                     <!-- タスク -->
-                    <div class="item-name-wrapper">
-                        <div class="item-name-wrapper__item-name">
+                    <dl>
+                        <dt>
                             タスク
+                        </dt>
+                        <dd>
+                        <div class="select-container">
+                            <div class="select-container__wrapper select-arrow">
+                                <select class="select-container__wrapper__select" name="task_id">
+                                    <option disabled selected></option>
+                                    <option disabled>-- 機密保持契約書 未作成 --</option>
+                                    @foreach($ndaUnDoneTasks as $ndaUnDoneTask)
+                                    <option value="{{ $ndaUnDoneTask->id }}">{{ $ndaUnDoneTask->name }}　[ {{ $ndaUnDoneTask->project->name }} ]</option>
+                                    @endforeach
+                                    <option disabled>-- 機密保持契約書 作成済み --</option>
+                                    @foreach($ndaDoneTasks as $ndaDoneTask)
+                                    <option value="{{ $ndaDoneTask->id }}">* {{ $ndaDoneTask->name }}　[ {{ $ndaDoneTask->project->name }} ]</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="select-container">
-                        <div class="select-container__wrapper select">
-                            <select class="select-container__wrapper__select" name="task_id">
-                                <option disabled selected></option>
-                                <option disabled>-- 機密保持契約書 未作成 --</option>
-                                @foreach($ndaUnDoneTasks as $ndaUnDoneTask)
-                                <option value="{{ $ndaUnDoneTask->id }}">{{ $ndaUnDoneTask->name }}　[ {{ $ndaUnDoneTask->project->name }} ]</option>
-                                @endforeach
-                                <option disabled>-- 機密保持契約書 作成済み --</option>
-                                @foreach($ndaDoneTasks as $ndaDoneTask)
-                                <option value="{{ $ndaDoneTask->id }}">* {{ $ndaDoneTask->name }}　[ {{ $ndaDoneTask->project->name }} ]</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+                        </dd>
+                    </dl>
                     <!-- 担当者 -->
-                    <div class="item-name-wrapper">
-                        <div class="item-name-wrapper__item-name">
+                    <dl>
+                        <dt>
                             担当者
+                        </dt>
+                        <dd>
+                        <div class="select-container">
+                            <div class="select-container__wrapper select-plusicon">
+                                <select class="select-container__wrapper__select" name='companyUser_id'>
+                                    <option disabled selected></option>
+                                    @foreach($companyUsers as $companyUser)
+                                    <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
+                                    @endforeach                            
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="select-container">
-                        <div class="select-container__wrapper select">
-                            <select class="select-container__wrapper__select" name='companyUser_id'>
-                                <option disabled selected></option>
-                                @foreach($companyUsers as $companyUser)
-                                <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
-                                @endforeach                            
-                            </select>
-                        </div>
-                    </div>
+                        </dd>
+                    </dl>
                     <!-- パートナー -->
-                    <div class="item-name-wrapper">
-                        <div class="item-name-wrapper__item-name">
+                    <dl class="last">
+                        <dt>
                             パートナー
+                        </dt>
+                        <dd>
+                        <div class="select-container">
+                            <div class="select-container__wrapper select-plusicon">
+                                <select class="select-container__wrapper__select" name='companyUser_id'>
+                                    <option disabled selected></option>
+                                    @foreach($companyUsers as $companyUser)
+                                    <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
+                                    @endforeach                            
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="select-container">
-                        <div class="select-container__wrapper select">
-                            <select class="select-container__wrapper__select" name='partner_id'>
-                                <option disabled selected></option>
-                                @foreach($asignedPartners as $asignedPartner)
-                                <option value="{{ $asignedPartner->id }}">{{ $asignedPartner->name }}</option>
-                                @endforeach
-                                @foreach($unAsignedPartners as $unAsignedPartner)
-                                <option value="{{ $unAsignedPartner->id }}">{{ $unAsignedPartner->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <!-- 作成ボタン -->
-                    <div class="button-container">
-                        <button type="submit">作成</button>
-                    </div>
+                        </dd>
+                    </dl>
+                    
+                </div>
+
+                <!-- 作成ボタン -->
+                <div class="button-container">
+                    <button type="submit">作成</button>
                 </div>
             </form>
         </div>
