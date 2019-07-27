@@ -158,24 +158,6 @@
                     <td>¥{{ $project->project->budget }}</td>
                 </tr>
                 @endforeach
-                <tr>
-                    <td>test</td>
-                </tr>
-                <tr>
-                    <td>test</td>
-                </tr>
-                <tr>
-                    <td>test</td>
-                </tr>
-                <tr>
-                    <td>test</td>
-                </tr>
-                <tr>
-                    <td>test</td>
-                </tr>
-                <tr>
-                    <td>test</td>
-                </tr>
             </tbody>
             
         </table>
@@ -246,19 +228,6 @@
                     <td>¥{{ $task->task->price }}</td>
                 </tr>
                 @endforeach
-                <tr>
-                    <td>test</td>
-                </tr>                <tr>
-                    <td>test</td>
-                </tr>                <tr>
-                    <td>test</td>
-                </tr>                <tr>
-                    <td>test</td>
-                </tr>                <tr>
-                    <td>test</td>
-                </tr>                <tr>
-                    <td>test</td>
-                </tr>
             </tbody>
             
         </table>
