@@ -12,10 +12,19 @@ const mix = require('laravel-mix');
  */
 
 mix.js([
+   //JQuery
+
+   //company
    'resources/js/app.js',
+   'resources/js/company/dashboad/index.js',
    'resources/js/company/project/index.js',
    'resources/js/company/project/create.js',
    'resources/js/company/project/show.js',
+   'resources/js/company/task/index.js',
+   'resources/js/company/document/index.js',
+
+   //partner
+   'resources/js/partner/dashboad/index.js',
 ],'public/js/app.js')
 
 

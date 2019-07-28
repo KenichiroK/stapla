@@ -178,7 +178,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">¥{{ $task->price }}</td>
+                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">¥{{ number_format($task->price) }}</td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><button><a href="">完了</a></button></td>
                         </tr>
                         @endforeach
@@ -186,8 +186,7 @@
                         <!-- Show More部分 -->
                         <div class="task-container__wrapper__table-wrapper__more">
                             <div class="task-container__wrapper__table-wrapper__more__area">
-                                <!-- <p @click="showMoreTask(4)" class="task-container__wrapper__table-wrapper__more__area__showmore" >Show More</p> -->
-                                <p class="task-container__wrapper__table-wrapper__more__area__showmore" >もっと見る</p>
+                                <p id="task-index_showmore-btn" class="task-container__wrapper__table-wrapper__more__area__showmore" >もっと見る</p>
                             </div>
                         </div>
                     </div>

@@ -210,7 +210,7 @@
                         <!-- Show More部分 -->
                         <div class="more-container">
                             <div class="more-container__wrapper">
-                                <a class="more-container__wrapper__showmore" href="#">Show More</a>
+                                <p id="invoiceShowMoreBtn" class="more-container__wrapper__showmore">Show More</p>
                             </div>
                         </div>
                         </div>
@@ -225,18 +225,18 @@
                     </div>
                     <div class="main-container__wrapper__table-container">
                         <div class="main-container__wrapper__table-container__wrapper">
-                            <table class="invoice-table">
-                                <tr class="invoice-table__head-row">
-                                    <th class="invoice-table__head-row__table-header">ステータス</th>
-                                    <th class="invoice-table__head-row__table-header">タスク</th>
-                                    <th class="invoice-table__head-row__table-header">請求日</th>
-                                    <th class="invoice-table__head-row__table-header">担当者</th>
-                                    <th class="invoice-table__head-row__table-header">金額</th>
-                                    <th class="invoice-table__head-row__table-header">作成</th>
+                            <table class="order-table">
+                                <tr class="order-table__head-row">
+                                    <th class="order-table__head-row__table-header">ステータス</th>
+                                    <th class="order-table__head-row__table-header">タスク</th>
+                                    <th class="order-table__head-row__table-header">請求日</th>
+                                    <th class="order-table__head-row__table-header">担当者</th>
+                                    <th class="order-table__head-row__table-header">金額</th>
+                                    <th class="order-table__head-row__table-header">作成</th>
                                 </tr>
                                 @foreach($purchaseOrders as $purchaseOrder)
-                                <tr class="invoice-table__data-row">
-                                    <td class="invoice-table__data-row__table-data">
+                                <tr class="order-table__data-row">
+                                    <td class="order-table__data-row__table-data">
                                         @if($purchaseOrder->status === 0)
                                             未対応
                                         @elseif($purchaseOrder->status === 1)
@@ -247,15 +247,15 @@
                                             完了
                                         @endif
                                     </td>
-                                    <td class="invoice-table__data-row__table-data">{{ $purchaseOrder->task_name }}</td>
-                                    <td class="invoice-table__data-row__table-data">{{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</td>
-                                    <td class="invoice-table__data-row__table-data">
+                                    <td class="order-table__data-row__table-data">{{ $purchaseOrder->task_name }}</td>
+                                    <td class="order-table__data-row__table-data">{{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</td>
+                                    <td class="order-table__data-row__table-data">
                                         {{ $purchaseOrder->company_user_name }}
                                     </td>
-                                    <td class="invoice-table__data-row__table-data">{{ $purchaseOrder->task->price }}</td>
-                                    <td class="invoice-table__data-row__table-data">
-                                        <div class="invoice-table__data-row__table-data__create-container">
-                                            <div class="invoice-table__data-row__table-data__create-container__create">
+                                    <td class="order-table__data-row__table-data">{{ $purchaseOrder->task->price }}</td>
+                                    <td class="order-table__data-row__table-data">
+                                        <div class="order-table__data-row__table-data__create-container">
+                                            <div class="order-table__data-row__table-data__create-container__create">
                                                 @if($purchaseOrder->status === 3)
                                                     <a href="document/invoice/create">詳細</a>
                                                 @else
@@ -270,7 +270,7 @@
                             <!-- Show More部分 -->
                             <div class="more-container">
                                 <div class="more-container__wrapper">
-                                    <a class="more-container__wrapper__showmore" href="#">Show More</a>
+                                    <p id="orderShowMoreBtn" class="more-container__wrapper__showmore">Show More</p>
                                 </div>
                             </div>
                         </div>
@@ -285,18 +285,18 @@
                     </div>
                     <div class="main-container__wrapper__table-container">
                         <div class="main-container__wrapper__table-container__wrapper">
-                            <table class="invoice-table">
-                                <tr class="invoice-table__head-row">
-                                    <th class="invoice-table__head-row__table-header">ステータス</th>
-                                    <th class="invoice-table__head-row__table-header">タスク</th>
-                                    <th class="invoice-table__head-row__table-header">請求日</th>
-                                    <th class="invoice-table__head-row__table-header">担当者</th>
-                                    <th class="invoice-table__head-row__table-header">金額</th>
-                                    <th class="invoice-table__head-row__table-header">作成</th>
+                            <table class="nda-table">
+                                <tr class="nda-table__head-row">
+                                    <th class="nda-table__head-row__table-header">ステータス</th>
+                                    <th class="nda-table__head-row__table-header">タスク</th>
+                                    <th class="nda-table__head-row__table-header">請求日</th>
+                                    <th class="nda-table__head-row__table-header">担当者</th>
+                                    <th class="nda-table__head-row__table-header">金額</th>
+                                    <th class="nda-table__head-row__table-header">作成</th>
                                 </tr>
                                 @foreach($ndas as $nda)
-                                <tr class="invoice-table__data-row">
-                                    <td class="invoice-table__data-row__table-data">
+                                <tr class="nda-table__data-row">
+                                    <td class="nda-table__data-row__table-data">
                                         @if($nda->status === 0)
                                             未対応
                                         @elseif($nda->status === 1)
@@ -307,17 +307,17 @@
                                             完了
                                         @endif
                                     </td>
-                                    <td class="invoice-table__data-row__table-data">{{ $nda->task->name }}</td>
-                                    <td class="invoice-table__data-row__table-data">{{ explode(' ', $nda->task->ended_at)[0] }}</td>
-                                    <td class="invoice-table__data-row__table-data">
+                                    <td class="nda-table__data-row__table-data">{{ $nda->task->name }}</td>
+                                    <td class="nda-table__data-row__table-data">{{ explode(' ', $nda->task->ended_at)[0] }}</td>
+                                    <td class="nda-table__data-row__table-data">
                                         @foreach($nda->task->taskCOmpanies as $taskCompany)
                                             {{ $taskCompany->companyUser->name }}
                                         @endforeach
                                     </td>
-                                    <td class="invoice-table__data-row__table-data">{{ $nda->task->price }}</td>
-                                    <td class="invoice-table__data-row__table-data">
-                                        <div class="invoice-table__data-row__table-data__create-container">
-                                            <div class="invoice-table__data-row__table-data__create-container__create">
+                                    <td class="nda-table__data-row__table-data">{{ $nda->task->price }}</td>
+                                    <td class="nda-table__data-row__table-data">
+                                        <div class="nda-table__data-row__table-data__create-container">
+                                            <div class="nda-table__data-row__table-data__create-container__create">
                                                 @if($nda->status === 3)
                                                     <a href="document/invoice/create">詳細</a>
                                                 @else
@@ -332,7 +332,7 @@
                             <!-- Show More部分 -->
                             <div class="more-container">
                                 <div class="more-container__wrapper">
-                                    <a class="more-container__wrapper__showmore" href="#">Show More</a>
+                                    <p id="ndaShowMoreBtn" class="more-container__wrapper__showmore">Show More</p>
                                 </div>
                             </div>
                         </div>
