@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="forget_password_wrapper">
-                    <a href="{{ route('password.request') }}">パスワードをお忘れの場合はこちら</a>
+                    <a href="#">パスワードをお忘れの場合はこちら</a>
                 </div>
                 
             </div>
