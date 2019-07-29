@@ -117,6 +117,10 @@
 					.photoimgbox{
 						width: 31px;
 						margin: 0 auto 3px;
+
+						img {
+							border-radius: 50%;
+						}
 					}            
 				}
 				&__name{
