@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
           NdasTableSeeder::class,
           PurchaseOrdersTableSeeder::class,
           InvoicesTableSeeder::class,
+          ProjectAccountingsTableSeeder::class,
+          ProjectSuperiorsTableSeeder::class,
         ]);
         
     }
