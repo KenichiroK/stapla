@@ -85,17 +85,29 @@
                         <li class="item-list project-container__content__list__name">{{ $project->name }}</li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="../../../images/photoimg.png" alt="担当者プロフィール画像">
+                                <img src="/{{ str_replace('public/', 'storage/', $project->projectCompanies[0]->companyUser->picture) }}" alt="担当者プロフィール画像">
                             </div>
-                            <p>{{ $project->company->representive_name }}</p>
+                            @if ($project->projectCompanies->count() > 1) 
+                                <p>
+                                    {{ $project->projectCompanies[0]->companyUser->name }}
+                                    他{{ $project->projectCompanies->count() - 1 }}名
+                                </p>
+                            @else
+                                <p>{{ $project->projectCompanies[0]->companyUser->name }}</p>
+                            @endif 
                         </li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="../../../images/photoimg.png" alt="担当者プロフィール画像">
+                                <img src="/{{ str_replace('public/', 'storage/', $project->projectPartners[0]->partner->picture) }}" alt="担当者プロフィール画像">
                             </div>
-                            @foreach( $project->projectPartners as $projectPartner )
-                            <p>{{ $projectPartner->partner->name }}</p>
-                            @endforeach
+                            @if ($project->projectPartners->count() > 1) 
+                                <p>
+                                    {{ $project->projectPartners[0]->partner->name }}
+                                    他{{ $project->projectPartners->count() - 1 }}名
+                                </p>
+                            @else
+                                <p>{{ $project->projectPartners[0]->partner->name }}</p>
+                            @endif 
                         </li>
                         <li>
                             <span class="txt-underline">{{ $task_count_arr[$loop->index] }}</span>件
