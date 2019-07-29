@@ -12,34 +12,77 @@
 			&__title {
 				font-size: 28px;
 				font-weight: bold;
+				font-family: 'Source Sans Pro';
+				margin-top: 7px;
+				color: #43425D;
 			}
-			.search-project {
-				width: 540px;
+			.serch-wrp{
+				.search-project {
+					width: 540px;
+					height: 45px;
+					box-shadow: none;
+					border-color: #ffffff;
+					padding-left: 58px;
+				}
+				span{
+					width: 16px;
+					left: 32px;
+					top: 9px;
+					position: absolute;
+				}
 			}
-			.button {
-				background-color: #43425D;
-				font-weight: bold;
-				border-radius:100px;
-				padding: 4px 16px;
-				color:#fff;
+			.project-wrp{
+				margin-top: 5px;
+				.button {
+					background-color: #43425D;
+					font-weight: bold;
+					border-radius:100px;
+					padding: 10px 12px;
+					color:#fff;
+					font-size: 12px;
+					height: 40px;
+				}
+				.button:hover {
+					opacity: 0.8;
+					transition: 0.3s;
+				}
+
 			}
-			.button:hover {
-				opacity: 0.8;
-				transition: 0.3s;
-			}
+			
+			
 		}         
+	}
+	ul.tab-button{
+		border-bottom: 1px solid #43425D;
+		margin-top: 60px;
+		margin-bottom: 86px;
+		li{
+			display: inline-block;
+			&.all{
+				border-bottom: 4px solid #43425D;
+				padding: 0 32px 16px;
+				a{
+					font-weight: bold;
+				}
+			}
+			&.done{
+				padding: 0 32px 16px;
+			}
+			a{
+				color: #43425D;
+				font-size: 16px;
+				&:hover{
+					text-decoration: none;
+				}
+			}
+		}
 	}
 	.project-container{
 		margin-top:32px;
-		padding:16px 16px 0 16px;
+		padding:20px 16px 0 16px;
 		background-color: #fff;
 		&__item{
-			margin-top:16px;
-			&__title{
-				font-size:16px;
-				padding-bottom:16px;
-				font-weight: bold;
-			}
+			// margin-top:16px;
 			&__list{
 				height:48px;
 				display: flex;
@@ -69,10 +112,16 @@
 				li{
 					text-align: center;
 					width: 140px;
-					font-size: 12px;             
+					font-size: 12px;
+					color: #4D4F5C;
+					.photoimgbox{
+						width: 31px;
+						margin: 0 auto 3px;
+					}            
 				}
 				&__name{
 					font-weight: bold;
+					font-size: 14px !important;
 				}
 			}
 			&__list:hover{
@@ -82,11 +131,21 @@
 				text-decoration: none;   
 			}
 			&__showmore{
-				padding:56px 0;
+				padding:30px 0;
 				&__btn{
 					text-align: center;
 					cursor: pointer;
 					font-weight: bold;
+					margin-bottom: 0;
+					position: relative;
+					a{
+						color: #43425D;
+					}
+					span{
+						margin-left: 1px;
+						position: absolute;
+						top: -3px;
+					}
 				}
 			}
 		}
@@ -94,4 +153,7 @@
 			margin-bottom:0;
 		}
 	}
+}
+.txt-underline{
+	text-decoration: underline;
 }
