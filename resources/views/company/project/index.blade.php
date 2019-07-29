@@ -45,23 +45,30 @@
         <div class="top-container">
             <h1 class="top-container__title">プロジェクト</h1>
             <div>
-                <p class="control has-icons-left">
-                    <input class="search-project input" type="text" placeholder="Search project">
-                    <span class="icon is-small is-left">
-                    <i class="fas fa-search"></i>
+                <p class="control has-icons-left serch-wrp">
+                    <input class="search-project input" type="text" placeholder="プロジェクトを検索">
+                    <span class="">
+                    <!-- <i class="fas fa-search"></i> -->
+                    <img src="../../../images/searchicon.png" alt="serch">
                     </span>
                 </p>
             </div>
-            <div class="control">
+            <div class="control project-wrp">
                 <a href="project/create"><button class="button">プロジェクト作成</button></a>
             </div>
         </div>
 
+        <ul id="tab-button" class="tab-button">
+            <li class="all"><a href="#tab01">プロジェクト</a></li>
+            <li class="done"><a href="#tab02">完了したプロジェクト</a></li>
+        </ul>
+
         <div class="project-container">
-            <h2 class="project-container__item__title">プロジェクト</h2>
             <div class="project-container__item">
                 <ul class="project-container__item__list">
-                    <li>プロジェクト</li>
+                    <li>プロジェクト
+                        <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
+                    </li>
                     <li>担当者</li>
                     <li>パートナー</li>
                     <li>タスク</li>
@@ -77,15 +84,21 @@
                     <ul class="item-list project-container__content__list" >
                         <li class="item-list project-container__content__list__name">{{ $project->name }}</li>
                         <li>
+                            <div class="photoimgbox">
+                                <img src="../../../images/photoimg.png" alt="担当者プロフィール画像">
+                            </div>
                             <p>{{ $project->company->representive_name }}</p>
                         </li>
                         <li>
+                            <div class="photoimgbox">
+                                <img src="../../../images/photoimg.png" alt="担当者プロフィール画像">
+                            </div>
                             @foreach( $project->projectPartners as $projectPartner )
                             <p>{{ $projectPartner->partner->name }}</p>
                             @endforeach
                         </li>
                         <li>
-                            {{ $task_count_arr[$loop->index] }}件
+                            <span class="txt-underline">{{ $task_count_arr[$loop->index] }}</span>件
                         </li>
                         <li>{{ $project->ended_at->format('Y年m月d日 H時') }}</li>
                         <li>¥{{ number_format($project->budget) }}</li>
@@ -96,7 +109,10 @@
             </div>
 
             <div class="project-container__content__showmore">
-                <p id="showmore_btn" class="project-container__content__showmore__btn">もっと見る<i class="arrow fas fa-angle-down"></i></p>
+                <p id="showmore_btn" class="project-container__content__showmore__btn"><a>もっと見る</a>
+                    <!-- <i class="arrow fas fa-angle-down"></i> -->
+                    <span><img src="../../../images/arrowdown.png"></span>
+                </p>
             </div>
         </div> 
     </div>
