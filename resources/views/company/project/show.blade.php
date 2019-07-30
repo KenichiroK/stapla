@@ -77,7 +77,7 @@
     <div class="main__container__wrapper">
         <div>
             <div class="top-container">
-                <h1 class="top-container__title">{{ $projects->name }}詳細</h1>
+                <h1 class="top-container__title">{{ $project->name }}詳細</h1>
                 <a class="top-container__edit-btn" href="#"><div>編集</div></a>
             </div>
 
@@ -105,18 +105,22 @@
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細</div><p class="detail-container__list__item__content desc-item">{{ $projects->detail }}</p></li>
                     <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">担当者</div>
                         <div class="detail-container__list__item__content">
+                            @foreach($project->projectCompanies as $projectCompany)
                             <div class="staff-item">
-                                <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
-                                <p class="name">{{ $projects->company->representive_name }}</p>
+                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectCompany->companyUser->picture) }}" alt=""></div>
+                                <p class="name">{{ $projectCompany->companyUser->name }}</p>
                             </div>
+                            @endforeach
                         </div> 
                     </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">パートナー</div>
                         <div class="detail-container__list__item__content">
-                            <div class="staff-item">
-                                <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
-                                <p class="name">永瀬達也</p>
-                            </div>
+                            @foreach($project->projectPartners as $projectPartner)
+                                <div class="staff-item">
+                                    <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectPartner->partner->picture) }}" alt=""></div>
+                                    <p class="name">{{ $projectPartner->partner->name }}</p>
+                                </div>
+                            @endforeach
                             <div class="staff-item">
                                 <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
                                 <p class="name">永瀬達也</p>
@@ -133,8 +137,8 @@
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
                         <div class="period__wrapper">
                             <div class="period__wrapper__container">
-                                <div class="period__wrapper__container__start">開始日<span class="period__wrapper__container__start__date">{{ $projects->started_at->format('Y年m月d日 H:i') }}</span></div>
-                                <div class="period__wrapper__container__end">終了日<span class="period__wrapper__container__end__date">{{ $projects->ended_at->format('Y年m月d日 H:i') }}</span></div>
+                                <div class="period__wrapper__container__start">開始日<span class="period__wrapper__container__start__date">{{ $project->started_at->format('Y年m月d日 H:i') }}</span></div>
+                                <div class="period__wrapper__container__end">終了日<span class="period__wrapper__container__end__date">{{ $project->ended_at->format('Y年m月d日 H:i') }}</span></div>
                             </div>
                         </div>
                     </li>
