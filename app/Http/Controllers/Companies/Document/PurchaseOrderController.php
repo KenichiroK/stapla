@@ -41,7 +41,7 @@ class PurchaseOrderController extends Controller
 
         $purchaseOrder = new PurchaseOrder;
         $purchaseOrder->company_id = $company->id;
-        $purchaseOrder->companyUser_id       = $request->company_user_id;
+        $purchaseOrder->companyUser_id       = $request->companyUser_id;
         $purchaseOrder->partner_id           = $request->partner_id;
         $purchaseOrder->task_id              = $request->task_id;
         $purchaseOrder->status               = 0;
@@ -51,7 +51,7 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->company_prefecture   = $company->address_prefecture;
         $purchaseOrder->company_city         = $company->address_city;
         $purchaseOrder->company_building     = $company->address_building;
-        $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->company_user_id)->name;
+        $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->companyUser_id)->name;
         $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
         $purchaseOrder->task_name            = $request->task_name;
         $purchaseOrder->task_delivery_format = Task::findOrFail($request->task_id)->delivery_format;
@@ -60,7 +60,7 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->task_tax             = Task::findOrFail($request->task_id)->tax;
         $purchaseOrder->save();
 
-        return redirectTo()->route('compnay.document.purchaseOrder, [$purchaseOrder->id]');
+        return redirect()->route('company.document.purchaseOrder.show', [$purchaseOrder->id]);
     }
 
     public function show($id)

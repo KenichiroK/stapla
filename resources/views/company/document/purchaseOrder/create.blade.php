@@ -158,14 +158,14 @@ const calculateSumPrice = (e) => {
 					<dt>担当者</dt>
 					<dd>
 						<div class="selectbox-container">
-							<select name="company_user_id">
+							<select name="companyUser_id">
 								<option value="" hidden></option>
 								@foreach($companyUsers as $companyUser)
 									<option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
 								@endforeach
-								@if ($errors->has('company_user_id'))
+								@if ($errors->has('companyUser_id'))
 									<div>
-										<strong style='color: #e3342f;'>{{ $errors->first('company_user_id') }}</strong>
+										<strong style='color: #e3342f;'>{{ $errors->first('companyUser_id') }}</strong>
 									</div>					
 								@endif
 							</select>

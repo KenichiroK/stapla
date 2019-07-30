@@ -29,6 +29,6 @@ class PurchaseOrder extends BaseUuid
 
     public function companyUserAccountSetting()
     {
-        return $this->hasOne('App\Models\CompanyUserAcountSetting', 'company_user_id', 'id');
+        return $this->hasOne('App\Models\CompanyUserAcountSetting', 'companyUser_id', 'id');
     }
 }
