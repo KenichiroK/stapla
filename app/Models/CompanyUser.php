@@ -38,5 +38,25 @@ class CompanyUser extends BaseUuid
     {
         return $this->hasOne('App\Models\CompanyUserAcountSetting', 'user_id', 'id');
     }
+
+    public function ProjectSuperiors()
+    {
+        return $this->hasMany('App\Models\ProjectSuperior', 'user_id', 'id');
+    }
+
+    public function ProjectAccountings()
+    {
+        return $this->hasMany('App\Models\ProjectAccounting', 'user_id', 'id');
+    }
+
+    public function taskSuperior()
+    {
+        return $this->hasOne('App\Models\Task', 'superior_id', 'id');
+    }
+
+    public function taskAccounting()
+    {
+        return $this->hasOne('App\Models\Task', 'accounting_id', 'id');
+    }
     
 }

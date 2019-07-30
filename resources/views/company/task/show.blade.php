@@ -99,14 +99,25 @@
                     上長
                 </dt>
                 <dd class="flex01">
-                @foreach($task->taskCompanies as $taskCompany)
                     <div class="person-item">
                         <div class="imgbox">
                             <img src="/{{ str_replace('public/', 'storage/', $taskCompany->companyUser->picture) }}" alt="上長プロフィール画像">
                         </div>
-                        <p>{{ $taskCompany->companyUser->name }}</p>
+                        <p>{{ $task->superior->name }}</p>
                     </div>
-                @endforeach
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    経理
+                </dt>
+                <dd class="flex01">
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="/{{ str_replace('public/', 'storage/', $taskCompany->companyUser->picture) }}" alt="上長プロフィール画像">
+                        </div>
+                        <p>{{ $task->accounting->name }}</p>
+                    </div>
                 </dd>
             </dl>
             <dl class="term">

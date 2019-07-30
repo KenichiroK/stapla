@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Companies;
 
 use App\Models\Task;
+use App\Models\Project;
 use App\Models\Partner;
 use App\Models\CompanyUser;
 use App\Models\TaskCompany;
@@ -45,12 +46,12 @@ class TaskController extends Controller
     {
         $user = Auth::user();
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
-        $tasks = Task::where('company_id', $company_user->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+        $projects = Project::where('company_id', $company_user->company_id)->get();
        
         
         $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
         $partners = Partner::where('company_id', $company_user->company_id)->get();
-        return view('company/task/create', compact('tasks','companyUsers', 'partners', 'company_user'));
+        return view('company/task/create', compact('projects','companyUsers', 'partners', 'company_user'));
     }
     
     public function store(Request $request)
@@ -59,6 +60,8 @@ class TaskController extends Controller
             'company_user_id' => 'required',
             'project_id'      => 'required',
             'partner_id'      => 'required',
+            'superior_id'     => 'required',
+            'accounting_id'   => 'required',
             'task_name'       => 'required',
             'task_content'    => 'required',
             'price'           => 'required',
@@ -71,6 +74,8 @@ class TaskController extends Controller
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
         $task->company_id      = $company_id;
+        $task->superior_id     = $request->superior_id;
+        $task->accounting_id   = $request->accounting_id;
         $task->name            = $request->task_name;
         $task->content         = $request->task_content;
         $task->started_at      = '2019-06-27 12:00:00';

@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
           CompanyUserAuthsTableSeeder::class,
           CompanyUsersTableSeeder::class,
           ProjectsTableSeeder::class,
+          ProjectAccountingsTableSeeder::class,
+          ProjectSuperiorsTableSeeder::class,
           TasksTableSeeder::class,
           TaskRoleRelationsTableSeeder::class,
           PartnersTableSeeder::class,
@@ -24,8 +26,6 @@ class DatabaseSeeder extends Seeder
           NdasTableSeeder::class,
           PurchaseOrdersTableSeeder::class,
           InvoicesTableSeeder::class,
-          ProjectAccountingsTableSeeder::class,
-          ProjectSuperiorsTableSeeder::class,
         ]);
         
     }
