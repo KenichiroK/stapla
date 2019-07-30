@@ -178,3 +178,39 @@
         }
     }
 }
+
+// actionButton
+.actionButton {
+    margin: 24px 0;
+    text-align: center;
+
+    .done {
+        border-radius: 100px;
+        background-color: #43425D;
+        color: #fff;
+        font-weight: bold;
+        padding: 8px 30px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+    .undone {
+        border-radius: 100px;
+        background-color: #fff;
+        color: #43425D;
+        font-weight: bold;
+        padding: 8px 24px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+    button:hover {
+        opacity: 0.7;
+        transition: .3s;
+    }
+
+    .non-action-text {
+        color: #ccc;
+        margin-bottom: 0;
+    }
+}

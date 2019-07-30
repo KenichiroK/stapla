@@ -4,18 +4,22 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Task::class, function (Faker $faker) {
     $project = App\Models\Project::all()->random();
+    $staff = App\Models\ProjectCompany::where('project_id', $project->id)->first();
+    $partner = App\Models\ProjectPartner::where('project_id', $project->id)->first();
     $superior = App\Models\ProjectSuperior::where('project_id', $project->id)->first();
     $accounting = App\Models\ProjectAccounting::where('project_id', $project->id)->first();
     return [
         'company_id'        => $project->company_id,
         'project_id'        => $project->id,
+        'staff_id'          => $staff->user_id,
+        'partner_id'        => $partner->user_id,
         'superior_id'       => $superior->user_id,
         'accounting_id'     => $accounting->user_id,
         'name'              => $faker->randomElement(['要件定義', '調査', 'コーディング']),
         'content'           => $faker->sentence,
         'started_at'        => $faker->dateTimeThisDecade,
         'ended_at'          => $faker->dateTimeThisDecade,
-        'status'            => $faker->numberBetween($min = 0, $max = 10),
+        'status'            => $faker->numberBetween($min = 1, $max = 13),
         'purchaseorder'     => true,
         'invoice'           => true,
         'budget'            => $faker->randomElement([10000, 50000, 100000]),

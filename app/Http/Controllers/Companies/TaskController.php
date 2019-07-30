@@ -23,7 +23,7 @@ class TaskController extends Controller
         $tasks = Task::where('company_id', $company_user->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
             
         $status_arr = [];
-        for ($i = 0; $i < 11; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             $status_arr[strval($i)] = 0;
         }
         for ($i = 0; $i < $tasks->count(); $i++) {
@@ -31,7 +31,8 @@ class TaskController extends Controller
         }
 
         $statusName_arr = [
-            '下書き', '提案中', '依頼前', '依頼中', '開始前','作業中', '提出前', '修正中', '完了', 'キャンセル'
+            '下書き', 'タスク上長確認前', 'タスク上長確認中', 'タスクパートナー依頼前', 'タスクパートナー依頼中', '発注書作成中', '発注書作成完了', '発注書上長確認中', 
+            '発注書パートナー依頼前', '発注書パートナー確認中', '作業中', '請求書依頼中', '請求書確認中', '完了', 'キャンセル', 
         ];
 
         return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'company_user'));

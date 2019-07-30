@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/task/show.css') }}">
+<link rel="stylesheet" href="{{ mix('css/partner/task/show.css') }}">
 @endsection
 
 @section('header-profile')
@@ -89,12 +89,11 @@
                     担当者
                 </dt>
                 <dd class="flex01">
-                @foreach($task->taskCompanies as $taskCompany)
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $taskCompany->companyUser->picture) }}" alt="担当者プロフィール画像">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->staff->picture) }}" alt="担当者プロフィール画像">
                         </div>
-                        <p>{{ $taskCompany->companyUser->name }}</p>
+                        <p>{{ $task->staff->name }}</p>
                     </div>
                 @endforeach
                 </dd>
@@ -106,7 +105,7 @@
                 <dd class="flex01">
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $taskCompany->companyUser->picture) }}" alt="上長プロフィール画像">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->superior->picture) }}" alt="上長プロフィール画像">
                         </div>
                         <p>{{ $task->superior->name }}</p>
                     </div>
@@ -119,7 +118,7 @@
                 <dd class="flex01">
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $taskCompany->companyUser->picture) }}" alt="上長プロフィール画像">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->accounting->picture) }}" alt="上長プロフィール画像">
                         </div>
                         <p>{{ $task->accounting->name }}</p>
                     </div>
@@ -161,14 +160,12 @@
                     パートナー
                 </dt>
                 <dd class="flex01">
-                @foreach($task->taskPartners as $taskPartner)
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $taskCompany->companyUser->picture) }}" alt="パートナープロフィール画像">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="パートナープロフィール画像">
                         </div>
-                        <p>{{ $taskPartner->partner->name }}</p>
+                        <p>{{ $task->partner->name }}</p>
                     </div>
-                @endforeach
                 </dd>
             </dl>
             <dl>
@@ -211,28 +208,64 @@
                     @if(($task->status) === 0)
                         下書き
                     @elseif(($task->status) === 1)
-                        提案中
+                        タスク上長確認前
                     @elseif(($task->status) === 2)
-                        依頼前
+                        タスク上長確認中
                     @elseif(($task->status) === 3)
-                        依頼中
+                        タスクパートナー依頼前
                     @elseif(($task->status) === 4)
-                        開始前
+                        タスクパートナー依頼中
                     @elseif(($task->status) === 5)
-                        作業中
+                        発注書作成中
                     @elseif(($task->status) === 6)
-                        提出前
+                        発注書作成完了
                     @elseif(($task->status) === 7)
-                        修正中
+                        発注書上長確認中
                     @elseif(($task->status) === 8)
-                        完了
+                        発注書パートナー依頼前
                     @elseif(($task->status) === 9)
+                        発注書パートナー確認中
+                    @elseif(($task->status) === 10)
+                        作業中
+                    @elseif(($task->status) === 11)
+                        請求書依頼中
+                    @elseif(($task->status) === 12)
+                        請求書確認中
+                    @elseif(($task->status) === 13)
+                        完了
+                    @elseif(($task->status) === 14)
                         キャンセル
                     @endif
                 </dd>
             </dl>
         </div>
         
+        <div class="actionButton">
+            @if($task->status === 4 && $task->partner->id === $partner->id)
+                <form action="" method="POST">
+                    <input type="hidden" name="status" value="3">
+                    <button type="submit" class="undone">タスク依頼を受けない</button>
+                </form>
+                <form action="" method="POST">
+                    <input type="hidden" name="status" value="5">
+                    <button type="submit" class="done">タスク依頼を受ける</button>
+                </form>
+            @elseif($task->status === 9 && $task->partner->id === $partner->id)
+                <form action="" method="POST">
+                    <input type="hidden" name="status" value="8">
+                    <button type="submit" class="undone">発注書の依頼を受けない</button>
+                </form>
+                <form action="" method="POST">
+                    <input type="hidden" name="status" value="10">
+                    <button type="submit" class="done">発注書を確認する</button>
+                </form>
+            @elseif($task->status === 11 && $task->partner->id === $partner->id)
+                <a href="#" class="done">請求書を作成する</a>
+            @else
+                <p class="non-action-text">必要なアクションはありません</p>
+            @endif
+        </div>
+
     </div>
 </div>
 @endsection

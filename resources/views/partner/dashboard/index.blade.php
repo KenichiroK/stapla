@@ -209,23 +209,33 @@
                         @if($task->task->status == 0)
                             <p class="default">下書き</p>
                         @elseif ($task->task->status == 1)
-                            <p class="default">提案中</p>
+                            <p class="default">タスク上長確認前</p>
                         @elseif ($task->task->status == 2)
-                            <p class="default">依頼前</p>
+                            <p class="default">タスク上長確認中</p>
                         @elseif ($task->task->status == 3)
-                            <p class="default">依頼中</p>
+                            <p class="default">タスクパートナー依頼前</p>
                         @elseif ($task->task->status == 4)
-                            <p class="default">開始前</p>
+                            <p class="default">タスクパートナー依頼中</p>
                         @elseif ($task->task->status == 5)
-                            <p class="default">作業中</p>
+                            <p class="default">発注書作成中</p>
                         @elseif ($task->task->status == 6)
-                            <p class="default">提出前</p>
+                            <p class="default">発注書作成完了</p>
                         @elseif ($task->task->status == 7)
-                            <p class="default">修正中</p>
+                            <p class="default">発注書上長確認中</p>
                         @elseif ($task->task->status == 8)
+                            <p class="default">発注書パートナー依頼前</p>
+                        @elseif ($task->task->status == 9)
+                            <p class="default">発注書パートナー確認中</p>
+                        @elseif ($task->task->status == 10)
+                            <p class="default">作業中</p>
+                        @elseif ($task->task->status == 11)
+                            <p class="default">請求書依頼中</p>
+                        @elseif ($task->task->status == 12)
+                            <p class="default">請求書確認中</p>
+                        @elseif ($task->task->status == 13)
                             <p class="complete">完了</p>
-                        @else
-                            <p class="cancel">キャンセル</p>
+                        @elseif ($task->task->status == 14)
+                            <p class="default">キャンセル</p>
                         @endif
                     </td>
                     <td>¥{{ $task->task->price }}</td>
