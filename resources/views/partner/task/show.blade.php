@@ -242,25 +242,22 @@
         
         <div class="actionButton">
             @if($task->status === 4 && $task->partner->id === $partner->id)
-                <form action="" method="POST">
+                <form action="{{ url('partner/task/status') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="3">
                     <button type="submit" class="undone">タスク依頼を受けない</button>
                 </form>
-                <form action="" method="POST">
+                <form action="{{ url('partner/task/status') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="5">
                     <button type="submit" class="done">タスク依頼を受ける</button>
                 </form>
             @elseif($task->status === 9 && $task->partner->id === $partner->id)
-                <form action="" method="POST">
-                    <input type="hidden" name="status" value="8">
-                    <button type="submit" class="undone">発注書の依頼を受けない</button>
-                </form>
-                <form action="" method="POST">
-                    <input type="hidden" name="status" value="10">
-                    <button type="submit" class="done">発注書を確認する</button>
-                </form>
+                <a href="#" class="done">発注書を確認する</a>
             @elseif($task->status === 11 && $task->partner->id === $partner->id)
-                <a href="#" class="done">請求書を作成する</a>
+                <a href="partner/invoice/create" class="done">請求書を作成する</a>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif

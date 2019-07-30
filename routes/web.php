@@ -26,6 +26,8 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
 		// task
 		Route::get('/task/{id}', 'Partners\TaskController@show')->name('partner.task.show');
+		// task status change
+		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('task.status.change');
 		// profile
 		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
 		Route::post('profile', 'Partners\ProfileController@store')->name('partner.profile.store');
@@ -72,7 +74,10 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
         Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.create');
-        Route::get('/task/{id}', 'Companies\TaskController@show');
+		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
+
+		// task status change
+		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');
 		
 		// partner
 		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
