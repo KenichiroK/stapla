@@ -1,6 +1,7 @@
 @extends('company.index')
 
 @section('assets')
+<link rel="stylesheet" href="{{ mix('css/pdf/paper.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/document/purchaseOrder/show.css') }}">
 <script>
@@ -59,13 +60,11 @@ const setPreview = (input) => {
 
 @section('content')
 <div class="main-wrapper">
-    <div class="head-container">
-        <div class="title-container">
-            <h3>発注書</h3>
-        </div>
-        <div class="head-container__wrapper__print-btn-container">
-            <a class="button head-container__wrapper__print-btn-container__button">プリント</a>
-        </div>
+    <div class="title-container">
+        <h3>発注書</h3>
+    </div>
+    <div class="head-container__wrapper__print-btn-container">
+        <a id="print_btn" class="button head-container__wrapper__print-btn-container__button">Print</a>
     </div>
     
     <div class="document-container">
@@ -77,11 +76,11 @@ const setPreview = (input) => {
             <h4>{{ $purchaseOrder->partner_name }} 様</h4>
         </div>
 
-        <div class="company-container">
-            <div class="right">
-                <p class="text">下記の通り、発注します。</p>
-                <p class="name">件名： {{ $purchaseOrder->task_name }}</p>
-                <p class="date">納期： {{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</p>
+    <form action="">
+        
+        <div id="print" class="document-container A4 landscape">
+            <div class="title-container">
+                <h4>発注書</h4>
             </div>
 
             <div class="left">
