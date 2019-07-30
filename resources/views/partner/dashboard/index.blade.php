@@ -190,7 +190,10 @@
                 @foreach($tasks as $task)
                 <tr>
                     <td class="project_name">{{ $task->task->project->name }}</td>
-                    <td>{{ $task->task->name }}</td>
+                    <td>
+                        <a href="task/{{ $task->task->id }}">
+                            {{ $task->task->name }}</td>
+                        </a>
                     <td>
                         <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px">
                         @if ($task->task->taskPartners->count() > 1) 

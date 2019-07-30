@@ -24,6 +24,8 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::group(['middleware' => 'auth:partner'], function() {
 		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
+		// task
+		Route::get('/task/{id}', 'Partners\TaskController@show')->name('partner.task.show');
 		// profile
 		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
 		Route::post('profile', 'Partners\ProfileController@store')->name('partner.profile.store');
