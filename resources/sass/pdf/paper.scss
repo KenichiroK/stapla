@@ -1,0 +1,42 @@
+#print {
+    margin: 0;
+    font-family: "IPAexGothic", sans-serif;
+}
+.sheet {
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    page-break-after: always;
+}
+
+/** Paper sizes **/
+#print.A4 .sheet {
+    width: 210mm;
+    height: 296mm;
+}
+#print.A4.landscape .sheet {
+    width: 297mm;
+    height: 209mm;
+}
+
+/** Padding area **/
+.sheet.padding-10mm {
+    padding: 10mm;
+}
+
+/** For screen preview **/
+@media screen {
+body {
+    background: #e0e0e0;
+    height: 100%;
+}
+.sheet {
+    background: #ffffff;
+    /* margin: 5mm auto; */
+    padding: 5mm 0;
+}
+}
+.shrink{
+    zoom:84%;
+}

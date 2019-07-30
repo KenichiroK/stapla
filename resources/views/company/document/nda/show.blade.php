@@ -1,6 +1,7 @@
 @extends('company.index')
 
 @section('assets')
+<link rel="stylesheet" href="{{ mix('css/pdf/paper.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/document/nda/show.css') }}">
 @endsection
@@ -56,7 +57,7 @@
                 </div>
                 <!-- printボタン -->
                 <div class="head-container__wrapper__print-btn-container">
-                    <a href="" @click="download()" class="button head-container__wrapper__print-btn-container__button">プリント</a>
+                    <a id="print_btn" class="button head-container__wrapper__print-btn-container__button">プリント</a>
                 </div>
             </div>
         </div>
@@ -64,11 +65,11 @@
         <div class="main-container">
             <div class="main-container__wrapper">
                 <!-- pdf -->
-                <div id="print" class="A4 landscape">
+                <div id="print" class="A4 landscape shrink">
                     <div class="secrecy-container">
                         <div class="secrecy-container__wrapper">
                             <div class="pdf-container sheet">
-                                <div class="pdf-container__pdf">
+                                <div class="pdf-container__pdf sheet padding-10mm">
                                     <div class="pdf-container__pdf__contract-type">機密保持契約書</div>
 
                                     <div class="pdf-container__pdf__main">
