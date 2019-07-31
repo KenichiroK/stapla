@@ -29,7 +29,7 @@
                 <li><a href="/partner/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
                 <li><a href="#"><i class="fas fa-envelope"></i>プロジェクト</a></li>
                 <li><a href="#"  class="isActive"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/partner/invoice/create"><i class="fas fa-newspaper"></i>書類</a></li>
+                <li><a href="#"><i class="fas fa-newspaper"></i>書類</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
                 <li><a href="/partner/setting/invoice"><i class="fas fa-cog"></i>設定</a></li>
@@ -95,7 +95,6 @@
                         </div>
                         <p>{{ $task->staff->name }}</p>
                     </div>
-                @endforeach
                 </dd>
             </dl>
             <dl>
@@ -257,7 +256,7 @@
             @elseif($task->status === 9 && $task->partner->id === $partner->id)
                 <a href="#" class="done">発注書を確認する</a>
             @elseif($task->status === 11 && $task->partner->id === $partner->id)
-                <a href="partner/invoice/create" class="done">請求書を作成する</a>
+                <a href="/partner/invoice/create/{{ $task->id }}" class="done">請求書を作成する</a>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif

@@ -66,7 +66,7 @@
                 <div class="content">
                     <!-- ステータス各部分 -->
                     <ul class="parts-container">
-                    @for($i = 0; $i < 10; $i++)
+                    @for($i = 0; $i < 14; $i++)
                         <li class="parts-container__wrapper"> 
                             <!-- ステータス名表示 -->
                             <div class="parts-container__wrapper__textdisplayarea">

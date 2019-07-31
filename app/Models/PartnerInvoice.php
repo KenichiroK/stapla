@@ -8,7 +8,7 @@ class PartnerInvoice extends BaseUuid
 
     protected $fillable = [
         'partner_id', 'financial_institution', 'branch', 'deposit_type', 
-        'account_number', 'account_holder', 'mark'
+        'account_number', 'account_holder', 'mark_image'
     ];
 
     public function partner()

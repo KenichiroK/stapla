@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Partners\CreateInvoiceRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
+use App\Models\Task;
 use App\Models\Invoice;
 use App\Models\CompanyUser;
 use App\Models\Company;
@@ -30,14 +31,15 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
+        $task_id = $id;
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
         $company_id = $partner->company_id;
         $company = Company::findOrFail($company_id);
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
-        return view('/partner/document/invoice/create', compact('partner', 'companyUsers', 'company'));
+        return view('/partner/document/invoice/create', compact('partner', 'companyUsers', 'company', 'task_id'));
     }
 
     /**
@@ -55,6 +57,7 @@ class InvoiceController extends Controller
         $invoice = new Invoice;
         $invoice->company_id     = $company_id;
         $invoice->companyUser_id = $request->companyUser_id;
+        $invoice->task_id        = $request->task_id;
         $invoice->partner_id     = $partner->id;
         $invoice->project_name   = $request->project_name;
         $invoice->requested_at   = $request->requested_at;
@@ -97,6 +100,7 @@ class InvoiceController extends Controller
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
         $invoice = Invoice::findOrFail($id);
+        $task = Task::findOrFail($invoice->task_id);
         $total_sum = 0;
         if ($partner->id !== $invoice->partner_id) {
             return 'no data';
@@ -113,7 +117,7 @@ class InvoiceController extends Controller
             }
         }
 
-        return view('/partner/document/invoice/show', compact('partner', 'invoice', 'total_sum'));
+        return view('/partner/document/invoice/show', compact('partner', 'invoice', 'task', 'total_sum'));
     }
 
     /**
@@ -148,5 +152,14 @@ class InvoiceController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function send(Request $request)
+    {
+        $task = Task::findOrFail($request->task_id);
+        $task->status = 12;
+        $task->save();
+
+        return redirect()->route('partner.invoice.show', ['id' => $request->invoice_id]);
     }
 }

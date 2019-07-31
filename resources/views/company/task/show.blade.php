@@ -263,7 +263,7 @@
                     <button type="submit" class="done">パートナーに依頼する</button>
                 </form>
             @elseif($task->status === 5 && $task->superior->id !== $company_user->id)
-                <a href="company/document/purchaseOrder/create" class="done">発注書を作成する</a>
+                <a href="/company/document/purchaseOrder/create" class="done">発注書を作成する</a>
             @elseif($task->status === 6 && $task->superior->id !== $company_user->id)
                 <form action="{{ url('company/task/status') }}" method="POST">
                 @csrf

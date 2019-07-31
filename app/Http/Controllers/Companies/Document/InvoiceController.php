@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Partners;
+namespace App\Http\Controllers\Companies\Document;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Partners\CreateInvoiceRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
-use App\Models\Project;
-use App\Models\ProjectPartner;
-use App\Models\TaskPartner;
 use App\Models\Task;
-use App\Models\Nda;
-use App\Models\Contract;
-use App\Models\PurchaseOrder;
 use App\Models\Invoice;
+use App\Models\CompanyUser;
+use App\Models\Company;
+use App\Models\RequestTask;
+use App\Models\RequestExpence;
 use Illuminate\Support\Facades\Auth;
 
 
-class DashboardController extends Controller
+class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,17 +24,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $partner_auth_id = Auth::user()->id;
-        $partner_id = Partner::where('partner_id', $partner_auth_id)->get()->first()->id;
-        $partner = Partner::where('partner_id', $partner_auth_id)->get()->first();
-        $projects = ProjectPartner::where('user_id', $partner_id)->get();
-        $tasks = Task::where('partner_id', $partner_id)->get();
-        $ndas = Nda::where('partner_id', $partner_id)->where('status', 0)->get();
-        $contracts = Contract::where('partner_id', $partner_id)->where('status', 0)->get();
-        $purchaseOrders = PurchaseOrder::where('partner_id', $partner_id)->where('status', 0)->get();
-        $invoices = Invoice::where('partner_id', $partner_id)->get();
-
-        return view('partner/dashboard/index', compact(['projects', 'tasks', 'partner', 'invoices', 'purchaseOrders', 'ndas']));
+        //
     }
 
     /**
@@ -67,7 +56,28 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        $auth_id = Auth::user()->id;
+        $company_user = CompanyUser::where('auth_id', $auth_id)->get()->first();
+        $invoice = Invoice::findOrFail($id);
+        $task = Task::findOrFail($invoice->task_id);
+        $total_sum = 0;
+        $partner = Partner::findOrFail($invoice->partner_id);
+        // if ($company_user->id !== $invoice->companyUser_id) {
+        //     return 'no data';
+        // }
+        
+        if ($invoice->requestTasks->count() > 0) {
+            foreach($invoice->requestTasks as $requestTask) {
+                $total_sum += $requestTask->total;
+            }
+        }
+        if ($invoice->requestExpences->count() > 0) {
+            foreach($invoice->requestExpences as $requestExpence) {
+                $total_sum += $requestExpence->total;
+            }
+        }
+
+        return view('/company/document/invoice/show', compact('company_user', 'partner', 'invoice', 'task', 'total_sum'));
     }
 
     /**

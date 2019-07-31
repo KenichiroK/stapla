@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder
           CompaniesTableSeeder::class,
           CompanyUserAuthsTableSeeder::class,
           CompanyUsersTableSeeder::class,
-          PartnersTableSeeder::class,
+          PartnerInvoicesTableSeeder::class,
           ProjectsTableSeeder::class,
           ProjectCompaniesTableSeeder::class,
           ProjectPartnersTableSeeder::class,

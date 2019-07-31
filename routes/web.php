@@ -40,9 +40,10 @@ Route::group(['prefix' => 'partner'], function(){
 		// purchase-order
 		Route::get('order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.purchaseOrder.show');
 		// invoice
-		Route::get('invoice/create', 'Partners\InvoiceController@create')->name('partner.invoice.create');
+		Route::get('invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
 		Route::get('invoice/{id}', 'Partners\InvoiceController@show')->name('partner.invoice.show');
+		Route::post('invoice/send', 'Partners\InvoiceController@send')->name('partner.invoice.send');
 
 		// logout
     	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
@@ -91,6 +92,10 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.edit');
 		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
 		Route::get('/document/purchaseOrder/{id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');
+
+		//document invoice
+		Route::get('/document/invoice/{id}', 'Companies\Document\InvoiceController@show')->name('company.invoice.show');
+
 
 		// setting
 		Route::get('/setting/general', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
