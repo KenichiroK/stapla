@@ -101,8 +101,8 @@
 
             <div class="detail-container">
                 <ul class="detail-container__list">
-                    <li class="detail-container__list__item margin--none"><div class="detail-container__list__item__name">プロジェクト名</div> <p class="detail-container__list__item__content">{{ $projects->name }}</p> </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細</div><p class="detail-container__list__item__content desc-item">{{ $projects->detail }}</p></li>
+                    <li class="detail-container__list__item margin--none"><div class="detail-container__list__item__name">プロジェクト名</div> <p class="detail-container__list__item__content">{{ $project->name }}</p> </li>
+                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細</div><p class="detail-container__list__item__content desc-item">{{ $project->detail }}</p></li>
                     <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">担当者</div>
                         <div class="detail-container__list__item__content">
                             @foreach($project->projectCompanies as $projectCompany)
@@ -121,17 +121,6 @@
                                     <p class="name">{{ $projectPartner->partner->name }}</p>
                                 </div>
                             @endforeach
-                            <div class="staff-item">
-                                <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
-                                <p class="name">永瀬達也</p>
-                            </div>
-                            <div class="staff-item">
-                                <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
-                                <p class="name">永瀬達也</p>
-                            </div>
-                            <!-- @foreach($projects->projectPartners as $projectPartner)
-                            {{ $projectPartner->partner->name }}
-                            @endforeach -->
                         </div>
                     </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
@@ -142,7 +131,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($projects->price) }}円</div></li>
+                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->price) }}円</div></li>
                     <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
                         <div class="detail-container__list__item__content file-item">
                             <div class="imgbox"><img src="../../../images/file.png" alt=""></div>
@@ -172,53 +161,67 @@
                         <li class="task-name">{{ $task->project->name }}</li>
                         <li>{{ $task->name }}</li>
                         <li class="partner-item">
-                            <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
+                            <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt=""></div>
                             <p class="name">
-                            @foreach ($task->taskPartners as $taskPartner)
-                                {{ $taskPartner->partner->name }}</p>
-                            @endforeach
+                                {{ $task->partner->name }}</p>
                         </li>
-                        @if($task->status == 0)
+                        @if($task->status === 0)
                         <li class="task-container__content__list__status">
                             <div class="s-btn">下書き</div>
                         </li>
-                        @elseif($task->status == 1)
+                        @elseif($task->status === 1)
                         <li class="task-container__content__list__status">
-                            <div class="s-btn">提案中</div>
+                            <div class="s-btn">タスク上長確認前</div>
                         </li>
-                        @elseif($task->status == 2)
+                        @elseif($task->status === 2)
                         <li class="task-container__content__list__status">
-                            <div class="s-btn">依頼前</div>
+                            <div class="s-btn">タスク上長確認中</div>
                         </li>
-                        @elseif($task->status == 3)
+                        @elseif($task->status === 3)
                         <li class="task-container__content__list__status">
-                            <div class="s-btn">依頼中</div>
+                            <div class="s-btn">タスクパートナー依頼前</div>
                         </li>
-                        @elseif($task->status == 4)
+                        @elseif($task->status === 4)
                         <li class="task-container__content__list__status">
-                            <div class="s-btn">開始前</div>
+                            <div class="s-btn">タスクパートナー依頼中</div>
                         </li>
-                        @elseif($task->status == 5)
+                        @elseif($task->status === 5)
+                        <li class="task-container__content__list__status">
+                            <div class="s-btn">発注書作成中</div>
+                        </li>
+                        @elseif($task->status === 6)
+                        <li class="task-container__content__list__status">
+                            <div class="s-btn">発注書作成完了</div>
+                        </li>
+                        @elseif($task->status === 7)
+                        <li class="task-container__content__list__status">
+                            <div class="s-btn">発注書上長確認中</div>
+                        </li>
+                        @elseif($task->status === 8)
+                        <li class="task-container__content__list__status">
+                            <div class="s-btn">発注書パートナー依頼前</div>
+                        </li>
+                        @elseif($task->status === 9)
+                        <li class="task-container__content__list__status">
+                            <div class="s-btn">発注書パートナー確認中</div>
+                        </li>
+                        @elseif($task->status === 10)
                         <li class="task-container__content__list__status">
                             <div class="s-btn">作業中</div>
                         </li>
-                        @elseif($task->status == 6)
+                        @elseif($task->status === 11)
                         <li class="task-container__content__list__status">
-                            <div class="s-btn">提出前</div>
+                            <div class="s-btn">請求書依頼中</div>
                         </li>
-                        @elseif($task->status == 7)
+                        @elseif($task->status === 12)
                         <li class="task-container__content__list__status">
-                            <div class="s-btn">修正中</div>
+                            <div class="s-btn">請求書確認中</div>
                         </li>
-                        @elseif($task->status == 8)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn done">完了</div>
-                        </li>
-                        @elseif($task->status == 9)
+                        @elseif($task->status === 13)
                         <li class="task-container__content__list__status">
                             <div class="s-btn done">完了</div>
                         </li>
-                        @elseif($task->status == 10)
+                        @elseif($task->status === 14)
                         <li class="task-container__content__list__status">
                             <div class="s-btn">キャンセル</div>
                         </li>
