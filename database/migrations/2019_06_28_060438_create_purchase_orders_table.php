@@ -29,7 +29,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('task_delivery_format');
             $table->dateTime('task_ended_at');
             $table->integer('task_price');
-            $table->integer('task_tax');
+            $table->string('task_tax');
 
             $table->timestamps();
 

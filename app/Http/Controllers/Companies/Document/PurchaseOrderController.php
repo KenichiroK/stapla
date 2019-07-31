@@ -56,11 +56,10 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->companyUser_id)->name;
         $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
         $purchaseOrder->task_name            = $request->task_name;
-        // $purchaseOrder->task_delivery_format = $task->delivery_format;
-        $purchaseOrder->task_delivery_format = 'email';
-        $purchaseOrder->task_ended_at        = $task->ended_at;
-        $purchaseOrder->task_price           = $task->price;
-        $purchaseOrder->task_tax             = $task->tax;
+        $purchaseOrder->task_delivery_format = Task::findOrFail($request->task_id)->delivery_format;
+        $purchaseOrder->task_ended_at        = Task::findOrFail($request->task_id)->ended_at;
+        $purchaseOrder->task_price           = Task::findOrFail($request->task_id)->price;
+        $purchaseOrder->task_tax             = Task::findOrFail($request->task_id)->tax;
         $purchaseOrder->save();
 
         return redirect()->route('company.document.purchaseOrder.show', [$purchaseOrder->id]);
