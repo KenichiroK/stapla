@@ -265,7 +265,7 @@
                     <button type="submit" class="done">パートナーに依頼する</button>
                 </form>
             @elseif($task->status === 5 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
-                <a href="/company/document/purchaseOrder/create" class="done">発注書を作成する</a>
+                <a href="/company/document/purchaseOrder/create/{{ $task->id }}" class="done">発注書を作成する</a>
             @elseif($task->status === 6 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
                 <form action="{{ url('company/task/status') }}" method="POST">
                 @csrf
@@ -274,18 +274,7 @@
                     <button type="submit" class="done">発注書の確認を上長に依頼する</button>
                 </form>
             @elseif($task->status === 7 && $task->superior->id === $company_user->id  && $task->accounting->id !== $company_user->id)
-                <form action="{{ url('company/task/status') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="6">
-                    <button type="submit" class="undone">発注書を承認しない</button>
-                </form>
-                <form action="{{ url('company/task/status') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="8">
-                    <button type="submit" class="done">発注書を承認する</button>
-                </form>
+                <a class="done" href="/company/document/purchaseOrder/{{ $purchaseOrder->id }}">発注書を確認する</a>
             @elseif($task->status === 8 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
                 <form action="{{ url('company/task/status') }}" method="POST">
                 @csrf
@@ -301,7 +290,7 @@
                     <button type="submit" class="done">請求書を依頼する</button>
                 </form>
             @elseif($task->status === 12 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
-                <a href="#" class="done">請求書を確認する</a>
+                <a href="/company/document/invoice/{{ $invoice->id }}" class="done">請求書を確認する</a>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif

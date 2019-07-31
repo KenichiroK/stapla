@@ -155,7 +155,6 @@
 			</div>
 		</div>
 
-        @if($partner->partnerInvoice !== null)
 		<div class="deadline-container">
 			<div class="header-container">
 				<p>ご入金期限: {{ $invoice->deadline_at }}</p>
@@ -166,24 +165,27 @@
 				<p>{{ $partner->partnerInvoice->financial_institution }} {{ $partner->partnerInvoice->branch }} ({{ $partner->partnerInvoice->deposit_type }}) {{ $partner->partnerInvoice->account_number }}</p>
 			</div>
         </div>
-        @endif
 	</div>
 
 	@if($task->status === 12)
-		<form action="{{ url('company/task/status')}}" method="POST">
-        @csrf
-            <input type="hidden" name="status" value="11">
+	<div class="actiionButton">
+		<form action="{{ url('company/task/status') }}" method="POST">
+		@csrf
+			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+			<input type="hidden" name="status" value="11">
 			<div class="button-container">
-				<button type="submit">請求書を拒否する</button>
+				<button class="undone" type="submit">請求書を拒否する</button>
 			</div>
 		</form>
 		<form action="{{ url('company/task/status')}}" method="POST">
-        @csrf
-            <input type="hidden" name="status" value="13">
+		@csrf
+			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+			<input type="hidden" name="status" value="13">
 			<div class="button-container">
-				<button type="submit">請求書を承認する</button>
+				<button class="done" type="submit">請求書を承認する</button>
 			</div>
 		</form>
+	</div>
 	@else
 	<p class="send-done">必要なアクションはありません。</p>
 	@endif

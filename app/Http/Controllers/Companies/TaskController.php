@@ -8,6 +8,8 @@ use App\Models\Partner;
 use App\Models\CompanyUser;
 use App\Models\TaskCompany;
 use App\Models\TaskPartner;
+use App\Models\PurchaseOrder;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -108,14 +110,15 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::findOrFail($id);
-
+        $purchaseOrder = PurchaseOrder::where('task_id', $id)->first();
+        $invoice = Invoice::where('task_id', $id)->first();
         $user = Auth::user();
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
         $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
 
         $partners = Partner::where('company_id', $company_user->company_id)->get();
 
-        return view('/company/task/show', compact('task', 'project_count', 'companyUsers', 'partners', 'company_user'));
+        return view('/company/task/show', compact('task', 'project_count', 'companyUsers', 'partners', 'company_user', 'purchaseOrder', 'invoice'));
     }
 
     public function edit($id)

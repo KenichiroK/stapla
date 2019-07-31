@@ -33,13 +33,13 @@ class InvoiceController extends Controller
      */
     public function create($id)
     {
-        $task_id = $id;
+        $task = Task::findOrFail($id);
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
         $company_id = $partner->company_id;
         $company = Company::findOrFail($company_id);
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
-        return view('/partner/document/invoice/create', compact('partner', 'companyUsers', 'company', 'task_id'));
+        return view('/partner/document/invoice/create', compact('partner', 'companyUsers', 'company', 'task'));
     }
 
     /**

@@ -77,17 +77,13 @@ const checkDeadline = () => {
 					<dt>タスク</dt>
 					<dd>
 						<div class="selectbox-container">
-							<select name="task_id">
-								<option value="" hidden></option>
-								@foreach($tasks as $task)
-									<option value="{{ $task->id }}">{{ $task->name }}</option>
-								@endforeach
-								@if ($errors->has('task_id'))
-									<div>
-										<strong style='color: #e3342f;'>{{ $errors->first('task_id') }}</strong>
-									</div>					
-								@endif
-							</select>
+							<p>{{ $task->name }}</p>
+							<input type="hidden" name="task_id" value="{{ $task->id }}">
+                            @if ($errors->has('task_id'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('task_id') }}</strong>
+                                </div>					
+                            @endif
 						</div>
 					</dd>
                 </dl>
@@ -140,8 +136,8 @@ const checkDeadline = () => {
 						<div class="selectbox-container">
 							<select name="companyUser_id">
 								<option value="" hidden></option>
-								@foreach($companyUsers as $companyUser)
-									<option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
+								@foreach($task->taskCompanies as $companyUser)
+									<option value="{{ $companyUser->companyUser->id }}">{{ $companyUser->companyUser->name }}</option>
 								@endforeach
 								@if ($errors->has('companyUser_id'))
 									<div>
@@ -157,19 +153,13 @@ const checkDeadline = () => {
                     <dt>パートナー</dt>
                     <dd>
 						<div class="selectbox-container">
-							<select name="partner_id">
-								<option value="" hidden></option>
-								@foreach( $tasks as $task )
-									@foreach( $task->taskPartners as $taskPartners )
-									<option value="{{ $taskPartners->partner->id }}">{{ $taskPartners->partner->name }}</option>
-									@endforeach
-								@endforeach
-								@if ($errors->has('partner_id'))
-									<div>
-										<strong style='color: #e3342f;'>{{ $errors->first('partner_id') }}</strong>
-									</div>					
-								@endif
-							</select>
+                            <p>{{ $task->partner->name }}</p>
+                            <input type="hidden" name="partner_id" value="{{ $task->partner->id }}">
+                            @if ($errors->has('partner_id'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('partner_id') }}</strong>
+                                </div>					
+                            @endif
 						</div>
 					</dd>
                 </dl>
