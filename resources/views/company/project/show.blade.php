@@ -43,22 +43,36 @@
 
 <div class="main__container">
     <!-- アクティビティログメニュー -->
-    <div class="activity-log-menu">
+    <!-- <div class="activity-log-menu">
         <div class="activity-log-menu__top">
             <div class="activity-log-menu__top__title">アクティビティログ</div>
             <div id="close-btn" class="close-container"><span class="close-container__btn">閉じる</span><i class="fas fa-long-arrow-alt-right"></i></div>
         </div>
-        <div class="notification-container">
-            <div class="notification-container__img-container">
-                <img src="http://jacksonunityfestival.org/img/323880.png" alt="">
-            </div>
-            <div class="notification-container__content">
-                <p class="notification-container__content__name">name</p>
-                <p class="notification-container__content__done">@@@@を作成しました。</p>
-                <p class="notification-container__content__date">2019年1月1日 00:00</p>
+        <div class="notification-wrp">
+            <div class="notification-container">
+                <div class="notification-container__img-container">
+                    <img src="../../../images/photoimg.png" alt="">
+                </div>
+                <div class="notification-container__content">
+                    <p class="notification-container__content__name">永瀬達也</p>
+                    <p class="notification-container__content__done">@@@@を作成しました。</p>
+                    <p class="notification-container__content__date">2019年1月1日 00:00</p>
+                </div>
             </div>
         </div>
-    </div>
+        <div class="notification-wrp">
+            <div class="notification-container">
+                <div class="notification-container__img-container">
+                    <img src="../../../images/photoimg.png" alt="">
+                </div>
+                <div class="notification-container__content">
+                    <p class="notification-container__content__name">永瀬達也</p>
+                    <p class="notification-container__content__done">@@@@を作成しました。</p>
+                    <p class="notification-container__content__date">2019年1月1日 00:00</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
     <div class="main__container__wrapper">
         <div>
@@ -70,8 +84,8 @@
             <div class="activity-log-container">
                 <div class="activity-log-container__left">
                     <div class="activity-log-container__left__name-container">
-                        <div class="img-container"><img src="http://jacksonunityfestival.org/img/323880.png" alt=""></div>
-                        <p class="name">name</p>
+                        <div class="img-container"><img src="../../../images/photoimg.png" alt=""></div>
+                        <p class="name">永瀬達也</p>
                     </div>
                     <div class="activity-log-container__left__content">
                         <p>@@@@を作成しました。</p>
@@ -87,17 +101,36 @@
 
             <div class="detail-container">
                 <ul class="detail-container__list">
-                    <li class="detail-container__list__item margin--none"><div class="detail-container__list__item__name">プロジェクト名 :</div> <p class="detail-container__list__item__content">{{ $projects->name }}</p> </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細 :</div><p class="detail-container__list__item__content">{{ $projects->detail }}</p></li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">担当者 :</div><p class="detail-container__list__item__content">{{ $projects->company->representive_name }}</p> </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">パートナー :</div>
-                        <p class="detail-container__list__item__content">
-                            @foreach($projects->projectPartners as $projectPartner)
-                            {{ $projectPartner->partner->name }}
-                            @endforeach
-                        </p>
+                    <li class="detail-container__list__item margin--none"><div class="detail-container__list__item__name">プロジェクト名</div> <p class="detail-container__list__item__content">{{ $projects->name }}</p> </li>
+                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細</div><p class="detail-container__list__item__content desc-item">{{ $projects->detail }}</p></li>
+                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">担当者</div>
+                        <div class="detail-container__list__item__content">
+                            <div class="staff-item">
+                                <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
+                                <p class="name">{{ $projects->company->representive_name }}</p>
+                            </div>
+                        </div> 
                     </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間 :</div>
+                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">パートナー</div>
+                        <div class="detail-container__list__item__content">
+                            <div class="staff-item">
+                                <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
+                                <p class="name">永瀬達也</p>
+                            </div>
+                            <div class="staff-item">
+                                <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
+                                <p class="name">永瀬達也</p>
+                            </div>
+                            <div class="staff-item">
+                                <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
+                                <p class="name">永瀬達也</p>
+                            </div>
+                            <!-- @foreach($projects->projectPartners as $projectPartner)
+                            {{ $projectPartner->partner->name }}
+                            @endforeach -->
+                        </div>
+                    </li>
+                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
                         <div class="period__wrapper">
                             <div class="period__wrapper__container">
                                 <div class="period__wrapper__container__start">開始日<span class="period__wrapper__container__start__date">{{ $projects->started_at->format('Y年m月d日 H:i') }}</span></div>
@@ -105,8 +138,13 @@
                             </div>
                         </div>
                     </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content"></div>¥{{ number_format($projects->price) }}</li>
-                    <li class="detail-container__list__item border-none"><div class="detail-container__list__item__name">資料</div><div class="detail-container__list__item__content"></div></li>
+                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($projects->price) }}円</div></li>
+                    <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
+                        <div class="detail-container__list__item__content file-item">
+                            <div class="imgbox"><img src="../../../images/file.png" alt=""></div>
+                            <p>ファイル名</p>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -129,55 +167,56 @@
                     <ul class="task-item-list task-container__content__list">
                         <li class="task-name">{{ $task->project->name }}</li>
                         <li>{{ $task->name }}</li>
-                        <li>
-                        <p>
-                        @foreach ($task->taskPartners as $taskPartner)
-                            {{ $taskPartner->partner->name }}</p>
-                        @endforeach
+                        <li class="partner-item">
+                            <div class="imgbox"><img src="../../../images/photoimg.png" alt=""></div>
+                            <p class="name">
+                            @foreach ($task->taskPartners as $taskPartner)
+                                {{ $taskPartner->partner->name }}</p>
+                            @endforeach
                         </li>
                         @if($task->status == 0)
                         <li class="task-container__content__list__status">
-                            下書き
+                            <div class="s-btn">下書き</div>
                         </li>
                         @elseif($task->status == 1)
                         <li class="task-container__content__list__status">
-                            提案中
+                            <div class="s-btn">提案中</div>
                         </li>
                         @elseif($task->status == 2)
                         <li class="task-container__content__list__status">
-                            依頼前
+                            <div class="s-btn">依頼前</div>
                         </li>
                         @elseif($task->status == 3)
                         <li class="task-container__content__list__status">
-                            依頼中
+                            <div class="s-btn">依頼中</div>
                         </li>
                         @elseif($task->status == 4)
                         <li class="task-container__content__list__status">
-                            開始前
+                            <div class="s-btn">開始前</div>
                         </li>
                         @elseif($task->status == 5)
                         <li class="task-container__content__list__status">
-                            作業中
+                            <div class="s-btn">作業中</div>
                         </li>
                         @elseif($task->status == 6)
                         <li class="task-container__content__list__status">
-                            提出前
+                            <div class="s-btn">提出前</div>
                         </li>
                         @elseif($task->status == 7)
                         <li class="task-container__content__list__status">
-                            修正中
+                            <div class="s-btn">修正中</div>
                         </li>
                         @elseif($task->status == 8)
                         <li class="task-container__content__list__status">
-                            完了
+                            <div class="s-btn done">完了</div>
                         </li>
                         @elseif($task->status == 9)
                         <li class="task-container__content__list__status">
-                            完了
+                            <div class="s-btn done">完了</div>
                         </li>
                         @elseif($task->status == 10)
                         <li class="task-container__content__list__status">
-                            キャンセル
+                            <div class="s-btn">キャンセル</div>
                         </li>
                         @endif 
                         <li>¥{{ number_format($task->price) }}</li>
@@ -187,7 +226,7 @@
             </div>
 
             <div class="task-container__content__showmore">
-                <p id="showmore_task_btn" class="task-container__content__showmore__btn">もっと見る<i class="arrow fas fa-angle-down"></i></p>
+                <p id="showmore_task_btn" class="task-container__content__showmore__btn">もっと見る</p>
             </div>
         </div>
     </div>    
