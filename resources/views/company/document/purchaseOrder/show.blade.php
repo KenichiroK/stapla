@@ -59,11 +59,13 @@ const setPreview = (input) => {
 
 @section('content')
 <div class="main-wrapper">
-    <div class="title-container">
-        <h3>発注書</h3>
-    </div>
-    <div class="head-container__wrapper__print-btn-container">
-        <a @click="download()" class="button head-container__wrapper__print-btn-container__button">Print</a>
+    <div class="head-container">
+        <div class="title-container">
+            <h3>発注書</h3>
+        </div>
+        <div class="head-container__wrapper__print-btn-container">
+            <a @click="download()" class="button head-container__wrapper__print-btn-container__button">プリント</a>
+        </div>
     </div>
 
     <form action="">
@@ -80,12 +82,12 @@ const setPreview = (input) => {
             <div class="company-container">
                 <div class="right">
                     <p class="text">下記の通り、発注します。</p>
-                    <p class="name">件名: {{ $purchaseOrder->task_name }}</p>
-                    <p class="date">納期: {{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</p>
+                    <p class="name">件名： {{ $purchaseOrder->task_name }}</p>
+                    <p class="date">納期： {{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</p>
                 </div>
 
                 <div class="left">
-                    <p class="date">発注日: {{ explode(' ', $purchaseOrder->task_started_at)[0] }}</p>
+                    <p class="date">発注日： {{ explode(' ', $purchaseOrder->task_started_at)[0] }}</p>
                     <p clss="name">{{ $purchaseOrder->company_name }}</p>
                     <p class="tel">{{ $purchaseOrder->company_tel }}</p>
                     <p classs="address">〒{{ $purchaseOrder->company_zip_code }} {{ $purchaseOrder->company->address_prefecture }}{{ $purchaseOrder->company->address_city }}{{ $purchaseOrder->company->address_streetAddress }}</p>
@@ -151,7 +153,7 @@ const setPreview = (input) => {
 
                     <div class="section-container">
                         <p class="sub-column">総額</p>
-                        <p class="total-text">{{ number_format($purchaseOrder->task_price * (1 + $purchaseOrder->task_tax)) }}</p>
+                        <p class="total-text">￥{{ number_format($purchaseOrder->task_price * (1 + $purchaseOrder->task_tax)) }}</p>
                     </div>
                 </div>
 
@@ -162,7 +164,7 @@ const setPreview = (input) => {
         </div>
 
         <div class="submit-btn-container">
-            <a @click="toggleModal()" class="button submit-btn-container__button">提出</a>
+            <a href="" @click="toggleModal()" class="button submit-btn-container__button">提出</a>
         </div>
     </form>
 </div>
