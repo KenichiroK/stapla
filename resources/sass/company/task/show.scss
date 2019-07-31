@@ -182,7 +182,9 @@
 // actionButton
 .actionButton {
     margin: 24px 0;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .done {
         border-radius: 100px;

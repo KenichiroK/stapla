@@ -77,14 +77,16 @@ class TaskController extends Controller
         $task->company_id      = $company_id;
         $task->superior_id     = $request->superior_id;
         $task->accounting_id   = $request->accounting_id;
+        $task->partner_id      = $request->partner_id;
         $task->name            = $request->task_name;
         $task->content         = $request->task_content;
         $task->started_at      = '2019-06-27 12:00:00';
         $task->ended_at        = '2019-06-30 12:00:00';
-        $task->status          = 0;
+        $task->status          = 1;
         $task->purchaseorder   = false;
         $task->invoice         = false;
         $task->budget          = 100000;
+        $task->tax             = 0.08;
         $task->price           = $request->price;
         $task->comment         = $request->comment;
         $task->inspection_date = $request->inspection_date;
@@ -95,16 +97,10 @@ class TaskController extends Controller
         $task->save();
 
         $taskCompany = new TaskCompany;
-
         $taskCompany->user_id = $request->company_user_id;
         $task_id = $task->id;
         $taskCompany->task_id = $task_id;
         $taskCompany->save();
-
-        $taskPartner = new TaskPartner;
-        $taskPartner->user_id = $request->partner_id;
-        $taskPartner->task_id = $task_id;
-        $taskPartner->save();
 
         return redirect('/company/task');
     }

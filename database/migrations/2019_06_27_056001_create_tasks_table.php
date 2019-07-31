@@ -18,7 +18,6 @@ class CreateTasksTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('company_id');
             $table->uuid('project_id');
-            $table->uuid('staff_id');
             $table->uuid('partner_id');
             $table->uuid('superior_id');
             $table->uuid('accounting_id');

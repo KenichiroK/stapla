@@ -50,11 +50,8 @@ mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common'
    .sass('resources/sass/company/document/index.scss', 'public/css/company/document')
    .sass('resources/sass/company/document/nda/create.scss', 'public/css/company/document/nda')
    .sass('resources/sass/company/document/nda/show.scss', 'public/css/company/document/nda')
-<<<<<<< HEAD
    .sass('resources/sass/company/document/purchaseOrder/index.scss', 'public/css/company/document/purchaseOrder')
-=======
    .sass('resources/sass/company/document/invoice/show.scss', 'public/css/company/document/invoice')
->>>>>>> Add change status when create invoice and approve invoice
    .sass('resources/sass/company/document/purchaseOrder/show.scss', 'public/css/company/document/purchaseOrder')
    .sass('resources/sass/company/setting/general/index.scss', 'public/css/company/setting/general')
    .sass('resources/sass/company/setting/companyElse/index.scss', 'public/css/company/setting/companyElse')

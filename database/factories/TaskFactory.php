@@ -11,7 +11,6 @@ $factory->define(App\Models\Task::class, function (Faker $faker) {
     return [
         'company_id'        => $project->company_id,
         'project_id'        => $project->id,
-        'staff_id'          => $staff->user_id,
         'partner_id'        => $partner->user_id,
         'superior_id'       => $superior->user_id,
         'accounting_id'     => $accounting->user_id,

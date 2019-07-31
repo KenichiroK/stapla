@@ -84,12 +84,14 @@
                     担当者
                 </dt>
                 <dd class="flex01">
-                    <div class="person-item">
-                        <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $task->staff->picture) }}" alt="担当者プロフィール画像">
+                    @foreach($task->taskCompanies as $companyUser)
+                        <div class="person-item">
+                            <div class="imgbox">
+                                <img src="/{{ str_replace('public/', 'storage/', $companyUser->companyUser->picture) }}" alt="担当者プロフィール画像">
+                            </div>
+                            <p>{{ $companyUser->companyUser->name }}</p>
                         </div>
-                        <p>{{ $task->staff->name }}</p>
-                    </div>
+                    @endforeach
                 </dd>
             </dl>
             <dl>
@@ -235,14 +237,14 @@
         </div>
         
         <div class="actionButton">
-            @if($task->status === 1 && $task->superior->id !== $company_user->id)
+            @if($task->status === 1 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
                 <form action="{{ url('company/task/status') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="2">
                     <button type="submit" class="done">上長に確認を依頼する</button>
                 </form>
-            @elseif($task->status === 2 && $task->superior->id === $company_user->id)
+            @elseif($task->status === 2 && $task->superior->id === $company_user->id  && $task->accounting->id !== $company_user->id)
                 <form action="{{ url('company/task/status') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
@@ -255,23 +257,23 @@
                     <input type="hidden" name="status" value="3">
                     <button type="submit" class="done">タスクを承認する</button>
                 </form>
-            @elseif($task->status === 3 && $task->superior->id !== $company_user->id)
+            @elseif($task->status === 3 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
                 <form action="{{ url('company/task/status') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="4">
                     <button type="submit" class="done">パートナーに依頼する</button>
                 </form>
-            @elseif($task->status === 5 && $task->superior->id !== $company_user->id)
+            @elseif($task->status === 5 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
                 <a href="/company/document/purchaseOrder/create" class="done">発注書を作成する</a>
-            @elseif($task->status === 6 && $task->superior->id !== $company_user->id)
+            @elseif($task->status === 6 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
                 <form action="{{ url('company/task/status') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="7">
                     <button type="submit" class="done">発注書の確認を上長に依頼する</button>
                 </form>
-            @elseif($task->status === 7 && $task->superior->id === $company_user->id)
+            @elseif($task->status === 7 && $task->superior->id === $company_user->id  && $task->accounting->id !== $company_user->id)
                 <form action="{{ url('company/task/status') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
@@ -284,21 +286,21 @@
                     <input type="hidden" name="status" value="8">
                     <button type="submit" class="done">発注書を承認する</button>
                 </form>
-            @elseif($task->status === 8 && $task->superior->id !== $company_user->id)
+            @elseif($task->status === 8 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
                 <form action="{{ url('company/task/status') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="9">
                     <button type="submit" class="done">発注書をパートナーに依頼する</button>
                 </form>
-            @elseif($task->status === 10 && $task->superior->id !== $company_user->id)
+            @elseif($task->status === 10 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
                 <form action="{{ url('company/task/status') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="11">
                     <button type="submit" class="done">請求書を依頼する</button>
                 </form>
-            @elseif($task->status === 12 && $task->superior->id !== $company_user->id)
+            @elseif($task->status === 12 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
                 <a href="#" class="done">請求書を確認する</a>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
