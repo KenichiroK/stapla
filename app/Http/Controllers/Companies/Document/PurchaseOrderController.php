@@ -24,12 +24,12 @@ class PurchaseOrderController extends Controller
     public function create()
     {
         $auth = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $auth->id)->first()->company_id;
-        $tasks = Task::where('company_id', $company_id)->with(['taskPartners.partner'])->get();
+        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $tasks = Task::where('company_id', $companyUser->company_id)->with(['taskPartners.partner'])->get();
 
-        $companyUsers = CompanyUser::where('company_id', $company_id)->get();
+        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
 
-        return view('/company/document/purchaseOrder/create', compact('companyUsers', 'tasks'));
+        return view('/company/document/purchaseOrder/create', compact('companyUser', 'companyUsers', 'tasks'));
     }
 
     public function store(CreatePurchaseOrderRequest $request)

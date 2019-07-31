@@ -17,7 +17,7 @@ const checkInvoiceDate = () => {
 }
 
 const checkDeadline = () => {
-  const deadlineAtRadio = document.getElementsByName('deadline_at');
+  const deadlineAtRadio = document.getElementsByName('task_ended_at');
   const deadlineAtText = document.getElementById('deadline_at_text');
   if (deadlineAtRadio[0].checked) {
 	const dateArr = deadlineAtRadio[0].value.split('-');
@@ -28,27 +28,6 @@ const checkDeadline = () => {
   }
 }
 
-const calculateSumPrice = (e) => {
-  let sum = document.getElementById('sum');
-  let taskNums = document.getElementsByName('task_num');
-  let taskUnitPrices = document.getElementsByName('task_unit_price');
-  let expencesNums = document.getElementsByName('expences_num');
-  let expencesUnitPrices = document.getElementsByName('expences_unit_price');
-  let taskSum = 0;
-  let expencesSum = 0;
-  for (i = 0; i < taskNums.length; i++) {
-	taskNums[i].value = taskNums[i].value === undefined ? 0 : Number(taskNums[i].value);
-	taskUnitPrices[i].value = taskUnitPrices[i].value === undefined ? 0 : Number(taskUnitPrices[i].value);
-	taskSum += taskNums[i].value * taskUnitPrices[i].value;
-  }
-
-  for (i = 0; i < expencesNums.length; i++) {
-	expencesNums[i].value = expencesNums[i].value === undefined ? 0 : Number(expencesNums[i].value);
-	expencesUnitPrices[i].value = expencesUnitPrices[i].value === undefined ? 0 : Number(expencesUnitPrices[i].value);
-	expencesSum += expencesNums[i].value * expencesUnitPrices[i].value;
-  }
-  sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
-}
 </script>
 @endsection
 
@@ -66,10 +45,11 @@ const calculateSumPrice = (e) => {
                 <li><a href="/company/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
                 <li><a href="/company/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
                 <li><a href="/company/task"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/company/document"><i class="fas fa-newspaper"></i>書類</a></li>
+                <li><a href="/company/document" class="isActive"><i class="fas fa-newspaper"></i>書類</a></li>
+				<li><a href="/company/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="/company/setting/general" class="isActive"><i class="fas fa-cog"></i>設定</a></li>
+                <li><a href="/company/setting/general"><i class="fas fa-cog"></i>設定</a></li>
                 <li>
 					<form method="POST" action="{{ route('company.logout') }}">
 						@csrf
