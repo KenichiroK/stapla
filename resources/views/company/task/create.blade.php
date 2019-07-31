@@ -69,8 +69,8 @@
                             <div class="select-container__wrapper__select-area__field__control__select select is-info">
                                 <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}">
                                     <option></option>
-                                    @foreach($tasks as $task)
-                                        <option value="{{ $task->project->id }}">{{ $task->project->name}}</option>
+                                    @foreach($projects as $project)
+                                        <option value="{{ $project->id }}">{{ $project->name }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('project_id'))
@@ -154,8 +154,8 @@
                                             <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
                                                 <option></option>
                                                 @foreach($companyUsers as $companyUser)
-                                                    <option value="{{ $companyUser->id }}" class=''>
-                                                        {{ $companyUser->name}}
+                                                    <option value="{{ $companyUser->id }}">
+                                                        {{ $companyUser->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -172,33 +172,62 @@
 
                         <!-- 上長 -->
                         <div class="main-container__wrapper__item-container">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                        上長
-                                    </div>
+                            <div class="item-name-wrapper">
+                                <div class="item-name-wrapper__item-name">
+                                    上長
                                 </div>
-                                <div class="select-container__wrapper__select-area control staff">
-                                    <div class="select-container__wrapper__select-area__field field">
-                                        <div class="select-container__wrapper__select-area__field__control control">
-                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                                <!-- <select v-model="taskInfo.partner"> -->
-                                                <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                                    <option></option>
-                                                    @foreach($partners as $partner)
-                                                        <option value={{ $partner->id }} >
-                                                            {{ $partner->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                                @if ($errors->has('partner_id'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong style='color: #e3342f'>{{ $errors->first('partner_id') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
+                            </div>
+                            <div class="select-container__wrapper__select-area control staff">
+                                <div class="select-container__wrapper__select-area__field field">
+                                    <div class="select-container__wrapper__select-area__field__control control">
+                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                            <select name='superior_id'>
+                                                <option></option>
+                                                @foreach($companyUsers as $companyUser)
+                                                    <option value={{ $companyUser->id }}>
+                                                        {{ $companyUser->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('superior_id'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong style='color: #e3342f'>{{ $errors->first('superior_id') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- 経理 -->
+                        <div class="main-container__wrapper__item-container">
+                            <div class="item-name-wrapper">
+                                <div class="item-name-wrapper__item-name">
+                                    経理
+                                </div>
+                            </div>
+                            <div class="select-container__wrapper__select-area control staff">
+                                <div class="select-container__wrapper__select-area__field field">
+                                    <div class="select-container__wrapper__select-area__field__control control">
+                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                            <select name='accounting_id'>
+                                                <option></option>
+                                                @foreach($companyUsers as $companyUser)
+                                                    <option value={{ $companyUser->id }}>
+                                                        {{ $companyUser->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('accounting_id'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong style='color: #e3342f'>{{ $errors->first('accounting_id') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- 項目：締め切り -->
                         <div class="main-container__wrapper__item-container">

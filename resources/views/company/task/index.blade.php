@@ -66,7 +66,7 @@
                 <div class="content">
                     <!-- ステータス各部分 -->
                     <ul class="parts-container">
-                    @for($i = 0; $i < 10; $i++)
+                    @for($i = 0; $i < 14; $i++)
                         <li class="parts-container__wrapper"> 
                             <!-- ステータス名表示 -->
                             <div class="parts-container__wrapper__textdisplayarea">
@@ -113,13 +113,18 @@
                         <select class="select" name="" id="">
                             <option value="">全てのステータス</option>
                             <option value="">下書き</option>
-                            <option value="">提案中</option>
-                            <option value="">依頼前</option>
-                            <option value="">依頼中</option>
-                            <option value="">開始前</option>
+                            <option value="">タスク上長確認前</option>
+                            <option value="">タスク上長確認中</option>
+                            <option value="">タスクパートナー依頼前</option>
+                            <option value="">タスクパートナー依頼中</option>
+                            <option value="">発注書作成中</option>
+                            <option value="">発注書作成完了</option>
+                            <option value="">発注書上長確認中</option>
+                            <option value="">発注書パートナー依頼前</option>
+                            <option value="">発注書パートナー確認中</option>
                             <option value="">作業中</option>
-                            <option value="">提出前</option>
-                            <option value="">修正中</option>
+                            <option value="">請求書依頼中</option>
+                            <option value="">請求書確認中</option>
                             <option value="">完了</option>
                             <option value="">キャンセル</option>
                         </select>
@@ -144,9 +149,7 @@
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata  project">{{ $task->project->name }}</td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><a href="task/{{ $task->id }}">{{ $task->name }}</a></td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">
-                                    @foreach($task->taskPartners as $taskPartner)
-                                        {{ $taskPartner->partner->name }}
-                                    @endforeach
+                                    {{ $task->partner->name }}
                                 </td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">
                                     <div class="task-container__wrapper__table-wrapper__table__datarow__tabledata__statusaction">
@@ -154,24 +157,32 @@
                                             @if($task->status == 0)
                                                 <div class="color01">下書き</div>
                                             @elseif($task->status == 1)
-                                                <div class="color01">提案中</div>
+                                                <div class="color01">タスク上長確認前</div>
                                             @elseif($task->status == 2)
-                                                <div class="color01">依頼前</div>
+                                                <div class="color01">タスク上長確認中</div>
                                             @elseif($task->status == 3)
-                                                <div class="color01">依頼中</div>
+                                                <div class="color01">タスクパートナー依頼前</div>
                                             @elseif($task->status == 4)
-                                                <div class="color01">開始前</div>
+                                                <div class="color01">タスクパートナー依頼中</div>
                                             @elseif($task->status == 5)
-                                                <div class="color01">作業中</div>
+                                                <div class="color01">発注書作成中</div>
                                             @elseif($task->status == 6)
-                                                <div class="color01">提出前</div>
+                                                <div class="color01">発注書作成完了</div>
                                             @elseif($task->status == 7)
-                                                <div class="color01">修正中</div>
+                                                <div class="color01">発注書上長確認中</div>
                                             @elseif($task->status == 8)
-                                                <div class="color02">完了</div>
+                                                <div class="color01">発注書パートナー依頼前</div>
                                             @elseif($task->status == 9)
-                                                <div class="color02">完了</div>
+                                                <div class="color01">発注書パートナー確認中</div>
                                             @elseif($task->status == 10)
+                                                <div class="color01">作業中</div>
+                                            @elseif($task->status == 11)
+                                                <div class="color01">請求書依頼中</div>
+                                            @elseif($task->status == 12)
+                                                <div class="color01">請求書確認中</div>
+                                            @elseif($task->status == 13)
+                                                <div class="color02">完了</div>
+                                            @elseif($task->status == 14)
                                                 <div class="color03">キャンセル</div>
                                             @endif    
                                    

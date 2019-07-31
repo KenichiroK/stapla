@@ -2,15 +2,15 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/task/show.css') }}">
+<link rel="stylesheet" href="{{ mix('css/partner/task/show.css') }}">
 @endsection
 
 @section('header-profile')
 <div class="navbar-item">
-    {{ $company_user->name }}
+    {{ $partner->name }}
 </div>
 <div class="navbar-item">
-    <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+    <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
 </div>
 @endsection
 
@@ -26,14 +26,19 @@
             </div>
             <ul class="menu-list menu menu__container__menu-list">
                 <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="/company/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li><a href="/company/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                <li><a href="/company/task" class="isActive"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/company/document"><i class="fas fa-newspaper"></i>書類</a></li>
-                <li><a href="/company/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
+                <li><a href="/partner/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i>プロジェクト</a></li>
+                <li><a href="#"  class="isActive"><i class="fas fa-tasks"></i>タスク</a></li>
+                <li><a href="#"><i class="fas fa-newspaper"></i>書類</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="/company/setting/general"><i class="fas fa-cog"></i>設定</a></li>
+                <li><a href="/partner/setting/invoice"><i class="fas fa-cog"></i>設定</a></li>
+                <li>
+                    <form method="POST" action="{{ route('partner.logout') }}">
+                        @csrf
+                        <button type="submit">ログアウト</button>
+                    </form>
+                </li>
             </ul>
         </aside>
     </div>
@@ -84,14 +89,14 @@
                     担当者
                 </dt>
                 <dd class="flex01">
-                    @foreach($task->taskCompanies as $companyUser)
-                        <div class="person-item">
-                            <div class="imgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $companyUser->companyUser->picture) }}" alt="担当者プロフィール画像">
-                            </div>
-                            <p>{{ $companyUser->companyUser->name }}</p>
+                @foreach($task->taskCompanies as $companyUser)
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="/{{ str_replace('public/', 'storage/', $companyUser->companyUser->picture) }}" alt="担当者プロフィール画像">
                         </div>
-                    @endforeach
+                        <p>{{ $companyUser->companyUser->name }}</p>
+                    </div>
+                @endforeach
                 </dd>
             </dl>
             <dl>
@@ -114,7 +119,7 @@
                 <dd class="flex01">
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $task->accounting->picture) }}" alt="経理プロフィール画像">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->accounting->picture) }}" alt="上長プロフィール画像">
                         </div>
                         <p>{{ $task->accounting->name }}</p>
                     </div>
@@ -237,60 +242,23 @@
         </div>
         
         <div class="actionButton">
-            @if($task->status === 1 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
-                <form action="{{ url('company/task/status') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="2">
-                    <button type="submit" class="done">上長に確認を依頼する</button>
-                </form>
-            @elseif($task->status === 2 && $task->superior->id === $company_user->id  && $task->accounting->id !== $company_user->id)
-                <form action="{{ url('company/task/status') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="1">
-                    <button type="submit" class="undone">タスクを承認しない</button>
-                </form>
-                <form action="{{ url('company/task/status') }}" method="POST">
+            @if($task->status === 4 && $task->partner->id === $partner->id)
+                <form action="{{ url('partner/task/status') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="3">
-                    <button type="submit" class="done">タスクを承認する</button>
+                    <button type="submit" class="undone">タスク依頼を受けない</button>
                 </form>
-            @elseif($task->status === 3 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
-                <form action="{{ url('company/task/status') }}" method="POST">
+                <form action="{{ url('partner/task/status') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="4">
-                    <button type="submit" class="done">パートナーに依頼する</button>
+                    <input type="hidden" name="status" value="5">
+                    <button type="submit" class="done">タスク依頼を受ける</button>
                 </form>
-            @elseif($task->status === 5 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
-                <a href="/company/document/purchaseOrder/create/{{ $task->id }}" class="done">発注書を作成する</a>
-            @elseif($task->status === 6 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
-                <form action="{{ url('company/task/status') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="7">
-                    <button type="submit" class="done">発注書の確認を上長に依頼する</button>
-                </form>
-            @elseif($task->status === 7 && $task->superior->id === $company_user->id  && $task->accounting->id !== $company_user->id)
-                <a class="done" href="/company/document/purchaseOrder/{{ $purchaseOrder->id }}">発注書を確認する</a>
-            @elseif($task->status === 8 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
-                <form action="{{ url('company/task/status') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="9">
-                    <button type="submit" class="done">発注書をパートナーに依頼する</button>
-                </form>
-            @elseif($task->status === 10 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
-                <form action="{{ url('company/task/status') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="11">
-                    <button type="submit" class="done">請求書を依頼する</button>
-                </form>
-            @elseif($task->status === 12 && $task->superior->id !== $company_user->id && $task->accounting->id !== $company_user->id)
-                <a href="/company/document/invoice/{{ $invoice->id }}" class="done">請求書を確認する</a>
+            @elseif($task->status === 9 && $task->partner->id === $partner->id)
+                <a href="/partner/order/{{ $purchaseOrder->id }}" class="done">発注書を確認する</a>
+            @elseif($task->status === 11 && $task->partner->id === $partner->id)
+                <a href="/partner/invoice/create/{{ $task->id }}" class="done">請求書を作成する</a>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif

@@ -24,6 +24,10 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::group(['middleware' => 'auth:partner'], function() {
 		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
+		// task
+		Route::get('/task/{id}', 'Partners\TaskController@show')->name('partner.task.show');
+		// task status change
+		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('task.status.change');
 		// profile
 		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
 		Route::post('profile', 'Partners\ProfileController@store')->name('partner.profile.store');
@@ -36,9 +40,10 @@ Route::group(['prefix' => 'partner'], function(){
 		// purchase-order
 		Route::get('order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.purchaseOrder.show');
 		// invoice
-		Route::get('invoice/create', 'Partners\InvoiceController@create')->name('partner.invoice.create');
+		Route::get('invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
 		Route::get('invoice/{id}', 'Partners\InvoiceController@show')->name('partner.invoice.show');
+		Route::post('invoice/send', 'Partners\InvoiceController@send')->name('partner.invoice.send');
 
 		// logout
     	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
@@ -70,7 +75,10 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
         Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.create');
-        Route::get('/task/{id}', 'Companies\TaskController@show');
+		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
+
+		// task status change
+		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');
 		
 		// partner
 		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
@@ -81,9 +89,13 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document/nda', 'Companies\Document\NdaController@create')->name('company.document.nda.create');
 		Route::post('/document/nda', 'Companies\Document\NdaController@store')->name('company.document.nda.store');
 		Route::get('/document/nda/{id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
-		Route::get('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.edit');
+		Route::get('/document/purchaseOrder/create/{id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.edit');
 		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
 		Route::get('/document/purchaseOrder/{id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');
+
+		//document invoice
+		Route::get('/document/invoice/{id}', 'Companies\Document\InvoiceController@show')->name('company.invoice.show');
+
 
 		// setting
 		Route::get('/setting/general', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');

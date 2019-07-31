@@ -21,15 +21,15 @@ class PurchaseOrderController extends Controller
         //
     }
 
-    public function create()
+    public function create($id)
     {
         $auth = Auth::user();
+        $task = Task::findOrFail($id);
         $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
-        $tasks = Task::where('company_id', $companyUser->company_id)->with(['taskPartners.partner'])->get();
 
         $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
 
-        return view('/company/document/purchaseOrder/create', compact('companyUser', 'companyUsers', 'tasks'));
+        return view('/company/document/purchaseOrder/create', compact('companyUser', 'companyUsers', 'task'));
     }
 
     public function store(CreatePurchaseOrderRequest $request)
@@ -38,6 +38,8 @@ class PurchaseOrderController extends Controller
         $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
         $company = Company::findOrFail($companyUser->company_id);
         $tasks = Task::where('company_id', $company->id)->with(['taskPartners.partner'])->get();
+
+        $task = Task::findOrFail($request->task_id);
 
         $purchaseOrder = new PurchaseOrder;
         $purchaseOrder->company_id = $company->id;
@@ -54,10 +56,11 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->companyUser_id)->name;
         $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
         $purchaseOrder->task_name            = $request->task_name;
-        $purchaseOrder->task_delivery_format = Task::findOrFail($request->task_id)->delivery_format;
-        $purchaseOrder->task_ended_at        = Task::findOrFail($request->task_id)->ended_at;
-        $purchaseOrder->task_price           = Task::findOrFail($request->task_id)->price;
-        $purchaseOrder->task_tax             = Task::findOrFail($request->task_id)->tax;
+        // $purchaseOrder->task_delivery_format = $task->delivery_format;
+        $purchaseOrder->task_delivery_format = 'email';
+        $purchaseOrder->task_ended_at        = $task->ended_at;
+        $purchaseOrder->task_price           = $task->price;
+        $purchaseOrder->task_tax             = $task->tax;
         $purchaseOrder->save();
 
         return redirect()->route('company.document.purchaseOrder.show', [$purchaseOrder->id]);

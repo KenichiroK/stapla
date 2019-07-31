@@ -51,6 +51,7 @@ mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common'
    .sass('resources/sass/company/document/nda/create.scss', 'public/css/company/document/nda')
    .sass('resources/sass/company/document/nda/show.scss', 'public/css/company/document/nda')
    .sass('resources/sass/company/document/purchaseOrder/index.scss', 'public/css/company/document/purchaseOrder')
+   .sass('resources/sass/company/document/invoice/show.scss', 'public/css/company/document/invoice')
    .sass('resources/sass/company/document/purchaseOrder/show.scss', 'public/css/company/document/purchaseOrder')
    .sass('resources/sass/company/setting/general/index.scss', 'public/css/company/setting/general')
    .sass('resources/sass/company/setting/companyElse/index.scss', 'public/css/company/setting/companyElse')
@@ -62,6 +63,7 @@ mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common'
 
    // partner
    .sass('resources/sass/partner/dashboard/index.scss', 'public/css/partner/dashboard')
+   .sass('resources/sass/partner/task/show.scss', 'public/css/partner/task')
    .sass('resources/sass/partner/document/purchaseOrder/index.scss', 'public/css/partner/document/purchaseOrder')
    .sass('resources/sass/partner/document/invoice/create.scss', 'public/css/partner/document/invoice')
    .sass('resources/sass/partner/document/invoice/show.scss', 'public/css/partner/document/invoice')

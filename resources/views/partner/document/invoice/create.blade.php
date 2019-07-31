@@ -77,7 +77,7 @@ const calculateSumPrice = (e) => {
                 <li><a href="/partner/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
                 <li><a href="#"><i class="fas fa-envelope"></i>プロジェクト</a></li>
                 <li><a href="#"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/partner/invoice/create" class="isActive"><i class="fas fa-newspaper"></i>書類</a></li>
+                <li><a href="#" class="isActive"><i class="fas fa-newspaper"></i>書類</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
                 <li><a href="/partner/setting/invoice"><i class="fas fa-cog"></i>設定</a></li>
@@ -121,8 +121,8 @@ const calculateSumPrice = (e) => {
 						<div class="selectbox-container">
 							<select name="companyUser_id">
 								<option value="" hidden></option>
-								@foreach ($companyUsers as $companyUser)
-									<option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
+								@foreach ($task->taskCompanies as $companyUser)
+									<option value="{{ $companyUser->companyUser->id }}">{{ $companyUser->companyUser->name }}</option>
 								@endforeach
 								@if ($errors->has('companyUser_id'))
 									<div>
@@ -267,6 +267,8 @@ const calculateSumPrice = (e) => {
 				</div>
 			</div>
 		</div>
+
+		<input type="hidden" name="task_id" value="{{ $task->id }}">
 
 		<div class="button-container">
 			<button type="submit">作成</button>

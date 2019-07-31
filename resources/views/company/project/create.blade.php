@@ -88,6 +88,38 @@
                         </div>
                     </li>
                     <li class="project-create__container__list__item">
+                        <div class="project-create__container__list__item__name">上長</div>
+                        <div class="select-container select id-normal select-plusicon is-multiple">
+                            <select name="superior_id" class="select-box" id="company-staff-name-list">
+                                <option></option>
+                                @foreach( $company_users as $company_user )
+                                <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('company_user_id'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('company_user_id') }}</strong>
+                                </div>
+                            @endif
+                        </div>
+                    </li>
+                    <li class="project-create__container__list__item">
+                        <div class="project-create__container__list__item__name">経理</div>
+                        <div class="select-container select id-normal select-plusicon is-multiple">
+                            <select name="accounting_id" class="select-box" id="company-staff-name-list">
+                                <option></option>
+                                @foreach( $company_users as $company_user )
+                                <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('company_user_id'))
+                                <div>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('company_user_id') }}</strong>
+                                </div>
+                            @endif
+                        </div>
+                    </li>
+                    <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">パートナー</div>
                         <div class="select id-normal select-plusicon is-multiple">
                             <select name="partner_id" class="select-box" id="partner-name-list">
@@ -108,21 +140,21 @@
                         <div class="calendars">
                             <div class="calendars__wrapper">
                                 <div class="calendars__wrapper__title start">開始日<i class="fas fa-calendar-alt"></i></div>
-                                <!-- <input name="started_at" type="text" value="{{ old('started_at')}}">
+                                <input name="started_at" type="text" value="{{ old('started_at')}}">
                                 @if($errors->has('started_at'))
                                     <div>
                                         <strong style='color: #e3342f;'>{{ $errors->first('started_at') }}</strong>
                                     </div>
-                                @endif -->
+                                @endif
                             </div>
                             <div class="calendars__wrapper right">
                                 <div class="calendars__wrapper__title">終了日<i class="fas fa-calendar-alt"></i></div>
-                                <!-- <input name="ended_at" type="text" value="{{ old('ended_at')}}">
+                                <input name="ended_at" type="text" value="{{ old('ended_at')}}">
                                 @if($errors->has('ended_at'))
                                     <div>
                                         <strong style='color: #e3342f;'>{{ $errors->first('ended_at') }}</strong>
                                     </div>
-                                @endif -->
+                                @endif
                             </div>
                         </div>
                     </li>

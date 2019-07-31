@@ -7,6 +7,8 @@ use App\Models\CompanyUser;
 use App\Models\Partner;
 use App\Models\ProjectCompany;
 use App\Models\ProjectPartner;
+use App\Models\ProjectSuperior;
+use App\Models\ProjectAccounting;
 use App\Models\Task;
 
 use Illuminate\Http\Request;
@@ -71,14 +73,11 @@ class ProjectController extends Controller
         $project->budget       = $request->budget;
         $project->price        = 0;
 
-
-
         if($request->file){
             $file_name = $time.'_'.Auth::user()->id .'.'. $request->file->getClientOriginalExtension();
             $project->file = $file_name;
             $request->file('file')->storeAs('public/images/company/project/file' , $file_name);
         }
-
         $project->save();
 
         $project_id = $project->id;
@@ -92,6 +91,16 @@ class ProjectController extends Controller
         $projectPartner->user_id = $request->partner_id;
         $projectPartner->project_id = $project_id;
         $projectPartner->save();
+
+        $project_superior = new ProjectSuperior;
+        $project_superior->project_id =  $project_id;
+        $project_superior->user_id    =  $request->superior_id;
+        $project_superior->save();
+
+        $project_accounting = new ProjectAccounting;
+        $project_accounting->project_id =  $project_id;
+        $project_accounting->user_id    =  $request->accounting_id;
+        $project_accounting->save();
         
         return redirect('/company/project');
     }
@@ -101,10 +110,10 @@ class ProjectController extends Controller
         $user = Auth::user();
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
 
-        $projects = Project::where('company_id', $company_user->company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->findOrFail($id);
-        $tasks = Task::where('project_id',$projects->id)->with(['project','taskCompanies','taskPartners','taskRoleRelation','purchaseOrder','contract','nda','invoice'])->get();
+        $project = Project::where('company_id', $company_user->company_id)->findOrFail($id);
+        $tasks = Task::where('project_id',$project->id)->get();
         
-        return view('/company/project/show', compact('projects','tasks', 'company_user'));
+        return view('/company/project/show', compact('project','tasks', 'company_user'));
     }
 
     public function edit($id)

@@ -6,7 +6,7 @@ class Invoice extends BaseUuid
     protected $table = 'invoices';
 
     protected $fillable = [
-        'company_id', 'companyUser_id', 'partner_id', 'project_name', 'requested_at', 'deadline_at', 'tax', 'status'
+        'company_id', 'companyUser_id', 'task_id', 'partner_id', 'project_name', 'requested_at', 'deadline_at', 'tax', 'status'
     ];
 
     public function company()

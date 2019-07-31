@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers\Partners;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Partner;
-use App\Models\Project;
-use App\Models\ProjectPartner;
-use App\Models\TaskPartner;
 use App\Models\Task;
-use App\Models\Nda;
-use App\Models\Contract;
+use App\Models\Partner;
+use App\Models\CompanyUser;
 use App\Models\PurchaseOrder;
-use App\Models\Invoice;
+use Illuminate\Http\Request;
+use Validator;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Auth;
 
-
-class DashboardController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,17 +21,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $partner_auth_id = Auth::user()->id;
-        $partner_id = Partner::where('partner_id', $partner_auth_id)->get()->first()->id;
-        $partner = Partner::where('partner_id', $partner_auth_id)->get()->first();
-        $projects = ProjectPartner::where('user_id', $partner_id)->get();
-        $tasks = Task::where('partner_id', $partner_id)->get();
-        $ndas = Nda::where('partner_id', $partner_id)->where('status', 0)->get();
-        $contracts = Contract::where('partner_id', $partner_id)->where('status', 0)->get();
-        $purchaseOrders = PurchaseOrder::where('partner_id', $partner_id)->where('status', 0)->get();
-        $invoices = Invoice::where('partner_id', $partner_id)->get();
-
-        return view('partner/dashboard/index', compact(['projects', 'tasks', 'partner', 'invoices', 'purchaseOrders', 'ndas']));
+        //
     }
 
     /**
@@ -67,7 +53,14 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $purchaseOrder = PurchaseOrder::where('task_id', $id)->first();
+
+
+        $user = Auth::user();
+        $partner = Partner::where('partner_id', $user->id)->get()->first();
+
+        return view('/partner/task/show', compact('task', 'partner', 'purchaseOrder'));
     }
 
     /**

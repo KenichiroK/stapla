@@ -30,7 +30,7 @@
                 <li><a href="/partner/dashboard" class="isActive"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
                 <li><a href="#"><i class="fas fa-envelope"></i>プロジェクト</a></li>
                 <li><a href="#"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/partner/invoice/create"><i class="fas fa-newspaper"></i>書類</a></li>
+                <li><a href="#"><i class="fas fa-newspaper"></i>書類</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
                 <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
                 <li><a href="/partner/setting/invoice"><i class="fas fa-cog"></i>設定</a></li>
@@ -189,43 +189,49 @@
             <tbody>
                 @foreach($tasks as $task)
                 <tr>
-                    <td class="project_name">{{ $task->task->project->name }}</td>
-                    <td>{{ $task->task->name }}</td>
+                    <td class="project_name">{{ $task->project->name }}</td>
                     <td>
-                        <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px">
-                        @if ($task->task->taskPartners->count() > 1) 
-                            <p>
-                                {{ $task->task->taskPartners[0]->partner->name }} 
-                                他{{ $task->task->taskPartners->count() - 1 }}名
-                            </p>
-                        @else
-                            <p>{{ $task->task->taskPartners[0]->partner->name }}</p>
-                        @endif
+                        <a href="task/{{ $task->id }}">
+                            {{ $task->name }}</td>
+                        </a>
+                    <td>
+                        <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="プロフィール画像" width="32px" height="32px">
+                            <p>{{ $task->partner->name }}</p>
                     </td>
                     <td>
-                        @if($task->task->status == 0)
+                        @if($task->status == 0)
                             <p class="default">下書き</p>
-                        @elseif ($task->task->status == 1)
-                            <p class="default">提案中</p>
-                        @elseif ($task->task->status == 2)
-                            <p class="default">依頼前</p>
-                        @elseif ($task->task->status == 3)
-                            <p class="default">依頼中</p>
-                        @elseif ($task->task->status == 4)
-                            <p class="default">開始前</p>
-                        @elseif ($task->task->status == 5)
+                        @elseif ($task->status == 1)
+                            <p class="default">タスク上長確認前</p>
+                        @elseif ($task->status == 2)
+                            <p class="default">タスク上長確認中</p>
+                        @elseif ($task->status == 3)
+                            <p class="default">タスクパートナー依頼前</p>
+                        @elseif ($task->status == 4)
+                            <p class="default">タスクパートナー依頼中</p>
+                        @elseif ($task->status == 5)
+                            <p class="default">発注書作成中</p>
+                        @elseif ($task->status == 6)
+                            <p class="default">発注書作成完了</p>
+                        @elseif ($task->status == 7)
+                            <p class="default">発注書上長確認中</p>
+                        @elseif ($task->status == 8)
+                            <p class="default">発注書パートナー依頼前</p>
+                        @elseif ($task->status == 9)
+                            <p class="default">発注書パートナー確認中</p>
+                        @elseif ($task->status == 10)
                             <p class="default">作業中</p>
-                        @elseif ($task->task->status == 6)
-                            <p class="default">提出前</p>
-                        @elseif ($task->task->status == 7)
-                            <p class="default">修正中</p>
-                        @elseif ($task->task->status == 8)
+                        @elseif ($task->status == 11)
+                            <p class="default">請求書依頼中</p>
+                        @elseif ($task->status == 12)
+                            <p class="default">請求書確認中</p>
+                        @elseif ($task->status == 13)
                             <p class="complete">完了</p>
-                        @else
-                            <p class="cancel">キャンセル</p>
+                        @elseif ($task->status == 14)
+                            <p class="default">キャンセル</p>
                         @endif
                     </td>
-                    <td>¥{{ $task->task->price }}</td>
+                    <td>¥{{ number_format($task->price) }}</td>
                 </tr>
                 @endforeach
             </tbody>

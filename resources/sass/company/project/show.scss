@@ -180,6 +180,10 @@
                             .imgbox{
                                 width: 31px;
                                 margin: 0 auto;
+
+                                img {
+                                    border-radius: 50%;
+                                }
                             }
                             .name{
                                 font-size: 12px;
@@ -311,6 +315,10 @@
                     .imgbox{
                         width: 31px;
                         margin: 0 auto;
+
+                        img {
+                            border-radius: 50%;
+                        }
                     }
                     .name{
                         font-size: 12px;
@@ -418,5 +426,3 @@
         
     }
 }
-  
-  
