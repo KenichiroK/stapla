@@ -81,6 +81,8 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document/nda', 'Companies\Document\NdaController@create')->name('company.document.nda.create');
 		Route::post('/document/nda', 'Companies\Document\NdaController@store')->name('company.document.nda.store');
 		Route::get('/document/nda/{id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
+		Route::get('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.edit');
+		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
 		Route::get('/document/purchaseOrder/{id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');
 
 		// setting

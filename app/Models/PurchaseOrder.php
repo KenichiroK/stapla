@@ -6,10 +6,10 @@ class PurchaseOrder extends BaseUuid
     protected $table = 'purchase_orders';
 
     protected $fillable = [
-        'company_id', 'task_id', 'status', 'ordered_at', 
+        'company_id', 'companyUser_id', 'partner_id', 'task_id', 'status', 'ordered_at', 
         'company_name', 'company_tel', 'company_zip_code', 'company_prefecture',
-        'company_city', 'company_building', 'companyUser_name',
-        'partner_name', 'task_name', 'task_ended_at', 'task_price', 'task_tax',
+        'company_city', 'company_building', 'companyUser_name', 'partner_name',
+        'task_name', 'task_delivery_format', 'task_ended_at', 'task_price', 'task_tax',
     ];
 
     public function company()
@@ -29,6 +29,6 @@ class PurchaseOrder extends BaseUuid
 
     public function companyUserAccountSetting()
     {
-        return $this->hasOne('App\Models\CompanyUserAcountSetting', 'company_user_id', 'id');
+        return $this->hasOne('App\Models\CompanyUserAcountSetting', 'companyUser_id', 'id');
     }
 }
