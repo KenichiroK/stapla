@@ -12,8 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js([
-   //JQuery
-
    //company
    'resources/js/app.js',
    'resources/js/company/dashboad/index.js',
@@ -25,6 +23,10 @@ mix.js([
 
    //partner
    'resources/js/partner/dashboad/index.js',
+
+   //PDF
+   'resources/js//pdf/logic.js',
+
 ],'public/js/app.js')
 
 
@@ -64,7 +66,11 @@ mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common'
    .sass('resources/sass/partner/document/invoice/show.scss', 'public/css/partner/document/invoice')
    .sass('resources/sass/partner/setting/invoice/index.scss', 'public/css/partner/setting/invoice')
    .sass('resources/sass/partner/profile/index.scss', 'public/css/partner/profile')
-   .sass('resources/sass/partner/setting/notification/index.scss', 'public/css/partner/setting/notification');
+   .sass('resources/sass/partner/setting/notification/index.scss', 'public/css/partner/setting/notification')
+
+
+   // pdf
+   .sass('resources/sass/pdf/paper.scss', 'public/css/pdf');
 
 mix.options({
    publicPath: 'public'

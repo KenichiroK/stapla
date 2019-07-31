@@ -25,6 +25,7 @@
         color: #43425D;
     }
 }
+
 // select
 .select-container {
     margin-bottom: 16px;
@@ -103,16 +104,6 @@
         text-decoration: none;
     }
 }
-
-//PDF
-.shrink{
-    zoom:86%;
-}
-.pageout {
-    position: fixed;
-    top: 200vh;
-}
-
 
 .secrecy-container {
     &__wrapper {
