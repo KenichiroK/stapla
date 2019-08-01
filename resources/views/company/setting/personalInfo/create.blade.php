@@ -73,7 +73,7 @@ const setPreview = (input) => {
         </div>
     @endif
 	<div class="title-container">
-		<h3>会社担当者設定</h3>
+		<h3>設定</h3>
 	</div>
 	<div class="menu-container">
 		<ul>
@@ -95,9 +95,15 @@ const setPreview = (input) => {
             <div class="edit-container">
                 <div class="image-container">
                     @if ($companyUser)
-                        <img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                        <div class="imgbox">
+                            <img src="../../../images/upload2.png" alt="">
+                            <!-- <img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px"> -->
+                        </div>
                     @else
-                        <img src="/{{ str_replace('public/', 'storage/', 'images/default/preview.jpeg') }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                        <div class="imgbox">
+                            <img src="../../../images/upload2.png" alt="">
+                            <!-- <img src="/{{ str_replace('public/', 'storage/', 'images/default/preview.jpeg') }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px"> -->
+                        </div>
                     @endif
                     <label for="picture">
                         画像をアップロード
@@ -141,7 +147,8 @@ const setPreview = (input) => {
 
                     <div class="short-input-container">
                         <p>企業名</p>
-                        {{ $companyUser->company->company_name }}
+                        <input type="text" name="company" value="">
+                        <!-- {{ $companyUser->company->company_name }} -->
                     </div>
 
                     <div class="short-input-container">
@@ -158,7 +165,7 @@ const setPreview = (input) => {
                         @endif
                     </div>
 
-                    <div class="short-input-container">
+                    <div class="short-input-container last">
                         <p>職種</p>
                         @if ($companyUser)
                             <input type="text" name="occupation" value="{{ old('occupation', $companyUser->occupation) }}">
