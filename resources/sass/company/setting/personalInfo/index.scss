@@ -1,5 +1,5 @@
 .main-wrapper {
-  width: 90%;
+  width: 100%;
   margin: auto;
   padding: 40px;
 
@@ -24,12 +24,15 @@
 
     h3 {
       font-weight: bold;
-      color: #43425d;
+      color: rgb(67, 66, 93);
+      font-size: 28px;
+      font-family: "Source Sans Pro";
+      margin-bottom: 0px;
     }
   }
 
   .menu-container {
-    margin-bottom: 64px;
+    margin-bottom: 35px;
 
     ul {
       width: 100%;
@@ -44,24 +47,25 @@
 
         a {
           width: 100%;
-          font-size: 12px;
+          height: 39px;
+          font-size: 16px;
           display: block;
-          color: #aaa;
-          padding-bottom: 4px;
-          border-bottom: 1px solid #aaa;
+          color: rgb(123, 122, 154);
+          padding-bottom: 10px;
+          border-bottom: 1px solid rgb(67, 66, 93);
           text-decoration: none;
         }
 
         a:hover {
           color: rgba(67, 66, 93, 0.7);
           font-weight: bold;
-          border-bottom: 3px solid rgba(67, 66, 93, 0.7);
+          border-bottom: 4px solid rgba(67, 66, 93, 0.7);
         }
 
         .isActive {
           color: #43425d!important;
           font-weight: bold!important;
-          border-bottom: 3px solid #43425d!important;
+          border-bottom: 4px solid #43425d!important;
         } 
       }
     }
@@ -70,27 +74,31 @@
   .body-container {
     width: 100%;
     background-color: #fff;
-    padding: 48px;
-    margin-bottom: 40px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 6px;
+    padding: 30px 30px 164px;
+    border-radius: 4px;
+    margin-bottom: 30px;
 
     .title-container {
-      margin-bottom: 24px;
+      margin-bottom: 30px;
 
       h4 {
         font-size: 18px;
         color: #43425d;
         font-weight: bold;
+        margin-bottom: 0;
       }
     }
 
     .edit-container {
       display: flex;
-      justify-content: space-between;
 
       .image-container {
-        width: 25%;
         text-align: center;
-
+        .imgbox{
+          width: 84px;
+          margin: 0 auto;
+        }
         img {
           border-radius: 50%;
           margin-bottom: 12px;
@@ -101,9 +109,10 @@
           color: #43425d;
           font-weight: bold;
           border: 1px solid #43425d;
-          padding: 4px 24px;
+          padding: 4px 20px;
           font-size: 12px;
-          border-radius: 48px;
+          font-family: 'Source Sans Pro';
+          border-radius: 100px;
           cursor: pointer;
         }
 
@@ -114,26 +123,33 @@
       }
 
       .profile-container {
-        width: 70%;
+        width: 400px;
+        margin-left: 40px;
 
         .short-input-container {
-          width: 50%;
-          margin-bottom: 24px;
+          width: 100%;
+          margin-bottom: 30px;
 
           p {
-            font-size: 16px;
+            font-size: 15px;
+            font-family: 'Source Sans Pro';
             font-weight: bold;
             color: #43425d;
+            margin-bottom: 14px;
           }
 
           input {
             width: 100%;
-            outline-color: #43425d;
-            font-size: 16px;
+            height: 48px;
+            outline-color: #ccdcf6;
+            font-size: 15px;
             padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
+            border: 1px solid #E9E9F0;
+            border-radius: 2px;
           }
+        }
+        .short-input-container.last{
+          margin-bottom: 0;
         }
 
         .long-input-container {
@@ -186,13 +202,15 @@
     
     button {
       background-color: #43425d;
+      border-color: #43425d;
       color: #fff;
       font-weight: bold;
       padding: 8px 40px;
-      border-radius: 48px;
+      border-radius: 100px;
       font-size: 16px;
       cursor: pointer;
       outline: none;
+      width: 140px;
     }
 
     button:hover {
