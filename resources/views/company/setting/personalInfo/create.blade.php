@@ -96,8 +96,7 @@ const setPreview = (input) => {
                 <div class="image-container">
                     @if ($companyUser)
                         <div class="imgbox">
-                            <img src="../../../images/upload2.png" alt="">
-                            <!-- <img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px"> -->
+                            <img id="profile_image_preview" src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
                         </div>
                     @else
                         <div class="imgbox">
