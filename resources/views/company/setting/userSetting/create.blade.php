@@ -82,6 +82,8 @@ const setPreview = (input) => {
         <ul class="charge-container__item__list" style="display: flex">
             <li>担当者名</li>
             <li>メールアドレス</li>
+            <li>パートナー依頼中</li>
+            <li>ステータス</li>
         </ul>
     </div>
     <div class="charge-container__content">
@@ -90,17 +92,19 @@ const setPreview = (input) => {
             <li>
                 <div class="name-container">
                     <div class="name-container__img-container">
-                        <img class="icon" src="" alt="">
+                    <img src="../../../images/photoimg.png" alt="">
                     </div>
                     {{ $companyUser->name }}
                 </div>
             </li>
             <li>{{ $companyUser->companyUserAuth->email }}</li>
+            <li>管理者</li>
+            <li>登録済み</li>
         </ul>
         @endforeach
         
         <div class="charge-container__content__showmore">
-            <p class="charge-container__content__showmore__btn">もっと見る<i class="arrow fas fa-angle-down"></i></p>
+            <p class="charge-container__content__showmore__btn">もっと見る</p>
         </div>
     </div>
     <div class="btn-container">

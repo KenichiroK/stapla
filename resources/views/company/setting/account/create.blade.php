@@ -81,7 +81,7 @@ const setPreview = (input) => {
             <h3>アカウント設定</h3>
           </div>
           <div class="plan">プラン</div>
-          <div class="plan-name">ライトプラン</div>
+          <div class="plan-name">ライトプラン（年払い）</div>
           <div class="btn-container">
             <button type="submit">プラン変更</button>
           </div>
