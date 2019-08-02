@@ -65,6 +65,13 @@ class InvoiceController extends Controller
         // if ($company_user->id !== $invoice->companyUser_id) {
         //     return 'no data';
         // }
+
+        $company_user_ids = array();
+        if ($task->taskCompanies) {
+            foreach($task->taskCompanies as $companyUser) {
+                array_push($company_user_ids, $companyUser->companyUser->id);
+            }
+        }
         
         if ($invoice->requestTasks->count() > 0) {
             foreach($invoice->requestTasks as $requestTask) {
@@ -77,7 +84,7 @@ class InvoiceController extends Controller
             }
         }
 
-        return view('/company/document/invoice/show', compact('company_user', 'partner', 'invoice', 'task', 'total_sum'));
+        return view('/company/document/invoice/show', compact('company_user', 'partner', 'invoice', 'task', 'total_sum', 'company_user_ids'));
     }
 
     /**

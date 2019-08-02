@@ -148,6 +148,8 @@
         </div>
     </div>
 
+
+    @if($purchaseOrder->task->status === 9 && $purchaseOrder->partner->id === $partner->id)
     <div class="button-container">
         <form action="{{ url('partner/task/status') }}" method="POST">
         @csrf
@@ -162,5 +164,10 @@
             <button type="submit" class="done">この案件を受ける</button>
         </form>
     </div>
+    @elseif($purchaseOrder->task->status > 9 && $purchaseOrder->partner->id === $partner->id)
+    <p class="send-done">この発注書は承認済みです</p>
+    @else
+    <p class="send-done">必要なアククションはありません</p>
+    @endif
 </div>
 @endsection

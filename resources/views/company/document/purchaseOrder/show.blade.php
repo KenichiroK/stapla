@@ -162,7 +162,7 @@ const setPreview = (input) => {
     </div>
 
 
-    @if($purchaseOrder->task->status === 5)
+    @if($purchaseOrder->task->status === 5 && in_array($company_user->id, $company_user_ids))
     <div class="submit-btn-container">
         <form action="{{ url('company/task/status') }}" method="POST">
         @csrf
@@ -171,7 +171,7 @@ const setPreview = (input) => {
             <button type="submit" class="button submit-btn-container__button">提出</button>
         </form>
     </div>
-    @elseif($purchaseOrder->task->status === 7)
+    @elseif($purchaseOrder->task->status === 7 && $purchaseOrder->task->superior->id === $company_user->id)
     <div class="actionButton">
         <form action="{{ url('company/task/status') }}" method="POST">
             @csrf
@@ -186,8 +186,12 @@ const setPreview = (input) => {
                 <button type="submit" class="done">発注書を承認する</button>
         </form>
     </div>
+    @elseif($purchaseOrder->task->status > 7 && $purchaseOrder->task->superior->id === $company_user->id)
+    <p class="send-done">この発注書は承認済みです</p>
+    @elseif($purchaseOrder->task->status > 5 && in_array($company_user->id, $company_user_ids))
+    <p class="send-done">この発注書は提出済みです</p>
     @else
-    <p class="send-done">発注書は提出済みです</p>
+    <p class="send-done">必要なアクションはありません</p>
     @endif
 </div>
 @endsection

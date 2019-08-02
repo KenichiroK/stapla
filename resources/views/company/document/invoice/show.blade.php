@@ -167,7 +167,7 @@
         </div>
 	</div>
 
-	@if($task->status === 12)
+	@if($task->status === 12 && in_array($company_user->id, $company_user_ids))
 	<div class="actiionButton">
 		<form action="{{ url('company/task/status') }}" method="POST">
 		@csrf
@@ -186,8 +186,10 @@
 			</div>
 		</form>
 	</div>
+	@elseif($task->status > 12 && in_array($company_user->id, $company_user_ids))
+	<p class="send-done">この請求書は承認済みです</p>
 	@else
-	<p class="send-done">必要なアクションはありません。</p>
+	<p class="send-done">必要なアクションはありません</p>
 	@endif
 </div>
 @endsection

@@ -52,8 +52,8 @@ class PurchaseOrderController extends Controller
         $purchaseOrder = PurchaseOrder::findOrFail($id);
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
-        if ($partner->company_id !== $purchaseOrder->company_id) {
-            return 'no data';
+        if($purchaseOrder->partner->id !== $partner->id) {
+            return 'アカウントをお確かめください';
         }
         return view('partner/document/purchaseOrder/show', compact('purchaseOrder', 'partner'));
     }

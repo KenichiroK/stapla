@@ -291,6 +291,8 @@
                 </form>
             @elseif($task->status === 12 && in_array($company_user->id, $company_user_ids))
                 <a href="/company/document/invoice/{{ $invoice->id }}" class="done">請求書を確認する</a>
+            @elseif($task->status === 13)
+                <p class="non-action-text">このタスクは完了しています</p>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif
