@@ -51,45 +51,69 @@
         <div class="top-container">
             <h1 class="top-container__title">パートナー</h1>
             <div>
-                <p class="control has-icons-left">
+                <p class="control has-icons-left serch-wrp">
                     <input class="search-name input" type="text" placeholder="パートナーを検索">
-                    <span class="icon is-small is-left">
-                    <i class="fas fa-search"></i>
+                    <span class="icon">
+                    <!-- <i class="fas fa-search"></i> -->
+                    <img src="../../../images/searchicon.png" alt="serch">
                     </span>
                 </p>
             </div>
         </div>
         
         <div class="profile-list">
+            
             @foreach( $partners as $partner )
+            
             <div class="profile-card-container">
                 <!-- <a href="/company/partner/{{ $partner->id }}"> -->
                     <div class="profile-card-container__wrapper">
                         <div class="main-content">
                             <div class="main-content__img-container">
-                                <img class="main-content__img-container__img" src="" alt="">
+                                <!-- <img class="main-content__img-container__img" src="" alt=""> -->
+                                <img src="../../../images/photoimg2.png" alt="">
                             </div>
                             <div class="main-content__info-list">
                                 <div class="main-content__info-list__name">{{ $partner->name }}</div>
                                 <div class="main-content__info-list__job">{{ $partner->occupations }}</div>
+                                <div class="main-content__info-list__assessment-achievement">
+                                    <div class="assessment">⭐⭐⭐⭐</div>
+                                    <div class="achievement">実績<span class="num">1</span><span class="ken">件</span></div>
+                                
+                                </div>
+                                
                             </div>
-                            <div class="main-content__right-icons">
+                            <div class="main-content__edit-icons">
                                 <div>
-                                    <a href="/partner/profile_setting"><i class="main-content__right-icons__pen fas fa-pen"></i></a>
+                                    <a href="/partner/profile_setting"><img src="../../../images/edit.png" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="main-content__close-icons">
+                                <div>
+                                    <a href=""><div class="close-parts"><span></span></div></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="icon-list">
-                            <div><a class="default-color github"><i class="fab fa-github icon"></i></a></div>
-                            <div><a class="default-color twitter"><i class="fab fa-twitter icon"></i></a></div>
-                            <div><a class="default-color facebook"><i class="fab fa-facebook icon"></i></a></div>
-                            <div><a class="default-color instagram"><i class="fab fa-instagram icon"></i></a></div>
-                            <div><a class="default-color mail"><i class="far fa-envelope icon"></i></a></div>
+                        <div class="icon-list-wrp">
+                            <div class="icon-list">
+                                <!-- <div><a class="default-color github"><i class="fab fa-github icon"></i></a></div>
+                                <div><a class="default-color twitter"><i class="fab fa-twitter icon"></i></a></div>
+                                <div><a class="default-color facebook"><i class="fab fa-facebook icon"></i></a></div>
+                                <div><a class="default-color instagram"><i class="fab fa-instagram icon"></i></a></div>
+                                <div><a class="default-color mail"><i class="far fa-envelope icon"></i></a></div> -->
+                                <div><a class="default-color github"><img src="../../../images/github.png" alt=""></a></div>
+                                <div><a class="default-color twitter"><img src="../../../images/twitter.png" alt=""></a></div>
+                                <div><a class="default-color facebook"><img src="../../../images/facebook.png" alt=""></a></div>
+                                <div><a class="default-color instagram"><img src="../../../images/insta.png" alt=""></a></div>
+                                <div><a class="default-color mail"><img src="../../../images/mail.png" alt=""></a></div>
+                            </div>
                         </div>
                     </div>
                 <!-- </a> -->
             </div>
+            
             @endforeach
+            
             <div class="pagenate-container">
                 <div class="pagenate-container__wrapper">
                     {{ $partners->links() }}
