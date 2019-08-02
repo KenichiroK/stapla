@@ -16,8 +16,8 @@ class CreateCompaniesTable extends Migration
             $table->string("zip_code", 64);
             $table->string("address_prefecture", 64);
             $table->string("address_city", 64);
-            $table->string("address_building", 64);
-            $table->string("tel")->nullable();
+            $table->string("address_building", 64)->nullable();
+            $table->string("tel");
             $table->boolean("expire");
             $table->string("expire2")->nullable();
             $table->boolean("approval_setting");

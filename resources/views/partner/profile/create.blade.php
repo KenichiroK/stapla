@@ -61,6 +61,7 @@ const setPreview = (input) => {
 @endsection
 
 @section('content')
+{{ $partner }}
 <div class="main-wrapper">
     @if ($completed)
         <div class="complete-container">

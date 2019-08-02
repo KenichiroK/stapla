@@ -35,14 +35,14 @@
 				<h3>プロフィール登録</h3>
 			</div>
 
-			<form action="/company/registerInfo" method="POST">
+			<form action="/company/registerInfo" method="POST" enctype="multipart/form-data">
 				@csrf
 				<div class="edit-container">
 					<div class="image-container">
-					@if ($companyUser)
+					@if (isset($companyUser->picture))
                         <img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
                     @else
-                        <img src="/{{ str_replace('public/', 'storage/', 'images/default/preview.jpeg') }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+						<img src="/images/preview.jpeg" alt="" id="profile_image_preview" width="140px" height="140px">
                     @endif
                     <label for="picture">
                         画像をアップロード
@@ -77,7 +77,7 @@
 							@else
 								<input type="text" name="department" value="{{ old('department') }}">
 							@endif
-=							@if ($errors->has('department'))
+							@if ($errors->has('department'))
 								<div>
 									<strong style='color: #e3342f;'>{{ $errors->first('department') }}</strong>
 								</div>
@@ -183,6 +183,21 @@
 							@if ($errors->has('address_building'))
 								<div>
 									<strong style='color: #e3342f;'>{{ $errors->first('address_building') }}</strong>
+								</div>
+							@endif
+						</div>
+					</div>
+					<div class="bottom-container">
+						<div class="input-container">
+							<p>電話番号</p>
+							@if ($company)
+								<input type="text" name="tel" value="{{ old('tel', $company->tel) }}">
+							@else
+								<input type="text" name="tel" value="{{ old('tel') }}">
+							@endif
+							@if ($errors->has('tel'))
+								<div>
+									<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
 								</div>
 							@endif
 						</div>

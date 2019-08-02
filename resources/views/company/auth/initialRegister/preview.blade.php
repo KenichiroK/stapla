@@ -21,11 +21,13 @@
 				<h3>入力内容確認</h3>
 			</div>
 
+
+			{{ $companyUser }}
 			<form action="" method="POST">
 				<div class="edit-container">
 					<div class="personal-container">
 						<div class="image-container">
-							<img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+						<img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
 						</div>
 						<!-- <div class="image-container">
 							<img src="/images/preview.jpeg" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
@@ -72,6 +74,11 @@
 								{{ $company->address_city }}
 								{{ $company->address_building }}
 							</h4>
+						</div>
+
+						<div class="section-container">
+							<p>電話番号</p>
+							<h4>{{ $company->tel }}</h4>
 						</div>
 					</div>
 				</div>

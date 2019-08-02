@@ -47,6 +47,7 @@ class InitialRegisterController extends Controller
         $company->address_prefecture     = $request->address_prefecture;
         $company->address_city           = $request->address_city;
         $company->address_building       = $request->address_building;
+        $company->tel                    = $request->tel;
         $company->expire                 = true;
         $company->approval_setting       = true;
         $company->income_tax_setting     = true;
@@ -62,7 +63,9 @@ class InitialRegisterController extends Controller
         $companyUser->name = $request->name;
         $companyUser->department = $request->department;
         $companyUser->self_introduction = $request->self_introduction;
-        $companyUser->picture = $request->picture;
+        $time = date("Y_m_d_H_i_s");
+        $companyUser->picture = $request->picture->storeAs('public/images/companyUser/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
+        
         $companyUser->save();
 
         return redirect('/company/previewInfo');
