@@ -116,9 +116,16 @@ class TaskController extends Controller
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
         $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
 
+        $company_user_ids = array();
+        if ($task->taskCompanies) {
+            foreach($task->taskCompanies as $companyUser) {
+                array_push($company_user_ids, $companyUser->companyUser->id);
+            }
+        }
+
         $partners = Partner::where('company_id', $company_user->company_id)->get();
 
-        return view('/company/task/show', compact('task', 'project_count', 'companyUsers', 'partners', 'company_user', 'purchaseOrder', 'invoice'));
+        return view('/company/task/show', compact('task', 'project_count', 'companyUsers', 'partners', 'company_user', 'purchaseOrder', 'invoice', 'company_user_ids'));
     }
 
     public function edit($id)
