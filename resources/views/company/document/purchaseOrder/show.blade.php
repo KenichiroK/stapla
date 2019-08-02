@@ -146,7 +146,7 @@ const setPreview = (input) => {
 
                 <div class="section-container">
                     <p class="sub-column">消費税</p>
-                    <p>{{ number_format($purchaseOrder->task->price * $purchaseOrder->task_tax) }}</p>
+                    <p>{{ number_format($purchaseOrder->task_price * ($purchaseOrder->task_tax)) }}</p>
                 </div>
 
                 <div class="section-container">
