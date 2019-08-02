@@ -259,6 +259,8 @@
                 <a href="/partner/order/{{ $purchaseOrder->id }}" class="done">発注書を確認する</a>
             @elseif($task->status === 11 && $task->partner->id === $partner->id)
                 <a href="/partner/invoice/create/{{ $task->id }}" class="done">請求書を作成する</a>
+            @elseif($task->status === 13)
+                <p class="non-action-text">このタスクは完了しています</p>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif
