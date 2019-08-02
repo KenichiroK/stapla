@@ -144,65 +144,9 @@ const setPreview = (input) => {
                     <p>{{ number_format($purchaseOrder->task_price) }}</p>
                 </div>
 
-            <div class="order-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>商品名</th>
-                            <th>数量</th>
-                            <th>単価</th>
-                            <th>合計</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>{{ $purchaseOrder->task_name }}</td>
-                            <td>1</td>
-                            <td>{{ number_format($purchaseOrder->task_price) }}</td>
-                            <td>{{ number_format($purchaseOrder->task_price) }}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="total-container">
-                    <div class="text-container">
-                        <p>合計</p>
-                    </div>
-
-                    <div class="section-container">
-                        <p class="sub-column">税抜</p>
-                        <p>{{ number_format($purchaseOrder->task_price) }}</p>
-                    </div>
-
-                    <div class="section-container">
-                        <p class="sub-column">消費税</p>
-                       
-                        <p>{{ $purchaseOrder->task_tax }}</p>
-                    </div>
-
-                    <div class="section-container">
-                        <p class="sub-column">総額</p>
-                        <p class="total-text">￥{{ number_format($purchaseOrder->task_price * (1 + $purchaseOrder->task_tax)) }}</p>
-                    </div>
+                <div class="section-container">
+                    <p class="sub-column">消費税</p>
+                    <p>{{ $purchaseOrder->task_tax }}</p>
                 </div>
 
                 <div class="section-container">
