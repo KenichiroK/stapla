@@ -139,10 +139,9 @@
                     <td class="project_name">{{ $project->project->name }}</td>
                     <td>
                         <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="">
-                        </div>
-                        <!-- <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px"> -->
-                        @if ($project->project->projectCompanies->count() > 1) 
+                            <img src="/{{ str_replace('public/', 'storage/', $project->project->projectCompanies[0]->companyUser->picture) }}" alt="">
+                        </div>                       
+                        @if ($project->project->projectCompanies->count() > 1)
                             <p>
                                 {{ $project->project->projectCompanies[0]->companyUser->name }} 
                                 他{{ $project->project->projectCompanies->count() - 1 }}名
@@ -153,7 +152,7 @@
                     </td>
                     <td>
                         <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="">
+                            <img src="/{{ str_replace('public/', 'storage/', $project->project->projectPartners[0]->partner->picture) }}" alt="">
                         </div>
                         <!-- <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px"> -->
                         @if ($project->project->projectPartners->count() > 1) 
@@ -232,9 +231,8 @@
                     <td>{{ $task->task->name }}</td>
                     <td class="partner">
                         <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->task->taskPartners[0]->partner->picture) }}" alt="">
                         </div>
-                        <!-- <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px"> -->
                         @if ($task->task->taskPartners->count() > 1) 
                             <p>
                                 {{ $task->task->taskPartners[0]->partner->name }} 
@@ -245,26 +243,36 @@
                         @endif
                     </td>
                     <td>
-                        @if($task->task->status == 0)
-                            <p class="default">下書き</p>
-                        @elseif ($task->task->status == 1)
-                            <p class="default">提案中</p>
-                        @elseif ($task->task->status == 2)
-                            <p class="default">依頼前</p>
-                        @elseif ($task->task->status == 3)
-                            <p class="default">依頼中</p>
-                        @elseif ($task->task->status == 4)
-                            <p class="default">開始前</p>
-                        @elseif ($task->task->status == 5)
-                            <p class="default">作業中</p>
-                        @elseif ($task->task->status == 6)
-                            <p class="default">提出前</p>
-                        @elseif ($task->task->status == 7)
-                            <p class="default">修正中</p>
-                        @elseif ($task->task->status == 8)
-                            <p class="done">完了</p>
-                        @else
-                            <p class="cancel">キャンセル</p>
+                        @if(($task->task->status) === 0)
+                            下書き
+                        @elseif(($task->task->status) === 1)
+                            タスク上長確認前
+                        @elseif(($task->task->status) === 2)
+                            タスク上長確認中
+                        @elseif(($task->task->status) === 3)
+                            タスクパートナー依頼前
+                        @elseif(($task->task->status) === 4)
+                            タスクパートナー依頼中
+                        @elseif(($task->task->status) === 5)
+                            発注書作成中
+                        @elseif(($task->task->status) === 6)
+                            発注書作成完了
+                        @elseif(($task->task->status) === 7)
+                            発注書上長確認中
+                        @elseif(($task->task->status) === 8)
+                            発注書パートナー依頼前
+                        @elseif(($task->task->status) === 9)
+                            発注書パートナー確認中
+                        @elseif(($task->task->status) === 10)
+                            作業中
+                        @elseif(($task->task->status) === 11)
+                            請求書依頼中
+                        @elseif(($task->task->status) === 12)
+                            請求書確認中
+                        @elseif(($task->task->status) === 13)
+                            完了
+                        @elseif(($task->task->status) === 14)
+                            キャンセル
                         @endif
                     </td>
                     <td>¥{{ number_format($task->task->price) }}</td>
