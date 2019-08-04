@@ -59,6 +59,8 @@ mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common'
    .sass('resources/sass/company/setting/userSetting/index.scss', 'public/css/company/setting/userSetting')
    .sass('resources/sass/company/setting/personalInfo/index.scss', 'public/css/company/setting/personalInfo')
    .sass('resources/sass/company/userMail/index.scss', 'public/css/company/userMail')
+   .sass('resources/sass/company/invite/partner/create.scss', 'public/css/company/invite/partner')
+   .sass('resources/sass/company/invite/company/create.scss', 'public/css/company/invite/company')
    
 
    // partner

@@ -120,7 +120,7 @@
                 </div>
             </div>
             <div class="btn-container">
-                <a href="/company/mail/partner-index">担当者を招待する</a>
+                <a href="/company/invite/partner">担当者を招待する</a>
             </div>
         </div>
     </div>

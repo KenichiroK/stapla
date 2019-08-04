@@ -125,6 +125,10 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('register/preview', 'Companies\InitialRegisterController@preview')->name('company.register.preview');
 		Route::get('register/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
 
+		// invite
+		Route::get('invite/partner', 'Partners\Auth\RegisterController@showRegisterForm')->name('company.invite.partner.form');
+		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
+
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');
 
