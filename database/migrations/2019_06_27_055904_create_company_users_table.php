@@ -17,8 +17,8 @@ class CreateCompanyUsersTable extends Migration
             $table->string('name', 64);
             $table->string('department',64);
             $table->string('occupation',64)->nullable();
-            $table->text('self_introduction');
-            $table->string('picture')->nullable();
+            $table->text('self_introduction')->nullable();
+            $table->string('picture');
             $table->timestamps();
 
             $table->foreign('auth_id')->references('id')->on('company_user_auths');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Companies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Companies\CompanyAndCompanyUserRequest;
 use App\Models\Company;
 use App\Models\CompanyUser;
 
@@ -13,33 +14,38 @@ class InitialRegisterController extends Controller
     public function personal()
     {
         $auth = Auth::user();
-
-        if(CompanyUser::where('auth_id', $auth->id)->first()){
-            $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
-            $company = Company::where('id', $companyUser->company_id)->first();
-
-            return view('company/auth/initialRegister/personal', compact('companyUser', 'company'));
-        }
-
-        $companyUser = '';
-        $company = '';
-        return view('company/auth/initialRegister/personal', compact('companyUser', 'company'));
+        return view('company/auth/initialRegister/personal');
     }
 
-    public function StorePersonal(Request $request)
+    public function toPreview(CompanyAndCompanyUserRequest $request)
     {
         $auth = Auth::user();
 
-        if(CompanyUser::where('auth_id', $auth->id)->first()){
-            $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
-            $company = Company::where('id', $companyUser->company_id)->first();
+        // return $request;
 
-            $companyUser->update($request->all());
-            $company->update($request->all());
-        }
 
+        // if(CompanyUser::where('auth_id', $auth->id)->first()){
+        //     $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        //     $company = Company::where('id', $companyUser->company_id)->first();
+
+        //     $companyUser->update($request->all());
+        //     $company->update($request->all());
+        // }
+        return view('company/auth/initialRegister/preview', compact('request'));
+    }
+
+    public function previwShow(Request $request)
+    {
+        $auth = Auth::user();
+        // $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        // $company = Company::where('id', $companyUser->company_id)->first();
+        return view('company/auth/initialRegister/preview', compact('request'));
+    }
+
+    public function previewStore(Request $request)
+    {
+        $auth = Auth::user();
         
-
         $company = new Company;
         $company->company_name           = $request->company_name;
         $company->representive_name      = $request->representive_name;
@@ -64,24 +70,19 @@ class InitialRegisterController extends Controller
         $companyUser->department = $request->department;
         $companyUser->self_introduction = $request->self_introduction;
         $time = date("Y_m_d_H_i_s");
-        $companyUser->picture = $request->picture->storeAs('public/images/companyUser/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
+        // return $request->picture;
+        if(isset($request->picture)){
+            $companyUser->picture = $request->picture->storeAs('public/images/companyUser/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
+        }
         
         $companyUser->save();
 
-        return redirect('/company/previewInfo');
+        return view('company/auth/initialRegister/done');
     }
-
-    public function preview()
-    {
-        $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
-        $company = Company::where('id', $companyUser->company_id)->first();
-        return view('company/auth/initialRegister/preview', compact('company', 'companyUser'));
-    }
-
+    
     public function done()
     {
-        return view('company/auth/initialRegister/done');
+        return view('company/auth/regitster/done');
     }
 
     public function company()

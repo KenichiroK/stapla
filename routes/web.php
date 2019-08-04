@@ -71,9 +71,11 @@ Route::group(['prefix' => 'company'], function(){
 	Route::group(['middleware' => 'auth:company'], function() {
 		// register_flow
 		Route::get('/registerInfo', 'Companies\InitialRegisterController@personal')->name('company.registerInfo.personal');
-		Route::post('/registerInfo', 'Companies\InitialRegisterController@StorePersonal')->name('company.registerInfo.StorePersonal');
-		Route::get('/previewInfo', 'Companies\InitialRegisterController@preview')->name('company.previewInfo.preview');
-		Route::get('/done', 'Companies\InitialRegisterController@done')->name('company.done');
+		// Route::post('/registerInfo', 'Companies\InitialRegisterController@StorePersonal')->name('company.registerInfo.StorePersonal');
+		Route::post('/registerInfo', 'Companies\InitialRegisterController@toPreview')->name('company.registerInfo.StorePersonal');
+		Route::get('/register/preview/previwShow', 'Companies\InitialRegisterController@previwShow')->name('company.register.preview.previwShow');
+		Route::post('/register/preview/previewStore', 'Companies\InitialRegisterController@previewStore')->name('company.register.preview.previewStore');
+		Route::get('/regitster/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
 
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
