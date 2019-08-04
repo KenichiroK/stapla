@@ -35,4 +35,9 @@ class InitialRegisterController extends Controller
         $company_user = CompanyUser::where('auth_id', $auth_id)->get()->first();
         return view('company/invite/company/create', compact('company_user'));
     }
+
+    public function resetPassword()
+    {
+        return view('company/inviteRegister/reset-password'); 
+    }
 }
