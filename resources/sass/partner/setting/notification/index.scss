@@ -26,11 +26,12 @@
       font-weight: bold;
       color: #43425d;
       font-size: 28px;
+      margin-bottom: 0;
     }
   }
 
   .menu-container {
-    margin-bottom: 64px;
+    margin-bottom: 40px;
 
     ul {
       width: 100%;
@@ -45,24 +46,25 @@
 
         a {
           width: 100%;
-          font-size: 12px;
+          font-size: 14px;
           display: block;
-          color: #aaa;
-          padding-bottom: 4px;
-          border-bottom: 1px solid #aaa;
+          color: #7B7A9A;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #43425D;
           text-decoration: none;
+          height: 35px;
         }
 
         a:hover {
           color: rgba(67, 66, 93, 0.7);
           font-weight: bold;
-          border-bottom: 3px solid rgba(67, 66, 93, 0.7);
+          border-bottom: 4px solid rgba(67, 66, 93, 0.7);
         }
 
         .isActive {
           color: #43425d!important;
           font-weight: bold!important;
-          border-bottom: 3px solid #43425d!important;
+          border-bottom: 4px solid #43425d!important;
         } 
       }
     }
@@ -71,21 +73,25 @@
   .notification-container {
     width: 100%;
     background-color: #fff;
-    padding: 48px;
-    margin-bottom: 48px;
+    padding: 30px 40px 40px;
+    margin-bottom: 40px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    font-family: 'Source Sans Pro';
 
     .title-container {
       margin-bottom: 24px;
 
       h4 {
-        font-size: 16px;
+        font-size: 18px;
         color: #43425d;
         font-weight: bold;
+        margin-bottom: 0;
       }
     }
 
     .radio-container {
-      margin-bottom: 24px;
+      margin-bottom: 40px;
 
       .text {
         font-size: 16px;
@@ -95,16 +101,19 @@
       }
 
       .sub-text {
-        font-size: 12px;
+        font-size: 16px;
         color: #43425d;
       }
 
       input {
         display: none;
       }
+      label{
+        margin-bottom: 0;
+      }
 
       input + label {
-        padding-left: 25px;
+        padding-left: 43px;
         position:relative;
         margin-right: 20px;
       }
@@ -113,11 +122,11 @@
         content: "";
         display: block;
         position: absolute;
-        top: 0px;
+        top: -5px;
         left: 0;
-        width: 20px;
-        height: 20px;
-        border: 1px solid #999;
+        width: 32px;
+        height: 32px;
+        border: 1px solid #E9E9F0;
         border-radius: 50%;
       }
       
@@ -125,17 +134,20 @@
         content: "";
         display: block;
         position: absolute;
-        top: 4px;
-        left: 4px;
-        width: 12px;
-        height: 12px;
-        background: #09c221;
+        top: 3px;
+        left: 8px;
+        width: 16px;
+        height: 16px;
+        background: #00CC47;
         border-radius: 50%;
       }
 
       .left-btn {
-        margin-right: 12px;
+        margin-right: 50px;
       }
+    }
+    .radio-container.last{
+      margin-bottom: 0;
     }
   }
 
@@ -144,13 +156,15 @@
     text-align: center;
 
     button {
+      border-color: #43425D;
       background-color: #43425d;
       font-weight: bold;
       color: #fff;
       padding: 8px 40px;
-      font-size: 16px;
-      border-radius: 48px;
+      font-size: 18px;
+      border-radius: 100px;
       outline: none;
+      width: 140px;
     }
 
     button:hover {

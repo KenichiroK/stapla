@@ -132,9 +132,9 @@
 				@endif
 			</div>
 
-			<div class="radio-container">
-				<p class="text">slack連携</p>
-				<p class="sub-text">slackと連携すると、improからの通知がslackに届きます。</p>
+			<div class="radio-container last">
+				<p class="text">Slack連携</p>
+				<p class="sub-text">Slackと連携すると、improからの通知がSlackに届きます。</p>
 				@if ($setting && $setting->slack == true)
 					<input type="radio" name="slack" value="1" id="slack_true" checked>
 					<label class="left-btn" for="slack_true">有効</label>
