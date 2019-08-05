@@ -77,6 +77,14 @@ const setPreview = (input) => {
         <h3>プロフィール管理画面</h3>
     </div>
 
+    <div class="menu-container">
+		<ul>
+			<li><a href="" class="isActive">プロフィール</a></li>
+			<li><a href="">メールアドレス・パスワード設定</a></li>
+			<li><a href="">通知設定</a></li>
+		</ul>
+	</div>
+
     <form action="{{ url('/partner/profile') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body-container">
@@ -88,7 +96,10 @@ const setPreview = (input) => {
             <div class="edit-container">
                 <div class="image-container">
                     @if ($partner)
-                        <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                        <div class="imgbox">
+                            <img src="../../../images/photoimg2.png" alt="プレビュー画像">
+                        </div>
+                        <!-- <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px"> -->
                     @else
                         <img src="/{{ str_replace('public/', 'storage/', 'images/default/preview.jpeg') }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
                     @endif
@@ -219,7 +230,12 @@ const setPreview = (input) => {
             </div>
         </div>
         <div class="btn-container">
-            <button type="submit">保存</button>
+            <div class="preview-btn">
+                <button type="submit">プレビュー</button>
+            </div>
+            <div class="save-btn">
+                <button type="submit">保存</button>
+            </div>
         </div>
     </form>
 </div>
