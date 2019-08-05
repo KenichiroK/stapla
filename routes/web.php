@@ -20,6 +20,9 @@ Route::group(['prefix' => 'partner'], function(){
 	//register
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
+
+	// invite
+	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
 	
 	Route::group(['middleware' => 'auth:partner'], function() {
 		// dashboard
@@ -60,6 +63,9 @@ Route::group(['prefix' => 'company'], function(){
 	//register
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
     Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
+
+	// invite
+	Route::get('invite/register/reset/password', 'Companies\InitialRegisterController@resetPassword')->name('company.invite.register.reset.password');
 
 	
 	Route::group(['middleware' => 'auth:company'], function() {
@@ -124,6 +130,10 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('register/company', 'Companies\InitialRegisterController@company')->name('company.register.company');
 		Route::get('register/preview', 'Companies\InitialRegisterController@preview')->name('company.register.preview');
 		Route::get('register/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
+
+		// invite
+		Route::get('invite/partner', 'Partners\Auth\RegisterController@showRegisterForm')->name('company.invite.partner.form');
+		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
 
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Models\PartnerAuth;
+use App\Models\CompanyUser;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -26,7 +28,9 @@ class RegisterController extends Controller
 
     public function showRegisterForm()
     {
-        return view('partner/auth/register');
+        $auth_id = Auth::user()->id;
+        $company_user = CompanyUser::where('auth_id', $auth_id)->get()->first();
+        return view('company/invite/partner/create', compact('company_user'));
     }
 
     /**

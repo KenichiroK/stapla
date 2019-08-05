@@ -108,7 +108,7 @@ const setPreview = (input) => {
         </div>
     </div>
     <div class="btn-container">
-        <a href="/company/companyMail">担当者追加</a>
+        <a href="/company/invite/company">担当者追加</a>
     </div>
 </div>
 @endsection
