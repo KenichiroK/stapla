@@ -52,7 +52,7 @@
         <h3>ダッシュボード</h3>
     </div>
 
-    <div class="alert-container">
+    <!-- <div class="alert-container">
         <div class="icon-container">
             <i class="fas fa-exclamation-circle"></i>
         </div>
@@ -65,12 +65,12 @@
             <p>タスクアラート</p>
             <h4>0</h4>
         </div>
-    </div>
+    </div> -->
 
     <div class="incomplete-container">
         <div class="section-container">
-            <div class="icon-container">
-                <i class="fas fa-receipt"></i>
+            <div class="icon-imgbox">
+                <img src="../../../images/invoice.png" alt="">
             </div>
             <div class="text-container">
                 <h4>未請求書</h4>
@@ -82,8 +82,8 @@
         </div>
 
         <div class="section-container">
-            <div class="icon-container">
-                <i class="fas fa-shopping-cart"></i>
+            <div class="icon-imgbox">
+                <img src="../../../images/order.png" alt="">
             </div>
             <div class="text-container">
                 <h4>発注書未対応</h4>
@@ -95,8 +95,8 @@
         </div>
 
         <div class="section-container">
-            <div class="icon-container">
-                <i class="fas fa-shopping-bag"></i>
+            <div class="icon-imgbox">
+                <img src="../../../images/non-disclosur.png" alt="">
             </div>
             <div class="text-container">
                 <h4>機密保持契約書未対応</h4>
@@ -116,7 +116,12 @@
         <table id="partner-project-table">
             <thead>
                 <tr>
-                    <th>プロジェクト</th>
+                    <th>プロジェクト
+                        <span>
+                            <i class="arrow fas fa-angle-up"></i>
+                            <i class="arrow fas fa-angle-down"></i>
+                        </span>
+                    </th>
                     <th>担当者</th>
                     <th>パートナー</th>
                     <th>タスク</th>
@@ -130,8 +135,11 @@
                 @foreach($projects as $project)
                 <tr>
                     <td class="project_name">{{ $project->project->name }}</td>
-                    <td>
-                        <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px">
+                    <td class="staff">
+                        <div class="imgbox">
+                            <img src="../../../images/photoimg.png" alt="プロフィール画像">
+                        </div> 
+                        <!-- <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px"> -->
                         @if ($project->project->projectCompanies->count() > 1) 
                             <p>
                                 {{ $project->project->projectCompanies[0]->companyUser->name }} 
@@ -141,8 +149,11 @@
                             <p>{{ $project->project->projectCompanies[0]->companyUser->name }}</p>
                         @endif
                     </td>
-                    <td>
-                        <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px">
+                    <td class="staff">
+                        <div class="imgbox">
+                            <img src="../../../images/photoimg.png" alt="プロフィール画像">
+                        </div> 
+                        <!-- <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px"> -->
                         @if ($project->project->projectPartners->count() > 1) 
                             <p>
                                 {{ $project->project->projectPartners[0]->partner->name }} 
@@ -152,7 +163,7 @@
                             <p>{{ $project->project->projectPartners[0]->partner->name }}</p>
                         @endif
                     </td>
-                    <td>{{ $project->project->tasks->count() }}件</td>
+                    <td><span class="underline">{{ $project->project->tasks->count() }}</span>件</td>
                     <td>{{ explode(' ', $project->project->ended_at)[0] }}</td>
                     <td>¥{{ $project->project->budget }}</td>
                     <td>¥{{ $project->project->budget }}</td>
@@ -162,11 +173,16 @@
             
         </table>
 
-        <div class="more-btn-container">
+        <!-- <div class="more-btn-container">
             <button id="partnerProjectShowMoreBtn">
                 もっと見る
                 <i class="fas fa-angle-down"></i>
             </button>
+        </div> -->
+        <div class="more-btn-container">
+            <p id="partnerTaskShowMoreBtn" class="showmore">
+                もっと見る
+            </p>
         </div>
     </div>
 
@@ -178,7 +194,12 @@
         <table id="partner-task-table">
             <thead>
                 <tr>
-                    <th>プロジェクト</th>
+                    <th>プロジェクト
+                        <span>
+                            <i class="arrow fas fa-angle-up"></i>
+                            <i class="arrow fas fa-angle-down"></i>
+                        </span>
+                    </th>
                     <th>タスク</th>
                     <th>パートナー</th>
                     <th>ステータス</th>
@@ -194,8 +215,11 @@
                         <a href="task/{{ $task->id }}">
                             {{ $task->name }}</td>
                         </a>
-                    <td>
-                        <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="プロフィール画像" width="32px" height="32px">
+                    <td class="staff">
+                        <div class="imgbox">
+                            <img src="../../../images/photoimg.png" alt="プロフィール画像">
+                        </div> 
+                        <!-- <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="プロフィール画像" width="32px" height="32px"> -->
                             <p>{{ $task->partner->name }}</p>
                     </td>
                     <td>
@@ -226,7 +250,7 @@
                         @elseif ($task->status == 12)
                             <p class="default">請求書確認中</p>
                         @elseif ($task->status == 13)
-                            <p class="complete">完了</p>
+                            <p class="done">完了</p>
                         @elseif ($task->status == 14)
                             <p class="default">キャンセル</p>
                         @endif
@@ -239,10 +263,9 @@
         </table>
 
         <div class="more-btn-container">
-            <button id="partnerTaskShowMoreBtn">
+            <p id="partnerTaskShowMoreBtn" class="showmore">
                 もっと見る
-                <i class="fas fa-angle-down"></i>
-            </button>
+            </p>
         </div>
     </div>
 </div>
