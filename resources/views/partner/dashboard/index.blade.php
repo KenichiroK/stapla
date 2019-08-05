@@ -137,9 +137,8 @@
                     <td class="project_name">{{ $project->project->name }}</td>
                     <td class="staff">
                         <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="プロフィール画像">
+                            <img src="/{{ str_replace('public/', 'storage/', $project->project->projectCompanies[0]->companyUser->picture) }}" alt="プロフィール画像">
                         </div> 
-                        <!-- <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px"> -->
                         @if ($project->project->projectCompanies->count() > 1) 
                             <p>
                                 {{ $project->project->projectCompanies[0]->companyUser->name }} 
@@ -151,9 +150,8 @@
                     </td>
                     <td class="staff">
                         <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="プロフィール画像">
+                            <img src="/{{ str_replace('public/', 'storage/', $project->project->projectPartners[0]->partner->picture) }}" alt="プロフィール画像">
                         </div> 
-                        <!-- <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px"> -->
                         @if ($project->project->projectPartners->count() > 1) 
                             <p>
                                 {{ $project->project->projectPartners[0]->partner->name }} 
@@ -217,9 +215,8 @@
                         </a>
                     <td class="staff">
                         <div class="imgbox">
-                            <img src="../../../images/photoimg.png" alt="プロフィール画像">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="プロフィール画像">
                         </div> 
-                        <!-- <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="プロフィール画像" width="32px" height="32px"> -->
                             <p>{{ $task->partner->name }}</p>
                     </td>
                     <td>
