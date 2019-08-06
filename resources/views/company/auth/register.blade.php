@@ -11,7 +11,10 @@
 <body>
     <header>
         <div class="logo_container">
-            <p class="logo">impro</p>
+            <!-- <p class="logo">impro</p> -->
+            <div class="imgbox">
+                <img src="../../../images/logo2.png" alt="logo">
+            </div>
         </div>
     </header>
 
@@ -29,22 +32,25 @@
                         <input class="input_text" type="email" name="email" placeholder="impro@example.com">
                     </div>
 
-                    <div class="input_wrapper">
+                    <div class="input_wrapper last">
                         <h4 class="title">パスワード</h4>
-                        <input class="input_text" type="password" name="password">
+                        <div class="pass-input-wrp">
+                            <input class="input_text" type="password" name="password">
+                            <p>表示</p>
+                        </div>
                     </div>
 
-                    <div class="checkbox_wrapper">
+                    <div class="tos_wrapper">
                         <a href="#">ご利用規約</a>
                         <span>に同意して</span>
                     </div>
 
-                    <div class="button_wrapper">
+                    <div class="button_wrapper register-btn">
                         <button type="submit" class="text">新規会員登録</button>
                     </div>
                 </form>
 
-                <div class="signup_wrapper">
+                <div class="login_wrapper">
                     <a href="/company/login">ログイン</a>
                 </div>
                 
@@ -53,8 +59,8 @@
     </main>
 
     <footer>
-        <span>ご利用規約</span>
-        <span>プライバシーポリシー</span>
+        <span class="tos">ご利用規約</span>
+        <span class="privacy">プライバシーポリシー</span>
     </footer>
 </body>
 </html>
