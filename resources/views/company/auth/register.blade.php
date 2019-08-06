@@ -11,10 +11,7 @@
 <body>
     <header>
         <div class="logo_container">
-            <!-- <p class="logo">impro</p> -->
-            <div class="imgbox">
-                <img src="../../../images/logo2.png" alt="logo">
-            </div>
+            <p class="logo">impro</p>
         </div>
     </header>
 
@@ -29,50 +26,46 @@
                     @csrf
                     <div class="input_wrapper">
                         <h4 class="title">メールアドレス</h4>
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="input_text" name="email" value="{{ old('email') }}" placeholder="impro@example.com">
-                            @if ($errors->has('email'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                            @endif
-                        </div>
+                        <input class="input_text" type="email" name="email" placeholder="impro@example.com">
+                        @if ($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+
                     </div>
 
-                    <div class="input_wrapper last">
+                    <div class="input_wrapper">
                         <h4 class="title">パスワード</h4>
+                        <input class="input_text" type="password" name="password">
+                        @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                             @endif
-                        </div>
                     </div>
+
                     <div class="input_wrapper">
                         <h4 class="title">パスワード確認</h4>
-
-                            <input id="password-confirm" type="password" class="input_text" name="password_confirmation">
-
-                            @if ($errors->has('password_confirmation'))
+                        <input class="input_text" type="password" name="password_confirmation">
+                        @if ($errors->has('password_confirmation'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('password_confirmation') }}</strong>
                                 </span>
                             @endif
-                        </div>
                     </div>
 
- 
-
-                    <div class="tos_wrapper">
+                    <div class="checkbox_wrapper">
                         <a href="#">ご利用規約</a>
                         <span>に同意して</span>
                     </div>
 
-                    <div class="button_wrapper register-btn">
+                    <div class="button_wrapper">
                         <button type="submit" class="text">新規会員登録</button>
                     </div>
                 </form>
 
-                <div class="login_wrapper">
+                <div class="signup_wrapper">
                     <a href="/company/login">ログイン</a>
                 </div>
                 
@@ -81,8 +74,8 @@
     </main>
 
     <footer>
-        <span class="tos">ご利用規約</span>
-        <span class="privacy">プライバシーポリシー</span>
+        <span>ご利用規約</span>
+        <span>プライバシーポリシー</span>
     </footer>
 </body>
 </html>
