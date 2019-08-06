@@ -1,6 +1,7 @@
 body {
     height: 100vh;
     font-family: 'Source Sans Pro';
+    color: #43425D;
 }
 
 header {
@@ -19,6 +20,12 @@ header {
             margin: 0;
             color: #fff;
             font-size: 32px;
+        }
+        .imgbox{
+            width: 170px;
+            img{
+                width: 100%;
+            }
         }
     }
 }
@@ -47,32 +54,50 @@ main {
 
             .input_wrapper {
                 width: 100%;
-                margin: 0 auto 32px;
+                margin: 0 auto 35px;
 
                 .title {
                     margin: 0 0 12px;
-                    font-size: 16px;
+                    font-size: 15px;
+                    font-weight: 600;
                 }
     
                 .input_text {
                     width: 100%;
-                    padding: 16px 8px;
+                    padding: 16px 14px;
                     font-size: 16px;
+                    height: 56px;
                     outline: 0;
-                    border: 1px solid #aaa;
-                    border-radius: 4px;
+                    border: 1px solid #E9E9F0;
+                    border-radius: 2px;
                     box-sizing: border-box;
                 }
 
                 .input_text:focus {
-                    border: 2px solid #43425D;
+                    border: 2px solid #ccdcf6;
                 }
+                .input_text::placeholder{
+                    color: #CCCBD8;
+                }
+                .pass-input-wrp{
+                    position: relative;
+                    p{
+                        position: absolute;
+                        top: 21px;
+                        right: 15px;
+                        font-size: 12px;
+                        margin: 0; 
+                    }
+                }
+            }
+            .input_wrapper.last{
+                margin-bottom: 60px;
             }
 
             .checkbox_wrapper {
                 width: 100%;
                 display: flex;
-                margin-bottom: 32px;
+                margin-bottom: 35px;
                 justify-content: center;
 
                 input[type="checkbox"] {
@@ -80,43 +105,74 @@ main {
                     border: 1px solid #ccc;
                     background-color: #fff;
                 }
+                label{
+                    font-size: 15px;
+                }
                 
                 a {
                     color: #43425D;
                 }
             }
+            .tos_wrapper{
+                margin-bottom: 22px;
+                text-align: center;
+                a{
+                    color: #43425D;
+                    font-weight: bold;
+                    text-decoration: none;
+                    border-bottom: 1px solid #43425D;
+                    padding-bottom: 2px;
+                }
+            }
 
             .button_wrapper {
                 width: 100%;
-                margin: 0 auto 32px;
+                margin: 0 auto 30px;
                 text-align: center;
 
                 .text {
                     width: 60%;
                     background-color: #43425D;
                     color: #fff;
-                    border-radius: 4px;
-                    padding: 16px  0;
+                    border-radius: 100px;
+                    padding: 16px 0;
                 }
+            }
+            .button_wrapper.register-btn{
+                margin-bottom: 40px;
             }
 
             .signup_wrapper {
                 width: 100%;
-                margin: 0 auto 32px;
+                margin: 0 auto 36px;
                 text-align: center;
 
                 a {
                     color: #43425D;
+                    text-decoration: none;
+                    border-bottom: 1px solid #43425D;
+                    padding-bottom: 2px;
+                    font-weight: 600;
+                }
+            }
+            .login_wrapper{
+                text-align: center;
+                margin-bottom: 80px;
+                a{
+                    color: #43425D;
+                    font-size: 14px;
+                    font-weight: 600;
                 }
             }
 
             .forget_password_wrapper {
                 width: 100%;
-                margin: 0 auto 32px;
+                margin: 0 auto 43px;
                 text-align: center;
 
                 a {
                     color: #43425D;
+                    font-size: 12px;
                 }
             }
         }
@@ -126,12 +182,17 @@ main {
 footer {
     width: 100%;
     text-align: center;
-    position: fixed;
-    bottom: 5px;
-    right: 0;
-    left: 0;
+    margin-bottom: 24px;
+    // position: fixed;
+    // bottom: 5px;
+    // right: 0;
+    // left: 0;
     
     span {
-        font-size: 8px;
+        font-size: 11px;
+    }
+    span.tos{
+        padding-right: 10px;
+
     }
 }

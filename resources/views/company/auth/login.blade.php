@@ -12,7 +12,11 @@
 <body>
     <header>
         <div class="logo_container">
-            <p class="logo">impro</p>
+            <!-- <p class="logo">impro</p> -->
+            <div class="imgbox">
+                <img src="../../../images/logo2.png" alt="logo">
+            </div>
+            
         </div>
     </header>
 
@@ -26,8 +30,8 @@
                 <form method="POST" action="{{ route('company.login') }}">
                     @csrf
                     <div class="input_wrapper">
-                        <h4 class="title">メールアドレス</h4>
-                        <input class="input_text" type="email" name="email" placeholder="メールアドレス">
+                        <h4 class="title">ユーザーID</h4>
+                        <input class="input_text" type="email" name="email" placeholder="ユーザーネーム又はメールアドレス">
                         @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -37,7 +41,11 @@
 
                     <div class="input_wrapper">
                         <h4 class="title">パスワード</h4>
-                        <input class="input_text" type="password" name="password">
+                        <div class="pass-input-wrp">
+                            <input class="input_text" type="password" name="password">
+                            <p>表示</p>
+                        </div>
+                        
                         @if ($errors->has('password'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>
@@ -68,8 +76,8 @@
     </main>
 
     <footer>
-        <span>ご利用規約</span>
-        <span>プライバシーポリシー</span>
+        <span class="tos">ご利用規約</span>
+        <span class="privacy">プライバシーポリシー</span>
     </footer>
 </body>
 </html>
