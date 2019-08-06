@@ -67,10 +67,18 @@
 			</div>
 
 			<div class="right">
-				<p>発注日: {{ $invoice->requested_at }}</p>
+				<p>発注日 : {{ $invoice->requested_at }}</p>
 				<p>{{ $invoice->partner->name }}</p>
 				<p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
 			</div>
+		</div>
+		<div class="task-container">
+			<p>タスク</p>
+			<ul>
+				<li>WebサービスiOS化</li>
+				<li>バックエンドコーディング</li>
+			</ul>
+
 		</div>
 
 		<div class="invoice-container">
@@ -87,7 +95,7 @@
 				<tbody>
 					@foreach($invoice->requestTasks as $requestTask)
 						<tr>
-							<td>{{ $requestTask->name }}</td>
+							<td class="name">{{ $requestTask->name }}</td>
 							<td>{{ $requestTask->num }}</td>
 							<td>{{ number_format($requestTask->unit_price) }}</td>
 							<td>{{ number_format($requestTask->total) }}</td>
@@ -96,20 +104,20 @@
 
 					@foreach($invoice->requestExpences as $requestExpence)
 						<tr>
-							<td>{{ $requestExpence->name }}</td>
+							<td class="name">{{ $requestExpence->name }}</td>
 							<td>{{ $requestExpence->num }}</td>
 							<td>{{ number_format($requestExpence->unit_price) }}</td>
 							<td>{{ number_format($requestExpence->total) }}</td>
 						</tr>
 					@endforeach
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td class="name">コーディング作業</td>
+						<td>1</td>
+						<td>30,000</td>
+						<td>30,000</td>
 					</tr>
 					<tr>
-						<td></td>
+						<td class="name"></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -157,7 +165,7 @@
 
 		<div class="deadline-container">
 			<div class="header-container">
-				<p>ご入金期限: {{ $invoice->deadline_at }}</p>
+				<p>ご入金期限 : {{ $invoice->deadline_at }}</p>
 			</div>
 
 			<div class="content-container">
