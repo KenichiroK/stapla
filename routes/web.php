@@ -56,23 +56,29 @@ Route::group(['prefix' => 'partner'], function(){
   
 
 Route::group(['prefix' => 'company'], function(){
+
 	// login
 	Route::get('login', 'Companies\Auth\LoginController@showLoginForm')->name('company.login');
 	Route::post('login', 'Companies\Auth\LoginController@login')->name('company.login');
 
 	//register
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
-    Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
+	Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
+	Route::get('/register/preRegistered', 'Companies\InitialRegisterController@preRegisteredShow')->name('company.register.preRegisterd.preRegisteredShow');
 
-	// invite
-	Route::get('invite/register/reset/password', 'Companies\InitialRegisterController@resetPassword')->name('company.invite.register.reset.password');
 
+	// emailverify
+	Route::middleware('throttle:6,1')->get('email/resend','Companies\Auth\VerificationController@resend')->name('company.verification.resend');
+	Route::middleware('throttle:6,1')->get('email/verify','Companies\Auth\VerificationController@show')->name('company.verification.notice');
+	Route::middleware('signed')->get('email/verify/{id}','Companies\Auth\VerificationController@verify')->name('company.verification.verify');
 	
-	Route::group(['middleware' => 'auth:company'], function() {
+	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
+		
 		// register_flow
-		Route::get('/registerInfo', 'Companies\InitialRegisterController@personal')->name('company.registerInfo.personal');
+		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerifyShow')->name('company.register.doneVerify.doneVerifyShow');
+		Route::get('/register/intialRegistration', 'Companies\InitialRegisterController@create')->name('company.register.intialRegistration.create');
 		// Route::post('/registerInfo', 'Companies\InitialRegisterController@StorePersonal')->name('company.registerInfo.StorePersonal');
-		Route::post('/registerInfo', 'Companies\InitialRegisterController@toPreview')->name('company.registerInfo.StorePersonal');
+		Route::post('/register/initialRegistration', 'Companies\InitialRegisterController@toPreview')->name('company.registerInfo.toPreview');
 		Route::get('/register/preview/previwShow', 'Companies\InitialRegisterController@previwShow')->name('company.register.preview.previwShow');
 		Route::post('/register/preview/previewStore', 'Companies\InitialRegisterController@previewStore')->name('company.register.preview.previewStore');
 		Route::get('/regitster/done', 'Companies\InitialRegisterController@done')->name('company.register.done');

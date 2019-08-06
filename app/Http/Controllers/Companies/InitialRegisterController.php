@@ -11,7 +11,17 @@ use App\Models\CompanyUser;
 
 class InitialRegisterController extends Controller
 {
-    public function personal()
+    public function preRegisteredShow()
+    {
+        return view('company/auth/verify');
+    }
+
+    public function doneVerifyShow()
+    {
+        return view('company/auth/initialRegister/doneVerify');
+    }
+
+    public function create()
     {
         $auth = Auth::user();
         return view('company/auth/initialRegister/personal');
@@ -21,7 +31,7 @@ class InitialRegisterController extends Controller
     {
         $auth = Auth::user();
 
-        // return $request;
+        $request;
 
 
         // if(CompanyUser::where('auth_id', $auth->id)->first()){
@@ -70,9 +80,11 @@ class InitialRegisterController extends Controller
         $companyUser->department = $request->department;
         $companyUser->self_introduction = $request->self_introduction;
         $time = date("Y_m_d_H_i_s");
-        // return $request->picture;
         if(isset($request->picture)){
             $companyUser->picture = $request->picture->storeAs('public/images/companyUser/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
+        }else {
+            // return '/images/preview.jpeg';
+            $companyUser->picture = '/images/preview.jpeg';
         }
         
         $companyUser->save();

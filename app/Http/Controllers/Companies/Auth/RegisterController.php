@@ -25,17 +25,19 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+
     public function showRegisterForm()
     {
-        return view('company/auth/register');
+        return view('company.auth.register');
     }
-
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/company/registerInfo';
+    protected $redirectTo = '/company/register/preRegistered';
+
+   
 
     /**
      * Create a new controller instance.

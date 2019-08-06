@@ -35,7 +35,7 @@
 				<h3>プロフィール登録</h3>
 			</div>
 
-			<form action="/company/registerInfo" method="POST" enctype="multipart/form-data">
+			<form action="/company/register/initialRegistration" method="POST" enctype="multipart/form-data">
 				@csrf
 				<div class="edit-container">
 					<div class="image-container">

@@ -35,7 +35,7 @@
 				<h3>入力内容確認</h3>
 			</div>
 
-			<form action="/company/register/preview/previewStore" method="POST">
+			<form action="/company/register/preview/previewStore" method="POST" enctype="multipart/form-data">
 				@csrf
 				<input type="hidden" name="">
 				<div class="edit-container">
@@ -44,17 +44,16 @@
 							@if (isset($request->picture))
 								{{ $request->picture }}	<!--  仮で表示-->
 								<div class="imgbox">
-								
 									<img src="/{{ $request->picture }}" alt="プレビュー画像" width="140px" height="140px" style="display: none;">
 								</div>
 							@else
 								<div class="imgbox">
-									<img src="/images/preview.jpeg" alt="プレビュー画像" width="140px" height="140px">
+									<img src="/{{ str_replace('public/', 'storage/', 'images/preview.jpeg') }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
 								</div>
 							@endif
 							<label for="picture">
 								<!-- 画像をアップロード -->
-								<input type="file" id="picture" name="picture" value="{{ $request->picture }}" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="setPreview(this)" style="display: none;">
+								<input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="setPreview(this)" style="display: none;">
 							</label>
 						</div>
 					
@@ -119,7 +118,7 @@
 					</div>
 				</div>
 				<div class="btn-container">
-				<button type="button"><a type="button" href="/company/registerInfo">戻る</a></button>
+				<button type="button"><a type="button" href="/company/register/intialRegistration">戻る</a></button>
 				<button type="submit">登録</button>
 			</div>
 			</form>
@@ -133,18 +132,5 @@
         <span>プライバシーポリシー</span>
 	</footer>
 	
-	<script>
-	const setPreview = (input) => {
-		const preview = document.getElementById('profile_image_preview');
-		if (input.files && input.files[0]) {
-			let reader = new FileReader();
-			reader.onload = (e) => {
-			preview.src = e.target.result;
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-	</script>
 </body>
 </html>
