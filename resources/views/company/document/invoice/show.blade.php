@@ -75,8 +75,9 @@
 		<div class="task-container">
 			<p>タスク</p>
 			<ul>
-				<li>WebサービスiOS化</li>
-				<li>バックエンドコーディング</li>
+			@foreach($invoice->requestTasks as $requestTask)
+				<li>{{ $requestTask->name }}</li>
+			@endforeach
 			</ul>
 
 		</div>
@@ -110,12 +111,6 @@
 							<td>{{ number_format($requestExpence->total) }}</td>
 						</tr>
 					@endforeach
-					<tr>
-						<td class="name">コーディング作業</td>
-						<td>1</td>
-						<td>30,000</td>
-						<td>30,000</td>
-					</tr>
 					<tr>
 						<td class="name"></td>
 						<td></td>
