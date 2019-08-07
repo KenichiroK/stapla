@@ -24,23 +24,15 @@ class InitialRegisterController extends Controller
     public function create()
     {
         $auth = Auth::user();
-        return view('company/auth/initialRegister/personal');
+        $request = '';
+        return view('company/auth/initialRegister/personal', compact('request'));
     }
 
     public function toPreview(CompanyAndCompanyUserRequest $request)
     {
         $auth = Auth::user();
 
-        $request;
-
-
-        // if(CompanyUser::where('auth_id', $auth->id)->first()){
-        //     $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
-        //     $company = Company::where('id', $companyUser->company_id)->first();
-
-        //     $companyUser->update($request->all());
-        //     $company->update($request->all());
-        // }
+        return $request->picture;
         return view('company/auth/initialRegister/preview', compact('request'));
     }
 
@@ -80,11 +72,11 @@ class InitialRegisterController extends Controller
         $companyUser->department = $request->department;
         $companyUser->self_introduction = $request->self_introduction;
         $time = date("Y_m_d_H_i_s");
+        return $request->picture;
         if(isset($request->picture)){
             $companyUser->picture = $request->picture->storeAs('public/images/companyUser/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
         }else {
-            // return '/images/preview.jpeg';
-            $companyUser->picture = '/images/preview.jpeg';
+            $companyUser->picture ='public/images/default/dummy_user.jpeg';
         }
         
         $companyUser->save();

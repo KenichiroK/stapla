@@ -35,15 +35,28 @@
 				<h3>プロフィール登録</h3>
 			</div>
 
-			<form action="/company/register/initialRegistration" method="POST" enctype="multipart/form-data">
+			<form action="/company/register/initialRegistration" method="POST" enctype="multipart/form-data" id="form">
 				@csrf
 				<div class="edit-container">
 					<div class="image-container">
-						<img src="/images/preview.jpeg" alt="" id="profile_image_preview" width="140px" height="140px">
+						@if (isset($request->picture))
+							<div class="imgbox">
+								<img id="profile_image_preview" src="/{{ str_replace('public/', 'storage/', $request->picture) }}" id="picture"  alt="プレビュー画像">
+							</div>	
+						@else
+							<div class="imgbox">
+								<img id="profile_image_preview" src="/images/preview.jpeg" alt="プレビュー画像" width="140px" height="140px">
+							</div>
+						@endif
+						<label for="picture">
+							画像をアップロード
+							<input type="file" id="picture" name="picture" style="display: none;" accept="image/png" onchange="setPreview(this)">
+						</label>
+						<!-- <img src="/images/preview.jpeg" alt="" id="profile_image_preview" width="140px" height="140px">
 						<label for="picture">
 							画像をアップロード
 							<input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="setPreview(this)">
-						</label>	
+						</label>	 -->
 					</div>
 
 

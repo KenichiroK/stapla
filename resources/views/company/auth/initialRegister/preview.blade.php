@@ -7,20 +7,6 @@
     <title>Impro</title>
 	<link rel="stylesheet" href="{{ mix('css/auth/initialRegister/preview.css') }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-	<script>
-		const setPreview = (input) => {
-			const preview = document.getElementById('profile_image_preview');
-
-			if (input.files && input.files[0]) {
-				let reader = new FileReader();
-				reader.onload = (e) => {
-				preview.src = e.target.result;
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-	</script>
 </head>
 <body>
     <header>
@@ -44,7 +30,7 @@
 							@if (isset($request->picture))
 								{{ $request->picture }}	<!--  仮で表示-->
 								<div class="imgbox">
-									<img src="/{{ $request->picture }}" alt="プレビュー画像" width="140px" height="140px" style="display: none;">
+									<img src="/{{ $request->picture }}" alt="プレビュー画像" width="140px" height="140px">
 								</div>
 							@else
 								<div class="imgbox">
@@ -53,7 +39,7 @@
 							@endif
 							<label for="picture">
 								<!-- 画像をアップロード -->
-								<input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="setPreview(this)" style="display: none;">
+								<input type="file" id="picture" value="$request->picture" name="{{ old('picture', $request->picture) }}" accept="image/png, image/jpeg, image/jpg" onchange="setPreview(this)" style="display: none;">
 							</label>
 						</div>
 					
