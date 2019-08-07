@@ -13,12 +13,36 @@ class InitialRegisterController extends Controller
 {
     public function preRegisteredShow()
     {
+        
+        // return Auth::user();
+        // if(){
+        //     return view('/company/dashboard');
+        // }else {
+        //     return view('company/auth/verify');
+        // }
+        // return $auth = Auth::user();
         return view('company/auth/verify');
+    }
+
+    public function doneRegisteredShow()
+    {
+        
+        return Auth::user();
+        // if(){
+        //     return view('/company/dashboard');
+        // }else {
+        //     return view('company/auth/verify');
+        // }
+        return view('/company/dashboard');
     }
 
     public function doneVerifyShow()
     {
-        return view('company/auth/initialRegister/doneVerify');
+        $auth = Auth::user();
+        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        // $company = Company::findOrFail()
+
+        return view('company/auth/initialRegister/doneVerify' ,compact('companyUser'));
     }
 
     public function create()

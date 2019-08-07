@@ -22,7 +22,11 @@
 			</div>
 
 			<div class="btn-container">
-				<a href="/company/register/intialRegistration">アプリを始める</a>
+                @if(isset($companyUser))
+                    <a href="/company/dashboard">ダッシュボードに行く</a>
+                @else
+                    <a href="/company/register/intialRegistration">ユーザー情報を登録する</a>
+                @endif
 			</div>
 		</div>
     </main>
