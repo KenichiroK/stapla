@@ -25,25 +25,8 @@
 				@csrf
 				<input type="hidden" name="">
 				<div class="edit-container">
-					<div class="personal-container">
-						<div class="image-container">
-							@if (isset($request->picture))
-								{{ $request->picture }}	<!--  仮で表示-->
-								<div class="imgbox">
-									<img src="/{{ $request->picture }}" alt="プレビュー画像" width="140px" height="140px">
-								</div>
-							@else
-								<div class="imgbox">
-									<img src="/{{ str_replace('public/', 'storage/', 'images/preview.jpeg') }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
-								</div>
-							@endif
-							<label for="picture">
-								<!-- 画像をアップロード -->
-								<input type="file" id="picture" value="$request->picture" name="{{ old('picture', $request->picture) }}" accept="image/png, image/jpeg, image/jpg" onchange="setPreview(this)" style="display: none;">
-							</label>
-						</div>
-					
 
+					<div class="company-container">
 						<div class="profile-container">
 							<div class="section-container">
 								<p>名前</p>
