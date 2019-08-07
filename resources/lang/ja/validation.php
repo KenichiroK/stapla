@@ -30,7 +30,7 @@ return [
         'array' => 'The :attribute must have between :min and :max items.',
     ],
     'boolean' => 'The :attribute field must be true or false.',
-    'confirmed' => 'The :attribute confirmation does not match.',
+    'confirmed' => 'パスワードが一致していません.',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
@@ -39,7 +39,7 @@ return [
     'digits_between' => 'The :attribute must be between :min and :max digits.',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
-    'email' => 'The :attribute must be a valid email address.',
+    'email' => ':attribute は有効なEめpるアドレスを入力してください.',
     'exists' => 'The selected :attribute is invalid.',
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
@@ -86,7 +86,7 @@ return [
     'min' => [
         'numeric' => 'The :attribute must be at least :min.',
         'file' => 'The :attribute must be at least :min kilobytes.',
-        'string' => 'The :attribute must be at least :min characters.',
+        'string' => ':attribute は :min 字以上で入力して下さい.',
         'array' => 'The :attribute must have at least :min items.',
     ],
     'not_in' => 'The selected :attribute is invalid.',
@@ -131,6 +131,13 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        // 'email' => [
+        //     'required' => 'メールアドレスを入力してください',
+        // ],
+        // 'password' => [
+        //     'required' => 'パスワードを入力してください',
+        // ],
     ],
 
     /*
@@ -145,9 +152,24 @@ return [
     */
 
     'attributes' => [
+
+        'name' => '名前',
         'email' => 'メールアドレス',
+        'password' => 'パスワード',
+        'department' => '担当',
+        'zip_code' => '郵便番号',
+        'zip_code' => '郵便番号',
+
         'company_user_id' => '担当者',
+        // 会社
+        'company_name' => '会社名',
+        'representive_name' => '会社名',
+        'address_prefecture' => '都道府県',
+        'address_city' => '市区町村・番地',
+        'tel' => '電話番号',
+        // project
         'project_id'      => 'プロジェクト',
+        // task
         'task_name'       => 'タスク名',
         'task_content'    => 'タスク内容',
         'started_at'      => '開始日',

@@ -6,7 +6,7 @@ class CompanyUser extends BaseUuid
     protected $table = 'company_users';
     
     protected $fillable = [
-        'auth_id', 'company_id', 'name', 'department', 'occupation', 'picture'
+        'auth_id', 'company_id', 'name', 'department', 'occupation', 'self_introduction', 'picture'
     ];
 
     public function companyUserAuth()

@@ -21,27 +21,29 @@
 				<h3>入力内容確認</h3>
 			</div>
 
-			<form action="" method="POST">
+			<form action="/company/register/preview/previewStore" method="POST" enctype="multipart/form-data">
+				@csrf
+				<input type="hidden" name="">
 				<div class="edit-container">
-					<div class="personal-container">
-						<div class="image-container">
-							<img src="/images/preview.jpeg" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
-						</div>
 
+					<div class="company-container">
 						<div class="profile-container">
 							<div class="section-container">
 								<p>名前</p>
-								<h4>山田太郎</h4>
+								<input type="hidden" name="name" value="{{ old('name', $request->name) }}">
+								<h4>{{ $request->name }}</h4>
 							</div>
 
 							<div class="section-container">
 								<p>担当</p>
-								<h4>営業1課</h4>
+								<input type="hidden" name="department" value="{{ old('department', $request->department) }}">
+								<h4>{{ $request->department }}</h4>
 							</div>
 
 							<div class="section-container">
 								<p>自己紹介</p>
-								<h4>2016年入社の山田太郎です。</h4>
+								<input type="hidden" name="self_introduction" value="{{ old('self_introduction', $request->self_introduction) }}">
+								<h4>{{ $request->self_introduction }}</h4>
 							</div>
 						</div>
 					</div>
@@ -49,37 +51,55 @@
 					<div class="company-container">
 						<div class="section-container">
 							<p>会社名</p>
-							<h4>株式会社◯◯◯◯◯◯</h4>
+							<input type="hidden" name="company_name" value="{{ old('company_name', $request->company_name) }}">
+							<h4>{{ $request->company_name }}</h4>
 						</div>
 
 						<div class="section-container">
 							<p>代表者名</p>
-							<h4>山田花子</h4>
+							<input type="hidden" name="representive_name" value="{{ old('representive_name', $request->representive_name) }}">
+							<h4>{{ $request->representive_name }}</h4>
 						</div>
 
 						<div class="section-container">
 							<p>郵便番号</p>
-							<h4>◯◯◯-◯◯◯◯</h4>
+							<input type="hidden" name="zip_code" value="{{ old('zip_code', $request->zip_code) }}">
+							<h4>{{ $request->zip_code }}</h4>
 						</div>
 
 						<div class="section-container">
 							<p>住所</p>
-							<h4>東京都千代田区有楽町2-2-2</h4>
+							<input type="hidden" name="address_prefecture" value="{{ old('address_prefecture', $request->address_prefecture) }}">
+							<input type="hidden" name="address_city" value="{{ old('address_city', $request->address_city) }}">
+							<input type="hidden" name="address_building" value="{{ old('address_building', $request->address_building) }}">
+							<h4>
+								{{ $request->address_prefecture }}
+								{{ $request->address_city }}
+								{{ $request->address_building }}
+							</h4>
+						</div>
+
+						<div class="section-container">
+							<p>電話番号</p>
+							<input type="hidden" name="tel" value="{{ old('tel', $request->tel) }}">
+							<h4>{{ $request->tel }}</h4>
 						</div>
 					</div>
 				</div>
-			</form>
-
-			<div class="btn-container">
-				<button type="button">戻る</button>
+				<div class="btn-container">
+				<button type="button"><a type="button" href="/company/register/intialRegistration">戻る</a></button>
 				<button type="submit">登録</button>
 			</div>
+			</form>
+
+			
         </div>
     </main>
 
     <footer>
         <span>ご利用規約</span>
         <span>プライバシーポリシー</span>
-    </footer>
+	</footer>
+	
 </body>
 </html>

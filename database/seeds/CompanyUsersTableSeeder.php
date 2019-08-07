@@ -15,14 +15,15 @@ class CompanyUsersTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create('ja_JP');
         App\Models\CompanyUser::create([
-            'auth_id'    => CompanyUserAuth::where('email', 'admin@admin.com')->get()->first()->id,
-            'company_id' => Company::all()->random()->id,
-            'name'       => 'テストユーザー',
-            'department' => 'sample sample',
-            'occupation' => 'sample sample',
-            'picture'      => 'public/images/default/dummy_user.jpeg',
-            'created_at' => '2019-02-10 00:41:14',
-            'updated_at' => '2019-02-10 00:41:14',
+            'auth_id'           => CompanyUserAuth::where('email', 'admin@admin.com')->get()->first()->id,
+            'company_id'        => Company::all()->random()->id,
+            'name'              => 'テストユーザー',
+            'department'        => 'sample sample',
+            'occupation'        => 'sample sample',
+            'self_introduction' => 'sample sample',
+            'picture'           => '',
+            'created_at'        => '2019-02-10 00:41:14',
+            'updated_at'        => '2019-02-10 00:41:14',
         ]);
         factory(App\Models\CompanyUser::class, 10)->create();
     }
