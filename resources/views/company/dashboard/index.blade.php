@@ -7,7 +7,7 @@
 
 @section('header-profile')
 <div class="header-proflie">
-    <div class="user-name">
+    <div class="user-name  option">
         {{ $company_user->name }}
     </div>
 
