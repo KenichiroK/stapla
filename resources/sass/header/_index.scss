@@ -62,9 +62,10 @@ header {
       }
       .icon-imgbox{
         width: 11px;
-        margin: 0 14px;
+        margin: 0 14px 0 6px;
         cursor: pointer;
       }
+      
       .user-imgbox{
         display: inline-block;
         width: 32px;
@@ -101,6 +102,8 @@ header {
   }
 }
 .option{
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -124,7 +127,7 @@ header {
     display: block;
     width: 0;
     height: 0;
-    left: 100px;
+    left: 92px;
     top: -15px;
     border-right: 10px solid transparent;
     border-bottom: 15px solid #E9E9F0;
@@ -136,7 +139,7 @@ header {
     display: block;
     width: 0;
     height: 0;
-    left: 100px;
+    left: 92px;
     top: -13px;
     border-right: 10px solid transparent;
     border-bottom: 15px solid #fff;

@@ -7,13 +7,16 @@
 
 @section('header-profile')
 <div class="header-proflie">
-    <div class="user-name  option">
-        {{ $company_user->name }}
-    </div>
+    <div class="option">
+        <div class="user-name">
+            {{ $company_user->name }}
+        </div>
 
-    <div class="icon-imgbox option">
-        <img src="../../../images/icon_small-down.png" alt="">
+        <div class="icon-imgbox">
+            <img src="../../../images/icon_small-down.png" alt="">
+        </div>
     </div>
+    
     <div class="optionBox">
         <div class="balloon">
             <ul>
