@@ -21,7 +21,7 @@ class CompanyUsersTableSeeder extends Seeder
             'department'        => 'sample sample',
             'occupation'        => 'sample sample',
             'self_introduction' => 'sample sample',
-            'picture'           => '',
+            'picture'           => 'public/images/default/dummy_user.jpeg',
             'created_at'        => '2019-02-10 00:41:14',
             'updated_at'        => '2019-02-10 00:41:14',
         ]);
