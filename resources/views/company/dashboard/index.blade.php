@@ -7,13 +7,16 @@
 
 @section('header-profile')
 <div class="header-proflie">
-    <div class="user-name  option">
-        {{ $company_user->name }}
-    </div>
+    <div class="option">
+        <div class="user-name">
+            {{ $company_user->name }}
+        </div>
 
-    <div class="icon-imgbox option">
-        <img src="../../../images/icon_small-down.png" alt="">
+        <div class="icon-imgbox">
+            <img src="../../../images/icon_small-down.png" alt="">
+        </div>
     </div>
+    
     <div class="optionBox">
         <div class="balloon">
             <ul>
@@ -337,16 +340,9 @@
                     <td>{{ $task->task->name }}</td>
                     <td class="partner">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $task->task->taskPartners[0]->partner->picture) }}" alt="">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->task->partner->picture) }}" alt="">
                         </div>
-                        @if ($task->task->taskPartners->count() > 1) 
-                            <p>
-                                {{ $task->task->taskPartners[0]->partner->name }} 
-                                他{{ $task->task->taskPartners->count() - 1 }}名
-                            </p>
-                        @else
-                            <p>{{ $task->task->taskPartners[0]->partner->name }}</p>
-                        @endif
+                        <p>{{ $task->task->partner->name }}</p>
                     </td>
                     <td>
                         @if(($task->task->status) === 0)
