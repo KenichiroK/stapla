@@ -16,15 +16,30 @@ Auth::routes();
 Route::group(['prefix' => 'partner'], function(){
 	//login   
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
+	Route::get('login/{company_id}', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
+	
 	//register
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
+	Route::get('/register/preRegistered', 'Partners\InitialRegisterController@preRegisteredShow')->name('company.register.preRegisterd.preRegisteredShow');
 
 	// invite
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
+
+	// emailverify
+	Route::middleware('throttle:6,1')->get('email/resend','Partners\Auth\VerificationController@resend')->name('partner.verification.resend');
+	Route::middleware('throttle:6,1')->get('email/verify','Partners\Auth\VerificationController@show')->name('partner.verification.notice');
+	Route::middleware('signed')->get('email/verify/id/{id}/company_id/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
 	
-	Route::group(['middleware' => 'auth:partner'], function() {
+	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
+		// register_flow
+		Route::get('/register/doneVerify/{company_id}', 'Partners\InitialRegisterController@doneVerifyShow')->name('partner.register.doneVerify.doneVerifyShow');
+		Route::post('/register/doneVerify', 'Partners\InitialRegisterController@toCreatePartner')->name('partner.register.doneVerify.toCreatePartner');
+		// Route::get('/register/initialRegistration', 'Partners\InitialRegisterController@createPartner')->name('company.register.intialRegistration.createPartner');
+		Route::post('/register/initialRegistration', 'Partners\InitialRegisterController@toPreview')->name('company.register.intialRegistration.toPreview');
+		Route::get('/register/preview/previwShow', 'Partners\InitialRegisterController@previwShow')->name('company.register.preview.previwShow');
+		Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('company.register.preview.previewStore');
 		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
 		// task
@@ -79,7 +94,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/register/intialRegistration', 'Companies\InitialRegisterController@create')->name('company.register.intialRegistration.create');
 		// Route::post('/registerInfo', 'Companies\InitialRegisterController@StorePersonal')->name('company.registerInfo.StorePersonal');
 		Route::post('/register/initialRegistration', 'Companies\InitialRegisterController@toPreview')->name('company.registerInfo.toPreview');
-		Route::get('/register/preview/previwShow', 'Companies\InitialRegisterController@previwShow')->name('company.register.preview.previwShow');
+		Route::get('/register/preview/previwShow', 'Companies\InitialRegisterController@previewShow')->name('company.register.preview.previwShow');
 		Route::post('/register/preview/previewStore', 'Companies\InitialRegisterController@previewStore')->name('company.register.preview.previewStore');
 		Route::get('/regitster/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
 
@@ -147,6 +162,7 @@ Route::group(['prefix' => 'company'], function(){
 
 		// invite
 		Route::get('invite/partner', 'Partners\Auth\RegisterController@showRegisterForm')->name('company.invite.partner.form');
+		Route::post('invite/partner',  'Partners\Auth\RegisterController@register')->name('partner.register');
 		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
 
         // logout
@@ -154,3 +170,4 @@ Route::group(['prefix' => 'company'], function(){
 
 	});  
 });
+// http://localhost:8888/partner/email/verify/55c62f01-995a-4516-80da-abced6cbac4c/1566009723?signature=007c5a8cd31537060a5dd2daa33c3c8ba0720dcab1f8e82d2bfa077b7e8eb9b9

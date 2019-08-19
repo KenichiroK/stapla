@@ -1,8 +1,13 @@
 <?php
+
 namespace App\Models;
+
+use App\Notifications\PartnerVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-class PartnerAuth extends Authenticatable
+
+class PartnerAuth extends Authenticatable implements MustVerifyEmail
 {   
     use Notifiable;
     public $incrementing = false;
@@ -21,6 +26,12 @@ class PartnerAuth extends Authenticatable
     protected $hidden = [
         'password', 'remember_token'
     ];
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new PartnerVerifyEmail);
+    }
+
     public function partner()
     {
         return $this->hasOne('App\Models\Partner', 'partner_id', 'id');

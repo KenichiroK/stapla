@@ -14,7 +14,7 @@ class CreatePartnerAuthsTable extends Migration
             $table->string("email", 64);
             $table->string("password", 64);
             $table->rememberToken();
-            $table->timestamp("email_verfied_at")->nullable();
+            $table->timestamp("email_verified_at")->nullable();
             $table->timestamps();
         });
     }
