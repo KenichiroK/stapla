@@ -30,8 +30,8 @@ class PartnerVerifyEmail extends VerifyEmailNotification
 
     protected function verificationUrl($notifiable)
     {
-        $auth = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $auth->id)->first()->company_id;
+        // return $partnerAuth = Auth::user();
+        // $company_id = CompanyUser::where('auth_id', $auth->id)->first()->company_id;
 
         return URL::temporarySignedRoute(
             'partner.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey(), 'company_id' => $company_id , ]

@@ -160,32 +160,12 @@
 		<h3>フリーランスに招待メールを送る</h3>
 	</div>
 
-	<form action="{{ route('partner.register') }}" method="POST">
+	<form action="{{ route('company.invite.partner.send') }}" method="POST">
         @csrf
 		<div class='input-container'>
 			<p>メールアドレス</p>
 			<!-- <input class="input_text" type="email" name="email" placeholder="impro@example.com" require> -->
             <input class="input_text" type="email" name="email" placeholder="impro@example.com">
-            @if ($errors->has('email'))
-                <span class="invalid-feedback" role="alert">
-                    <strong style="color: #e3342f;">{{ $errors->first('email') }}</strong>
-                </span>
-            @endif
-		</div>
-       
-		<div class='input-container'>
-			<p>仮パスワード</p>
-			<input class="input_text" type="password" name="password">
-            @if ($errors->has('password'))
-                <span class="invalid-feedback" role="alert">
-                    <strong style="color: #e3342f;">{{ $errors->first('password') }}</strong>
-                </span>
-            @endif
-		</div>
-
-		<div class='input-container'>
-			<p>仮パスワード 確認</p>
-			<input class="input_text" type="password" name="password_confirmation">
 		</div>
 
 		<div class='button-container'>

@@ -11,7 +11,11 @@ use App\Models\Partner;
 
 class InitialRegisterController extends Controller
 {
-    public function doneVerifyShow($company_id)
+    public function preRegisteredShow()
+    {
+        return view('partner/auth/verify');
+    }
+    public function doneVerifyShow()
     {
         return view('partner/auth/initialRegister/doneVerify', compact('company_id'));
     }

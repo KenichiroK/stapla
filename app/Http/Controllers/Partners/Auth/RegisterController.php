@@ -9,7 +9,7 @@ use App\Models\CompanyUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Auth\PartnerRegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -24,13 +24,12 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use PartnerRegistersUsers;
 
-    public function showRegisterForm()
+    public function showRegisterForm($company_id, $email)
     {
-        $auth_id = Auth::user()->id;
-        $company_user = CompanyUser::where('auth_id', $auth_id)->get()->first();
-        return view('company/invite/partner/create', compact('company_user'));
+        // return $company_id;
+        return view('partner.auth.register', compact('company_id', 'email'));
     }
 
     /**
@@ -38,7 +37,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/company/partner';
+    protected $redirectTo = '/partner/register/preRegistered';
 
     /**
      * Create a new controller instance.

@@ -27,7 +27,7 @@
                 @else
                     <form action="/partner/register/doneVerify" method="POST">
                         @csrf
-                        <input type="hidden" name="company_id" value="{{ $company_id }}">
+                        
                         <button type="submit">ユーザー情報を登録する</button>
                     </form>
                 @endif
