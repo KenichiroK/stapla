@@ -157,27 +157,19 @@
 @section('content')
 <div class="main-wrapper">
 	<div class="title-container">
-		<h3>フリーランスに招待メールを送る</h3>
+		<h3>パートナーに招待メールを送る</h3>
 	</div>
 
-	<form action="" method="POST">
+	<form action="{{ route('company.invite.partner.send') }}" method="POST">
+        @csrf
 		<div class='input-container'>
 			<p>メールアドレス</p>
-			<input type="email" required>
-		</div>
-
-		<div class='input-container'>
-			<p>仮パスワード</p>
-			<input type="password" required>
-		</div>
-
-		<div class='input-container'>
-			<p>仮パスワード 確認</p>
-			<input type="password" required>
+			<!-- <input class="input_text" type="email" name="email" placeholder="impro@example.com" require> -->
+            <input class="input_text" type="email" name="email" placeholder="impro@example.com">
 		</div>
 
 		<div class='button-container'>
-			<button>メールを送信する</button>
+			<button type="submit">メールを送信する</button>
 		</div>
 	</form>
 </div>

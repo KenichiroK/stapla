@@ -39,20 +39,15 @@
                         <h4 class="title">パスワード</h4>
                         <input class="input_text" type="password" name="password">
                         @if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
                     </div>
 
                     <div class="input_wrapper">
                         <h4 class="title">パスワード確認</h4>
                         <input class="input_text" type="password" name="password_confirmation">
-                        @if ($errors->has('password_confirmation'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                </span>
-                            @endif
                     </div>
 
                     <div class="checkbox_wrapper">

@@ -17,7 +17,6 @@
 <body>
     <header>
         <div class="logo_container">
-            <!-- <p class="logo">impro</p> -->
             <div class="imgbox">
                 <img src="../../../images/logo2.png" alt="logo">
             </div>

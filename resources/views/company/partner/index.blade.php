@@ -229,7 +229,7 @@
                 </div>
             </div>
             <div class="btn-container">
-                <a href="/company/invite/partner">担当者を招待する</a>
+                <a href="/company/invite/partner">パートナーを招待する</a>
             </div>
         </div>
     </div>

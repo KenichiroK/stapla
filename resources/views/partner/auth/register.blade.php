@@ -22,16 +22,31 @@
             </div>
 
             <div class="form_wrapper">
-                <form method="POST" action="{{ route('partner.register') }}">
+                <form method="POST" action="/partner/register/{{ $company_id }}">
                     @csrf
                     <div class="input_wrapper">
                         <h4 class="title">メールアドレス</h4>
-                        <input class="input_text" type="email" name="email" placeholder="impro@example.com">
+                        {{ $email }}
+                        <input class="input_text" type="hidden" name="email" value="{{ $email }}">
                     </div>
 
                     <div class="input_wrapper">
                         <h4 class="title">パスワード</h4>
                         <input class="input_text" type="password" name="password">
+                        @if ($errors->has('password'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color: #e3342f;">{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="input_wrapper">
+                        <h4 class="title">パスワード確認</h4>
+                        <input class="input_text" type="password" name="password_confirmation">
+                    </div>
+
+                    <div class="input_wrapper">
+                        <input class="input_text" type="hidden" name="company_id" value="{{ $company_id }}">
                     </div>
 
                     <div class="checkbox_wrapper">
