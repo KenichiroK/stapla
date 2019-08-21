@@ -68,7 +68,7 @@
 					</div>
 				</div>
 				<div class="btn-container">
-				<button type="button"><a type="button" href="/partner/register/intialRegistration">戻る</a></button>
+				<button type="button"><a type="button" href="/partner/register/initialRegistration">戻る</a></button>
 				<button type="submit">登録</button>
 			</div>
 			</form>
