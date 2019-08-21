@@ -103,16 +103,6 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
-                        </div>
-                        <div class="textbox">
-                            パートナー
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
                         <div class="textbox">
