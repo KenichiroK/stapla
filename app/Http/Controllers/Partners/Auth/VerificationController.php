@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Partners\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Foundation\Auth\PartnerVerifiesEmails;
+use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
 
 class VerificationController extends Controller
 {
-    use PartnerVerifiesEmails;
+    use VerifiesEmails;
 
     protected $redirectTo = '/partner/register/doneVerify';
 
