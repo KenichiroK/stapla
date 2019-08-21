@@ -19,7 +19,6 @@ class PartnerEnsureEmailIsVerified
                     if (! Auth::guard($guard)->user() ||
                         (Auth::guard($guard)->user() instanceof MustVerifyEmail &&
                         ! Auth::guard($guard)->user()->hasVerifiedEmail())) {
-                        // dd('ddd');
                         return $request->expectsJson()
                                 ? abort(403, 'Your email address is not verified.')
                                 : Redirect::route('partner.verification.notice');

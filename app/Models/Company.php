@@ -24,10 +24,7 @@ class Company extends BaseUuid
     {
         return $this->hasMany('App\Models\Partner', 'company_id', 'id');
     }
-    // public function agreements()
-    // {
-    //     return $this->hasMany('App\Models\Agreement', 'company_id', 'id');
-    // }
+
     public function purchaseOrders()
     {
         return $this->hasMany('App\Models\PurchaseOrder', 'company_id', 'id');
