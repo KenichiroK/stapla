@@ -8,24 +8,49 @@
         &--label {
           display: flex;
           align-items: center;
-          height: 56px;
-          margin-bottom: 8px;
-          border-bottom: 1px solid #4d4c4c;
+          background: #3B3A53;
+					height: 70px;
+					box-shadow: 0 2px 3px rgba(0,0,0,0.04);
+					margin-bottom: 0;
+					border-bottom: none;
+					.menu-label{
+						padding-left: 20px;
+						padding-top: 2px;
+						width: 135px;
+					}
         }
         &__menu-list a {
           color: #ffffff;
-          padding: 24px;
+          padding: 18px 24px;
+          border-left: 5px solid #43415d;
+          border-radius: 0;
         }
         &__menu-list a:hover {
-          background-color: rgba(37, 36, 51, 0.5);
-          border-left: 5px solid #a3a0fb;
+          background-color: rgba(60, 59, 84, 0.7);
+          border-left: 5px solid rgba(163, 160, 251, 0.7);
         }
         &__menu-list .isActive {
-          background-color: #252433!important;
+          background-color: #3C3B54!important;
           border-left: 5px solid #a3a0fb;
         }
         &__menu-list i {
           margin-right: 16px;
+        }
+        &__menu-list li a{
+          position: relative;
+          display: block;
+          .icon-imgbox{
+            width: 16px;
+            display: inline-block;
+            position: absolute;
+            top: 18px;
+          }
+          .textbox{
+            display: inline-block;
+            padding-left: 27px;
+            font-size: 15px;
+            font-family: 'Source Sans Pro';
+          }
         }
       }
     }

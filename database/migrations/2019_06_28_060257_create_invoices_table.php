@@ -12,6 +12,7 @@ class CreateInvoicesTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('company_id');
             $table->uuid('companyUser_id');
+            $table->uuid('task_id');
             $table->uuid('partner_id');
             $table->string('project_name');
             $table->date('requested_at');
@@ -21,8 +22,9 @@ class CreateInvoicesTable extends Migration
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies');
-            $table->foreign('partner_id')->references('id')->on('partners');
             $table->foreign('companyUser_id')->references('id')->on('company_users');
+            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('partner_id')->references('id')->on('partners');
         });
     }
 

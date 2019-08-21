@@ -5,27 +5,150 @@
 <link rel="stylesheet" href="{{ mix('css/company/task/show.css') }}">
 @endsection
 
-@section('sidebar')
+@section('header-profile')
+<div class="header-proflie">
+    <div class="option">
+        <div class="user-name">
+            {{ $company_user->name }}
+        </div>
 
+        <div class="icon-imgbox">
+            <img src="../../../images/icon_small-down.png" alt="">
+        </div>
+    </div>
+    
+    <div class="optionBox">
+        <div class="balloon">
+            <ul>
+                <li><a href="">プロフィール設定</a></li>
+                <li>
+                    <form method="POST" action="{{ route('company.logout') }}">
+                        @csrf
+                        <button type="submit">ログアウト</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="user-imgbox">
+        <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+    </div>
+</div>
+@endsection
+
+@section('sidebar')
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-                    fms
+                    <img src="../../../images/logo.png" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
-                <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="/company/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li><a href="/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                <li><a href="/task" class="isActive"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/document"><i class="fas fa-newspaper"></i>書類</a></li>
-                <li><a href="/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
-                <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="/company/setting/general"><i class="fas fa-cog"></i>設定</a></li>
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-home"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_home.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ホーム
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/dashboard">
+                        <!-- <i class="fas fa-chart-bar"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_dashboard.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ダッシュボード
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/project">
+                        <!-- <i class="fas fa-envelope"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_inbox.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            プロジェクト
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/task" class="isActive">
+                        <!-- <i class="fas fa-tasks"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_products.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            タスク
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/document">
+                        <!-- <i class="fas fa-newspaper"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_invoices.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            書類
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/partner">
+                        <!-- <i class="fas fa-user-circle"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_customers.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            パートナー
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-calendar-alt"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_calendar.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            カレンダー
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-question"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_help-center.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ヘルプセンター
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/setting/general">
+                        <!-- <i class="fas fa-cog"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_setting.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            設定
+                        </div>
+                    </a>
+                </li>
             </ul>
+            
         </aside>
     </div>
 </div>
@@ -36,280 +159,259 @@
 
 <div class="main__container">
     <div class="main__container__wrapper">
-        <div class="header">
-            <div class="header__wrapper">
-                <div class="header__wrapper__main">
-                    <div class="page-title-container">
-                        <div class="page-title-container__page-title">{{ $task->name }}</div>
-                    </div>
-                    <div class="header__wrapper__main__project-name">【{{ $task->project->name }}】</div>
-                </div>
-                <div class="header__wrapper__edited-date">タスク作成日：{{ explode(' ', $task->created_at)[0] }}</div>
+        <div class="top">
+            <div class="page-title-container">
+                <div class="page-title-container__page-title">タスク詳細</div>
+            </div>
+            <div class="button-wrapper">
+                <button type='submit' class="button-wrapper__btn button">編集</button>
             </div>
         </div>
-        <div class="middle">
-            <div class="middle__main">
-                <div class="middle__main__wrapper">
-                    <div class="middle__main__wrapper__table-container">
-                        <table class="middle__main__wrapper__table-container__table">
-                            <tr class="middle__main__wrapper__table-container__table__table-row">
-                                <th class="middle__main__wrapper__table-container__table__table-row__table-header">ステータス</th>
-                                <th class="middle__main__wrapper__table-container__table__table-row__table-header">締め切り</th>
-                                <th class="middle__main__wrapper__table-container__table__table-row__table-header">検収日</th>
-                                <th class="middle__main__wrapper__table-container__table__table-row__table-header">提出日</th>
-                                <th class="middle__main__wrapper__table-container__table__table-row__table-header">納品形式</th>
-                            </tr>
-                            <tr class="middle__main__table-container__table__table-row">
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">
-                                    <div id="state" class="middle__main__wrapper__table-container__table__table-row__table-data__status-icon">
-                                        @if(($task->status) === 0)
-                                            下書き
-                                        @elseif(($task->status) === 1)
-                                            提案中
-                                        @elseif(($task->status) === 2)
-                                            依頼前
-                                        @elseif(($task->status) === 3)
-                                            依頼中
-                                        @elseif(($task->status) === 4)
-                                            開始前
-                                        @elseif(($task->status) === 5)
-                                            作業中
-                                        @elseif(($task->status) === 6)
-                                            提出前
-                                        @elseif(($task->status) === 7)
-                                            修正中
-                                        @elseif(($task->status) === 8)
-                                            完了
-                                        @elseif(($task->status) === 9)
-                                            キャンセル
-                                        @endif
-                                    </div>
-                                </td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $task->ended_at)[0] }}</td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $task->inspection_date)[0] }}</td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ explode(' ', $task->inspection_date)[0] }}</td>
-                                <td class="middle__main__wrapper__table-container__table__table-row__table-data">{{ $task->delivery_format }}</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="middle__main__wrapper__task-content">
-                        <div class="middle__main__wrapper__task-content__wrapper">
-                            <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
-                                    タスク内容：
-                                </div>
-                            </div>
-                        </div>
-                        <div class="middle__main__wrapper__task-content__textarea-wrapper">
-                            <textarea class="textarea" placeholder="Placeholder"></textarea>
-                        </div>
-                        <div class="middle__main__wrapper__task-content__detail-container">
-                            <div class="middle__main__wrapper__task-content__detail-container__item-name-wrapper">
-                                <div class="middle__main__wrapper__task-content__detail-container__item-name-wrappre__item-name">
-                                    アクティビティログ
-                                </div>
-                            </div>
-                            <div class="middle__main__wrapper__task-content__detail-container__item">
-                                <div class="middle__main__wrapper__task-content__detail-container__item__icon"><img src="https://image.freepik.com/free-icon/no-translate-detected_318-37825.jpg" alt=""></div>
-                                <div class="middle__main__wrapper__task-content__detail-container__item__name">
-                                    <div class="">{{ explode(' ', $task->updated_at)[0] }}</div>
-                                    <div class="">永瀬 達也</div>
-                                </div>
-                                <div class="middle__main__wrapper__task-content__detail-container__item__comment">担当者へ依頼しました。</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="middle__main__wrapper__task-comment">
-                        <div class="middle__main__wrapper__task-comment__wrapper">
-                            <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
-                                    タスクに関するコメント：
-                                </div>
-                            </div>
-                            <div class="middle__main__wrapper__task-content__textarea-wrapper">
-                                <textarea class="textarea" placeholder="Placeholder"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="middle__main__wrapper__document-container">
-                        <div class="middle__main__wrapper__document-container__wrapper">
-                            <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
-                                    資料：
-                                </div>
-                            </div>
-                            <div class="middle__main__wrapper__document-container__wrapper__update-container">
-                                <div class="file has-name is-boxed">
-                                    <label class="file-label">
-                                        <input class="file-input" type="file" name="resume">
-                                        <span class="file-cta">
-                                        <span class="file-icon">
-                                            <i class="fas fa-upload"></i>
-                                        </span>
-                                        <span class="file-label">
-                                            Choose a file…
-                                        </span>
-                                        </span>
-                                        <span class="file-name">
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="middle__side">
-                <div class="middle__side__wrapper">
-                    <div class="middle__side__wrapper__1">
-                        <div class="middle__side__wrapper__1__input-container">
-                            <div class="middle__side__wrapper__1__input-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                        担当者：
-                                    </div>
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__select select">
-                                    <select>
-                                        <option></option>
-                                        @foreach($companyUsers as $companyUser)
-                                            <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
-                                        @endforeach
-                                    </select> 
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper__btn">追加</div>
-                                </div>
-                            </div>
-                        </div >
-                        <div class="middle__side__wrapper__1__input-container">
-                            <div class="middle__side__wrapper__1__input-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                    パートナー：
-                                    </div>
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__select select">
-                                    <select>
-                                        <option></option>
-                                        @foreach($partners as $partner)
-                                            <option value="{{ $partner->id }}">
-                                                {{ $partner->name }}
-                                            </option>
-                                        @endforeach
-                                    </select> 
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper__btn">追加</div>
-                                </div>
-                            </div>
-                        </div >
 
-                        <div class="middle__side__wrapper__1__input-container">
-                            <div class="middle__side__wrapper__1__input-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                    パートナー契約内容：
-                                    </div>
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__detail-container">
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper top">
-                                        <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper__item-name">報酬形式</div>
-                                        <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper__item-content">時間</div>
-                                    </div>  
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper">
-                                        <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper__item-name">発注額(税込)</div>
-                                        <div class="middle__side__wrapper__1__input-container__wrapper__detail-container__item-wrapper__item-content">¥100,000</div>
-                                    </div>  
-                                </div>
+        <div class="detail">
+            <dl class="first">
+                <dt>
+                    プロジェクト名
+                </dt>
+                <dd>
+                    {{ $task->project->name }}
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    タスク作成日
+                </dt>
+                <dd>
+                    {{ explode(' ', $task->created_at)[0] }}
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    タスク内容
+                </dt>
+                <dd>
+                    {{ $task->name }}
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    担当者
+                </dt>
+                <dd class="flex01">
+                    @foreach($task->taskCompanies as $companyUser)
+                        <div class="person-item">
+                            <div class="imgbox">
+                                <img src="/{{ str_replace('public/', 'storage/', $companyUser->companyUser->picture) }}" alt="担当者プロフィール画像">
                             </div>
+                            <p>{{ $companyUser->companyUser->name }}</p>
                         </div>
+                    @endforeach
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    上長
+                </dt>
+                <dd class="flex01">
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->superior->picture) }}" alt="上長プロフィール画像">
+                        </div>
+                        <p>{{ $task->superior->name }}</p>
                     </div>
-                    <div class="middle__side__wrapper__1">
-                        <div class="middle__side__wrapper__1__input-container">
-                            <div class="middle__side__wrapper__1__input-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                        上長に承認を取る：
-                                    </div>
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__select select">
-                                    <select>
-                                        <option></option>
-                                        @foreach($companyUsers as $companyUser)
-                                            <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
-                                        @endforeach
-                                    </select> 
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper__btn">承認</div>
-                                </div>
-                            </div>
-                        </div >
-                        <div class="middle__side__wrapper__1__input-container">
-                            <div class="middle__side__wrapper__1__input-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                    パートナーに依頼を取る：
-                                    </div>
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__select select">
-                                    <select>
-                                        <option></option>
-                                        @foreach($partners as $partner)
-                                            <option value="{{ $partner->id }}">
-                                                {{ $partner->name }}
-                                            </option>
-                                        @endforeach
-                                    </select> 
-                                </div>
-                                <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper">
-                                    <div class="middle__side__wrapper__1__input-container__wrapper__btn-wrapper__btn">承認</div>
-                                </div>
-                            </div>
-                        </div >
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    経理
+                </dt>
+                <dd class="flex01">
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->accounting->picture) }}" alt="経理プロフィール画像">
+                        </div>
+                        <p>{{ $task->accounting->name }}</p>
                     </div>
-                </div>
-            </div>
+                </dd>
+            </dl>
+            <dl class="term">
+                <dt>
+                    プロジェクト期間
+                </dt>
+                <dd>
+                    <div class="flex01 term-desc">
+                        <p class="start"><span>開始日</span>{{ explode(' ', $task->inspection_date)[0] }}</p>
+                        <p><span>終了日</span>{{ explode(' ', $task->ended_at)[0] }}</p>
+                    </div>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    予算
+                </dt>
+                <dd>
+                    {{ number_format($task->budget) }}円
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    資料
+                </dt>
+                <dd>
+                    
+                </dd>
+            </dl>
         </div>
-        <div class="bottom">
-            <div class="bottom__wrapper">
-                <div class="item-name-wrapper">
-                    <div class="item-name-wrapper__item-name">
-                        タスク内容：
+
+        <div class="patner">
+            <p class="ptnr-title">パートナー契約内容</p>
+            <dl>
+                <dt>
+                    パートナー
+                </dt>
+                <dd class="flex01">
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="パートナープロフィール画像">
+                        </div>
+                        <p>{{ $task->partner->name }}</p>
                     </div>
-                </div>
-                <div class="bottom__wrapper__table-container">
-                    <table class="bottom__wrapper__table-wrapper__table">
-                        <tr class="bottom__wrapper__table-wrapper__table__headerrow">
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">プロジェクト<i class="task-container__table__headerrow__tableheader__arrow fas fa-angle-down"></i></th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">担当者</th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">パートナー</th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">タスク</th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">期限</th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">予算</th>
-                            <th class="bottom__wrapper__table-wrapper__table__headerrow__tableheader">請求額</th>
-                        </tr>
-                        <tr class="bottom__wrapper__table-wrapper__table__datarow">
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">{{ $task->project->name }}</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">
-                            @foreach($task->taskCompanies as $taskCompany)
-                                {{ $taskCompany->companyUser->name }}
-                            @endforeach
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">
-                            @foreach($task->taskPartners as $taskPartner)
-                                {{ $taskPartner->partner->name }}
-                            @endforeach
-                            </td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">{{ $task->project->tasks->count() }}件</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">{{ explode(' ', $task->ended_at)[0] }}</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">¥{{ $task->budget }}</td>
-                            <td class="bottom__wrapper__table-wrapper__table__datarow__tabledata">¥{{ $task->price }}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    報酬形式
+                </dt>
+                <dd>
+                    固定
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    発注単価<span>(税抜)</span>
+                </dt>
+                <dd>
+                    {{ number_format($task->budget) }}円
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    件数
+                </dt>
+                <dd>
+                    {{ $task->project->tasks->count() }}件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    発注額
+                </dt>
+                <dd class="orderprice">
+                    <span class="tax">税込</span><span class="yen">￥</span>{{ number_format($task->price * (1 + $task->tax)) }}
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    ステータス
+                </dt>
+                <dd class="status-desc">
+                    @if(($task->status) === 0)
+                        下書き
+                    @elseif(($task->status) === 1)
+                        タスク上長確認前
+                    @elseif(($task->status) === 2)
+                        タスク上長確認中
+                    @elseif(($task->status) === 3)
+                        タスクパートナー依頼前
+                    @elseif(($task->status) === 4)
+                        タスクパートナー依頼中
+                    @elseif(($task->status) === 5)
+                        発注書作成中
+                    @elseif(($task->status) === 6)
+                        発注書作成完了
+                    @elseif(($task->status) === 7)
+                        発注書上長確認中
+                    @elseif(($task->status) === 8)
+                        発注書パートナー依頼前
+                    @elseif(($task->status) === 9)
+                        発注書パートナー確認中
+                    @elseif(($task->status) === 10)
+                        作業中
+                    @elseif(($task->status) === 11)
+                        請求書依頼中
+                    @elseif(($task->status) === 12)
+                        請求書確認中
+                    @elseif(($task->status) === 13)
+                        完了
+                    @elseif(($task->status) === 14)
+                        キャンセル
+                    @endif
+                </dd>
+            </dl>
         </div>
+        
+        <div class="actionButton">
+            @if($task->status === 1 && in_array($company_user->id, $company_user_ids))
+                <form action="{{ url('company/task/status') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="2">
+                    <button type="submit" class="done">上長に確認を依頼する</button>
+                </form>
+            @elseif($task->status === 2 && $task->superior->id === $company_user->id)
+                <form action="{{ url('company/task/status') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="1">
+                    <button type="submit" class="undone">タスクを承認しない</button>
+                </form>
+                <form action="{{ url('company/task/status') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="3">
+                    <button type="submit" class="done">タスクを承認する</button>
+                </form>
+            @elseif($task->status === 3 && in_array($company_user->id, $company_user_ids))
+                <form action="{{ url('company/task/status') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="4">
+                    <button type="submit" class="done">パートナーに依頼する</button>
+                </form>
+            @elseif($task->status === 5 && in_array($company_user->id, $company_user_ids))
+                <a href="/company/document/purchaseOrder/create/{{ $task->id }}" class="done">発注書を作成する</a>
+            @elseif($task->status === 6 && in_array($company_user->id, $company_user_ids))
+                <form action="{{ url('company/task/status') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="7">
+                    <button type="submit" class="done">発注書の確認を上長に依頼する</button>
+                </form>
+            @elseif($task->status === 7 && $task->superior->id === $company_user->id)
+                <a class="done" href="/company/document/purchaseOrder/{{ $purchaseOrder->id }}">発注書を確認する</a>
+            @elseif($task->status === 8 && in_array($company_user->id, $company_user_ids))
+                <form action="{{ url('company/task/status') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="9">
+                    <button type="submit" class="done">発注書をパートナーに依頼する</button>
+                </form>
+            @elseif($task->status === 10 && in_array($company_user->id, $company_user_ids))
+                <form action="{{ url('company/task/status') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="11">
+                    <button type="submit" class="done">請求書を依頼する</button>
+                </form>
+            @elseif($task->status === 12 && in_array($company_user->id, $company_user_ids))
+                <a href="/company/document/invoice/{{ $invoice->id }}" class="done">請求書を確認する</a>
+            @elseif($task->status === 13)
+                <p class="non-action-text">このタスクは完了しています</p>
+            @else
+                <p class="non-action-text">必要なアクションはありません</p>
+            @endif
+        </div>
+
     </div>
 </div>
 @endsection

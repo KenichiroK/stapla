@@ -19,7 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string("address_building", 64)->nullable();
             $table->string("tel");
             $table->boolean("expire");
-            $table->string("expire2");
+            $table->string("expire2")->nullable();
             $table->boolean("approval_setting");
             $table->boolean("income_tax_setting");
             $table->boolean("remind_setting");

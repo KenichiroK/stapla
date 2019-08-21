@@ -5,26 +5,150 @@
 <link rel="stylesheet" href="{{ mix('css/company/project/index.css') }}">
 @endsection
 
+@section('header-profile')
+<div class="header-proflie">
+    <div class="option">
+        <div class="user-name">
+            {{ $company_user->name }}
+        </div>
+
+        <div class="icon-imgbox">
+            <img src="../../../images/icon_small-down.png" alt="">
+        </div>
+    </div>
+    
+    <div class="optionBox">
+        <div class="balloon">
+            <ul>
+                <li><a href="">プロフィール設定</a></li>
+                <li>
+                    <form method="POST" action="{{ route('company.logout') }}">
+                        @csrf
+                        <button type="submit">ログアウト</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="user-imgbox">
+        <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+    </div>
+</div>
+@endsection
+
 @section('sidebar')
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-                    fms
+                    <img src="../../../images/logo.png" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
-                <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li class="isActive"><a href="project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                <li><a href="task"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="document"><i class="fas fa-newspaper"></i>書類</a></li>
-                <li><a href="#"><i class="fas fa-user-circle"></i>パートナー</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
-                <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i>設定</a></li>
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-home"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_home.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ホーム
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/dashboard">
+                        <!-- <i class="fas fa-chart-bar"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_dashboard.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ダッシュボード
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/project" class="isActive">
+                        <!-- <i class="fas fa-envelope"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_inbox.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            プロジェクト
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/task">
+                        <!-- <i class="fas fa-tasks"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_products.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            タスク
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/document">
+                        <!-- <i class="fas fa-newspaper"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_invoices.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            書類
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/partner">
+                        <!-- <i class="fas fa-user-circle"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_customers.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            パートナー
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-calendar-alt"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_calendar.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            カレンダー
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-question"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_help-center.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ヘルプセンター
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/setting/general">
+                        <!-- <i class="fas fa-cog"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_setting.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            設定
+                        </div>
+                    </a>
+                </li>
             </ul>
+            
         </aside>
     </div>
 </div>
@@ -36,23 +160,30 @@
         <div class="top-container">
             <h1 class="top-container__title">プロジェクト</h1>
             <div>
-                <p class="control has-icons-left">
-                    <input class="search-project input" type="text" placeholder="Search project">
-                    <span class="icon is-small is-left">
-                    <i class="fas fa-search"></i>
+                <p class="control has-icons-left serch-wrp">
+                    <input class="search-project input" type="text" placeholder="プロジェクトを検索">
+                    <span class="">
+                    <!-- <i class="fas fa-search"></i> -->
+                    <img src="../../../images/searchicon.png" alt="serch">
                     </span>
                 </p>
             </div>
-            <div class="control">
-                <a href="project/create"><button class="button btn">プロジェクト作成</button></a>
+            <div class="control project-wrp">
+                <a href="project/create"><button class="button">プロジェクト作成</button></a>
             </div>
         </div>
 
+        <ul id="tab-button" class="tab-button">
+            <li class="all"><a href="#tab01">プロジェクト</a></li>
+            <li class="done"><a href="#tab02">完了したプロジェクト</a></li>
+        </ul>
+
         <div class="project-container">
-            <h2 class="project-container__item__title">プロジェクト</h2>
             <div class="project-container__item">
                 <ul class="project-container__item__list">
-                    <li>プロジェクト</li>
+                    <li>プロジェクト
+                        <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
+                    </li>
                     <li>担当者</li>
                     <li>パートナー</li>
                     <li>タスク</li>
@@ -68,15 +199,33 @@
                     <ul class="item-list project-container__content__list" >
                         <li class="item-list project-container__content__list__name">{{ $project->name }}</li>
                         <li>
-                            <p>{{ $project->company->representive_name }}</p>
+                            <div class="photoimgbox">
+                                <img src="/{{ str_replace('public/', 'storage/', $project->projectCompanies[0]->companyUser->picture) }}" alt="担当者プロフィール画像">
+                            </div>
+                            @if ($project->projectCompanies->count() > 1) 
+                                <p>
+                                    {{ $project->projectCompanies[0]->companyUser->name }}
+                                    他{{ $project->projectCompanies->count() - 1 }}名
+                                </p>
+                            @else
+                                <p>{{ $project->projectCompanies[0]->companyUser->name }}</p>
+                            @endif 
                         </li>
                         <li>
-                            @foreach( $project->projectPartners as $projectPartner )
-                            <p>{{ $projectPartner->partner->name }}</p>
-                            @endforeach
+                            <div class="photoimgbox">
+                                <img src="/{{ str_replace('public/', 'storage/', $project->projectPartners[0]->partner->picture) }}" alt="担当者プロフィール画像">
+                            </div>
+                            @if ($project->projectPartners->count() > 1) 
+                                <p>
+                                    {{ $project->projectPartners[0]->partner->name }}
+                                    他{{ $project->projectPartners->count() - 1 }}名
+                                </p>
+                            @else
+                                <p>{{ $project->projectPartners[0]->partner->name }}</p>
+                            @endif 
                         </li>
                         <li>
-                            {{ $task_count_arr[$loop->index] }}件
+                            <span class="txt-underline">{{ $task_count_arr[$loop->index] }}</span>件
                         </li>
                         <li>{{ $project->ended_at->format('Y年m月d日 H時') }}</li>
                         <li>¥{{ number_format($project->budget) }}</li>
@@ -87,7 +236,10 @@
             </div>
 
             <div class="project-container__content__showmore">
-                <p id="showmore_btn" class="project-container__content__showmore__btn">もっと見る<i class="arrow fas fa-angle-down"></i></p>
+                <p id="showmore_btn" class="project-container__content__showmore__btn"><a>もっと見る</a>
+                    <!-- <i class="arrow fas fa-angle-down"></i> -->
+                    <span><img src="../../../images/arrowdown.png"></span>
+                </p>
             </div>
         </div> 
     </div>

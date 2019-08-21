@@ -1,7 +1,7 @@
 $(function(){
     //もっと見る
     let projectDefault = 4;
-    const allListCount = $(".item-list").length;
+    const allListCount = $('.show-link').children('ul').length;
     const itemList = $('.show-link').children('ul');
 
     const defaultShowList = () => {

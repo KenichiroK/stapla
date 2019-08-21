@@ -20,13 +20,37 @@ const setPreview = (input) => {
 @endsection
 
 @section('header-profile')
-<div class="navbar-item">
-    {{ $partner->name }}
-</div>
-<div class="navbar-item">
-    <a href="/partner/profile">
-        <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
-    </a>
+<div class="header-proflie">
+    <div class="option">
+        <div class="user-name">
+            {{ $partner->name }}
+        </div>
+
+        <div class="icon-imgbox">
+            <img src="../../../images/icon_small-down.png" alt="">
+        </div>
+    </div>
+    
+    <div class="optionBox">
+        <div class="balloon">
+            <ul>
+                <li><a href="">プロフィール設定</a></li>
+                <li>
+                    <form method="POST" action="{{ route('partner.logout') }}">
+                        @csrf
+                        <button type="submit">ログアウト</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="user-imgbox">
+        <a href="/partner/profile">
+            <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
+        </a>
+    </div>
 </div>
 @endsection
 
@@ -36,23 +60,89 @@ const setPreview = (input) => {
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-                    fms
+                    <img src="../../../images/logo.png" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
-                <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="/partner/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li><a href="#"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                <li><a href="#"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/partner/invoice/create"><i class="fas fa-newspaper"></i>書類</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
-                <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="/partner/setting/invoice" class="isActive"><i class="fas fa-cog"></i>設定</a></li>
                 <li>
-                    <form method="POST" action="{{ route('partner.logout') }}">
-                        @csrf
-                        <button type="submit">ログアウト</button>
-                    </form>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_home.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ホーム
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/partner/dashboard">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_dashboard.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ダッシュボード
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_inbox.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            プロジェクト
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_products.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            タスク
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_invoices.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            書類
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_calendar.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            カレンダー
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_help-center.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ヘルプセンター
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/partner/setting/invoice" class="isActive">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_setting.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            設定
+                        </div>
+                    </a>
                 </li>
             </ul>
         </aside>
@@ -77,6 +167,14 @@ const setPreview = (input) => {
         <h3>プロフィール管理画面</h3>
     </div>
 
+    <div class="menu-container">
+		<ul>
+			<li><a href="" class="isActive">プロフィール</a></li>
+			<li><a href="">メールアドレス・パスワード設定</a></li>
+			<li><a href="">通知設定</a></li>
+		</ul>
+	</div>
+
     <form action="{{ url('/partner/profile') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body-container">
@@ -88,9 +186,11 @@ const setPreview = (input) => {
             <div class="edit-container">
                 <div class="image-container">
                     @if ($partner)
-                        <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                        <div class="imgbox">
+                            <img id="profile_image_preview" src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プレビュー画像">
+                        </div>
                     @else
-                        <img src="/{{ str_replace('public/', 'storage/', 'images/default/preview.jpeg') }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                        <img id="profile_image_preview" src="/{{ str_replace('public/', 'storage/', 'images/default/preview.jpeg') }}" alt="プレビュー画像" width="140px" height="140px">
                     @endif
                     <label for="picture">
                         画像をアップロード
@@ -219,7 +319,12 @@ const setPreview = (input) => {
             </div>
         </div>
         <div class="btn-container">
-            <button type="submit">保存</button>
+            <div class="preview-btn">
+                <button type="submit">プレビュー</button>
+            </div>
+            <div class="save-btn">
+                <button type="submit">保存</button>
+            </div>
         </div>
     </form>
 </div>

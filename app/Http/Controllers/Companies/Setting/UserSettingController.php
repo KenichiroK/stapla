@@ -19,9 +19,9 @@ class UserSettingController extends Controller
     public function create()
     {
         $auth = Auth::user(); 
-        $company_id = CompanyUser::where('auth_id', $auth->id)->first()->company_id;
-        $companyUsers = CompanyUser::where('company_id', $company_id)->get();
-        return view('company/setting/userSetting/create', compact('companyUsers'));
+        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
+        return view('company/setting/userSetting/create', compact('companyUsers', 'company_user'));
     }
 
     public function store(Request $request)

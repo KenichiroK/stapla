@@ -17,40 +17,160 @@ const setPreview = (input) => {
 </script>
 @endsection
 
+@section('header-profile')
+<div class="header-proflie">
+    <div class="option">
+        <div class="user-name">
+            {{ $company_user->name }}
+        </div>
+
+        <div class="icon-imgbox">
+            <img src="../../../images/icon_small-down.png" alt="">
+        </div>
+    </div>
+    
+    <div class="optionBox">
+        <div class="balloon">
+            <ul>
+                <li><a href="">プロフィール設定</a></li>
+                <li>
+                    <form method="POST" action="{{ route('company.logout') }}">
+                        @csrf
+                        <button type="submit">ログアウト</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="user-imgbox">
+        <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+    </div>
+</div>
+@endsection
+
+
 @section('sidebar')
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-                    impro
+                    <img src="../../../images/logo.png" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
-                <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="/company/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li><a href="/company/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                <li><a href="/company/task"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/company/document"><i class="fas fa-newspaper"></i>書類</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
-                <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="/company/setting/general" class="isActive"><i class="fas fa-cog"></i>設定</a></li>
                 <li>
-					<form method="POST" action="{{ route('company.logout') }}">
-						@csrf
-						<button type="submit">ログアウト</button>
-					</form>
-				</li>
+                    <a href="#">
+                        <!-- <i class="fas fa-home"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_home.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ホーム
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/dashboard">
+                        <!-- <i class="fas fa-chart-bar"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_dashboard.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ダッシュボード
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/project">
+                        <!-- <i class="fas fa-envelope"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_inbox.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            プロジェクト
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/task">
+                        <!-- <i class="fas fa-tasks"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_products.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            タスク
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/document">
+                        <!-- <i class="fas fa-newspaper"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_invoices.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            書類
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/partner">
+                        <!-- <i class="fas fa-user-circle"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_customers.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            パートナー
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-calendar-alt"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_calendar.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            カレンダー
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-question"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_help-center.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ヘルプセンター
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/setting/general" class="isActive">
+                        <!-- <i class="fas fa-cog"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_setting.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            設定
+                        </div>
+                    </a>
+                </li>
             </ul>
+            
         </aside>
     </div>
 </div>
 @endsection
 
-@section('content');
+@section('content')
 <div class="main-wrapper">
 	<div class="title-container">
-		<h3>会社担当者設定</h3>
+		<h3>設定</h3>
 	</div>
 	<div class="menu-container">
 		<ul>
@@ -69,26 +189,35 @@ const setPreview = (input) => {
     </div>
     <div class="charge-container__item">
         <ul class="charge-container__item__list" style="display: flex">
-            <li style="width: 140px;"></li>
-            <li style="width: 140px;">担当者名</li>
-            <li style="width: 140px;">メールアドレス</li>
+            <li>担当者名</li>
+            <li>メールアドレス</li>
+            <li>パートナー依頼中</li>
+            <li>ステータス</li>
         </ul>
     </div>
     <div class="charge-container__content">
         @foreach($companyUsers as $companyUser)
-        <ul class="charge-container__content__list" style="display: flex">
-            <li style="width: 140px;"><span class="icon">icon</span></li>
-            <li style="width: 140px;">{{ $companyUser->name }}</li>
-            <li style="width: 140px;">{{ $companyUser->companyUserAuth->email }}</li>
+        <ul class="charge-container__content__list">
+            <li>
+                <div class="name-container">
+                    <div class="name-container__img-container">
+                    <img src="../../../images/photoimg.png" alt="">
+                    </div>
+                    {{ $companyUser->name }}
+                </div>
+            </li>
+            <li>{{ $companyUser->companyUserAuth->email }}</li>
+            <li>管理者</li>
+            <li>登録済み</li>
         </ul>
         @endforeach
         
         <div class="charge-container__content__showmore">
-            <p class="charge-container__content__showmore__btn">Show More</p>
+            <p class="charge-container__content__showmore__btn">もっと見る</p>
         </div>
     </div>
     <div class="btn-container">
-        <a href="/company/companyMail">担当者追加</a>
+        <a href="/company/invite/company">担当者追加</a>
     </div>
 </div>
 @endsection

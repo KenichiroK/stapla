@@ -5,25 +5,22 @@
 <link rel="stylesheet" href="{{ mix('css/company/task/create.css') }}">
 @endsection
 
-@section('sidebar')
-<div class="sidebar__container">
-    <div class="sidebar__container__wrapper">
-        <aside class="menu menu__container">
-            <div class="menu__container--label">
-                <div class="menu-label">
-                    fms
-                </div>
-            </div>
-            <ul class="menu-list menu menu__container__menu-list">
-                <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="/company/dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li><a href="/company/project"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                <li><a href="/company/task" class="isActive"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/company/document"><i class="fas fa-newspaper"></i>書類</a></li>
-                <li><a href="/company/partner"><i class="fas fa-user-circle"></i>パートナー</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
-                <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="/company/setting/general"><i class="fas fa-cog"></i>設定</a></li>
+@section('header-profile')
+<div class="header-proflie">
+    <div class="option">
+        <div class="user-name">
+            {{ $company_user->name }}
+        </div>
+
+        <div class="icon-imgbox">
+            <img src="../../../images/icon_small-down.png" alt="">
+        </div>
+    </div>
+    
+    <div class="optionBox">
+        <div class="balloon">
+            <ul>
+                <li><a href="">プロフィール設定</a></li>
                 <li>
                     <form method="POST" action="{{ route('company.logout') }}">
                         @csrf
@@ -31,6 +28,127 @@
                     </form>
                 </li>
             </ul>
+        </div>
+        
+    </div>
+
+    <div class="user-imgbox">
+        <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+    </div>
+</div>
+@endsection
+
+@section('sidebar')
+<div class="sidebar__container">
+    <div class="sidebar__container__wrapper">
+        <aside class="menu menu__container">
+            <div class="menu__container--label">
+                <div class="menu-label">
+                    <img src="../../../images/logo.png" alt="logo">
+                </div>
+            </div>
+            <ul class="menu-list menu menu__container__menu-list">
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-home"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_home.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ホーム
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/dashboard">
+                        <!-- <i class="fas fa-chart-bar"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_dashboard.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ダッシュボード
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/project">
+                        <!-- <i class="fas fa-envelope"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_inbox.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            プロジェクト
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/task" class="isActive">
+                        <!-- <i class="fas fa-tasks"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_products.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            タスク
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/document">
+                        <!-- <i class="fas fa-newspaper"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_invoices.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            書類
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/partner">
+                        <!-- <i class="fas fa-user-circle"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_customers.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            パートナー
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-calendar-alt"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_calendar.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            カレンダー
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <!-- <i class="fas fa-question"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_help-center.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ヘルプセンター
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/company/setting/general">
+                        <!-- <i class="fas fa-cog"></i> -->
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_setting.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            設定
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            
         </aside>
     </div>
 </div>
@@ -48,7 +166,7 @@
         <div class="select-container">
             <div class="select-container__wrapper">
                 <!-- プロジェクトを選択する -->
-                <div class="seblect-container__wrapper__textarea">
+                <div class="select-container__wrapper__textarea">
                     <div class="select-container__wrapper__textarea__text">
                         プロジェクトを選択する
                     </div>
@@ -60,8 +178,8 @@
                             <div class="select-container__wrapper__select-area__field__control__select select is-info">
                                 <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}">
                                     <option></option>
-                                    @foreach($tasks as $task)
-                                        <option value="{{ $task->project->id }}">{{ $task->project->name}}</option>
+                                    @foreach($projects as $project)
+                                        <option value="{{ $project->id }}">{{ $project->name }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('project_id'))
@@ -84,13 +202,13 @@
                         <div class="main-container__wrapper__item-container">
                             <div class="item-name-wrapper">
                                 <div class="item-name-wrapper__item-name">
-                                    タスク名：
+                                    タスク名
                                 </div>
                             </div>
                             <div class="main-container__wrapper__item-container__inputarea">
                                 <div class="main-container__wrapper__item-container__inputarea__field">
                                     <div class="main-container__wrapper__item-container__inputarea__field__control">
-                                        <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" placeholder="タスク名">
+                                        <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text">
                                         @if ($errors->has('task_name'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong style='color: #e3342f'>{{ $errors->first('task_name') }}</strong>
@@ -100,16 +218,29 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- 項目：タスク内容 -->
+                        <!-- 項目：タスク作成日 -->
                         <div class="main-container__wrapper__item-container">
                             <div class="item-name-wrapper">
                                 <div class="item-name-wrapper__item-name">
-                                    タスク内容：
+                                    タスク作成日
+                                </div>
+                            </div>
+                            <div class="main-container__wrapper__item-container__datewrapper">
+                                <div class="main-container__wrapper__item-container__datewrapper__date">
+                                       本日 2019年7月3日<i class="fas fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 項目：タスク内容 -->
+                        <div class="main-container__wrapper__item-container">
+                            <div class="item-name-wrapper contentsname">
+                                <div class="item-name-wrapper__item-name">
+                                    タスク内容
                                 </div>
                             </div>
                             <div class="main-container__wrapper__item-container__textarea">
                                 <!-- <textarea class="textarea" placeholder="タスク内容" v-model="taskInfo.taskContent"></textarea> -->
-                                <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content' placeholder="タスク内容"></textarea>
+                                <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'></textarea>
                                 @if ($errors->has('task_content'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong style='color: #e3342f'>{{ $errors->first('task_content') }}</strong>
@@ -117,21 +248,111 @@
                                 @endif
                             </div>
                         </div>
+                        <!-- 担当者 -->
+                        <div class="main-container__wrapper__item-container">
+                                <div class="item-name-wrapper">
+                                    <div class="item-name-wrapper__item-name">
+                                        担当者
+                                    </div>
+                                </div>
+                                <div class="select-container__wrapper__select-area control staff">
+                                    <div class="select-container__wrapper__select-area__field field">
+                                        <div class="select-container__wrapper__select-area__field__control control">
+                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                            <!-- <select v-model="taskInfo.staff"> -->
+                                            <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
+                                                <option></option>
+                                                @foreach($companyUsers as $companyUser)
+                                                    <option value="{{ $companyUser->id }}">
+                                                        {{ $companyUser->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('company_user_id'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong style='color: #e3342f'>{{ $errors->first('company_user_id') }}</strong>
+                                                </span>
+                                            @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                        </div>                        
+
+                        <!-- 上長 -->
+                        <div class="main-container__wrapper__item-container">
+                            <div class="item-name-wrapper">
+                                <div class="item-name-wrapper__item-name">
+                                    上長
+                                </div>
+                            </div>
+                            <div class="select-container__wrapper__select-area control staff">
+                                <div class="select-container__wrapper__select-area__field field">
+                                    <div class="select-container__wrapper__select-area__field__control control">
+                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                            <select name='superior_id'>
+                                                <option></option>
+                                                @foreach($companyUsers as $companyUser)
+                                                    <option value={{ $companyUser->id }}>
+                                                        {{ $companyUser->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('superior_id'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong style='color: #e3342f'>{{ $errors->first('superior_id') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 経理 -->
+                        <div class="main-container__wrapper__item-container">
+                            <div class="item-name-wrapper">
+                                <div class="item-name-wrapper__item-name">
+                                    経理
+                                </div>
+                            </div>
+                            <div class="select-container__wrapper__select-area control staff">
+                                <div class="select-container__wrapper__select-area__field field">
+                                    <div class="select-container__wrapper__select-area__field__control control">
+                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                            <select name='accounting_id'>
+                                                <option></option>
+                                                @foreach($companyUsers as $companyUser)
+                                                    <option value={{ $companyUser->id }}>
+                                                        {{ $companyUser->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('accounting_id'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong style='color: #e3342f'>{{ $errors->first('accounting_id') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- 項目：締め切り -->
                         <div class="main-container__wrapper__item-container">
                             <div class="item-name-wrapper">
                                 <div class="item-name-wrapper__item-name">
-                                    締め切り：
+                                    プロジェクト期間
                                 </div>
                             </div>
                             <div class="main-container__wrapper__item-container__calendar-content">
                                 <!-- 開始日カレンダー -->
                                 <div class="main-container__wrapper__item-container__calendar-content__content">                               
-                                    <div>
-                                        <div class="item-name-wrapper__item-name main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name">
-                                            開始日
+                                    
+                                        <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name start">
+                                            開始日<i class="fas fa-calendar-alt"></i>
                                         </div>
-                                    </div>
+                                    
                                     <!-- <datepicker
                                         class="start_date"
                                         :format="DatePickerFormat"
@@ -142,11 +363,11 @@
                                 </div>
                                 <!-- 終了日カレンダー -->
                                 <div class="main-container__wrapper__item-container__calendar-content__content">                               
-                                    <div>
-                                        <div class="item-name-wrapper__item-name main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name">
-                                            終了日
+                                    
+                                        <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name">
+                                            終了日<i class="fas fa-calendar-alt"></i>
                                         </div>
-                                    </div>
+                                    
                                     <!-- <datepicker class="datepicker"
                                         v-model="taskInfo.deadlineDate"
                                         :format="DatePickerFormat"
@@ -156,20 +377,35 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- 項目：資料 -->
+                        <!-- 予算 -->
                         <div class="main-container__wrapper__item-container">
                             <div class="item-name-wrapper">
                                 <div class="item-name-wrapper__item-name">
-                                    資料：
+                                    予算
                                 </div>
                             </div>
-                            <div class="item-name-wrapper main-container__wrapper__item-container__uploadnamearea">
-                                <div class="item-name-wrapper__item-name main-container__wrapper__item-container__uploadarea__uploadname">
-                                    Upload
+                            <div class="main-container__wrapper__item-container__inputarea">
+                                <div class="main-container__wrapper__item-container__inputarea__field">
+                                    <div class="main-container__wrapper__item-container__inputarea__field__control budget">
+                                        <!-- <input class="input" type="text" placeholder="Text input" v-model="taskInfo.orderNumber" > -->
+                                        <input class="input" type="text">
+                                        <div class="main-container__wrapper__item-container__inputarea__field__control-yen">
+                                            円
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="file is-boxed item-name-wrapper main-container__wrapper__item-container__filearea">
-                                <label class="file-label main-container__wrapper__item-container__filearea__label">
+                        </div>
+                        <!-- 項目：資料 -->
+                        <div class="main-container__wrapper__item-container">
+                            <div class="item-name-wrapper">
+                                <div class="item-name-wrapper__item-name document">
+                                    資料
+                                </div>
+                            </div>
+                            <div class="is-boxed main-container__wrapper__item-container__filearea">
+                                <p class="uplaod">アップロード</p>
+                                <!-- <label class="file-label main-container__wrapper__item-container__filearea__label">
                                     <input class="file-input file-label main-container__wrapper__item-container__filearea__label" type="file" name="resume" >
                                     <span class="file-cta main-container__wrapper__item-container__filearea__label__file-cta">
                                     <span class="file-icon">
@@ -180,208 +416,139 @@
                                         Choose a file…
                                     </span>
                                     </span>
-                                </label>
+                                </label> -->
+                                <img src="../../../images/dragdrop.png" alt="">
                             </div>
                         </div>
                     </div>      
                 </div>
-                <!-- side -->
-                <div class="side-container">
-                    <div class="side-container__wrapper">
-                        <!-- テンプレート -->
-                        <div class="side-container__wrapper__template-container">
-                            <div class="side-container__wrapper__template-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                        テンプレート：
-                                    </div>
+
+                <!-- パートナー契約内容 -->
+                <div class="partner-container">
+                    <p class="partner-container__title">パートナー契約内容</p>
+                    <div class="partner-container__wrpper">
+                        <!-- パートナー -->
+                        <div class="partner-container__wrpper__item-container">
+                            <div class="item-name-wrapper">
+                                <div class="item-name-wrapper__item-name">
+                                    パートナー
                                 </div>
-                                <div class="select-container__wrapper__select-area control">
-                                    <div class="select-container__wrapper__select-area__field field">
-                                        <div class="select-container__wrapper__select-area__field__control control">
-                                            <div class="select-container__wrapper__select-area__field__control__select select is-info">
-                                            <select> 
+                            </div>
+                            <div class="select-container__wrapper__select-area control">
+                                <div class="select-container__wrapper__select-area__field field">
+                                    <div class="select-container__wrapper__select-area__field__control control">
+                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                            <!-- <select v-model="taskInfo.partner"> -->
+                                            <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
                                                 <option></option>
-                                                @foreach($tasks as $task)
-                                                    <option>{{ $task->task_name }}</option>
+                                                @foreach($partners as $partner)
+                                                    <option value={{ $partner->id }} >
+                                                        {{ $partner->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 担当者・パートナー -->
-                        <div class="side-container__wrapper__tanpa-container">
-                            <div class="side-container__wrapper__tanpa-container__wrapper">
-                                <!-- 担当者 -->
-                                <div class="side-container__wrapper__tanpa-content__wrapper__incharge-container">
-                                    <div class="side-container__wrapper__tanpa-content__wrapper__incharge-container__wrapper">
-                                        <div class="item-name-wrapper">
-                                            <div class="item-name-wrapper__item-name">
-                                                担当者：
-                                            </div>
-                                        </div>
-                                        <div class="select-container__wrapper__select-area control staff">
-                                            <div class="select-container__wrapper__select-area__field field">
-                                                <div class="select-container__wrapper__select-area__field__control control">
-                                                    <div class="select-container__wrapper__select-area__field__control__select select is-info">
-                                                    <!-- <select v-model="taskInfo.staff"> -->
-                                                    <select name='company_user_id' class="form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                                        <option></option>
-                                                        @foreach($companyUsers as $companyUser)
-                                                            <option value="{{ $companyUser->id }}" class=''>
-                                                                {{ $companyUser->name}}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                    @if ($errors->has('company_user_id'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong style='color: #e3342f'>{{ $errors->first('company_user_id') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- パートナー -->
-                                <div class="side-container__wrapper__tanpa-content__partner-container">
-                                    <div class="side-container__wrapper__tanpa-content__wrapper__partner-container__wrapper">
-                                        <div class="item-name-wrapper">
-                                            <div class="item-name-wrapper__item-name">
-                                                パートナー：
-                                            </div>
-                                        </div>
-                                        <div class="select-container__wrapper__select-area control">
-                                            <div class="select-container__wrapper__select-area__field field">
-                                                <div class="select-container__wrapper__select-area__field__control control">
-                                                    <div class="select-container__wrapper__select-area__field__control__select select is-info">
-                                                        <!-- <select v-model="taskInfo.partner"> -->
-                                                        <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                                            <option></option>
-                                                            @foreach($partners as $partner)
-                                                                <option value={{ $partner->id }} >
-                                                                    {{ $partner->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                        @if ($errors->has('partner_id'))
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong style='color: #e3342f'>{{ $errors->first('partner_id') }}</strong>
-                                                            </span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 契約内容 -->
-                        <div class="side-container__wrapper__agreement-container">
-                            <div class="side-container__wrapper__agreement-container__wrapper">
-                                <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
-                                        パートナー契約内容：
-                                    </div>
-                                </div>
-                                <div class="side-container__wrapper__agreement-container__wrapper__fee-container">
-                                    <div  class="side-container__wrapper__agreement-container__wrapper__fee-container__name">
-                                        報酬形式
-                                    </div>
-                                    <div class="side-container__wrapper__agreement-container__wrapper__fee-container__control">
-                                        <label class="radio">
-                                            <!-- <input type="radio" value="固定" name="foobar" v-model="taskInfo.fee"> -->
-                                            <input type="radio" value="固定" name="fee_format" checked>
-                                            固定
-                                        </label>
-                                        <label class="radio">
-                                            <input type="radio" value="時間" name="fee_format">
-                                            <!-- <input type="radio" value="時間" name="foobar" checked v-model="taskInfo.fee"> -->
-                                            時間
-                                        </label>
-                                        <label class="radio">
-                                            <!-- <input type="radio" value="日" name="foobar" checked v-model="taskInfo.fee"> -->
-                                            <input type="radio" value="日" name="fee_format">
-                                            日
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="side-container__wrapper__agreement-container__wrapper__order-container">
-                                    <div class="side-container__wrapper__agreement-container__wrapper__order-container__name">
-                                        発注額
-                                    </div>
-                                    <div class="side-container__wrapper__agreement-container__wrapper__order-container__content">
-                                        <!-- 発注単価 -->
-                                        <div class="side-container__wrapper__agreement-container__wrapper__order-container__name">
-                                            発注単価(税抜)
-                                        </div>
-                                        <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__inputitem">
-                                            <input class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" placeholder="Text input">
-                                            @if ($errors->has('price'))
+                                            @if ($errors->has('partner_id'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong style='color: #e3342f'>{{ $errors->first('price') }}</strong>
+                                                    <strong style='color: #e3342f'>{{ $errors->first('partner_id') }}</strong>
                                                 </span>
                                             @endif
-                                            <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__inputitem__class">
-                                                円
-                                            </div>
                                         </div>
-                                        <!-- 作業件数 -->
-                                        <div class="side-container__wrapper__agreement-container__wrapper__order-container__name">
-                                            作業件数
-                                        </div>
-                                        <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__inputitem">
-                                            <!-- <input class="input" type="text" placeholder="Text input" v-model="taskInfo.orderNumber" > -->
-                                            <input class="input" type="text" placeholder="Text input">
-                                            <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__inputitem__class">
-                                                件
-                                            </div>
-                                        </div>
-                                        <!-- 水平線 -->
-                                        <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__hr"></div>
-                                        <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__item-wrapper">
-                                            <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__item-wrapper__item">
-                                                <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__item-wrapper__item__item-name">
-                                                    発注額(税抜)
-                                                </div>
-                                                <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__item-wrapper__item__item-amount">
-                                                    円
-                                                </div>
-                                            </div>
-                                            <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__item-wrapper__item">
-                                                <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__item-wrapper__item__item-name">
-                                                    発注額(税込)
-                                                </div>
-                                                <div class="side-container__wrapper__agreement-container__wrapper__order-container__content__item-wrapper__item__item-amount">
-                                                    円
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>      
-                                </div>
-                                <div class="side-container__wrapper__agreement-container__wrapper__fee-container">
-                                    <div  class="side-container__wrapper__agreement-container__wrapper__fee-container__name">
-                                        備考
-                                    </div>
-                                    <div class="side-container__wrapper__agreement-container__wrapper__fee-container__name">
-                                        発注書の備考欄に記載されます。
-                                    </div>
-                                    <div class="side-container__wrapper__agreement-container__wrapper__fee-container__control">
-                                        <textarea class="textarea side-container__wrapper__agreement-container__wrapper__fee-container__control__textarea" placeholder="備考"></textarea>
                                     </div>
                                 </div>
-                                <div class="button-wrapper">
-                                    <button type='submit' class="button-wrapper__btn button">依頼</button>
+                            </div>
+                        </div>
+                        <!-- 報酬形式 -->
+                        <div class="partner-container__wrpper__item-container fee">
+                            <div class="item-name-wrapper">
+                                <div class="item-name-wrapper__item-name">
+                                    報酬形式
                                 </div>
+                            </div>
+                            
+
+                            <div class="fee-container__control">
+                                <label>
+                                    <span class="title">固定</span>
+                                    <input class="radio01-input" value="固定" name="fee_format" type="radio" checked>
+                                    <span class="radio01-parts"></span>
+                                </label>
+                                <label>
+                                    <span class="title">時間</span>
+                                    <input class="radio01-input" value="時間" name="fee_format" type="radio">
+                                    <span class="radio01-parts"></span>
+                                </label>
+                                <label>
+                                    <span class="title">日</span>
+                                    <input class="radio01-input" value="日" name="fee_format" type="radio">
+                                    <span class="radio01-parts date"></span>
+                                </label>
+                            </div>
+                            
+
+
+                            
+                        </div>
+                        
+                        <!-- 発注単価・件数 -->
+                        <div class="partner-container__wrpper__item-container order__unit-number">
+                            <div class="partner-container__wrpper__item-container__order">
+                                
+                                    <!-- 発注単価　タイトル -->
+                                    <div class="item-name-wrapper unitname">
+                                        <div class="item-name-wrapper__item-name">
+                                            発注単価<span class="tax">（税抜）</span>
+                                        </div>
+                                    </div>
+                                    
+        
+                                <div class="partner-container__wrpper__item-container__order-uninum">
+                                    <!-- 発注単位 input -->
+                                    <div class="partner-container__wrpper__item-container__order-uninum__unit__contents">
+                                        <input class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text">
+                                        @if ($errors->has('price'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong style='color: #e3342f'>{{ $errors->first('price') }}</strong>
+                                            </span>
+                                        @endif
+                                        <div class="partner-container__wrpper__item-container__order-uninum__unit__contents__class">
+                                            円
+                                        </div>
+                                    </div>  
+                                    <!-- 件数 -->
+                                    <div class="item-name-wrapper numbername">
+                                        <div class="item-name-wrapper__item-name">
+                                            件数
+                                        </div>
+                                    </div>
+                                    <div class="partner-container__wrpper__item-container__order-uninum__number__contents">
+                                        <!-- <input class="input" type="text" placeholder="Text input" v-model="taskInfo.orderNumber" > -->
+                                        <input class="input" type="text">
+                                        <div class="partner-container__wrpper__item-container__order-uninum__number__contents__class">
+                                            件
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 発注額 -->
+                        <div class="partner-container__wrpper__item-container price">
+                            <div class="item-name-wrapper">
+                                <div class="item-name-wrapper__item-name">
+                                    発注額
+                                </div>
+                            </div>
+                            <div class="price-item">
+                                <p><span class="tax">税抜</span><span class="yen">￥</span>200,000</p>
+                                <p><span class="tax">税込</span><span class="yen">￥</span>216,000</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="button-wrapper">
+                    <button type='submit' class="button-wrapper__btn button">作成</button>
+                </div>
+                
             </div>
         </div>
     </form>

@@ -25,19 +25,21 @@
     <div id="app">
         <header>
             <nav class="navbar" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
-                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarHomeHeader">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </a>
-                </div>
+                <p class="control serch-wrp">
+                    <input type="text" placeholder="Search transactions, invoices or help" class="search input"> 
+                    <span class="icon"><img src="../../../images/searchicon.png" alt="serch"></span>
+                </p>
 
                 <div id="navbarHomeHeader" class="navbar-menu">
                     <div class="navbar-end">
-                        <div class="navbar-item">
-                            <i class="fas fa-bell"></i>
-                        </div>
+                        <ul class="icon-wrp">
+                            <li class="sup">
+                                <a><img src="../../../images/icon_support.png" alt="serch"></a>
+                            </li>
+                            <li class="not">
+                                <a><img src="../../../images/icon_notification.png" alt="serch"></a>
+                            </li>
+                        </ul>
                         @yield('header-profile')
                     </div>
                 </div>

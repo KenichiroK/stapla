@@ -1,0 +1,139 @@
+.main__container {
+    background-color: #F0F0F7;
+    font-size: 14px;
+    &__wrapper {
+        width:100%;
+        padding: 35px 40px 40px 65px;
+    }
+}
+
+// 共通部分
+.page-title-container {
+    padding: 24px 0;
+    &__page-title {
+        font-size: 28px;
+        font-weight: bold;
+        font-family: "Source Sans Pro";
+        color: #43425D;
+    }
+}
+.item-name-wrapper {
+    width: 100%;
+    padding: 16px 0;
+    &__item-name {
+        font-size: 14px;
+        color: #43425D;
+    }
+}
+
+// select
+.select-container {
+    margin-bottom: 16px;
+    &__wrapper {
+        width: 100%;
+        &__select {
+
+            width: 100%;
+            border-color: #3B86FF;
+        }
+        &__select:hover {
+            border-color: #3B86FF;
+        }
+    }
+}
+// input
+.input-container {
+    margin-bottom: 16px;
+    &__control input {
+        border: 0;
+        border-radius: 0;
+        border-bottom: 3px solid #3B86FF;
+        caret-color: #3B86FF;
+    }
+}
+
+.head-container {
+    &__wrapper {
+        display: flex;
+        &__print-btn-container {
+            margin-left: auto;
+            &__button {
+                height: 40px;
+                width: 140px;
+                background-color: #fff;
+                color: #43425D;
+                margin: 24px 0;
+                border-radius: 100px;
+                border: 2px solid #43425D;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            &__button:hover{
+                text-decoration: none;
+                border: 2px solid #43425D;
+            }
+        }
+    }
+}
+.main-container {
+    margin-bottom: 30px;
+    &__wrapper {
+        &__pdf-container {
+            padding: 24px;
+            &__pdf {
+                height: 560px;
+                background-color: whitesmoke;
+                border: 1px solid #43425D;
+            }
+        }
+    }
+}
+.submit-btn-container {
+    text-align: center;
+    &__button {
+        height: 40px;
+        width: 140px;
+        background-color: #43425D;
+        border-radius: 100px;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    &__button:hover{
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.secrecy-container {
+    &__wrapper {
+        .pdf-container {
+            margin:auto;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+            &__pdf {
+                background-color: #ffffff;
+                padding: 100px 50px;
+                &__contract-type{
+                    text-align: center;
+                    font-size:30px;
+                    color: #43425D;
+                    letter-spacing: 0.3em;
+                    margin-bottom: 50px;
+                }
+                &__main{
+                    font-size: 12px;
+                    &__Paragraph2{
+                        margin-top:40px;
+                    }
+                    &__Paragraph3{
+                        margin-top:40px;
+                    }
+                    &__Paragraph4{
+                        margin-top:40px;
+                    }
+                }
+            }
+        }
+    }
+}
+

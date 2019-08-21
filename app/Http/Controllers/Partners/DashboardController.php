@@ -28,8 +28,8 @@ class DashboardController extends Controller
         $partner_auth_id = Auth::user()->id;
         $partner_id = Partner::where('partner_id', $partner_auth_id)->get()->first()->id;
         $partner = Partner::where('partner_id', $partner_auth_id)->get()->first();
-        $projects = ProjectPartner::where('user_id', $partner_id)->with(['project', 'project.tasks', 'project.projectCompanies.companyUser'])->get();
-        $tasks = TaskPartner::where('user_id', $partner_id)->with(['task', 'task.project', 'task.taskPartners.partner'])->get();
+        $projects = ProjectPartner::where('user_id', $partner_id)->get();
+        $tasks = Task::where('partner_id', $partner_id)->get();
         $ndas = Nda::where('partner_id', $partner_id)->where('status', 0)->get();
         $contracts = Contract::where('partner_id', $partner_id)->where('status', 0)->get();
         $purchaseOrders = PurchaseOrder::where('partner_id', $partner_id)->where('status', 0)->get();

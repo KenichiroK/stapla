@@ -1,5 +1,5 @@
 .main-wrapper {
-    width: 80%;
+    width: 100%;
     margin: auto;
     padding: 40px;
   
@@ -25,11 +25,14 @@
       h3 {
         font-weight: bold;
         color: #43425d;
+        font-size: 28px;
+        font-family: "Source Sans Pro";
+        margin-bottom: 0;
       }
     }
   
     .menu-container {
-      margin-bottom: 64px;
+      margin-bottom: 35px;
   
       ul {
         width: 100%;
@@ -44,11 +47,12 @@
   
           a {
             width: 100%;
-            font-size: 12px;
+            height: 39px;
+            font-size: 16px;
             display: block;
-            color: #aaa;
-            padding-bottom: 4px;
-            border-bottom: 1px solid #aaa;
+            color: #7B7A9A;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #43425D;
             text-decoration: none;
           }
   
@@ -61,349 +65,128 @@
           .isActive {
             color: #43425d!important;
             font-weight: bold!important;
-            border-bottom: 3px solid #43425d!important;
+            border-bottom: 4px solid #43425d!important;
           } 
         }
       }
     }
-  
-    .profile-container {
-      width: 100%;
+    
+    .charge-container{
       background-color: #fff;
-      padding: 48px;
-      margin-bottom: 48px;
-  
-      .title-container {
-        margin-bottom: 24px;
-  
-        h4 {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
+      padding: 30px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+      border-radius: 4px;
+
+      &__top-wrapper{
+        .title-container{
+          h3{
+            font-size:18px;
+          }
         }
       }
-  
-      .name-container {
-        margin-bottom: 24px;
-  
-        p {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        input {
-          width: 100%;
-          outline-color: #43425d;
-          font-size: 16px;
-          padding: 4px;
-          border: 1px solid #a6a6a6;
-          border-radius: 4px;
-        }
-      }
-  
-      .above-address-container {
-        display: flex;
-        margin-bottom: 24px;
-  
-        .zipcode-container {
-          width: 40%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
+
+      &__item{
+        background-color: #F5F6FA;
+
+        ul{
+          display: flex;
+          justify-content: space-around;
+          height :48px;
+          margin-bottom: 0;
+          
+          li{
+            width: 50%;
+            color: #A3A6B4;
             font-weight: bold;
-          }
-    
-          input {
-            width: 80%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
-          }
-        }
-  
-        .prefecture-container {
-          width: 40%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-  
-          input {
-            width: 80%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
+            font-family: 'Source Sans Pro';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
           }
         }
       }
-  
-      .below-address-container {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 24px;
-  
-        .city-container {
-          width: 45%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-    
-          input {
-            width: 100%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
-          }
-        }
-  
-        .building-container {
-          width: 45%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-    
-          input {
-            width: 100%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
+      &__content{
+        &__list{
+          display: flex;
+          justify-content: space-around;
+          height: 86px;
+          margin-bottom: 0;
+          border-bottom: 1px solid #F1F1F3; 
+
+          li{
+            width:25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+
+            .name-container{
+              width:400px;
+              display: flex;
+              align-items: center;
+              // margin-left:160px;
+
+              &__img-container{
+                margin-right: 8px;
+                margin-left: 40px;
+                width: 32px;
+
+                .icon{
+                  width:  40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background-position: left top;
+                  border: 1px solid #212529;
+                }
+              }
+            }
           }
         }
-      }
-  
-      .tel-container {
-        margin-bottom: 24px;
-  
-        p {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        input {
-          width: 45%;
-          outline-color: #43425d;
-          font-size: 16px;
-          padding: 4px;
-          border: 1px solid #a6a6a6;
-          border-radius: 4px;
-        }
-      }
-    }
-  
-    .invoice-container {
-      width: 100%;
-      background-color: #fff;
-      padding: 48px;
-      margin-bottom: 48px;
-  
-      .title-container {
-        margin-bottom: 24px;
-  
-        h4 {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-      }
-  
-      .financial-container {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 24px;
-  
-        .financialInstitution-container {
-          width: 65%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-    
-          input {
-            width: 100%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
-          }
-        }
-  
-        .branch-container {
-          width: 30%;
-  
-          p {
-            font-size: 16px;
-            color: #43425d;
-            font-weight: bold;
-          }
-    
-          input {
-            width: 100%;
-            outline-color: #43425d;
-            font-size: 16px;
-            padding: 4px;
-            border: 1px solid #a6a6a6;
-            border-radius: 4px;
-          }
-        }
-      }
-  
-      .depositType-container {
-        width: 50%;
-        margin-bottom: 24px;
-        
-        p {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        input {
-          width: 100%;
-          outline-color: #43425d;
-          font-size: 16px;
-          padding: 4px;
-          border: 1px solid #a6a6a6;
-          border-radius: 4px;
-        }
-      }
-  
-      .accountNumber-container{
-        width: 50%;
-        margin-bottom: 24px;
-  
-        p {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        input {
-          width: 100%;
-          outline-color: #43425d;
-          font-size: 16px;
-          padding: 4px;
-          border: 1px solid #a6a6a6;
-          border-radius: 4px;
-        }
-      }
-  
-      .accountHolder-container {
-        width: 50%;
-        margin-bottom: 24px;
-  
-        p {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        input {
-          width: 100%;
-          outline-color: #43425d;
-          font-size: 16px;
-          padding: 4px;
-          border: 1px solid #a6a6a6;
-          border-radius: 4px;
-        }
-      }
-  
-      .mark-container {
-        width: 50%;
-        margin-bottom: 24px;
-  
-        .title {
-          font-size: 16px;
-          color: #43425d;
-          font-weight: bold;
-        }
-  
-        .caution {
-          font-size: 12px;
-        }
-  
-        .image-container {
-          margin-bottom: 24px;
-  
-          label {
-            border: 1px solid #43425d;
-            border-radius: 48px;
-            font-weight: bold;
-            color: #43425d;
-            padding: 4px 24px;
-            font-size: 12px;
-            background-color: transparent;
-            margin-left: 12px;
-            margin-bottom: 0;
+        &__showmore{
+          padding: 30px 0;
+
+          &__btn{
             cursor: pointer;
-          }
-  
-          label:hover {
-            opacity: 0.7;
-            transition: 0.3s;
-          }
-        }
-  
-        .imprint-container {
-          width: 140px;
-          text-align: center;
-  
-          button {
-            background-color: #43425d;
+            color: #43425D;
+            font-size: 13px;
             font-weight: bold;
-            color: #fff;
-            border-radius: 48px;
-            padding: 4px 24px;
-            font-size: 12px;
-            outline: none;
-          }
-  
-          button:hover {
-            opacity: 0.7;
-            transition: 0.3s;
+            position: relative;
+            width: 85px;
+            margin: 0 auto;
+            &:after {
+              content: "";
+              width: 10px;
+              height: 10px;
+              border: 0px;
+              border-bottom: solid 1px #43425D;
+              border-right: solid 1px #43425D;
+              transform: rotate(45deg);
+              position: absolute;
+              top: 1px;
+              right: 2px;
+            }
           }
         }
       }
-    }
-  
-    .btn-container {
-      width: 100%;
-      text-align: center;
-  
-      button {
-        background-color: #43425d;
-        font-weight: bold;
-        color: #fff;
-        padding: 8px 40px;
-        font-size: 16px;
-        border-radius: 48px;
-        outline: none;
-      }
-  
-      button:hover {
-        opacity: 0.7;
-        transition: 0.3s;
+      .btn-container{
+        text-align: center;
+
+        a{
+          background-color: #43425d;
+          font-weight: bold;
+          color: #fff;
+          padding: 8px 20px;
+          font-size: 15px;
+          border-radius: 100px;
+          outline: none;
+          text-decoration: none;
+        }
+
+        a:hover {
+          opacity: 0.7;
+          transition: 0.3s;
+        }
       }
     }
   }

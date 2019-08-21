@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Partners\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Models\PartnerAuth;
+use App\Models\CompanyUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Models\PartnerAuth;
 
 class RegisterController extends Controller
 {
@@ -24,9 +26,9 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    public function showRegisterForm()
+    public function showRegisterForm($company_id, $email)
     {
-        return view('partner/auth/register');
+        return view('partner.auth.register', compact('company_id', 'email'));
     }
 
     /**
@@ -34,7 +36,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/partner/dashboard';
+    protected $redirectTo = '/partner/register/preRegistered';
 
     /**
      * Create a new controller instance.
@@ -71,6 +73,7 @@ class RegisterController extends Controller
         return PartnerAuth::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'company_id' => $data['company_id'],
         ]);
     }
 

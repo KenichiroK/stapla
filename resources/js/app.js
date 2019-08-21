@@ -31,3 +31,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app'
 });
+
+$(function(){
+    //！をクリックで要素を表示
+    $('.option').click(function() {
+      $('.optionBox').toggle();
+    })
+  });

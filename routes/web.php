@@ -17,13 +17,33 @@ Route::group(['prefix' => 'partner'], function(){
 	//login   
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
-	//register
-	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
-	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
 	
-	Route::group(['middleware' => 'auth:partner'], function() {
+	//register
+	Route::get('register/{company_id}/{email}', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
+	Route::post('register/{company_id}', 'Partners\Auth\RegisterController@register')->name('partner.register');
+	Route::get('register/preRegistered', 'Partners\InitialRegisterController@preRegisteredShow')->name('company.register.preRegisterd.preRegisteredShow');
+
+	// invite
+	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
+
+	// emailverify
+	Route::middleware('throttle:6,1')->get('email/resend','Partners\Auth\VerificationController@resend')->name('partner.verification.resend');
+	Route::middleware('throttle:6,1')->get('email/verify','Partners\Auth\VerificationController@show')->name('partner.verification.notice');
+	Route::middleware('signed')->get('email/verify/id/{id}/company_id/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
+	
+	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
+		// register_flow
+		Route::get('/register/doneVerify', 'Partners\InitialRegisterController@doneVerifyShow')->name('partner.register.doneVerify.doneVerifyShow');
+		Route::get('/register/initialRegistration', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
+		Route::post('/register/initial/personal', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
+		Route::get('/register/preview/previwShow', 'Partners\InitialRegisterController@previwShow')->name('parnter.register.preview.previwShow');
+		Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('partner.register.preview.previewStore');
 		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
+		// task
+		Route::get('/task/{id}', 'Partners\TaskController@show')->name('partner.task.show');
+		// task status change
+		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('task.status.change');
 		// profile
 		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
 		Route::post('profile', 'Partners\ProfileController@store')->name('partner.profile.store');
@@ -36,28 +56,44 @@ Route::group(['prefix' => 'partner'], function(){
 		// purchase-order
 		Route::get('order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.purchaseOrder.show');
 		// invoice
-		Route::get('invoice/create', 'Partners\InvoiceController@create')->name('partner.invoice.create');
+		Route::get('invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
 		Route::get('invoice/{id}', 'Partners\InvoiceController@show')->name('partner.invoice.show');
-		
+		Route::post('invoice/send', 'Partners\InvoiceController@send')->name('partner.invoice.send');
+
 		// logout
-    Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
+    	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
 });
-	
-  
+
+
 
 Route::group(['prefix' => 'company'], function(){
+
 	// login
 	Route::get('login', 'Companies\Auth\LoginController@showLoginForm')->name('company.login');
 	Route::post('login', 'Companies\Auth\LoginController@login')->name('company.login');
 
 	//register
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
-    Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
+	Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
+	Route::get('/register/preRegistered', 'Companies\InitialRegisterController@preRegisteredShow')->name('company.register.preRegisterd.preRegisteredShow');
 
+
+	// emailverify
+	Route::middleware('throttle:6,1')->get('email/resend','Companies\Auth\VerificationController@resend')->name('company.verification.resend');
+	Route::middleware('throttle:6,1')->get('email/verify','Companies\Auth\VerificationController@show')->name('company.verification.notice');
+	Route::middleware('signed')->get('email/verify/{id}','Companies\Auth\VerificationController@verify')->name('company.verification.verify');
 	
-	Route::group(['middleware' => 'auth:company'], function() {
+	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
+		
+		// register_flow
+		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerifyShow')->name('company.register.doneVerify.doneVerifyShow');
+		Route::get('/register/intialRegistration', 'Companies\InitialRegisterController@create')->name('company.register.intialRegistration.create');
+		Route::post('/register/initialRegistration', 'Companies\InitialRegisterController@toPreview')->name('company.registerInfo.toPreview');
+		Route::get('/register/preview/previwShow', 'Companies\InitialRegisterController@previewShow')->name('company.register.preview.previwShow');
+		Route::post('/register/preview/previewStore', 'Companies\InitialRegisterController@previewStore')->name('company.register.preview.previewStore');
+		Route::get('/regitster/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
 		// project
@@ -70,7 +106,10 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
         Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.create');
-        Route::get('/task/{id}', 'Companies\TaskController@show');
+		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
+
+		// task status change
+		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');
 		
 		// partner
 		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
@@ -78,12 +117,26 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// document
 		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');
+		Route::get('/document/nda', 'Companies\Document\NdaController@create')->name('company.document.nda.create');
+		Route::post('/document/nda', 'Companies\Document\NdaController@store')->name('company.document.nda.store');
+		Route::get('/document/nda/{id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
+		Route::get('/document/purchaseOrder/create/{id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.edit');
+		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
+		Route::get('/document/purchaseOrder/{id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');
+
+		//document invoice
+		Route::get('/document/invoice/{id}', 'Companies\Document\InvoiceController@show')->name('company.invoice.show');
+
 
 		// setting
 		Route::get('/setting/general', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
 		Route::post('/setting/general', 'Companies\Setting\GeneralController@update')->name('company.setting.general.update');
+		Route::get('/setting/companyElse', 'Companies\Setting\CompanyElseController@create')->name('company.setting.companyElse.create');
+		Route::post('/setting/companyElse', 'Companies\Setting\CompanyElseController@store')->name('company.setting.companyElse.store');
 		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create');
 		Route::get('/setting/account', 'Companies\Setting\AccountController@create');
+		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@edit')->name('company.setting.personalInfo.edit');
+		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@update')->name('company.setting.personalInfo.update');
         
 		// mail(CompnayUser)
 		Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
@@ -96,7 +149,18 @@ Route::group(['prefix' => 'company'], function(){
 		// mail(Partner)
 		Route::get('/userMail', 'Companies\PartnerMailController@index')->name('company.userMail.index');
 		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
-        
+		
+		// personal register
+		Route::get('register/personal', 'Companies\InitialRegisterController@personal')->name('company.register.personal');
+		Route::get('register/company', 'Companies\InitialRegisterController@company')->name('company.register.company');
+		Route::get('register/preview', 'Companies\InitialRegisterController@preview')->name('company.register.preview');
+		Route::get('register/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
+
+		// invite
+		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.invite.partner.index');
+		Route::post('invite/partner',  'Companies\Invite\InvitePartnerController@send')->name('company.invite.partner.send');
+		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
+
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');
 

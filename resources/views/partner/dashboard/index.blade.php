@@ -6,13 +6,37 @@
 @endsection
 
 @section('header-profile')
-<div class="navbar-item">
-    {{ $partner->name }}
-</div>
-<div class="navbar-item">
-    <a href="/partner/profile">
-        <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
-    </a>
+<div class="header-proflie">
+    <div class="option">
+        <div class="user-name">
+            {{ $partner->name }}
+        </div>
+
+        <div class="icon-imgbox">
+            <img src="../../../images/icon_small-down.png" alt="">
+        </div>
+    </div>
+    
+    <div class="optionBox">
+        <div class="balloon">
+            <ul>
+                <li><a href="">プロフィール設定</a></li>
+                <li>
+                    <form method="POST" action="{{ route('partner.logout') }}">
+                        @csrf
+                        <button type="submit">ログアウト</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="user-imgbox">
+        <a href="/partner/profile">
+            <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
+        </a>
+    </div>
 </div>
 @endsection
 
@@ -22,23 +46,89 @@
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-                    fms
+                    <img src="../../../images/logo.png" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
-                <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                <li><a href="/partner/dashboard" class="isActive"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
-                <li><a href="#"><i class="fas fa-envelope"></i>プロジェクト</a></li>
-                <li><a href="#"><i class="fas fa-tasks"></i>タスク</a></li>
-                <li><a href="/partner/invoice/create"><i class="fas fa-newspaper"></i>書類</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i>Calendar</a></li>
-                <li><a href="#"><i class="fas fa-question"></i>Heip Center</a></li>
-                <li><a href="/partner/setting/invoice"><i class="fas fa-cog"></i>設定</a></li>
                 <li>
-                    <form method="POST" action="{{ route('partner.logout') }}">
-                        @csrf
-                        <button type="submit">ログアウト</button>
-                    </form>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_home.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ホーム
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/partner/dashboard" class="isActive">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_dashboard.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ダッシュボード
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_inbox.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            プロジェクト
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_products.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            タスク
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_invoices.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            書類
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_calendar.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            カレンダー
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_help-center.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            ヘルプセンター
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/partner/setting/invoice">
+                        <div class="icon-imgbox">
+                            <img src="../../../images/icon_setting.png" alt="">
+                        </div>
+                        <div class="textbox">
+                            設定
+                        </div>
+                    </a>
                 </li>
             </ul>
         </aside>
@@ -52,25 +142,10 @@
         <h3>ダッシュボード</h3>
     </div>
 
-    <div class="alert-container">
-        <div class="icon-container">
-            <i class="fas fa-exclamation-circle"></i>
-        </div>
-        <div class="project-alert-container">
-            <p>プロジェクトアラート</p>
-            <h4 class="alert-text">3</h4>
-        </div>
-
-        <div class="task-alert-container">
-            <p>タスクアラート</p>
-            <h4>0</h4>
-        </div>
-    </div>
-
     <div class="incomplete-container">
         <div class="section-container">
-            <div class="icon-container">
-                <i class="fas fa-receipt"></i>
+            <div class="icon-imgbox">
+                <img src="../../../images/invoice.png" alt="">
             </div>
             <div class="text-container">
                 <h4>未請求書</h4>
@@ -82,8 +157,8 @@
         </div>
 
         <div class="section-container">
-            <div class="icon-container">
-                <i class="fas fa-shopping-cart"></i>
+            <div class="icon-imgbox">
+                <img src="../../../images/order.png" alt="">
             </div>
             <div class="text-container">
                 <h4>発注書未対応</h4>
@@ -95,8 +170,8 @@
         </div>
 
         <div class="section-container">
-            <div class="icon-container">
-                <i class="fas fa-shopping-bag"></i>
+            <div class="icon-imgbox">
+                <img src="../../../images/non-disclosur.png" alt="">
             </div>
             <div class="text-container">
                 <h4>機密保持契約書未対応</h4>
@@ -113,10 +188,15 @@
             <h4>プロジェクト</h4>
         </div>
 
-        <table>
+        <table id="partner-project-table">
             <thead>
                 <tr>
-                    <th>プロジェクト</th>
+                    <th>プロジェクト
+                        <span>
+                            <i class="arrow fas fa-angle-up"></i>
+                            <i class="arrow fas fa-angle-down"></i>
+                        </span>
+                    </th>
                     <th>担当者</th>
                     <th>パートナー</th>
                     <th>タスク</th>
@@ -130,8 +210,10 @@
                 @foreach($projects as $project)
                 <tr>
                     <td class="project_name">{{ $project->project->name }}</td>
-                    <td>
-                        <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px">
+                    <td class="staff">
+                        <div class="imgbox">
+                            <img src="/{{ str_replace('public/', 'storage/', $project->project->projectCompanies[0]->companyUser->picture) }}" alt="プロフィール画像">
+                        </div> 
                         @if ($project->project->projectCompanies->count() > 1) 
                             <p>
                                 {{ $project->project->projectCompanies[0]->companyUser->name }} 
@@ -141,8 +223,10 @@
                             <p>{{ $project->project->projectCompanies[0]->companyUser->name }}</p>
                         @endif
                     </td>
-                    <td>
-                        <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px">
+                    <td class="staff">
+                        <div class="imgbox">
+                            <img src="/{{ str_replace('public/', 'storage/', $project->project->projectPartners[0]->partner->picture) }}" alt="プロフィール画像">
+                        </div> 
                         @if ($project->project->projectPartners->count() > 1) 
                             <p>
                                 {{ $project->project->projectPartners[0]->partner->name }} 
@@ -152,7 +236,7 @@
                             <p>{{ $project->project->projectPartners[0]->partner->name }}</p>
                         @endif
                     </td>
-                    <td>{{ $project->project->tasks->count() }}件</td>
+                    <td><span class="underline">{{ $project->project->tasks->count() }}</span>件</td>
                     <td>{{ explode(' ', $project->project->ended_at)[0] }}</td>
                     <td>¥{{ $project->project->budget }}</td>
                     <td>¥{{ $project->project->budget }}</td>
@@ -162,11 +246,16 @@
             
         </table>
 
-        <div class="more-btn-container">
-            <button>
+        <!-- <div class="more-btn-container">
+            <button id="partnerProjectShowMoreBtn">
                 もっと見る
                 <i class="fas fa-angle-down"></i>
             </button>
+        </div> -->
+        <div class="more-btn-container">
+            <p id="partnerTaskShowMoreBtn" class="showmore">
+                もっと見る
+            </p>
         </div>
     </div>
 
@@ -175,10 +264,15 @@
             <h4>タスク</h4>
         </div>
 
-        <table>
+        <table id="partner-task-table">
             <thead>
                 <tr>
-                    <th>プロジェクト</th>
+                    <th>プロジェクト
+                        <span>
+                            <i class="arrow fas fa-angle-up"></i>
+                            <i class="arrow fas fa-angle-down"></i>
+                        </span>
+                    </th>
                     <th>タスク</th>
                     <th>パートナー</th>
                     <th>ステータス</th>
@@ -189,43 +283,51 @@
             <tbody>
                 @foreach($tasks as $task)
                 <tr>
-                    <td class="project_name">{{ $task->task->project->name }}</td>
-                    <td>{{ $task->task->name }}</td>
+                    <td class="project_name">{{ $task->project->name }}</td>
                     <td>
-                        <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px">
-                        @if ($task->task->taskPartners->count() > 1) 
-                            <p>
-                                {{ $task->task->taskPartners[0]->partner->name }} 
-                                他{{ $task->task->taskPartners->count() - 1 }}名
-                            </p>
-                        @else
-                            <p>{{ $task->task->taskPartners[0]->partner->name }}</p>
-                        @endif
+                        <a href="task/{{ $task->id }}">
+                            {{ $task->name }}</td>
+                        </a>
+                    <td class="staff">
+                        <div class="imgbox">
+                            <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="プロフィール画像">
+                        </div> 
+                            <p>{{ $task->partner->name }}</p>
                     </td>
                     <td>
-                        @if($task->task->status == 0)
+                        @if($task->status == 0)
                             <p class="default">下書き</p>
-                        @elseif ($task->task->status == 1)
-                            <p class="default">提案中</p>
-                        @elseif ($task->task->status == 2)
-                            <p class="default">依頼前</p>
-                        @elseif ($task->task->status == 3)
-                            <p class="default">依頼中</p>
-                        @elseif ($task->task->status == 4)
-                            <p class="default">開始前</p>
-                        @elseif ($task->task->status == 5)
+                        @elseif ($task->status == 1)
+                            <p class="default">タスク上長確認前</p>
+                        @elseif ($task->status == 2)
+                            <p class="default">タスク上長確認中</p>
+                        @elseif ($task->status == 3)
+                            <p class="default">タスクパートナー依頼前</p>
+                        @elseif ($task->status == 4)
+                            <p class="default">タスクパートナー依頼中</p>
+                        @elseif ($task->status == 5)
+                            <p class="default">発注書作成中</p>
+                        @elseif ($task->status == 6)
+                            <p class="default">発注書作成完了</p>
+                        @elseif ($task->status == 7)
+                            <p class="default">発注書上長確認中</p>
+                        @elseif ($task->status == 8)
+                            <p class="default">発注書パートナー依頼前</p>
+                        @elseif ($task->status == 9)
+                            <p class="default">発注書パートナー確認中</p>
+                        @elseif ($task->status == 10)
                             <p class="default">作業中</p>
-                        @elseif ($task->task->status == 6)
-                            <p class="default">提出前</p>
-                        @elseif ($task->task->status == 7)
-                            <p class="default">修正中</p>
-                        @elseif ($task->task->status == 8)
-                            <p class="complete">完了</p>
-                        @else
-                            <p class="cancel">キャンセル</p>
+                        @elseif ($task->status == 11)
+                            <p class="default">請求書依頼中</p>
+                        @elseif ($task->status == 12)
+                            <p class="default">請求書確認中</p>
+                        @elseif ($task->status == 13)
+                            <p class="done">完了</p>
+                        @elseif ($task->status == 14)
+                            <p class="default">キャンセル</p>
                         @endif
                     </td>
-                    <td>¥{{ $task->task->price }}</td>
+                    <td>¥{{ number_format($task->price) }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -233,10 +335,9 @@
         </table>
 
         <div class="more-btn-container">
-            <button>
+            <p id="partnerTaskShowMoreBtn" class="showmore">
                 もっと見る
-                <i class="fas fa-angle-down"></i>
-            </button>
+            </p>
         </div>
     </div>
 </div>

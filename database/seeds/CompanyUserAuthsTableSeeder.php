@@ -16,9 +16,9 @@ class CompanyUserAuthsTableSeeder extends Seeder
             'email'             => 'admin@admin.com',
             'password'          => Hash::make('password'),
             'remember_token'    => str_random(10),
+            'email_verified_at' => '2019-02-10 00:41:14',
             'created_at'        => '2019-02-10 00:41:14',
             'updated_at'        => '2019-02-10 00:41:14',
         ]);
-        // factory(App\Models\CompanyUserAuth::class, 10)->create();
     }
 }

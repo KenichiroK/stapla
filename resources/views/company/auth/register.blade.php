@@ -27,11 +27,27 @@
                     <div class="input_wrapper">
                         <h4 class="title">メールアドレス</h4>
                         <input class="input_text" type="email" name="email" placeholder="impro@example.com">
+                        @if ($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+
                     </div>
 
                     <div class="input_wrapper">
                         <h4 class="title">パスワード</h4>
                         <input class="input_text" type="password" name="password">
+                        @if ($errors->has('password'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="input_wrapper">
+                        <h4 class="title">パスワード確認</h4>
+                        <input class="input_text" type="password" name="password_confirmation">
                     </div>
 
                     <div class="checkbox_wrapper">

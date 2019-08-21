@@ -12,6 +12,6 @@ class TaskPartnersTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create('ja_JP');
-        factory(App\Models\TaskPartner::class, 10)->create(); 
+        factory(App\Models\TaskPartner::class, 100)->create(); 
     }
 }
