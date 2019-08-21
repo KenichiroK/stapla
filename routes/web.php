@@ -35,11 +35,11 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 		// register_flow
 		Route::get('/register/doneVerify', 'Partners\InitialRegisterController@doneVerifyShow')->name('partner.register.doneVerify.doneVerifyShow');
-		Route::post('/register/doneVerify', 'Partners\InitialRegisterController@toCreatePartner')->name('partner.register.doneVerify.toCreatePartner');
-		// Route::get('/register/initialRegistration', 'Partners\InitialRegisterController@createPartner')->name('company.register.intialRegistration.createPartner');
-		Route::post('/register/initialRegistration', 'Partners\InitialRegisterController@toPreview')->name('company.register.intialRegistration.toPreview');
-		Route::get('/register/preview/previwShow', 'Partners\InitialRegisterController@previwShow')->name('company.register.preview.previwShow');
-		Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('company.register.preview.previewStore');
+		Route::get('/register/initialRegistration', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
+		// Route::post('/register/postInitialRegistration', 'Partners\InitialRegisterController@toPreview')->name('partner.register.intialRegistration');
+		Route::post('/register/initialRegistrationPost', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
+		Route::get('/register/preview/previwShow', 'Partners\InitialRegisterController@previwShow')->name('parnter.register.preview.previwShow');
+		Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('partner.register.preview.previewStore');
 		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
 		// task
@@ -67,8 +67,8 @@ Route::group(['prefix' => 'partner'], function(){
     	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
 });
-	
-  
+
+
 
 Route::group(['prefix' => 'company'], function(){
 
@@ -97,7 +97,6 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/register/preview/previwShow', 'Companies\InitialRegisterController@previewShow')->name('company.register.preview.previwShow');
 		Route::post('/register/preview/previewStore', 'Companies\InitialRegisterController@previewStore')->name('company.register.preview.previewStore');
 		Route::get('/regitster/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
-
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
 		// project

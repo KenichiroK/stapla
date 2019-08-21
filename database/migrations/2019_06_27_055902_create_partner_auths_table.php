@@ -11,6 +11,7 @@ class CreatePartnerAuthsTable extends Migration
         Schema::create('partner_auths', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary();
+            $table->uuid('company_id')->nullable();
             $table->string("email", 64);
             $table->string("password", 64);
             $table->rememberToken();

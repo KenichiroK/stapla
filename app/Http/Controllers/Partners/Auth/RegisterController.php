@@ -74,6 +74,7 @@ class RegisterController extends Controller
         return PartnerAuth::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'company_id' => $data['company_id'],
         ]);
     }
 

@@ -23,13 +23,10 @@
 
 			<div class="btn-container">
                 @if(isset($partner))
-                    <a href="/partner/dashboard">ダッシュボードに行く</a>
+                <a href="/partner/register/initialRegistration/createPartner">ダッシュボードに行く</a>
                 @else
-                    <form action="/partner/register/doneVerify" method="POST">
-                        @csrf
-                        
-                        <button type="submit">ユーザー情報を登録する</button>
-                    </form>
+                    <!-- <a href="/partner/register/initialRegistration/createPartner">ユーザー情報を登録する</a> -->
+                    <a href="/partner/register/initialRegistration">テスト</a>
                 @endif
 			</div>
 		</div>

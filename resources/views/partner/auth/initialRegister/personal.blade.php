@@ -35,7 +35,8 @@
 				<h3>プロフィール登録</h3>
 			</div>
 
-			<form action="/partner/register/initialRegistration" method="POST" enctype="multipart/form-data">
+			<!-- <form action="/partner/register/initialRegistration" method="POST" enctype="multipart/form-data"> -->
+			<form action="{{ url('partner/register/initialRegistrationPost') }}" method="POST">
 				@csrf
 				<div class="edit-container">
 
@@ -109,7 +110,7 @@
 								</div>
 							@endif
 						</div>
-						<input type="hidden" name="company_id" value="{{ $request->company_id }}">
+						
 					</div>
 				</div>
 

@@ -20,16 +20,28 @@ class InitialRegisterController extends Controller
         return view('partner/auth/initialRegister/doneVerify', compact('company_id'));
     }
 
+    public function createPartner()
+    {
+        // return Auth::user(); 
+        return view('partner/auth/initialRegister/personal');
+    }
+
     public function toCreatePartner(Request $request)    
     {
         return view('partner/auth/initialRegister/personal', compact('request'));
     }
 
-    public function toPreview(Request $request)
+    public function preview(Request $request)
     {
-        $partnerAuth = Auth::user();
-        return view('partner/auth/initialRegister/preview', compact('request'));
+        return Auth::user();
     }
+
+    // public function toPreview(Request $request)
+    // {
+    //     return $request;
+    //     // $partnerAuth = Auth::user();
+    //     return view('partner/auth/initialRegister/preview', compact('request'));
+    // }
 
     public function previwShow(Request $request)
     {
@@ -39,7 +51,7 @@ class InitialRegisterController extends Controller
 
     public function previewStore(Request $request)
     {
-        $partnerAuth = Auth::user();
+        return $partnerAuth = Auth::user();
         
         $partner = new Partner;
         $partner->partner_id = $partnerAuth->id;
