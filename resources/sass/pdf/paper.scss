@@ -27,16 +27,23 @@
 
 /** For screen preview **/
 @media screen {
-body {
-    background: #e0e0e0;
-    height: 100%;
+    body {
+        background: #e0e0e0;
+        height: 100%;
+    }
+    .sheet {
+        background: #ffffff;
+        /* margin: 5mm auto; */
+        padding: 5mm 0;
+    }
 }
-.sheet {
-    background: #ffffff;
-    /* margin: 5mm auto; */
-    padding: 5mm 0;
-}
-}
+
 .shrink{
     zoom:84%;
+}
+
+.pageout{
+    position: fixed;
+    top: -9999px;  
+    left: -9999px;
 }
