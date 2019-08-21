@@ -22,7 +22,6 @@ class InvitePartnerController extends Controller
 
     public function send(Request $request)
     {
-        // return $request;
         $email = $request->email;
         $user = Auth::user();
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
