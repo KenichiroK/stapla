@@ -21,7 +21,7 @@
 				<h3>入力内容確認</h3>
 			</div>
 
-			<form action="/partner/register/preview/previewStore" method="POST" enctype="multipart/form-data">
+			<form action="/partner/register/preview/previewStore" method="POST">
 				@csrf
 				<input type="hidden" name="">
 				<div class="edit-container">

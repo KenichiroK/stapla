@@ -27,7 +27,7 @@
                     <div class="input_wrapper">
                         <h4 class="title">メールアドレス</h4>
                         {{ $email }}
-                        <input class="input_text" type="hidden" name="email" value="{{ $email }}" placeholder="impro@example.com">
+                        <input class="input_text" type="hidden" name="email" value="{{ $email }}">
                     </div>
 
                     <div class="input_wrapper">
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="input_wrapper">
-                        <input class="input_text" type="hidden" name="company_id" value="{{ $company_id }}" placeholder="impro@example.com">
+                        <input class="input_text" type="hidden" name="company_id" value="{{ $company_id }}">
                     </div>
 
                     <div class="checkbox_wrapper">
