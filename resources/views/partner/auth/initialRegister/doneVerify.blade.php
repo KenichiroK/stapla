@@ -23,10 +23,9 @@
 
 			<div class="btn-container">
                 @if(isset($partner))
-                <a href="/partner/register/initialRegistration/createPartner">ダッシュボードに行く</a>
+                    <a href="/partner/dashboard">ダッシュボードに行く</a>
                 @else
-                    <!-- <a href="/partner/register/initialRegistration/createPartner">ユーザー情報を登録する</a> -->
-                    <a href="/partner/register/initialRegistration">テスト</a>
+                    <a href="/partner/register/initialRegistration">ユーザー情報を登録する</a>
                 @endif
 			</div>
 		</div>

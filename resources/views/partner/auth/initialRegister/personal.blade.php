@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +7,6 @@
     <title>Impro</title>
 	<link rel="stylesheet" href="{{ mix('css/auth/initialRegister/personal.css') }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-	<script>
-	const setPreview = (input) => {
-	  const preview = document.getElementById('profile_image_preview');
-
-	  if (input.files && input.files[0]) {
- 	    let reader = new FileReader();
-		reader.onload = (e) => {
-		  preview.src = e.target.result;
-		}
-
-		reader.readAsDataURL(input.files[0]);
-	  }
-	}
-	</script>
 </head>
 <body>
     <header>
@@ -35,8 +21,7 @@
 				<h3>プロフィール登録</h3>
 			</div>
 
-			<!-- <form action="/partner/register/initialRegistration" method="POST" enctype="multipart/form-data"> -->
-			<form action="{{ url('partner/register/initialRegistrationPost') }}" method="POST">
+			<form action="{{ url('partner/register/initial/personal') }}" method="POST">
 				@csrf
 				<div class="edit-container">
 

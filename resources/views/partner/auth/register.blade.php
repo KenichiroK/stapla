@@ -26,12 +26,8 @@
                     @csrf
                     <div class="input_wrapper">
                         <h4 class="title">メールアドレス</h4>
-                        <input class="input_text" type="text" name="email" value="{{ $email }}" placeholder="impro@example.com">
-                        @if ($errors->has('email'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong style="color: #e3342f;">{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
+                        {{ $email }}
+                        <input class="input_text" type="hidden" name="email" value="{{ $email }}" placeholder="impro@example.com">
                     </div>
 
                     <div class="input_wrapper">
@@ -50,8 +46,7 @@
                     </div>
 
                     <div class="input_wrapper">
-                        <h4 class="title">企業ID</h4>
-                        <input class="input_text" type="text" name="company_id" value="{{ $company_id }}" placeholder="impro@example.com">
+                        <input class="input_text" type="hidden" name="company_id" value="{{ $company_id }}" placeholder="impro@example.com">
                     </div>
 
                     <div class="checkbox_wrapper">

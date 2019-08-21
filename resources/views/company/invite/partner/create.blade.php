@@ -157,7 +157,7 @@
 @section('content')
 <div class="main-wrapper">
 	<div class="title-container">
-		<h3>フリーランスに招待メールを送る</h3>
+		<h3>パートナーに招待メールを送る</h3>
 	</div>
 
 	<form action="{{ route('company.invite.partner.send') }}" method="POST">

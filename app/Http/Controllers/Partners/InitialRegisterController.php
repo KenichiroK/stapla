@@ -22,7 +22,6 @@ class InitialRegisterController extends Controller
 
     public function createPartner()
     {
-        // return Auth::user(); 
         return view('partner/auth/initialRegister/personal');
     }
 
@@ -33,15 +32,8 @@ class InitialRegisterController extends Controller
 
     public function preview(Request $request)
     {
-        return Auth::user();
+        return view('partner/auth/initialRegister/preview', compact('request'));
     }
-
-    // public function toPreview(Request $request)
-    // {
-    //     return $request;
-    //     // $partnerAuth = Auth::user();
-    //     return view('partner/auth/initialRegister/preview', compact('request'));
-    // }
 
     public function previwShow(Request $request)
     {
@@ -51,11 +43,11 @@ class InitialRegisterController extends Controller
 
     public function previewStore(Request $request)
     {
-        return $partnerAuth = Auth::user();
+        $partnerAuth = Auth::user();
         
         $partner = new Partner;
         $partner->partner_id = $partnerAuth->id;
-        $partner->company_id = $request->company_id;
+        $partner->company_id = $partnerAuth->company_id;
         $partner->name = $request->name;
         $partner->zip_code = $request->zip_code;
         $partner->prefecture = $request->prefecture;
@@ -64,11 +56,7 @@ class InitialRegisterController extends Controller
         $partner->tel = $request->tel;
         $partner->introduction = $request->introduction;
         $time = date("Y_m_d_H_i_s");
-        if(isset($request->picture)){
-            $partner->picture = $request->picture->storeAs('public/images/partner/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
-        }else {
-            $partner->picture ='public/images/default/dummy_user.jpeg';
-        }
+        $partner->picture ='public/images/default/dummy_user.jpeg';
         $partner->save();
 
         return view('partner/auth/initialRegister/done');

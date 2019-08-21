@@ -20,7 +20,6 @@ Route::group(['prefix' => 'partner'], function(){
 	
 	//register
 	Route::get('register/{company_id}/{email}', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
-	// Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('register/{company_id}', 'Partners\Auth\RegisterController@register')->name('partner.register');
 	Route::get('register/preRegistered', 'Partners\InitialRegisterController@preRegisteredShow')->name('company.register.preRegisterd.preRegisteredShow');
 
@@ -36,8 +35,7 @@ Route::group(['prefix' => 'partner'], function(){
 		// register_flow
 		Route::get('/register/doneVerify', 'Partners\InitialRegisterController@doneVerifyShow')->name('partner.register.doneVerify.doneVerifyShow');
 		Route::get('/register/initialRegistration', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
-		// Route::post('/register/postInitialRegistration', 'Partners\InitialRegisterController@toPreview')->name('partner.register.intialRegistration');
-		Route::post('/register/initialRegistrationPost', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
+		Route::post('/register/initial/personal', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
 		Route::get('/register/preview/previwShow', 'Partners\InitialRegisterController@previwShow')->name('parnter.register.preview.previwShow');
 		Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('partner.register.preview.previewStore');
 		// dashboard
@@ -92,7 +90,6 @@ Route::group(['prefix' => 'company'], function(){
 		// register_flow
 		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerifyShow')->name('company.register.doneVerify.doneVerifyShow');
 		Route::get('/register/intialRegistration', 'Companies\InitialRegisterController@create')->name('company.register.intialRegistration.create');
-		// Route::post('/registerInfo', 'Companies\InitialRegisterController@StorePersonal')->name('company.registerInfo.StorePersonal');
 		Route::post('/register/initialRegistration', 'Companies\InitialRegisterController@toPreview')->name('company.registerInfo.toPreview');
 		Route::get('/register/preview/previwShow', 'Companies\InitialRegisterController@previewShow')->name('company.register.preview.previwShow');
 		Route::post('/register/preview/previewStore', 'Companies\InitialRegisterController@previewStore')->name('company.register.preview.previewStore');

@@ -28,7 +28,6 @@ class RegisterController extends Controller
 
     public function showRegisterForm($company_id, $email)
     {
-        // return $company_id;
         return view('partner.auth.register', compact('company_id', 'email'));
     }
 
