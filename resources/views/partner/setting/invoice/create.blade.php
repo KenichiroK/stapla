@@ -36,7 +36,7 @@ const setPreview = (input) => {
             <ul>
                 <li><a href="">プロフィール設定</a></li>
                 <li>
-                    <form method="POST" action="{{ route('company.logout') }}">
+                    <form method="POST" action="{{ route('partner.logout') }}">
                         @csrf
                         <button type="submit">ログアウト</button>
                     </form>
@@ -66,7 +66,6 @@ const setPreview = (input) => {
             <ul class="menu-list menu menu__container__menu-list">
 				<li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
@@ -77,7 +76,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/partner/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -88,7 +86,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
@@ -99,7 +96,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -110,7 +106,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -121,7 +116,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_customers.png" alt="">
                         </div>
@@ -132,7 +126,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -143,7 +136,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -154,7 +146,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/partner/setting/invoice" class="isActive">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
