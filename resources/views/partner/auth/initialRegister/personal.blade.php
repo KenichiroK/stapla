@@ -89,11 +89,6 @@
 						<div class="input-container">
 							<p>自己紹介</p>
 								<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction') }}</textarea>
-							@if ($errors->has('introduction'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('introduction') }}</strong>
-								</div>
-							@endif
 						</div>
 						
 					</div>
