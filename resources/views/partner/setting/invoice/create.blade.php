@@ -232,7 +232,7 @@ const setPreview = (input) => {
 						</div>
 					@endif -->
 					<div class="select-arrow">
-						<select name="pref">
+						<select name="prefecture">
 							<option value=""></option>
 							<option value="北海道">北海道</option>
 							<option value="青森県">青森県</option>
@@ -351,12 +351,7 @@ const setPreview = (input) => {
 				<div class="financialInstitution-container">
 					<p>金融機関</p>
 					@if ($partner_invoice)
-						<div class="select-arrow">
-							<select name="financial_institution">
-								<option value=""></option>
-							</select>
-						</div>
-						<!-- <input type="text" name="financial_institution" value="{{ old('financial_institution', $partner_invoice->financial_institution) }}"> -->
+						<input type="text" name="financial_institution" value="{{ old('financial_institution', $partner_invoice->financial_institution) }}">
 					@else
 						<input type="text" name="financial_institution" value="{{ old('financial_institution') }}">
 					@endif
