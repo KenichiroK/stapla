@@ -36,6 +36,6 @@ class Invoice extends BaseUuid
 
     public function requestExpences()
     {
-        return $this->hasMany('App\Models\requestExpence', 'invoice_id', 'id');
+        return $this->hasMany('App\Models\RequestExpence', 'invoice_id', 'id');
     }
 }
