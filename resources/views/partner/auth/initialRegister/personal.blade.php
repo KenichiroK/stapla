@@ -23,74 +23,92 @@
 
 			<form action="{{ url('partner/register/initial/personal') }}" method="POST">
 				@csrf
-				<div class="edit-container">
+				<div class="profile-container">
 
-					<div class="profile-container">
-						<div class="input-container">
-							<p>名前</p>
-								<input type="text" name="name" value="{{ old('name') }}">								
+					<div class="name-container">
+						<p>名前</p>
+							<input type="text" name="name" value="{{ old('name') }}">								
 							@if ($errors->has('name'))
 								<div>
 									<strong style='color: #e3342f;'>{{ $errors->first('name') }}</strong>
 								</div>
 							@endif
-						</div>
+					</div>
 
-						<div class="input-container">
+					<div class="above-address-container">
+						<div class="zipcode-container">
 							<p>郵便番号</p>
 								<input type="text" name="zip_code" value="{{ old('zip_code') }}">
-							@if ($errors->has('zip_code'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
-								</div>
-							@endif
+								@if ($errors->has('zip_code'))
+									<div>
+										<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
+									</div>
+								@endif
 						</div>
 
-						<div class="input-container">
+						<div class="prefecture-container">
 							<p>都道府県</p>
 								<input type="text" name="prefecture" value="{{ old('prefecture') }}">
-							@if ($errors->has('prefecture'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('prefecture') }}</strong>
-								</div>
-							@endif
+								@if ($errors->has('prefecture'))
+									<div>
+										<strong style='color: #e3342f;'>{{ $errors->first('prefecture') }}</strong>
+									</div>
+								@endif
 						</div>
+					</div>
 
-						<div class="input-container">
-							<p>住所</p>
+					<div class="below-address-container">
+						<div class="city-container">
+							<p>市区町村区</p>
 								<input type="text" name="city" value="{{ old('city') }}">
-							@if ($errors->has('city'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('city') }}</strong>
-								</div>
-							@endif
+								@if ($errors->has('city'))
+									<div>
+										<strong style='color: #e3342f;'>{{ $errors->first('city') }}</strong>
+									</div>
+								@endif
 						</div>
 
-						<div class="input-container">
+						<div class="building-container">
+							<p>番地</p>
+								<input type="text" name="street" value="{{ old('street') }}">
+								@if ($errors->has('street'))
+									<div>
+										<strong style='color: #e3342f;'>{{ $errors->first('street') }}</strong>
+									</div>
+								@endif
+						</div>
+					</div>
+
+					<div class="below-address-container">
+						<div class="building-container">
 							<p>建物</p>
 								<input type="text" name="building" value="{{ old('building') }}">
-							@if ($errors->has('building'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('building') }}</strong>
-								</div>
-							@endif
+								@if ($errors->has('building'))
+									<div>
+										<strong style='color: #e3342f;'>{{ $errors->first('building') }}</strong>
+									</div>
+								@endif
 						</div>
 
-						<div class="input-container">
+						<div class="tel-container">
 							<p>電話番号</p>
-								<input type="text" name="tel" value="{{ old('tel') }}">
-							@if ($errors->has('tel'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
-								</div>
-							@endif
+							<div class="tel-container__wrapper">
+								<input type="text" name="tel" value="{{ old('tel') }}" placeholder="">
+									<span class="hyphen">
+										<hr>
+									</span>
+								<input type="text">
+									<span class="hyphen">
+										<hr>
+									</span>
+								<input type="text">
+								@if ($errors->has('tel'))
+									<div>
+										<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
+									</div>					
+								@endif
+							</div>
 						</div>
-
-						<div class="input-container">
-							<p>自己紹介</p>
-								<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction') }}</textarea>
-						</div>
-						
 					</div>
 				</div>
 

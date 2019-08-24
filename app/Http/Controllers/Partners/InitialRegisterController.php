@@ -46,17 +46,18 @@ class InitialRegisterController extends Controller
         $partnerAuth = Auth::user();
         
         $partner = new Partner;
-        $partner->partner_id = $partnerAuth->id;
-        $partner->company_id = $partnerAuth->company_id;
-        $partner->name = $request->name;
-        $partner->zip_code = $request->zip_code;
-        $partner->prefecture = $request->prefecture;
-        $partner->city = $request->city;
-        $partner->building = $request->building;
-        $partner->tel = $request->tel;
+        $partner->partner_id   = $partnerAuth->id;
+        $partner->company_id   = $partnerAuth->company_id;
+        $partner->name         = $request->name;
+        $partner->zip_code     = $request->zip_code;
+        $partner->prefecture   = $request->prefecture;
+        $partner->street       = $request->street;
+        $partner->city         = $request->city;
+        $partner->building     = $request->building;
+        $partner->tel          = $request->tel;
         $partner->introduction = $request->introduction;
         $time = date("Y_m_d_H_i_s");
-        $partner->picture ='public/images/default/dummy_user.jpeg';
+        $partner->picture      ='public/images/default/dummy_user.jpeg';
         $partner->save();
 
         return view('partner/auth/initialRegister/done');

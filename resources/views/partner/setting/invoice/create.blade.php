@@ -327,6 +327,22 @@ $pref = array(
 				</div>
 
 				<div class="building-container">
+					<p>番地</p>
+					@if ($partner)
+						<input type="text" name="street" value="{{ old('street', $partner->street) }}">
+					@else
+						<input type="text" name="street" value="{{ old('street') }}">
+					@endif
+					@if ($errors->has('street'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('street') }}</strong>
+						</div>
+					@endif
+				</div>
+			</div>
+
+			<div class="below-address-container">
+				<div class="building-container">
 					<p>建物名・部屋番号</p>
 					@if ($partner)
 						<input type="text" name="building" value="{{ old('building', $partner->building) }}">
@@ -339,30 +355,30 @@ $pref = array(
 						</div>
 					@endif
 				</div>
-			</div>
 
-			<div class="tel-container">
-				<p>電話番号</p>
-				<div class="tel-container__wrapper">
-					@if ($partner)
-						<input type="text" name="tel" value="{{ old('tel', $partner->tel) }}" placeholder="">
-							<span class="hyphen">
-								<hr>
-							</span>
-						<input type="text">
-							<span class="hyphen">
-								<hr>
-							</span>
-						<input type="text">
-						<!-- <input type="text" name="tel" value="{{ old('tel', $partner->tel) }}"> -->
-					@else
-						<input type="text" name="tel" value="{{ old('tel') }}">
-					@endif
-					@if ($errors->has('tel'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
-						</div>					
-					@endif
+				<div class="tel-container">
+					<p>電話番号</p>
+					<div class="tel-container__wrapper">
+						@if ($partner)
+							<input type="text" name="tel" value="{{ old('tel', $partner->tel) }}" placeholder="">
+								<span class="hyphen">
+									<hr>
+								</span>
+							<input type="text">
+								<span class="hyphen">
+									<hr>
+								</span>
+							<input type="text">
+							<!-- <input type="text" name="tel" value="{{ old('tel', $partner->tel) }}"> -->
+						@else
+							<input type="text" name="tel" value="{{ old('tel') }}">
+						@endif
+						@if ($errors->has('tel'))
+							<div>
+								<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
+							</div>					
+						@endif
+					</div>
 				</div>
 			</div>
 		</div>
