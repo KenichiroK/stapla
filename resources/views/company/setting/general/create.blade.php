@@ -16,6 +16,20 @@ const setPreview = (input) => {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+const setPostal = () => {
+  const front = document.getElementById('postal_front').value;
+  const back = document.getElementById('postal_back').value;
+  const postal = document.getElementById('postal');
+  postal.value = Number(front + back);
+}
+
+window.onload = () => {
+  const front = document.getElementById('postal_front').value;
+  const back = document.getElementById('postal_back').value;
+  const postal = document.getElementById('postal');
+  postal.value = Number(front + back);
+}
 </script>
 @endsection
 
@@ -265,15 +279,19 @@ $pref = array(
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
 						@if($company)
-							<input class="top-input input" type="text" name="zip_code" value="{{ old('zip_code', $company->zip_code) }}" placeholder="">
+							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($company->zip_code, 0, 3)) }}" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
-								<!-- <i class="fa fa-minus" aria-hidden="true"></i> -->
 							</span>
-							<input type="text">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($company->zip_code, 3, 7)) }}" onchange="setPostal()">
+                            <input id="postal" type="hidden" name="zip_code">
 						@else
-							<input class="top-input input" type="text" name="zip_code" value="{{ old('zip_code') }}" placeholder="">
-							-<input type="text">
+							<input class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
+                            <span class="hyphen">
+								<hr>
+							</span>
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+                            <input id="postal" type="hidden" name="zip_code">
 						@endif
 						@if ($errors->has('zip_code'))
 							<div>
