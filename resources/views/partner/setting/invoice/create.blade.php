@@ -16,6 +16,20 @@ const setPreview = (input) => {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+const setPostal = () => {
+  const front = document.getElementById('postal_front').value;
+  const back = document.getElementById('postal_back').value;
+  const postal = document.getElementById('postal');
+  postal.value = Number(front + back);
+}
+
+window.onload = () => {
+  const front = document.getElementById('postal_front').value;
+  const back = document.getElementById('postal_back').value;
+  const postal = document.getElementById('postal');
+  postal.value = Number(front + back);
+}
 </script>
 @endsection
 
@@ -60,7 +74,7 @@ const setPreview = (input) => {
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-										<img src="../../../images/logo.png" alt="logo">
+					<img src="../../../images/logo.png" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
@@ -253,20 +267,31 @@ $pref = array(
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
 						@if ($partner)
-							<input class="top-input input" type="text" name="zip_code" value="{{ old('zip_code', $partner->zip_code) }}" placeholder="">
+							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($partner->zip_code, 0, 3)) }}" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
 							</span>
-							<input type="text">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($partner->zip_code, 3, 7)) }}" onchange="setPostal()">
+							<input id="postal" type="hidden" name="zip_code">
 						@else
-							<input type="text" name="zip_code" value="{{ old('zip_code') }}">
-						@endif
-						@if ($errors->has('zip_code'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
-							</div>
+							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
+							<span class="hyphen">
+								<hr>
+							</span>
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+							<input id="postal" type="hidden" name="zip_code">
 						@endif
 					</div>
+					@if ($errors->has('zip_code_front'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('zip_code_front') }}</strong>
+						</div>
+					@endif
+					@if ($errors->has('zip_code_back') && !$errors->has('zip_code_front'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('zip_code_back') }}</strong>
+						</div>
+					@endif
 				</div>
 
 				<div class="prefecture-container">
