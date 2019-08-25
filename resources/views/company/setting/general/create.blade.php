@@ -16,6 +16,20 @@ const setPreview = (input) => {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+const setPostal = () => {
+  const front = document.getElementById('postal_front').value;
+  const back = document.getElementById('postal_back').value;
+  const postal = document.getElementById('postal');
+  postal.value = Number(front + back);
+}
+
+window.onload = () => {
+  const front = document.getElementById('postal_front').value;
+  const back = document.getElementById('postal_back').value;
+  const postal = document.getElementById('postal');
+  postal.value = Number(front + back);
+}
 </script>
 @endsection
 
@@ -65,7 +79,6 @@ const setPreview = (input) => {
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
@@ -76,7 +89,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -87,7 +99,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/project">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
@@ -98,7 +109,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/task">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -109,7 +119,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/document">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -120,7 +129,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_customers.png" alt="">
                         </div>
@@ -131,7 +139,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -142,7 +149,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -153,7 +159,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/setting/general" class="isActive">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -171,6 +176,59 @@ const setPreview = (input) => {
 
 
 @section('content')
+<?php
+$pref = array(
+	'',
+    '北海道',
+    '青森県',
+    '岩手県',
+    '宮城県',
+    '秋田県',
+    '山形県',
+    '福島県',
+    '茨城県',
+    '栃木県',
+    '群馬県',
+    '埼玉県',
+    '千葉県',
+    '東京都',
+    '神奈川県',
+    '新潟県',
+    '富山県',
+    '石川県',
+    '福井県',
+    '山梨県',
+    '長野県',
+    '岐阜県',
+    '静岡県',
+    '愛知県',
+    '三重県',
+    '滋賀県',
+    '京都府',
+    '大阪府',
+    '兵庫県',
+    '奈良県',
+    '和歌山県',
+    '鳥取県',
+    '島根県',
+    '岡山県',
+    '広島県',
+    '山口県',
+    '徳島県',
+    '香川県',
+    '愛媛県',
+    '高知県',
+    '福岡県',
+    '佐賀県',
+    '長崎県',
+    '熊本県',
+    '大分県',
+    '宮崎県',
+    '鹿児島県',
+    '沖縄県'
+);
+
+?>
 <div class="main-wrapper">
 	<div class="title-container">
 		<h3>設定</h3>
@@ -221,15 +279,19 @@ const setPreview = (input) => {
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
 						@if($company)
-							<input class="top-input input" type="text" name="zip_code" value="{{ old('zip_code', $company->zip_code) }}" placeholder="">
+							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($company->zip_code, 0, 3)) }}" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
-								<!-- <i class="fa fa-minus" aria-hidden="true"></i> -->
 							</span>
-							<input type="text">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($company->zip_code, 3, 7)) }}" onchange="setPostal()">
+                            <input id="postal" type="hidden" name="zip_code">
 						@else
-							<input class="top-input input" type="text" name="zip_code" value="{{ old('zip_code') }}" placeholder="">
-							-<input type="text">
+							<input class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
+                            <span class="hyphen">
+								<hr>
+							</span>
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+                            <input id="postal" type="hidden" name="zip_code">
 						@endif
 						@if ($errors->has('zip_code'))
 							<div>
@@ -241,69 +303,18 @@ const setPreview = (input) => {
 	
 				<div class="prefecture-container">
 					<p>都道府県</p>
-					<!-- @if($company)
-						<input class="top-input input" type="text" name="address_prefecture" value="{{ old('address_prefecture', $company->address_prefecture) }}" placeholder="">
-					@else
-						<input class="top-input input" type="text" name="address_prefecture" value="{{ old('address_prefecture') }}" placeholder="">
-					@endif
+					<div class="select-arrow">
+						<select name="address_prefecture" id="prefecture">
+							@foreach($pref as $_pref)
+							<option value="{{ $_pref }}" {{ ($company->address_prefecture === $_pref) ? 'selected' : ''}}>{{ $_pref }}</option>
+							@endforeach
+						</select>
+					</div>
 					@if ($errors->has('address_prefecture'))
 						<div>
 							<strong style='color: #e3342f;'>{{ $errors->first('address_prefecture') }}</strong>
 						</div>
-					@endif -->
-					<div class="select-arrow">
-						<select name="pref">
-							<option value=""></option>
-							<option value="北海道">北海道</option>
-							<option value="青森県">青森県</option>
-							<option value="岩手県">岩手県</option>
-							<option value="宮城県">宮城県</option>
-							<option value="秋田県">秋田県</option>
-							<option value="山形県">山形県</option>
-							<option value="福島県">福島県</option>
-							<option value="茨城県">茨城県</option>
-							<option value="栃木県">栃木県</option>
-							<option value="群馬県">群馬県</option>
-							<option value="埼玉県">埼玉県</option>
-							<option value="千葉県">千葉県</option>
-							<option value="東京都">東京都</option>
-							<option value="神奈川県">神奈川県</option>
-							<option value="新潟県">新潟県</option>
-							<option value="富山県">富山県</option>
-							<option value="石川県">石川県</option>
-							<option value="福井県">福井県</option>
-							<option value="山梨県">山梨県</option>
-							<option value="長野県">長野県</option>
-							<option value="岐阜県">岐阜県</option>
-							<option value="静岡県">静岡県</option>
-							<option value="愛知県">愛知県</option>
-							<option value="三重県">三重県</option>
-							<option value="滋賀県">滋賀県</option>
-							<option value="京都府">京都府</option>
-							<option value="大阪府">大阪府</option>
-							<option value="兵庫県">兵庫県</option>
-							<option value="奈良県">奈良県</option>
-							<option value="和歌山県">和歌山県</option>
-							<option value="鳥取県">鳥取県</option>
-							<option value="島根県">島根県</option>
-							<option value="岡山県">岡山県</option>
-							<option value="広島県">広島県</option>
-							<option value="山口県">山口県</option>
-							<option value="徳島県">徳島県</option>
-							<option value="香川県">香川県</option>
-							<option value="愛媛県">愛媛県</option>
-							<option value="高知県">高知県</option>
-							<option value="福岡県">福岡県</option>
-							<option value="佐賀県">佐賀県</option>
-							<option value="長崎県">長崎県</option>
-							<option value="熊本県">熊本県</option>
-							<option value="大分県">大分県</option>
-							<option value="宮崎県">宮崎県</option>
-							<option value="鹿児島県">鹿児島県</option>
-							<option value="沖縄県">沖縄県</option>
-						</select>
-					</div>
-					
+					@endif
 				</div>
 			</div>
 			
@@ -336,10 +347,10 @@ const setPreview = (input) => {
 					@endif
 				</div>
 			</div>
+			<div class="btn-container">
+				<button type="submit">設定</button>
+			</div>
 		</form>
-	</div>
-	<div class="btn-container">
-		<button type="submit">設定</button>
 	</div>
 </div>
 @endsection
