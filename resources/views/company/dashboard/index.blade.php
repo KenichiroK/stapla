@@ -50,7 +50,6 @@
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
@@ -61,7 +60,6 @@
                 </li>
                 <li>
                     <a href="/company/dashboard" class="isActive">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -72,7 +70,6 @@
                 </li>
                 <li>
                     <a href="/company/project">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
@@ -83,7 +80,6 @@
                 </li>
                 <li>
                     <a href="/company/task">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -94,7 +90,6 @@
                 </li>
                 <li>
                     <a href="/company/document">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -105,7 +100,6 @@
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_customers.png" alt="">
                         </div>
@@ -116,7 +110,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -127,7 +120,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -138,7 +130,6 @@
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -159,21 +150,6 @@
     <div class="title-container">
         <h3>ダッシュボード</h3>
     </div>
-
-    <!-- <div class="alert-container">
-        <div class="icon-container">
-            <i class="fas fa-exclamation-circle"></i>
-        </div>
-        <div class="project-alert-container">
-            <p>プロジェクトアラート</p>
-            <h4 class="alert-text">3</h4>
-        </div>
-
-        <div class="task-alert-container">
-            <p>タスクアラート</p>
-            <h4>0</h4>
-        </div>
-    </div> -->
 
     <div class="incomplete-container">
         <div class="section-container">
@@ -220,7 +196,7 @@
         <div class="title-container">
             <h4>プロジェクト</h4>
             <div class="btn-container">
-                <button >プロジェクト作成</button>
+                <a href="project/create">プロジェクト作成</a>
             </div>
         </div>
 
@@ -263,7 +239,6 @@
                         <div class="imgbox">
                             <img src="/{{ str_replace('public/', 'storage/', $project->project->projectPartners[0]->partner->picture) }}" alt="">
                         </div>
-                        <!-- <img src="/storage/images/default/dummy_user.jpeg" alt="プロフィール画像" width="32px" height="32px"> -->
                         @if ($project->project->projectPartners->count() > 1) 
                             <p>
                                 {{ $project->project->projectPartners[0]->partner->name }} 
@@ -283,12 +258,6 @@
             
         </table>
 
-        <!-- <div class="more-btn-container">
-            <button id="projectShowMoreBtn">
-                もっと見る
-                <i class="fas fa-angle-down"></i>
-            </button>
-        </div> -->
         <div class="more-container__wrapper">
             <p id="projectShowMoreBtn" class="more-container__wrapper__showmore">もっと見る</p>
         </div>
@@ -313,7 +282,7 @@
         <div class="title-container">
             <h4>タスク</h4>
             <div class="btn-container">
-                <button >タスク作成</button>
+                <a href="/company/task/create">タスク作成</a>
             </div>
         </div>
 
