@@ -183,8 +183,9 @@ const setPreview = (input) => {
         </div>
     
         <div id="print" class="document-container A4">
+            <!-- 印刷用 -->
             <div class="pageout">
-                <div class="document-container__wrapper sheet padding-10mm">
+                <div id="pdf_content" class="document-container__wrapper sheet padding-10mm">
                     <div class="title-container">
                         <h4>発注書</h4>
                     </div>
@@ -278,6 +279,7 @@ const setPreview = (input) => {
                 </div>
             </div>
 
+            <!-- 表示用 -->
             <div class="document-container__wrapper sheet padding-10mm">
                 <div class="title-container">
                     <h4>発注書</h4>

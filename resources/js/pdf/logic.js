@@ -99,7 +99,7 @@ function createPdf(pdfProps) {
 // 印刷ボタンクリック時の処理
 const print_btn = document.querySelector('#print_btn');
 const pdf = document.querySelector('#print');
-const test = document.querySelector('.document-container__wrapper');
+const test = document.querySelector('#pdf_content');
 
 
 print_btn.onclick = function() {
