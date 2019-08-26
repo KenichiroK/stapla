@@ -173,7 +173,7 @@
         
         <div class="main-container">
             <div class="main-container__wrapper">
-                <!-- pdf -->
+                <!-- 印刷用 -->
                 <div id="print" class="A4">
                     <div class="secrecy-container">
                         <div class="pageout">
