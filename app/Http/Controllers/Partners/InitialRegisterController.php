@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Partners;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Companies\CompanyAndCompanyUserRequest;
+use App\Http\Requests\Partners\PartnerRequest;
 use App\Models\Company;
 use App\Models\Partner;
 
@@ -30,7 +30,7 @@ class InitialRegisterController extends Controller
         return view('partner/auth/initialRegister/personal', compact('request'));
     }
 
-    public function preview(Request $request)
+    public function preview(PartnerRequest $request)
     {
         return view('partner/auth/initialRegister/preview', compact('request'));
     }

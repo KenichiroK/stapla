@@ -52,7 +52,7 @@ class InvoiceController extends Controller
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
         if ($partner_invoice) {
             $time = date("Y_m_d_H_i_s");
-            $partner_invoice->udpate($request->all());
+            $partner_invoice->update($request->all());
             if ($request->mark_image) {
                 $partner_invoice->mark_image = $request->file('mark_image')->storeAs('public/images/partner/invoice_mark', $time.'_'.Auth::user()->id . '.png'); 
                 $partner_invoice->save();  

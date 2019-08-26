@@ -158,7 +158,9 @@ return [
         'password' => 'パスワード',
         'department' => '担当',
         'zip_code' => '郵便番号',
-        'zip_code' => '郵便番号',
+        'prefecture' => '都道府県',
+        'city' => '市区町村・番地',
+        'building' => '建物名称',
 
         'company_user_id' => '担当者',
         // 会社
