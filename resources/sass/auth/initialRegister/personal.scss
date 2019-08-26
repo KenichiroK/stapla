@@ -17,6 +17,7 @@ header {
   top: 0;
   right: 0;
   left: 0;
+  z-index: 99;
 
   .logo_container {
     width: 70%;
@@ -554,6 +555,7 @@ footer {
           appearance: none;
           padding: 8px 38px 8px 8px;
           color: #666666;
+          z-index: 10;
         }
         .select-arrow::after {
           right: 18px;

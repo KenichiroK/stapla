@@ -139,11 +139,11 @@
 						<div class="input-container">
 							<p>電話番号</p>
 								<input type="text" name="tel" value="{{ old('tel') }}">
-							@if ($errors->has('tel'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
-								</div>
-							@endif
+								@if ($errors->has('tel'))
+									<div>
+										<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
+									</div>
+								@endif
 						</div>
 					</div>
 				</div>

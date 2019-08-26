@@ -62,7 +62,7 @@ $pref = array(
     '沖縄県'
 );
 ?>
-    <header>
+	<header>
         <div class="logo_container">
             <p class="logo">impro</p>
         </div>
@@ -151,8 +151,12 @@ $pref = array(
 
 						<div class="building-container">
 							<p>電話番号</p>
-							<div class="tel-container__wrapper">
 							<input type="text" name="tel" value="{{ old('tel') }}">
+							@if ($errors->has('tel'))
+								<div>
+									<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
+								</div>					
+							@endif
 								<!-- 近日中に入力箇所３つに分けての電話番号を入力する実装のために残してあります。 -->
 								<!-- <input type="text" name="tel" value="{{ old('tel') }}" placeholder="">
 									<span class="hyphen">
@@ -163,12 +167,6 @@ $pref = array(
 										<hr>
 									</span>
 								<input type="text"> -->
-								@if ($errors->has('tel'))
-									<div>
-										<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
-									</div>					
-								@endif
-							</div>
 						</div>
 					</div>
 
