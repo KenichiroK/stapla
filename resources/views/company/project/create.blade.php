@@ -84,8 +84,7 @@ window.onload = () => {
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
-                        <div class="icon-imgbox">
+\                        <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
                         <div class="textbox">
@@ -95,7 +94,6 @@ window.onload = () => {
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -106,8 +104,7 @@ window.onload = () => {
                 </li>
                 <li>
                     <a href="/company/project" class="isActive">
-                        <!-- <i class="fas fa-envelope"></i> -->
-                        <div class="icon-imgbox">
+\                        <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
                         <div class="textbox">

@@ -48,15 +48,6 @@ class ProjectController extends Controller
 
     public function store(CreateProjectRequest $request)
     {    
-        // $request->validate([
-        //     'project_name'     => 'required',
-        //     'project_detail'   => 'required',
-        //     'company_user_id'  => 'required',
-        //     'partner_id'       => 'required',
-        //     'started_at'       => 'required',
-        //     'ended_at'         => 'required | ',
-        //     'budget'           => 'required',
-        // ]);
         $time = date("Y_m_d_H_i_s");
 
         $user = Auth::user();
@@ -66,8 +57,7 @@ class ProjectController extends Controller
         $project->company_id   = $company_id;
         $project->name         = $request->project_name;
         $project->detail       = $request->project_detail;
-        $started_at = date('Y-m-d', strtotime($request->started_at));
-        $project->started_at   = $started_at;
+        $project->started_at   = date('Y-m-d', strtotime($request->started_at));
         $project->ended_at     = date('Y-m-d', strtotime($request->ended_at));
         $project->status       = 0;
         $project->budget       = $request->budget;
