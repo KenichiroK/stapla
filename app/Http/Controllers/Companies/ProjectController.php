@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Companies;
-
+ 
+use App\Http\Requests\Companies\CreateProjectRequest;
 use App\Models\Project;
 use App\Models\CompanyUser;
 use App\Models\Partner;
@@ -45,33 +46,29 @@ class ProjectController extends Controller
         return view('company/project/create', compact('company_users', 'partner_users', 'company_user'));
     }
 
-    public function store(Request $request)
+    public function store(CreateProjectRequest $request)
     {    
-        $request->validate([
-            'project_name'     => 'required',
-            'project_detail'   => 'required',
-            'company_user_id'  => 'required',
-            'partner_id'       => 'required',
-            'started_at'       => 'required',
-            'ended_at'         => 'required',
-            'budget'           => 'required',
-        ]);
+        // $request->validate([
+        //     'project_name'     => 'required',
+        //     'project_detail'   => 'required',
+        //     'company_user_id'  => 'required',
+        //     'partner_id'       => 'required',
+        //     'started_at'       => 'required',
+        //     'ended_at'         => 'required | ',
+        //     'budget'           => 'required',
+        // ]);
         $time = date("Y_m_d_H_i_s");
 
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
 
-
-        // return date('Y-m-d', strtotime('20200101'));
-
         $project = new Project;
         $project->company_id   = $company_id;
         $project->name         = $request->project_name;
         $project->detail       = $request->project_detail;
-        $project->started_at   = date('Y-m-d', strtotime($request->started_at));
-        // $project->started_at   = $request->started_at;
+        $started_at = date('Y-m-d', strtotime($request->started_at));
+        $project->started_at   = $started_at;
         $project->ended_at     = date('Y-m-d', strtotime($request->ended_at));
-        // $project->ended_at     = $request->ended_at;
         $project->status       = 0;
         $project->budget       = $request->budget;
         $project->price        = 0;
