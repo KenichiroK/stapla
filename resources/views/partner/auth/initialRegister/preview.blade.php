@@ -44,10 +44,12 @@
                                 <p>住所</p>
                                 <input type="hidden" name="prefecture" value="{{ old('prefecture', $request->prefecture) }}">
                                 <input type="hidden" name="city" value="{{ old('city', $request->city) }}">
+                                <input type="hidden" name="street" value="{{ old('street', $request->street) }}">
                                 <input type="hidden" name="building" value="{{ old('building', $request->building) }}">
                                 <h4>
                                     {{ $request->prefecture }}
                                     {{ $request->city }}
+                                    {{ $request->street }}
                                     {{ $request->building }}
                                 </h4>
                             </div>
