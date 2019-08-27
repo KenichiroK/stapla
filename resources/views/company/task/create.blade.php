@@ -3,6 +3,55 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/task/create.css') }}">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.js"
+  integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+  crossorigin="anonymous">
+</script>
+
+<script>
+const set_started_at = () => {
+  const started_at_year = document.getElementById('started_at_year').value;
+  const started_at_month = document.getElementById('started_at_month').value;
+  const started_at_day = document.getElementById('started_at_day').value;
+  const started_at = document.getElementById('started_at');
+  started_at.value = Number(started_at_year + started_at_month + started_at_day);
+  console.log(started_at.value);
+}
+const set_ended_at = () => {
+  const ended_at_year = document.getElementById('ended_at_year').value;
+  const ended_at_month = document.getElementById('ended_at_month').value;
+  const ended_at_day = document.getElementById('ended_at_day').value;
+  const ended_at = document.getElementById('ended_at');
+  ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
+  console.log(ended_at.value);
+}
+window.onload = () => {
+  const started_at_year = document.getElementById('started_at_year').value;
+  const started_at_month = document.getElementById('started_at_month').value;
+  const started_at_day = document.getElementById('started_at_day').value;
+  const started_at = document.getElementById('started_at');
+  started_at.value = Number(started_at_year + started_at_month + started_at_day);
+  const ended_at_year = document.getElementById('ended_at_year').value;
+  const ended_at_month = document.getElementById('ended_at_month').value;
+  const ended_at_day = document.getElementById('ended_at_day').value;
+  const ended_at = document.getElementById('ended_at');
+  ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
+}
+
+$(function(){
+    let $inputPrice = $('#inputPrice');
+    let $outputPrice = $('.outputPrice');
+    let $outputPriceWithTax = $('.outputPriceWithTax');
+    $inputPrice.on('input', function(event){
+        let $value = $inputPrice.val();
+        $outputPrice.text($value);
+        $outputPriceWithTax($value);
+    });
+
+
+})
+</script>
 @endsection
 
 @section('header-profile')
@@ -221,7 +270,7 @@
                             </div>
                             <div class="main-container__wrapper__item-container__datewrapper">
                                 <div class="main-container__wrapper__item-container__datewrapper__date">
-                                       本日 2019年7月3日<i class="fas fa-calendar-alt"></i>
+                                       本日 {{ date('Y') }}年{{ date('m') }}月{{ date('d') }}日<i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
                         </div>
@@ -351,16 +400,117 @@
                                 <!-- 開始日カレンダー -->
                                 <div class="main-container__wrapper__item-container__calendar-content__content">                               
                                     
-                                        <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name start">
-                                            開始日<i class="fas fa-calendar-alt"></i>
+                                    <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name start">
+                                        開始日<i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <select class="select-box" id="started_at_year" name="started_at_year" onChange="set_started_at()">
+                                    @for($y=date('Y'); $y<=date('Y')+20; $y++)
+                                        <option value="{{ $y }}">{{ $y }}</option>
+                                    @endfor
+                                    </select>
+                                    年
+
+                                    <select class="select-box" id="started_at_month" name="started_at_month" onChange="set_started_at()">
+                                    @for($m=1; $m<=12; $m++)
+                                        @if($m < 10)
+                                            @if($m == date('m'))
+                                                <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                            @else
+                                                <option value='0{{ $m }}'>{{ $m }}</option>
+                                            @endif
+                                        @else
+                                            @if($m == date('m'))
+                                                <option value='{{ $m }}' selected>{{ $m }}</option>
+                                            @else
+                                                <option value='{{ $m }}'>{{ $m }}</option>
+                                            @endif
+                                        @endif
+                                    @endfor
+                                    </select>
+                                    月
+
+                                    <select class="select-box" id="started_at_day" name="started_at_day" onChange="set_started_at()">
+                                    @for($d=1; $d<=31; $d++)
+                                        @if($d < 10)
+                                            @if($d == date('d'))
+                                                <option value='0{{ $d }}' selected>{{ $d }}</option>
+                                            @else
+                                                <option value='0{{ $d }}'>{{ $d }}</option>
+                                            @endif
+                                        @else
+                                            @if($d == date('d'))
+                                                <option value='{{ $d }}' selected>{{ $d }}</option>
+                                            @else
+                                                <option value='{{ $d }}'>{{ $d }}</option>
+                                            @endif
+                                        @endif
+                                    @endfor
+                                    </select>
+                                    日
+                                    <input name="started_at" id="started_at" type="hidden" value="{{ old('started_at')}}">
+                                    @if($errors->has('started_at'))
+                                        <div>
+                                            <strong style='color: #e3342f;'>{{ $errors->first('started_at') }}</strong>
                                         </div>
+                                    @endif
                                 </div>
                                 <!-- 終了日カレンダー -->
                                 <div class="main-container__wrapper__item-container__calendar-content__content">                               
                                     
-                                        <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name">
-                                            終了日<i class="fas fa-calendar-alt"></i>
+                                    <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name">
+                                        終了日<i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                        <select class="select-box" id="ended_at_year" name="ended_at_year" onChange="set_ended_at()">
+                                    @for($y=date('Y'); $y<=date('Y')+20; $y++)
+                                        <option value="{{ $y }}">{{ $y }}</option>
+                                    @endfor
+                                    </select>
+                                    年
+
+                                    <select class="select-box" id="ended_at_month" name="ended_at_month" onChange="set_ended_at()">
+                                    @for($m=1; $m<=12; $m++)
+                                        @if($m < 10)
+                                            @if($m == date('m'))
+                                                <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                            @else
+                                                <option value='0{{ $m }}'>{{ $m }}</option>
+                                            @endif
+                                        @else
+                                            @if($m == date('m'))
+                                                <option value='{{ $m }}' selected>{{ $m }}</option>
+                                            @else
+                                                <option value='{{ $m }}'>{{ $m }}</option>
+                                            @endif
+                                        @endif
+                                    @endfor
+                                    </select>
+                                    月
+
+                                    <select class="select-box" id="ended_at_day" name="ended_at_day" onChange="set_ended_at()">
+                                    @for($d=1; $d<=31; $d++)
+                                        @if($d < 10)
+                                            @if($d == date('d'))
+                                                <option value='0{{ $d }}' selected>{{ $d }}</option>
+                                            @else
+                                                <option value='0{{ $d }}'>{{ $d }}</option>
+                                            @endif
+                                        @else
+                                            @if($d == date('d')+1)
+                                                <option value='{{ $d }}' selected>{{ $d }}</option>
+                                            @else
+                                                <option value='{{ $d }}'>{{ $d }}</option>
+                                            @endif
+                                        @endif
+                                    @endfor
+                                    </select>
+                                    日
+                                    <input id="ended_at" name="ended_at" type="hidden" value="{{ old('ended_at')}}">
+                                    @if($errors->has('ended_at'))
+                                        <div>
+                                            <strong style='color: #e3342f;'>{{ $errors->first('ended_at') }}</strong>
                                         </div>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
@@ -374,11 +524,11 @@
                             <div class="main-container__wrapper__item-container__inputarea">
                                 <div class="main-container__wrapper__item-container__inputarea__field">
                                     <div class="main-container__wrapper__item-container__inputarea__field__control budget">
-                                        <input class="input" name='budget' type="text">
-                                        @if ($errors->has('budget'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong style='color: #e3342f'>{{ $errors->first('budget') }}</strong>
-                                            </span>
+                                        <input name="budget" type="text" value="{{ old('budget')}}">
+                                        @if($errors->has('budget'))
+                                            <div>
+                                                <strong style='color: #e3342f;'>{{ $errors->first('budget') }}</strong>
+                                            </div>
                                         @endif
                                         <div class="main-container__wrapper__item-container__inputarea__field__control-yen">
                                             円
@@ -395,8 +545,8 @@
                                 </div>
                             </div>
                             <div class="is-boxed main-container__wrapper__item-container__filearea">
-                                <p class="uplaod">アップロード</p>
-                                <label class="file-label main-container__wrapper__item-container__filearea__label">
+                                <p class="uplaod">アップロード</p> -->
+                                <!-- <label class="file-label main-container__wrapper__item-container__filearea__label">
                                     <input class="file-input file-label main-container__wrapper__item-container__filearea__label" type="file" name="resume" >
                                     <span class="file-cta main-container__wrapper__item-container__filearea__label__file-cta">
                                     <span class="file-icon">
@@ -407,8 +557,8 @@
                                         Choose a file…
                                     </span>
                                     </span>
-                                </label>
-                                <img src="../../../images/dragdrop.png" alt="">
+                                </label> -->
+                                <!-- <img src="../../../images/dragdrop.png" alt="">
                             </div>
                         </div> -->
                     </div>      
@@ -425,22 +575,23 @@
                                     パートナー
                                 </div>
                             </div>
-                            <div class="select-error-wrp">
-                                <div class="select-container__wrapper__select-area control">
-                                    <div class="select-container__wrapper__select-area__field field">
-                                        <div class="select-container__wrapper__select-area__field__control control">
-                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                                <!-- <select v-model="taskInfo.partner"> -->
-                                                <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                                    <option></option>
-                                                    @foreach($partners as $partner)
-                                                        <option value={{ $partner->id }} >
-                                                            {{ $partner->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                                
-                                            </div>
+                            <div class="select-container__wrapper__select-area control">
+                                <div class="select-container__wrapper__select-area__field field">
+                                    <div class="select-container__wrapper__select-area__field__control control">
+                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                            <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
+                                                <option></option>
+                                                @foreach($partners as $partner)
+                                                    <option value={{ $partner->id }} >
+                                                        {{ $partner->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('partner_id'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong style='color: #e3342f'>{{ $errors->first('partner_id') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -498,7 +649,7 @@
                                 <div class="partner-container__wrpper__item-container__order-uninum">
                                     <!-- 発注単位 input -->
                                     <div class="partner-container__wrpper__item-container__order-uninum__unit__contents">
-                                        <input class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text">
+                                        <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text">
                                         @if ($errors->has('price'))
                                             <div class="invalid-feedback error-msg" role="alert">
                                                 <strong>{{ $errors->first('price') }}</strong>
@@ -509,7 +660,7 @@
                                         </div>
                                     </div>  
                                     <!-- 件数 -->
-                                    <div class="item-name-wrapper numbername">
+                                    <!-- <div class="item-name-wrapper numbername">
                                         <div class="item-name-wrapper__item-name">
                                             件数
                                         </div>
@@ -524,7 +675,7 @@
                                         <div class="partner-container__wrpper__item-container__order-uninum__number__contents__class">
                                             件
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -536,8 +687,9 @@
                                 </div>
                             </div>
                             <div class="price-item">
-                                <p><span class="tax">税抜</span><span class="yen">￥</span>200,000</p>
-                                <p><span class="tax">税込</span><span class="yen">￥</span>216,000</p>
+                                <p><span class="tax">税抜</span>¥<span id='outputPrice' class="yen outputPrice"></span></p>
+                                <p><span class="tax">税込</span>¥<span id='outputPriceWithTax' class="yen outputPriceWithTax"></span></p>
+                                <p><span class="tax">税抜</span>¥<span id='outputPrice' class="yen"></span></p>
                             </div>
                         </div> -->
                     </div>

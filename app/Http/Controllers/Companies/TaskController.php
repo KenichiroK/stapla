@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Companies;
 
+use App\Http\Requests\Companies\CreateTaskRequest;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\Partner;
@@ -10,8 +11,8 @@ use App\Models\TaskCompany;
 use App\Models\TaskPartner;
 use App\Models\PurchaseOrder;
 use App\Models\Invoice;
-use Illuminate\Http\Request;
-use Validator;
+// use Illuminate\Http\Request;
+// use Validator;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
@@ -78,21 +79,9 @@ class TaskController extends Controller
         return view('company/task/create', compact('projects','companyUsers', 'partners', 'company_user'));
     }
     
-    public function store(Request $request)
-    {
-        $request->validate([
-            'company_user_id' => 'required',
-            'project_id'      => 'required',
-            'partner_id'      => 'required',
-            'superior_id'     => 'required',
-            'accounting_id'   => 'required',
-            'task_name'       => 'required',
-            'task_content'    => 'required',
-            'budget'          => 'required',
-            'price'           => 'required',
-            'cases'           => 'required',
-            'fee_format'      => 'required',
-        ]);
+    public function store(CreateTaskRequest $request)
+    { 
+        return $request;
 
         
         $task = new Task;
@@ -105,8 +94,8 @@ class TaskController extends Controller
         $task->partner_id      = $request->partner_id;
         $task->name            = $request->task_name;
         $task->content         = $request->task_content;
-        $task->started_at      = '2019-06-27 12:00:00';
-        $task->ended_at        = '2019-06-30 12:00:00';
+        $task->started_at      = date('Y-m-d', strtotime($request->started_at));
+        $task->ended_at        = date('Y-m-d', strtotime($request->ended_at));
         $task->status          = 1;
         $task->purchaseorder   = false;
         $task->invoice         = false;
