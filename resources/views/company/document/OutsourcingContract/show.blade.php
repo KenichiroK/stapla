@@ -3,20 +3,6 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="">
-<script>
-const setPreview = (input) => {
-  const preview = document.getElementById('preview');
-
-  if (input.files && input.files[0]) {
-    let reader = new FileReader();
-    reader.onload = (e) => {
-      preview.src = e.target.result;
-    }
-
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-</script>
 @endsection
 
 @section('header-profile')
