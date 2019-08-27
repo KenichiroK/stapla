@@ -46,7 +46,7 @@ class ProjectController extends Controller
     }
 
     public function store(Request $request)
-    {      
+    {    
         $request->validate([
             'project_name'     => 'required',
             'project_detail'   => 'required',
@@ -62,13 +62,16 @@ class ProjectController extends Controller
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
 
 
+        // return date('Y-m-d', strtotime('20200101'));
 
         $project = new Project;
         $project->company_id   = $company_id;
         $project->name         = $request->project_name;
         $project->detail       = $request->project_detail;
         $project->started_at   = date('Y-m-d', strtotime($request->started_at));
+        // $project->started_at   = $request->started_at;
         $project->ended_at     = date('Y-m-d', strtotime($request->ended_at));
+        // $project->ended_at     = $request->ended_at;
         $project->status       = 0;
         $project->budget       = $request->budget;
         $project->price        = 0;
