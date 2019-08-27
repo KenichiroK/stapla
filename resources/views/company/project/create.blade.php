@@ -3,6 +3,40 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/project/create.css') }}">
+<script>
+const set_started_at = () => {
+  const started_at_year = document.getElementById('started_at_year').value;
+  const started_at_month = document.getElementById('started_at_month').value;
+  const started_at_day = document.getElementById('started_at_day').value;
+  const started_at = document.getElementById('started_at');
+  started_at.value = Number(started_at_year + started_at_month + started_at_day);
+  console.log(started_at.value);
+}
+
+const set_ended_at = () => {
+  const ended_at_year = document.getElementById('ended_at_year').value;
+  const ended_at_month = document.getElementById('ended_at_month').value;
+  const ended_at_day = document.getElementById('ended_at_day').value;
+  const ended_at = document.getElementById('ended_at');
+  ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
+  console.log(ended_at.value);
+}
+window.onload = () => {
+  const started_at_year = document.getElementById('started_at_year').value;
+  const started_at_month = document.getElementById('started_at_month').value;
+  const started_at_day = document.getElementById('started_at_day').value;
+  const started_at = document.getElementById('started_at');
+  started_at.value = Number(started_at_year + started_at_month + started_at_day);
+
+  const ended_at_year = document.getElementById('ended_at_year').value;
+  const ended_at_month = document.getElementById('ended_at_month').value;
+  const ended_at_day = document.getElementById('ended_at_day').value;
+  const ended_at = document.getElementById('ended_at');
+  ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
+}
+
+
+</script>
 @endsection
 
 @section('header-profile')
@@ -50,8 +84,7 @@
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
-                        <div class="icon-imgbox">
+\                        <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
                         <div class="textbox">
@@ -61,7 +94,6 @@
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -72,8 +104,7 @@
                 </li>
                 <li>
                     <a href="/company/project" class="isActive">
-                        <!-- <i class="fas fa-envelope"></i> -->
-                        <div class="icon-imgbox">
+\                        <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
                         <div class="textbox">
@@ -83,7 +114,6 @@
                 </li>
                 <li>
                     <a href="/company/task">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -94,7 +124,6 @@
                 </li>
                 <li>
                     <a href="/company/document">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -105,7 +134,6 @@
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_customers.png" alt="">
                         </div>
@@ -116,7 +144,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -127,7 +154,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -138,7 +164,6 @@
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -188,7 +213,7 @@
                     </li>
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">担当者</div>
-                        <div class="select-container select id-normal select-plusicon is-multiple">
+                        <div class="select-container select id-normal select-plusicon is-multiple"> 
                             <select name="company_user_id" class="select-box" id="company-staff-name-list">
                                 <option></option>
                                 @foreach( $company_users as $company_user )
@@ -216,6 +241,7 @@
                                     <strong style='color: #e3342f;'>{{ $errors->first('company_user_id') }}</strong>
                                 </div>
                             @endif
+                            
                         </div>
                     </li>
                     <li class="project-create__container__list__item">
@@ -250,21 +276,111 @@
                             @endif
                         </div>      
                     </li>
+
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">プロジェクト期間</div>
                         <div class="calendars">
                             <div class="calendars__wrapper">
                                 <div class="calendars__wrapper__title start">開始日<i class="fas fa-calendar-alt"></i></div>
-                                <input name="started_at" type="text" value="{{ old('started_at')}}">
+                                <select class="select-box" id="started_at_year" name="started_at_year" onChange="set_started_at()">
+                                @for($y=date('Y'); $y<=date('Y')+20; $y++)
+                                    <option value="{{ $y }}">{{ $y }}</option>
+                                @endfor
+                                </select>
+                                年
+
+                                <select class="select-box" id="started_at_month" name="started_at_month" onChange="set_started_at()">
+                                @for($m=1; $m<=12; $m++)
+                                    @if($m < 10)
+                                        @if($m == date('m'))
+                                            <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                        @else
+                                            <option value='0{{ $m }}'>{{ $m }}</option>
+                                        @endif
+                                    @else
+                                        @if($m == date('m'))
+                                            <option value='{{ $m }}' selected>{{ $m }}</option>
+                                        @else
+                                            <option value='{{ $m }}'>{{ $m }}</option>
+                                        @endif
+                                    @endif
+                                @endfor
+                                </select>
+                                月
+
+                                <select class="select-box" id="started_at_day" name="started_at_day" onChange="set_started_at()">
+                                @for($d=1; $d<=31; $d++)
+                                    @if($d < 10)
+                                        @if($d == date('d'))
+                                            <option value='0{{ $d }}' selected>{{ $d }}</option>
+                                        @else
+                                            <option value='0{{ $d }}'>{{ $d }}</option>
+                                        @endif
+                                    @else
+                                        @if($d == date('d'))
+                                            <option value='{{ $d }}' selected>{{ $d }}</option>
+                                        @else
+                                            <option value='{{ $d }}'>{{ $d }}</option>
+                                        @endif
+                                    @endif
+                                @endfor
+                                </select>
+                                日
+                                <input name="started_at" id="started_at" type="hidden" value="{{ old('started_at')}}">
                                 @if($errors->has('started_at'))
                                     <div>
                                         <strong style='color: #e3342f;'>{{ $errors->first('started_at') }}</strong>
                                     </div>
                                 @endif
                             </div>
+
                             <div class="calendars__wrapper right">
                                 <div class="calendars__wrapper__title">終了日<i class="fas fa-calendar-alt"></i></div>
-                                <input name="ended_at" type="text" value="{{ old('ended_at')}}">
+                                <select class="select-box" id="ended_at_year" name="ended_at_year" onChange="set_ended_at()">
+                                @for($y=date('Y'); $y<=date('Y')+20; $y++)
+                                    <option value="{{ $y }}">{{ $y }}</option>
+                                @endfor
+                                </select>
+                                年
+
+                                <select class="select-box" id="ended_at_month" name="ended_at_month" onChange="set_ended_at()">
+                                @for($m=1; $m<=12; $m++)
+                                    @if($m < 10)
+                                        @if($m == date('m'))
+                                            <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                        @else
+                                            <option value='0{{ $m }}'>{{ $m }}</option>
+                                        @endif
+                                    @else
+                                        @if($m == date('m'))
+                                            <option value='{{ $m }}' selected>{{ $m }}</option>
+                                        @else
+                                            <option value='{{ $m }}'>{{ $m }}</option>
+                                        @endif
+                                    @endif
+                                @endfor
+                                </select>
+                                月
+
+                                <select class="select-box" id="ended_at_day" name="ended_at_day" onChange="set_ended_at()">
+                                @for($d=1; $d<=31; $d++)
+                                    @if($d < 10)
+                                        @if($d == date('d'))
+                                            <option value='0{{ $d }}' selected>{{ $d }}</option>
+                                        @else
+                                            <option value='0{{ $d }}'>{{ $d }}</option>
+                                        @endif
+                                    @else
+                                        @if($d == date('d')+1)
+                                            <option value='{{ $d }}' selected>{{ $d }}</option>
+                                        @else
+                                            <option value='{{ $d }}'>{{ $d }}</option>
+                                        @endif
+                                    @endif
+                                @endfor
+                                </select>
+                                日
+                                <input id="ended_at" name="ended_at" type="hidden" value="{{ old('ended_at')}}">
                                 @if($errors->has('ended_at'))
                                     <div>
                                         <strong style='color: #e3342f;'>{{ $errors->first('ended_at') }}</strong>
