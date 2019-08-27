@@ -124,6 +124,10 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
 		Route::get('/document/purchaseOrder/{id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');
 
+		// document	outsourcing_contract
+		Route::get('/document/outsourcingContract', 'Companies\Document\OutsourcingContractController@crate')->name('company.document.OutsourcingContract.create');
+		Route::get('/document/outsourcingContract/{id}', 'Companies\Document\OutsourcingContractController@show')->name('company.document.OutsourcingContract.show');
+
 		//document invoice
 		Route::get('/document/invoice/{id}', 'Companies\Document\InvoiceController@show')->name('company.invoice.show');
 
