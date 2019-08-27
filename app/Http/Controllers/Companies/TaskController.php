@@ -80,10 +80,7 @@ class TaskController extends Controller
     }
     
     public function store(CreateTaskRequest $request)
-    { 
-        return $request;
-
-        
+    {         
         $task = new Task;
         $task->project_id      = $request->project_id;
         $user = Auth::user();
