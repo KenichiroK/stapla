@@ -202,6 +202,24 @@
                 <div class="head-container__wrapper__item-container">
                     <div class="head-container__wrapper__item-container__wrapper">
                         <div class="head-container__wrapper__item-container__wrapper__icon-container">
+                            <div class="icon-imgbox"><img src="../../../images/outsourcing.png" alt=""></div>
+                        </div>
+                        <div class="head-container__wrapper__item-container__wrapper__content-container">
+                            <div class="head-container__wrapper__item-container__wrapper__content-container__wrapper">
+                                <div class="head-container__wrapper__item-container__wrapper__content-container__wrapper__text">業務委託契約書未対応</div>
+                                <div class="head-container__wrapper__item-container__wrapper__content-container__wrapper__number">{{ $ndas_0status->count() }}</div>
+                            </div>
+                        </div>
+                        <div class="head-container__wrapper__item-container__wrapper__create-container">
+                            <div class="head-container__wrapper__item-container__wrapper__create-container__create"><a href="">確認</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="head-container__wrapper">
+                <div class="head-container__wrapper__item-container">
+                    <div class="head-container__wrapper__item-container__wrapper">
+                        <div class="head-container__wrapper__item-container__wrapper__icon-container">
                             <div class="icon-imgbox"><img src="../../../images/non-disclosur.png" alt=""></div>
                         </div>
                         <div class="head-container__wrapper__item-container__wrapper__content-container">
@@ -249,6 +267,14 @@
                                     <td class="document-table__data-row__table-data">{{ $purchaseOrders_1status->count() }}件</td>
                                     <td class="document-table__data-row__table-data">{{ $purchaseOrders_2status->count() }}件</td>
                                     <td class="document-table__data-row__table-data">{{ $purchaseOrders_3status->count() }}件</td>
+                                </tr>
+                                <tr class="document-table__data-row">
+                                    <td class="document-table__data-row__table-data"><div class="icon-imgbox"><img src="../../../images/outsourcing.png" alt=""></div></td>
+                                    <td class="document-table__data-row__table-data doc-title">業務委託契約書</td>
+                                    <td class="document-table__data-row__table-data">件</td>
+                                    <td class="document-table__data-row__table-data">件</td>
+                                    <td class="document-table__data-row__table-data">件</td>
+                                    <td class="document-table__data-row__table-data">件</td>
                                 </tr>
                                 <tr class="document-table__data-row">
                                     <td class="document-table__data-row__table-data"><div class="icon-imgbox"><img src="../../../images/non-disclosur.png" alt=""></div></td>
@@ -404,6 +430,69 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 業務委託契約書 -->
+            <div class="main-container">
+                <div class="main-container__wrapper">
+                    <div class="item-name-wrapper icon-item-name-wrpper">
+                    <div class="icon-imgbox"><img src="../../../images/outsourcing.png" alt=""></div>
+                        <div class="item-name-wrapper__item-name">業務委託契約書</div>
+                    </div>
+                    <div class="main-container__wrapper__table-container">
+                        <div class="main-container__wrapper__table-container__wrapper">
+                            <table class="outsourcing-table">
+                                <tr class="outsourcing-table__head-row">
+                                    <!-- <th class="outsourcing-table__head-row__table-header">ステータス</th> -->
+                                    <th class="outsourcing-table__head-row__table-header">タスク</th>
+                                    <th class="outsourcing-table__head-row__table-header">請求日</th>
+                                    <th class="outsourcing-table__head-row__table-header">担当者</th>
+                                    <th class="outsourcing-table__head-row__table-header">金額</th>
+                                    <th class="outsourcing-table__head-row__table-header">PDF</th>
+                                    <th class="outsourcing-table__head-row__table-header">作成</th>
+                                </tr>
+                                
+                                <tr class="outsourcing-table__data-row">
+                                    
+                                    <td class="outsourcing-table__data-row__table-data task-data">
+                                        コーディング
+                                    </td>
+                                    <td class="outsourcing-table__data-row__table-data">
+                                        2018-11-05
+                                    </td>
+                                    <td class="outsourcing-table__data-row__table-data staff-data">
+                                        <div class="imgbox">
+                                            <img src="../../../images/photoimg.png" alt="">
+                                        </div>
+                                        <div class="name">
+                                            加藤 裕美子
+                                        </div>
+                                    </td>
+                                    <td class="outsourcing-table__data-row__table-data">
+                                        100000
+                                    </td>
+                                    <td class="outsourcing-table__data-row__table-data">○</td>
+                                    <td class="outsourcing-table__data-row__table-data">
+                                        <div class="outsourcing-table__data-row__table-data__create-container">
+                                            <div class="outsourcing-table__data-row__table-data__create-container__create">
+                                                <a href="">作成</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                            <!-- Show More部分 -->
+                            <div class="more-container">
+                                <div class="more-container__wrapper">
+                                    <p id="outsourcingShowMoreBtn" class="more-container__wrapper__showmore">もっと見る</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- 機密保持契約書 -->
             <div class="main-container">
                 <div class="main-container__wrapper">
