@@ -128,6 +128,12 @@
                     width:100%;
                 }
             }
+            .select-wrp{
+                width: 70%;
+                .select{
+                    width:100%;
+                }
+            }
             .budget-container{
                 input{
                     width: 30%;
@@ -240,4 +246,7 @@
 }
 .select.is-info:not(:hover)::after {
     border-color: #A4AFB7;
+}
+.error-mes-wrp{
+    margin-top: 5px;
 }

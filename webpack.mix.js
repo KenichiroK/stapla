@@ -53,6 +53,8 @@ mix.sass('resources/sass/company/common/index.scss', 'public/css/company/common'
    .sass('resources/sass/company/document/purchaseOrder/index.scss', 'public/css/company/document/purchaseOrder')
    .sass('resources/sass/company/document/invoice/show.scss', 'public/css/company/document/invoice')
    .sass('resources/sass/company/document/purchaseOrder/show.scss', 'public/css/company/document/purchaseOrder')
+   .sass('resources/sass/company/document/outsourcingContract/create.scss', 'public/css/company/document/outsourcingContract')
+   .sass('resources/sass/company/document/outsourcingContract/show.scss', 'public/css/company/document/outsourcingContract')
    .sass('resources/sass/company/setting/general/index.scss', 'public/css/company/setting/general')
    .sass('resources/sass/company/setting/companyElse/index.scss', 'public/css/company/setting/companyElse')
    .sass('resources/sass/company/setting/account/index.scss', 'public/css/company/setting/account')
