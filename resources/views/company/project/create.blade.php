@@ -241,9 +241,9 @@ window.onload = () => {
                                     @endforeach
                                 </select>
                             </div>
-                            @if($errors->has('company_user_id'))
+                            @if($errors->has('superior_id'))
                                 <div class="error-mes-wrp">
-                                    <strong style='color: #e3342f;'>{{ $errors->first('company_user_id') }}</strong>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('superior_id') }}</strong>
                                 </div>
                             @endif
                         </div>
@@ -259,9 +259,9 @@ window.onload = () => {
                                     @endforeach
                                 </select>  
                             </div>
-                            @if($errors->has('company_user_id'))
+                            @if($errors->has('accounting_id'))
                                 <div class="error-mes-wrp">
-                                    <strong style='color: #e3342f;'>{{ $errors->first('company_user_id') }}</strong>
+                                    <strong style='color: #e3342f;'>{{ $errors->first('accounting_id') }}</strong>
                                 </div>
                             @endif
                         </div>
