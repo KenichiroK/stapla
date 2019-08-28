@@ -229,6 +229,12 @@ $pref = array(
 	</div>
   @endif
 
+	@if($not_register_invoice)
+	<div class="error-container">
+		<p>{{ $not_register_invoice }}</p>
+	</div>
+  @endif
+
 	<div class="title-container">
 		<h3>設定</h3>
 	</div>
