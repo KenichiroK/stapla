@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/document/outsourcingContract/create.css') }}">
+<link rel="stylesheet" href="">
 @endsection
 
 @section('header-profile')
@@ -147,8 +147,5 @@
 @endsection
 
 @section('content')
-test1
-<p>test2</p>
-
-qqqqqq
+test
 @endsection
