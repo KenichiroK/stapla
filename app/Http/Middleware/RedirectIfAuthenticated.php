@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
             return redirect('/partner/dashboard');
         }
         if ($guard == "company" && Auth::guard($guard)->check()) {
-            return redirect('/company/dashbord');
+            return redirect('/company/dashboard');
         }
         if (Auth::guard($guard)->check()) {
             return redirect('/home');

@@ -1,46 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\Companies;
+namespace App\Http\Controllers\Companies\Registration;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Companies\CompanyAndCompanyUserRequest;
 use App\Models\Company;
 use App\Models\CompanyUser;
 
-class InitialRegisterController extends Controller
+class PreviewController extends Controller
 {
-    public function doneVerify()
+    public function index()
     {
-        $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
-        
-        if(isset($companyUser)){
-            return  redirect('company/dashboard');
-        } else{
-            return view('company/auth/initialRegister/doneVerify' ,compact('companyUser'));
-        }
+        // 
     }
+
 
     public function create()
     {
         $auth = Auth::user();
+        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        
         $request = '';
-        return view('company/auth/initialRegister/personal', compact('request'));
-    }
 
-    public function toPreview(CompanyAndCompanyUserRequest $request)
-    {
-        $auth = Auth::user();
-        return view('company/auth/initialRegister/preview', compact('request'));
+        if(isset($companyUser)){
+            return  redirect('company/dashboard');
+        } else{
+            return view('company/auth/initialRegister/preview', compact('request'));
+        }
     }
-
-    // public function previwShow(Request $request)
-    // {
-    //     $auth = Auth::user();
-    //     return view('company/auth/initialRegister/preview', compact('request'));
-    // }
 
     public function store(Request $request)
     {
@@ -80,9 +68,24 @@ class InitialRegisterController extends Controller
 
         return view('company/auth/initialRegister/done');
     }
-    
-    public function done()
+
+    public function show($id)
     {
-        return view('company/auth/regitster/done');
+        //
+    }
+
+    public function edit($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
     }
 }

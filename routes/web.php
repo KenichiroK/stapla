@@ -77,7 +77,9 @@ Route::group(['prefix' => 'company'], function(){
 	//register
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
 	Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
-	Route::get('/register/preRegistered', 'Companies\InitialRegisterController@preRegisteredShow')->name('company.register.preRegisterd.preRegisteredShow');
+	
+	// preRegister
+	Route::get('/register/preRegistered', 'Companies\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
 
 
 	// emailverify
@@ -88,11 +90,11 @@ Route::group(['prefix' => 'company'], function(){
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
 		
 		// register_flow
-		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerifyShow')->name('company.register.doneVerify.doneVerifyShow');
-		Route::get('/register/intialRegistration', 'Companies\InitialRegisterController@create')->name('company.register.intialRegistration.create');
-		Route::post('/register/initialRegistration', 'Companies\InitialRegisterController@toPreview')->name('company.registerInfo.toPreview');
-		Route::get('/register/preview/previwShow', 'Companies\InitialRegisterController@previewShow')->name('company.register.preview.previwShow');
-		Route::post('/register/preview/previewStore', 'Companies\InitialRegisterController@previewStore')->name('company.register.preview.previewStore');
+		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerify')->name('company.register.doneVerify');
+		Route::get('/register/personal', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');
+		Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
+		Route::get('/register/preview', 'Companies\Registration\PreviewController@create')->name('company.register.preview.create');
+		Route::post('/register/preview', 'Companies\Registration\PreviewController@store')->name('company.register.preview.store');
 		Route::get('/regitster/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
@@ -153,12 +155,6 @@ Route::group(['prefix' => 'company'], function(){
 		// mail(Partner)
 		Route::get('/userMail', 'Companies\PartnerMailController@index')->name('company.userMail.index');
 		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
-		
-		// personal register
-		Route::get('register/personal', 'Companies\InitialRegisterController@personal')->name('company.register.personal');
-		Route::get('register/company', 'Companies\InitialRegisterController@company')->name('company.register.company');
-		Route::get('register/preview', 'Companies\InitialRegisterController@preview')->name('company.register.preview');
-		Route::get('register/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
 
 		// invite
 		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.invite.partner.index');
