@@ -50,7 +50,6 @@
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
@@ -61,7 +60,6 @@
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -72,7 +70,6 @@
                 </li>
                 <li>
                     <a href="/company/project">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
@@ -83,7 +80,6 @@
                 </li>
                 <li>
                     <a href="/company/task">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -94,7 +90,6 @@
                 </li>
                 <li>
                     <a href="/company/document" class="isActive">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -105,7 +100,6 @@
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_customers.png" alt="">
                         </div>
@@ -116,7 +110,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -127,7 +120,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -138,7 +130,6 @@
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -300,7 +291,6 @@
                         <div class="main-container__wrapper__table-container__wrapper">
                         <table class="invoice-table">
                             <tr class="invoice-table__head-row">
-                                <!-- <th class="invoice-table__head-row__table-header">ステータス</th> -->
                                 <th class="invoice-table__head-row__table-header">タスク</th>
                                 <th class="invoice-table__head-row__table-header">請求日</th>
                                 <th class="invoice-table__head-row__table-header">担当者</th>
@@ -310,28 +300,14 @@
                             </tr>
                             @foreach($invoices as $invoice)
                             <tr class="invoice-table__data-row">
-                                <!-- <td class="invoice-table__data-row__table-data">
-                                    @if($invoice->status === 0)
-                                        未対応
-                                    @elseif($invoice->status === 1)
-                                        他依頼中
-                                    @elseif($invoice->status === 2)
-                                        パートナー依頼中
-                                    @else
-                                        完了
-                                    @endif
-                                </td> -->
-                                
                                 <td class="invoice-table__data-row__table-data task-data">{{ $invoice->task->name }}</td>
                                 <td class="invoice-table__data-row__table-data">{{ explode(' ', $invoice->task->ended_at)[0] }}</td>
                                 <td class="invoice-table__data-row__table-data staff-data">
                                     <div class="imgbox">
-                                        <img src="../../../images/photoimg.png" alt="">
+                                        <img src="/{{ str_replace('public/', 'storage/', $invoice->companyUser->picture) }}" alt="">
                                     </div>
                                     <div class="name">
-                                    @foreach($invoice->task->taskCompanies as $taskCompany)
-                                        {{ $taskCompany->companyUser->name }}
-                                    @endforeach
+                                        {{ $invoice->companyUser->name }}
                                     </div>
                                 </td>
                                 <td class="invoice-table__data-row__table-data">{{ $invoice->task->price }}</td>
@@ -371,7 +347,6 @@
                         <div class="main-container__wrapper__table-container__wrapper">
                             <table class="order-table">
                                 <tr class="order-table__head-row">
-                                    <!-- <th class="order-table__head-row__table-header">ステータス</th> -->
                                     <th class="order-table__head-row__table-header">タスク</th>
                                     <th class="order-table__head-row__table-header">請求日</th>
                                     <th class="order-table__head-row__table-header">担当者</th>
@@ -381,25 +356,14 @@
                                 </tr>
                                 @foreach($purchaseOrders as $purchaseOrder)
                                 <tr class="order-table__data-row">
-                                    <!-- <td class="order-table__data-row__table-data">
-                                        @if($purchaseOrder->status === 0)
-                                            未対応
-                                        @elseif($purchaseOrder->status === 1)
-                                            他依頼中
-                                        @elseif($purchaseOrder->status === 2)
-                                            パートナー依頼中
-                                        @else
-                                            完了
-                                        @endif
-                                    </td> -->
                                     <td class="order-table__data-row__table-data task-data">{{ $purchaseOrder->task_name }}</td>
                                     <td class="order-table__data-row__table-data">{{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</td>
                                     <td class="order-table__data-row__table-data staff-data">
                                         <div class="imgbox">
-                                            <img src="../../../images/photoimg.png" alt="">
+                                            <img src="/{{ str_replace('public/', 'storage/', $purchaseOrder->companyUser->picture) }}" alt="">
                                         </div>
                                         <div class="name">
-                                            {{ $purchaseOrder->company_user_name }}
+                                            {{ $purchaseOrder->companyUser->name }}
                                         </div>
                                     </td>
                                     <td class="order-table__data-row__table-data">{{ $purchaseOrder->task->price }}</td>
@@ -442,7 +406,6 @@
                         <div class="main-container__wrapper__table-container__wrapper">
                             <table class="outsourcing-table">
                                 <tr class="outsourcing-table__head-row">
-                                    <!-- <th class="outsourcing-table__head-row__table-header">ステータス</th> -->
                                     <th class="outsourcing-table__head-row__table-header">タスク</th>
                                     <th class="outsourcing-table__head-row__table-header">請求日</th>
                                     <th class="outsourcing-table__head-row__table-header">担当者</th>
@@ -504,7 +467,6 @@
                         <div class="main-container__wrapper__table-container__wrapper">
                             <table class="nda-table">
                                 <tr class="nda-table__head-row">
-                                    <!-- <th class="nda-table__head-row__table-header">ステータス</th> -->
                                     <th class="nda-table__head-row__table-header">タスク</th>
                                     <th class="nda-table__head-row__table-header">請求日</th>
                                     <th class="nda-table__head-row__table-header">担当者</th>
@@ -514,27 +476,14 @@
                                 </tr>
                                 @foreach($ndas as $nda)
                                 <tr class="nda-table__data-row">
-                                    <!-- <td class="nda-table__data-row__table-data">
-                                        @if($nda->status === 0)
-                                            未対応
-                                        @elseif($nda->status === 1)
-                                            他依頼中
-                                        @elseif($nda->status === 2)
-                                            パートナー依頼中
-                                        @else
-                                            完了
-                                        @endif
-                                    </td> -->
                                     <td class="nda-table__data-row__table-data task-data">{{ $nda->task->name }}</td>
                                     <td class="nda-table__data-row__table-data">{{ explode(' ', $nda->task->ended_at)[0] }}</td>
                                     <td class="nda-table__data-row__table-data staff-data">
                                         <div class="imgbox">
-                                            <img src="../../../images/photoimg.png" alt="">
+                                        <img src="/{{ str_replace('public/', 'storage/', $nda->companyUser->picture) }}"alt="">
                                         </div>
                                         <div class="name">
-                                            @foreach($nda->task->taskCOmpanies as $taskCompany)
-                                                {{ $taskCompany->companyUser->name }}
-                                            @endforeach
+                                                {{ $nda->companyUser->name }}
                                         </div>
                                     </td>
                                     <td class="nda-table__data-row__table-data">{{ $nda->task->price }}</td>

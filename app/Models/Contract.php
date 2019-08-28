@@ -14,6 +14,11 @@ class Contract extends BaseUuid
         return $this->belongsTo('App\Models\Company', 'company_id', 'id');
     }
 
+    public function companyUser()
+    {
+        return $this->belongsTo('App\Models\companyUser', 'companyUser_id', 'id');
+    }
+
     public function partner()
     {
         return $this->belongsTo('App\Models\Partner', 'partner_id', 'id');
