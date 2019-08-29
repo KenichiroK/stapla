@@ -34,8 +34,7 @@ class InvoiceController extends Controller
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
 
         $completed = '';
-        $not_register_invoice = '';
-        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed', 'not_register_invoice'));
+        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed'));
     }
 
     /**
@@ -77,8 +76,7 @@ class InvoiceController extends Controller
         $partner_invoice = $new_partner_invoice;
 
         $completed = '変更を保存しました。';
-        $not_register_invoice = '';
-        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed', 'not_register_invoice'));
+        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed'));
     }
 
     /**

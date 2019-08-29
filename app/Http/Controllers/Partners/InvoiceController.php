@@ -57,8 +57,7 @@ class InvoiceController extends Controller
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
         if (!$partner_invoice) {
             $completed = '';
-            $not_register_invoice = '請求情報が未登録のため、請求書の作成に失敗しました。請求情報を登録して、再度請求書を作成してください。';
-            return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed', 'not_register_invoice'));
+            return redirect()->route('partner.setting.invoice.create')->with('not_register_invoice', '請求情報が未登録のため、請求書の作成に失敗しました。請求情報を登録して、再度請求書を作成してください。');
         }
 
         $company_id = $partner->company_id;
