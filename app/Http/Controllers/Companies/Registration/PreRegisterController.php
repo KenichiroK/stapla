@@ -10,25 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class PreRegisterController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('guest:company');
-    }
-
-    
     public function index()
     {
-        $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
-        
-        if(isset($companyUser)){
-            return  redirect('company/dashboard');
-        } else{
-            return view('company/auth/verify');
-        }
         return view('company/auth/verify');
-        }
+    }
 
     public function create()
     {

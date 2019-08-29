@@ -21,6 +21,8 @@ Route::group(['prefix' => 'partner'], function(){
 	//register
 	Route::get('register/{company_id}/{email}', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('register/{company_id}', 'Partners\Auth\RegisterController@register')->name('partner.register');
+
+	// preRegister
 	Route::get('register/preRegistered', 'Partners\InitialRegisterController@preRegisteredShow')->name('company.register.preRegisterd.preRegisteredShow');
 
 	// invite
@@ -95,7 +97,6 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
 		Route::get('/register/preview', 'Companies\Registration\PreviewController@create')->name('company.register.preview.create');
 		Route::post('/register/preview', 'Companies\Registration\PreviewController@store')->name('company.register.preview.store');
-		Route::get('/regitster/done', 'Companies\InitialRegisterController@done')->name('company.register.done');
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
 		// project
