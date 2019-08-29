@@ -105,7 +105,7 @@
     }
 }
 
-.secrecy-container {
+.outsourcing-container {
     &__wrapper {
         .pdf-container {
             margin:auto;
@@ -128,61 +128,75 @@
                 }
             }
         }
+        .date{
+            margin-bottom: 0;
+            margin-top: 48px;
+        }
+        dl{
+            display: flex;
+            margin-bottom: 0;
+            margin-top: 24px;
+            dt{
+                width: 30px;
+                font-weight: 500;
+            }
+            dd{
+                margin-bottom: 0;
+            }
+        }
     }
 }
-
+// 全文表示ボタン
 .cp_box *, .cp_box *:before, .cp_box *:after {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
 .cp_box {
-	position: relative;
+    position: relative;
+    label {
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        width: 100%;
+        height: 110px;
+        cursor: pointer;
+        text-align: center;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 90%);
+        margin: 0;
+        &:after {
+            line-height: 32px;
+            position: absolute;
+            z-index: 2;
+            bottom: 20px;
+            left: 50%;
+            width: 112px;
+            content: '全文表示';
+            transform: translate(-50%, 0);
+            color: #43425D;
+            border-radius: 100px;
+            background-color: #ffffff;
+            border: 2px solid #43425D;
+            font-weight: 700;
+        }
+    }
+    input {
+        display: none;
+        &:checked + label {
+            background: inherit; 
+        }
+        &:checked + label:after {
+            font-family: FontAwesome;
+            content: '閉じる';
+        }
+        &:checked ~ .cp_container {
+            height: auto;
+            padding-bottom: 80px; /* 閉じるボタンのbottomからの位置 */
+            transition: all 0.5s;
+        }
+    }
+    .cp_container {
+        overflow: hidden;
+        height: 460px; 
+        transition: all 0.5s;
+    }
 }
-.cp_box label {
-	position: absolute;
-	z-index: 1;
-	bottom: 0;
-	width: 100%;
-	height: 110px;
-	cursor: pointer;
-	text-align: center;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 90%);
-    margin: 0;
-}
-.cp_box input:checked + label {
-	background: inherit; 
-}
-.cp_box label:after {
-	line-height: 32px;
-	position: absolute;
-	z-index: 2;
-	bottom: 20px;
-	left: 50%;
-	width: 112px;
-	content: '全文表示';
-	transform: translate(-50%, 0);
-	color: #43425D;
-    border-radius: 100px;
-    background-color: #ffffff;
-    border: 2px solid #43425D;
-    font-weight: 700;
-}
-.cp_box input {
-	display: none;
-}
-.cp_box .cp_container {
-	overflow: hidden;
-	height: 460px; 
-	transition: all 0.5s;
-}
-
-.cp_box input:checked + label:after {
-	font-family: FontAwesome;
-	content: '閉じる';
-}
-.cp_box input:checked ~ .cp_container {
-	height: auto;
-	padding-bottom: 80px; /* 閉じるボタンのbottomからの位置 */
-	transition: all 0.5s;
-}
-

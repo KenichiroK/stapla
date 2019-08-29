@@ -166,56 +166,12 @@
             <div class="main-container__wrapper">
                 <!-- pdf -->
                 <div id="print" class="A4 landscape shrink">
-                    <div class="secrecy-container">
-                        <div class="secrecy-container__wrapper">
+                    <div class="outsourcing-container">
+                        <div class="outsourcing-container__wrapper">
                             <div class="pdf-container sheet">
                                 <div class="pdf-container__pdf sheet padding-10mm">
                                     <div class="pdf-container__pdf__contract-type">業務委託契約書</div>
 
-                                    <!-- <div class="pdf-container__pdf__main">
-                                        
-                                        <div class="pdf-container__pdf__main__Paragraph">
-                                            <div>
-                                            株式会社◯◯◯◯◯（以下、甲という）と＿＿　　　　　（以下、乙という）とは、甲が乙に委託する業務に関し次の条項により基本契約(以下｢本契約｣という。)を締結し、信義に従って誠実にこれを履行するものとする。
-                                            </div>
-                                        </div>
-                                    
-                                        <div class="pdf-container__pdf__main__Paragraph">
-                                            <div>第１条　（総則）</div>
-                                            <div>
-                                            本契約は、甲が第2条に定める業務の委託(以下｢委託業務｣という。)に関し、別に締結する個別の契約(以下｢個別契約｣という。)について基本となる事項を定める。乙は、委託業務に関し、本契約書、個別契約の業務委託書及び業務委託書に従いこれを履行しなければならない。
-                                            </div>
-                                        </div>
-                                    
-                                        <div class="pdf-container__pdf__main__Paragraph">
-                                            <div>第２条　(委託業務内容)</div>
-                                            <div>
-                                            本契約及び個別契約に基づき、甲が乙に発注する業務は次のとおりとする。
-                                            獣医師教育システムの開発業務。またこれに付随するドキュメント類の作成業務。
-                                            </div>
-                                        </div>
-                                    
-                                        <div class="pdf-container__pdf__main__Paragraph">
-                                            <div>第３条　(個別契約)</div>
-                                            <div>
-                                            １　　個別契約は、甲が乙に業務委託書を交付し、乙が甲に業務受託書を発行し甲がこれを受領することにより成立するものとする。
-                                            ２　　業務委託の内容、成果物、委託料その他個別契約の締結に必要な事項は、業務委託書、業務受託書ならびにこれらに付随する資料に明示するものとする。
-                                            </div>
-                                        </div>
-
-                                        <div class="pdf-container__pdf__main__Paragraph">
-                                            <div>第４条　(基本契約と個別契約)</div>
-                                            <div>
-                                            個別契約において本契約と異なる定めをした場合は、その定めが優先的に適用されるものとする。
-                                            </div>
-                                        </div>
-
-                                        <div class="pdf-container__pdf__main__Paragraph">
-                                            <div>第５条　(業務内容の変更)</div>
-                                            <div>
-                                            甲は、個別契約成立後といえども、委託業務の内容の全部または一部を変更あるいは追加することができる。ただし、これにより個別契約を変更する必要が生じた場合には、甲乙協議のうえ変更するものとする。
-                                            </div>
-                                        </div> -->
                                         <div class="cp_box">
                                             <input id="cp01" type="checkbox">
                                             <label for="cp01"></label>
@@ -543,9 +499,6 @@
                                                         株式会社HUMO 代表取締役　永瀬　達也　　　印
                                                     </dd>
                                                 </dl>
-
-
-                                               
                                             </div>
 
                                         </div>
