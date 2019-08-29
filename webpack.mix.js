@@ -24,10 +24,12 @@ mix.js([
    //partner
    'resources/js/partner/dashboad/index.js',
 
+],'public/js/app.js')
+
+mix.js([
    //PDF
    'resources/js//pdf/logic.js',
-
-],'public/js/app.js')
+],'public/js/pdf.js')
 
 
 

@@ -15,10 +15,6 @@
     width: 210mm;
     height: 296mm;
 }
-#print.A4.landscape .sheet {
-    width: 297mm;
-    height: 209mm;
-}
 
 /** Padding area **/
 .sheet.padding-10mm {
@@ -38,9 +34,6 @@
     }
 }
 
-.shrink{
-    zoom:84%;
-}
 
 .pageout{
     position: fixed;

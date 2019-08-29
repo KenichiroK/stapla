@@ -410,3 +410,7 @@ const setPreview = (input) => {
     @endif
 </div>
 @endsection
+
+@section('pdf-js')
+    <script src="{{ asset('js/pdf.js') }}" defer></script>
+@endsection
