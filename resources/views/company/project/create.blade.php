@@ -84,7 +84,7 @@ window.onload = () => {
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-\                        <div class="icon-imgbox">
+                        <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
                         <div class="textbox">
@@ -104,7 +104,7 @@ window.onload = () => {
                 </li>
                 <li>
                     <a href="/company/project" class="isActive">
-\                        <div class="icon-imgbox">
+                        <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
                         <div class="textbox">
@@ -194,7 +194,7 @@ window.onload = () => {
                         <div class="input-container">
                             <input name="project_name" class="project-create__container__list__item__input" type="text" value="{{ old('project_name')}}">
                             @if($errors->has('project_name'))
-                                <div>
+                                <div class="error-mes-wrp">
                                     <strong style='color: #e3342f;'>{{ $errors->first('project_name') }}</strong>
                                 </div>
                             @endif
@@ -205,7 +205,7 @@ window.onload = () => {
                         <div class="textarea-container">
                             <textarea class="project-create__container__list__item__textarea" name="project_detail" placeholder="">{{ old('project_detail') }}</textarea>
                             @if($errors->has('project_detail'))
-                                <div>
+                                <div class="error-mes-wrp">
                                     <strong style='color: #e3342f;'>{{ $errors->first('project_detail') }}</strong>
                                 </div>
                             @endif
@@ -213,15 +213,18 @@ window.onload = () => {
                     </li>
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">担当者</div>
-                        <div class="select-container select id-normal select-plusicon is-multiple"> 
-                            <select name="company_user_id" class="select-box" id="company-staff-name-list">
-                                <option></option>
-                                @foreach( $company_users as $company_user )
-                                <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
-                                @endforeach
-                            </select>
+                        <div class="select-wrp">
+                            <div class="select-container select id-normal select-plusicon is-multiple"> 
+                                <select name="company_user_id" class="select-box" id="company-staff-name-list">
+                                    <option></option>
+                                    @foreach( $company_users as $company_user )
+                                    <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
+                                    @endforeach
+                                </select>
+                                
+                            </div>
                             @if($errors->has('company_user_id'))
-                                <div>
+                                <div class="error-mes-wrp">
                                     <strong style='color: #e3342f;'>{{ $errors->first('company_user_id') }}</strong>
                                 </div>
                             @endif
@@ -229,52 +232,58 @@ window.onload = () => {
                     </li>
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">上長</div>
-                        <div class="select-container select id-normal select-plusicon is-multiple">
-                            <select name="superior_id" class="select-box" id="company-staff-name-list">
-                                <option></option>
-                                @foreach( $company_users as $company_user )
-                                <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('company_user_id'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('company_user_id') }}</strong>
+                        <div class="select-wrp">
+                            <div class="select-container select id-normal select-plusicon is-multiple">
+                                <select name="superior_id" class="select-box" id="company-staff-name-list">
+                                    <option></option>
+                                    @foreach( $company_users as $company_user )
+                                    <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @if($errors->has('superior_id'))
+                                <div class="error-mes-wrp">
+                                    <strong style='color: #e3342f;'>{{ $errors->first('superior_id') }}</strong>
                                 </div>
                             @endif
-                            
                         </div>
                     </li>
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">経理</div>
-                        <div class="select-container select id-normal select-plusicon is-multiple">
-                            <select name="accounting_id" class="select-box" id="company-staff-name-list">
-                                <option></option>
-                                @foreach( $company_users as $company_user )
-                                <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('company_user_id'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('company_user_id') }}</strong>
+                        <div class="select-wrp">
+                            <div class="select-container select id-normal select-plusicon is-multiple">
+                                <select name="accounting_id" class="select-box" id="company-staff-name-list">
+                                    <option></option>
+                                    @foreach( $company_users as $company_user )
+                                    <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
+                                    @endforeach
+                                </select>  
+                            </div>
+                            @if($errors->has('accounting_id'))
+                                <div class="error-mes-wrp">
+                                    <strong style='color: #e3342f;'>{{ $errors->first('accounting_id') }}</strong>
                                 </div>
                             @endif
                         </div>
                     </li>
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">パートナー</div>
-                        <div class="select id-normal select-plusicon is-multiple">
-                            <select name="partner_id" class="select-box" id="partner-name-list">
-                                <option value=""></option>
-                                @foreach( $partner_users as $partner_user )
-                                <option value="{{ $partner_user->id }}">{{ $partner_user->name }}</option>
-                                @endforeach
-                            </select>
+                        <div class="select-wrp">
+                            <div class="select id-normal select-plusicon is-multiple">
+                                <select name="partner_id" class="select-box" id="partner-name-list">
+                                    <option value=""></option>
+                                    @foreach( $partner_users as $partner_user )
+                                    <option value="{{ $partner_user->id }}">{{ $partner_user->name }}</option>
+                                    @endforeach
+                                </select>
+                                
+                            </div>  
                             @if($errors->has('partner_id'))
-                                <div>
+                                <div class="error-mes-wrp">
                                     <strong style='color: #e3342f;'>{{ $errors->first('partner_id') }}</strong>
                                 </div>
                             @endif
-                        </div>      
+                        </div> 
                     </li>
 
                     <li class="project-create__container__list__item">
@@ -328,7 +337,7 @@ window.onload = () => {
                                 日
                                 <input name="started_at" id="started_at" type="hidden" value="{{ old('started_at')}}">
                                 @if($errors->has('started_at'))
-                                    <div>
+                                    <div class="error-mes-wrp">
                                         <strong style='color: #e3342f;'>{{ $errors->first('started_at') }}</strong>
                                     </div>
                                 @endif
@@ -382,7 +391,7 @@ window.onload = () => {
                                 日
                                 <input id="ended_at" name="ended_at" type="hidden" value="{{ old('ended_at')}}">
                                 @if($errors->has('ended_at'))
-                                    <div>
+                                    <div class="error-mes-wrp">
                                         <strong style='color: #e3342f;'>{{ $errors->first('ended_at') }}</strong>
                                     </div>
                                 @endif
@@ -394,7 +403,7 @@ window.onload = () => {
                         <div class="budget-container input-container">
                             <input name="budget" type="text" placeholder="" value="{{ old('budget')}}"><span class="budget-container__yen">円</span>
                             @if($errors->has('budget'))
-                                <div>
+                                <div class="error-mes-wrp">
                                     <strong style='color: #e3342f;'>{{ $errors->first('budget') }}</strong>
                                 </div>
                             @endif
