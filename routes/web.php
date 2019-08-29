@@ -23,7 +23,7 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::post('register/{company_id}', 'Partners\Auth\RegisterController@register')->name('partner.register');
 
 	// preRegister
-	Route::get('register/preRegistered', 'Partners\InitialRegisterController@preRegisteredShow')->name('company.register.preRegisterd.preRegisteredShow');
+	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
 
 	// invite
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
@@ -35,7 +35,7 @@ Route::group(['prefix' => 'partner'], function(){
 	
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 		// register_flow
-		Route::get('/register/doneVerify', 'Partners\InitialRegisterController@doneVerifyShow')->name('partner.register.doneVerify.doneVerify');
+		Route::get('/register/doneVerify', 'Partners\InitialRegisterController@doneVerify')->name('partner.register.doneVerify.doneVerify');
 		Route::get('/register/initialRegistration', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
 		Route::post('/register/initial/personal', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
 		Route::get('/register/preview/previwShow', 'Partners\InitialRegisterController@previwShow')->name('parnter.register.preview.previwShow');
@@ -97,8 +97,10 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
 		Route::get('/register/preview', 'Companies\Registration\PreviewController@create')->name('company.register.preview.create');
 		Route::post('/register/preview', 'Companies\Registration\PreviewController@store')->name('company.register.preview.store');
+		
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
+		
 		// project
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
 		Route::get('/project/create', 'Companies\ProjectController@create')->name('company.project.create');
