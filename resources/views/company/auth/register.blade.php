@@ -29,7 +29,7 @@
                         <input class="input_text" type="email" name="email" placeholder="impro@example.com">
                         @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('email') }}</strong>
+                                <strong style="color: #e3342f;">{{ $errors->first('email') }}</strong>
                             </span>
                         @endif
 
@@ -40,7 +40,7 @@
                         <input class="input_text" type="password" name="password">
                         @if ($errors->has('password'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('password') }}</strong>
+                                <strong style="color: #e3342f;">{{ $errors->first('password') }}</strong>
                             </span>
                         @endif
                     </div>
