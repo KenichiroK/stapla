@@ -5,30 +5,14 @@ import pdfMake from "pdfmake/build/pdfmake";
 // 計算式は 1/(25.4mm / 72dpi)
 const RATE = 2.83464566929;
 
-// A4 297mm × 210mm 
+// A4 297mm × 419mm 
 const PAGE_WIDTH = 297 * RATE;
-const PAGE_HEIGHT = 210 * RATE;
+const PAGE_HEIGHT = 419 * RATE;
 
 // TODO: 仮置き。後でページ設計に合わせて修正
 const CONTENT_WIDTH = 297 * RATE;
-const CONTENT_HEIGHT = 210 * RATE;
+const CONTENT_HEIGHT = 419 * RATE;
 const PAGE_MARGINS = [0 * RATE, 0 * RATE];
-
-/* for ts
-interface PdfProps {
-  dataUrl: string;
-  pageSize?: {
-    width: number;
-    height: number;
-  };
-  pageOrientation?: string;
-  contentSize?: {
-    width: number;
-    height: number;
-  };
-  pageMargins?: [number, number];
-}
-*/
 
 /**
  * HTMLからPDFを生成
@@ -61,7 +45,7 @@ async function createPdfProps(element) {
       width: PAGE_WIDTH,
       height: PAGE_HEIGHT
     },
-    pageOrientation: "landscape",
+    pageOrientation: "PORTRAIT",
     contentSize: {
       width: CONTENT_WIDTH,
       height: CONTENT_HEIGHT
@@ -95,11 +79,11 @@ function createPdf(pdfProps) {
   pdfMake.createPdf(documentDefinitions).download();
 }
 
-
 // 印刷ボタンクリック時の処理
 const print_btn = document.querySelector('#print_btn');
-const pdf = document.querySelector('#print');
+const pdf_content = document.querySelector('#pdf_content');
 
-print_btn.onclick = function() {
-  createPdfFromHtml(pdf);
+
+print_btn.onclick = () => {
+  createPdfFromHtml(pdf_content);
 };
