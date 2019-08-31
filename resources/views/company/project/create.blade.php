@@ -346,7 +346,7 @@ window.onload = () => {
                             <div class="calendars__wrapper right">
                                 <div class="calendars__wrapper__title">終了日<i class="fas fa-calendar-alt"></i></div>
                                 <select class="select-box" id="ended_at_year" name="ended_at_year" onChange="set_ended_at()">
-                                @for($y=date('Y'); $y<=date('Y')+20; $y++)
+                                @for($y=explode('-', date('Y-m-d', strtotime('1day')))[0]; $y<=date('Y')+20; $y++)
                                     <option value="{{ $y }}">{{ $y }}</option>
                                 @endfor
                                 </select>
@@ -355,7 +355,7 @@ window.onload = () => {
                                 <select class="select-box" id="ended_at_month" name="ended_at_month" onChange="set_ended_at()">
                                 @for($m=1; $m<=12; $m++)
                                     @if($m < 10)
-                                        @if($m == date('m'))
+                                        @if($m == explode('-', date('Y-m-d', strtotime('1day')))[1])
                                             <option value='0{{ $m }}' selected>{{ $m }}</option>
                                         @else
                                             <option value='0{{ $m }}'>{{ $m }}</option>
@@ -374,7 +374,7 @@ window.onload = () => {
                                 <select class="select-box" id="ended_at_day" name="ended_at_day" onChange="set_ended_at()">
                                 @for($d=1; $d<=31; $d++)
                                     @if($d < 10)
-                                        @if($d == date('d'))
+                                        @if($d == explode('-', date('Y-m-d', strtotime('1day')))[2])
                                             <option value='0{{ $d }}' selected>{{ $d }}</option>
                                         @else
                                             <option value='0{{ $d }}'>{{ $d }}</option>
