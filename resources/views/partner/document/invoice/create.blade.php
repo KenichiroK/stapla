@@ -30,22 +30,22 @@ const checkDeadline = () => {
 
 const calculateSumPrice = (e) => {
   let sum = document.getElementById('sum');
-  let taskNums = document.getElementsByName('task_num');
-  let taskUnitPrices = document.getElementsByName('task_unit_price');
+  let itemNums = document.getElementsByName('item_num');
+  let itemUnitPrices = document.getElementsByName('item_unit_price');
   let expencesNums = document.getElementsByName('expences_num');
   let expencesUnitPrices = document.getElementsByName('expences_unit_price');
   let taskSum = 0;
   let expencesSum = 0;
-  for (i = 0; i < taskNums.length; i++) {
-	taskNums[i].value = taskNums[i].value === undefined ? 0 : Number(taskNums[i].value);
-	taskUnitPrices[i].value = taskUnitPrices[i].value === undefined ? 0 : Number(taskUnitPrices[i].value);
-	taskSum += taskNums[i].value * taskUnitPrices[i].value;
+  for (i = 0; i < itemNums.length; i++) {
+	const taskNum = itemNums[i].value === undefined ? 0 : Number(itemNums[i].value);
+	const taskUnitPrice = itemUnitPrices[i].value === undefined ? 0 : Number(itemUnitPrices[i].value);
+	taskSum += taskNum * taskUnitPrice;
   }
 
   for (i = 0; i < expencesNums.length; i++) {
-	expencesNums[i].value = expencesNums[i].value === undefined ? 0 : Number(expencesNums[i].value);
-	expencesUnitPrices[i].value = expencesUnitPrices[i].value === undefined ? 0 : Number(expencesUnitPrices[i].value);
-	expencesSum += expencesNums[i].value * expencesUnitPrices[i].value;
+	const expencesNum = expencesNums[i].value === undefined ? 0 : Number(expencesNums[i].value);
+	const expencesUnitPrice = expencesUnitPrices[i].value === undefined ? 0 : Number(expencesUnitPrices[i].value);
+	expencesSum += expencesNum * expencesUnitPrice;
   }
   sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
 }
@@ -185,6 +185,12 @@ const calculateSumPrice = (e) => {
 
 @section('content')
 <div class="main-wrapper">
+	@if(count($errors) > 0)
+		<div class="error-container">
+			<p>入力に問題があります。再入力して下さい。</p>
+		</div>
+	@endif
+
 	<div class="title-container">
 		<h3>請求書作成</h3>
 	</div>
@@ -308,12 +314,32 @@ const calculateSumPrice = (e) => {
 					
 					<tbody>
 						<tr>
-							<td class="item"><input type="text" name="task_name" value="{{ old('task_name') }}"></td>
-							<td class="num"><input type="text" name="task_num" value="{{ old('task_num') }}" onchange="calculateSumPrice(this.value)"></td>
-							<td class="unit-price"><input type="text" name="task_unit_price" value="{{ old('task_unit_price') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
-							<td class="total"><input type="text" name="task_total" value="{{ old('task_total') }}"><span>円</span></td>
+							<td class="item"><input type="text" name="item_name" value="{{ old('item_name') }}"></td>
+							<td class="num"><input type="text" name="item_num" value="{{ old('item_num') }}" onchange="calculateSumPrice(this.value)"></td>
+							<td class="unit-price"><input type="text" name="item_unit_price" value="{{ old('item_unit_price') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+							<td class="total"><input type="text" name="item_total" value="{{ old('item_total') }}"><span>円</span></td>
 						</tr>
 					</tbody>
+					@if ($errors->has('item_name'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('item_name') }}</strong>
+						</div>					
+					@endif
+					@if ($errors->has('item_num'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('item_num') }}</strong>
+						</div>					
+					@endif
+					@if ($errors->has('item_unit_price'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('item_unit_price') }}</strong>
+						</div>					
+					@endif
+					@if ($errors->has('item_total'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('item_total') }}</strong>
+						</div>					
+					@endif
 
 				</table>
 				<div class="addButton-container">
@@ -343,6 +369,27 @@ const calculateSumPrice = (e) => {
 							<td class="total"><input type="text" name="expences_total" value="{{ old('expences_total') }}"><span>円</span></td>
 						</tr>
 					</tbody>
+
+					@if ($errors->has('expences_name'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('expences_name') }}</strong>
+						</div>					
+					@endif
+					@if ($errors->has('expences_num'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('expences_num') }}</strong>
+						</div>					
+					@endif
+					@if ($errors->has('expences_unit_price'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('expences_unit_price') }}</strong>
+						</div>					
+					@endif
+					@if ($errors->has('expences_total'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('expences_total') }}</strong>
+						</div>					
+					@endif
 
 				</table>
 				<div class="addButton-container">
