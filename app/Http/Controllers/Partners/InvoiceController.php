@@ -12,6 +12,8 @@ use App\Models\CompanyUser;
 use App\Models\Company;
 use App\Models\RequestTask;
 use App\Models\RequestExpence;
+use App\Models\PartnerInvoice;
+
 use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
@@ -52,6 +54,12 @@ class InvoiceController extends Controller
     {
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
+        if (!$partner_invoice) {
+            $completed = '';
+            return redirect()->route('partner.setting.invoice.create')->with('not_register_invoice', '請求情報が未登録のため、請求書の作成に失敗しました。請求情報を登録して、再度請求書を作成してください。');
+        }
+
         $company_id = $partner->company_id;
 
         $invoice = new Invoice;

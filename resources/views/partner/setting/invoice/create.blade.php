@@ -229,6 +229,12 @@ $pref = array(
 	</div>
   @endif
 
+	@if(Session::has('not_register_invoice'))
+	<div class="error-container">
+		<p>{{ session('not_register_invoice') }}</p>
+	</div>
+  @endif
+
 	<div class="title-container">
 		<h3>設定</h3>
 	</div>
@@ -473,15 +479,17 @@ $pref = array(
 							<img id="preview" src="../../../images/upload3.png" alt="プレビュー画像">
 						</div>
 					@endif
+					<div>
 					<label for="mark_image">
 						画像をアップロード
 						<input type="file" id="mark_image" name="mark_image" style="display: none;" accept="image/png" onchange="setPreview(this)">
 					</label>
-				@if ($errors->has('mark_image'))
-					<div>
-						<strong style='color: #e3342f;'>{{ $errors->first('mark_image') }}</strong>
+					@if ($errors->has('mark_image'))
+						<div class="image-error_message">
+							<strong style='color: #e3342f;'>{{ $errors->first('mark_image') }}</strong>
+						</div>
+					@endif
 					</div>
-				@endif
 				</div>
 
 				<div class="imprint-container">
