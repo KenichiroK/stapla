@@ -74,16 +74,16 @@ class InvoiceController extends Controller
         $invoice->status         = 0;
         $invoice->save();
 
-        if ($request->task_name) {
+        if ($request->item_name) {
             $request_task = new RequestTask;
             $request_task->invoice_id = $invoice->id;
-            $request_task->name       = $request->task_name;
-            $request_task->num        = $request->task_num;
-            $request_task->unit_price = $request->task_unit_price;
-            $request_task->total      = $request->task_total;
+            $request_task->name       = $request->item_name;
+            $request_task->num        = $request->item_num;
+            $request_task->unit_price = $request->item_unit_price;
+            $request_task->total      = $request->item_total;
             $request_task->save();
         }
-        
+
         if ($request->expences_name) {
             $request_expences = new RequestExpence;
             $request_expences->invoice_id = $invoice->id;
@@ -93,7 +93,7 @@ class InvoiceController extends Controller
             $request_expences->total      = $request->expences_total;
             $request_expences->save();
         }
-        
+            
         return redirect()->route('partner.invoice.show', ['id' => $invoice->id]);
     }
 

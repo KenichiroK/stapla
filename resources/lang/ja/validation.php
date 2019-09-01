@@ -97,7 +97,7 @@ return [
     'required' => ':attributeは必須項目です。',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
-    'required_with' => 'The :attribute field is required when :values is present.',
+    'required_with' => ':valuesのいずれかを入力している時、:attributeは必須項目です。',
     'required_with_all' => 'The :attribute field is required when :values are present.',
     'required_without' => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
@@ -185,6 +185,21 @@ return [
         'partner_id'      => 'パートナー',
         'project_name'    => 'プロジェクト名',
         'project_detail'  => 'プロジェクト詳細',
+
+        // 請求書作成
+        'companyUser_id'      => '担当者',
+        'project_name'        => '件名は',
+        'requested_at'        => '請求日',
+        'deadline_at'         => '支払い期限',
+        'tax'                 => '消費税',
+        'item_name'           => 'タスク品目',
+        'item_num'            => 'タスク数',
+        'item_unit_price'     => 'タスク単価',
+        'item_total'          => 'タスク合計金額',
+        'expences_name'       => '経費品目',
+        'expences_num'        => '経費数',
+        'expences_unit_price' => '経費単価',
+        'expences_total'      => '経費合計金額',
     ],
 
 ];
