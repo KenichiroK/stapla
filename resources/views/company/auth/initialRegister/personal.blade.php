@@ -1,27 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Impro</title>
-	<link rel="stylesheet" href="{{ mix('css/auth/initialRegister/personal.css') }}">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-	<script>
-	const setPreview = (input) => {
-	  const preview = document.getElementById('profile_image_preview');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Impro</title>
+<link rel="stylesheet" href="{{ mix('css/auth/initialRegister/personal.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<script>
+const setPreview = (input) => {
+  const preview = document.getElementById('profile_image_preview');
+  if (input.files && input.files[0]) {
+  let reader = new FileReader();
+  reader.onload = (e) => {
+    preview.src = e.target.result;
+  }
 
-	  if (input.files && input.files[0]) {
- 	    let reader = new FileReader();
-		reader.onload = (e) => {
-		  preview.src = e.target.result;
-		}
+  reader.readAsDataURL(input.files[0]);
+  }
+}
 
-		reader.readAsDataURL(input.files[0]);
-	  }
-	}
-	</script>
+const setPostal = () => {
+  const postal_front = document.getElementById('postal_front').value;
+  const postal_back = document.getElementById('postal_back').value;
+  const postal = document.getElementById('postal');
+  postal.value = postal_front + postal_back;
+}
+</script>
 </head>
+<?php
+$pref = array(
+    '北海道',
+    '青森県',
+    '岩手県',
+    '宮城県',
+    '秋田県',
+    '山形県',
+    '福島県',
+    '茨城県',
+    '栃木県',
+    '群馬県',
+    '埼玉県',
+    '千葉県',
+    '東京都',
+    '神奈川県',
+    '新潟県',
+    '富山県',
+    '石川県',
+    '福井県',
+    '山梨県',
+    '長野県',
+    '岐阜県',
+    '静岡県',
+    '愛知県',
+    '三重県',
+    '滋賀県',
+    '京都府',
+    '大阪府',
+    '兵庫県',
+    '奈良県',
+    '和歌山県',
+    '鳥取県',
+    '島根県',
+    '岡山県',
+    '広島県',
+    '山口県',
+    '徳島県',
+    '香川県',
+    '愛媛県',
+    '高知県',
+    '福岡県',
+    '佐賀県',
+    '長崎県',
+    '熊本県',
+    '大分県',
+    '宮崎県',
+    '鹿児島県',
+    '沖縄県'
+);
+?>
 <body>
     <header>
         <div class="logo_container">
@@ -64,9 +121,10 @@
 						<div class="input-container zipcode-container">
 							<p>郵便番号</p>
 							<div class="zipcode-container__wrapper">
-								<input type="text" name="zip_code" value="{{ old('zip_code') }}">
+								<input type="text" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
 								<span class="hyphen"><hr></span>
-								<input type="text" name="zip_code" value="{{ old('zip_code') }}">
+								<input type="text" name="zip_code_back" id="postal_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+								<input type="hidden" name="zip_code" id="postal" value="{{ old('zip_code') }}">
 							</div>	
 							@if ($errors->has('zip_code'))
 								<div class="error-msg">
@@ -76,17 +134,19 @@
 						</div>
 						<div class="input-container prefecture-container">
 							<p>都道府県</p>
-								<!-- <input type="text" name="address_prefecture" value="{{ old('address_prefecture') }}">
+							<div class="select-arrow">
+								<select name="address_prefecture" id="prefecture">
+								<option value="" disabled></option>
+									@foreach($pref as $_pref)
+										<option value="{{ $_pref }}" {{ (old('address_prefecture') === $_pref) ? 'selected' : '' }}>{{ $_pref }}</option>
+									@endforeach
+								</select>
+							</div>
 							@if ($errors->has('address_prefecture'))
 								<div class="error-msg">
 									<strong>{{ $errors->first('address_prefecture') }}</strong>
 								</div>
-							@endif -->
-							<div class="select-arrow">
-								<select name="address_prefecture" id="prefecture">
-								<option value=""></option>
-								</select>
-							</div>
+							@endif
 						</div>
 					</div>
 
