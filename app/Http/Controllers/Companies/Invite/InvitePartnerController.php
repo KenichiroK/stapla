@@ -29,6 +29,6 @@ class InvitePartnerController extends Controller
         Mail::to($request->email)->send(new InvitePartnerMail($company_id, $email));
 
         $partners = Partner::where('company_id', $company_user->company_id)->with(['projectPartners.project', 'TaskPartners.task'])->paginate(6);;
-        return view('company/partner/index', compact('partners', 'company_user'));
+        return redirect()->route('company.partner.index')->with('send_success', $email.'に招待メールを送信しました。');
     }
 }

@@ -59,7 +59,8 @@ class InvoiceController extends Controller
             }
 
             $completed = '変更を保存しました。';
-            return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed'));
+
+            return redirect()->route('partner.setting.invoice.create')->with('completed', $completed);
         }
 
         $new_partner_invoice = new PartnerInvoice;
@@ -76,7 +77,7 @@ class InvoiceController extends Controller
         $partner_invoice = $new_partner_invoice;
 
         $completed = '変更を保存しました。';
-        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed'));
+        return redirect()->route('partner.setting.invoice.create')->with('completed', $completed);
     }
 
     /**

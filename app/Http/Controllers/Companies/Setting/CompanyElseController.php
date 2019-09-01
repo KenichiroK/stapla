@@ -22,9 +22,7 @@ class CompanyElseController extends Controller
         $company_user = CompanyUser::where('auth_id', $auth->id)->get()->first();
         $company = Company::findOrFail($company_user->company_id);
 
-        $completed = '';
-
-        return view('company/setting/companyElse/create', compact('company', 'completed', 'company_user'));
+        return view('company/setting/companyElse/create', compact('company', 'company_user'));
     }
 
     public function store(Request $request)
@@ -35,10 +33,9 @@ class CompanyElseController extends Controller
 
         if($company) {
             $company->update($request->all());
-
             $completed = '変更を保存しました。';
 
-            return view('company/setting/companyElse/create', compact('company', 'completed', 'company_user'));
+            return redirect()->route('company.setting.companyElse.create')->with('completed', $completed);
         }
     }
 

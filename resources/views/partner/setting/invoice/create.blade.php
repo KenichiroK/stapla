@@ -217,9 +217,9 @@ $pref = array(
 );
 ?>
 <div class="main-wrapper">
-	@if ($completed)
+	@if (session('completed'))
 	<div class="complete-container">
-		<p>{{ $completed }}</p>
+		<p>{{ session('completed') }}</p>
 	</div>
 	@endif
 
@@ -227,13 +227,13 @@ $pref = array(
 	<div class="error-container">
 		<p>入力に問題があります。再入力して下さい。</p>
 	</div>
-  @endif
+  	@endif
 
 	@if(Session::has('not_register_invoice'))
 	<div class="error-container">
 		<p>{{ session('not_register_invoice') }}</p>
 	</div>
-  @endif
+  	@endif
 
 	<div class="title-container">
 		<h3>設定</h3>
