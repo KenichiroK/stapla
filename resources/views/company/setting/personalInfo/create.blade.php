@@ -233,16 +233,7 @@ const setPreview = (input) => {
 
                     <div class="short-input-container">
                         <p>メールアドレス</p>
-                        @if ($companyUser)
-                            <input type="text" name="email" value="{{ old('email', $companyUser->companyUserAuth->email) }}">
-                        @else
-                            <input type="text" name="email" value="{{ old('email') }}">
-                        @endif
-                        @if ($errors->has('email'))
-                            <div>
-                                <strong style='color: #e3342f;'>{{ $errors->first('email') }}</strong>
-                            </div>
-                        @endif
+                        <p class="text_content">{{ $companyUser->companyUserAuth->email }}</p>
                     </div>
 
                     <div class="short-input-container">
