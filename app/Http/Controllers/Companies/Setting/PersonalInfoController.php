@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\CompanyUser;
+use App\Http\Requests\Companies\PersonalRequest;
+
 
 
 class PersonalInfoController extends Controller
@@ -41,7 +43,7 @@ class PersonalInfoController extends Controller
         return view('/company/setting/personalInfo/create', compact('companyUser', 'completed'));
     }
 
-    public function update(Request $request)
+    public function update(PersonalRequest $request)
     {
         $auth = Auth::user();
         $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
