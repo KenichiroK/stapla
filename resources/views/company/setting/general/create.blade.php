@@ -261,7 +261,7 @@ $pref = array(
 			<div class="top-area">
 				<div class="name-container">
 					<p>会社名</p>
-                    <div>{{ $company->company_name }}</div>
+                    <p class="text_content">{{ $company->company_name }}</p>
 				</div>
 				<div class="name-container">
 					<p>代表者名</p>

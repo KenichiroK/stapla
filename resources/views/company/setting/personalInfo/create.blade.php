@@ -247,7 +247,7 @@ const setPreview = (input) => {
 
                     <div class="short-input-container">
                         <p>企業名</p>
-                        <div>{{ $companyUser->company->company_name }}</div>
+                        <p class="text_content">{{ $companyUser->company->company_name }}</p>
                     </div>
 
                     <div class="short-input-container">
