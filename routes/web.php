@@ -33,7 +33,7 @@ Route::group(['prefix' => 'partner'], function(){
 	
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 		// register_flow
-		Route::get('/register/doneVerify', 'Partners\InitialRegisterController@doneVerifyShow')->name('partner.register.doneVerify.doneVerifyShow');
+		Route::get('/register/doneVerify', 'Partners\InitialRegisterController@doneVerifyShow')->name('partner.register.doneVerify.doneVerify');
 		Route::get('/register/initialRegistration', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
 		Route::post('/register/initial/personal', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
 		Route::get('/register/preview/previwShow', 'Partners\InitialRegisterController@previwShow')->name('parnter.register.preview.previwShow');

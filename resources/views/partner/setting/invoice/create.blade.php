@@ -21,14 +21,14 @@ const setPostal = () => {
   const front = document.getElementById('postal_front').value;
   const back = document.getElementById('postal_back').value;
   const postal = document.getElementById('postal');
-  postal.value = Number(front + back);
+  postal.value = front + back;
 }
 
 window.onload = () => {
   const front = document.getElementById('postal_front').value;
   const back = document.getElementById('postal_back').value;
   const postal = document.getElementById('postal');
-  postal.value = Number(front + back);
+  postal.value = front + back;
 }
 </script>
 @endsection
