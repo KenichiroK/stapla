@@ -24,11 +24,17 @@ const setPostal = () => {
   postal.value = front + back;
 }
 
+const setTel = () => {
+	const tel_front = document.getElementById('tel_front').value;
+	const tel_middle = document.getElementById('tel_middle').value;
+	const tel_back = document.getElementById('tel_back').value;
+	const tel = document.getElementById('tel');
+	tel.value = tel_front + tel_middle + tel_back;
+}
+
 window.onload = () => {
-  const front = document.getElementById('postal_front').value;
-  const back = document.getElementById('postal_back').value;
-  const postal = document.getElementById('postal');
-  postal.value = front + back;
+	setPostal();
+	setTel();
 }
 </script>
 @endsection
@@ -288,14 +294,9 @@ $pref = array(
 							<input id="postal" type="hidden" name="zip_code">
 						@endif
 					</div>
-					@if ($errors->has('zip_code_front'))
+					@if ($errors->has('zip_code'))
 						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('zip_code_front') }}</strong>
-						</div>
-					@endif
-					@if ($errors->has('zip_code_back') && !$errors->has('zip_code_front'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('zip_code_back') }}</strong>
+							<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -365,20 +366,16 @@ $pref = array(
 				<div class="tel-container">
 					<p>電話番号</p>
 					<div class="tel-container__wrapper">
-						@if ($partner)
-							<input type="text" name="tel" value="{{ old('tel', $partner->tel) }}" placeholder="">
+							<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front', substr($partner->tel, 0, 3)) }}" onchange="setTel()">
 								<span class="hyphen">
 									<hr>
 								</span>
-							<input type="text">
+							<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle', substr($partner->tel, 3, 4)) }}" onchange="setTel()">
 								<span class="hyphen">
 									<hr>
 								</span>
-							<input type="text">
-							<!-- <input type="text" name="tel" value="{{ old('tel', $partner->tel) }}"> -->
-						@else
-							<input type="text" name="tel" value="{{ old('tel') }}">
-						@endif
+							<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back', substr($partner->tel, 7)) }}" onchange="setTel()">
+							<input type="hidden" name="tel" id="tel">
 						@if ($errors->has('tel'))
 							<div>
 								<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
