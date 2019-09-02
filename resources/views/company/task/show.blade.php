@@ -290,7 +290,7 @@
                     件数
                 </dt>
                 <dd>
-                    {{ $task->numberOfCases }}件
+                    {{ $task->cases }}件
                 </dd>
             </dl>
             <dl>
@@ -298,7 +298,7 @@
                     発注額
                 </dt>
                 <dd class="orderprice">
-                    <span class="tax">税込</span><span class="yen">￥</span>{{ number_format( ($task->price * $task->numberOfCases) * (1 + $task->tax)) }}
+                    <span class="tax">税込</span><span class="yen">￥</span>{{ number_format( ($task->price * $task->cases) * (1 + $task->tax)) }}
                 </dd>
             </dl>
             <dl>

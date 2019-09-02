@@ -69,7 +69,7 @@ class TaskController extends Controller
             'task_content'    => 'required',
             'budget'          => 'required',
             'price'           => 'required',
-            'numberOfCases'   => 'required',
+            'cases'           => 'required',
             'fee_format'      => 'required',
         ]);
 
@@ -92,7 +92,7 @@ class TaskController extends Controller
         $task->budget          = $request->budget;
         $task->tax             = 0.08;
         $task->price           = $request->price;
-        $task->numberOfCases   = $request->numberOfCases;
+        $task->cases   = $request->cases;
         $task->comment         = $request->comment;
         $task->inspection_date = $request->inspection_date;
         $task->fee_format      = $request->fee_format;

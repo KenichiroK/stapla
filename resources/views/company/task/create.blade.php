@@ -499,10 +499,10 @@
                                         </div>
                                     </div>
                                     <div class="partner-container__wrpper__item-container__order-uninum__number__contents">
-                                        <input class="input" name='numberOfCases' type="text">
-                                        @if ($errors->has('numberOfCases'))
+                                        <input class="input" name='cases' type="text">
+                                        @if ($errors->has('cases'))
                                             <span class="invalid-feedback" role="alert">
-                                                <strong style='color: #e3342f'>{{ $errors->first('numberOfCases') }}</strong>
+                                                <strong style='color: #e3342f'>{{ $errors->first('cases') }}</strong>
                                             </span>
                                         @endif
                                         <div class="partner-container__wrpper__item-container__order-uninum__number__contents__class">
