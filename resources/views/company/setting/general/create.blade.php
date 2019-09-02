@@ -29,7 +29,7 @@ window.onload = () => {
   const front = document.getElementById('postal_front').value;
   const back = document.getElementById('postal_back').value;
   const postal = document.getElementById('postal');
-  postal.value = ront + back;
+  postal.value = front + back;
 }
 </script>
 @endsection
