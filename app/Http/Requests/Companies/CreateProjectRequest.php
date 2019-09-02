@@ -32,7 +32,6 @@ class CreateProjectRequest extends FormRequest
             'partner_id'       => 'required',
             'started_at'       => 'required',
             'ended_at'         => 'required | after:started_at',
-            'budget'           => 'required | digits:10',
             'budget'           => 'required',
         ];
     }
