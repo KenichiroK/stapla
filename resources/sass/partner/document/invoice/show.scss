@@ -4,7 +4,6 @@
 	padding: 40px;
 
 	.title-container {
-    margin-bottom: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,15 +13,19 @@
       color: #43425d;
       margin-bottom: 0;
       font-size: 28px;
+      padding: 24px 0;
     }
     
     button {
-      color: #43425d;
+      padding: 4px;
+      width: 140px;
       background-color: #fff;
-      border: 1px solid #43425d;
-      border-radius: 48px;
+      color: #43425D;
+      margin: 24px 0;
+      border-radius: 100px;
+      border: 2px solid #43425D;
+      font-size: 18px;
       font-weight: bold;
-      padding: 8px 40px;
     }
 
     button:hover {
@@ -33,18 +36,20 @@
 
   .document-container {
     width: 100%;
-    padding: 48px;
     margin-bottom: 24px;
 
     &__wrapper{
       margin: auto;
+      margin-bottom: 30px;
 
       .title-container {
+        margin-bottom: 40px;
         h4 {
-          font-size: 20px;
+          font-size: 28px;
           width: 100%;
           text-align: right;
           color: #43425d;
+          margin-bottom: 0;
         }
       }
   
@@ -58,7 +63,10 @@
           text-align: left;
   
           p {
-            margin-bottom: 8px;
+            margin-bottom: 0;
+            font-size: 20px;
+            color: #43425D;
+            line-height: 40px;
           }
         }
   
@@ -68,7 +76,10 @@
           text-align: right;
   
           p {
-            margin-bottom: 8px;
+            margin-bottom: 0;
+            font-size: 13px;
+            color: #4D4F5C;
+            line-height: 23px;
           }
         }
       }
@@ -177,6 +188,9 @@
   
           span {
             font-size: 12px;
+            margin-left: 5px;
+            margin-top: 8px;
+            display: block;
           }
         }
       }

@@ -159,10 +159,8 @@
 <div class="main-wrapper">
 	<div class="title-container">
 		<h3>請求書プレビュー</h3>
-​
-		<button id="print_btn" type="button">印刷</button>
+		<button id="print_btn" type="button">プリント</button>
 	</div>
-​
 	<div id="print" class="document-container A4">
         <!-- 印刷用 -->
 		<div class="pageout">
@@ -215,6 +213,36 @@
                                     <td>{{ number_format($requestExpence->total) }}</td>
                                 </tr>
                             @endforeach
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
@@ -338,6 +366,36 @@
 							<td></td>
 						</tr>
 						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+                        </tr>
+                        <tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+                        </tr>
+                        <tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+                        </tr>
+                        <tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+                        </tr>
+                        <tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+                        </tr>
+                        <tr>
 							<td></td>
 							<td></td>
 							<td></td>
