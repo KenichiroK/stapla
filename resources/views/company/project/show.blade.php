@@ -138,7 +138,6 @@
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -247,12 +246,12 @@
                         </div>
                     </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->price) }}円</div></li>
-                    <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
+                    <!-- <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
                         <div class="detail-container__list__item__content file-item">
                             <div class="imgbox"><img src="../../../images/file.png" alt=""></div>
                             <p>ファイル名</p>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

@@ -287,9 +287,9 @@
             </div>
         </div>
         <!-- submitボタン -->
-        <div class="submit-btn-container">
+        <!-- <div class="submit-btn-container">
             <a href="" class="button submit-btn-container__button">提出</a>
-        </div>
+        </div> -->
     </div>
 </div>
 @endsection

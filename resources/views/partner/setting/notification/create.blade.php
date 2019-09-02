@@ -157,9 +157,9 @@
 	<div class="menu-container">
 		<ul>
 			<li><a href="/partner/setting/invoice">請求情報設定</a></li>
-			<li><a href="#">メールアドレス・パスワード設定</a></li>
+			<!-- <li><a href="#">メールアドレス・パスワード設定</a></li> -->
 			<li><a href="/partner/setting/notification" class="isActive">通知設定</a></li>
-			<li><a href="#">個人情報の設定</a></li>
+			<!-- <li><a href="#">個人情報の設定</a></li> -->
 		</ul>
 	</div>
 

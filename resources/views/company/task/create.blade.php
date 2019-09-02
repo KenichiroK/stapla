@@ -397,7 +397,7 @@
                             </div>
                         </div>
                         <!-- 項目：資料 -->
-                        <div class="main-container__wrapper__item-container">
+                        <!-- <div class="main-container__wrapper__item-container">
                             <div class="item-name-wrapper">
                                 <div class="item-name-wrapper__item-name document">
                                     資料
@@ -405,7 +405,7 @@
                             </div>
                             <div class="is-boxed main-container__wrapper__item-container__filearea">
                                 <p class="uplaod">アップロード</p>
-                                <!-- <label class="file-label main-container__wrapper__item-container__filearea__label">
+                                <label class="file-label main-container__wrapper__item-container__filearea__label">
                                     <input class="file-input file-label main-container__wrapper__item-container__filearea__label" type="file" name="resume" >
                                     <span class="file-cta main-container__wrapper__item-container__filearea__label__file-cta">
                                     <span class="file-icon">
@@ -416,10 +416,10 @@
                                         Choose a file…
                                     </span>
                                     </span>
-                                </label> -->
+                                </label>
                                 <img src="../../../images/dragdrop.png" alt="">
                             </div>
-                        </div>
+                        </div> -->
                     </div>      
                 </div>
 
@@ -531,7 +531,7 @@
                             </div>
                         </div>
                         <!-- 発注額 -->
-                        <div class="partner-container__wrpper__item-container price">
+                        <!-- <div class="partner-container__wrpper__item-container price">
                             <div class="item-name-wrapper">
                                 <div class="item-name-wrapper__item-name">
                                     発注額
@@ -541,7 +541,7 @@
                                 <p><span class="tax">税抜</span><span class="yen">￥</span>200,000</p>
                                 <p><span class="tax">税込</span><span class="yen">￥</span>216,000</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 

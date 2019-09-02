@@ -152,10 +152,10 @@
             <h1 class="top-container__title">プロジェクト</h1>
             <div>
                 <p class="control has-icons-left serch-wrp">
-                    <input class="search-project input" type="text" placeholder="プロジェクトを検索">
+                    <!-- <input class="search-project input" type="text" placeholder="プロジェクトを検索">
                     <span class="">
                     <img src="../../../images/searchicon.png" alt="serch">
-                    </span>
+                    </span> -->
                 </p>
             </div>
             <div class="control project-wrp">
@@ -165,7 +165,7 @@
 
         <ul id="tab-button" class="tab-button">
             <li class="all"><a href="#tab01">プロジェクト</a></li>
-            <li class="done"><a href="#tab02">完了したプロジェクト</a></li>
+            <!-- <li class="done"><a href="#tab02">完了したプロジェクト</a></li> -->
         </ul>
 
         <div class="project-container">

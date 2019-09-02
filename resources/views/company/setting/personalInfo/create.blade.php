@@ -181,7 +181,7 @@ const setPreview = (input) => {
 			<li><a href="/company/setting/general">会社基本情報設定</a></li>
 			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
 			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
-			<li><a href="/company/setting/account">アカウント設定</a></li>
+			<!-- <li><a href="/company/setting/account">アカウント設定</a></li> -->
 			<li><a href="/company/setting/personalInfo" class="isActive">個人情報の設定</a></li>
 		</ul>
     </div>
