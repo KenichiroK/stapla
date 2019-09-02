@@ -54,13 +54,9 @@ class PersonalInfoController extends Controller
                 $companyUser->picture = $request->picture->storeAs('public/images/company/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
                 $companyUser->save();
             }
-
             $completed = '変更を保存しました。';
 
-            return view('/company/setting/personalInfo/create', compact('companyUser', 'completed'));
-        } else {
-            $error = '入力に問題があります。再入力して下さい。';
-            return view('/company/setting/personalInfo/create', compact('companyUser', 'completed'));
+            return redirect()->route('company.setting.personalInfo.edit')->with('completed', $completed);
         }
     }
 

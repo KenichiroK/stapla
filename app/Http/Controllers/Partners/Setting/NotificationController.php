@@ -52,7 +52,8 @@ class NotificationController extends Controller
         if ($setting) {
             $setting->update($request->all());
             $completed = '変更を保存しました。';
-            return view('partner/setting/notification/create', compact('partner', 'setting', 'completed'));
+
+            return redirect()->route('partner.setting.notification.create')->with('completed', $completed);
         }
         $setting = new PartnerAccountSetting;
         $setting->partner_id         = $partner->id;
@@ -61,7 +62,8 @@ class NotificationController extends Controller
         $setting->slack              = $request->slack;
         $setting->save();
         $completed = '変更を保存しました。';
-        return view('partner/setting/notification/create', compact('partner', 'setting', 'completed'));
+        
+        return redirect()->route('partner.setting.notification.create')->with('completed', $completed);
     }
 
     /**

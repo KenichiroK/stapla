@@ -161,17 +161,18 @@ const setPreview = (input) => {
 
 @section('content')
 <div class="main-wrapper">
-    @if ($completed)
-        <div class="complete-container">
-            <p>{{ $completed }}</p>
-        </div>
-        @endif
-
-        @if(count($errors) > 0)
-        <div class="error-container">
-            <p>入力に問題があります。再入力して下さい。</p>
-        </div>
+    @if (session('completed'))
+    <div class="complete-container">
+        <p>{{ session('completed') }}</p>
+    </div>
     @endif
+
+    @if(count($errors) > 0)
+    <div class="error-container">
+        <p>入力に問題があります。再入力して下さい。</p>
+    </div>
+    @endif
+    
 	<div class="title-container">
 		<h3>設定</h3>
 	</div>
