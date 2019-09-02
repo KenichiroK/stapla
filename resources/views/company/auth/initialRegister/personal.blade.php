@@ -170,9 +170,15 @@ $pref = array(
 						</div>
 					</div>
 					<div class="bottom-container last">
-						<div class="input-container">
+						<div class="tel-container">
 							<p>電話番号</p>
-								<input type="text" name="tel" value="{{ old('tel') }}">
+								<div class="tel-container__wrapper">
+									<input type="text" name="tel" value="{{ old('tel') }}">
+									<span class="hyphen"><hr></span>
+									<input type="text" name="tel" value="{{ old('tel') }}">
+									<span class="hyphen"><hr></span>
+									<input type="text" name="tel" value="{{ old('tel') }}">
+								</div>
 								@if ($errors->has('tel'))
 									<div class="error-msg">
 										<strong>{{ $errors->first('tel') }}</strong>

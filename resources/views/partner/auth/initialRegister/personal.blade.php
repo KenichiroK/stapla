@@ -176,7 +176,7 @@ $pref = array(
 							</div>
 						</div>
 
-						<div class="below-address-container last">
+						<div class="below-address-container">
 							<div class="building-container">
 								<p>建物</p>
 								<input type="text" name="building" value="{{ old('building') }}">
@@ -186,10 +186,18 @@ $pref = array(
 									</div>
 								@endif
 							</div>
+						</div>
 
-							<div class="building-container">
+						<div class="below-address-container last">
+							<div class="tel-container">
 								<p>電話番号</p>
-								<input type="text" name="tel" value="{{ old('tel') }}">
+								<div class="tel-container__wrapper">
+									<input type="text" name="tel" value="{{ old('tel') }}">
+									<span class="hyphen"><hr></span>
+									<input type="text" name="tel" value="{{ old('tel') }}">
+									<span class="hyphen"><hr></span>
+									<input type="text" name="tel" value="{{ old('tel') }}">
+								</div>
 								@if ($errors->has('tel'))
 									<div class="error-msg">
 										<strong>{{ $errors->first('tel') }}</strong>
