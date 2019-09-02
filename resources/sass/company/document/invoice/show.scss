@@ -1,46 +1,41 @@
 .main-wrapper {
-	width: 100%;
-	margin: auto;
+  width: 90%;
+  margin: auto;
   padding: 40px;
   font-family: 'Source Sans Pro';
-
-	.title-container {
-    margin-bottom: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-		h3 {
-			font-weight: bold;
-      color: #43425d;
-      margin-bottom: 0;
-      font-size: 28px;
-    }
-    
-    button {
-      color: #43425d;
-      background-color: #fff;
-      border: 2px solid #43425d;
-      border-radius: 100px;
-      font-weight: bold;
-      font-size: 16px;
-      padding: 6px 45px;
-      width: 140px;
-    }
-
-    button:hover {
-      opacity: 0.7;
-      transition: 0.3s;
-    }
+  .title-container {
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h3 {
+    font-weight: bold;
+    color: #43425d;
+    margin-bottom: 0;
+    font-size: 28px;
   }
-
-  .document-container {
-    width: 100%;
+  
+  button {
+    color: #43425d;
     background-color: #fff;
-    padding: 30px 40px 60px 40px;
-    margin-bottom: 40px;
+    border: 2px solid #43425d;
+    border-radius: 100px;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 6px 45px;
+    width: 140px;
+  }
+  button:hover {
+    opacity: 0.7;
+    transition: 0.3s;
+  }
+}
+.document-container {
+  width: 100%;
+  margin-bottom: 40px;
+  &__wrapper{
+    margin: auto;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-
     .title-container {
       h4 {
         font-size: 28px;
@@ -251,40 +246,35 @@
       }
     }
   }
-
-  .button-container {
-    width: 100%;
-    text-align: center;
-
-    button {
-      background-color: #43425d;
-      color: #fff;
-      font-weight: bold;
-      padding: 8px 40px;
-      border-radius: 48px;
-      font-size: 16px;
-      cursor: pointer;
-      outline: none;
-    }
-
-    button:hover {
-      opacity: 0.7;
-      transition: 0.3s;
-    }
+}
+.button-container {
+  width: 100%;
+  text-align: center;
+  button {
+    background-color: #43425d;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 40px;
+    border-radius: 48px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
   }
-
+  button:hover {
+    opacity: 0.7;
+    transition: 0.3s;
+  }
+}
   .send-done  {
     text-align: center;
     color: #aaa;
   }
-
   .actiionButton {
     margin: 24px 0;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-
     .done {
       border-radius: 100px;
       border: 1px solid #43425d;
@@ -295,7 +285,6 @@
       cursor: pointer;
       font-size: 15px;
     }
-
     .undone {
       border-radius: 100px;
       border: 2px solid #43425d;
@@ -307,7 +296,6 @@
       font-size: 15px;
       margin-right: 40px;
     }
-
     button:hover {
       opacity: 0.7;
       transition: .3s;

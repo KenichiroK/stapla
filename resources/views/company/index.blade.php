@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Impro</title>
 
     
 
@@ -52,11 +52,12 @@
             </div>
 
             <div class="content-wrapper">
-            @yield('content')
+                @yield('content')
             </div>
         </main>
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('pdf-js')
 </body>
 </html>

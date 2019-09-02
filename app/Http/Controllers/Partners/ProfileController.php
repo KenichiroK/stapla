@@ -53,11 +53,8 @@ class ProfileController extends Controller
                 $partner->save();
             }
             $completed = '変更を保存しました。';
-            
-            return view('partner/profile/create', compact(['partner', 'completed']));   
-        } else {
-            $errors = '入力に問題があります。再入力して下さい。';
-            return view('partner/profile/create', compact(['partner', 'errors'])); 
+
+            return redirect()->route('partner.profile.create')->with('completed', $completed);
         }
     }
 

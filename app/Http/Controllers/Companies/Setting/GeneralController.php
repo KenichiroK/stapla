@@ -49,8 +49,9 @@ class GeneralController extends Controller
         $company_user = CompanyUser::where('auth_id', $auth->id)->first();
         $company = Company::findOrFail($company_user->company_id);
         $company->update($request->all());
-
-        return view('company/setting/general/create', compact('company', 'company_user'));
+        $completed = '変更を保存しました。';
+        
+        return redirect()->route('company.setting.general.create')->with('completed', $completed);
     }
 
     public function destroy($id)

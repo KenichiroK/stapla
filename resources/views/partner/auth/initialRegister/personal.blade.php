@@ -71,113 +71,144 @@ $pref = array(
     <main>
         <div class="main-wrapper">
 			<div class="title-container">
-				<h3>プロフィール登録</h3>
+				<h3>プロフィール設定</h3>
 			</div>
 
 			<form action="{{ url('partner/register/initial/personal') }}" method="POST">
 				@csrf
-				<div class="profile-container">
-
-					<div class="name-container">
-						<p>名前</p>
-							<input type="text" name="name" value="{{ old('name') }}">								
-							@if ($errors->has('name'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('name') }}</strong>
-								</div>
-							@endif
+				<div class="edit-container top">
+					<div class="image-container">
+						<div class="imgbox">
+							<img id="profile_image_preview" src="../../../images/upload4.png" alt="プレビュー画像">
+						</div> 
+						<label for="picture">
+							画像をアップロード
+							<input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" onchange="setPreview(this)" style="display: none;">
+						</label>
 					</div>
+					<div class="profile-container">
 
+						<div class="name-container short-input-container">
+							<p>名前・ニックネーム<span class="required">(必須)</span></p>
+								<input type="text" name="name" value="{{ old('name') }}">								
+								@if ($errors->has('name'))
+									<div class="error-msg">
+										<strong>{{ $errors->first('name') }}</strong>
+									</div>
+								@endif
+						</div>
+
+						<div class="short-input-container">
+							<p>企業名<span class="any">(任意)</span></p>
+								<input type="text" name="" value="">	
+						</div>
+
+						<div class="short-input-container">
+							<p>部署<span class="any">(任意)</span></p>
+								<input type="text" name="" value="">	
+						</div>
+
+						<div class="short-input-container">
+							<p>職種<span class="required">(必須)</span></p>
+								<input type="text" name="" value="" placeholder="例）UIデザイナー、フロントエンドエンジニア、etc">	
+						</div>
+
+						<div class="text-container">
+								<p>プロフィールメッセージ</p>
+								<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction') }}</textarea>
+						</div>
+						
+					</div>
+				</div>
+
+				<div class="address-container">
 					<div class="above-address-container">
-						<div class="zipcode-container">
-							<p>郵便番号</p>
-								<input type="text" name="zip_code" value="{{ old('zip_code') }}">
+							<div class="zipcode-container">
+								<p>郵便番号</p>
+								<div class="zipcode-container__wrapper">
+									<input type="text" name="zip_code" value="{{ old('zip_code') }}">
+									<span class="hyphen"><hr></span>
+									<input type="text" name="zip_code" value="{{ old('zip_code') }}">
+								</div>
 								@if ($errors->has('zip_code'))
-									<div>
-										<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
+									<div class="error-msg">
+										<strong>{{ $errors->first('zip_code') }}</strong>
 									</div>
 								@endif
-						</div>
-
-						<div class="prefecture-container">
-							<p>都道府県</p>
-							<div class="select-arrow">
-								<select name="prefecture" id="prefecture">
-										@foreach($pref as $_pref)
-										<option value="{{ $_pref }}">{{ $_pref }}</option>
-										@endforeach
-								</select>
 							</div>
-							@if ($errors->has('prefecture'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('prefecture') }}</strong>
-								</div>
-							@endif
-						</div>
-					</div>
 
-					<div class="below-address-container">
-						<div class="city-container">
-							<p>市区町村区</p>
-								<input type="text" name="city" value="{{ old('city') }}">
-								@if ($errors->has('city'))
-									<div>
-										<strong style='color: #e3342f;'>{{ $errors->first('city') }}</strong>
+							<div class="prefecture-container">
+								<p>都道府県</p>
+								<div class="select-arrow">
+									<select name="prefecture" id="prefecture">
+											@foreach($pref as $_pref)
+											<option value="{{ $_pref }}">{{ $_pref }}</option>
+											@endforeach
+									</select>
+								</div>
+								@if ($errors->has('prefecture'))
+									<div class="error-msg">
+										<strong>{{ $errors->first('prefecture') }}</strong>
 									</div>
 								@endif
+							</div>
 						</div>
 
-						<div class="building-container">
-							<p>番地</p>
-								<input type="text" name="street" value="{{ old('street') }}">
-								@if ($errors->has('street'))
-									<div>
-										<strong style='color: #e3342f;'>{{ $errors->first('street') }}</strong>
+						<div class="below-address-container">
+							<div class="city-container">
+								<p>市区町村区</p>
+									<input type="text" name="city" value="{{ old('city') }}">
+									@if ($errors->has('city'))
+										<div class="error-msg">
+											<strong>{{ $errors->first('city') }}</strong>
+										</div>
+									@endif
+							</div>
+
+							<div class="building-container">
+								<p>番地</p>
+									<input type="text" name="street" value="{{ old('street') }}">
+									@if ($errors->has('street'))
+										<div class="error-msg">
+											<strong>{{ $errors->first('street') }}</strong>
+										</div>
+									@endif
+							</div>
+						</div>
+
+						<div class="below-address-container last">
+							<div class="building-container">
+								<p>建物</p>
+								<input type="text" name="building" value="{{ old('building') }}">
+								@if ($errors->has('building'))
+									<div class="error-msg">
+										<strong>{{ $errors->first('building') }}</strong>
 									</div>
 								@endif
-						</div>
-					</div>
+							</div>
 
-					<div class="below-address-container">
-						<div class="building-container">
-							<p>建物</p>
-							<input type="text" name="building" value="{{ old('building') }}">
-							@if ($errors->has('building'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('building') }}</strong>
-								</div>
-							@endif
+							<div class="building-container">
+								<p>電話番号</p>
+								<input type="text" name="tel" value="{{ old('tel') }}">
+								@if ($errors->has('tel'))
+									<div class="error-msg">
+										<strong>{{ $errors->first('tel') }}</strong>
+									</div>					
+								@endif
+									<!-- 近日中に入力箇所３つに分けての電話番号を入力する実装のために残してあります。 -->
+									<!-- <input type="text" name="tel" value="{{ old('tel') }}" placeholder="">
+										<span class="hyphen">
+											<hr>
+										</span>
+									<input type="text">
+										<span class="hyphen">
+											<hr>
+										</span>
+									<input type="text"> -->
+							</div>
 						</div>
 
-						<div class="building-container">
-							<p>電話番号</p>
-							<input type="text" name="tel" value="{{ old('tel') }}">
-							@if ($errors->has('tel'))
-								<div>
-									<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
-								</div>					
-							@endif
-								<!-- 近日中に入力箇所３つに分けての電話番号を入力する実装のために残してあります。 -->
-								<!-- <input type="text" name="tel" value="{{ old('tel') }}" placeholder="">
-									<span class="hyphen">
-										<hr>
-									</span>
-								<input type="text">
-									<span class="hyphen">
-										<hr>
-									</span>
-								<input type="text"> -->
-						</div>
-					</div>
 
-					<div class="below-address-container">
-						<div class="city-container">
-							<p>自己紹介</p>
-							<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction') }}</textarea>
-						</div>
-					</div>
-
-					
 				</div>
 
 				<div class="btn-container">
