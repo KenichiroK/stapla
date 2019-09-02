@@ -80,7 +80,8 @@ class TaskController extends Controller
     }
     
     public function store(CreateTaskRequest $request)
-    {         
+    {
+        // return $request;
         $task = new Task;
         $task->project_id      = $request->project_id;
         $user = Auth::user();
@@ -91,8 +92,8 @@ class TaskController extends Controller
         $task->partner_id      = $request->partner_id;
         $task->name            = $request->task_name;
         $task->content         = $request->task_content;
-        $task->started_at      = date('Y-m-d', strtotime($request->started_at));
-        $task->ended_at        = date('Y-m-d', strtotime($request->ended_at));
+        $task->started_at      = date('Y-m-d-H', strtotime($request->started_at.'0000'));
+        $task->ended_at        = date('Y-m-d-H', strtotime($request->ended_at.'0000'));
         $task->status          = 1;
         $task->purchaseorder   = false;
         $task->invoice         = false;

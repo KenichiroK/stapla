@@ -235,11 +235,13 @@
                             {{ explode('-', explode(' ', $task->started_at)[0] )[0] }}年
                             {{ explode('-', explode(' ', $task->started_at)[0] )[1] }}月
                             {{ explode('-', explode(' ', $task->started_at)[0] )[2] }}日
+                            {{ explode(':', explode(' ', $task->started_at)[1] )[0] }}時
                         </p>
                         <p><span>終了日</span>
                             {{ explode('-', explode(' ', $task->ended_at)[0] )[0] }}年
                             {{ explode('-', explode(' ', $task->ended_at)[0] )[1] }}月
                             {{ explode('-', explode(' ', $task->ended_at)[0] )[2] }}日
+                            {{ explode(':', explode(' ', $task->ended_at)[1] )[0] }}時
                         </p>
                     </div>
                 </dd>
