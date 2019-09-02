@@ -11,23 +11,28 @@ use App\Models\Partner;
 
 class InitialRegisterController extends Controller
 {
-    public function preRegisteredShow()
+    public function doneVerify()
     {
-        return view('partner/auth/verify');
-    }
-    public function doneVerifyShow()
-    {
-        return view('partner/auth/initialRegister/doneVerify', compact('company_id'));
+        $partnerAuth = Auth::user();
+        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        
+        if(isset($partner)){
+            return  redirect('partner/dashboard');
+        } else{
+            return view('partner/auth/initialRegister/doneVerify', compact('company_id'));
+        }
     }
 
     public function createPartner()
     {
-        return view('partner/auth/initialRegister/personal');
-    }
-
-    public function toCreatePartner(Request $request)    
-    {
-        return view('partner/auth/initialRegister/personal', compact('request'));
+        $partnerAuth = Auth::user();
+        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        
+        if(isset($partner)){
+            return  redirect('partner/dashboard');
+        } else{
+            return view('partner/auth/initialRegister/personal');
+        }
     }
 
     public function preview(PartnerRequest $request)
@@ -38,7 +43,14 @@ class InitialRegisterController extends Controller
     public function previwShow(Request $request)
     {
         $partnerAuth = Auth::user();
-        return view('partner/auth/initialRegister/preview', compact('request'));
+        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        
+        if(isset($partner)){
+            return  redirect('partner/dashboard');
+        } else{
+            return view('partner/auth/initialRegister/preview', compact('request'));
+        }
+        
     }
 
     public function previewStore(Request $request)

@@ -92,7 +92,7 @@ $pref = array(
 				<h3>企業情報登録</h3>
 			</div>
 
-			<form action="/company/register/initialRegistration" method="POST" enctype="multipart/form-data">
+			<form action="/company/register/personal" method="POST" enctype="multipart/form-data">
 				@csrf
 
 				<div class="edit-container-company">
