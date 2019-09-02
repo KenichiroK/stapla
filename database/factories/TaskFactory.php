@@ -24,6 +24,7 @@ $factory->define(App\Models\Task::class, function (Faker $faker) {
         'budget'            => $faker->randomElement([10000, 50000, 100000]),
         'tax'               => 0.08,
         'price'             => $faker->randomElement([10000, 50000, 100000]),
+        'numberOfCases'     => $faker->randomElement([1, 1, 1, 2, 3]),
         'comment'           => $faker->sentence,
         'inspection_date'   => $faker->dateTimeThisDecade,
         'fee_format'        => $faker->randomElement(['固定', '時間', '日']),

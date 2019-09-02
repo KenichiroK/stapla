@@ -31,6 +31,7 @@ class CreateTasksTable extends Migration
             $table->integer('budget');
             $table->integer('price');
             $table->float('tax', 3, 2);
+            $table->integer('numberOfCases');
             $table->text('comment')->nullable();
             $table->dateTime('inspection_date')->nullable();
             $table->string('fee_format');
