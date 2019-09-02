@@ -7,6 +7,34 @@
     <title>Impro</title>
 	<link rel="stylesheet" href="{{ mix('css/auth/initialRegister/personal.css') }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<script>
+	const setPreview = (input) => {
+	  const preview = document.getElementById('profile_image_preview');
+	  if (input.files && input.files[0]) {
+	    let reader = new FileReader();
+	    reader.onload = (e) => {
+		  preview.src = e.target.result;
+	    }
+
+	    reader.readAsDataURL(input.files[0]);
+	  }
+	}
+
+	const setPostal = () => {
+	  const postal_front = document.getElementById('postal_front').value;
+	  const postal_back = document.getElementById('postal_back').value;
+	  const postal = document.getElementById('postal');
+	  postal.value = postal_front + postal_back;
+	}
+
+	const setTel = () => {
+	  const tel_front = document.getElementById('tel_front').value;
+	  const tel_middle = document.getElementById('tel_middle').value;
+	  const tel_back = document.getElementById('tel_back').value;
+	  const tel = document.getElementById('tel');
+	  tel.value = tel_front + tel_middle + tel_back;
+	}
+</script>
 </head>
 <body>
 
@@ -126,9 +154,10 @@ $pref = array(
 							<div class="zipcode-container">
 								<p>郵便番号</p>
 								<div class="zipcode-container__wrapper">
-									<input type="text" name="zip_code" value="{{ old('zip_code') }}">
+									<input type="text" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
 									<span class="hyphen"><hr></span>
-									<input type="text" name="zip_code" value="{{ old('zip_code') }}">
+									<input type="text" name="zip_code_back" id="postal_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+									<input type="hidden" name="zip_code" id="postal" value="{{ old('zip_code') }}">
 								</div>
 								@if ($errors->has('zip_code'))
 									<div class="error-msg">
@@ -142,7 +171,7 @@ $pref = array(
 								<div class="select-arrow">
 									<select name="prefecture" id="prefecture">
 											@foreach($pref as $_pref)
-											<option value="{{ $_pref }}">{{ $_pref }}</option>
+											<option value="{{ $_pref }}" {{ (old('prefecture') === $_pref) ? 'selected' : '' }}>{{ $_pref }}</option>
 											@endforeach
 									</select>
 								</div>
@@ -156,7 +185,7 @@ $pref = array(
 
 						<div class="below-address-container">
 							<div class="city-container">
-								<p>市区町村区</p>
+								<p>市区町村</p>
 									<input type="text" name="city" value="{{ old('city') }}">
 									@if ($errors->has('city'))
 										<div class="error-msg">
@@ -192,27 +221,18 @@ $pref = array(
 							<div class="tel-container">
 								<p>電話番号</p>
 								<div class="tel-container__wrapper">
-									<input type="text" name="tel" value="{{ old('tel') }}">
+									<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front') }}" onchange="setTel()">
 									<span class="hyphen"><hr></span>
-									<input type="text" name="tel" value="{{ old('tel') }}">
+									<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle') }}" onchange="setTel()">
 									<span class="hyphen"><hr></span>
-									<input type="text" name="tel" value="{{ old('tel') }}">
+									<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back') }}" onchange="setTel()">
+									<input type="hidden" name="tel" id="tel" value="{{ old('tel') }}">
 								</div>
 								@if ($errors->has('tel'))
 									<div class="error-msg">
 										<strong>{{ $errors->first('tel') }}</strong>
 									</div>					
 								@endif
-									<!-- 近日中に入力箇所３つに分けての電話番号を入力する実装のために残してあります。 -->
-									<!-- <input type="text" name="tel" value="{{ old('tel') }}" placeholder="">
-										<span class="hyphen">
-											<hr>
-										</span>
-									<input type="text">
-										<span class="hyphen">
-											<hr>
-										</span>
-									<input type="text"> -->
 							</div>
 						</div>
 

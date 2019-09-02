@@ -18,18 +18,14 @@ const setPreview = (input) => {
 }
 
 const setPostal = () => {
-  const front = document.getElementById('postal_front').value;
-  console.log(front);
-  const back = document.getElementById('postal_back').value;
+  const postal_front = document.getElementById('postal_front').value;
+  const postal_back = document.getElementById('postal_back').value;
   const postal = document.getElementById('postal');
-  postal.value = front + back;
+  postal.value = postal_front + postal_back;
 }
 
 window.onload = () => {
-  const front = document.getElementById('postal_front').value;
-  const back = document.getElementById('postal_back').value;
-  const postal = document.getElementById('postal');
-  postal.value = front + back;
+  setPostal();
 }
 </script>
 @endsection
