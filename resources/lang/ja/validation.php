@@ -186,7 +186,8 @@ return [
         'project_name'    => 'プロジェクト名',
         'project_detail'  => 'プロジェクト詳細',
 
-        // 請求書作成
+        // doucment 作成
+        'task_id'             => 'タスク',
         'companyUser_id'      => '担当者',
         'project_name'        => '件名は',
         'requested_at'        => '請求日',
