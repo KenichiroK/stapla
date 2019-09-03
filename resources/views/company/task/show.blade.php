@@ -50,7 +50,6 @@
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
@@ -283,7 +282,7 @@
                     発注単価<span>(税抜)</span>
                 </dt>
                 <dd>
-                    {{ number_format($task->budget) }}円
+                    {{ number_format($task->price) }}円
                 </dd>
             </dl>
             <dl>
@@ -291,7 +290,7 @@
                     件数
                 </dt>
                 <dd>
-                    {{ $task->project->tasks->count() }}件
+                    {{ $task->cases }}件
                 </dd>
             </dl>
             <dl>
@@ -299,7 +298,7 @@
                     発注額
                 </dt>
                 <dd class="orderprice">
-                    <span class="tax">税込</span><span class="yen">￥</span>{{ number_format($task->price * (1 + $task->tax)) }}
+                    <span class="tax">税込</span><span class="yen">￥</span>{{ number_format( ($task->price * $task->cases) * (1 + $task->tax)) }}
                 </dd>
             </dl>
             <dl>

@@ -67,7 +67,9 @@ class TaskController extends Controller
             'accounting_id'   => 'required',
             'task_name'       => 'required',
             'task_content'    => 'required',
+            'budget'          => 'required',
             'price'           => 'required',
+            'cases'           => 'required',
             'fee_format'      => 'required',
         ]);
 
@@ -87,9 +89,10 @@ class TaskController extends Controller
         $task->status          = 1;
         $task->purchaseorder   = false;
         $task->invoice         = false;
-        $task->budget          = 100000;
+        $task->budget          = $request->budget;
         $task->tax             = 0.08;
         $task->price           = $request->price;
+        $task->cases   = $request->cases;
         $task->comment         = $request->comment;
         $task->inspection_date = $request->inspection_date;
         $task->fee_format      = $request->fee_format;
