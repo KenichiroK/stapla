@@ -126,7 +126,7 @@ $pref = array(
 							@endif
 						</div>
 
-						<div class="short-input-container">
+						<!-- <div class="short-input-container">
 							<p>企業名<span class="any">(任意)</span></p>
 							<input type="text" name="" value="">	
 						</div>
@@ -134,7 +134,7 @@ $pref = array(
 						<div class="short-input-container">
 							<p>部署<span class="any">(任意)</span></p>
 							<input type="text" name="" value="">	
-						</div>
+						</div> -->
 
 						<div class="short-input-container">
 							<p>職種<span class="any">(任意)</span></p>
