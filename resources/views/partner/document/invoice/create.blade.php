@@ -221,8 +221,8 @@ const calculateSumPrice = (e) => {
 									<option value="{{ $companyUser->companyUser->id }}">{{ $companyUser->companyUser->name }}</option>
 								@endforeach
 								@if ($errors->has('companyUser_id'))
-									<div>
-										<strong style='color: #e3342f;'>{{ $errors->first('companyUser_id') }}</strong>
+									<div class="error-msg">
+										<strong>{{ $errors->first('companyUser_id') }}</strong>
 									</div>					
 								@endif
 							</select>
@@ -235,8 +235,8 @@ const calculateSumPrice = (e) => {
 					<dd>
 						<input class="task-name" type="text" name="project_name" value="{{ old('project_name') }}">
 						@if ($errors->has('project_name'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('project_name') }}</strong>
+							<div class="error-msg">
+								<strong>{{ $errors->first('project_name') }}</strong>
 							</div>					
 						@endif
 					</dd>
@@ -253,8 +253,8 @@ const calculateSumPrice = (e) => {
 							<label for="end_of_this_month">今月末にする</label>
 						</div>
 						@if ($errors->has('requested_at'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('requested_at') }}</strong>
+							<div class="error-msg">
+								<strong>{{ $errors->first('requested_at') }}</strong>
 							</div>					
 						@endif
 					</dd>
@@ -272,8 +272,8 @@ const calculateSumPrice = (e) => {
 							<label for="end_of_month_after_next">再来月末にする</label>
 						</div>
 						@if ($errors->has('deadline_at'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('deadline_at') }}</strong>
+							<div class="error-msg">
+								<strong>{{ $errors->first('deadline_at') }}</strong>
 							</div>					
 						@endif
 					</dd>
@@ -289,8 +289,8 @@ const calculateSumPrice = (e) => {
 							<label for="not_include_tax">税別表示 (8%)</label>
 						</div>
 						@if ($errors->has('tax'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('tax') }}</strong>
+							<div class="error-msg">
+								<strong>{{ $errors->first('tax') }}</strong>
 							</div>					
 						@endif
 					</dd>
@@ -321,23 +321,23 @@ const calculateSumPrice = (e) => {
 						</tr>
 					</tbody>
 					@if ($errors->has('item_name'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('item_name') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('item_name') }}</strong>
 						</div>					
 					@endif
 					@if ($errors->has('item_num'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('item_num') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('item_num') }}</strong>
 						</div>					
 					@endif
 					@if ($errors->has('item_unit_price'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('item_unit_price') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('item_unit_price') }}</strong>
 						</div>					
 					@endif
 					@if ($errors->has('item_total'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('item_total') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('item_total') }}</strong>
 						</div>					
 					@endif
 
@@ -371,23 +371,23 @@ const calculateSumPrice = (e) => {
 					</tbody>
 
 					@if ($errors->has('expences_name'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('expences_name') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('expences_name') }}</strong>
 						</div>					
 					@endif
 					@if ($errors->has('expences_num'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('expences_num') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('expences_num') }}</strong>
 						</div>					
 					@endif
 					@if ($errors->has('expences_unit_price'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('expences_unit_price') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('expences_unit_price') }}</strong>
 						</div>					
 					@endif
 					@if ($errors->has('expences_total'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('expences_total') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('expences_total') }}</strong>
 						</div>					
 					@endif
 

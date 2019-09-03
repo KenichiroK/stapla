@@ -5,7 +5,7 @@
 
     .error-container {
         p {
-            color: #e3342f;
+            color: #FF0031;
             font-weight: bold;
             font-size: 16px;
         }
@@ -77,8 +77,6 @@
                     width: calc(100% - 60px);
                     margin-left: 12px;
                     margin-bottom: 0;
-                    display: flex;
-                    align-items: center;
 
                     .selectbox-container {
                         width: 70%;

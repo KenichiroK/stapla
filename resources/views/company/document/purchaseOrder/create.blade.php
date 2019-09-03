@@ -80,8 +80,8 @@ const checkDeadline = () => {
 							<p>{{ $task->name }}</p>
 							<input type="hidden" name="task_id" value="{{ $task->id }}">
                             @if ($errors->has('task_id'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('task_id') }}</strong>
+                                <div class="error-msg">
+                                    <strong>{{ $errors->first('task_id') }}</strong>
                                 </div>					
                             @endif
 						</div>
@@ -93,8 +93,8 @@ const checkDeadline = () => {
                     <dd>
                         <input class="task-name" type="text" name="task_name" value="{{ old('task_name') }}">
                         @if ($errors->has('task_name'))
-                            <div>
-                                <strong style='color: #e3342f;'>{{ $errors->first('task_name') }}</strong>
+                            <div class="error-msg">
+                                <strong>{{ $errors->first('task_name') }}</strong>
                             </div>					
                         @endif
                     </dd>
@@ -111,8 +111,8 @@ const checkDeadline = () => {
 							<label for="end_of_month_after_next">再来月末にする</label>
 						</div>
 						@if ($errors->has('task_ended_at'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('task_ended_at') }}</strong>
+							<div class="error-msg">
+								<strong>{{ $errors->first('task_ended_at') }}</strong>
 							</div>					
 						@endif
 					</dd>
@@ -123,8 +123,8 @@ const checkDeadline = () => {
 					<dd>
 						<input class="task-name" type="text" name="task_delivery_format" value="{{ old('task_delivery_format') }}">
 						@if ($errors->has('task_name'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('task_delivery_format') }}</strong>
+							<div class="error-msg">
+								<strong>{{ $errors->first('task_delivery_format') }}</strong>
 							</div>					
 						@endif
 					</dd>
@@ -140,8 +140,8 @@ const checkDeadline = () => {
 									<option value="{{ $companyUser->companyUser->id }}">{{ $companyUser->companyUser->name }}</option>
 								@endforeach
 								@if ($errors->has('companyUser_id'))
-									<div>
-										<strong style='color: #e3342f;'>{{ $errors->first('companyUser_id') }}</strong>
+									<div class="error-msg">
+										<strong>{{ $errors->first('companyUser_id') }}</strong>
 									</div>					
 								@endif
 							</select>
@@ -156,8 +156,8 @@ const checkDeadline = () => {
                             <p>{{ $task->partner->name }}</p>
                             <input type="hidden" name="partner_id" value="{{ $task->partner->id }}">
                             @if ($errors->has('partner_id'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('partner_id') }}</strong>
+                                <div class="error-msg">
+                                    <strong>{{ $errors->first('partner_id') }}</strong>
                                 </div>					
                             @endif
 						</div>

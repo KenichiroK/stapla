@@ -158,6 +158,20 @@
 .select.is-info:not(:hover)::after {
     border-color: #A4AFB7;
 }
+.select-error-wrp{
+    width: 66%;
+    .select-container__wrapper__select-area.control{
+        width: 100%
+    }
+    .error-msg{
+        display: block;
+    }
+
+}
+.form-control.is-invalid{
+    border-color: #e9e9f0;
+    background-image: none;
+}
 .main-container {
     width: 100%;
     margin-bottom: 60px;

@@ -89,6 +89,13 @@ main {
                         margin: 0; 
                     }
                 }
+                .error-msg{
+                    margin-top: 5px;
+                    strong{
+                      color: #FF0031;
+                      font-size: 12px;
+                    }
+                }
             }
             .input_wrapper.last{
                 margin-bottom: 60px;
