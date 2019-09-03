@@ -38,6 +38,14 @@ main {
     padding: 40px;
     margin: 80px auto 0;
 
+    .error-container {
+      p {
+        color: #e3342f;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+
     .title-container {
       margin-bottom: 40px;
 
