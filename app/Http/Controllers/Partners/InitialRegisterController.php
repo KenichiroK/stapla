@@ -61,6 +61,8 @@ class InitialRegisterController extends Controller
         $partner->partner_id   = $partnerAuth->id;
         $partner->company_id   = $partnerAuth->company_id;
         $partner->name         = $request->name;
+        $partner->occupations  = $request->occupations;
+        $partner->introduction = $request->introduction;
         $partner->zip_code     = $request->zip_code;
         $partner->prefecture   = $request->prefecture;
         $partner->street       = $request->street;

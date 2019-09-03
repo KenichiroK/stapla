@@ -118,32 +118,37 @@ $pref = array(
 
 						<div class="name-container short-input-container">
 							<p>名前・ニックネーム<span class="required">(必須)</span></p>
-								<input type="text" name="name" value="{{ old('name') }}">								
-								@if ($errors->has('name'))
-									<div class="error-msg">
-										<strong>{{ $errors->first('name') }}</strong>
-									</div>
-								@endif
+							<input type="text" name="name" value="{{ old('name') }}">								
+							@if ($errors->has('name'))
+								<div class="error-msg">
+									<strong>{{ $errors->first('name') }}</strong>
+								</div>
+							@endif
 						</div>
 
 						<div class="short-input-container">
 							<p>企業名<span class="any">(任意)</span></p>
-								<input type="text" name="" value="">	
+							<input type="text" name="" value="">	
 						</div>
 
 						<div class="short-input-container">
 							<p>部署<span class="any">(任意)</span></p>
-								<input type="text" name="" value="">	
+							<input type="text" name="" value="">	
 						</div>
 
 						<div class="short-input-container">
-							<p>職種<span class="required">(必須)</span></p>
-								<input type="text" name="" value="" placeholder="例）UIデザイナー、フロントエンドエンジニア、etc">	
+							<p>職種<span class="any">(任意)</span></p>
+							<input type="text" name="occupations" value="{{ old('occupations') }}" placeholder="例）UIデザイナー、フロントエンドエンジニア、etc">	
+							@if ($errors->has('occupations'))
+								<div class="error-msg">
+									<strong>{{ $errors->first('occupations') }}</strong>
+								</div>
+							@endif
 						</div>
 
 						<div class="text-container">
-								<p>プロフィールメッセージ</p>
-								<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction') }}</textarea>
+							<p>プロフィールメッセージ</p>
+							<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction') }}</textarea>
 						</div>
 						
 					</div>
