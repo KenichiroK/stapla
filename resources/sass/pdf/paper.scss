@@ -15,10 +15,6 @@
     width: 210mm;
     height: 296mm;
 }
-#print.A4.landscape .sheet {
-    width: 297mm;
-    height: 209mm;
-}
 
 /** Padding area **/
 .sheet.padding-10mm {
@@ -27,16 +23,20 @@
 
 /** For screen preview **/
 @media screen {
-body {
-    background: #e0e0e0;
-    height: 100%;
+    body {
+        background: #e0e0e0;
+        height: 100%;
+    }
+    .sheet {
+        background: #ffffff;
+        /* margin: 5mm auto; */
+        padding: 5mm 0;
+    }
 }
-.sheet {
-    background: #ffffff;
-    /* margin: 5mm auto; */
-    padding: 5mm 0;
-}
-}
-.shrink{
-    zoom:84%;
+
+
+.pageout{
+    position: fixed;
+    top: -9999px;  
+    left: -9999px;
 }

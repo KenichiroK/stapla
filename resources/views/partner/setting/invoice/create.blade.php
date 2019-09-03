@@ -21,14 +21,20 @@ const setPostal = () => {
   const front = document.getElementById('postal_front').value;
   const back = document.getElementById('postal_back').value;
   const postal = document.getElementById('postal');
-  postal.value = Number(front + back);
+  postal.value = front + back;
+}
+
+const setTel = () => {
+	const tel_front = document.getElementById('tel_front').value;
+	const tel_middle = document.getElementById('tel_middle').value;
+	const tel_back = document.getElementById('tel_back').value;
+	const tel = document.getElementById('tel');
+	tel.value = tel_front + tel_middle + tel_back;
 }
 
 window.onload = () => {
-  const front = document.getElementById('postal_front').value;
-  const back = document.getElementById('postal_back').value;
-  const postal = document.getElementById('postal');
-  postal.value = Number(front + back);
+	setPostal();
+	setTel();
 }
 </script>
 @endsection
@@ -217,9 +223,9 @@ $pref = array(
 );
 ?>
 <div class="main-wrapper">
-	@if ($completed)
+	@if (session('completed'))
 	<div class="complete-container">
-		<p>{{ $completed }}</p>
+		<p>{{ session('completed') }}</p>
 	</div>
 	@endif
 
@@ -227,7 +233,13 @@ $pref = array(
 	<div class="error-container">
 		<p>入力に問題があります。再入力して下さい。</p>
 	</div>
-  @endif
+  	@endif
+
+	@if(Session::has('not_register_invoice'))
+	<div class="error-container">
+		<p>{{ session('not_register_invoice') }}</p>
+	</div>
+  	@endif
 
 	<div class="title-container">
 		<h3>設定</h3>
@@ -282,14 +294,9 @@ $pref = array(
 							<input id="postal" type="hidden" name="zip_code">
 						@endif
 					</div>
-					@if ($errors->has('zip_code_front'))
+					@if ($errors->has('zip_code'))
 						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('zip_code_front') }}</strong>
-						</div>
-					@endif
-					@if ($errors->has('zip_code_back') && !$errors->has('zip_code_front'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('zip_code_back') }}</strong>
+							<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -327,6 +334,22 @@ $pref = array(
 				</div>
 
 				<div class="building-container">
+					<p>番地</p>
+					@if ($partner)
+						<input type="text" name="street" value="{{ old('street', $partner->street) }}">
+					@else
+						<input type="text" name="street" value="{{ old('street') }}">
+					@endif
+					@if ($errors->has('street'))
+						<div>
+							<strong style='color: #e3342f;'>{{ $errors->first('street') }}</strong>
+						</div>
+					@endif
+				</div>
+			</div>
+
+			<div class="below-address-container">
+				<div class="building-container">
 					<p>建物名・部屋番号</p>
 					@if ($partner)
 						<input type="text" name="building" value="{{ old('building', $partner->building) }}">
@@ -339,30 +362,26 @@ $pref = array(
 						</div>
 					@endif
 				</div>
-			</div>
 
-			<div class="tel-container">
-				<p>電話番号</p>
-				<div class="tel-container__wrapper">
-					@if ($partner)
-						<input type="text" name="tel" value="{{ old('tel', $partner->tel) }}" placeholder="">
-							<span class="hyphen">
-								<hr>
-							</span>
-						<input type="text">
-							<span class="hyphen">
-								<hr>
-							</span>
-						<input type="text">
-						<!-- <input type="text" name="tel" value="{{ old('tel', $partner->tel) }}"> -->
-					@else
-						<input type="text" name="tel" value="{{ old('tel') }}">
-					@endif
-					@if ($errors->has('tel'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
-						</div>					
-					@endif
+				<div class="tel-container">
+					<p>電話番号</p>
+					<div class="tel-container__wrapper">
+							<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front', substr($partner->tel, 0, 3)) }}" onchange="setTel()">
+								<span class="hyphen">
+									<hr>
+								</span>
+							<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle', substr($partner->tel, 3, 4)) }}" onchange="setTel()">
+								<span class="hyphen">
+									<hr>
+								</span>
+							<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back', substr($partner->tel, 7)) }}" onchange="setTel()">
+							<input type="hidden" name="tel" id="tel">
+						@if ($errors->has('tel'))
+							<div>
+								<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
+							</div>					
+						@endif
+					</div>
 				</div>
 			</div>
 		</div>
@@ -457,15 +476,17 @@ $pref = array(
 							<img id="preview" src="../../../images/upload3.png" alt="プレビュー画像">
 						</div>
 					@endif
+					<div>
 					<label for="mark_image">
 						画像をアップロード
 						<input type="file" id="mark_image" name="mark_image" style="display: none;" accept="image/png" onchange="setPreview(this)">
 					</label>
-				@if ($errors->has('mark_image'))
-					<div>
-						<strong style='color: #e3342f;'>{{ $errors->first('mark_image') }}</strong>
+					@if ($errors->has('mark_image'))
+						<div class="image-error_message">
+							<strong style='color: #e3342f;'>{{ $errors->first('mark_image') }}</strong>
+						</div>
+					@endif
 					</div>
-				@endif
 				</div>
 
 				<div class="imprint-container">

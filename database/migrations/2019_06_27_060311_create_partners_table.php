@@ -18,6 +18,7 @@ class CreatePartnersTable extends Migration
             $table->string('zip_code', 64);
             $table->string('prefecture', 64);
             $table->string('city', 64);
+            $table->string('street', 64);
             $table->string('building', 64)->nullable();
             $table->string('tel');
             $table->integer('age')->nullable();

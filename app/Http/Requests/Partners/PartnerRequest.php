@@ -28,6 +28,7 @@ class PartnerRequest extends FormRequest
             'zip_code'   => 'required',
             'prefecture' => 'required',
             'city'       => 'required',
+            'street'     => 'required',
             'tel'        => 'required',
         ];
     }
@@ -39,6 +40,7 @@ class PartnerRequest extends FormRequest
             'zip_code'   => '郵便番号を入力してださい',
             'prefecture' => '都道府県を入力してください',
             'city'       => '市町村を入力してください',
+            'street'     => '番地を入力してください',
             'tel'        => '電話番号を入力してください',
         ];
     }

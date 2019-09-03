@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Companies;
-
+ 
+use App\Http\Requests\Companies\CreateProjectRequest;
 use App\Models\Project;
 use App\Models\CompanyUser;
 use App\Models\Partner;
@@ -45,23 +46,12 @@ class ProjectController extends Controller
         return view('company/project/create', compact('company_users', 'partner_users', 'company_user'));
     }
 
-    public function store(Request $request)
-    {      
-        $request->validate([
-            'project_name'     => 'required',
-            'project_detail'   => 'required',
-            'company_user_id'  => 'required',
-            'partner_id'       => 'required',
-            'started_at'       => 'required',
-            'ended_at'         => 'required',
-            'budget'           => 'required',
-        ]);
+    public function store(CreateProjectRequest $request)
+    {    
         $time = date("Y_m_d_H_i_s");
 
         $user = Auth::user();
         $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-
-
 
         $project = new Project;
         $project->company_id   = $company_id;

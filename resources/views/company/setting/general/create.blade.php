@@ -18,17 +18,14 @@ const setPreview = (input) => {
 }
 
 const setPostal = () => {
-  const front = document.getElementById('postal_front').value;
-  const back = document.getElementById('postal_back').value;
+  const postal_front = document.getElementById('postal_front').value;
+  const postal_back = document.getElementById('postal_back').value;
   const postal = document.getElementById('postal');
-  postal.value = Number(front + back);
+  postal.value = postal_front + postal_back;
 }
 
 window.onload = () => {
-  const front = document.getElementById('postal_front').value;
-  const back = document.getElementById('postal_back').value;
-  const postal = document.getElementById('postal');
-  postal.value = Number(front + back);
+  setPostal();
 }
 </script>
 @endsection
@@ -230,6 +227,18 @@ $pref = array(
 
 ?>
 <div class="main-wrapper">
+    @if (session('completed'))
+    <div class="complete-container">
+        <p>{{ session('completed') }}</p>
+    </div>
+    @endif
+
+    @if(count($errors) > 0)
+    <div class="error-container">
+        <p>入力に問題があります。再入力して下さい。</p>
+    </div>
+    @endif
+    
 	<div class="title-container">
 		<h3>設定</h3>
 	</div>

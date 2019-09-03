@@ -25,7 +25,7 @@
                 @if(isset($companyUser))
                     <a href="/company/dashboard">ダッシュボードに行く</a>
                 @else
-                    <a href="/company/register/intialRegistration">ユーザー情報を登録する</a>
+                    <a href="/company/register/personal">ユーザー情報を登録する</a>
                 @endif
 			</div>
 		</div>

@@ -12,6 +12,8 @@ use App\Models\CompanyUser;
 use App\Models\Company;
 use App\Models\RequestTask;
 use App\Models\RequestExpence;
+use App\Models\PartnerInvoice;
+
 use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
@@ -52,6 +54,12 @@ class InvoiceController extends Controller
     {
         $auth_id = Auth::user()->id;
         $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
+        if (!$partner_invoice) {
+            $completed = '';
+            return redirect()->route('partner.setting.invoice.create')->with('not_register_invoice', '請求情報が未登録のため、請求書の作成に失敗しました。請求情報を登録して、再度請求書を作成してください。');
+        }
+
         $company_id = $partner->company_id;
 
         $invoice = new Invoice;
@@ -66,16 +74,16 @@ class InvoiceController extends Controller
         $invoice->status         = 0;
         $invoice->save();
 
-        if ($request->task_name) {
+        if ($request->item_name) {
             $request_task = new RequestTask;
             $request_task->invoice_id = $invoice->id;
-            $request_task->name       = $request->task_name;
-            $request_task->num        = $request->task_num;
-            $request_task->unit_price = $request->task_unit_price;
-            $request_task->total      = $request->task_total;
+            $request_task->name       = $request->item_name;
+            $request_task->num        = $request->item_num;
+            $request_task->unit_price = $request->item_unit_price;
+            $request_task->total      = $request->item_total;
             $request_task->save();
         }
-        
+
         if ($request->expences_name) {
             $request_expences = new RequestExpence;
             $request_expences->invoice_id = $invoice->id;
@@ -85,7 +93,7 @@ class InvoiceController extends Controller
             $request_expences->total      = $request->expences_total;
             $request_expences->save();
         }
-        
+            
         return redirect()->route('partner.invoice.show', ['id' => $invoice->id]);
     }
 

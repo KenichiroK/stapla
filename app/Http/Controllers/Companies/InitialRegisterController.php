@@ -11,23 +11,16 @@ use App\Models\CompanyUser;
 
 class InitialRegisterController extends Controller
 {
-    public function preRegisteredShow()
-    {
-        return view('company/auth/verify');
-    }
-
-    public function doneRegisteredShow()
-    {
-
-        return view('/company/dashboard');
-    }
-
-    public function doneVerifyShow()
+    public function doneVerify()
     {
         $auth = Auth::user();
         $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
-
-        return view('company/auth/initialRegister/doneVerify' ,compact('companyUser'));
+        
+        if(isset($companyUser)){
+            return  redirect('company/dashboard');
+        } else{
+            return view('company/auth/initialRegister/doneVerify' ,compact('companyUser'));
+        }
     }
 
     public function create()
@@ -43,13 +36,13 @@ class InitialRegisterController extends Controller
         return view('company/auth/initialRegister/preview', compact('request'));
     }
 
-    public function previwShow(Request $request)
-    {
-        $auth = Auth::user();
-        return view('company/auth/initialRegister/preview', compact('request'));
-    }
+    // public function previwShow(Request $request)
+    // {
+    //     $auth = Auth::user();
+    //     return view('company/auth/initialRegister/preview', compact('request'));
+    // }
 
-    public function previewStore(Request $request)
+    public function store(Request $request)
     {
         $auth = Auth::user();
         
@@ -91,10 +84,5 @@ class InitialRegisterController extends Controller
     public function done()
     {
         return view('company/auth/regitster/done');
-    }
-
-    public function company()
-    {
-        return view('company/auth/initialRegister/company');
     }
 }
