@@ -148,7 +148,6 @@
 @section('content')
 <div class="main__container">
     <div class="main__container__wrapper">
-        <!--main__container__wrapperに記述していく-->
         <div class="page-title-container">
             <div class="page-title-container__page-title">書類一覧</div>
         </div>
@@ -166,7 +165,7 @@
                             </div>
                         </div>
                         <div class="head-container__wrapper__item-container__wrapper__create-container">
-                            <div class="head-container__wrapper__item-container__wrapper__create-container__create"><a href="">確認</a></div>
+                            <!-- <div class="head-container__wrapper__item-container__wrapper__create-container__create"><a href="">確認</a></div> -->
                         </div>
                     </div>
                 </div>
@@ -184,7 +183,7 @@
                             </div>
                         </div>
                         <div class="head-container__wrapper__item-container__wrapper__create-container">
-                            <div class="head-container__wrapper__item-container__wrapper__create-container__create"><a href="">確認</a></div>
+                            <!-- <div class="head-container__wrapper__item-container__wrapper__create-container__create"><a href="">確認</a></div> -->
                         </div>
                     </div>
                 </div>
@@ -202,7 +201,7 @@
                             </div>
                         </div>
                         <div class="head-container__wrapper__item-container__wrapper__create-container">
-                            <div class="head-container__wrapper__item-container__wrapper__create-container__create"><a href="">確認</a></div>
+                            <!-- <div class="head-container__wrapper__item-container__wrapper__create-container__create"><a href="">確認</a></div> -->
                         </div>
                     </div>
                 </div>
@@ -220,7 +219,7 @@
                             </div>
                         </div>
                         <div class="head-container__wrapper__item-container__wrapper__create-container">
-                            <div class="head-container__wrapper__item-container__wrapper__create-container__create"><a href="">確認</a></div>
+                            <!-- <div class="head-container__wrapper__item-container__wrapper__create-container__create"><a href="">確認</a></div> -->
                         </div>
                     </div>
                 </div>

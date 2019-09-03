@@ -61,7 +61,6 @@
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -72,7 +71,6 @@
                 </li>
                 <li>
                     <a href="/company/project">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
@@ -83,7 +81,6 @@
                 </li>
                 <li>
                     <a href="/company/task" class="isActive">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -94,7 +91,6 @@
                 </li>
                 <li>
                     <a href="/company/document">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -105,7 +101,6 @@
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_customers.png" alt="">
                         </div>
@@ -116,7 +111,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -127,7 +121,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -138,7 +131,6 @@
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -253,14 +245,14 @@
                     {{ number_format($task->budget) }}円
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     資料
                 </dt>
                 <dd>
                     
                 </dd>
-            </dl>
+            </dl> -->
         </div>
 
         <div class="patner">
