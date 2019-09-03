@@ -73,7 +73,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -84,7 +83,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/project">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
@@ -95,7 +93,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/task">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -106,7 +103,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/document" class="isActive">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -117,7 +113,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_customers.png" alt="">
                         </div>
@@ -128,7 +123,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -139,7 +133,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -150,7 +143,6 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -189,14 +181,19 @@ const setPreview = (input) => {
                                     <option disabled selected></option>
                                     <option disabled>-- 機密保持契約書 未作成 --</option>
                                     @foreach($ndaUnDoneTasks as $ndaUnDoneTask)
-                                    <option value="{{ $ndaUnDoneTask->id }}">{{ $ndaUnDoneTask->name }}　[ {{ $ndaUnDoneTask->project->name }} ]</option>
+                                    <option value="{{ $ndaUnDoneTask->id }}" {{ old('task_id') === $ndaUnDoneTask->id ? 'selected' : ''}}>{{ $ndaUnDoneTask->name }}　[ {{ $ndaUnDoneTask->project->name }} ]</option>
                                     @endforeach
                                     <option disabled>-- 機密保持契約書 作成済み --</option>
                                     @foreach($ndaDoneTasks as $ndaDoneTask)
-                                    <option value="{{ $ndaDoneTask->id }}">* {{ $ndaDoneTask->name }}　[ {{ $ndaDoneTask->project->name }} ]</option>
+                                    <option value="{{ $ndaDoneTask->id }}" {{ old('task_id') === $ndaDoneTask->id ? 'selected' : ''}}>* {{ $ndaDoneTask->name }}　[ {{ $ndaDoneTask->project->name }} ]</option>
                                     @endforeach
                                 </select>
                             </div>
+                            @if ($errors->has('task_id'))
+                                <div class="error-msg">
+                                    <strong>{{ $errors->first('task_id') }}</strong>
+                                </div>					
+                            @endif
                         </div>
                         </dd>
                     </dl>
@@ -211,10 +208,15 @@ const setPreview = (input) => {
                                 <select class="select-container__wrapper__select" name='companyUser_id'>
                                     <option disabled selected></option>
                                     @foreach($companyUsers as $companyUser)
-                                    <option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
+                                    <option value="{{ $companyUser->id }}" {{ old('companyUser_id') === $companyUser->id ? 'selected' : ''}}>{{ $companyUser->name }}</option>
                                     @endforeach                            
                                 </select>
                             </div>
+                            @if ($errors->has('companyUser_id'))
+                                <div class="error-msg">
+                                    <strong>{{ $errors->first('companyUser_id') }}</strong>
+                                </div>					
+                            @endif
                         </div>
                         </dd>
                     </dl>
@@ -229,10 +231,15 @@ const setPreview = (input) => {
                                 <select class="select-container__wrapper__select" name='partner_id'>
                                     <option disabled selected></option>
                                     @foreach($partners as $partner)
-                                    <option value="{{ $partner->id }}">{{ $partner->name }}</option>
+                                    <option value="{{ $partner->id }}" {{ old('partner_id') === $partner->id ? 'selected' : ''}}>{{ $partner->name }}</option>
                                     @endforeach                            
                                 </select>
                             </div>
+                            @if ($errors->has('partner_id'))
+                                <div class="error-msg">
+                                    <strong>{{ $errors->first('partner_id') }}</strong>
+                                </div>					
+                            @endif
                         </div>
                         </dd>
                     </dl>
