@@ -34,9 +34,9 @@
                         <h4 class="title">パスワード</h4>
                         <input class="input_text" type="password" name="password">
                         @if ($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong style="color: #e3342f;">{{ $errors->first('password') }}</strong>
-                            </span>
+                            <div class="invalid-feedback error-msg" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </div>
                         @endif
                     </div>
 

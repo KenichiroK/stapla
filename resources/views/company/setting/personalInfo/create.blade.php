@@ -203,8 +203,8 @@ const setPreview = (input) => {
                         <input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="setPreview(this)">
                     </label>
                     @if ($errors->has('picture'))
-                        <div>
-                            <strong style='color: #e3342f;'>{{ $errors->first('picture') }}</strong>
+                        <div class="error-msg">
+                            <strong>{{ $errors->first('picture') }}</strong>
                         </div>
                     @endif
                 </div>
@@ -214,8 +214,8 @@ const setPreview = (input) => {
                         <p>名前・ニックネーム</p>
                         <input type="text" name="name" value="{{ old('name', $companyUser->name) }}">
                         @if ($errors->has('name'))
-                            <div>
-                                <strong style='color: #e3342f;'>{{ $errors->first('name') }}</strong>
+                            <div class="error-msg">
+                                <strong>{{ $errors->first('name') }}</strong>
                             </div>
                         @endif
                     </div>
@@ -234,8 +234,8 @@ const setPreview = (input) => {
                         <p>担当</p>
                         <input type="text" name="department" value="{{ old('department', $companyUser->department) }}">
                         @if ($errors->has('department'))
-                            <div>
-                                <strong style='color: #e3342f;'>{{ $errors->first('department') }}</strong>
+                            <div class="error-msg">
+                                <strong>{{ $errors->first('department') }}</strong>
                             </div>
                         @endif
                     </div>
@@ -244,8 +244,8 @@ const setPreview = (input) => {
                         <p>職種</p>
                         <input type="text" name="occupation" value="{{ old('occupation', $companyUser->occupation) }}">
                         @if ($errors->has('occupation'))
-                            <div>
-                                <strong style='color: #e3342f;'>{{ $errors->first('occupation') }}</strong>
+                            <div class="error-msg">
+                                <strong>{{ $errors->first('occupation') }}</strong>
                             </div>
                         @endif
                     </div>

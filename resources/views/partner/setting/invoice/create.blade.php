@@ -268,8 +268,8 @@ $pref = array(
 					<input type="text" name="name" value="{{ old('name') }}">
 				@endif
 				@if ($errors->has('name'))
-					<div>
-						<strong style='color: #e3342f;'>{{ $errors->first('name') }}</strong>
+					<div class="error-msg">
+						<strong>{{ $errors->first('name') }}</strong>
 					</div>
 				@endif
 			</div>
@@ -295,8 +295,8 @@ $pref = array(
 						@endif
 					</div>
 					@if ($errors->has('zip_code'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('zip_code') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -311,8 +311,8 @@ $pref = array(
 						</select>
 					</div>
 					@if ($errors->has('prefecture'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('prefecture') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('prefecture') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -327,8 +327,8 @@ $pref = array(
 						<input type="text" name="city" value="{{ old('city') }}">
 					@endif
 					@if ($errors->has('city'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('city') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('city') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -341,8 +341,8 @@ $pref = array(
 						<input type="text" name="street" value="{{ old('street') }}">
 					@endif
 					@if ($errors->has('street'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('street') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('street') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -357,8 +357,8 @@ $pref = array(
 						<input type="text" name="building" value="{{ old('building') }}">
 					@endif
 					@if ($errors->has('building'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('building') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('building') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -376,12 +376,13 @@ $pref = array(
 								</span>
 							<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back', substr($partner->tel, 7)) }}" onchange="setTel()">
 							<input type="hidden" name="tel" id="tel">
-						@if ($errors->has('tel'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('tel') }}</strong>
+						
+					</div>
+					@if ($errors->has('tel'))
+							<div class="error-msg">
+								<strong>{{ $errors->first('tel') }}</strong>
 							</div>					
 						@endif
-					</div>
 				</div>
 			</div>
 		</div>
@@ -400,8 +401,8 @@ $pref = array(
 						<input type="text" name="financial_institution" value="{{ old('financial_institution') }}">
 					@endif
 					@if ($errors->has('financial_institution'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('financial_institution') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('financial_institution') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -414,8 +415,8 @@ $pref = array(
 						<input type="text" name="branch" value="{{ old('branch') }}">
 					@endif
 					@if ($errors->has('branch'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('branch') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('branch') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -429,8 +430,8 @@ $pref = array(
 					<input type="text" name="deposit_type" value="{{ old('deposit_type') }}">
 				@endif
 				@if ($errors->has('deposit_type'))
-					<div>
-						<strong style='color: #e3342f;'>{{ $errors->first('deposit_type') }}</strong>
+					<div class="error-msg">
+						<strong>{{ $errors->first('deposit_type') }}</strong>
 					</div>
 				@endif
 			</div>
@@ -443,8 +444,8 @@ $pref = array(
 					<input type="text" name="account_number" value="{{ old('account_number') }}">
 				@endif
 				@if ($errors->has('account_number'))
-					<div>
-						<strong style='color: #e3342f;'>{{ $errors->first('account_number') }}</strong>
+					<div class="error-msg">
+						<strong>{{ $errors->first('account_number') }}</strong>
 					</div>
 				@endif
 			</div>
@@ -457,8 +458,8 @@ $pref = array(
 					<input type="text" name="account_holder" value="{{ old('account_holder') }}">
 				@endif
 				@if ($errors->has('account_holder'))
-					<div>
-						<strong style='color: #e3342f;'>{{ $errors->first('account_holder') }}</strong>
+					<div class="error-msg">
+						<strong>{{ $errors->first('account_holder') }}</strong>
 					</div>
 				@endif
 			</div>
@@ -482,8 +483,8 @@ $pref = array(
 						<input type="file" id="mark_image" name="mark_image" style="display: none;" accept="image/png" onchange="setPreview(this)">
 					</label>
 					@if ($errors->has('mark_image'))
-						<div class="image-error_message">
-							<strong style='color: #e3342f;'>{{ $errors->first('mark_image') }}</strong>
+						<div class="image-error_message error-msg">
+							<strong>{{ $errors->first('mark_image') }}</strong>
 						</div>
 					@endif
 					</div>

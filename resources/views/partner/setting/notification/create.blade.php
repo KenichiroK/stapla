@@ -190,8 +190,8 @@
 					<label for="email_false">無効</label>
 				@endif
 				@if ($errors->has('email_notification'))
-					<div>
-						<strong style='color: #e3342f;'>{{ $errors->first('email_notification') }}</strong>
+					<div class="error-msg">
+						<strong>{{ $errors->first('email_notification') }}</strong>
 					</div>					
 				@endif
 			</div>
@@ -216,8 +216,8 @@
 					<label for="daily_false">無効</label>
 				@endif
 				@if ($errors->has('daily_mail'))
-					<div>
-						<strong style='color: #e3342f;'>{{ $errors->first('daily_mail') }}</strong>
+					<div class="error-msg">
+						<strong>{{ $errors->first('daily_mail') }}</strong>
 					</div>					
 				@endif
 			</div>
@@ -242,8 +242,8 @@
 					<label for="slack_false">無効</label>
 				@endif
 				@if ($errors->has('slack'))
-					<div>
-						<strong style='color: #e3342f;'>{{ $errors->first('slack') }}</strong>
+					<div class="error-msg">
+						<strong>{{ $errors->first('slack') }}</strong>
 					</div>					
 				@endif
 			</div>
