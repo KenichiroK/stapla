@@ -66,9 +66,9 @@
                 </form>
 
                 <!-- 現在、パートナーの自発的な新規会員登録は行わない -->
-                <!-- <div class="signup_wrapper">
+                <div class="signup_wrapper">
                     <a href="/partner/register">新規会員登録</a>
-                </div> -->
+                </div>
 
                 <div class="forget_password_wrapper">
                     <a href="#">パスワードをお忘れの場合はこちら</a>
