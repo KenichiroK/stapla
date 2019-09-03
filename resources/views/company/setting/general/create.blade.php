@@ -257,16 +257,7 @@ $pref = array(
 			<div class="top-area">
 				<div class="name-container">
 					<p>会社名</p>
-					@if($company)
-						<input class="top-input input" type="" name="company_name" value="{{ old('company_name', $company->company_name) }}" placeholder="">
-					@else
-						<input class="top-input input" type="" name="company_name" value="{{ old('company_name') }}" placeholder="">
-					@endif
-					@if ($errors->has('company_name'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('company_name') }}</strong>
-						</div>
-					@endif
+                    <p class="text_content">{{ $company->company_name }}</p>
 				</div>
 				<div class="name-container">
 					<p>代表者名</p>
