@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Companies;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Companies\CreateTaskRequest;
 use App\Models\Task;
 use App\Models\Project;
@@ -11,9 +12,7 @@ use App\Models\TaskCompany;
 use App\Models\TaskPartner;
 use App\Models\PurchaseOrder;
 use App\Models\Invoice;
-// use Illuminate\Http\Request;
-// use Validator;
-use App\Http\Controllers\Controller;
+
 
 use Illuminate\Support\Facades\Auth;
 
@@ -81,7 +80,6 @@ class TaskController extends Controller
     
     public function store(CreateTaskRequest $request)
     {
-        // return $request;
         $task = new Task;
         $task->project_id      = $request->project_id;
         $user = Auth::user();
