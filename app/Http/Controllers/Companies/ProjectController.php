@@ -34,6 +34,20 @@ class ProjectController extends Controller
         return view('company/project/index', compact('projects', 'task_count_arr', 'company_user'));
     }
 
+    public function doneIndex()
+    {
+        $user = Auth::user();
+        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $projects = Project::where('company_id', $company_user->company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();        
+
+        $task_count_arr = []; 
+        for($i = 0; $i < count($projects); $i++){
+            $taskCount = count($projects[$i]->tasks);
+            array_push($task_count_arr, $taskCount);
+        }
+        return view('company/project/done-index', compact('projects', 'task_count_arr', 'company_user'));
+    }
+
     public function create()
     {
         $user = Auth::user();

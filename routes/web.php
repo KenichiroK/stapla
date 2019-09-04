@@ -103,12 +103,14 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// project
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
+		Route::get('/project/done', 'Companies\ProjectController@doneIndex')->name('company.project.done.index');
 		Route::get('/project/create', 'Companies\ProjectController@create')->name('company.project.create');
 		Route::post('/project', 'Companies\ProjectController@store')->name('company.project.create');
 		Route::get('/project/{id}', 'Companies\ProjectController@show')->name('company.project.show');
 
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
+		Route::get('/task/done', 'Companies\TaskController@doneIndex')->name('company.task.done.index');
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
         Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.create');
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
