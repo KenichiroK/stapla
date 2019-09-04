@@ -230,7 +230,6 @@ $(function(){
                                             <option value="{{ $project->id }}">{{ $project->name }}</option>
                                         @endforeach
                                     </select>
-                                    
                                 </div>
                             </div>
                         </div>
