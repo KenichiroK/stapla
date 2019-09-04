@@ -188,11 +188,11 @@ const setPreview = (input) => {
     </div>
     <div class="charge-container__content">
         @foreach($companyUsers as $companyUser)
-        <ul class="charge-container__content__list">
+        <ul class="company_user charge-container__content__list">
             <li>
                 <div class="name-container">
                     <div class="name-container__img-container">
-                    <img src="../../../images/photoimg.png" alt="">
+                    <img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="">
                     </div>
                     {{ $companyUser->name }}
                 </div>
@@ -204,7 +204,7 @@ const setPreview = (input) => {
         @endforeach
         
         <div class="charge-container__content__showmore">
-            <p class="charge-container__content__showmore__btn">もっと見る</p>
+            <p id="more_btn" class="charge-container__content__showmore__btn">もっと見る</p>
         </div>
     </div>
     <div class="btn-container">
