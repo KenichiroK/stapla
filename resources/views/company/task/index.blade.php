@@ -194,7 +194,7 @@
         <!-- Task -->
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
-                <li class="all"><a href="#tab01">タスク一覧</a></li>
+                <li class="all isActive"><a href="/company/task">タスク一覧</a></li>
                 <li class="done"><a href="/company/task/done">完了したタスク</a></li>
             </ul>
             <div class="task-container__createarea">
