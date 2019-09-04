@@ -315,26 +315,29 @@
                                     経理
                                 </div>
                             </div>
-                            <div class="select-container__wrapper__select-area control staff">
-                                <div class="select-container__wrapper__select-area__field field">
-                                    <div class="select-container__wrapper__select-area__field__control control">
-                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                            <select name='accounting_id'>
-                                                <option></option>
-                                                @foreach($companyUsers as $companyUser)
-                                                    <option value={{ $companyUser->id }}>
-                                                        {{ $companyUser->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('accounting_id'))
-                                                <div class="invalid-feedback error-msg" role="alert">
-                                                    <strong>{{ $errors->first('accounting_id') }}</strong>
-                                                </div>
-                                            @endif
+                            <div class="select-error-wrp">
+                                <div class="select-container__wrapper__select-area control staff">
+                                    <div class="select-container__wrapper__select-area__field field">
+                                        <div class="select-container__wrapper__select-area__field__control control">
+                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                                <select name='accounting_id'>
+                                                    <option></option>
+                                                    @foreach($companyUsers as $companyUser)
+                                                        <option value={{ $companyUser->id }}>
+                                                            {{ $companyUser->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                @if ($errors->has('accounting_id'))
+                                                    <div class="invalid-feedback error-msg" role="alert">
+                                                        <strong>{{ $errors->first('accounting_id') }}</strong>
+                                                    </div>
+                                                @endif
                             </div>
                         </div>
                         <!-- 項目：締め切り -->
@@ -514,9 +517,9 @@
                                     <div class="partner-container__wrpper__item-container__order-uninum__number__contents">
                                         <input class="input" name='cases' type="text">
                                         @if ($errors->has('cases'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong style='color: #e3342f'>{{ $errors->first('cases') }}</strong>
-                                            </span>
+                                            <div class="invalid-feedback error-msg" role="alert">
+                                                <strong>{{ $errors->first('cases') }}</strong>
+                                            </div>
                                         @endif
                                         <div class="partner-container__wrpper__item-container__order-uninum__number__contents__class">
                                             件
