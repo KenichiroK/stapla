@@ -26,7 +26,6 @@ class ProfileRequest extends FormRequest
         return [
             'nickname'     => 'required',
             'occupations'  => 'required',
-            'introduction' => 'required',
         ];
     }
 
@@ -35,7 +34,6 @@ class ProfileRequest extends FormRequest
         return [
             'nickname.required'     => '名前 / ニックネームは必須項目です。',
             'occupations.required'  => '職種は必須項目です。',
-            'introduction.required' => '自己紹介は必須項目です。',
         ];
     }
 }
