@@ -8,6 +8,7 @@ use App\Models\Partner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Companies\InvitePartnerRequest;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -20,7 +21,7 @@ class InvitePartnerController extends Controller
         return view('company/invite/partner/create', compact('company_user'));
     }
 
-    public function send(Request $request)
+    public function send(InvitePartnerRequest $request)
     {
         $email = $request->email;
         $user = Auth::user();
