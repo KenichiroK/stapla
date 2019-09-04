@@ -56,6 +56,7 @@ class PreviewController extends Controller
         $companyUser->company_id = $company->id;
         $companyUser->name = $request->name;
         $companyUser->department = $request->department;
+        $companyUser->occupation = $request->occupation;
         $companyUser->self_introduction = $request->self_introduction;
         $time = date("Y_m_d_H_i_s");
         if(isset($request->picture)){

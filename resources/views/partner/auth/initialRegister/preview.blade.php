@@ -34,6 +34,18 @@
 								<h4>{{ $request->name }}</h4>
 							</div>
 
+							<div class="section-container">
+								<p>職種</p>
+								<input type="hidden" name="occupations" value="{{ old('occupations', $request->occupations) }}">
+								<h4>{{ $request->occupations }}</h4>
+							</div>
+
+							<div class="section-container">
+								<p>プロフィールメッセージ</p>
+								<input type="hidden" name="introduction" value="{{ old('introduction', $request->introduction) }}">
+								<h4>{{ $request->introduction }}</h4>
+							</div>
+
                             <div class="section-container">
                                 <p>郵便番号</p>
                                 <input type="hidden" name="zip_code" value="{{ old('zip_code', $request->zip_code) }}">
