@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\ProjectPartner;
 
 class ProjectController extends Controller
 {
@@ -52,8 +53,10 @@ class ProjectController extends Controller
     {
         $partnerAuth = Auth::user();
         $partner = Partner::where('partner_id', $partnerAuth->id)->first();
-        // $project = 
-        return view('partner/project/show', compact('partner'));
+        $project = Project::findOrFail($project_id);
+        // $projectPartners = ProjectPartner::where('user_id', $partner->id)->get();
+        $tasks = Task::where('project_id', $project->id)->get();
+        return view('partner/project/show', compact('partner', 'project', 'tasks'));
     }
 
     /**

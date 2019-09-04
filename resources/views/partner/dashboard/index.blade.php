@@ -209,7 +209,7 @@
             <tbody>
                 @foreach($projects as $project)
                 <tr>
-                    <td class="project_name">{{ $project->project->name }}</td>
+                    <td class="project_name"><a href="project/{{ $project->project->id }}">{{ $project->project->name }}</a></td>
                     <td class="staff">
                         <div class="imgbox">
                             <img src="/{{ str_replace('public/', 'storage/', $project->project->projectCompanies[0]->companyUser->picture) }}" alt="プロフィール画像">
