@@ -28,6 +28,7 @@ class PartnerInvoiceRequest extends FormRequest
             'zip_code'              => 'required',
             'prefecture'            => 'required',
             'city'                  => 'required',
+            'street'                => 'required',
             'tel'                   => 'required',
             'financial_institution' => 'required',
             'branch'                => 'required',
