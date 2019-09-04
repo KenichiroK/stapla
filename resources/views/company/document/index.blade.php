@@ -426,7 +426,7 @@
                                     <td class="outsourcing-table__data-row__table-data">
                                         <div class="outsourcing-table__data-row__table-data__create-container">
                                             <div class="outsourcing-table__data-row__table-data__create-container__create">
-                                                <a href="">作成</a>
+                                                <a href="">詳細</a>
                                             </div>
                                         </div>
                                     </td>
@@ -480,11 +480,7 @@
                                     <td class="nda-table__data-row__table-data">
                                         <div class="nda-table__data-row__table-data__create-container">
                                             <div class="nda-table__data-row__table-data__create-container__create">
-                                                @if($nda->status === 3)
-                                                    <a href="document/invoice/create">詳細</a>
-                                                @else
-                                                    <a href="document/invoice/create">作成</a>
-                                                @endif
+                                                <a href="document/nda/{{ $nda->id }}">詳細</a>
                                             </div>
                                         </div>
                                     </td>
