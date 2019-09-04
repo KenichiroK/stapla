@@ -30,10 +30,11 @@ class CreateTaskRequest extends FormRequest
             'company_user_id' => 'required',
             'superior_id'     => 'required',
             'accounting_id'   => 'required',
-            'started_at'      => 'required',
-            'ended_at'        => 'required | after:started_at',
+            'started_at_date' => 'required',
+            'ended_at_date'   => 'required | after:started_at_date',
             'budget'          => 'required',
             'price'           => 'required',
+            'cases'           => 'required | digits:10',
             'partner_id'      => 'required',
             'fee_format'      => 'required',
         ];
@@ -53,6 +54,7 @@ class CreateTaskRequest extends FormRequest
             'ended_at'        => '終了日を選択してください',
             'budget'          => '予算を入力してください',
             'price'           => '発注単価を入力してください',
+            'cases'           => '発注件数を入力してください',
             'partner_id'      => 'パートナーを選択してください',
             'fee_format'      => '報酬形式を選択してください',
         ];

@@ -10,37 +10,40 @@
 </script>
 
 <script>
-const set_started_at = () => {
-  const started_at_year = document.getElementById('started_at_year').value;
-  const started_at_month = document.getElementById('started_at_month').value;
-  const started_at_day = document.getElementById('started_at_day').value;
-  const started_at_hour = document.getElementById('started_at_hour').value;
-  const started_at = document.getElementById('started_at');
-  started_at.value = Number(started_at_year + started_at_month + started_at_day + started_at_hour);
-  console.log(started_at.value);
+const set_started_at_date = () => {
+  const started_at_date_year = document.getElementById('started_at_date_year').value;
+  const started_at_date_month = document.getElementById('started_at_date_month').value;
+  const started_at_date_day = document.getElementById('started_at_date_day').value;
+  const started_at_time = document.getElementById('started_at_time').value;
+  const started_at_date = document.getElementById('started_at_date');
+  started_at_date.value = started_at_date_year + started_at_date_month + started_at_date_day + started_at_time;
+  console.log(started_at_date.value);
 }
-const set_ended_at = () => {
-  const ended_at_year = document.getElementById('ended_at_year').value;
-  const ended_at_month = document.getElementById('ended_at_month').value;
-  const ended_at_day = document.getElementById('ended_at_day').value;
-  const ended_at_hour = document.getElementById('ended_at_hour').value;
-  const ended_at = document.getElementById('ended_at');
-  ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
-  console.log(ended_at.value);
+const set_ended_at_date = () => {
+  const ended_at_date_year = document.getElementById('ended_at_date_year').value;
+  const ended_at_date_month = document.getElementById('ended_at_date_month').value;
+  const ended_at_date_day = document.getElementById('ended_at_date_day').value;
+  const ended_at_time = document.getElementById('ended_at_time').value;
+  const ended_at_date = document.getElementById('ended_at_date');
+  ended_at_date.value = ended_at_date_year + ended_at_date_month + ended_at_date_day + ended_at_time;
+  console.log(ended_at_date.value);
 }
+
 window.onload = () => {
-  const started_at_year = document.getElementById('started_at_year').value;
-  const started_at_month = document.getElementById('started_at_month').value;
-  const started_at_day = document.getElementById('started_at_day').value;
-  const started_at_hour = document.getElementById('started_at_hour').value;
-  const started_at = document.getElementById('started_at');
-  started_at.value = Number(started_at_year + started_at_month + started_at_day + started_at_hour);
-  const ended_at_year = document.getElementById('ended_at_year').value;
-  const ended_at_month = document.getElementById('ended_at_month').value;
-  const ended_at_day = document.getElementById('ended_at_day').value;
-  const ended_at_hour = document.getElementById('ended_at_hour').value;
-  const ended_at = document.getElementById('ended_at');
-  ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
+  const started_at_date_year = document.getElementById('started_at_date_year').value;
+  const started_at_date_month = document.getElementById('started_at_date_month').value;
+  const started_at_date_day = document.getElementById('started_at_date_day').value;
+  const started_at_time = document.getElementById('started_at_time').value;
+  const started_at_date = document.getElementById('started_at_date');
+  started_at_date.value = started_at_date_year + started_at_date_month + started_at_date_day + started_at_time;
+  console.log(started_at_date.value);
+
+  const ended_at_date_year = document.getElementById('ended_at_date_year').value;
+  const ended_at_date_month = document.getElementById('ended_at_date_month').value;
+  const ended_at_date_day = document.getElementById('ended_at_date_day').value;
+  const ended_at_time = document.getElementById('ended_at_time').value;
+  const ended_at_date = document.getElementById('ended_at_date');
+  ended_at_date.value = ended_at_date_year + ended_at_date_month + ended_at_date_day + ended_at_time;
 }
 
 $(function(){
@@ -407,14 +410,14 @@ $(function(){
                                     <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name start">
                                         開始日<i class="fas fa-calendar-alt"></i>
                                     </div>
-                                    <select class="select-box" id="started_at_year" name="started_at_year" onChange="set_started_at()">
+                                    <select class="select-box" id="started_at_date_year" name="started_at_date_year" onChange="set_started_at_date()">
                                     @for($y=date('Y'); $y<=date('Y')+20; $y++)
                                         <option value="{{ $y }}">{{ $y }}</option>
                                     @endfor
                                     </select>
                                     年
 
-                                    <select class="select-box" id="started_at_month" name="started_at_month" onChange="set_started_at()">
+                                    <select class="select-box" id="started_at_date_month" name="started_at_date_month" onChange="set_started_at_date()">
                                     @for($m=1; $m<=12; $m++)
                                         @if($m < 10)
                                             @if($m == date('m'))
@@ -433,7 +436,7 @@ $(function(){
                                     </select>
                                     月
 
-                                    <select class="select-box" id="started_at_day" name="started_at_day" onChange="set_started_at()">
+                                    <select class="select-box" id="started_at_date_day" name="started_at_date_day" onChange="set_started_at_date()">
                                     @for($d=1; $d<=31; $d++)
                                         @if($d < 10)
                                             @if($d == date('d'))
@@ -452,31 +455,37 @@ $(function(){
                                     </select>
                                     日
 
-                                    <select class="select-box" id="started_at_hour" name="started_at_hour" onChange="set_started_at()">
+                                    <select class="select-box" id="started_at_time" name="started_at_time" onChange="set_started_at_date()">
                                     @for($h=0; $h<=24; $h++)
                                         @if($h < 10)
                                             @if($h == date('H'))
-                                                <option value='0{{ $h }}' selected>{{ $h }}</option>
+                                                <option value='0{{ $h }}0000' selected>{{ $h }}</option>
                                             @else
-                                                <option value='0{{ $h }}'>{{ $h }}</option>
+                                                <option value='0{{ $h }}0000'>{{ $h }}</option>
                                             @endif
                                         @else
                                             @if($h == date('H'))
-                                                <option value='{{ $h }}' selected>{{ $h }}</option>
+                                                <option value='{{ $h }}0000' selected>{{ $h }}</option>
                                             @else
-                                                <option value='{{ $h }}'>{{ $h }}</option>
+                                                <option value='{{ $h }}0000'>{{ $h }}</option>
                                             @endif
                                         @endif
                                     @endfor
                                     </select>
-                                    時
-
-                                    <input name="started_at" id="started_at" type="hidden" value="{{ old('started_at')}}">
-                                    @if($errors->has('started_at'))
+                                    @if($errors->has('started_at_time'))
                                         <div>
-                                            <strong style='color: #e3342f;'>{{ $errors->first('started_at') }}</strong>
+                                            <strong style='color: #e3342f;'>{{ $errors->first('started_at_time') }}</strong>
                                         </div>
                                     @endif
+                                    時
+
+                                    <input name="started_at_date" id="started_at_date" type="hidden" value="{{ old('started_at_date')}}">
+                                    @if($errors->has('started_at_date'))
+                                        <div>
+                                            <strong style='color: #e3342f;'>{{ $errors->first('started_at_date') }}</strong>
+                                        </div>
+                                    @endif
+                                  
                                 </div>
                                 <!-- 終了日カレンダー -->
                                 <div class="main-container__wrapper__item-container__calendar-content__content">                               
@@ -484,14 +493,14 @@ $(function(){
                                     <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name">
                                         終了日<i class="fas fa-calendar-alt"></i>
                                     </div>
-                                    <select class="select-box" id="ended_at_year" name="ended_at_year" onChange="set_ended_at()">
+                                    <select class="select-box" id="ended_at_date_year" name="ended_at_date_year" onChange="set_ended_at_date()">
                                         @for($y=explode('-', date('Y-m-d', strtotime('1day')))[0]; $y<=date('Y')+20; $y++)
                                             <option value="{{ $y }}">{{ $y }}</option>
                                         @endfor
                                     </select>
                                     年
 
-                                    <select class="select-box" id="ended_at_month" name="ended_at_month" onChange="set_ended_at()">
+                                    <select class="select-box" id="ended_at_date_month" name="ended_at_date_month" onChange="set_ended_at_date()">
                                         @for($m=1; $m<=12; $m++)
                                             @if($m < 10)
                                                 @if($m == explode('-', date('Y-m-d', strtotime('1day')))[1])
@@ -510,7 +519,7 @@ $(function(){
                                     </select>
                                     月
 
-                                    <select class="select-box" id="ended_at_day" name="ended_at_day" onChange="set_ended_at()">
+                                    <select class="select-box" id="ended_at_date_day" name="ended_date_at_day" onChange="set_ended_at_date()">
                                         @for($d=1; $d<=31; $d++)
                                             @if($d < 10)
                                                 @if($d == explode('-', date('Y-m-d', strtotime('1day')))[2])
@@ -529,30 +538,38 @@ $(function(){
                                     </select>
                                     日
 
-                                    <select class="select-box" id="ended_at_hour" name="ended_at_hour" onChange="set_ended_at()">
+                                    <select class="select-box" id="ended_at_time" name="ended_at_time" onChange="set_ended_at_date()">
                                     @for($h=0; $h<=24; $h++)
                                         @if($h < 10)
-                                            @if($h == 0)
-                                                <option value='0{{ $h }}' selected>{{ $h }}</option>
+                                            @if($h == date('H'))
+                                                <option value='0{{ $h }}0000' selected>{{ $h }}</option>
                                             @else
-                                                <option value='0{{ $h }}'>{{ $h }}</option>
+                                                <option value='0{{ $h }}0000'>{{ $h }}</option>
                                             @endif
                                         @else
-                                            @if($h == 0)
-                                                <option value='{{ $h }}' selected>{{ $h }}</option>
+                                            @if($h == date('H'))
+                                                <option value='{{ $h }}0000' selected>{{ $h }}</option>
                                             @else
-                                                <option value='{{ $h }}'>{{ $h }}</option>
+                                                <option value='{{ $h }}0000'>{{ $h }}</option>
                                             @endif
                                         @endif
                                     @endfor
-                                    </select>
-                                    時
-                                    <input id="ended_at" name="ended_at" type="hidden" value="{{ old('ended_at')}}">
-                                    @if($errors->has('ended_at'))
+                                    @if($errors->has('ended_at_time'))
                                         <div>
-                                            <strong style='color: #e3342f;'>{{ $errors->first('ended_at') }}</strong>
+                                            <strong style='color: #e3342f;'>{{ $errors->first('ended_at_time') }}</strong>
                                         </div>
                                     @endif
+                                    </select>
+                                    時
+
+                                    <input id="ended_at_date" name="ended_at_date" type="hidden" value="{{ old('ended_at_date')}}">
+                                    @if($errors->has('ended_at_date'))
+                                        <div>
+                                            <strong style='color: #e3342f;'>{{ $errors->first('ended_at_date') }}</strong>
+                                        </div>
+                                    @endif
+                                    <!-- <input id="ended_at_time" name="ended_at_time" type="hidden" value="{{ old('ended_at_time')}}"> -->
+                                   
 
                                 </div>
                             </div>
@@ -703,22 +720,22 @@ $(function(){
                                         </div>
                                     </div>  
                                     <!-- 件数 -->
-                                    <!-- <div class="item-name-wrapper numbername">
+                                    <div class="item-name-wrapper numbername">
                                         <div class="item-name-wrapper__item-name">
                                             件数
                                         </div>
                                     </div>
                                     <div class="partner-container__wrpper__item-container__order-uninum__number__contents">
-                                        <input class="input" name='cases' type="text">
+                                        <input class="input form-control{{ $errors->has('cases') ? ' is-invalid' : '' }}" name='cases' type="text" value="{{ old('cases')}}">
                                         @if ($errors->has('cases'))
-                                            <div class="invalid-feedback error-msg" role="alert">
-                                                <strong>{{ $errors->first('cases') }}</strong>
-                                            </div>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong style='color: #e3342f'>{{ $errors->first('cases') }}</strong>
+                                            </span>
                                         @endif
                                         <div class="partner-container__wrpper__item-container__order-uninum__number__contents__class">
                                             件
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
