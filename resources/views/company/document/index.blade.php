@@ -314,11 +314,7 @@
                                 <td class="invoice-table__data-row__table-data">
                                     <div class="invoice-table__data-row__table-data__create-container">
                                         <div class="invoice-table__data-row__table-data__create-container__create">
-                                            @if($invoice->status === 3)
-                                                <a href="document/invoice/create">詳細</a>
-                                            @else
-                                                <a href="document/invoice/create">作成</a>
-                                            @endif
+                                            <a href="document/invoice/{{ $invoice->id }}">詳細</a>
                                         </div>
                                     </div>
                                 </td>
