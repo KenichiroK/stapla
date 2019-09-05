@@ -576,8 +576,6 @@ $(function(){
                             <div class="main-container__wrapper__item-container__inputarea">
                                 <div class="main-container__wrapper__item-container__inputarea__field">
                                     <div class="main-container__wrapper__item-container__inputarea__field__control budget">
-                                        <!-- <input name="budget" type="text" value="{{ old('budget')}}"> -->
-                                        <!-- <input class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text"> -->
                                         <input id="inputPrice" class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text" value="{{ old('budget')}}">
                                         @if ($errors->has('budget'))
                                             <div class="invalid-feedback error-msg" role="alert">
