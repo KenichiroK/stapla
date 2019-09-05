@@ -161,7 +161,7 @@
                 <p>{{ $invoices->count() }}</p>
             </div>
             <div class="btn-container">
-                <button>確認</button>
+                <!-- <button>確認</button> -->
             </div>
         </div>
 
@@ -174,7 +174,7 @@
                 <p>{{ $purchaseOrders->count() }}</p>
             </div>
             <div class="btn-container">
-                <button>作成</button>
+                <!-- <button>作成</button> -->
             </div>
         </div>
 
@@ -187,7 +187,7 @@
                 <p>{{ $ndas->count() }}</p>
             </div>
             <div class="btn-container">
-                <button>作成</button>
+                <!-- <button>作成</button> -->
             </div>
         </div>
     </div>

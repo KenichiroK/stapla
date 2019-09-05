@@ -194,8 +194,8 @@
         <!-- Task -->
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
-                <li class="all isActive"><a href="/company/task">タスク一覧</a></li>
-                <li class="done"><a href="/company/task/done">完了したタスク</a></li>
+                <li class="all"><a href="/company/task">タスク一覧</a></li>
+                <li class="done isActive"><a href="/company/task/done">完了したタスク</a></li>
             </ul>
             <div class="task-container__createarea">
                 <div class="task-container__createarea__buttonarea control">
@@ -246,7 +246,7 @@
                         <tr class="task-container__wrapper__table-wrapper__table__datarow">
                             
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata  project">{{ $task->project->name }}</td>
-                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><a href="task/{{ $task->id }}">{{ $task->name }}</a></td>
+                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><a href="/company/task/{{ $task->id }}">{{ $task->name }}</a></td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">
                                     {{ $task->partner->name }}
                                 </td>

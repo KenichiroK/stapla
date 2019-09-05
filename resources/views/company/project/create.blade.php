@@ -409,11 +409,11 @@ window.onload = () => {
                             @endif
                         </div>
                     </li>
-                    <li class="project-create__container__list__item document">
+                    <!-- <li class="project-create__container__list__item document">
                         <div class="project-create__container__list__item__name">資料</div>
                         <div class="project-create__container__list__item__wrapper document-item">
                             <div class="project-create__container__list__item__wrapper__description upload">アップロード</div>
-                            <!-- <div class="file has-name is-boxed">
+                            <div class="file has-name is-boxed">
                             <label class="file-label">
                                 <input id="inputFile" class="file-input" type="file" name="file">
                                 <span id="upload-btn" class="file-cta">
@@ -427,10 +427,10 @@ window.onload = () => {
                                 <span id="fileName" class="file-name">
                                 </span>
                             </label>
-                            </div> -->
+                            </div>
                             <img src="../../../images/dragdrop.png" alt="">
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="button-container">

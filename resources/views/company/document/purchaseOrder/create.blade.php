@@ -4,18 +4,6 @@
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/document/purchaseOrder/index.css') }}">
 <script>
-const checkInvoiceDate = () => {
-  const requestedAtRadio = document.getElementsByName('requested_at');
-  const requestedAtText = document.getElementById('requested_at_text');
-  if (requestedAtRadio[0].checked) {
-	const dateArr = requestedAtRadio[0].value.split('-');
-	requestedAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
-  } else if (requestedAtRadio[1].checked) {
-    const dateArr = requestedAtRadio[1].value.split('-');
-	requestedAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
-  }
-}
-
 const checkDeadline = () => {
   const deadlineAtRadio = document.getElementsByName('task_ended_at');
   const deadlineAtText = document.getElementById('deadline_at_text');
@@ -26,7 +14,11 @@ const checkDeadline = () => {
     const dateArr = deadlineAtRadio[1].value.split('-');
 	deadlineAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
   }
-}
+};
+
+window.onload = () => {
+	checkDeadline();
+};
 
 </script>
 @endsection
@@ -80,8 +72,8 @@ const checkDeadline = () => {
 							<p>{{ $task->name }}</p>
 							<input type="hidden" name="task_id" value="{{ $task->id }}">
                             @if ($errors->has('task_id'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('task_id') }}</strong>
+                                <div class="error-msg">
+                                    <strong>{{ $errors->first('task_id') }}</strong>
                                 </div>					
                             @endif
 						</div>
@@ -93,8 +85,8 @@ const checkDeadline = () => {
                     <dd>
                         <input class="task-name" type="text" name="task_name" value="{{ old('task_name') }}">
                         @if ($errors->has('task_name'))
-                            <div>
-                                <strong style='color: #e3342f;'>{{ $errors->first('task_name') }}</strong>
+                            <div class="error-msg">
+                                <strong>{{ $errors->first('task_name') }}</strong>
                             </div>					
                         @endif
                     </dd>
@@ -105,14 +97,30 @@ const checkDeadline = () => {
 					<dd>
 						<div class="radio-container">
 							<span id="deadline_at_text"></span>
-							<input class="radio-input" type="radio" name="task_ended_at" value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) }}" id="end_of_next_month" onclick="checkDeadline()">
+							<input
+								class="radio-input"
+								type="radio" 
+								name="task_ended_at" 
+								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) }}" 
+								id="end_of_next_month" 
+								onclick="checkDeadline()"
+								{{ old('task_ended_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) ? 'checked' : '' }}
+							>
 							<label for="end_of_next_month">来月末にする</label>
-							<input class="radio-input" type="radio" name="task_ended_at" value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) }}" id="end_of_month_after_next" onclick="checkDeadline()">
+							<input
+								class="radio-input" 
+								type="radio" 
+								name="task_ended_at" 
+								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) }}" 
+								id="end_of_month_after_next" 
+								onclick="checkDeadline()"
+								{{ old('task_ended_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) ? 'checked' : '' }}
+							>
 							<label for="end_of_month_after_next">再来月末にする</label>
 						</div>
 						@if ($errors->has('task_ended_at'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('task_ended_at') }}</strong>
+							<div class="error-msg">
+								<strong>{{ $errors->first('task_ended_at') }}</strong>
 							</div>					
 						@endif
 					</dd>
@@ -122,9 +130,9 @@ const checkDeadline = () => {
 					<dt>納品場所</dt>
 					<dd>
 						<input class="task-name" type="text" name="task_delivery_format" value="{{ old('task_delivery_format') }}">
-						@if ($errors->has('task_name'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('task_delivery_format') }}</strong>
+						@if ($errors->has('task_delivery_format'))
+							<div class="error-msg">
+								<strong>{{ $errors->first('task_delivery_format') }}</strong>
 							</div>					
 						@endif
 					</dd>
@@ -137,15 +145,15 @@ const checkDeadline = () => {
 							<select name="companyUser_id">
 								<option value="" hidden></option>
 								@foreach($task->taskCompanies as $companyUser)
-									<option value="{{ $companyUser->companyUser->id }}">{{ $companyUser->companyUser->name }}</option>
+									<option value="{{ $companyUser->companyUser->id }}" {{ old('companyUser_id') === $companyUser->companyUser->id ? 'selected' : ''}}>{{ $companyUser->companyUser->name }}</option>
 								@endforeach
-								@if ($errors->has('companyUser_id'))
-									<div>
-										<strong style='color: #e3342f;'>{{ $errors->first('companyUser_id') }}</strong>
-									</div>					
-								@endif
 							</select>
 						</div>
+						@if ($errors->has('companyUser_id'))
+							<div class="error-msg">
+								<strong>{{ $errors->first('companyUser_id') }}</strong>
+							</div>					
+						@endif
 					</dd>
                 </dl>
                 
@@ -156,8 +164,8 @@ const checkDeadline = () => {
                             <p>{{ $task->partner->name }}</p>
                             <input type="hidden" name="partner_id" value="{{ $task->partner->id }}">
                             @if ($errors->has('partner_id'))
-                                <div>
-                                    <strong style='color: #e3342f;'>{{ $errors->first('partner_id') }}</strong>
+                                <div class="error-msg">
+                                    <strong>{{ $errors->first('partner_id') }}</strong>
                                 </div>					
                             @endif
 						</div>

@@ -11,6 +11,8 @@ use App\Models\Partner;
 use App\Models\Task;
 use App\Models\Nda;
 use App\Models\ProjectPartner;
+use App\Http\Requests\Companies\NdaRequest;
+
 
 class NdaController extends Controller
 {
@@ -62,7 +64,7 @@ class NdaController extends Controller
         return view('company/document/nda/create', compact('companyUsers', 'partners', 'tasks', 'ndaUnDoneTasks', 'ndaDoneTasks', 'asignedPartners', 'unAsignedPartners', 'company_user'));
     }
 
-    public function store(Request $request)
+    public function store(NdaRequest $request)
     {
         $auth = Auth::user();
         $companyUser = CompanyUser::where('auth_id', $auth->id)->first();

@@ -3,21 +3,6 @@
     margin: auto;
     padding: 40px;
 
-    .complete-container {
-        p {
-            color: #09c221;
-            font-weight: bold;
-            font-size: 16px;
-        }
-    }
-
-    .error-container {
-        p {
-            color: #e3342f;
-            font-weight: bold;
-            font-size: 16px;
-        }
-    }
 
     .title-container {
         margin-bottom: 40px;
@@ -27,22 +12,6 @@
             font-size: 28px;
             font-family: "Source Sans Pro";
             margin-bottom: 0;
-        }
-    }
-
-    .complete-container {
-        p {
-            color: #09c221;
-            font-weight: bold;
-            font-size: 16px;
-        }
-    }
-
-    .error-container {
-        p {
-            color: #e3342f;
-            font-weight: bold;
-            font-size: 16px;
         }
     }
 
@@ -119,6 +88,14 @@
                 font-weight: bold;
                 margin-bottom: 13px;
             }
+
+            .text_content {
+                font-size: initial;
+                font-family: 'Source Sans Pro';
+                font-weight: initial;
+                color: #000000;
+                margin-left: 10px;
+              }
 
             input {
                 outline-color: #43425d;

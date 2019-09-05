@@ -22,41 +22,53 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::get('register/{company_id}/{email}', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('register/{company_id}', 'Partners\Auth\RegisterController@register')->name('partner.register');
 
-	// preRegister
+	// preRegister - 仮登録後に表示させるページ
 	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
 
 	// invite
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
 
-	// emailverify
+	// emailverify - Eメール認証
 	Route::middleware('throttle:6,1')->get('email/resend','Partners\Auth\VerificationController@resend')->name('partner.verification.resend');
 	Route::middleware('throttle:6,1')->get('email/verify','Partners\Auth\VerificationController@show')->name('partner.verification.notice');
 	Route::middleware('signed')->get('email/verify/id/{id}/company_id/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
 	
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
-		// register_flow
+		
+		// register_flow - 初期登録関連
 		Route::get('/register/doneVerify', 'Partners\InitialRegisterController@doneVerify')->name('partner.register.doneVerify.doneVerify');
 		Route::get('/register/initialRegistration', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
 		Route::post('/register/initial/personal', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
 		Route::get('/register/preview/previwShow', 'Partners\InitialRegisterController@previwShow')->name('parnter.register.preview.previwShow');
 		Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('partner.register.preview.previewStore');
+		
 		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
+		
+		// project
+		Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
+
 		// task
 		Route::get('/task/{id}', 'Partners\TaskController@show')->name('partner.task.show');
+		
 		// task status change
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('task.status.change');
+		
 		// profile
 		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
 		Route::post('profile', 'Partners\ProfileController@store')->name('partner.profile.store');
+		
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
 		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
+		
 		// notification setting
 		Route::get('setting/notification', 'Partners\Setting\NotificationController@create')->name('partner.setting.notification.create');
 		Route::post('setting/notification', 'Partners\Setting\NotificationController@store')->name('partner.setting.notification.store');
+		
 		// purchase-order
 		Route::get('order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.purchaseOrder.show');
+		
 		// invoice
 		Route::get('invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
@@ -103,12 +115,14 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// project
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
+		Route::get('/project/done', 'Companies\ProjectController@doneIndex')->name('company.project.done.index');
 		Route::get('/project/create', 'Companies\ProjectController@create')->name('company.project.create');
 		Route::post('/project', 'Companies\ProjectController@store')->name('company.project.create');
 		Route::get('/project/{id}', 'Companies\ProjectController@show')->name('company.project.show');
 
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
+		Route::get('/task/done', 'Companies\TaskController@doneIndex')->name('company.task.done.index');
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
         Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.create');
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');

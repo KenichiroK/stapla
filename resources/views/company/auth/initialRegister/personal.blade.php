@@ -96,6 +96,12 @@ $pref = array(
 
     <main>
         <div class="main-wrapper">
+			@if(count($errors) > 0)
+				<div class="error-container">
+					<p>入力に問題があります。再入力して下さい。</p>
+				</div>
+			@endif
+
 			<div class="title-container">
 				<h3>企業情報登録</h3>
 			</div>
@@ -107,7 +113,7 @@ $pref = array(
 					<div class="top-container">
 						<div class="input-container linefirst-input">
 							<p>会社名</p>
-								<input type="text" name="company_name" value="{{ old('company_name') }}">
+							<input type="text" name="company_name" value="{{ old('company_name') }}">
 							@if ($errors->has('company_name'))
 								<div class="error-msg">
 									<strong>{{ $errors->first('company_name') }}</strong>
@@ -116,7 +122,7 @@ $pref = array(
 						</div>
 						<div class="input-container">
 							<p>代表者名</p>
-								<input type="text" name="representive_name" value="{{ old('representive_name') }}">
+							<input type="text" name="representive_name" value="{{ old('representive_name') }}">
 							@if ($errors->has('representive_name'))
 								<div class="error-msg">
 									<strong>{{ $errors->first('representive_name') }}</strong>
@@ -160,7 +166,7 @@ $pref = array(
 					<div class="bottom-container">
 						<div class="input-container linefirst-input">
 							<p>市区町村・番地</p>
-								<input type="text" name="address_city" value="{{ old('address_city') }}">
+							<input type="text" name="address_city" value="{{ old('address_city') }}">
 							@if ($errors->has('address_city'))
 								<div class="error-msg">
 									<strong>{{ $errors->first('address_city') }}</strong>
@@ -169,7 +175,7 @@ $pref = array(
 						</div>
 						<div class="input-container">
 							<p>建物名・部屋番号</p>
-								<input type="text" name="address_building" value="{{ old('address_building') }}">
+							<input type="text" name="address_building" value="{{ old('address_building') }}">
 							@if ($errors->has('address_building'))
 								<div class="error-msg">
 									<strong>{{ $errors->first('address_building') }}</strong>
@@ -210,7 +216,7 @@ $pref = array(
 					<div class="profile-container">
 						<div class="input-container">
 							<p>名前</p>
-								<input type="text" name="name" value="{{ old('name') }}">								
+							<input type="text" name="name" value="{{ old('name') }}">								
 							@if ($errors->has('name'))
 								<div class="error-msg">
 									<strong>{{ $errors->first('name') }}</strong>
@@ -220,7 +226,7 @@ $pref = array(
 
 						<div class="input-container">
 							<p>担当</p>
-								<input type="text" name="department" value="{{ old('department') }}">
+							<input type="text" name="department" value="{{ old('department') }}">
 							@if ($errors->has('department'))
 								<div class="error-msg">
 									<strong>{{ $errors->first('department') }}</strong>
@@ -229,13 +235,13 @@ $pref = array(
 						</div>
 
 						<div class="input-container">
-							<p>部署</p>
-								<input type="text" name="name" value="">
+							<p>職種</p>
+							<input type="text" name="occupation" value="{{ old('occupation') }}">
 						</div>
 
 						<div class="input-container last">
 							<p>自己紹介</p>
-								<textarea type="text" name="self_introduction" cols="30" rows="10">{{ old('self_introduction') }}</textarea>
+							<textarea type="text" name="self_introduction" cols="30" rows="10">{{ old('self_introduction') }}</textarea>
 							@if ($errors->has('self_introduction'))
 								<div class="error-msg">
 									<strong>{{ $errors->first('self_introduction') }}</strong>

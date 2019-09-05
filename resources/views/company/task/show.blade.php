@@ -50,7 +50,6 @@
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
@@ -61,7 +60,6 @@
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -72,7 +70,6 @@
                 </li>
                 <li>
                     <a href="/company/project">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
@@ -83,7 +80,6 @@
                 </li>
                 <li>
                     <a href="/company/task" class="isActive">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -94,7 +90,6 @@
                 </li>
                 <li>
                     <a href="/company/document">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -105,7 +100,6 @@
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_customers.png" alt="">
                         </div>
@@ -116,7 +110,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -127,7 +120,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -138,7 +130,6 @@
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -253,14 +244,14 @@
                     {{ number_format($task->budget) }}円
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     資料
                 </dt>
                 <dd>
                     
                 </dd>
-            </dl>
+            </dl> -->
         </div>
 
         <div class="patner">
@@ -291,7 +282,7 @@
                     発注単価<span>(税抜)</span>
                 </dt>
                 <dd>
-                    {{ number_format($task->budget) }}円
+                    {{ number_format($task->price) }}円
                 </dd>
             </dl>
             <dl>
@@ -299,7 +290,7 @@
                     件数
                 </dt>
                 <dd>
-                    {{ $task->project->tasks->count() }}件
+                    {{ $task->cases }}件
                 </dd>
             </dl>
             <dl>
@@ -307,7 +298,7 @@
                     発注額
                 </dt>
                 <dd class="orderprice">
-                    <span class="tax">税込</span><span class="yen">￥</span>{{ number_format($task->price * (1 + $task->tax)) }}
+                    <span class="tax">税込</span><span class="yen">￥</span>{{ number_format( ($task->price * $task->cases) * (1 + $task->tax)) }}
                 </dd>
             </dl>
             <dl>

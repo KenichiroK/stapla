@@ -50,7 +50,6 @@
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
@@ -61,7 +60,6 @@
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -72,7 +70,6 @@
                 </li>
                 <li>
                     <a href="/company/project">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
@@ -83,7 +80,6 @@
                 </li>
                 <li>
                     <a href="/company/task" class="isActive">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -94,7 +90,6 @@
                 </li>
                 <li>
                     <a href="/company/document">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -105,7 +100,6 @@
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_customers.png" alt="">
                         </div>
@@ -116,7 +110,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -127,7 +120,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -138,7 +130,6 @@
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -172,24 +163,27 @@
                     </div>
                 </div>
                 <!-- セレクトエリア -->
-                <div class="select-container__wrapper__select-area control">
-                    <div class="select-container__wrapper__select-area__field field">
-                        <div class="select-container__wrapper__select-area__field__control control">
-                            <div class="select-container__wrapper__select-area__field__control__select select is-info">
-                                <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}">
-                                    <option></option>
-                                    @foreach($projects as $project)
-                                        <option value="{{ $project->id }}">{{ $project->name }}</option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('project_id'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong style='color: #e3342f'>{{ $errors->first('project_id') }}</strong>
-                                    </span>
-                                @endif
+                <div class="select-error-wrp">
+                    <div class="select-container__wrapper__select-area control">
+                        <div class="select-container__wrapper__select-area__field field">
+                            <div class="select-container__wrapper__select-area__field__control control">
+                                <div class="select-container__wrapper__select-area__field__control__select select is-info">
+                                    <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}">
+                                        <option></option>
+                                        @foreach($projects as $project)
+                                            <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
+                    @if ($errors->has('project_id'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('project_id') }}</strong>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -210,9 +204,9 @@
                                     <div class="main-container__wrapper__item-container__inputarea__field__control">
                                         <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text">
                                         @if ($errors->has('task_name'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong style='color: #e3342f'>{{ $errors->first('task_name') }}</strong>
-                                            </span>
+                                            <div class="invalid-feedback error-msg" role="alert">
+                                                <strong>{{ $errors->first('task_name') }}</strong>
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
@@ -239,12 +233,11 @@
                                 </div>
                             </div>
                             <div class="main-container__wrapper__item-container__textarea">
-                                <!-- <textarea class="textarea" placeholder="タスク内容" v-model="taskInfo.taskContent"></textarea> -->
                                 <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'></textarea>
                                 @if ($errors->has('task_content'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong style='color: #e3342f'>{{ $errors->first('task_content') }}</strong>
-                                    </span>
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('task_content') }}</strong>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -255,28 +248,31 @@
                                         担当者
                                     </div>
                                 </div>
-                                <div class="select-container__wrapper__select-area control staff">
-                                    <div class="select-container__wrapper__select-area__field field">
-                                        <div class="select-container__wrapper__select-area__field__control control">
-                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                            <!-- <select v-model="taskInfo.staff"> -->
-                                            <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                                <option></option>
-                                                @foreach($companyUsers as $companyUser)
-                                                    <option value="{{ $companyUser->id }}">
-                                                        {{ $companyUser->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('company_user_id'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong style='color: #e3342f'>{{ $errors->first('company_user_id') }}</strong>
-                                                </span>
-                                            @endif
+                                <div class="select-error-wrp">
+                                    <div class="select-container__wrapper__select-area control staff">
+                                        <div class="select-container__wrapper__select-area__field field">
+                                            <div class="select-container__wrapper__select-area__field__control control">
+                                                <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                                <!-- <select v-model="taskInfo.staff"> -->
+                                                <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
+                                                    <option></option>
+                                                    @foreach($companyUsers as $companyUser)
+                                                        <option value="{{ $companyUser->id }}">
+                                                            {{ $companyUser->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div> 
+                                    </div> 
+                                    @if ($errors->has('company_user_id'))
+                                        <div class="invalid-feedback error-msg" role="alert">
+                                            <strong>{{ $errors->first('company_user_id') }}</strong>
+                                        </div>
+                                    @endif
+                                </div>
                         </div>                        
 
                         <!-- 上長 -->
@@ -286,26 +282,29 @@
                                     上長
                                 </div>
                             </div>
-                            <div class="select-container__wrapper__select-area control staff">
-                                <div class="select-container__wrapper__select-area__field field">
-                                    <div class="select-container__wrapper__select-area__field__control control">
-                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                            <select name='superior_id'>
-                                                <option></option>
-                                                @foreach($companyUsers as $companyUser)
-                                                    <option value={{ $companyUser->id }}>
-                                                        {{ $companyUser->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('superior_id'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong style='color: #e3342f'>{{ $errors->first('superior_id') }}</strong>
-                                                </span>
-                                            @endif
+                            <div class="select-error-wrp">
+                                <div class="select-container__wrapper__select-area control staff">
+                                    <div class="select-container__wrapper__select-area__field field">
+                                        <div class="select-container__wrapper__select-area__field__control control">
+                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                                <select name='superior_id'>
+                                                    <option></option>
+                                                    @foreach($companyUsers as $companyUser)
+                                                        <option value={{ $companyUser->id }}>
+                                                            {{ $companyUser->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                @if ($errors->has('superior_id'))
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('superior_id') }}</strong>
+                                    </div>
+                                @endif
                             </div>
                         </div>
 
@@ -316,26 +315,29 @@
                                     経理
                                 </div>
                             </div>
-                            <div class="select-container__wrapper__select-area control staff">
-                                <div class="select-container__wrapper__select-area__field field">
-                                    <div class="select-container__wrapper__select-area__field__control control">
-                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                            <select name='accounting_id'>
-                                                <option></option>
-                                                @foreach($companyUsers as $companyUser)
-                                                    <option value={{ $companyUser->id }}>
-                                                        {{ $companyUser->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('accounting_id'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong style='color: #e3342f'>{{ $errors->first('accounting_id') }}</strong>
-                                                </span>
-                                            @endif
+                            <div class="select-error-wrp">
+                                <div class="select-container__wrapper__select-area control staff">
+                                    <div class="select-container__wrapper__select-area__field field">
+                                        <div class="select-container__wrapper__select-area__field__control control">
+                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                                <select name='accounting_id'>
+                                                    <option></option>
+                                                    @foreach($companyUsers as $companyUser)
+                                                        <option value={{ $companyUser->id }}>
+                                                            {{ $companyUser->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                @if ($errors->has('accounting_id'))
+                                                    <div class="invalid-feedback error-msg" role="alert">
+                                                        <strong>{{ $errors->first('accounting_id') }}</strong>
+                                                    </div>
+                                                @endif
                             </div>
                         </div>
                         <!-- 項目：締め切り -->
@@ -352,14 +354,6 @@
                                         <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name start">
                                             開始日<i class="fas fa-calendar-alt"></i>
                                         </div>
-                                    
-                                    <!-- <datepicker
-                                        class="start_date"
-                                        :format="DatePickerFormat"
-                                        :language="ja"
-                                        :inline="true"   
-                                    >
-                                    </datepicker> -->
                                 </div>
                                 <!-- 終了日カレンダー -->
                                 <div class="main-container__wrapper__item-container__calendar-content__content">                               
@@ -367,13 +361,6 @@
                                         <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name">
                                             終了日<i class="fas fa-calendar-alt"></i>
                                         </div>
-                                    
-                                    <!-- <datepicker class="datepicker"
-                                        v-model="taskInfo.deadlineDate"
-                                        :format="DatePickerFormat"
-                                        :language="ja"
-                                        :inline="true"   
-                                    ></datepicker> -->
                                 </div>
                             </div>
                         </div>
@@ -387,8 +374,12 @@
                             <div class="main-container__wrapper__item-container__inputarea">
                                 <div class="main-container__wrapper__item-container__inputarea__field">
                                     <div class="main-container__wrapper__item-container__inputarea__field__control budget">
-                                        <!-- <input class="input" type="text" placeholder="Text input" v-model="taskInfo.orderNumber" > -->
-                                        <input class="input" type="text">
+                                        <input class="input" name='budget' type="text">
+                                        @if ($errors->has('budget'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong style='color: #e3342f'>{{ $errors->first('budget') }}</strong>
+                                            </span>
+                                        @endif
                                         <div class="main-container__wrapper__item-container__inputarea__field__control-yen">
                                             円
                                         </div>
@@ -397,7 +388,7 @@
                             </div>
                         </div>
                         <!-- 項目：資料 -->
-                        <div class="main-container__wrapper__item-container">
+                        <!-- <div class="main-container__wrapper__item-container">
                             <div class="item-name-wrapper">
                                 <div class="item-name-wrapper__item-name document">
                                     資料
@@ -405,7 +396,7 @@
                             </div>
                             <div class="is-boxed main-container__wrapper__item-container__filearea">
                                 <p class="uplaod">アップロード</p>
-                                <!-- <label class="file-label main-container__wrapper__item-container__filearea__label">
+                                <label class="file-label main-container__wrapper__item-container__filearea__label">
                                     <input class="file-input file-label main-container__wrapper__item-container__filearea__label" type="file" name="resume" >
                                     <span class="file-cta main-container__wrapper__item-container__filearea__label__file-cta">
                                     <span class="file-icon">
@@ -416,10 +407,10 @@
                                         Choose a file…
                                     </span>
                                     </span>
-                                </label> -->
+                                </label>
                                 <img src="../../../images/dragdrop.png" alt="">
                             </div>
-                        </div>
+                        </div> -->
                     </div>      
                 </div>
 
@@ -434,27 +425,30 @@
                                     パートナー
                                 </div>
                             </div>
-                            <div class="select-container__wrapper__select-area control">
-                                <div class="select-container__wrapper__select-area__field field">
-                                    <div class="select-container__wrapper__select-area__field__control control">
-                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                            <!-- <select v-model="taskInfo.partner"> -->
-                                            <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                                <option></option>
-                                                @foreach($partners as $partner)
-                                                    <option value={{ $partner->id }} >
-                                                        {{ $partner->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('partner_id'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong style='color: #e3342f'>{{ $errors->first('partner_id') }}</strong>
-                                                </span>
-                                            @endif
+                            <div class="select-error-wrp">
+                                <div class="select-container__wrapper__select-area control">
+                                    <div class="select-container__wrapper__select-area__field field">
+                                        <div class="select-container__wrapper__select-area__field__control control">
+                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                                <!-- <select v-model="taskInfo.partner"> -->
+                                                <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
+                                                    <option></option>
+                                                    @foreach($partners as $partner)
+                                                        <option value={{ $partner->id }} >
+                                                            {{ $partner->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                @if ($errors->has('partner_id'))
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('partner_id') }}</strong>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <!-- 報酬形式 -->
@@ -506,9 +500,9 @@
                                     <div class="partner-container__wrpper__item-container__order-uninum__unit__contents">
                                         <input class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text">
                                         @if ($errors->has('price'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong style='color: #e3342f'>{{ $errors->first('price') }}</strong>
-                                            </span>
+                                            <div class="invalid-feedback error-msg" role="alert">
+                                                <strong>{{ $errors->first('price') }}</strong>
+                                            </div>
                                         @endif
                                         <div class="partner-container__wrpper__item-container__order-uninum__unit__contents__class">
                                             円
@@ -521,8 +515,12 @@
                                         </div>
                                     </div>
                                     <div class="partner-container__wrpper__item-container__order-uninum__number__contents">
-                                        <!-- <input class="input" type="text" placeholder="Text input" v-model="taskInfo.orderNumber" > -->
-                                        <input class="input" type="text">
+                                        <input class="input" name='cases' type="text">
+                                        @if ($errors->has('cases'))
+                                            <div class="invalid-feedback error-msg" role="alert">
+                                                <strong>{{ $errors->first('cases') }}</strong>
+                                            </div>
+                                        @endif
                                         <div class="partner-container__wrpper__item-container__order-uninum__number__contents__class">
                                             件
                                         </div>
@@ -531,7 +529,7 @@
                             </div>
                         </div>
                         <!-- 発注額 -->
-                        <div class="partner-container__wrpper__item-container price">
+                        <!-- <div class="partner-container__wrpper__item-container price">
                             <div class="item-name-wrapper">
                                 <div class="item-name-wrapper__item-name">
                                     発注額
@@ -541,7 +539,7 @@
                                 <p><span class="tax">税抜</span><span class="yen">￥</span>200,000</p>
                                 <p><span class="tax">税込</span><span class="yen">￥</span>216,000</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Partners;
+namespace App\Http\Requests\Companies;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileRequest extends FormRequest
+class InvitePartnerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,7 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'nickname'     => 'required',
-            'occupations'  => 'required',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'nickname.required'     => '名前 / ニックネームは必須項目です。',
-            'occupations.required'  => '職種は必須項目です。',
+            'email' => 'required'
         ];
     }
 }

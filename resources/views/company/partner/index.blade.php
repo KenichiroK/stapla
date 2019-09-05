@@ -157,12 +157,12 @@
         <div class="top-container">
             <h1 class="top-container__title">パートナー</h1>
             <div>
-                <p class="control has-icons-left serch-wrp">
+                <!-- <p class="control has-icons-left serch-wrp">
                     <input class="search-name input" type="text" placeholder="パートナーを検索">
                     <span class="icon">
                     <img src="../../../images/searchicon.png" alt="serch">
                     </span>
-                </p>
+                </p> -->
             </div>
         </div>
         

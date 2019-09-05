@@ -181,7 +181,7 @@ const setPreview = (input) => {
 			<li><a href="/company/setting/general">会社基本情報設定</a></li>
 			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
 			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
-			<li><a href="/company/setting/account">アカウント設定</a></li>
+			<!-- <li><a href="/company/setting/account">アカウント設定</a></li> -->
 			<li><a href="/company/setting/personalInfo" class="isActive">個人情報の設定</a></li>
 		</ul>
     </div>
@@ -203,8 +203,8 @@ const setPreview = (input) => {
                         <input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" style="display: none;" onchange="setPreview(this)">
                     </label>
                     @if ($errors->has('picture'))
-                        <div>
-                            <strong style='color: #e3342f;'>{{ $errors->first('picture') }}</strong>
+                        <div class="error-msg">
+                            <strong>{{ $errors->first('picture') }}</strong>
                         </div>
                     @endif
                 </div>
@@ -214,8 +214,8 @@ const setPreview = (input) => {
                         <p>名前・ニックネーム</p>
                         <input type="text" name="name" value="{{ old('name', $companyUser->name) }}">
                         @if ($errors->has('name'))
-                            <div>
-                                <strong style='color: #e3342f;'>{{ $errors->first('name') }}</strong>
+                            <div class="error-msg">
+                                <strong>{{ $errors->first('name') }}</strong>
                             </div>
                         @endif
                     </div>
@@ -227,16 +227,15 @@ const setPreview = (input) => {
 
                     <div class="short-input-container">
                         <p>企業名</p>
-                        <input type="text" name="company" value="">
-                        <!-- {{ $companyUser->company->company_name }} -->
+                        <p class="text_content">{{ $companyUser->company->company_name }}</p>
                     </div>
 
                     <div class="short-input-container">
                         <p>担当</p>
                         <input type="text" name="department" value="{{ old('department', $companyUser->department) }}">
                         @if ($errors->has('department'))
-                            <div>
-                                <strong style='color: #e3342f;'>{{ $errors->first('department') }}</strong>
+                            <div class="error-msg">
+                                <strong>{{ $errors->first('department') }}</strong>
                             </div>
                         @endif
                     </div>
@@ -245,8 +244,8 @@ const setPreview = (input) => {
                         <p>職種</p>
                         <input type="text" name="occupation" value="{{ old('occupation', $companyUser->occupation) }}">
                         @if ($errors->has('occupation'))
-                            <div>
-                                <strong style='color: #e3342f;'>{{ $errors->first('occupation') }}</strong>
+                            <div class="error-msg">
+                                <strong>{{ $errors->first('occupation') }}</strong>
                             </div>
                         @endif
                     </div>

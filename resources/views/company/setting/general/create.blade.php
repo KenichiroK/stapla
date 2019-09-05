@@ -247,7 +247,7 @@ $pref = array(
 			<li><a href="/company/setting/general" class="isActive">会社基本情報設定</a></li>
 			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
 			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
-			<li><a href="/company/setting/account">アカウント設定</a></li>
+			<!-- <li><a href="/company/setting/account">アカウント設定</a></li> -->
 			<li><a href="/company/setting/personalInfo">個人情報の設定</a></li>
 		</ul>
 	</div>
@@ -257,16 +257,7 @@ $pref = array(
 			<div class="top-area">
 				<div class="name-container">
 					<p>会社名</p>
-					@if($company)
-						<input class="top-input input" type="" name="company_name" value="{{ old('company_name', $company->company_name) }}" placeholder="">
-					@else
-						<input class="top-input input" type="" name="company_name" value="{{ old('company_name') }}" placeholder="">
-					@endif
-					@if ($errors->has('company_name'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('company_name') }}</strong>
-						</div>
-					@endif
+                    <p class="text_content">{{ $company->company_name }}</p>
 				</div>
 				<div class="name-container">
 					<p>代表者名</p>
@@ -276,8 +267,8 @@ $pref = array(
 						<input class="top-input input" type="text" name="representive_name" value="{{ old('representive_name') }}" placeholder="">
 					@endif
 					@if ($errors->has('representive_name'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('representive_name') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('representive_name') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -302,12 +293,13 @@ $pref = array(
 							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
                             <input id="postal" type="hidden" name="zip_code">
 						@endif
-						@if ($errors->has('zip_code'))
-							<div>
-								<strong style='color: #e3342f;'>{{ $errors->first('zip_code') }}</strong>
+						
+                    </div>
+                    @if ($errors->has('zip_code'))
+							<div class="error-msg">
+								<strong>{{ $errors->first('zip_code') }}</strong>
 							</div>
 						@endif
-					</div>
 				</div>
 	
 				<div class="prefecture-container">
@@ -320,8 +312,8 @@ $pref = array(
 						</select>
 					</div>
 					@if ($errors->has('address_prefecture'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('address_prefecture') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('address_prefecture') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -336,8 +328,8 @@ $pref = array(
 						<input class="top-input input" type="text" name="address_city" value="{{ old('address_city') }}" placeholder="">
 					@endif
 					@if ($errors->has('address_city'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('address_city') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('address_city') }}</strong>
 						</div>
 					@endif
 				</div>
@@ -350,8 +342,8 @@ $pref = array(
 						<input type="text" name="address_building" value="{{ old('address_building') }}">
 					@endif
 					@if ($errors->has('address_building'))
-						<div>
-							<strong style='color: #e3342f;'>{{ $errors->first('address_building') }}</strong>
+						<div class="error-msg">
+							<strong>{{ $errors->first('address_building') }}</strong>
 						</div>
 					@endif
 				</div>

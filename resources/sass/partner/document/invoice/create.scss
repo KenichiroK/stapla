@@ -3,14 +3,6 @@
     margin: auto;
     padding: 40px;
 
-    .error-container {
-        p {
-            color: #e3342f;
-            font-weight: bold;
-            font-size: 16px;
-        }
-    }
-
     .title-container {
         margin-bottom: 40px;
 
@@ -77,8 +69,6 @@
                     width: calc(100% - 60px);
                     margin-left: 12px;
                     margin-bottom: 0;
-                    display: flex;
-                    align-items: center;
 
                     .selectbox-container {
                         width: 70%;

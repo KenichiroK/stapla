@@ -180,7 +180,7 @@ const setPreview = (input) => {
 			<li><a href="/company/setting/general">会社基本情報設定</a></li>
 			<li><a href="/company/setting/companyElse" class="isActive">会社その他の設定</a></li>
 			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
-			<li><a href="/company/setting/account">アカウント設定</a></li>
+			<!-- <li><a href="/company/setting/account">アカウント設定</a></li> -->
 			<li><a href="/company/setting/personalInfo">個人情報の設定</a></li>
 		</ul>
     </div>
@@ -289,7 +289,7 @@ const setPreview = (input) => {
                 </div>
             </div>
 
-            <div class="document-container">
+            <!-- <div class="document-container">
                 <div class="title-container">
                     <h4>書類</h4>
                 </div>
@@ -343,7 +343,7 @@ const setPreview = (input) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 		</div>
 
 		<div class="btn-container">

@@ -41,5 +41,30 @@ main {
 		top: 64px;
 		right: 0;
 		background-color: #F0F0F7;
+
+		// エラーメッセージ
+		.error-msg{
+			margin-top: 5px;
+			display: block;
+			strong{
+			  color: #FF0031;
+			  font-size: 12px;
+			}
+		}
+		.error-container {
+			p {
+				color: #FF0031;
+				font-weight: bold;
+				font-size: 16px;
+			}
+		}
+		// 完了メッセージ
+		.complete-container {
+			p {
+				color: #09c221;
+				font-weight: bold;
+				font-size: 16px;
+			}
+		}
 	}
 }

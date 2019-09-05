@@ -36,9 +36,9 @@
                         <h4 class="title">ユーザーID</h4>
                         <input class="input_text" type="email" name="email" placeholder="ユーザーネーム又はメールアドレス">
                         @if ($errors->has('email'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong style="color: #e3342f;">{{ $errors->first('email') }}</strong>
-                            </span>
+                            <div class="invalid-feedback error-msg" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </div>
                         @endif
                     </div>
 
@@ -49,9 +49,9 @@
                             <p>表示</p>
                         </div>
                         @if ($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong style="color: #e3342f;">{{ $errors->first('password') }}</strong>
-                            </span>
+                            <div class="invalid-feedback error-msg" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </div>
                         @endif
                     </div>
 
@@ -65,6 +65,7 @@
                     </div>
                 </form>
 
+                <!-- 現在、パートナーの自発的な新規会員登録は行わない -->
                 <div class="signup_wrapper">
                     <a href="/partner/register">新規会員登録</a>
                 </div>

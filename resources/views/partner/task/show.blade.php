@@ -236,14 +236,14 @@
                     {{ number_format($task->budget) }}円
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     資料
                 </dt>
                 <dd>
                     
                 </dd>
-            </dl>
+            </dl> -->
         </div>
 
         <div class="patner">

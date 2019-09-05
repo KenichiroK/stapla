@@ -41,6 +41,12 @@
 							</div>
 
 							<div class="section-container">
+								<p>職種</p>
+								<input type="hidden" name="occupation" value="{{ old('occupation', $request->occupation) }}">
+								<h4>{{ $request->occupation }}</h4>
+							</div>
+
+							<div class="section-container">
 								<p>自己紹介</p>
 								<input type="hidden" name="self_introduction" value="{{ old('self_introduction', $request->self_introduction) }}">
 								<h4>{{ $request->self_introduction }}</h4>

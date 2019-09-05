@@ -27,6 +27,7 @@ class CreatePurchaseOrderRequest extends FormRequest
             'task_name'            => 'required',
             'task_ended_at'        => 'required',
             'task_delivery_format' => 'required',
+            'companyUser_id'       => 'required',
         ];
     }
 

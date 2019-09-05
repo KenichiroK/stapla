@@ -1,4 +1,4 @@
-@extends('company.index')
+@extends('partner.index')
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
@@ -9,7 +9,7 @@
 <div class="header-proflie">
     <div class="option">
         <div class="user-name">
-            {{ $company_user->name }}
+            {{ $partner->name }}
         </div>
 
         <div class="icon-imgbox">
@@ -22,7 +22,7 @@
             <ul>
                 <li><a href="">プロフィール設定</a></li>
                 <li>
-                    <form method="POST" action="{{ route('company.logout') }}">
+                    <form method="POST" action="{{ route('partner.logout') }}">
                         @csrf
                         <button type="submit">ログアウト</button>
                     </form>
@@ -33,7 +33,9 @@
     </div>
 
     <div class="user-imgbox">
-        <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+        <a href="/partner/profile">
+            <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
+        </a>
     </div>
 </div>
 @endsection
@@ -50,7 +52,6 @@
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
@@ -60,8 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
+                    <a href="/partner/dashboard">
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -71,8 +71,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/company/project" class="isActive">
-                        <!-- <i class="fas fa-envelope"></i> -->
+                    <a href="#" class="isActive">
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
@@ -82,8 +81,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/company/task">
-                        <!-- <i class="fas fa-tasks"></i> -->
+                    <a href="#">
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -93,8 +91,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/company/document">
-                        <!-- <i class="fas fa-newspaper"></i> -->
+                    <a href="#">
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -104,19 +101,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
-                        <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
-                        </div>
-                        <div class="textbox">
-                            パートナー
-                        </div>
-                    </a>
-                </li>
-                <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -127,7 +112,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -137,7 +121,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/company/setting/general">
+                    <a href="/partner/setting/invoice">
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -147,7 +131,6 @@
                     </a>
                 </li>
             </ul>
-            
         </aside>
     </div>
 </div>
@@ -156,43 +139,11 @@
 @section('content')
 
 <div class="main__container">
-    <!-- アクティビティログメニュー -->
-    <!-- <div class="activity-log-menu">
-        <div class="activity-log-menu__top">
-            <div class="activity-log-menu__top__title">アクティビティログ</div>
-            <div id="close-btn" class="close-container"><span class="close-container__btn">閉じる</span><i class="fas fa-long-arrow-alt-right"></i></div>
-        </div>
-        <div class="notification-wrp">
-            <div class="notification-container">
-                <div class="notification-container__img-container">
-                    <img src="../../../images/photoimg.png" alt="">
-                </div>
-                <div class="notification-container__content">
-                    <p class="notification-container__content__name">永瀬達也</p>
-                    <p class="notification-container__content__done">@@@@を作成しました。</p>
-                    <p class="notification-container__content__date">2019年1月1日 00:00</p>
-                </div>
-            </div>
-        </div>
-        <div class="notification-wrp">
-            <div class="notification-container">
-                <div class="notification-container__img-container">
-                    <img src="../../../images/photoimg.png" alt="">
-                </div>
-                <div class="notification-container__content">
-                    <p class="notification-container__content__name">永瀬達也</p>
-                    <p class="notification-container__content__done">@@@@を作成しました。</p>
-                    <p class="notification-container__content__date">2019年1月1日 00:00</p>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="main__container__wrapper">
         <div>
             <div class="top-container">
                 <h1 class="top-container__title">{{ $project->name }}詳細</h1>
-                <a class="top-container__edit-btn" href="#"><div>編集</div></a>
+                <!-- <a class="top-container__edit-btn" href="#"><div>編集</div></a> -->
             </div>
 
             <div class="activity-log-container">
@@ -219,6 +170,7 @@
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細</div><p class="detail-container__list__item__content desc-item">{{ $project->detail }}</p></li>
                     <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">担当者</div>
                         <div class="detail-container__list__item__content">
+                        {{ $project->task }}
                             @foreach($project->projectCompanies as $projectCompany)
                             <div class="staff-item">
                                 <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectCompany->companyUser->picture) }}" alt=""></div>
@@ -273,76 +225,75 @@
                 <a class="task-show-link" href="/company/task/{{ $task->id }}">
                     <ul class="task-item-list task-container__content__list">
                         <li class="task-name">{{ $task->project->name }}</li>
-                        <li>{{ $task->name }}</li>
-                        <li class="partner-item">
-                            <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt=""></div>
-                            <p class="name">
-                                {{ $task->partner->name }}</p>
-                        </li>
-                        @if($task->status === 0)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">下書き</div>
-                        </li>
-                        @elseif($task->status === 1)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">タスク上長確認前</div>
-                        </li>
-                        @elseif($task->status === 2)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">タスク上長確認中</div>
-                        </li>
-                        @elseif($task->status === 3)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">タスクパートナー依頼前</div>
-                        </li>
-                        @elseif($task->status === 4)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">タスクパートナー依頼中</div>
-                        </li>
-                        @elseif($task->status === 5)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">発注書作成中</div>
-                        </li>
-                        @elseif($task->status === 6)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">発注書作成完了</div>
-                        </li>
-                        @elseif($task->status === 7)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">発注書上長確認中</div>
-                        </li>
-                        @elseif($task->status === 8)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">発注書パートナー依頼前</div>
-                        </li>
-                        @elseif($task->status === 9)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">発注書パートナー確認中</div>
-                        </li>
-                        @elseif($task->status === 10)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">作業中</div>
-                        </li>
-                        @elseif($task->status === 11)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">請求書依頼中</div>
-                        </li>
-                        @elseif($task->status === 12)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">請求書確認中</div>
-                        </li>
-                        @elseif($task->status === 13)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn done">完了</div>
-                        </li>
-                        @elseif($task->status === 14)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">キャンセル</div>
-                        </li>
-                        @endif 
-                        <li>¥{{ number_format($task->price) }}</li>
-                    </ul>
-                </a> 
+                            <li>{{ $task->name }}</li>
+                            <li class="partner-item">
+                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt=""></div>
+                                <p class="name">{{ $task->partner->name }}</p>
+                            </li>
+                            @if($task->status === 0)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">下書き</div>
+                                </li>
+                            @elseif($task->status === 1)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">タスク上長確認前</div>
+                                </li>
+                            @elseif($task->status === 2)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">タスク上長確認中</div>
+                                </li>
+                            @elseif($task->status === 3)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">タスクパートナー依頼前</div>
+                                </li>
+                            @elseif($task->status === 4)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">タスクパートナー依頼中</div>
+                                </li>
+                            @elseif($task->status === 5)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">発注書作成中</div>
+                                </li>
+                            @elseif($task->status === 6)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">発注書作成完了</div>
+                                </li>
+                            @elseif($task->status === 7)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">発注書上長確認中</div>
+                                </li>
+                            @elseif($task->status === 8)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">発注書パートナー依頼前</div>
+                                </li>
+                            @elseif($task->status === 9)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">発注書パートナー確認中</div>
+                                </li>
+                            @elseif($task->status === 10)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">作業中</div>
+                                </li>
+                            @elseif($task->status === 11)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">請求書依頼中</div>
+                                </li>
+                            @elseif($task->status === 12)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">請求書確認中</div>
+                                </li>
+                            @elseif($task->status === 13)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn done">完了</div>
+                                </li>
+                            @elseif($task->status === 14)
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">キャンセル</div>
+                                </li>
+                            @endif 
+                                <li>¥{{ number_format($task->price) }}</li>
+                        </ul>
+                    </a> 
                 @endforeach
             </div>
 
@@ -350,6 +301,6 @@
                 <p id="showmore_task_btn" class="task-container__content__showmore__btn">もっと見る</p>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 @endsection

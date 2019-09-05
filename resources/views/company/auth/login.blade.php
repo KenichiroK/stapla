@@ -33,9 +33,9 @@
                         <h4 class="title">ユーザーID</h4>
                         <input class="input_text" type="email" name="email" placeholder="ユーザーネーム又はメールアドレス">
                         @if ($errors->has('email'))
-                            <span class="invalid-feedback" role="alert">
+                            <div class="invalid-feedback error-msg" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
-                            </span>
+                            </div>
                         @endif
                     </div>
 
@@ -47,9 +47,9 @@
                         </div>
                         
                         @if ($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
+                            <div class="invalid-feedback error-msg" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>
-                            </span>
+                            </div>
                         @endif
                     </div>
 
@@ -63,6 +63,7 @@
                     </div>
                 </form>
 
+                <!-- 現在、担当者の自発的な会員登録はおこなわない -->
                 <div class="signup_wrapper">
                     <a href="/company/register">新規会員登録</a>
                 </div>

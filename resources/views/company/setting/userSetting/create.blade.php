@@ -168,7 +168,7 @@ const setPreview = (input) => {
 			<li><a href="/company/setting/general">会社基本情報設定</a></li>
 			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
 			<li><a href="/company/setting/userSetting"  class="isActive">会社担当者設定</a></li>
-			<li><a href="/company/setting/account">アカウント設定</a></li>
+			<!-- <li><a href="/company/setting/account">アカウント設定</a></li> -->
 			<li><a href="/company/setting/personalInfo">個人情報の設定</a></li>
 		</ul>
   </div>
@@ -188,11 +188,11 @@ const setPreview = (input) => {
     </div>
     <div class="charge-container__content">
         @foreach($companyUsers as $companyUser)
-        <ul class="charge-container__content__list">
+        <ul class="company_user charge-container__content__list">
             <li>
                 <div class="name-container">
                     <div class="name-container__img-container">
-                    <img src="../../../images/photoimg.png" alt="">
+                    <img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="">
                     </div>
                     {{ $companyUser->name }}
                 </div>
@@ -204,7 +204,7 @@ const setPreview = (input) => {
         @endforeach
         
         <div class="charge-container__content__showmore">
-            <p class="charge-container__content__showmore__btn">もっと見る</p>
+            <p id="more_btn" class="charge-container__content__showmore__btn">もっと見る</p>
         </div>
     </div>
     <div class="btn-container">
