@@ -28,8 +28,8 @@ class CreateTasksTable extends Migration
             $table->integer('status');
             $table->boolean('purchaseorder');
             $table->boolean('invoice');
-            $table->integer('budget');
-            $table->integer('price');
+            $table->biginteger('budget');
+            $table->biginteger('price');
             $table->float('tax', 3, 2);
             $table->integer('cases');
             $table->text('comment')->nullable();

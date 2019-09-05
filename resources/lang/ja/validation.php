@@ -36,7 +36,9 @@ return [
     'date_format' => 'The :attribute does not match the format :format.',
     'different' => 'The :attribute and :other must be different.',
     'digits' => ':attributeは:digits桁以内で入力してください',
-    'digits_between' => 'The :attribute must be between :min and :max digits.',
+    // 範囲の指定が出てきた時に対応できるようにコメントアウトにしています。
+    // 'digits_between' => 'The :attribute must be between :min and :max digits.',
+    'digits_between' => ':attributeは:max桁以内で入力してください',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
     'email' => ':attribute は有効なEメールアドレスを入力してください.',
@@ -170,16 +172,25 @@ return [
         'address_prefecture' => '都道府県',
         'address_city' => '市区町村・番地',
         'tel' => '電話番号',
+
+        // 担当者
+        'tel' => '電話番号',
+        'tel' => '電話番号',
+
         // project
         'project_id'      => 'プロジェクト',
+        'superior_id'      => '上長',
+        'accounting_id'      => '経理',
+
         // task
         'task_name'       => 'タスク名',
         'task_content'    => 'タスク内容',
-        'started_at'      => '開始日',
-        'ended_at'        => '終了予定日',
+        'started_at_date' => '開始日',
+        'ended_at_date'   => '終了予定日',
         'status'          => 'ステータス',
         'budget'          => '予算',
         'price'           => '金額',
+        'cases'           => '件数',
         'fee_format'      => '報酬形式',
         'payment_terms'   => '支払い条件',
         'partner_id'      => 'パートナー',

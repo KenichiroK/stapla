@@ -3,6 +3,62 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/task/create.css') }}">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.js"
+  integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+  crossorigin="anonymous">
+</script>
+
+<script>
+const set_started_at_date = () => {
+  const started_at_date_year = document.getElementById('started_at_date_year').value;
+  const started_at_date_month = document.getElementById('started_at_date_month').value;
+  const started_at_date_day = document.getElementById('started_at_date_day').value;
+  const started_at_time = document.getElementById('started_at_time').value;
+  const started_at_date = document.getElementById('started_at_date');
+  started_at_date.value = started_at_date_year + started_at_date_month + started_at_date_day + started_at_time;
+  console.log(started_at_date.value);
+}
+const set_ended_at_date = () => {
+  const ended_at_date_year = document.getElementById('ended_at_date_year').value;
+  const ended_at_date_month = document.getElementById('ended_at_date_month').value;
+  const ended_at_date_day = document.getElementById('ended_at_date_day').value;
+  const ended_at_time = document.getElementById('ended_at_time').value;
+  const ended_at_date = document.getElementById('ended_at_date');
+  ended_at_date.value = ended_at_date_year + ended_at_date_month + ended_at_date_day + ended_at_time;
+  console.log(ended_at_date.value);
+}
+
+window.onload = () => {
+  const started_at_date_year = document.getElementById('started_at_date_year').value;
+  const started_at_date_month = document.getElementById('started_at_date_month').value;
+  const started_at_date_day = document.getElementById('started_at_date_day').value;
+  const started_at_time = document.getElementById('started_at_time').value;
+  const started_at_date = document.getElementById('started_at_date');
+  started_at_date.value = started_at_date_year + started_at_date_month + started_at_date_day + started_at_time;
+  console.log(started_at_date.value);
+
+  const ended_at_date_year = document.getElementById('ended_at_date_year').value;
+  const ended_at_date_month = document.getElementById('ended_at_date_month').value;
+  const ended_at_date_day = document.getElementById('ended_at_date_day').value;
+  const ended_at_time = document.getElementById('ended_at_time').value;
+  const ended_at_date = document.getElementById('ended_at_date');
+  ended_at_date.value = ended_at_date_year + ended_at_date_month + ended_at_date_day + ended_at_time;
+}
+
+$(function(){
+    let $inputPrice = $('#inputPrice');
+    let $outputPrice = $('.outputPrice');
+    let $outputPriceWithTax = $('.outputPriceWithTax');
+    $inputPrice.on('input', function(event){
+        let $value = $inputPrice.val();
+        $outputPrice.text($value);
+        $outputPriceWithTax($value);
+    });
+
+
+})
+</script>
 @endsection
 
 @section('header-profile')
@@ -168,13 +224,12 @@
                         <div class="select-container__wrapper__select-area__field field">
                             <div class="select-container__wrapper__select-area__field__control control">
                                 <div class="select-container__wrapper__select-area__field__control__select select is-info">
-                                    <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}">
+                                    <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
                                         <option></option>
                                         @foreach($projects as $project)
                                             <option value="{{ $project->id }}">{{ $project->name }}</option>
                                         @endforeach
                                     </select>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -202,7 +257,7 @@
                             <div class="main-container__wrapper__item-container__inputarea">
                                 <div class="main-container__wrapper__item-container__inputarea__field">
                                     <div class="main-container__wrapper__item-container__inputarea__field__control">
-                                        <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text">
+                                        <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" value="{{ old('task_name')}}">
                                         @if ($errors->has('task_name'))
                                             <div class="invalid-feedback error-msg" role="alert">
                                                 <strong>{{ $errors->first('task_name') }}</strong>
@@ -221,7 +276,7 @@
                             </div>
                             <div class="main-container__wrapper__item-container__datewrapper">
                                 <div class="main-container__wrapper__item-container__datewrapper__date">
-                                       本日 2019年7月3日<i class="fas fa-calendar-alt"></i>
+                                       本日 {{ date('Y') }}年{{ date('m') }}月{{ date('d') }}日<i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
                         </div>
@@ -233,7 +288,7 @@
                                 </div>
                             </div>
                             <div class="main-container__wrapper__item-container__textarea">
-                                <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'></textarea>
+                                <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'>{{ old('task_content') }}</textarea>
                                 @if ($errors->has('task_content'))
                                     <div class="invalid-feedback error-msg" role="alert">
                                         <strong>{{ $errors->first('task_content') }}</strong>
@@ -351,16 +406,163 @@
                                 <!-- 開始日カレンダー -->
                                 <div class="main-container__wrapper__item-container__calendar-content__content">                               
                                     
-                                        <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name start">
-                                            開始日<i class="fas fa-calendar-alt"></i>
+                                    <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name start">
+                                        開始日<i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <select class="select-box" id="started_at_date_year" name="started_at_date_year" onChange="set_started_at_date()">
+                                    @for($y=date('Y'); $y<=date('Y')+20; $y++)
+                                        <option value="{{ $y }}">{{ $y }}</option>
+                                    @endfor
+                                    </select>
+                                    年
+
+                                    <select class="select-box" id="started_at_date_month" name="started_at_date_month" onChange="set_started_at_date()">
+                                    @for($m=1; $m<=12; $m++)
+                                        @if($m < 10)
+                                            @if($m == date('m'))
+                                                <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                            @else
+                                                <option value='0{{ $m }}'>{{ $m }}</option>
+                                            @endif
+                                        @else
+                                            @if($m == date('m'))
+                                                <option value='{{ $m }}' selected>{{ $m }}</option>
+                                            @else
+                                                <option value='{{ $m }}'>{{ $m }}</option>
+                                            @endif
+                                        @endif
+                                    @endfor
+                                    </select>
+                                    月
+
+                                    <select class="select-box" id="started_at_date_day" name="started_at_date_day" onChange="set_started_at_date()">
+                                    @for($d=1; $d<=31; $d++)
+                                        @if($d < 10)
+                                            @if($d == date('d'))
+                                                <option value='0{{ $d }}' selected>{{ $d }}</option>
+                                            @else
+                                                <option value='0{{ $d }}'>{{ $d }}</option>
+                                            @endif
+                                        @else
+                                            @if($d == date('d'))
+                                                <option value='{{ $d }}' selected>{{ $d }}</option>
+                                            @else
+                                                <option value='{{ $d }}'>{{ $d }}</option>
+                                            @endif
+                                        @endif
+                                    @endfor
+                                    </select>
+                                    日
+
+                                    <select class="select-box" id="started_at_time" name="started_at_time" onChange="set_started_at_date()">
+                                    @for($h=0; $h<=24; $h++)
+                                        @if($h < 10)
+                                            @if($h == date('H'))
+                                                <option value='0{{ $h }}0000' selected>{{ $h }}</option>
+                                            @else
+                                                <option value='0{{ $h }}0000'>{{ $h }}</option>
+                                            @endif
+                                        @else
+                                            @if($h == date('H'))
+                                                <option value='{{ $h }}0000' selected>{{ $h }}</option>
+                                            @else
+                                                <option value='{{ $h }}0000'>{{ $h }}</option>
+                                            @endif
+                                        @endif
+                                    @endfor
+                                    </select>
+                                    @if($errors->has('started_at_time'))
+                                        <div>
+                                            <strong style='color: #e3342f;'>{{ $errors->first('started_at_time') }}</strong>
                                         </div>
+                                    @endif
+                                    時
+
+                                    <input name="started_at_date" id="started_at_date" type="hidden" value="{{ old('started_at_date')}}">
+                                    @if($errors->has('started_at_date'))
+                                        <div>
+                                            <strong style='color: #e3342f;'>{{ $errors->first('started_at_date') }}</strong>
+                                        </div>
+                                    @endif
+                                  
                                 </div>
                                 <!-- 終了日カレンダー -->
                                 <div class="main-container__wrapper__item-container__calendar-content__content">                               
                                     
-                                        <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name">
-                                            終了日<i class="fas fa-calendar-alt"></i>
+                                    <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name">
+                                        終了日<i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <select class="select-box" id="ended_at_date_year" name="ended_at_date_year" onChange="set_ended_at_date()">
+                                        @for($y=explode('-', date('Y-m-d', strtotime('1day')))[0]; $y<=date('Y')+20; $y++)
+                                            <option value="{{ $y }}">{{ $y }}</option>
+                                        @endfor
+                                    </select>
+                                    年
+
+                                    <select class="select-box" id="ended_at_date_month" name="ended_at_date_month" onChange="set_ended_at_date()">
+                                        @for($m=1; $m<=12; $m++)
+                                            @if($m < 10)
+                                                @if($m == explode('-', date('Y-m-d', strtotime('1day')))[1])
+                                                    <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                                @else
+                                                    <option value='0{{ $m }}'>{{ $m }}</option>
+                                                @endif
+                                            @else
+                                                @if($m == date('m'))
+                                                    <option value='{{ $m }}' selected>{{ $m }}</option>
+                                                @else
+                                                    <option value='{{ $m }}'>{{ $m }}</option>
+                                                @endif
+                                            @endif
+                                        @endfor
+                                    </select>
+                                    月
+
+                                    <select class="select-box" id="ended_at_date_day" name="ended_date_at_day" onChange="set_ended_at_date()">
+                                        @for($d=1; $d<=31; $d++)
+                                            @if($d < 10)
+                                                @if($d == explode('-', date('Y-m-d', strtotime('1day')))[2])
+                                                    <option value='0{{ $d }}' selected>{{ $d }}</option>
+                                                @else
+                                                    <option value='0{{ $d }}'>{{ $d }}</option>
+                                                @endif
+                                            @else
+                                                @if($d == date('d')+1)
+                                                    <option value='{{ $d }}' selected>{{ $d }}</option>
+                                                @else
+                                                    <option value='{{ $d }}'>{{ $d }}</option>
+                                                @endif
+                                            @endif
+                                        @endfor
+                                    </select>
+                                    日
+
+                                    <select class="select-box" id="ended_at_time" name="ended_at_time" onChange="set_ended_at_date()">
+                                    @for($h=0; $h<=24; $h++)
+                                        @if($h < 10)
+                                            @if($h == date('H'))
+                                                <option value='0{{ $h }}0000' selected>{{ $h }}</option>
+                                            @else
+                                                <option value='0{{ $h }}0000'>{{ $h }}</option>
+                                            @endif
+                                        @else
+                                            @if($h == date('H'))
+                                                <option value='{{ $h }}0000' selected>{{ $h }}</option>
+                                            @else
+                                                <option value='{{ $h }}0000'>{{ $h }}</option>
+                                            @endif
+                                        @endif
+                                    @endfor
+                                    </select>
+                                    時
+
+                                    <input id="ended_at_date" class="input form-control{{ $errors->has('ended_at_date') ? ' is-invalid' : '' }}" name="ended_at_date" type="hidden" value="{{ old('ended_at_date')}}">
+                                    @if ($errors->has('ended_at_date'))
+                                        <div class="invalid-feedback error-msg" role="alert">
+                                            <strong>{{ $errors->first('ended_at_date') }}</strong>
                                         </div>
+                                    @endif
+                                
                                 </div>
                             </div>
                         </div>
@@ -374,12 +576,13 @@
                             <div class="main-container__wrapper__item-container__inputarea">
                                 <div class="main-container__wrapper__item-container__inputarea__field">
                                     <div class="main-container__wrapper__item-container__inputarea__field__control budget">
-                                        <input class="input" name='budget' type="text">
+                                        <input id="inputPrice" class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text" value="{{ old('budget')}}">
                                         @if ($errors->has('budget'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong style='color: #e3342f'>{{ $errors->first('budget') }}</strong>
-                                            </span>
+                                            <div class="invalid-feedback error-msg" role="alert">
+                                                <strong>{{ $errors->first('budget') }}</strong>
+                                            </div>
                                         @endif
+                           
                                         <div class="main-container__wrapper__item-container__inputarea__field__control-yen">
                                             円
                                         </div>
@@ -395,8 +598,8 @@
                                 </div>
                             </div>
                             <div class="is-boxed main-container__wrapper__item-container__filearea">
-                                <p class="uplaod">アップロード</p>
-                                <label class="file-label main-container__wrapper__item-container__filearea__label">
+                                <p class="uplaod">アップロード</p> -->
+                                <!-- <label class="file-label main-container__wrapper__item-container__filearea__label">
                                     <input class="file-input file-label main-container__wrapper__item-container__filearea__label" type="file" name="resume" >
                                     <span class="file-cta main-container__wrapper__item-container__filearea__label__file-cta">
                                     <span class="file-icon">
@@ -407,8 +610,8 @@
                                         Choose a file…
                                     </span>
                                     </span>
-                                </label>
-                                <img src="../../../images/dragdrop.png" alt="">
+                                </label> -->
+                                <!-- <img src="../../../images/dragdrop.png" alt="">
                             </div>
                         </div> -->
                     </div>      
@@ -425,22 +628,19 @@
                                     パートナー
                                 </div>
                             </div>
-                            <div class="select-error-wrp">
-                                <div class="select-container__wrapper__select-area control">
-                                    <div class="select-container__wrapper__select-area__field field">
-                                        <div class="select-container__wrapper__select-area__field__control control">
-                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                                <!-- <select v-model="taskInfo.partner"> -->
-                                                <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                                    <option></option>
-                                                    @foreach($partners as $partner)
-                                                        <option value={{ $partner->id }} >
-                                                            {{ $partner->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                                
-                                            </div>
+                            <div class="select-container__wrapper__select-area control">
+                                <div class="select-container__wrapper__select-area__field field">
+                                    <div class="select-container__wrapper__select-area__field__control control">
+                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
+                                            <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
+                                                <option></option>
+                                                @foreach($partners as $partner)
+                                                    <option value={{ $partner->id }} >
+                                                        {{ $partner->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -498,7 +698,7 @@
                                 <div class="partner-container__wrpper__item-container__order-uninum">
                                     <!-- 発注単位 input -->
                                     <div class="partner-container__wrpper__item-container__order-uninum__unit__contents">
-                                        <input class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text">
+                                        <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price')}}">
                                         @if ($errors->has('price'))
                                             <div class="invalid-feedback error-msg" role="alert">
                                                 <strong>{{ $errors->first('price') }}</strong>
@@ -515,7 +715,7 @@
                                         </div>
                                     </div>
                                     <div class="partner-container__wrpper__item-container__order-uninum__number__contents">
-                                        <input class="input" name='cases' type="text">
+                                        <input id="inputPrice" class="input form-control{{ $errors->has('cases') ? ' is-invalid' : '' }}" name='cases' type="text" value="{{ old('cases')}}">
                                         @if ($errors->has('cases'))
                                             <div class="invalid-feedback error-msg" role="alert">
                                                 <strong>{{ $errors->first('cases') }}</strong>
@@ -536,8 +736,9 @@
                                 </div>
                             </div>
                             <div class="price-item">
-                                <p><span class="tax">税抜</span><span class="yen">￥</span>200,000</p>
-                                <p><span class="tax">税込</span><span class="yen">￥</span>216,000</p>
+                                <p><span class="tax">税抜</span>¥<span id='outputPrice' class="yen outputPrice"></span></p>
+                                <p><span class="tax">税込</span>¥<span id='outputPriceWithTax' class="yen outputPriceWithTax"></span></p>
+                                <p><span class="tax">税抜</span>¥<span id='outputPrice' class="yen"></span></p>
                             </div>
                         </div> -->
                     </div>
