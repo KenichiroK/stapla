@@ -34,7 +34,7 @@ class CreateTaskRequest extends FormRequest
             'ended_at_date'   => 'required | after:started_at_date',
             'budget'          => 'required',
             'price'           => 'required',
-            'cases'           => 'required | digits:10',
+            'cases'           => 'required | digits_between:1, 10',
             'partner_id'      => 'required',
             'fee_format'      => 'required',
         ];

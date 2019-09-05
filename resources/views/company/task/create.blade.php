@@ -224,7 +224,7 @@ $(function(){
                         <div class="select-container__wrapper__select-area__field field">
                             <div class="select-container__wrapper__select-area__field__control control">
                                 <div class="select-container__wrapper__select-area__field__control__select select is-info">
-                                    <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}">
+                                    <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
                                         <option></option>
                                         @foreach($projects as $project)
                                             <option value="{{ $project->id }}">{{ $project->name }}</option>
@@ -257,7 +257,7 @@ $(function(){
                             <div class="main-container__wrapper__item-container__inputarea">
                                 <div class="main-container__wrapper__item-container__inputarea__field">
                                     <div class="main-container__wrapper__item-container__inputarea__field__control">
-                                        <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text">
+                                        <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" value="{{ old('task_name')}}">
                                         @if ($errors->has('task_name'))
                                             <div class="invalid-feedback error-msg" role="alert">
                                                 <strong>{{ $errors->first('task_name') }}</strong>
@@ -288,7 +288,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="main-container__wrapper__item-container__textarea">
-                                <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'></textarea>
+                                <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'>{{ old('task_content') }}</textarea>
                                 @if ($errors->has('task_content'))
                                     <div class="invalid-feedback error-msg" role="alert">
                                         <strong>{{ $errors->first('task_content') }}</strong>
@@ -553,23 +553,16 @@ $(function(){
                                             @endif
                                         @endif
                                     @endfor
-                                    @if($errors->has('ended_at_time'))
-                                        <div>
-                                            <strong style='color: #e3342f;'>{{ $errors->first('ended_at_time') }}</strong>
-                                        </div>
-                                    @endif
                                     </select>
                                     時
 
-                                    <input id="ended_at_date" name="ended_at_date" type="hidden" value="{{ old('ended_at_date')}}">
-                                    @if($errors->has('ended_at_date'))
-                                        <div>
-                                            <strong style='color: #e3342f;'>{{ $errors->first('ended_at_date') }}</strong>
+                                    <input id="ended_at_date" class="input form-control{{ $errors->has('ended_at_date') ? ' is-invalid' : '' }}" name="ended_at_date" type="hidden" value="{{ old('ended_at_date')}}">
+                                    @if ($errors->has('ended_at_date'))
+                                        <div class="invalid-feedback error-msg" role="alert">
+                                            <strong>{{ $errors->first('ended_at_date') }}</strong>
                                         </div>
                                     @endif
-                                    <!-- <input id="ended_at_time" name="ended_at_time" type="hidden" value="{{ old('ended_at_time')}}"> -->
-                                   
-
+                                
                                 </div>
                             </div>
                         </div>
@@ -583,12 +576,15 @@ $(function(){
                             <div class="main-container__wrapper__item-container__inputarea">
                                 <div class="main-container__wrapper__item-container__inputarea__field">
                                     <div class="main-container__wrapper__item-container__inputarea__field__control budget">
-                                        <input name="budget" type="text" value="{{ old('budget')}}">
-                                        @if($errors->has('budget'))
-                                            <div>
-                                                <strong style='color: #e3342f;'>{{ $errors->first('budget') }}</strong>
+                                        <!-- <input name="budget" type="text" value="{{ old('budget')}}"> -->
+                                        <!-- <input class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text"> -->
+                                        <input id="inputPrice" class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text" value="{{ old('budget')}}">
+                                        @if ($errors->has('budget'))
+                                            <div class="invalid-feedback error-msg" role="alert">
+                                                <strong>{{ $errors->first('budget') }}</strong>
                                             </div>
                                         @endif
+                           
                                         <div class="main-container__wrapper__item-container__inputarea__field__control-yen">
                                             円
                                         </div>
@@ -646,11 +642,7 @@ $(function(){
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @if ($errors->has('partner_id'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong style='color: #e3342f'>{{ $errors->first('partner_id') }}</strong>
-                                                </span>
-                                            @endif
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -708,7 +700,7 @@ $(function(){
                                 <div class="partner-container__wrpper__item-container__order-uninum">
                                     <!-- 発注単位 input -->
                                     <div class="partner-container__wrpper__item-container__order-uninum__unit__contents">
-                                        <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text">
+                                        <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price')}}">
                                         @if ($errors->has('price'))
                                             <div class="invalid-feedback error-msg" role="alert">
                                                 <strong>{{ $errors->first('price') }}</strong>
@@ -725,11 +717,11 @@ $(function(){
                                         </div>
                                     </div>
                                     <div class="partner-container__wrpper__item-container__order-uninum__number__contents">
-                                        <input class="input form-control{{ $errors->has('cases') ? ' is-invalid' : '' }}" name='cases' type="text" value="{{ old('cases')}}">
+                                        <input id="inputPrice" class="input form-control{{ $errors->has('cases') ? ' is-invalid' : '' }}" name='cases' type="text" value="{{ old('cases')}}">
                                         @if ($errors->has('cases'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong style='color: #e3342f'>{{ $errors->first('cases') }}</strong>
-                                            </span>
+                                            <div class="invalid-feedback error-msg" role="alert">
+                                                <strong>{{ $errors->first('cases') }}</strong>
+                                            </div>
                                         @endif
                                         <div class="partner-container__wrpper__item-container__order-uninum__number__contents__class">
                                             件
