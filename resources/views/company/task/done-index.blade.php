@@ -246,7 +246,7 @@
                         <tr class="task-container__wrapper__table-wrapper__table__datarow">
                             
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata  project">{{ $task->project->name }}</td>
-                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><a href="task/{{ $task->id }}">{{ $task->name }}</a></td>
+                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><a href="/company/task/{{ $task->id }}">{{ $task->name }}</a></td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">
                                     {{ $task->partner->name }}
                                 </td>
