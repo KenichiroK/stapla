@@ -1,14 +1,17 @@
 .main-wrapper {
-	width: 80%;
+	width: 100%;
 	margin: auto;
 	padding: 40px;
 
 	.title-container {
-		margin-bottom: 40px;
+		margin-bottom: 24px;
 
 		h3 {
 			font-weight: bold;
-			color: #43425d;
+      color: #43425d;
+      font-size: 28px;
+      font-family: "Source Sans Pro";
+      margin-bottom: 0;
 		}
   }
   
@@ -216,6 +219,199 @@
       border-radius: 48px;
       font-size: 16px;
       padding: 8px 16px;
+    }
+  }
+  // 発注書作成ページ
+  .purchaseOrder-container{
+    padding: 0 16px 30px;
+    background-color: #ffffff;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+    dl{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        margin-bottom: 0;
+        padding: 30px 0 0;
+        dt{
+            width: 160px;
+            text-align: right;
+            padding-right: 30px;
+            color: #43425D;
+        }
+        dd{
+            width: 67%;
+            margin-bottom: 0;
+            p{
+              margin-bottom: 0;
+            }
+            .input-container{
+              input{
+                box-shadow: none;
+                border-radius: 2px;
+                border: 1px solid #E9E9F0;
+                height: 48px;
+                width: 100%;
+              }
+            }
+            //納品日
+            .date-container{
+              &__wrapper{
+                  font-size: 18px;
+                  color: #4D4F5C;
+                  font-family: "Source Sans Pro";
+                  display: flex;
+                  .icon-imgbox{
+                      width: 16px;
+                      margin-left: 16px;
+                      margin-top: 1px;
+                      img{
+                          vertical-align: baseline;
+                      }
+                  }
+              }
+            }
+            .radio-container{
+              height: 30px;
+              margin-left: 30px;
+              label {
+                  margin-right: 20px;
+                  display: inline-block;
+                  margin-bottom: 0;
+                  margin-top: 0;
+                  .title{
+                    font-size: 15px; 
+                    font-weight: 400; 
+                  }
+                  .radio01-input {
+                      display: none;
+                  }
+                  .radio01-parts {
+                      padding-left: 20px;
+                      position: relative;
+                      margin-right: 20px;
+                      line-height: 1;
+                      top: 27px;
+                      right: 30px;
+                  }
+                  .radio01-input:checked + .radio01-parts {
+                      color: #009a9a;
+                  }
+                  .radio01-parts::before {
+                      content: "";
+                      display: block;
+                      position: absolute;
+                      top: -31px;
+                      left: 40px;
+                      width: 32px;
+                      height: 32px;
+                      border: 1px solid #E9E9F0;
+                      border-radius: 50%;
+                  }
+                  .radio01-input:checked + .radio01-parts::after {
+                      content: "";
+                      display: block;
+                      position: absolute;
+                      top: -23px;
+                      left: 48px;
+                      width: 16px;
+                      height: 16px;
+                      background: #00CC47;
+                      border-radius: 50%;
+                  }
+                  .radio01-parts.date::before{
+                      left: 25px;
+                  }
+                  .radio01-input:checked + .radio01-parts.date::after{
+                      left: 32px;
+                  }
+              }
+            }
+            // 納品場所
+            .input_link-container{
+              display: flex;
+              align-items: center;
+              .input-container{
+                width: 76%;
+              }
+              .link-container{
+                margin-left: 10px;
+                a{
+                  color: #43425D;
+                  text-decoration: underline;
+                }
+              }
+            }
+
+            // セレクトボックス＋アイコン
+            .select-plusicon {
+                overflow: hidden;
+                text-align: center;
+                position: relative;
+                border: 1px solid #E9E9F0;
+                border-radius: 2px;
+                background: #ffffff;
+                height: 48px;
+                select {
+                    width: 100%;
+                    padding-right: 1em;
+                    cursor: pointer;
+                    text-indent: 0.01px;
+                    text-overflow: ellipsis;
+                    border: none;
+                    outline: none;
+                    background: transparent;
+                    background-image: none;
+                    box-shadow: none;
+                    -webkit-appearance: none;
+                    appearance: none;
+                    padding: 8px 38px 8px 8px;
+                    color: #666666;
+                }
+                select::-ms-expand {
+                    display: none;
+                }
+                &::before {
+                    position: absolute;
+                    top: 15px;
+                    right: 22px;
+                    width: 2px;
+                    height: 5px;
+                    padding: 0;
+                    content: "";
+                    border-top: 16px solid #A4AFB7;
+                    pointer-events: none;
+                }
+                &::after {
+                    position: absolute;
+                    top: 22px;
+                    right: 15px;
+                    width: 16px;
+                    height: 2px;
+                    padding: 0;
+                    content: "";
+                    border-top: 2px solid #A4AFB7;
+                    pointer-events: none;
+                }
+            } 
+        }
+    }
+    dl.last{
+        padding-bottom: 30px;
+    } 
+  }
+  // 作成ボタン
+  .button-container{
+    text-align: center;
+    button{
+        height: 2.25em;
+        width: 140px;
+        border-radius: 100px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+        background: #43425D; 
     }
   }
 }

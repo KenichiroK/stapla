@@ -25,11 +25,11 @@ class PurchaseOrderController extends Controller
     {
         $auth = Auth::user();
         $task = Task::findOrFail($id);
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
 
-        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
+        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
 
-        return view('/company/document/purchaseOrder/create', compact('companyUser', 'companyUsers', 'task'));
+        return view('/company/document/purchaseOrder/create', compact('company_user', 'companyUsers', 'task'));
     }
 
     public function store(CreatePurchaseOrderRequest $request)
