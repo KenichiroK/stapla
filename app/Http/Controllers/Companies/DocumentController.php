@@ -24,8 +24,6 @@ class DocumentController extends Controller
         
         // ionvoices
         $invoices = Invoice::where('company_id', $company_user->company_id)->with('task', 'task.taskCompanies', 'task.taskCompanies.companyUser')->get();
-        // 担当者
-        $task_id = Invoice::where('company_id', $company_user->company_id)->first()->task_id;
         
         // 未対応
         $invoices_0status = Invoice::where('company_id', $company_user->company_id)->where('status', 0)->get();
