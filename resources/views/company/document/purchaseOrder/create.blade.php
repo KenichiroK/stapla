@@ -160,17 +160,7 @@
 				<dl>
 					<dt>タスク</dt>
 					<dd>
-						<div class="selectbox-container">
-							<!-- <p>{{ $task->name }}</p> -->
-							<div class="input-container">
-								<input type="" name="task_id" value="{{ $task->id }}">
-							</div>
-                            @if ($errors->has('task_id'))
-                                <div class="error-msg">
-                                    <strong>{{ $errors->first('task_id') }}</strong>
-                                </div>					
-                            @endif
-						</div>
+						<p>{{ $task->name }}</p>
 					</dd>
                 </dl>
                 
@@ -301,16 +291,7 @@
                 <dl>
                     <dt>パートナー</dt>
                     <dd>
-						<div class="input-container">
-                            <!-- <p>{{ $task->partner->name }}</p> -->
-							<input type="" name="partner_id" value="{{ $task->partner->id }}">
-						</div>
-						@if ($errors->has('partner_id'))
-							<div class="error-msg">
-								<strong>{{ $errors->first('partner_id') }}</strong>
-							</div>					
-						@endif
-						
+                        <p>{{ $task->partner->name }}</p>
 					</dd>
                 </dl>
 
