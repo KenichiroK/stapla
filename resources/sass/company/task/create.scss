@@ -101,6 +101,10 @@
 .item-name-wrapper.contentsname{
     height: 120px;
 }
+// プロジェクト期間
+.item-name-wrapper.period{
+    height: 170px;
+}
 
 .item-name-wrapper.numbername{
     width: 100%;
@@ -220,11 +224,11 @@
             }
             // 締め切り
             &__calendar-content {
-                margin-top: 10px;
                 &__content{
-                    display: inline-block;
+                    display: block;
                     &__item-name-wrapper__item-name{
                         font-size: 18px;
+                        margin-bottom: 3px;
                         i{
                             color: #A5A4BF;
                             padding-left: 26px;
@@ -234,7 +238,74 @@
                         padding-right: 180px;  
                     }
                 }
+                &__content.end{
+                    margin-top: 12px;
+
+                }
             }
+            // プロジェクト期間
+            .select-date-wrp{
+                display: flex;
+                align-items: center;
+                // セレクトボックス 矢印アイコン
+                .select-arrow {
+                    overflow: hidden;
+                    text-align: center;
+                    position: relative;
+                    border: 1px solid #e9e9f0;
+                    border-radius: 2px;
+                    background: #ffffff;
+                    width: 53px;
+                    margin-left: 10px;
+                    margin-right: 5px;
+                    select {
+                        width: 100%;
+                        height: 46px;
+                        padding-right: 1em;
+                        cursor: pointer;
+                        text-indent: 0.01px;
+                        text-overflow: ellipsis;
+                        border: none;
+                        outline: none;
+                        background: transparent;
+                        background-image: none;
+                        box-shadow: none;
+                        -webkit-appearance: none;
+                        appearance: none;
+                        padding: 8px 25px 8px 8px;
+                        color: #666666;
+                    }
+                    select::-ms-expand {
+                        display: none;
+                    }
+                    &::after {
+                        right: 10px;
+                        padding: 0;
+                        border: 3px solid #94949400;
+                        border-radius: 2px;
+                        border-right: 0;
+                        border-top: 0;
+                        content: " ";
+                        display: block;
+                        height: 0.625em;
+                        margin-top: -0.4375em;
+                        pointer-events: none;
+                        position: absolute;
+                        top: 50%;
+                        -webkit-transform: rotate(-45deg);
+                        transform: rotate(-45deg);
+                        -webkit-transform-origin: center;
+                        transform-origin: center;
+                        width: 0.625em;
+                        border-color: #a4afb7;
+                    }
+                }
+                .select-arrow.year{
+                    width: 80px;
+                    margin-left: 0;
+                }
+            }
+            
             // 予算
             &__inputarea__field__control.budget{
                 position: relative;
@@ -279,7 +350,7 @@
     }
     &__wrpper{
         &__item-container.fee{
-            margin-bottom: 0;
+            margin-bottom: 20px;
         }
         &__item-container.price{
             border-top: 1px solid #F1F1F3;
@@ -388,8 +459,8 @@
             content: "";
             display: block;
             position: absolute;
-            top: -31px;
-            left: 40px;
+            top: -10px;
+            left: 10px;
             width: 32px;
             height: 32px;
             border: 1px solid #E9E9F0;
@@ -399,18 +470,18 @@
             content: "";
             display: block;
             position: absolute;
-            top: -23px;
-            left: 48px;
+            top: -2px;
+            left: 18px;
             width: 16px;
             height: 16px;
             background: #00CC47;
             border-radius: 50%;
         }
         .radio01-parts.date::before{
-            left: 25px;
+            left: 8px;
         }
         .radio01-input:checked + .radio01-parts.date::after{
-            left: 32px;
+            left: 16px;
         }
     }
 }
