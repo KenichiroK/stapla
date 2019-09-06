@@ -192,8 +192,8 @@
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
                         <div class="period__wrapper">
                             <div class="period__wrapper__container">
-                                <div class="period__wrapper__container__start">開始日<span class="period__wrapper__container__start__date">{{ $project->started_at->format('Y年m月d日 H:i') }}</span></div>
-                                <div class="period__wrapper__container__end">終了日<span class="period__wrapper__container__end__date">{{ $project->ended_at->format('Y年m月d日 H:i') }}</span></div>
+                                <div class="period__wrapper__container__start">開始日<span class="period__wrapper__container__start__date">{{ $project->started_at->format('Y年m月d日') }}</span></div>
+                                <div class="period__wrapper__container__end">終了日<span class="period__wrapper__container__end__date">{{ $project->ended_at->format('Y年m月d日') }}</span></div>
                             </div>
                         </div>
                     </li>
@@ -222,7 +222,7 @@
 
             <div class="task-container__content">
                 @foreach ($tasks as $task)
-                <a class="task-show-link" href="/company/task/{{ $task->id }}">
+                <a class="task-show-link" href="/partner/task/{{ $task->id }}">
                     <ul class="task-item-list task-container__content__list">
                         <li class="task-name">{{ $task->project->name }}</li>
                             <li>{{ $task->name }}</li>

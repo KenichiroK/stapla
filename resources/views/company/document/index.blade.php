@@ -300,7 +300,11 @@
                             @foreach($invoices as $invoice)
                             <tr class="invoice-table__data-row">
                                 <td class="invoice-table__data-row__table-data task-data">{{ $invoice->task->name }}</td>
-                                <td class="invoice-table__data-row__table-data">{{ explode(' ', $invoice->task->ended_at)[0] }}</td>
+                                <td class="invoice-table__data-row__table-data">
+                                    {{ explode('-', explode(' ', $invoice->task->ended_at)[0])[0] }}年
+                                    {{ explode('-', explode(' ', $invoice->task->ended_at)[0])[1] }}月
+                                    {{ explode('-', explode(' ', $invoice->task->ended_at)[0])[2] }}日
+                                </td>
                                 <td class="invoice-table__data-row__table-data staff-data">
                                     <div class="imgbox">
                                         <img src="/{{ str_replace('public/', 'storage/', $invoice->companyUser->picture) }}" alt="">
@@ -352,7 +356,11 @@
                                 @foreach($purchaseOrders as $purchaseOrder)
                                 <tr class="order-table__data-row">
                                     <td class="order-table__data-row__table-data task-data">{{ $purchaseOrder->task_name }}</td>
-                                    <td class="order-table__data-row__table-data">{{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</td>
+                                    <td class="order-table__data-row__table-data">
+                                        {{ explode('-', explode(' ', $purchaseOrder->task_ended_at)[0])[0] }}年
+                                        {{ explode('-', explode(' ', $purchaseOrder->task_ended_at)[0])[1] }}月
+                                        {{ explode('-', explode(' ', $purchaseOrder->task_ended_at)[0])[2] }}日
+                                    </td>
                                     <td class="order-table__data-row__table-data staff-data">
                                         <div class="imgbox">
                                             <img src="/{{ str_replace('public/', 'storage/', $purchaseOrder->companyUser->picture) }}" alt="">
@@ -409,7 +417,7 @@
                                         コーディング
                                     </td>
                                     <td class="outsourcing-table__data-row__table-data">
-                                        2018-11-05
+                                        2018年11月05日
                                     </td>
                                     <td class="outsourcing-table__data-row__table-data staff-data">
                                         <div class="imgbox">
@@ -466,7 +474,11 @@
                                 @foreach($ndas as $nda)
                                 <tr class="nda-table__data-row">
                                     <td class="nda-table__data-row__table-data task-data">{{ $nda->task->name }}</td>
-                                    <td class="nda-table__data-row__table-data">{{ explode(' ', $nda->task->ended_at)[0] }}</td>
+                                    <td class="nda-table__data-row__table-data">
+                                        {{ explode('-', explode(' ', $nda->task->ended_at)[0])[0] }}年
+                                        {{ explode('-', explode(' ', $nda->task->ended_at)[0])[1] }}月
+                                        {{ explode('-', explode(' ', $nda->task->ended_at)[0])[2] }}日
+                                    </td>
                                     <td class="nda-table__data-row__table-data staff-data">
                                         <div class="imgbox">
                                         <img src="/{{ str_replace('public/', 'storage/', $nda->companyUser->picture) }}"alt="">
