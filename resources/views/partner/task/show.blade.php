@@ -165,7 +165,9 @@
                     タスク作成日
                 </dt>
                 <dd>
-                    {{ explode(' ', $task->created_at)[0] }}
+                    {{ explode('-', explode(' ', $task->created_at)[0])[0] }}年
+                    {{ explode('-', explode(' ', $task->created_at)[0])[1] }}月
+                    {{ explode('-', explode(' ', $task->created_at)[0])[2] }}日
                 </dd>
             </dl>
             <dl>
@@ -223,8 +225,20 @@
                 </dt>
                 <dd>
                     <div class="flex01 term-desc">
-                        <p class="start"><span>開始日</span>{{ explode(' ', $task->inspection_date)[0] }}</p>
-                        <p><span>終了日</span>{{ explode(' ', $task->ended_at)[0] }}</p>
+                        <p class="start">
+                            <span>開始日</span>
+                            {{ explode('-', explode(' ', $task->inspection_date)[0])[0] }}年
+                            {{ explode('-', explode(' ', $task->inspection_date)[0])[1] }}月
+                            {{ explode('-', explode(' ', $task->inspection_date)[0])[2] }}日
+                            {{ explode(':', explode(' ', $task->inspection_date)[1])[0] }}時
+                        </p>
+                        <p>
+                            <span>終了日</span>
+                            {{ explode('-', explode(' ', $task->ended_at)[0])[0] }}年
+                            {{ explode('-', explode(' ', $task->ended_at)[0])[1] }}月
+                            {{ explode('-', explode(' ', $task->ended_at)[0])[2] }}日
+                            {{ explode(':', explode(' ', $task->ended_at)[1])[0] }}時
+                        </p>
                     </div>
                 </dd>
             </dl>
