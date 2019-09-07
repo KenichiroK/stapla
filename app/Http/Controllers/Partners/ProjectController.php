@@ -12,21 +12,6 @@ use App\Models\ProjectPartner;
 
 class ProjectController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
     public function show($project_id)
     {
         $partnerAuth = Auth::user();
@@ -34,20 +19,5 @@ class ProjectController extends Controller
         $project = Project::findOrFail($project_id);
         $tasks = Task::where('project_id', $project->id)->get();
         return view('partner/project/show', compact('partner', 'project', 'tasks'));
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

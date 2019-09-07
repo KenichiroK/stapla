@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CompanyElseController extends Controller
 {
-    public function index()
-    {
-        // 
-    }
-
     public function create()
     {
         $auth = Auth::user();
@@ -38,25 +33,5 @@ class CompanyElseController extends Controller
 
             return redirect()->route('company.setting.companyElse.create')->with('completed', $completed);
         }
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

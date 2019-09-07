@@ -16,11 +16,6 @@ use App\Models\TaskPartner;
 
 class PurchaseOrderController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
     public function create($id)
     {
         $auth = Auth::user();
@@ -78,21 +73,5 @@ class PurchaseOrderController extends Controller
         }
 
         return view('company/document/purchaseOrder/show', compact('purchaseOrder', 'company_user', 'company_user_ids'));
-    }
-    
-
-    public function edit($id)
-    {
-        // 
-    }
-
-    public function update(Request $request, $id)
-    {
-        // 
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

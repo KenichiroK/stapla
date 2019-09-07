@@ -136,21 +136,4 @@ class TaskController extends Controller
 
         return view('/company/task/show', compact('task', 'project_count', 'companyUsers', 'partners', 'company_user', 'purchaseOrder', 'invoice', 'company_user_ids'));
     }
-
-    public function edit($id)
-    {
-        return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->findOrFail($id);
-    }
-
-    public function update(Request $request, $id)
-    {
-        Task::findOrFail($id)->update($request->all());
-        return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->get();
-    }
-    
-    public function destroy($id)
-    {
-        Task::findOrFail($id)->delete();
-        return Task::with(['project', 'taskCompanyPics.companyUser', 'taskPartnerPics.partner'])->get();
-    }
 }
