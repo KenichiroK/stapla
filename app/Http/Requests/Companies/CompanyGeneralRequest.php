@@ -24,7 +24,6 @@ class CompanyGeneralRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_name'          => 'required',
             'representive_name'     => 'required',
             'zip_code'              => 'required',
             'address_prefecture'    => 'required',
@@ -32,8 +31,4 @@ class CompanyGeneralRequest extends FormRequest
             'address_building'      => 'required',
         ];
     }
-
-
 }
-
-
