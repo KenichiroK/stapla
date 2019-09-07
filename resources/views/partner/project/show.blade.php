@@ -222,7 +222,7 @@
 
             <div class="task-container__content">
                 @foreach ($tasks as $task)
-                <a class="task-show-link" href="/company/task/{{ $task->id }}">
+                <a class="task-show-link" href="/partner/task/{{ $task->id }}">
                     <ul class="task-item-list task-container__content__list">
                         <li class="task-name">{{ $task->project->name }}</li>
                             <li>{{ $task->name }}</li>

@@ -100,13 +100,4 @@ class InvoiceController extends Controller
 
         return view('/partner/document/invoice/show', compact('partner', 'invoice', 'task', 'total_sum'));
     }
-
-    public function send(Request $request)
-    {
-        $task = Task::findOrFail($request->task_id);
-        $task->status = 12;
-        $task->save();
-
-        return redirect()->route('partner.invoice.show', ['id' => $request->invoice_id]);
-    }
 }

@@ -51,7 +51,6 @@
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_home.png" alt="">
                         </div>
@@ -62,7 +61,6 @@
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_dashboard.png" alt="">
                         </div>
@@ -73,7 +71,6 @@
                 </li>
                 <li>
                     <a href="/company/project">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_inbox.png" alt="">
                         </div>
@@ -84,7 +81,6 @@
                 </li>
                 <li>
                     <a href="/company/task">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_products.png" alt="">
                         </div>
@@ -95,7 +91,6 @@
                 </li>
                 <li>
                     <a href="/company/document" class="isActive">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_invoices.png" alt="">
                         </div>
@@ -106,7 +101,6 @@
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_customers.png" alt="">
                         </div>
@@ -117,7 +111,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_calendar.png" alt="">
                         </div>
@@ -128,7 +121,6 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_help-center.png" alt="">
                         </div>
@@ -139,7 +131,6 @@
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
                             <img src="../../../images/icon_setting.png" alt="">
                         </div>
@@ -456,7 +447,7 @@
 	</div>
 ​
 	@if($task->status === 12 && in_array($company_user->id, $company_user_ids))
-	<div class="actiionButton">
+	<div class="actionButton">
 		<form action="{{ url('company/task/status') }}" method="POST">
 		@csrf
 			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
@@ -479,6 +470,18 @@
 	@else
 	<p class="send-done">必要なアクションはありません</p>
 	@endif
+    <div class="error-message-wrapper">
+        @if ($errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('task_id') }}</strong>
+            </div>
+        @endif
+        @if ($errors->has('status') && !$errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('status') }}</strong>
+            </div>
+        @endif
+    </div>
 </div>
 @endsection
 

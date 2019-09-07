@@ -412,7 +412,18 @@
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif
         </div>
-
+        <div class="error-message-wrapper">
+            @if ($errors->has('task_id'))
+                <div class="error-msg" role="alert">
+                    <strong>{{ $errors->first('task_id') }}</strong>
+                </div>
+            @endif
+            @if ($errors->has('status') && !$errors->has('task_id'))
+                <div class="error-msg" role="alert">
+                    <strong>{{ $errors->first('status') }}</strong>
+                </div>
+            @endif
+        </div>
     </div>
 </div>
 @endsection
