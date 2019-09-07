@@ -150,6 +150,7 @@ $pref = array(
 							<p>都道府県</p>
 							<div class="select-arrow">
 								<select name="address_prefecture" id="prefecture">
+									<option disabled="disabled" selected></option>
 									@foreach($pref as $_pref)
 										<option value="{{ $_pref }}" {{ (old('address_prefecture') === $_pref) ? 'selected' : '' }}>{{ $_pref }}</option>
 									@endforeach
