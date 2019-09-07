@@ -195,21 +195,14 @@ const setPreview = (input) => {
                         <h4>会社情報のその他設定</h4>
                     </div>
                     <p class="text approval">上長、経理による書類・タスクの承認</p>
-                    @if ($company && $company->approval_setting == true)
-                        <input type="radio" name="approval_setting" value="1" id="approval_true" checked>
-                        <label class="left-btn" for="approval_true">有効</label>
-                        <input type="radio" name="approval_setting" value="0" id="approval_false">
-                        <label for="approval_false">無効</label>
-                    @elseif ($company && $company->approval_setting == false)
-                        <input type="radio" name="approval_setting" value="1" id="approval_true">
-                        <label class="left-btn" for="approval_true">有効</label>
-                        <input type="radio" name="approval_setting" value="0" id="approval_false" checked>
-                        <label for="approval_false">無効</label>
-                    @else ($company && $company->approval_setting == true)
-                        <input type="radio" name="approval_setting" value="1" id="approval_true">
-                        <label class="left-btn" for="approval_true">有効</label>
-                        <input type="radio" name="approval_setting" value="0" id="approval_false">
-                        <label for="approval_false">無効</label>
+                    <input type="radio" name="approval_setting" value="1" id="approval_true" {{ ($company->approval_setting == true) ? 'checked' : '' }}>
+                    <label class="left-btn" for="approval_true">有効</label>
+                    <input type="radio" name="approval_setting" value="0" id="approval_false" {{ ($company->approval_setting == false) ? 'checked' : '' }}>
+                    <label for="approval_false">無効</label>
+                    @if ($errors->has('approval_setting'))
+                        <div class="error-msg">
+                            <strong>{{ $errors->first('approval_setting') }}</strong>
+                        </div>
                     @endif
                 </div>
 			</div>
@@ -218,21 +211,15 @@ const setPreview = (input) => {
                 <div class="item-wrp">
                     <p class="text income">請求書の源泉所得税の有無</p>
                     <p class="sub-text">請求書作成時に、経費を源泉徴収の対象にするかどうか選択できます。</p>
-                    @if ($company && $company->income_tax_setting == true)
-                        <input type="radio" name="income_tax_setting" value="1" id="income_true" checked>
-                        <label class="left-btn" for="income_true">有効</label>
-                        <input type="radio" name="income_tax_setting" value="0" id="income_false">
-                        <label for="income_false">無効</label>
-                    @elseif ($company && $company->income_tax_setting == false)
-                        <input type="radio" name="income_tax_setting" value="1" id="income_true">
-                        <label class="left-btn" for="income_true">有効</label>
-                        <input type="radio" name="income_tax_setting" value="0" id="income_false" checked>
-                        <label for="income_false">無効</label>
-                    @else ($company && $company->income_tax_setting == true)
-                        <input type="radio" name="income_tax_setting" value="1" id="income_true">
-                        <label class="left-btn" for="income_true">有効</label>
-                        <input type="radio" name="income_tax_setting" value="0" id="income_false">
-                        <label for="income_false">無効</label>
+                    <input type="radio" name="income_tax_setting" value="1" id="income_true"  {{ ($company->income_tax_setting == true) ? 'checked' : '' }}>
+                    <label class="left-btn" for="income_true">有効</label>
+                    <input type="radio" name="income_tax_setting" value="0" id="income_false" {{ ($company->income_tax_setting == false) ? 'checked' : '' }}>
+                    <label for="income_false">無効</label>
+
+                    @if ($errors->has('income_tax_setting'))
+                        <div class="error-msg">
+                            <strong>{{ $errors->first('income_tax_setting') }}</strong>
+                        </div>
                     @endif
                 </div>
 			</div>
@@ -242,21 +229,15 @@ const setPreview = (input) => {
                     <p class="text remind">リマインド設定</p>
                     <p class="sub-text-title">締め日の設定</p>
                     <p class="sub-text">締め日を有効にし登録すると、締め日に「申請されていない請求書」「請求書に紐づけられていないタスク」がある場合、自動通知が行なわれます。 設定された締め日をもとにタスクは３日前、請求書は１日前に通知が有効になります。</p>
-                    @if ($company && $company->remind_setting == true)
-                        <input type="radio" name="remind_setting" value="1" id="remind_true" checked>
-                        <label class="left-btn" for="remind_true">有効</label>
-                        <input type="radio" name="remind_setting" value="0" id="remind_false">
-                        <label for="remind_false">無効</label>
-                    @elseif ($company && $company->remind_setting == false)
-                        <input type="radio" name="remind_setting" value="1" id="remind_true">
-                        <label class="left-btn" for="remind_true">有効</label>
-                        <input type="radio" name="remind_setting" value="0" id="remind_false" checked>
-                        <label for="remind_false">無効</label>
-                    @else ($company && $company->income_tax_setting == true)
-                        <input type="radio" name="remind_setting" value="1" id="remind_true">
-                        <label class="left-btn" for="remind_true">有効</label>
-                        <input type="radio" name="remind_setting" value="0" id="remind_false">
-                        <label for="remind_false">無効</label>
+                    <input type="radio" name="remind_setting" value="1" id="remind_true" {{ ($company->remind_setting == true) ? 'checked' : '' }}>
+                    <label class="left-btn" for="remind_true">有効</label>
+                    <input type="radio" name="remind_setting" value="0" id="remind_false" {{ ($company->remind_setting == false) ? 'checked' : '' }}>
+                    <label for="remind_false">無効</label>
+
+                    @if ($errors->has('remind_setting'))
+                        <div class="error-msg">
+                            <strong>{{ $errors->first('remind_setting') }}</strong>
+                        </div>
                     @endif
 
                     <div class="date-container" style="display:flex">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\CompanyUser;
+use App\Http\Requests\Companies\CompanyElseRequest;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,7 @@ class CompanyElseController extends Controller
         return view('company/setting/companyElse/create', compact('company', 'company_user'));
     }
 
-    public function store(Request $request)
+    public function store(CompanyElseRequest $request)
     {
         $auth = Auth::user();
         $company_user = CompanyUser::where('auth_id', $auth->id)->get()->first();
