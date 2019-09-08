@@ -150,6 +150,11 @@
 
 <div class="main__container">
     <div class="main__container__wrapper">
+        @if (session('completed'))
+            <div class="complete-container">
+                <p>{{ session('completed') }}</p>
+            </div>
+        @endif
         <div class="top">
             <div class="page-title-container">
                 <div class="page-title-container__page-title">タスク詳細</div>
@@ -178,10 +183,18 @@
             </dl>
             <dl>
                 <dt>
-                    タスク内容
+                    タスク名
                 </dt>
                 <dd>
                     {{ $task->name }}
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    タスク内容
+                </dt>
+                <dd>
+                    {{ $task->content }}
                 </dd>
             </dl>
             <dl>
