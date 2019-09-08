@@ -44,7 +44,8 @@ class TaskController extends Controller
     {
         $user = Auth::user();
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
-        $tasks = Task::where('company_id', $company_user->company_id)->where('status', 13)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+        $tasks = Task::where('company_id', $company_user->company_id)->get();
+        $done_tasks = Task::where('company_id', $company_user->company_id)->where('status', 13)->get();
         $status_arr = [];
         for ($i = 0; $i < 15; $i++) {
             $status_arr[strval($i)] = 0;
@@ -58,7 +59,7 @@ class TaskController extends Controller
             '発注書パートナー依頼前', '発注書パートナー確認中', '作業中', '請求書依頼中', '請求書確認中', '完了', 'キャンセル', 
         ];
 
-        return view('company/task/done-index', compact('tasks','statusName_arr', 'status_arr', 'company_user'));
+        return view('company/task/done-index', compact('tasks','statusName_arr', 'status_arr', 'company_user', 'done_tasks'));
     }
 
     public function projectTaskIndex($project_uid)

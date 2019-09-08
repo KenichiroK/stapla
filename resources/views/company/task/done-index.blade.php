@@ -242,7 +242,7 @@
                             <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">ステータス変更</th>
                         </tr>
                         <!-- テーブルデータ部分 -->
-                        @foreach($tasks as $task)
+                        @foreach($done_tasks as $task)
                         <tr class="task-container__wrapper__table-wrapper__table__datarow">
                             
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata  project">{{ $task->project->name }}</td>
