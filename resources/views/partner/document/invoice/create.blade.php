@@ -30,25 +30,60 @@ const checkDeadline = () => {
 
 const calculateSumPrice = (e) => {
   let sum = document.getElementById('sum');
-  let itemNums = document.getElementsByName('item_num');
-  let itemUnitPrices = document.getElementsByName('item_unit_price');
-  let expencesNums = document.getElementsByName('expences_num');
-  let expencesUnitPrices = document.getElementsByName('expences_unit_price');
+  let itemNums = document.getElementsByName('item_num[]');
+	let itemUnitPrices = document.getElementsByName('item_unit_price[]');
+	let itemTotals = document.getElementsByName('item_total[]');
+	let taskRequestTotals = document.querySelectorAll('.task_request_total');
+  let expencesNums = document.getElementsByName('expences_num[]');
+	let expencesUnitPrices = document.getElementsByName('expences_unit_price[]');
+	let expencesTotals = document.getElementsByName('expences_total[]');
+	let expenceTotals = document.querySelectorAll('.expence_total');
   let taskSum = 0;
   let expencesSum = 0;
   for (i = 0; i < itemNums.length; i++) {
 	const taskNum = itemNums[i].value === undefined ? 0 : Number(itemNums[i].value);
 	const taskUnitPrice = itemUnitPrices[i].value === undefined ? 0 : Number(itemUnitPrices[i].value);
+	if (taskNum !== 0 && taskUnitPrice !== 0) taskRequestTotals[i].textContent = taskNum * taskUnitPrice;
+	if (taskNum !== 0 && taskUnitPrice !== 0) itemTotals[i].value = taskNum * taskUnitPrice;
 	taskSum += taskNum * taskUnitPrice;
   }
 
   for (i = 0; i < expencesNums.length; i++) {
 	const expencesNum = expencesNums[i].value === undefined ? 0 : Number(expencesNums[i].value);
 	const expencesUnitPrice = expencesUnitPrices[i].value === undefined ? 0 : Number(expencesUnitPrices[i].value);
+	if (expencesNum !== 0 && expencesUnitPrice !== 0) expenceTotals[i].textContent = expencesNum * expencesUnitPrice;
+	if (expencesNum !== 0 && expencesUnitPrice !== 0) expencesTotals[i].value = expencesNum * expencesUnitPrice;
 	expencesSum += expencesNum * expencesUnitPrice;
   }
   sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
 }
+
+const addtaskRequest = () => {
+	const  taskRequest = document.getElementById('taskRequest');
+	const inner = `
+		<tr>
+			<td class="item"><input type="text" name="item_name[]" value="{{ old('item_name') }}"></td>
+			<td class="num"><input type="text" name="item_num[]" value="{{ old('item_num') }}" onchange="calculateSumPrice(this.value)"></td>
+			<td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+			<td class="total"><p class="task_request_total"></p><span>円</span></td>
+			<input type="hidden" name="item_total[]">
+		</tr>`;
+	taskRequest.insertAdjacentHTML('beforeend', inner);
+}
+
+const addExpences = () => {
+	const  expences = document.getElementById('expences');
+	const inner = `
+		<tr>
+			<td class="item"><input type="text" name="expences_name[]"></td>
+			<td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice(this.value)"></td>
+			<td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+			<td class="total"><p class="expence_total"></p><span>円</span></td>
+			<input type="hidden" name="expences_total[]">
+		</tr>`;
+	expences.insertAdjacentHTML('beforeend', inner);
+}
+
 </script>
 @endsection
 
@@ -312,12 +347,13 @@ const calculateSumPrice = (e) => {
 						</tr>
 					</thead>
 					
-					<tbody>
+					<tbody id="taskRequest">
 						<tr>
-							<td class="item"><input type="text" name="item_name" value="{{ old('item_name') }}"></td>
-							<td class="num"><input type="text" name="item_num" value="{{ old('item_num') }}" onchange="calculateSumPrice(this.value)"></td>
-							<td class="unit-price"><input type="text" name="item_unit_price" value="{{ old('item_unit_price') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
-							<td class="total"><input type="text" name="item_total" value="{{ old('item_total') }}"><span>円</span></td>
+							<td class="item"><input type="text" name="item_name[]"></td>
+							<td class="num"><input type="text" name="item_num[]" onchange="calculateSumPrice(this.value)"></td>
+							<td class="unit-price"><input type="text" name="item_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+							<td class="total"><p class="task_request_total"></p><span>円</span></td>
+							<input type="hidden" name="item_total[]">
 						</tr>
 					</tbody>
 					@if ($errors->has('item_name'))
@@ -343,7 +379,7 @@ const calculateSumPrice = (e) => {
 
 				</table>
 				<div class="addButton-container">
-					<button type="button">タスクを追加</button>
+					<button type="button" onclick="addtaskRequest()">タスクを追加</button>
 				</div>
 			</div>
 			<div class="expences-container">
@@ -361,12 +397,13 @@ const calculateSumPrice = (e) => {
 						</tr>
 					</thead>
 					
-					<tbody>
+					<tbody id="expences">
 						<tr>
-							<td class="item"><input type="text" name="expences_name" value="{{ old('expences_name') }}"></td>
-							<td class="num"><input type="text" name="expences_num" value="{{ old('expences_num') }}" onchange="calculateSumPrice(this.value)"></td>
-							<td class="unit-price"><input type="text" name="expences_unit_price" value="{{ old('expences_unit_price') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
-							<td class="total"><input type="text" name="expences_total" value="{{ old('expences_total') }}"><span>円</span></td>
+							<td class="item"><input type="text" name="expences_name[]"></td>
+							<td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice(this.value)"></td>
+							<td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+							<td class="total"><p class="expence_total"></p><span>円</span></td>
+							<input type="hidden" name="expences_total[]" value="{{ old('expences_total') }}">
 						</tr>
 					</tbody>
 
@@ -393,7 +430,7 @@ const calculateSumPrice = (e) => {
 
 				</table>
 				<div class="addButton-container">
-					<button type="button">経費を追加</button>
+					<button type="button" onclick="addExpences()">経費を追加</button>
 				</div>
 			</div>
 
