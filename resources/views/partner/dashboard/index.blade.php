@@ -246,14 +246,8 @@
             
         </table>
 
-        <!-- <div class="more-btn-container">
-            <button id="partnerProjectShowMoreBtn">
-                もっと見る
-                <i class="fas fa-angle-down"></i>
-            </button>
-        </div> -->
         <div class="more-btn-container">
-            <p id="partnerTaskShowMoreBtn" class="showmore">
+            <p id="partnerProjectShowMoreBtn" class="showmore">
                 もっと見る
             </p>
         </div>

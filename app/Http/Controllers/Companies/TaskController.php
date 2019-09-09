@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Companies;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Companies\CreateTaskRequest;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\Partner;
@@ -10,9 +12,7 @@ use App\Models\TaskCompany;
 use App\Models\TaskPartner;
 use App\Models\PurchaseOrder;
 use App\Models\Invoice;
-use Illuminate\Http\Request;
-use Validator;
-use App\Http\Controllers\Controller;
+
 
 use Illuminate\Support\Facades\Auth;
 
@@ -78,23 +78,8 @@ class TaskController extends Controller
         return view('company/task/create', compact('projects','companyUsers', 'partners', 'company_user'));
     }
     
-    public function store(Request $request)
+    public function store(CreateTaskRequest $request)
     {
-        $request->validate([
-            'company_user_id' => 'required',
-            'project_id'      => 'required',
-            'partner_id'      => 'required',
-            'superior_id'     => 'required',
-            'accounting_id'   => 'required',
-            'task_name'       => 'required',
-            'task_content'    => 'required',
-            'budget'          => 'required',
-            'price'           => 'required',
-            'cases'           => 'required',
-            'fee_format'      => 'required',
-        ]);
-
-        
         $task = new Task;
         $task->project_id      = $request->project_id;
         $user = Auth::user();
@@ -105,15 +90,15 @@ class TaskController extends Controller
         $task->partner_id      = $request->partner_id;
         $task->name            = $request->task_name;
         $task->content         = $request->task_content;
-        $task->started_at      = '2019-06-27 12:00:00';
-        $task->ended_at        = '2019-06-30 12:00:00';
+        $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at_date));
+        $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at_date));
         $task->status          = 1;
         $task->purchaseorder   = false;
         $task->invoice         = false;
         $task->budget          = $request->budget;
         $task->tax             = 0.08;
         $task->price           = $request->price;
-        $task->cases   = $request->cases;
+        $task->cases           = $request->cases;
         $task->comment         = $request->comment;
         $task->inspection_date = $request->inspection_date;
         $task->fee_format      = $request->fee_format;
