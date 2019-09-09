@@ -150,6 +150,11 @@
 
 <div class="main__container">
     <div class="main__container__wrapper">
+        @if (session('completed'))
+            <div class="complete-container">
+                <p>{{ session('completed') }}</p>
+            </div>
+        @endif
         <div class="top">
             <div class="page-title-container">
                 <div class="page-title-container__page-title">タスク詳細</div>
@@ -178,10 +183,18 @@
             </dl>
             <dl>
                 <dt>
-                    タスク内容
+                    タスク名
                 </dt>
                 <dd>
                     {{ $task->name }}
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    タスク内容
+                </dt>
+                <dd>
+                    {{ $task->content }}
                 </dd>
             </dl>
             <dl>
@@ -231,8 +244,18 @@
                 </dt>
                 <dd>
                     <div class="flex01 term-desc">
-                        <p class="start"><span>開始日</span>{{ explode(' ', $task->inspection_date)[0] }}</p>
-                        <p><span>終了日</span>{{ explode(' ', $task->ended_at)[0] }}</p>
+                        <p class="start"><span>開始日</span>
+                            {{ explode('-', explode(' ', $task->started_at)[0] )[0] }}年
+                            {{ explode('-', explode(' ', $task->started_at)[0] )[1] }}月
+                            {{ explode('-', explode(' ', $task->started_at)[0] )[2] }}日
+                            {{ explode(':', explode(' ', $task->started_at)[1] )[0] }}時
+                        </p>
+                        <p><span>終了日</span>
+                            {{ explode('-', explode(' ', $task->ended_at)[0] )[0] }}年
+                            {{ explode('-', explode(' ', $task->ended_at)[0] )[1] }}月
+                            {{ explode('-', explode(' ', $task->ended_at)[0] )[2] }}日
+                            {{ explode(':', explode(' ', $task->ended_at)[1] )[0] }}時
+                        </p>
                     </div>
                 </dd>
             </dl>
