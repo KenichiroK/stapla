@@ -113,7 +113,7 @@ class TaskController extends Controller
         $taskCompany->task_id = $task_id;
         $taskCompany->save();
 
-        return redirect('/company/task');
+        return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
     }
 
     public function show($id)

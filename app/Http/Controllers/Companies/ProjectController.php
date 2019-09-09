@@ -106,7 +106,7 @@ class ProjectController extends Controller
         $project_accounting->user_id    =  $request->accounting_id;
         $project_accounting->save();
         
-        return redirect('/company/project');
+        return redirect()->route('company.project.show', ['id' => $project->id])->with('completed', '「'.$project->name.'」を作成しました。');
     }
 
     public function show($id)
