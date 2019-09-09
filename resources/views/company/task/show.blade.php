@@ -178,7 +178,7 @@
                     タスク作成日
                 </dt>
                 <dd>
-                    {{ explode(' ', $task->created_at)[0] }}
+                    {{ date("Y年m月d日", strtotime($task->created_at)) }}
                 </dd>
             </dl>
             <dl>
@@ -244,18 +244,8 @@
                 </dt>
                 <dd>
                     <div class="flex01 term-desc">
-                        <p class="start"><span>開始日</span>
-                            {{ explode('-', explode(' ', $task->started_at)[0] )[0] }}年
-                            {{ explode('-', explode(' ', $task->started_at)[0] )[1] }}月
-                            {{ explode('-', explode(' ', $task->started_at)[0] )[2] }}日
-                            {{ explode(':', explode(' ', $task->started_at)[1] )[0] }}時
-                        </p>
-                        <p><span>終了日</span>
-                            {{ explode('-', explode(' ', $task->ended_at)[0] )[0] }}年
-                            {{ explode('-', explode(' ', $task->ended_at)[0] )[1] }}月
-                            {{ explode('-', explode(' ', $task->ended_at)[0] )[2] }}日
-                            {{ explode(':', explode(' ', $task->ended_at)[1] )[0] }}時
-                        </p>
+                        <p class="start"><span>開始日</span>{{ date("Y年m月d日H時", strtotime($task->started_at)) }}</p>
+                        <p><span>終了日</span>{{ date("Y年m月d日H時", strtotime($task->ended_at)) }}</p>
                     </div>
                 </dd>
             </dl>

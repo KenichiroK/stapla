@@ -160,7 +160,7 @@
 					</div>
 		
 					<div class="right">
-						<p>発注日: {{ $invoice->requested_at }}</p>
+						<p>発注日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
 						<p>{{ $invoice->partner->name }}</p>
 						<p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
 					</div>
@@ -268,7 +268,7 @@
 		
 				<div class="deadline-container">
 					<div class="header-container">
-						<p>ご入金期限: {{ $invoice->deadline_at }}</p>
+						<p>ご入金期限: {{ date("Y年m月d日", strtotime($invoice->deadline_at)) }}</p>
 					</div>
 		
 					<div class="content-container">
@@ -294,7 +294,7 @@
 				</div>
 	
 				<div class="right">
-					<p>発注日: {{ $invoice->requested_at }}</p>
+					<p>発注日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
 					<p>{{ $invoice->partner->name }}</p>
 					<p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
 				</div>
@@ -402,7 +402,7 @@
 	
 			<div class="deadline-container">
 				<div class="header-container">
-					<p>ご入金期限: {{ $invoice->deadline_at }}</p>
+					<p>ご入金期限: {{ date("Y年m月d日", strtotime($invoice->deadline_at)) }}</p>
 				</div>
 	
 				<div class="content-container">

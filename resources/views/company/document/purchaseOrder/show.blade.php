@@ -198,11 +198,11 @@ const setPreview = (input) => {
                         <div class="right">
                             <p class="text">下記の通り、発注します。</p>
                             <p class="name">件名: {{ $purchaseOrder->task_name }}</p>
-                            <p class="date">納期: {{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</p>
+                            <p class="date">納期: {{ date("Y年m月d日", strtotime($purchaseOrder->task_ended_at)) }}</p>
                         </div>
         
                         <div class="left">
-                            <p class="date">発注日: {{ explode(' ', $purchaseOrder->task_started_at)[0] }}</p>
+                            <p class="date">発注日: {{ date("Y年m月d日", strtotime($purchaseOrder->ordered_at)) }}</p>
                             <p clss="name">{{ $purchaseOrder->company_name }}</p>
                             <p class="tel">{{ $purchaseOrder->company_tel }}</p>
                             <p classs="address">〒{{ $purchaseOrder->company_zip_code }} {{ $purchaseOrder->company->address_prefecture }}{{ $purchaseOrder->company->address_city }}{{ $purchaseOrder->company->address_streetAddress }}</p>
@@ -329,11 +329,11 @@ const setPreview = (input) => {
                     <div class="right">
                         <p class="text">下記の通り、発注します。</p>
                         <p class="name">件名: {{ $purchaseOrder->task_name }}</p>
-                        <p class="date">納期: {{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</p>
+                        <p class="date">納期: {{ date("Y年m月d日", strtotime($purchaseOrder->task_ended_at)) }}</p>
                     </div>
     
                     <div class="left">
-                        <p class="date">発注日: {{ explode(' ', $purchaseOrder->task_started_at)[0] }}</p>
+                        <p class="date">発注日: {{ date("Y年m月d日", strtotime($purchaseOrder->ordered_at)) }}</p>
                         <p clss="name">{{ $purchaseOrder->company_name }}</p>
                         <p class="tel">{{ $purchaseOrder->company_tel }}</p>
                         <p classs="address">〒{{ $purchaseOrder->company_zip_code }} {{ $purchaseOrder->company->address_prefecture }}{{ $purchaseOrder->company->address_city }}{{ $purchaseOrder->company->address_streetAddress }}</p>

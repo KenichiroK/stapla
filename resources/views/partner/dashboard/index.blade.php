@@ -237,11 +237,7 @@
                         @endif
                     </td>
                     <td><span class="underline">{{ $project->project->tasks->count() }}</span>件</td>
-                    <td>
-                        {{ explode('-', explode(' ', $project->project->ended_at)[0])[0] }}年
-                        {{ explode('-', explode(' ', $project->project->ended_at)[0])[1] }}月
-                        {{ explode('-', explode(' ', $project->project->ended_at)[0])[2] }}日
-                    </td>
+                    <td>{{ date("Y年m月d日", strtotime($project->project->ended_at)) }}</td>
                     <td>¥{{ $project->project->budget }}</td>
                     <td>¥{{ $project->project->budget }}</td>
                 </tr>
