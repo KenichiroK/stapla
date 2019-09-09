@@ -3,36 +3,139 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/project/create.css') }}">
+
 <script>
+// stareted_at
 const set_started_at = () => {
-  const started_at_year = document.getElementById('started_at_year').value;
-  const started_at_month = document.getElementById('started_at_month').value;
-  const started_at_day = document.getElementById('started_at_day').value;
-  const started_at = document.getElementById('started_at');
-  started_at.value = Number(started_at_year + started_at_month + started_at_day);
-  console.log(started_at.value);
+    const started_at_year = document.getElementById('started_at_year').value;
+    const started_at_month = document.getElementById('started_at_month').value;
+    const started_at_day = document.getElementById('started_at_day').value;
+    const started_at = document.getElementById('started_at');
+    started_at.value = Number(started_at_year + started_at_month + started_at_day);
+    console.log(started_at.value);
+
+    let startedDayOption = '';
+    let today =new Date();
+    let lastDay = (new Date(started_at_year, started_at_month, 0)).getDate();
+    for(let d=1; d<=lastDay; d++){
+        if(d < 10){
+            if(d == today.getDate()){
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            } else{
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        } else{
+            if(d == today.getDate()){
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            } else{
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        }
+    }
+    document.getElementById('started_at_day').innerHTML = startedDayOption;
 }
 
-const set_ended_at = () => {
-  const ended_at_year = document.getElementById('ended_at_year').value;
-  const ended_at_month = document.getElementById('ended_at_month').value;
-  const ended_at_day = document.getElementById('ended_at_day').value;
-  const ended_at = document.getElementById('ended_at');
-  ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
-  console.log(ended_at.value);
+const startedDayOption = () => {
+    let startedDayOption = '';
+    let today =new Date();
+    let lastStartedDay = (new Date(started_at_year, started_at_month, 0)).getDate();
+    for(let d=1; d<=lastStartedDay; d++){
+        if(d < 10){
+            if(d == today.getDate()){
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            } else{
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        } else{
+            if(d == today.getDate()){
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            } else{
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        }
+    }
+    document.getElementById('started_at_day').innerHTML = startedDayOption;
 }
+
+const setStartedDay = () => {
+    const started_at_year = document.getElementById('started_at_year').value;
+    const started_at_month = document.getElementById('started_at_month').value;
+    const started_at_day = document.getElementById('started_at_day').value;
+    const started_at = document.getElementById('started_at');
+    started_at.value = Number(started_at_year + started_at_month + started_at_day);
+    console.log(started_at.value);
+}
+
+// ended_at
+const set_ended_at = () => {  
+    const ended_at_year = document.getElementById('ended_at_year').value;
+    const ended_at_month = document.getElementById('ended_at_month').value;
+    const ended_at_day = document.getElementById('ended_at_day').value;
+    const ended_at = document.getElementById('ended_at');
+    ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
+
+    let dayOption = '';
+    let today =new Date();
+    let lastStartedDay = (new Date(ended_at_year, ended_at_month, 0)).getDate();
+    for(let d=1; d<=lastStartedDay; d++){
+        if(d < 10){
+            if(d == today.getDate()){
+                dayOption += '<option value="' +d+ '">' +d+ '</option>';
+            } else{
+                dayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        } else{
+            if(d == today.getDate()){
+                dayOption += '<option value="' +d+ '">' +d+ '</option>';
+                } else{
+                dayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        }
+    }
+    document.getElementById('ended_at_day').innerHTML = dayOption;
+}
+
+
+
+
 window.onload = () => {
-  const started_at_year = document.getElementById('started_at_year').value;
-  const started_at_month = document.getElementById('started_at_month').value;
-  const started_at_day = document.getElementById('started_at_day').value;
-  const started_at = document.getElementById('started_at');
-  started_at.value = Number(started_at_year + started_at_month + started_at_day);
+    let today =new Date();
 
-  const ended_at_year = document.getElementById('ended_at_year').value;
-  const ended_at_month = document.getElementById('ended_at_month').value;
-  const ended_at_day = document.getElementById('ended_at_day').value;
-  const ended_at = document.getElementById('ended_at');
-  ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
+    // started_at
+    const started_at_year = document.getElementById('started_at_year').value;
+    const started_at_month = document.getElementById('started_at_month').value;
+    console.log(started_at_month);
+    const started_at_day = document.getElementById('started_at_day').value;
+    console.log(started_at_day);
+    const started_at = document.getElementById('started_at');
+    started_at.value = Number(started_at_year + started_at_month + started_at_day);
+    console.log(started_at.value);
+
+    let startedDayOption = '';
+    let lastStartedDay = (new Date(started_at_year, started_at_month, 0)).getDate();
+    for(let d=1; d<=lastStartedDay; d++){
+        if(d < 10){
+            if(d == today.getDate()){
+                startedDayOption += '<option value="' +d+ '" selected>' +d+ '</option>';
+            } else{
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        } else{
+            if(d == today.getDate()){
+                startedDayOption += '<option value="' +d+ '" selected>' +d+ '</option>';
+            } else{
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        }
+    }
+    document.getElementById('started_at_day').innerHTML = startedDayOption;
+
+    // ended_at
+    const ended_at_year = document.getElementById('ended_at_year').value;
+    const ended_at_month = document.getElementById('ended_at_month').value;
+    const ended_at_day = document.getElementById('ended_at_day').value;
+    const ended_at = document.getElementById('ended_at');
+    ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
 }
 
 
@@ -287,7 +390,11 @@ window.onload = () => {
                             @endif
                         </div> 
                     </li>
-
+                    
+          
+                    
+                 
+                    @{{ lastDay }}
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">プロジェクト期間</div>
                         <div class="calendars">
@@ -319,24 +426,10 @@ window.onload = () => {
                                 </select>
                                 月
 
-                                <select class="select-box" id="started_at_day" name="started_at_day" onChange="set_started_at()">
-                                @for($d=1; $d<=31; $d++)
-                                    @if($d < 10)
-                                        @if($d == date('d'))
-                                            <option value='0{{ $d }}' selected>{{ $d }}</option>
-                                        @else
-                                            <option value='0{{ $d }}'>{{ $d }}</option>
-                                        @endif
-                                    @else
-                                        @if($d == date('d'))
-                                            <option value='{{ $d }}' selected>{{ $d }}</option>
-                                        @else
-                                            <option value='{{ $d }}'>{{ $d }}</option>
-                                        @endif
-                                    @endif
-                                @endfor
-                                </select>
+                                <select class="select-box" id="started_at_day" name="started_at_day" onChange="setStartedDay()"></select>
                                 日
+                        
+
                                 <input name="started_at" id="started_at" type="hidden" value="{{ old('started_at')}}">
                                 @if($errors->has('started_at'))
                                     <div class="error-mes-wrp">
