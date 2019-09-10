@@ -45,6 +45,7 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->partner_id           = $request->partner_id;
         $purchaseOrder->task_id              = $request->task_id;
         $purchaseOrder->status               = 0;
+        $purchaseOrder->ordered_at           = date("Y-m-d");;
         $purchaseOrder->company_name         = $company->company_name;
         $purchaseOrder->company_tel          = $company->tel;
         $purchaseOrder->company_zip_code     = $company->zip_code;

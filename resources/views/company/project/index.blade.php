@@ -217,7 +217,7 @@
                         <li>
                             <span class="txt-underline">{{ $task_count_arr[$loop->index] }}</span>件
                         </li>
-                        <li>{{ $project->ended_at->format('Y年m月d日 H時') }}</li>
+                        <li>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</li>
                         <li>¥{{ number_format($project->budget) }}</li>
                         <li>¥{{ number_format($project->price) }}</li>
                     </ul>

@@ -159,7 +159,7 @@
             <div class="right">
                 <p class="text">下記の通り、発注します。</p>
                 <p class="name">件名: {{ $purchaseOrder->task->name }}</p>
-                <p class="date">納期: {{ explode(' ', $purchaseOrder->task->ended_at)[0] }}</p>
+                <p class="date">納期: {{ date("Y年m月d日", strtotime($purchaseOrder->task->ended_at)) }}</p>
             </div>
 
             <div class="left">
