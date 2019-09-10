@@ -13,7 +13,7 @@
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -44,14 +44,14 @@
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -61,7 +61,7 @@
                 <li>
                     <a href="/company/dashboard">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -71,7 +71,7 @@
                 <li>
                     <a href="/company/project">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -81,7 +81,7 @@
                 <li>
                     <a href="/company/task">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="{{ asset('images/icon_products.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -91,7 +91,7 @@
                 <li>
                     <a href="/company/document" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -101,7 +101,7 @@
                 <li>
                     <a href="/company/partner">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
+                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             パートナー
@@ -111,7 +111,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -121,7 +121,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -131,7 +131,7 @@
                 <li>
                     <a href="/company/setting/general">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -156,7 +156,7 @@
                 <div class="head-container__wrapper__item-container">
                     <div class="head-container__wrapper__item-container__wrapper">
                         <div class="head-container__wrapper__item-container__wrapper__icon-container">
-                            <div class="icon-imgbox"><img src="../../../images/invoice.png" alt=""></div>
+                            <div class="icon-imgbox"><img src="{{ asset('images/invoice.png') }}" alt=""></div>
                         </div>
                         <div class="head-container__wrapper__item-container__wrapper__content-container">
                             <div class="head-container__wrapper__item-container__wrapper__content-container__wrapper">
@@ -174,7 +174,7 @@
                 <div class="head-container__wrapper__item-container">
                     <div class="head-container__wrapper__item-container__wrapper">
                         <div class="head-container__wrapper__item-container__wrapper__icon-container">
-                            <div class="icon-imgbox"><img src="../../../images/order.png" alt=""></div>
+                            <div class="icon-imgbox"><img src="{{ asset('images/order.png') }}" alt=""></div>
                         </div>
                         <div class="head-container__wrapper__item-container__wrapper__content-container">
                             <div class="head-container__wrapper__item-container__wrapper__content-container__wrapper">
@@ -192,7 +192,7 @@
                 <div class="head-container__wrapper__item-container">
                     <div class="head-container__wrapper__item-container__wrapper">
                         <div class="head-container__wrapper__item-container__wrapper__icon-container">
-                            <div class="icon-imgbox"><img src="../../../images/outsourcing.png" alt=""></div>
+                            <div class="icon-imgbox"><img src="{{ asset('images/outsourcing.png') }}" alt=""></div>
                         </div>
                         <div class="head-container__wrapper__item-container__wrapper__content-container">
                             <div class="head-container__wrapper__item-container__wrapper__content-container__wrapper">
@@ -210,7 +210,7 @@
                 <div class="head-container__wrapper__item-container">
                     <div class="head-container__wrapper__item-container__wrapper">
                         <div class="head-container__wrapper__item-container__wrapper__icon-container">
-                            <div class="icon-imgbox"><img src="../../../images/non-disclosur.png" alt=""></div>
+                            <div class="icon-imgbox"><img src="{{ asset('images/non-disclosur.png') }}" alt=""></div>
                         </div>
                         <div class="head-container__wrapper__item-container__wrapper__content-container">
                             <div class="head-container__wrapper__item-container__wrapper__content-container__wrapper">
@@ -243,7 +243,7 @@
                                     <th class="document-table__head-row__table-header">完了</th>
                                 </tr>
                                 <tr class="document-table__data-row">
-                                    <td class="document-table__data-row__table-data"><div class="icon-imgbox"><img src="../../../images/invoice.png" alt=""></div></td>
+                                    <td class="document-table__data-row__table-data"><div class="icon-imgbox"><img src="{{ asset('images/invoice.png') }}" alt=""></div></td>
                                     <td class="document-table__data-row__table-data doc-title">請求書</td>
                                     <td class="document-table__data-row__table-data">{{ $invoices_0status->count() }}件</td>
                                     <td class="document-table__data-row__table-data">{{ $invoices_1status->count() }}件</td>
@@ -251,7 +251,7 @@
                                     <td class="document-table__data-row__table-data">{{ $invoices_3status->count() }}件</td>
                                 </tr>
                                 <tr class="document-table__data-row">
-                                    <td class="document-table__data-row__table-data"><div class="icon-imgbox"><img src="../../../images/order.png" alt=""></div></td>
+                                    <td class="document-table__data-row__table-data"><div class="icon-imgbox"><img src="{{ asset('images/order.png') }}" alt=""></div></td>
                                     <td class="document-table__data-row__table-data doc-title">発注書</td>
                                     <td class="document-table__data-row__table-data">{{ $purchaseOrders_0status->count() }}件</td>
                                     <td class="document-table__data-row__table-data">{{ $purchaseOrders_1status->count() }}件</td>
@@ -259,7 +259,7 @@
                                     <td class="document-table__data-row__table-data">{{ $purchaseOrders_3status->count() }}件</td>
                                 </tr>
                                 <tr class="document-table__data-row">
-                                    <td class="document-table__data-row__table-data"><div class="icon-imgbox"><img src="../../../images/outsourcing.png" alt=""></div></td>
+                                    <td class="document-table__data-row__table-data"><div class="icon-imgbox"><img src="{{ asset('images/outsourcing.png') }}" alt=""></div></td>
                                     <td class="document-table__data-row__table-data doc-title">業務委託契約書</td>
                                     <td class="document-table__data-row__table-data">件</td>
                                     <td class="document-table__data-row__table-data">件</td>
@@ -267,7 +267,7 @@
                                     <td class="document-table__data-row__table-data">件</td>
                                 </tr>
                                 <tr class="document-table__data-row">
-                                    <td class="document-table__data-row__table-data"><div class="icon-imgbox"><img src="../../../images/non-disclosur.png" alt=""></div></td>
+                                    <td class="document-table__data-row__table-data"><div class="icon-imgbox"><img src="{{ asset('images/non-disclosur.png') }}" alt=""></div></td>
                                     <td class="document-table__data-row__table-data doc-title">機密保持契約書</td>
                                     <td class="document-table__data-row__table-data">{{ $ndas_0status->count() }}件</td>
                                     <td class="document-table__data-row__table-data">{{ $ndas_1status->count() }}件</td>
@@ -283,7 +283,7 @@
             <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                        <div class="icon-imgbox"><img src="../../../images/invoice.png" alt=""></div>
+                        <div class="icon-imgbox"><img src="{{ asset('images/invoice.png') }}" alt=""></div>
                         <div class="item-name-wrapper__item-name">請求書</div>
                     </div>
                     <div class="main-container__wrapper__table-container">
@@ -335,7 +335,7 @@
              <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                    <div class="icon-imgbox"><img src="../../../images/order.png" alt=""></div>
+                    <div class="icon-imgbox"><img src="{{ asset('images/order.png') }}" alt=""></div>
                         <div class="item-name-wrapper__item-name">発注書</div>
                     </div>
                     <div class="main-container__wrapper__table-container">
@@ -388,7 +388,7 @@
             <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                    <div class="icon-imgbox"><img src="../../../images/outsourcing.png" alt=""></div>
+                    <div class="icon-imgbox"><img src="{{ asset('images/outsourcing.png') }}" alt=""></div>
                         <div class="item-name-wrapper__item-name">業務委託契約書</div>
                     </div>
                     <div class="main-container__wrapper__table-container">
@@ -413,7 +413,7 @@
                                     </td>
                                     <td class="outsourcing-table__data-row__table-data staff-data">
                                         <div class="imgbox">
-                                            <img src="../../../images/photoimg.png" alt="">
+                                            <img src="{{ asset('images/photoimg.png') }}" alt="">
                                         </div>
                                         <div class="name">
                                             加藤 裕美子
@@ -449,7 +449,7 @@
             <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                    <div class="icon-imgbox"><img src="../../../images/non-disclosur.png" alt=""></div>
+                    <div class="icon-imgbox"><img src="{{ asset('images/non-disclosur.png') }}" alt=""></div>
                         <div class="item-name-wrapper__item-name">機密保持契約書</div>
                     </div>
                     <div class="main-container__wrapper__table-container">

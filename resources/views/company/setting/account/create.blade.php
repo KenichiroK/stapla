@@ -27,7 +27,7 @@ const setPreview = (input) => {
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -59,14 +59,14 @@ const setPreview = (input) => {
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -76,7 +76,7 @@ const setPreview = (input) => {
                 <li>
                     <a href="/company/dashboard">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -86,7 +86,7 @@ const setPreview = (input) => {
                 <li>
                     <a href="/company/project">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -96,7 +96,7 @@ const setPreview = (input) => {
                 <li>
                     <a href="/company/task">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="{{ asset('images/icon_products.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -106,7 +106,7 @@ const setPreview = (input) => {
                 <li>
                     <a href="/company/document">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -116,7 +116,7 @@ const setPreview = (input) => {
                 <li>
                     <a href="/company/partner">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
+                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             パートナー
@@ -126,7 +126,7 @@ const setPreview = (input) => {
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -136,7 +136,7 @@ const setPreview = (input) => {
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -146,7 +146,7 @@ const setPreview = (input) => {
                 <li>
                     <a href="/company/setting/general" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定

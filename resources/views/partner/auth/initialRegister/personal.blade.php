@@ -107,7 +107,7 @@ $pref = array(
 				<div class="edit-container top">
 					<div class="image-container">
 						<div class="imgbox">
-							<img id="profile_image_preview" src="../../../images/upload4.png" alt="プレビュー画像">
+							<img id="profile_image_preview" src="{{ asset('images/upload4.png') }}" alt="プレビュー画像">
 						</div> 
 						<label for="picture">
 							画像をアップロード
