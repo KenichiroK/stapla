@@ -45,15 +45,6 @@
                             border-color :#E9E9F0;
                             border-radius: 4px;
                         }
-                        &__select{
-                            width:800px;
-                            border-color :#E9E9F0;
-                        }
-                        &__wrapper{
-                            &__filearea{
-                                margin-top:8px;
-                            }
-                        }
                         .calendars{
                             width:80%;
                             display:flex;
@@ -69,9 +60,9 @@
                                     padding-right: 160px;
                                     padding-left: 5px;
                                 }
-                                &__select{
-                                    margin-top:8px;
-                                }
+                                // &__select{
+                                //     margin-top:8px;
+                                // }
                             }
                             .right{
                                 margin-left:80px;
@@ -79,6 +70,14 @@
                         }
                         .budget-container{
                             position: relative;
+                            input{
+                                width: 30%;
+                                padding: 4px;
+                                box-shadow: none;
+                                border-radius: 2px;
+                                border: 1px solid #E9E9F0;
+                                height: 48px;
+                            }
                             &__yen{
                                 margin-left:4px;
                                 font-size: 15px;
@@ -119,29 +118,10 @@
             .textarea-container{
                 width:70%;
             }
-            .select-container{
-                width:70%;
-            }
-            .select{
-                width:70%;
-                select{
-                    width:100%;
-                }
-            }
             .select-wrp{
                 width: 70%;
                 .select{
                     width:100%;
-                }
-            }
-            .budget-container{
-                input{
-                    width: 30%;
-                    padding: 4px;
-                    box-shadow: none;
-                    border-radius: 2px;
-                    border: 1px solid #E9E9F0;
-                    height: 48px;
                 }
             }
             .button-container{
