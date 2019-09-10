@@ -227,20 +227,20 @@ $(function(){
                             <div class="select-container__wrapper__select-area__field__control control">
                                 <div class="select-container__wrapper__select-area__field__control__select select is-info">
                                     <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                        <option></option>
+                                        <option disabled selected></option>
                                         @foreach($projects as $project)
-                                            <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                            <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
                                         @endforeach
                                     </select>
+                                    @if ($errors->has('project_id'))
+                                        <div class="invalid-feedback error-msg" role="alert">
+                                            <strong>{{ $errors->first('project_id') }}</strong>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @if ($errors->has('project_id'))
-                        <div class="invalid-feedback error-msg" role="alert">
-                            <strong>{{ $errors->first('project_id') }}</strong>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
@@ -312,11 +312,9 @@ $(function(){
                                                 <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
                                                 <!-- <select v-model="taskInfo.staff"> -->
                                                 <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                                    <option></option>
+                                                    <option disabled selected></option>
                                                     @foreach($companyUsers as $companyUser)
-                                                        <option value="{{ $companyUser->id }}">
-                                                            {{ $companyUser->name }}
-                                                        </option>
+                                                        <option value="{{ $companyUser->id }}" {{ (old('company_user_id') ===  $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 
@@ -345,11 +343,9 @@ $(function(){
                                         <div class="select-container__wrapper__select-area__field__control control">
                                             <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
                                                 <select name='superior_id'>
-                                                    <option></option>
+                                                    <option disabled selected></option>
                                                     @foreach($companyUsers as $companyUser)
-                                                        <option value={{ $companyUser->id }}>
-                                                            {{ $companyUser->name }}
-                                                        </option>
+                                                        <option value={{ $companyUser->id }} {{ (old('superior_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 
@@ -378,11 +374,9 @@ $(function(){
                                         <div class="select-container__wrapper__select-area__field__control control">
                                             <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
                                                 <select name='accounting_id'>
-                                                    <option></option>
+                                                    <option disabled selected></option>
                                                     @foreach($companyUsers as $companyUser)
-                                                        <option value={{ $companyUser->id }}>
-                                                            {{ $companyUser->name }}
-                                                        </option>
+                                                        <option value={{ $companyUser->id }} {{ (old('accounting_id') === $companyUser->id) ? 'selected' : ''}}>{{ $companyUser->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 
@@ -391,10 +385,10 @@ $(function(){
                                     </div>
                                 </div>
                                 @if ($errors->has('accounting_id'))
-                                                    <div class="invalid-feedback error-msg" role="alert">
-                                                        <strong>{{ $errors->first('accounting_id') }}</strong>
-                                                    </div>
-                                                @endif
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('accounting_id') }}</strong>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <!-- 項目：締め切り -->
@@ -650,11 +644,9 @@ $(function(){
                                     <div class="select-container__wrapper__select-area__field__control control">
                                         <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
                                             <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                                <option></option>
+                                                <option disabled selected></option>
                                                 @foreach($partners as $partner)
-                                                    <option value={{ $partner->id }} >
-                                                        {{ $partner->name }}
-                                                    </option>
+                                                    <option value={{ $partner->id }} {{ (old('partner_id') === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
                                                 @endforeach
                                             </select>
                                             

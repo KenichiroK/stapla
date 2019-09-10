@@ -298,10 +298,10 @@ window.onload = () => {
                     <li class="project-create__container__list__item margin--none">
                         <div class="project-create__container__list__item__name">プロジェクト名</div>
                         <div class="input-container">
-                            <input name="project_name" class="project-create__container__list__item__input" type="text" value="{{ old('project_name')}}">
-                            @if($errors->has('project_name'))
-                                <div class="error-mes-wrp">
-                                    <strong style='color: #e3342f;'>{{ $errors->first('project_name') }}</strong>
+                            <input class="project-create__container__list__item__input input form-control{{ $errors->has('project_name') ? ' is-invalid' : '' }}" name="project_name"  type="text" value="{{ old('project_name')}}">
+                            @if ($errors->has('project_name'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('project_name') }}</strong>
                                 </div>
                             @endif
                         </div>
@@ -309,10 +309,10 @@ window.onload = () => {
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">プロジェクト詳細</div>
                         <div class="textarea-container">
-                            <textarea class="project-create__container__list__item__textarea" name="project_detail" placeholder="">{{ old('project_detail') }}</textarea>
-                            @if($errors->has('project_detail'))
-                                <div class="error-mes-wrp">
-                                    <strong style='color: #e3342f;'>{{ $errors->first('project_detail') }}</strong>
+                            <textarea class="project-create__container__list__item__textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name="project_detail" placeholder="">{{ old('project_detail') }}</textarea>
+                            @if ($errors->has('project_detail'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('project_detail') }}</strong>
                                 </div>
                             @endif
                         </div>
@@ -321,17 +321,16 @@ window.onload = () => {
                         <div class="project-create__container__list__item__name">担当者</div>
                         <div class="select-wrp">
                             <div class="select-container select id-normal select-plusicon is-multiple"> 
-                                <select name="company_user_id" class="select-box" id="company-staff-name-list">
-                                    <option></option>
+                                <select name="company_user_id" class="select-box form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}" id="company-staff-name-list">
+                                    <option disabled selected></option>
                                     @foreach( $company_users as $company_user )
-                                    <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
+                                    <option value="{{ $company_user->id }}" {{ (old('company_user_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
                                     @endforeach
                                 </select>
-                                
                             </div>
-                            @if($errors->has('company_user_id'))
-                                <div class="error-mes-wrp">
-                                    <strong style='color: #e3342f;'>{{ $errors->first('company_user_id') }}</strong>
+                            @if ($errors->has('company_user_id'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('company_user_id') }}</strong>
                                 </div>
                             @endif
                         </div>
@@ -341,15 +340,15 @@ window.onload = () => {
                         <div class="select-wrp">
                             <div class="select-container select id-normal select-plusicon is-multiple">
                                 <select name="superior_id" class="select-box" id="company-staff-name-list">
-                                    <option></option>
+                                    <option disabled selected></option>
                                     @foreach( $company_users as $company_user )
-                                    <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
+                                    <option value="{{ $company_user->id }}" {{ (old('superior_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            @if($errors->has('superior_id'))
-                                <div class="error-mes-wrp">
-                                    <strong style='color: #e3342f;'>{{ $errors->first('superior_id') }}</strong>
+                            @if ($errors->has('superior_id'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('superior_id') }}</strong>
                                 </div>
                             @endif
                         </div>
@@ -359,15 +358,15 @@ window.onload = () => {
                         <div class="select-wrp">
                             <div class="select-container select id-normal select-plusicon is-multiple">
                                 <select name="accounting_id" class="select-box" id="company-staff-name-list">
-                                    <option></option>
+                                    <option disabled selected></option>
                                     @foreach( $company_users as $company_user )
-                                    <option value="{{ $company_user->id }}">{{ $company_user->name }}</option>
+                                    <option value="{{ $company_user->id }}" {{ (old('accounting_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
                                     @endforeach
                                 </select>  
                             </div>
-                            @if($errors->has('accounting_id'))
-                                <div class="error-mes-wrp">
-                                    <strong style='color: #e3342f;'>{{ $errors->first('accounting_id') }}</strong>
+                            @if ($errors->has('accounting_id'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('accounting_id') }}</strong>
                                 </div>
                             @endif
                         </div>
@@ -377,16 +376,16 @@ window.onload = () => {
                         <div class="select-wrp">
                             <div class="select id-normal select-plusicon is-multiple">
                                 <select name="partner_id" class="select-box" id="partner-name-list">
-                                    <option value=""></option>
+                                    <option disabled selected></option>
                                     @foreach( $partner_users as $partner_user )
-                                    <option value="{{ $partner_user->id }}">{{ $partner_user->name }}</option>
+                                    <option value="{{ $partner_user->id }}" {{ (old('partner_id') === $partner_user->id) ? 'selected' : '' }}>{{ $partner_user->name }}</option>
                                     @endforeach
                                 </select>
                                 
                             </div>  
-                            @if($errors->has('partner_id'))
-                                <div class="error-mes-wrp">
-                                    <strong style='color: #e3342f;'>{{ $errors->first('partner_id') }}</strong>
+                            @if ($errors->has('partner_id'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('partner_id') }}</strong>
                                 </div>
                             @endif
                         </div> 
@@ -467,11 +466,11 @@ window.onload = () => {
                                 日
 
                                 <input id="ended_at" name="ended_at" type="hidden" value="{{ old('ended_at')}}">
-                                @if($errors->has('ended_at'))
-                                    <div class="error-mes-wrp">
-                                        <strong style='color: #e3342f;'>{{ $errors->first('ended_at') }}</strong>
+                                @if ($errors->has('ended_at'))
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('ended_at') }}</strong>
                                     </div>
-                                @endif
+                                @endif   
                             </div>
                         </div>
                     </li>
@@ -479,9 +478,9 @@ window.onload = () => {
                         <div class="project-create__container__list__item__name">予算</div>
                         <div class="budget-container input-container">
                             <input name="budget" type="text" placeholder="" value="{{ old('budget')}}"><span class="budget-container__yen">円</span>
-                            @if($errors->has('budget'))
-                                <div class="error-mes-wrp">
-                                    <strong style='color: #e3342f;'>{{ $errors->first('budget') }}</strong>
+                            @if ($errors->has('budget'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('budget') }}</strong>
                                 </div>
                             @endif
                         </div>

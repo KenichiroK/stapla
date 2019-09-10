@@ -92,6 +92,7 @@ class TaskController extends Controller
         $task->name            = $request->task_name;
         $task->content         = $request->task_content;
         $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at_date));
+        return $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at_date));
         $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at_date));
         $task->status          = 1;
         $task->purchaseorder   = false;
