@@ -113,22 +113,29 @@ window.onload = () => {
 
     let startedDayOption = '';
     let lastStartedDay = (new Date(started_at_year, started_at_month, 0)).getDate();
+    // console.log(lastStartedDay);
+    
     for(let d=1; d<=lastStartedDay; d++){
         if(d < 10){
             if(d == today.getDate()){
                 startedDayOption += '<option value="' +d+ '" selected>' +d+ '</option>';
+                // console.log(d);
             } else{
                 startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+                // console.log(d);
             }
         } else{
             if(d == today.getDate()){
                 startedDayOption += '<option value="' +d+ '" selected>' +d+ '</option>';
+                // console.log(d);
             } else{
                 startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+                // console.log(d);
             }
         }
     }
     document.getElementById('started_at_day').innerHTML = startedDayOption;
+    console.log(startedDayOption);
 
     // ended_at
     const ended_at_year = document.getElementById('ended_at_year').value;
@@ -427,7 +434,7 @@ window.onload = () => {
                                 </select>
                                 月
 
-                                <select class="select-box" id="started_at_day" name="started_at_day" onChange="setStartedDay()"></select>
+                                <select class="select-box" id="started_at_day" name="started_at_day" onChange="set_started_at();"></select>
                                 日
                         
 
