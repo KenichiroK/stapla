@@ -150,6 +150,7 @@ window.onload = () => {
         </div>
 
         <div class="icon-imgbox">
+            <!-- <img src="../../../images/icon_small-down.png" alt=""> -->
             <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
