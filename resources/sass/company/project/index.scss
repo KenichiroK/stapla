@@ -58,18 +58,17 @@
 		margin-bottom: 86px;
 		li{
 			display: inline-block;
-			&.all{
+			padding: 0 32px 16px;
+			&.isActive{
 				border-bottom: 4px solid #43425D;
 				padding: 0 32px 16px;
 				a{
+					color: #43425D;
 					font-weight: bold;
 				}
 			}
-			&.done{
-				padding: 0 32px 16px;
-			}
 			a{
-				color: #43425D;
+				color: #7B7A9A;
 				font-size: 16px;
 				&:hover{
 					text-decoration: none;
@@ -82,7 +81,6 @@
 		padding:20px 16px 0 16px;
 		background-color: #fff;
 		&__item{
-			// margin-top:16px;
 			&__list{
 				height:48px;
 				display: flex;
@@ -115,8 +113,14 @@
 					font-size: 12px;
 					color: #4D4F5C;
 					.photoimgbox{
-						width: 31px;
-						margin: 0 auto 3px;
+						margin: 0 auto;
+						display: inline-block;
+						width: 32px;
+						height: 32px;
+						position: relative;
+						overflow: hidden;
+						border-radius: 50%;
+						border: 1px solid #E9E9F0;
 
 						img {
 							border-radius: 50%;
