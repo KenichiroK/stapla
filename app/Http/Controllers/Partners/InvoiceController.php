@@ -40,37 +40,40 @@ class InvoiceController extends Controller
         }
 
         $company_id = $partner->company_id;
-
         $invoice = new Invoice;
         $invoice->company_id     = $company_id;
-        $invoice->companyUser_id = $request->companyUser_id;
+        $invoice->companyUser_id = $request->company_user_id;
         $invoice->task_id        = $request->task_id;
         $invoice->partner_id     = $partner->id;
-        $invoice->project_name   = $request->project_name;
+        $invoice->project_name   = $request->title;
         $invoice->requested_at   = $request->requested_at;
         $invoice->deadline_at    = $request->deadline_at;
         $invoice->tax            = $request->tax;
         $invoice->status         = 0;
         $invoice->save();
 
-        if ($request->item_name) {
-            $request_task = new RequestTask;
-            $request_task->invoice_id = $invoice->id;
-            $request_task->name       = $request->item_name;
-            $request_task->num        = $request->item_num;
-            $request_task->unit_price = $request->item_unit_price;
-            $request_task->total      = $request->item_total;
-            $request_task->save();
+        if (!!$request->item_name[0] && !!$request->item_num[0] && !!$request->item_unit_price[0] && !!$request->item_total[0]) {
+            for ($i = 0; $i < count($request->item_name); $i++) {
+                ${"request_task" . $i} = new RequestTask;
+                ${"request_task" . $i}->invoice_id = $invoice->id;
+                ${"request_task" . $i}->name       = $request->item_name[$i];
+                ${"request_task" . $i}->num        = $request->item_num[$i];
+                ${"request_task" . $i}->unit_price = $request->item_unit_price[$i];
+                ${"request_task" . $i}->total      = $request->item_total[$i];
+                ${"request_task" . $i}->save();
+            }
         }
 
-        if ($request->expences_name) {
-            $request_expences = new RequestExpence;
-            $request_expences->invoice_id = $invoice->id;
-            $request_expences->name       = $request->expences_name;
-            $request_expences->num        = $request->expences_num;
-            $request_expences->unit_price = $request->expences_unit_price;
-            $request_expences->total      = $request->expences_total;
-            $request_expences->save();
+        if (!!$request->expences_name[0] && !!$request->expences_num[0] && !!$request->expences_unit_price[0] && !!$request->expences_total[0]) {
+            for ($i = 0; $i < count($request->expences_name); $i++) {
+                ${"request_expences" . $i} = new RequestExpence;
+                ${"request_expences" . $i}->invoice_id = $invoice->id;
+                ${"request_expences" . $i}->name       = $request->expences_name[$i];
+                ${"request_expences" . $i}->num        = $request->expences_num[$i];
+                ${"request_expences" . $i}->unit_price = $request->expences_unit_price[$i];
+                ${"request_expences" . $i}->total      = $request->expences_total[$i];
+                ${"request_expences" . $i}->save();
+            }
         }
             
         return redirect()->route('partner.invoice.show', ['id' => $invoice->id]);

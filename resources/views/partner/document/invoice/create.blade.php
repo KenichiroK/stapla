@@ -8,11 +8,11 @@ const checkInvoiceDate = () => {
   const requestedAtRadio = document.getElementsByName('requested_at');
   const requestedAtText = document.getElementById('requested_at_text');
   if (requestedAtRadio[0].checked) {
-	const dateArr = requestedAtRadio[0].value.split('-');
-	requestedAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
+    const dateArr = requestedAtRadio[0].value.split('-');
+    requestedAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
   } else if (requestedAtRadio[1].checked) {
     const dateArr = requestedAtRadio[1].value.split('-');
-	requestedAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
+    requestedAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
   }
 }
 
@@ -20,70 +20,74 @@ const checkDeadline = () => {
   const deadlineAtRadio = document.getElementsByName('deadline_at');
   const deadlineAtText = document.getElementById('deadline_at_text');
   if (deadlineAtRadio[0].checked) {
-	const dateArr = deadlineAtRadio[0].value.split('-');
-	deadlineAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
+    const dateArr = deadlineAtRadio[0].value.split('-');
+    deadlineAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
   } else if (deadlineAtRadio[1].checked) {
     const dateArr = deadlineAtRadio[1].value.split('-');
-	deadlineAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
+    deadlineAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
   }
 }
 
 const calculateSumPrice = (e) => {
   let sum = document.getElementById('sum');
   let itemNums = document.getElementsByName('item_num[]');
-	let itemUnitPrices = document.getElementsByName('item_unit_price[]');
-	let itemTotals = document.getElementsByName('item_total[]');
-	let taskRequestTotals = document.querySelectorAll('.task_request_total');
+  let itemUnitPrices = document.getElementsByName('item_unit_price[]');
+  let itemTotals = document.getElementsByName('item_total[]');
+  let taskRequestTotals = document.querySelectorAll('.task_request_total');
   let expencesNums = document.getElementsByName('expences_num[]');
-	let expencesUnitPrices = document.getElementsByName('expences_unit_price[]');
-	let expencesTotals = document.getElementsByName('expences_total[]');
-	let expenceTotals = document.querySelectorAll('.expence_total');
+  let expencesUnitPrices = document.getElementsByName('expences_unit_price[]');
+  let expencesTotals = document.getElementsByName('expences_total[]');
+  let expenceTotals = document.querySelectorAll('.expence_total');
   let taskSum = 0;
   let expencesSum = 0;
   for (i = 0; i < itemNums.length; i++) {
-	const taskNum = itemNums[i].value === undefined ? 0 : Number(itemNums[i].value);
-	const taskUnitPrice = itemUnitPrices[i].value === undefined ? 0 : Number(itemUnitPrices[i].value);
-	if (taskNum !== 0 && taskUnitPrice !== 0) taskRequestTotals[i].textContent = taskNum * taskUnitPrice;
-	if (taskNum !== 0 && taskUnitPrice !== 0) itemTotals[i].value = taskNum * taskUnitPrice;
-	taskSum += taskNum * taskUnitPrice;
+    const taskNum = itemNums[i].value === undefined ? 0 : Number(itemNums[i].value);
+    const taskUnitPrice = itemUnitPrices[i].value === undefined ? 0 : Number(itemUnitPrices[i].value);
+    if (taskNum !== 0 && taskUnitPrice !== 0) taskRequestTotals[i].textContent = taskNum * taskUnitPrice;
+    if (taskNum !== 0 && taskUnitPrice !== 0) itemTotals[i].value = taskNum * taskUnitPrice;
+    taskSum += taskNum * taskUnitPrice;
   }
 
   for (i = 0; i < expencesNums.length; i++) {
-	const expencesNum = expencesNums[i].value === undefined ? 0 : Number(expencesNums[i].value);
-	const expencesUnitPrice = expencesUnitPrices[i].value === undefined ? 0 : Number(expencesUnitPrices[i].value);
-	if (expencesNum !== 0 && expencesUnitPrice !== 0) expenceTotals[i].textContent = expencesNum * expencesUnitPrice;
-	if (expencesNum !== 0 && expencesUnitPrice !== 0) expencesTotals[i].value = expencesNum * expencesUnitPrice;
-	expencesSum += expencesNum * expencesUnitPrice;
+    const expencesNum = expencesNums[i].value === undefined ? 0 : Number(expencesNums[i].value);
+    const expencesUnitPrice = expencesUnitPrices[i].value === undefined ? 0 : Number(expencesUnitPrices[i].value);
+    if (expencesNum !== 0 && expencesUnitPrice !== 0) expenceTotals[i].textContent = expencesNum * expencesUnitPrice;
+    if (expencesNum !== 0 && expencesUnitPrice !== 0) expencesTotals[i].value = expencesNum * expencesUnitPrice;
+    expencesSum += expencesNum * expencesUnitPrice;
   }
   sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
 }
 
 const addtaskRequest = () => {
-	const  taskRequest = document.getElementById('taskRequest');
-	const inner = `
-		<tr>
-			<td class="item"><input type="text" name="item_name[]" value="{{ old('item_name') }}"></td>
-			<td class="num"><input type="text" name="item_num[]" value="{{ old('item_num') }}" onchange="calculateSumPrice(this.value)"></td>
-			<td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
-			<td class="total"><p class="task_request_total"></p><span>円</span></td>
-			<input type="hidden" name="item_total[]">
-		</tr>`;
-	taskRequest.insertAdjacentHTML('beforeend', inner);
+  const taskRequest = document.getElementById('taskRequest');
+  const inner = `
+    <tr>
+	  <td class="item"><input type="text" name="item_name[]"></td>
+	  <td class="num"><input type="text" name="item_num[]" onchange="calculateSumPrice(this.value)"></td>
+	  <td class="unit-price"><input type="text" name="item_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+	  <td class="total"><p class="task_request_total"></p><span>円</span></td>
+	  <input type="hidden" name="item_total[]">
+	</tr>`;
+  taskRequest.insertAdjacentHTML('beforeend', inner);
 }
 
 const addExpences = () => {
-	const  expences = document.getElementById('expences');
-	const inner = `
-		<tr>
-			<td class="item"><input type="text" name="expences_name[]"></td>
-			<td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice(this.value)"></td>
-			<td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
-			<td class="total"><p class="expence_total"></p><span>円</span></td>
-			<input type="hidden" name="expences_total[]">
-		</tr>`;
-	expences.insertAdjacentHTML('beforeend', inner);
+  const expences = document.getElementById('expences');
+  const inner = `
+	  <tr>
+		<td class="item"><input type="text" name="expences_name[]"></td>
+		<td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice(this.value)"></td>
+		<td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+		<td class="total"><p class="expence_total"></p><span>円</span></td>
+		<input type="hidden" name="expences_total[]">
+	  </tr>`;
+  expences.insertAdjacentHTML('beforeend', inner);
 }
 
+window.onload = () => {
+  checkInvoiceDate();
+  checkDeadline();
+}
 </script>
 @endsection
 
@@ -250,28 +254,28 @@ const addExpences = () => {
 					<dt>担当者</dt>
 					<dd>
 						<div class="selectbox-container">
-							<select name="companyUser_id">
+							<select name="company_user_id">
 								<option value="" hidden></option>
 								@foreach ($task->taskCompanies as $companyUser)
-									<option value="{{ $companyUser->companyUser->id }}">{{ $companyUser->companyUser->name }}</option>
+									<option value="{{ $companyUser->companyUser->id }}" {{ old('company_user_id') === $companyUser->companyUser->id ? 'selected' : '' }}>{{ $companyUser->companyUser->name }}</option>
 								@endforeach
-								@if ($errors->has('companyUser_id'))
-									<div class="error-msg">
-										<strong>{{ $errors->first('companyUser_id') }}</strong>
-									</div>					
-								@endif
 							</select>
 						</div>
+						@if ($errors->has('company_user_id'))
+							<div class="error-msg">
+								<strong>{{ $errors->first('company_user_id') }}</strong>
+							</div>					
+						@endif
 					</dd>
 				</dl>
 
 				<dl>
 					<dt>件名</dt>
 					<dd>
-						<input class="task-name" type="text" name="project_name" value="{{ old('project_name') }}">
-						@if ($errors->has('project_name'))
+						<input class="task-name" type="text" name="title" value="{{ old('title') }}">
+						@if ($errors->has('title'))
 							<div class="error-msg">
-								<strong>{{ $errors->first('project_name') }}</strong>
+								<strong>{{ $errors->first('title') }}</strong>
 							</div>					
 						@endif
 					</dd>
@@ -282,9 +286,25 @@ const addExpences = () => {
 					<dd>
 						<div class="radio-container">
 							<span id="requested_at_text"></span>
-							<input class="radio-input" type="radio" name="requested_at" value="{{ date('Y-m-d', mktime(0, 0, 0, date('m'), 0, date('Y'))) }}" id="end_of_last_month" onclick="checkInvoiceDate()">
+							<input
+								class="radio-input"
+								type="radio"
+								name="requested_at"
+								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m'), 0, date('Y'))) }}"
+								id="end_of_last_month"
+								onclick="checkInvoiceDate()"
+								{{ old('requested_at') === date('Y-m-d', mktime(0, 0, 0, date('m'), 0, date('Y'))) ? 'checked' : '' }}
+							>
 							<label for="end_of_last_month">先月末にする</label>
-							<input class="radio-input" type="radio" name="requested_at" value="{{ date('Y-m-t') }}" id="end_of_this_month" onclick="checkInvoiceDate()">
+							<input
+								class="radio-input"
+								type="radio"
+								name="requested_at"
+								value="{{ date('Y-m-t') }}"
+								id="end_of_this_month"
+								onclick="checkInvoiceDate()"
+								{{ old('requested_at') === date('Y-m-t') ? 'checked' : '' }}
+							>
 							<label for="end_of_this_month">今月末にする</label>
 						</div>
 						@if ($errors->has('requested_at'))
@@ -301,9 +321,25 @@ const addExpences = () => {
 					<dd>
 						<div class="radio-container">
 							<span id="deadline_at_text"></span>
-							<input class="radio-input" type="radio" name="deadline_at" value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) }}" id="end_of_next_month" onclick="checkDeadline()">
+							<input
+								class="radio-input"
+								type="radio"
+								name="deadline_at"
+								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) }}"
+								id="end_of_next_month"
+								onclick="checkDeadline()"
+								{{ old('deadline_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) ? 'checked' : '' }}
+							>
 							<label for="end_of_next_month">来月末にする</label>
-							<input class="radio-input" type="radio" name="deadline_at" value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) }}" id="end_of_month_after_next" onclick="checkDeadline()">
+							<input
+								class="radio-input"
+								type="radio"
+								name="deadline_at"
+								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) }}"
+								id="end_of_month_after_next"
+								onclick="checkDeadline()"
+								{{ old('deadline_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) ? 'checked' : '' }}
+							>
 							<label for="end_of_month_after_next">再来月末にする</label>
 						</div>
 						@if ($errors->has('deadline_at'))
@@ -318,9 +354,23 @@ const addExpences = () => {
 					<dt>消費税</dt>
 					<dd>
 						<div class="radio-container">
-							<input class="radio-input" type="radio" name="tax" value="1" id="include_tax">
+							<input
+								class="radio-input"
+								type="radio"
+								name="tax"
+								value="1"
+								id="include_tax"
+								{{ old('tax') === "1" ? 'checked' : '' }}
+							>
 							<label for="include_tax">税込表示</label>
-							<input class="radio-input"  type="radio" name="tax" value="0" id="not_include_tax">
+							<input
+								class="radio-input"
+								type="radio"
+								name="tax"
+								value="0"
+								id="not_include_tax"
+								{{ old('tax') === "0" ? 'checked' : '' }}
+							>
 							<label for="not_include_tax">税別表示 (8%)</label>
 						</div>
 						@if ($errors->has('tax'))
@@ -356,24 +406,17 @@ const addExpences = () => {
 							<input type="hidden" name="item_total[]">
 						</tr>
 					</tbody>
-					@if ($errors->has('item_name'))
+					@if ($errors->has('item_name.*'))
 						<div class="error-msg">
-							<strong>{{ $errors->first('item_name') }}</strong>
+							<strong>{{ $errors->first('item_name.*') }}</strong>
 						</div>					
-					@endif
-					@if ($errors->has('item_num'))
+					@elseif ($errors->has('item_num.*'))
 						<div class="error-msg">
-							<strong>{{ $errors->first('item_num') }}</strong>
+							<strong>{{ $errors->first('item_num.*') }}</strong>
 						</div>					
-					@endif
-					@if ($errors->has('item_unit_price'))
+					@elseif ($errors->has('item_unit_price.*'))
 						<div class="error-msg">
-							<strong>{{ $errors->first('item_unit_price') }}</strong>
-						</div>					
-					@endif
-					@if ($errors->has('item_total'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('item_total') }}</strong>
+							<strong>{{ $errors->first('item_unit_price.*') }}</strong>
 						</div>					
 					@endif
 
@@ -403,29 +446,22 @@ const addExpences = () => {
 							<td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice(this.value)"></td>
 							<td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
 							<td class="total"><p class="expence_total"></p><span>円</span></td>
-							<input type="hidden" name="expences_total[]" value="{{ old('expences_total') }}">
+							<input type="hidden" name="expences_total[]">
 						</tr>
 					</tbody>
 
-					@if ($errors->has('expences_name'))
+					@if ($errors->has('expences_name.*'))
 						<div class="error-msg">
-							<strong>{{ $errors->first('expences_name') }}</strong>
+							<strong>{{ $errors->first('expences_name.*') }}</strong>
 						</div>					
-					@endif
-					@if ($errors->has('expences_num'))
+					@elseif ($errors->has('expences_num.*'))
 						<div class="error-msg">
-							<strong>{{ $errors->first('expences_num') }}</strong>
+							<strong>{{ $errors->first('expences_num.*') }}</strong>
 						</div>					
-					@endif
-					@if ($errors->has('expences_unit_price'))
+					@elseif ($errors->has('expences_unit_price.*'))
 						<div class="error-msg">
-							<strong>{{ $errors->first('expences_unit_price') }}</strong>
-						</div>					
-					@endif
-					@if ($errors->has('expences_total'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('expences_total') }}</strong>
-						</div>					
+							<strong>{{ $errors->first('expences_unit_price.*') }}</strong>
+						</div>				
 					@endif
 
 				</table>
@@ -445,7 +481,7 @@ const addExpences = () => {
 		<input type="hidden" name="task_id" value="{{ $task->id }}">
 
 		<div class="button-container">
-			<button type="submit">作成</button>
+			<button type="button" onclick="submit();">作成</button>
 		</div>
 	</form>
 </div>
