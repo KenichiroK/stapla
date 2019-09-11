@@ -37,6 +37,11 @@
             display:flex;
             justify-content: space-between;
             align-items: center;
+            margin-top:24px;
+            padding:10px 32px;
+            background-color: #fff;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+            border-radius: 4px;
             p{
                 margin-bottom:0;
             }
@@ -72,77 +77,6 @@
             }
         }
 
-        .activity-log-container{
-            margin-top:24px;
-            padding:10px 32px;
-            background-color: #fff;
-            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
-            border-radius: 4px;
-            &__item{
-                &__title{
-                    font-size:16px;
-                    padding-bottom:16px;
-                    font-weight: bold;
-                }
-                &__list{
-                    height:48px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-around;
-                    background-color: #F5F6FA;
-                    li{
-                        text-align: center;
-                        width: 300px;
-                        font-size: 12px;
-                        font-weight: bold;
-                        color:#A3A6B4;
-                    }
-                    .arrow{
-                        font-size: 14px;
-                        margin-left:24px;
-                        cursor: pointer;
-                    }
-                }    
-            }
-            &__content{
-                &__list{
-                    height:96px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-around;
-                    border-bottom: 1px solid #F1F1F3;
-                    &__item{
-                        display:flex;
-                        &__image{
-                            img{
-                                width:40px;
-                                height:40px;
-                                border-radius: 50%;
-                                overflow: hidden;
-                                position: relative;
-                            }
-                        }
-                        &__info{
-                            margin: 2px 0 0 8px;
-                        }
-                    }
-                }
-                li{
-                    text-align: center;
-                    width: 300px;
-                    font-size: 12px;                        
-                }
-                &__showmore{
-                    padding:56px 0;
-                    &__btn{
-                        text-align: center;
-                        cursor: pointer;
-                        font-weight: bold;
-                    }
-                }
-            }
-        }         
-
         .detail-container{ 
             &__list{
                 margin-top:32px;
@@ -152,6 +86,7 @@
                 border-radius: 4px;
                 &__item{
                     display:flex;
+                    align-items: center;
                     padding:30px 0;
                     border-bottom:1px solid #E9E9F0;
                     &__name{
@@ -160,20 +95,13 @@
                         text-align: right;
                         margin-right: 28px;
                     }
-                    textarea{
-                        max-width: 800px;
-                        width:100%;
-                        height:100px;
-                        padding: 10px;
-                        resize: none;
-                    }
                     p{
                         margin-bottom:0;
-                        // color: #4D4F5C;
                     }
                     &__content{
                         color: #4D4F5C;
                         font-size: 15px;
+                        width: 75%;
                         .staff-item{
                             display: inline-block;
                             margin-right: 20px;
@@ -260,11 +188,6 @@
                         font-size: 12px;
                         font-weight: bold;
                         color:#A3A6B4;
-                    }
-                    .arrow{
-                        font-size: 14px;
-                        margin-left:24px;
-                        cursor: pointer;
                     }
                 }  
             }

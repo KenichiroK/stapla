@@ -13,7 +13,7 @@
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -44,14 +44,14 @@
         <aside class="menu menu__container">
             <div class="menu__container--label">
                 <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="logo">
                 </div>
             </div>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -61,7 +61,7 @@
                 <li>
                     <a href="/company/dashboard">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -71,7 +71,7 @@
                 <li>
                     <a href="/company/project" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -81,7 +81,7 @@
                 <li>
                     <a href="/company/task">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="{{ asset('images/icon_products.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -91,7 +91,7 @@
                 <li>
                     <a href="/company/document">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -101,7 +101,7 @@
                 <li>
                     <a href="/company/partner">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
+                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             パートナー
@@ -111,7 +111,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -121,7 +121,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -131,7 +131,7 @@
                 <li>
                     <a href="/company/setting/general">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -157,7 +157,7 @@
         <div class="notification-wrp">
             <div class="notification-container">
                 <div class="notification-container__img-container">
-                    <img src="../../../images/photoimg.png" alt="">
+                    <img src="{{ asset('images/photoimg.png') }}" alt="">
                 </div>
                 <div class="notification-container__content">
                     <p class="notification-container__content__name">永瀬達也</p>
@@ -169,7 +169,7 @@
         <div class="notification-wrp">
             <div class="notification-container">
                 <div class="notification-container__img-container">
-                    <img src="../../../images/photoimg.png" alt="">
+                    <img src="{{ asset('images/photoimg.png') }}" alt="">
                 </div>
                 <div class="notification-container__content">
                     <p class="notification-container__content__name">永瀬達也</p>
@@ -195,7 +195,7 @@
             <div class="activity-log-container">
                 <div class="activity-log-container__left">
                     <div class="activity-log-container__left__name-container">
-                        <div class="img-container"><img src="../../../images/photoimg.png" alt=""></div>
+                        <div class="img-container"><img src="{{ asset('images/photoimg.png') }}" alt=""></div>
                         <p class="name">永瀬達也</p>
                     </div>
                     <div class="activity-log-container__left__content">
@@ -214,6 +214,20 @@
                 <ul class="detail-container__list">
                     <li class="detail-container__list__item margin--none"><div class="detail-container__list__item__name">プロジェクト名</div> <p class="detail-container__list__item__content">{{ $project->name }}</p> </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細</div><p class="detail-container__list__item__content desc-item">{{ $project->detail }}</p></li>
+                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">上長</div>
+                        <div class="detail-container__list__item__content">
+                            <div class="staff-item">
+                                <p class="name">井高 あすか</p>
+                            </div>
+                        </div> 
+                    </li>
+                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">経理</div>
+                        <div class="detail-container__list__item__content">
+                            <div class="staff-item">
+                                <p class="name">井高 あすか</p>
+                            </div>
+                        </div> 
+                    </li>
                     <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">担当者</div>
                         <div class="detail-container__list__item__content">
                             @foreach($project->projectCompanies as $projectCompany)
@@ -245,7 +259,7 @@
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->price) }}円</div></li>
                     <!-- <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
                         <div class="detail-container__list__item__content file-item">
-                            <div class="imgbox"><img src="../../../images/file.png" alt=""></div>
+                            <div class="imgbox"><img src="{{ asset('images/file.png') }}" alt=""></div>
                             <p>ファイル名</p>
                         </div>
                     </li> -->
