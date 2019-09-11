@@ -45,11 +45,13 @@
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
-            <div class="menu__container--label">
-                <div class="menu-label">
-                    <img src="{{ asset('images/logo.png') }}" alt="logo">
+            <a href="/company/dashboard">
+                <div class="menu__container--label">
+                    <div class="menu-label">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                    </div>
                 </div>
-            </div>
+            </a>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
@@ -84,7 +86,7 @@
                 <li>
                     <a href="#" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_products.png') }}" alt="">
+                            <img src="{{ asset('images/icon_products-active.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
