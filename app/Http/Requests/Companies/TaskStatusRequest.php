@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Companies;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\CompanyTaskStatus;
 
 class TaskStatusRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class TaskStatusRequest extends FormRequest
     {
         return [
             'task_id' => 'required | uuid',
-            'status'  => 'required | integer | between:1, 13',
+            'status'  => new CompanyTaskStatus(),
         ];
     }
 
@@ -34,9 +35,6 @@ class TaskStatusRequest extends FormRequest
         return [
             'task_id.required' => '問題が発生しました。時間を置いて再度お試しください。',
             'task_id.uuid'     => '問題が発生しました。時間を置いて再度お試しください。',
-            'status.required'  => '問題が発生しました。時間を置いて再度お試しください。',
-            'status.integer'   => '問題が発生しました。時間を置いて再度お試しください。',
-            'status.between'   => '問題が発生しました。時間を置いて再度お試しください。',
         ];
     }
 }
