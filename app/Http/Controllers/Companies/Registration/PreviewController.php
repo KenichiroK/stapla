@@ -10,12 +10,6 @@ use App\Models\CompanyUser;
 
 class PreviewController extends Controller
 {
-    public function index()
-    {
-        // 
-    }
-
-
     public function create()
     {
         $auth = Auth::user();
@@ -68,25 +62,5 @@ class PreviewController extends Controller
         $companyUser->save();
 
         return view('company/auth/initialRegister/done');
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

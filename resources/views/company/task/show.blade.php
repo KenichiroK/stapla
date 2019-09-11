@@ -356,27 +356,27 @@
         
         <div class="actionButton">
             @if($task->status === 1 && in_array($company_user->id, $company_user_ids))
-                <form action="{{ url('company/task/status') }}" method="POST">
+                <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="2">
                     <button type="submit" class="done">上長に確認を依頼する</button>
                 </form>
             @elseif($task->status === 2 && $task->superior->id === $company_user->id)
-                <form action="{{ url('company/task/status') }}" method="POST">
+                <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="1">
                     <button type="submit" class="undone">タスクを承認しない</button>
                 </form>
-                <form action="{{ url('company/task/status') }}" method="POST">
+                <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="3">
                     <button type="submit" class="done">タスクを承認する</button>
                 </form>
             @elseif($task->status === 3 && in_array($company_user->id, $company_user_ids))
-                <form action="{{ url('company/task/status') }}" method="POST">
+                <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="4">
@@ -385,7 +385,7 @@
             @elseif($task->status === 5 && in_array($company_user->id, $company_user_ids))
                 <a href="/company/document/purchaseOrder/create/{{ $task->id }}" class="done">発注書を作成する</a>
             @elseif($task->status === 6 && in_array($company_user->id, $company_user_ids))
-                <form action="{{ url('company/task/status') }}" method="POST">
+                <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="7">
@@ -394,14 +394,14 @@
             @elseif($task->status === 7 && $task->superior->id === $company_user->id)
                 <a class="done" href="/company/document/purchaseOrder/{{ $purchaseOrder->id }}">発注書を確認する</a>
             @elseif($task->status === 8 && in_array($company_user->id, $company_user_ids))
-                <form action="{{ url('company/task/status') }}" method="POST">
+                <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="9">
                     <button type="submit" class="done">発注書をパートナーに依頼する</button>
                 </form>
             @elseif($task->status === 10 && in_array($company_user->id, $company_user_ids))
-                <form action="{{ url('company/task/status') }}" method="POST">
+                <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="11">
@@ -415,7 +415,18 @@
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif
         </div>
-
+        <div class="error-message-wrapper">
+            @if ($errors->has('task_id'))
+                <div class="error-msg" role="alert">
+                    <strong>{{ $errors->first('task_id') }}</strong>
+                </div>
+            @endif
+            @if ($errors->has('status') && !$errors->has('task_id'))
+                <div class="error-msg" role="alert">
+                    <strong>{{ $errors->first('status') }}</strong>
+                </div>
+            @endif
+        </div>
     </div>
 </div>
 @endsection

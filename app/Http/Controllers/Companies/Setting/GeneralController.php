@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class GeneralController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
     public function create()
     {
         $user = Auth::user();
@@ -26,23 +21,7 @@ class GeneralController extends Controller
         
         return view('company/setting/general/create', compact('company', 'company_user'));
     }
-
-    public function store(CompanyGeneralRequest $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
+    
     public function update(CompanyGeneralRequest $request)
     {
         $auth = Auth::user();
@@ -52,10 +31,5 @@ class GeneralController extends Controller
         $completed = '変更を保存しました。';
         
         return redirect()->route('company.setting.general.create')->with('completed', $completed);
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

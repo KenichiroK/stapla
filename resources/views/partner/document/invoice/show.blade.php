@@ -414,19 +414,33 @@
 	</div>
 
 	@if($task->status === 11 && $task->partner->id === $partner->id)
-		<form action="{{ url('partner/invoice/send')}}" method="POST">
+		<form action="{{ route('partner.task.status.change') }}" method="POST">
 		@csrf
 			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+			<input type="hidden" name="status" value="12">
 			<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
 			<div class="button-container">
 				<button type="submit">送信</button>
 			</div>
 		</form>
 	@elseif($task->status > 11 && $task->partner->id === $partner->id)
-	<p class="send-done">この請求書は提出済みです</p>
+		<p class="send-done">この請求書は提出済みです</p>
 	@else
-	<p class="send-done">必要なアクションはありません</p>
+		<p class="send-done">必要なアクションはありません</p>
 	@endif
+
+	<div class="error-message-wrapper">
+		@if ($errors->has('task_id'))
+			<div class="error-msg" role="alert">
+				<strong>{{ $errors->first('task_id') }}</strong>
+			</div>
+		@endif
+		@if ($errors->has('status') && !$errors->has('task_id'))
+			<div class="error-msg" role="alert">
+				<strong>{{ $errors->first('status') }}</strong>
+			</div>
+		@endif
+	</div>
 </div>
 @endsection
 

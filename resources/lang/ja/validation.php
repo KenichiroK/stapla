@@ -58,7 +58,7 @@ return [
         'array' => 'The :attribute must have :value items or more.',
     ],
     'image' => 'The :attribute must be an image.',
-    'in' => 'The selected :attribute is invalid.',
+    'in' => '選択された:attributeは正しくありません。',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => 'The :attribute must be an integer.',
     'ip' => 'The :attribute must be a valid IP address.',
@@ -214,6 +214,11 @@ return [
         'expences_num'         => '経費数',
         'expences_unit_price'  => '経費単価',
         'expences_total'       => '経費合計金額',
+
+        // setting
+        'approval_setting'   => '上長、経理による書類・タスクの承認',
+        'income_tax_setting' => '請求書の源泉所得税の有無',
+        'remind_setting'     => 'リマインド設定',
     ],
 
 ];

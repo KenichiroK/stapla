@@ -119,36 +119,4 @@ class ProjectController extends Controller
         
         return view('/company/project/show', compact('project','tasks', 'company_user'));
     }
-
-    public function edit($id)
-    {
-        return $projects = Project::with(['company', 'tasks', 'projectRoleRelation', 'projectPartnerPics.partner', 'projectCompanyPics.companyUser'])->findOrFail($id);
-
-    }
-
-    public function update(Request $request, $id)
-    {
-        $project = Project::findOrFail($id);
-        $validator = Validator::make($request->all(), [ 
-            'name'          => 'required|string|max:64ired',
-            'detail'        => 'required|string',
-            'started_at'    => 'required|date',
-            'ended_at'      => 'required|date',
-            'status'        => 'required|boolean',
-            'budget'        => 'required|regex:/^[0-9]+$/',
-            'price'         => 'required|regex:/^[0-9]+$/'
-        ]);
-
-        if($validator->fails()){
-            return $validator->errors();
-        }
-        $project->update($request->all());
-        return Project::with(['company', 'tasks', 'projectRoleRelation', 'projectPartnerPics.partner', 'projectCompanyPics.companyUser'])->get();
-    }
-
-    public function destroy($id)
-    {
-        Project::findORFail($id)->delete();
-        return Project::with(['company', 'tasks', 'projectRoleRelation', 'projectPartnerPics.partner', 'projectCompanyPics.companyUser'])->get();
-    }
 }

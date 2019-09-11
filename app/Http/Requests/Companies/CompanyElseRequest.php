@@ -4,7 +4,7 @@ namespace App\Http\Requests\Companies;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CompanyGeneralRequest extends FormRequest
+class CompanyElseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class CompanyGeneralRequest extends FormRequest
     public function rules()
     {
         return [
-            'representive_name'     => 'required',
-            'zip_code'              => 'required',
-            'address_prefecture'    => 'required',
-            'address_city'          => 'required',
-            'address_building'      => 'required',
+            'approval_setting'   => 'required | in:"1", "0"',
+            'income_tax_setting' => 'required | in:"1", "0"',
+            'remind_setting'     => 'required | in:"1", "0"',
         ];
     }
 }

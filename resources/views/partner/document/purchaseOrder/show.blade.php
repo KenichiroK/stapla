@@ -240,14 +240,14 @@
 
 
     @if($purchaseOrder->task->status === 9 && $purchaseOrder->partner->id === $partner->id)
-    <div class="button-container">
-        <form action="{{ url('partner/task/status') }}" method="POST">
+    <div class="actionButton">
+        <form action="{{ route('partner.task.status.change') }}" method="POST">
         @csrf
             <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
             <input type="hidden" name="status" value="8">
             <button type="submit" class="undone">断る</button>
         </form>
-        <form action="{{ url('partner/task/status') }}" method="POST">
+        <form action="{{ route('partner.task.status.change') }}" method="POST">
         @csrf
             <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
             <input type="hidden" name="status" value="10">
@@ -259,5 +259,18 @@
     @else
     <p class="send-done">必要なアククションはありません</p>
     @endif
+
+    <div class="error-message-wrapper">
+        @if ($errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('task_id') }}</strong>
+            </div>
+        @endif
+        @if ($errors->has('status') && !$errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('status') }}</strong>
+            </div>
+        @endif
+    </div>
 </div>
 @endsection

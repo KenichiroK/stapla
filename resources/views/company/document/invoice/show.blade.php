@@ -447,8 +447,8 @@
 	</div>
 ​
 	@if($task->status === 12 && in_array($company_user->id, $company_user_ids))
-	<div class="actiionButton">
-		<form action="{{ url('company/task/status') }}" method="POST">
+	<div class="actionButton">
+		<form action="{{ route('company.task.status.change') }}" method="POST">
 		@csrf
 			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 			<input type="hidden" name="status" value="11">
@@ -456,7 +456,7 @@
 				<button class="undone" type="submit">請求書を拒否する</button>
 			</div>
 		</form>
-		<form action="{{ url('company/task/status')}}" method="POST">
+		<form action="{{ route('company.task.status.change')}}" method="POST">
 		@csrf
 			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 			<input type="hidden" name="status" value="13">
@@ -470,6 +470,18 @@
 	@else
 	<p class="send-done">必要なアクションはありません</p>
 	@endif
+    <div class="error-message-wrapper">
+        @if ($errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('task_id') }}</strong>
+            </div>
+        @endif
+        @if ($errors->has('status') && !$errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('status') }}</strong>
+            </div>
+        @endif
+    </div>
 </div>
 @endsection
 

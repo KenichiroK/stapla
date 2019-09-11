@@ -52,7 +52,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('/task/{id}', 'Partners\TaskController@show')->name('partner.task.show');
 		
 		// task status change
-		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('task.status.change');
+		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
 		
 		// profile
 		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
@@ -73,7 +73,6 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
 		Route::get('invoice/{id}', 'Partners\InvoiceController@show')->name('partner.invoice.show');
-		Route::post('invoice/send', 'Partners\InvoiceController@send')->name('partner.invoice.send');
 
 		// logout
     	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');

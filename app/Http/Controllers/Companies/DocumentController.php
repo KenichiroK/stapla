@@ -57,40 +57,10 @@ class DocumentController extends Controller
         $ndas_3status = Nda::where('company_id', $company_user->company_id)->where('status', 3)->get();
 
         return view('company.document.index', 
-                compact(
-                    'invoices', 'invoices_0status', 'invoices_1status', 'invoices_2status', 'invoices_3status',
-                    'purchaseOrders', 'purchaseOrders_0status', 'purchaseOrders_1status', 'purchaseOrders_2status', 'purchaseOrders_3status',
-                    'ndas', 'ndas_0status', 'ndas_1status', 'ndas_2status', 'ndas_3status', 'company_user'
-                ));
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+            compact(
+                'invoices', 'invoices_0status', 'invoices_1status', 'invoices_2status', 'invoices_3status',
+                'purchaseOrders', 'purchaseOrders_0status', 'purchaseOrders_1status', 'purchaseOrders_2status', 'purchaseOrders_3status',
+                'ndas', 'ndas_0status', 'ndas_1status', 'ndas_2status', 'ndas_3status', 'company_user'
+            ));
     }
 }
