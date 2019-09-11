@@ -45,7 +45,7 @@ class TaskController extends Controller
         $user = Auth::user();
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
         $tasks = Task::where('company_id', $company_user->company_id)->get();
-        $done_tasks = Task::where('company_id', $company_user->company_id)->where('status', 13)->get();
+        $done_tasks = Task::where('company_id', $company_user->company_id)->where('status', config('constants.status_done'))->get();
         $status_arr = [];
         for ($i = 0; $i < 15; $i++) {
             $status_arr[strval($i)] = 0;
