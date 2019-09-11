@@ -414,7 +414,7 @@
 	</div>
 
 	@if($task->status === 11 && $task->partner->id === $partner->id)
-		<form action="{{ url('partner/task/status') }}" method="POST">
+		<form action="{{ route('partner.task.status.change') }}" method="POST">
 		@csrf
 			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 			<input type="hidden" name="status" value="12">

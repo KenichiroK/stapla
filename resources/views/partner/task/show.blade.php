@@ -335,13 +335,13 @@
         
         <div class="actionButton">
             @if($task->status === 4 && $task->partner->id === $partner->id)
-                <form action="{{ url('partner/task/status') }}" method="POST">
+                <form action="{{ route('partner.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="3">
                     <button type="submit" class="undone">タスク依頼を受けない</button>
                 </form>
-                <form action="{{ url('partner/task/status') }}" method="POST">
+                <form action="{{ route('partner.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="5">

@@ -52,7 +52,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('/task/{id}', 'Partners\TaskController@show')->name('partner.task.show');
 		
 		// task status change
-		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('task.status.change');
+		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
 		
 		// profile
 		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');

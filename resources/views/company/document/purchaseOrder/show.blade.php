@@ -442,7 +442,7 @@ const setPreview = (input) => {
 
     @if($purchaseOrder->task->status === 5 && in_array($company_user->id, $company_user_ids))
     <div class="submit-btn-container">
-        <form action="{{ url('company/task/status') }}" method="POST">
+        <form action="{{ route('company.task.status.change') }}" method="POST">
         @csrf
             <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
             <input type="hidden" name="status" value="6">
@@ -451,13 +451,13 @@ const setPreview = (input) => {
     </div>
     @elseif($purchaseOrder->task->status === 7 && $purchaseOrder->task->superior->id === $company_user->id)
     <div class="actionButton">
-        <form action="{{ url('company/task/status') }}" method="POST">
+        <form action="{{ route('company.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
                 <input type="hidden" name="status" value="6">
                 <button type="submit" class="undone">発注書を承認しない</button>
             </form>
-            <form action="{{ url('company/task/status') }}" method="POST">
+            <form action="{{ route('company.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
                 <input type="hidden" name="status" value="8">
@@ -477,8 +477,7 @@ const setPreview = (input) => {
             <div class="error-msg" role="alert">
                 <strong>{{ $errors->first('task_id') }}</strong>
             </div>
-        @endif
-        @if ($errors->has('status') && !$errors->has('task_id'))
+        @elseif ($errors->has('status'))
             <div class="error-msg" role="alert">
                 <strong>{{ $errors->first('status') }}</strong>
             </div>
