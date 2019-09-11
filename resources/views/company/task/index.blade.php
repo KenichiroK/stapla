@@ -167,27 +167,31 @@
                 <div class="content">
                     <!-- ステータス各部分 -->
                     <ul class="parts-container">
-                    @for($i = 0; $i < 14; $i++)
-                        <li class="parts-container__wrapper"> 
-                            <!-- ステータス名表示 -->
-                            <div class="parts-container__wrapper__textdisplayarea">
-                                <div class="parts-container__wrapper__textdisplayarea__textdisplay">
-                                    <div class="parts-container__wrapper__textdisplayarea__textdisplay__text">
-                                        {{ $statusName_arr[$i] }}
+                        @for($i = 0; $i < 14; $i++)
+                        <!-- <a href="task/create"> -->
+                            <li class="parts-container__wrapper">
+                            <a href="/company/task/status/{{ $i }}">
+                                <!-- ステータス名表示 -->
+                                <div class="parts-container__wrapper__textdisplayarea">
+                                    <div class="parts-container__wrapper__textdisplayarea__textdisplay">
+                                        <div class="parts-container__wrapper__textdisplayarea__textdisplay__text">
+                                            {{ $statusName_arr[$i] }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- ステータス表示数部分 -->
-                            
-                            <div class="parts-container__wrapper__numberdisplayarea">
+                                <!-- ステータス表示数部分 -->
+                                
+                                <div class="parts-container__wrapper__numberdisplayarea">
 
-                                <div class="parts-container__wrapper__numberdisplayarea__numberdisplay">
-                                    <div class="parts-container__wrapper__numberdisplayarea__numberdisplay__number">
-                                        {{ $status_arr[$i] }}
+                                    <div class="parts-container__wrapper__numberdisplayarea__numberdisplay">
+                                        <div class="parts-container__wrapper__numberdisplayarea__numberdisplay__number">
+                                            {{ $status_arr[$i] }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
+                            </a>
+                            </li>
+                        <!-- </a> -->
                         @endfor
                     </ul>
                 </div>
@@ -197,7 +201,7 @@
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
                 <li class="all isActive"><a href="/company/task">タスク一覧</a></li>
-                <li class="done"><a href="/company/task/done">完了したタスク</a></li>
+                <li class="done"><a href="/company/task/status/13">完了したタスク</a></li>
             </ul>
             <div class="task-container__createarea">
                 <div class="task-container__createarea__buttonarea control">

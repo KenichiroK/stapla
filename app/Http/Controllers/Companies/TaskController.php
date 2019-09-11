@@ -40,26 +40,26 @@ class TaskController extends Controller
         return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'company_user'));
     }
 
-    public function doneIndex()
+    public function statusIndex($task_status)
     {
         $user = Auth::user();
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
-        $tasks = Task::where('company_id', $company_user->company_id)->get();
-        $done_tasks = Task::where('company_id', $company_user->company_id)->where('status', config('constants.status_done'))->get();
+        $alltasks = Task::where('company_id', $company_user->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
         $status_arr = [];
         for ($i = 0; $i < 15; $i++) {
             $status_arr[strval($i)] = 0;
         }
-        for ($i = 0; $i < $tasks->count(); $i++) {
-            $status_arr[$tasks[$i]->status]++;
+        for ($i = 0; $i < $alltasks->count(); $i++) {
+            $status_arr[$alltasks[$i]->status]++;
         }
 
         $statusName_arr = [
             '下書き', 'タスク上長確認前', 'タスク上長確認中', 'タスクパートナー依頼前', 'タスクパートナー依頼中', '発注書作成中', '発注書作成完了', '発注書上長確認中', 
             '発注書パートナー依頼前', '発注書パートナー確認中', '作業中', '請求書依頼中', '請求書確認中', '完了', 'キャンセル', 
         ];
-
-        return view('company/task/done-index', compact('tasks','statusName_arr', 'status_arr', 'company_user', 'done_tasks'));
+ 
+        $tasks = Task::where('company_id', $company_user->company_id)->where('status', $task_status)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+        return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'company_user'));
     }
 
     public function projectTaskIndex($project_uid)
