@@ -58,7 +58,10 @@ class TaskController extends Controller
             '発注書パートナー依頼前', '発注書パートナー確認中', '作業中', '請求書依頼中', '請求書確認中', '完了', 'キャンセル', 
         ];
  
-        $tasks = Task::where('company_id', $company_user->company_id)->where('status', $task_status)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+        $tasks = Task::where('company_id', $company_user->company_id)
+                                ->where('status', $task_status)
+                                ->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])
+                                ->get();
         return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'company_user'));
     }
 
