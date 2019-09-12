@@ -53,23 +53,11 @@ class InvoiceController extends Controller
         $invoice->status         = 0;
         $invoice->save();
 
-        if (!!$request->item_name[0] &&
-            !!$request->item_num[0] &&
-            !!$request->item_unit_price[0] &&
-            !!$request->item_total[0]
-        ) {
-            $controller = new InvoiceTaskController;
-            app()->call([$controller, 'store'], ['invoice_id' => $invoice->id]);
-        }
+        $invoiceTaskController = new InvoiceTaskController;
+        app()->call([$invoiceTaskController, 'store'], ['invoice_id' => $invoice->id]);
 
-        if (!!$request->expences_name[0] &&
-            !!$request->expences_num[0] &&
-            !!$request->expences_unit_price[0] &&
-            !!$request->expences_total[0]
-        ) {
-            $controller = new InvoiceExpencesController;
-            app()->call([$controller, 'store'], ['invoice_id' => $invoice->id]);
-        }
+        $invoiceExpencesController = new InvoiceExpencesController;
+        app()->call([$invoiceExpencesController, 'store'], ['invoice_id' => $invoice->id]);
             
         return redirect()->route('partner.invoice.show', ['id' => $invoice->id]);
     }

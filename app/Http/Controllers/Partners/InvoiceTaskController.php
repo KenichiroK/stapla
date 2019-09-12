@@ -11,13 +11,20 @@ class InvoiceTaskController extends Controller
     public function store($invoice_id, Request $request)
     {
         for ($i = 0; $i < count($request->item_name); $i++) {
-            ${"request_task" . $i} = new RequestTask;
-            ${"request_task" . $i}->invoice_id = $invoice_id;
-            ${"request_task" . $i}->name       = $request->item_name[$i];
-            ${"request_task" . $i}->num        = $request->item_num[$i];
-            ${"request_task" . $i}->unit_price = $request->item_unit_price[$i];
-            ${"request_task" . $i}->total      = $request->item_total[$i];
-            ${"request_task" . $i}->save();
+            if (
+                !!$request->item_name[$i] &&
+                !!$request->item_num[$i] &&
+                !!$request->item_unit_price[$i] &&
+                !!$request->item_total[$i]
+            ) {
+                $model = new RequestTask;
+                $model->invoice_id = $invoice_id;
+                $model->name       = $request->item_name[$i];
+                $model->num        = $request->item_num[$i];
+                $model->unit_price = $request->item_unit_price[$i];
+                $model->total      = $request->item_total[$i];
+                $model->save();
+                }
         }
     }
 }
