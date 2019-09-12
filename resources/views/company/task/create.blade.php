@@ -98,11 +98,13 @@ $(function(){
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
-            <div class="menu__container--label">
-                <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+            <a href="/company/dashboard">
+                <div class="menu__container--label">
+                    <div class="menu-label">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                    </div>
                 </div>
-            </div>
+            </a>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
@@ -137,7 +139,7 @@ $(function(){
                 <li>
                     <a href="/company/task" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="../../../images/icon_products-active.png" alt="">
                         </div>
                         <div class="textbox">
                             タスク
