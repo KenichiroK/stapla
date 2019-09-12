@@ -24,28 +24,14 @@ class CompanyAndCompanyUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_name'       => 'required',
-            'representive_name'  => 'required',
-            'zip_code'           => 'required',
+            'company_name'       => 'required | string | max:64',
+            'representive_name'  => 'required | string | max:64',
+            'zip_code'           => 'required | numeric | digits:8',
             'address_prefecture' => 'required',
-            'address_city'       => 'required',
-            'tel'                => 'required',
-            'name'               => 'required',
-            'department'         => 'required',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'company_name'       => '企業名は必須項目です。',
-            'representive_name'  => '代表者は必須項目です。',
-            'zip_code'           => '郵便番号は必須項目です。',
-            'address_prefecture' => '都道府県は必須項目です。',
-            'address_city'       => '住所は必須項目です。',
-            'tel'                => '電話番号は必須項目です。',
-            'name'               => '名前は必須項目です。',
-            'department'         => '担当は必須項目です。',
+            'address_city'       => 'required | string | max:64',
+            'tel'                => 'required | numeric | digits_between:10,11',
+            'name'               => 'required | string | max:64',
+            'department'         => 'required | string | max:64',
         ];
     }
 }

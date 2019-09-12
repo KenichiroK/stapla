@@ -27,6 +27,7 @@ class PersonalController extends Controller
 
     public function store(CompanyAndCompanyUserRequest $request)
     {
+        // return $request;
         $auth = Auth::user();
         return view('company/auth/initialRegister/preview', compact('request'));
     }
