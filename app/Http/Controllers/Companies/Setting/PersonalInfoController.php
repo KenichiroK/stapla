@@ -13,26 +13,6 @@ use App\Http\Requests\Companies\PersonalRequest;
 
 class PersonalInfoController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        // 
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
     public function edit()
     {
         $auth = Auth::user();
@@ -60,10 +40,5 @@ class PersonalInfoController extends Controller
 
             return redirect()->route('company.setting.personalInfo.edit')->with('completed', $completed);
         }
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

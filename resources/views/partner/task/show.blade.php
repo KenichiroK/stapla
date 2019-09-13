@@ -13,7 +13,7 @@
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -45,16 +45,18 @@
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
-            <div class="menu__container--label">
-                <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+            <a href="/company/dashboard">
+                <div class="menu__container--label">
+                    <div class="menu-label">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                    </div>
                 </div>
-            </div>
+            </a>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -64,7 +66,7 @@
                 <li>
                     <a href="/partner/dashboard">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -74,7 +76,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -84,7 +86,7 @@
                 <li>
                     <a href="#" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="{{ asset('images/icon_products-active.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -94,7 +96,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -104,7 +106,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -114,7 +116,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -124,7 +126,7 @@
                 <li>
                     <a href="/partner/setting/invoice">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -164,9 +166,7 @@
                 <dt>
                     タスク作成日
                 </dt>
-                <dd>
-                    {{ explode(' ', $task->created_at)[0] }}
-                </dd>
+                <dd>{{ date("Y年m月d日", strtotime($task->created_at)) }}</dd>
             </dl>
             <dl>
                 <dt>
@@ -223,8 +223,8 @@
                 </dt>
                 <dd>
                     <div class="flex01 term-desc">
-                        <p class="start"><span>開始日</span>{{ explode(' ', $task->inspection_date)[0] }}</p>
-                        <p><span>終了日</span>{{ explode(' ', $task->ended_at)[0] }}</p>
+                        <p class="start"><span>開始日</span>{{ date("Y年m月d日H時", strtotime($task->inspection_date)) }}</p>
+                        <p><span>終了日</span>{{ date("Y年m月d日H時", strtotime($task->ended_at)) }}</p>
                     </div>
                 </dd>
             </dl>
@@ -335,13 +335,13 @@
         
         <div class="actionButton">
             @if($task->status === 4 && $task->partner->id === $partner->id)
-                <form action="{{ url('partner/task/status') }}" method="POST">
+                <form action="{{ route('partner.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="3">
                     <button type="submit" class="undone">タスク依頼を受けない</button>
                 </form>
-                <form action="{{ url('partner/task/status') }}" method="POST">
+                <form action="{{ route('partner.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="5">
@@ -357,7 +357,18 @@
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif
         </div>
-
+        <div class="error-message-wrapper">
+            @if ($errors->has('task_id'))
+                <div class="error-msg" role="alert">
+                    <strong>{{ $errors->first('task_id') }}</strong>
+                </div>
+            @endif
+            @if ($errors->has('status') && !$errors->has('task_id'))
+                <div class="error-msg" role="alert">
+                    <strong>{{ $errors->first('status') }}</strong>
+                </div>
+            @endif
+        </div>
     </div>
 </div>
 @endsection

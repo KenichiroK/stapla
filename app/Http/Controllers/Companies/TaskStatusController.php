@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Companies;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
+use App\Http\Requests\Companies\TaskStatusRequest;
 
 class TaskStatusController extends Controller
 {
-    public function change(Request $request)
+    public function change(TaskStatusRequest $request)
     {
         $task = Task::findOrFail($request->task_id);
 

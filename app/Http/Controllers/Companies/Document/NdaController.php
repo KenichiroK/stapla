@@ -16,11 +16,6 @@ use App\Http\Requests\Companies\NdaRequest;
 
 class NdaController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
     public function create()
     {
         $auth = Auth::user();
@@ -90,20 +85,5 @@ class NdaController extends Controller
         $auth = Auth::user();
         $company_user = CompanyUser::where('auth_id', $auth->id)->first();
         return view('company/document/nda/show', compact('nda', 'company_user'));
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -14,7 +14,7 @@
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -43,17 +43,18 @@
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
-            <div class="menu__container--label">
-                <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+            <a href="/company/dashboard">
+                <div class="menu__container--label">
+                    <div class="menu-label">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                    </div>
                 </div>
-            </div>
+            </a>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -62,9 +63,8 @@
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -73,9 +73,8 @@
                 </li>
                 <li>
                     <a href="/company/project">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -84,9 +83,8 @@
                 </li>
                 <li>
                     <a href="/company/task">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="{{ asset('images/icon_products.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -95,9 +93,8 @@
                 </li>
                 <li>
                     <a href="/company/document" class="isActive">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices-active.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -106,9 +103,8 @@
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
+                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             パートナー
@@ -117,9 +113,8 @@
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -127,10 +122,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
-                        <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                    <a href="#">                        <div class="icon-imgbox">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -139,9 +132,8 @@
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -183,9 +175,7 @@
                                         <div class="pdf-container__pdf__contract-type">機密保持契約書</div>
     
                                         <div class="pdf-container__pdf__main">
-                                            {{ explode('-', explode(' ', $nda->created_at)[0])[0] }}年
-                                            {{ explode('-', explode(' ', $nda->created_at)[0])[1] }}月
-                                            {{ explode('-', explode(' ', $nda->created_at)[0])[2] }}日
+                                            {{ date("Y年m月d日", strtotime($nda->created_at)) }}
                                             
                                             <div class="pdf-container__pdf__main__Paragraph1">
                                                 <div>
@@ -238,9 +228,7 @@
                                     <div class="pdf-container__pdf__contract-type">機密保持契約書</div>
 
                                     <div class="pdf-container__pdf__main">
-                                        {{ explode('-', explode(' ', $nda->created_at)[0])[0] }}年
-                                        {{ explode('-', explode(' ', $nda->created_at)[0])[1] }}月
-                                        {{ explode('-', explode(' ', $nda->created_at)[0])[2] }}日
+                                        {{ date("Y年m月d日", strtotime($nda->created_at)) }}
                                         
                                         <div class="pdf-container__pdf__main__Paragraph1">
                                             <div>

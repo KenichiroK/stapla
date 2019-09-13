@@ -13,7 +13,7 @@
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -42,16 +42,18 @@
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
-            <div class="menu__container--label">
-                <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+            <a href="/company/dashboard">
+                <div class="menu__container--label">
+                    <div class="menu-label">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                    </div>
                 </div>
-            </div>
+            </a>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -61,7 +63,7 @@
                 <li>
                     <a href="/company/dashboard">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -71,7 +73,7 @@
                 <li>
                     <a href="/company/project" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox-active.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -81,7 +83,7 @@
                 <li>
                     <a href="/company/task">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="{{ asset('images/icon_products.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -91,7 +93,7 @@
                 <li>
                     <a href="/company/document">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -101,7 +103,7 @@
                 <li>
                     <a href="/company/partner">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
+                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             パートナー
@@ -111,7 +113,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -121,7 +123,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -131,7 +133,7 @@
                 <li>
                     <a href="/company/setting/general">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -154,7 +156,7 @@
                 <p class="control has-icons-left serch-wrp">
                     <!-- <input class="search-project input" type="text" placeholder="プロジェクトを検索">
                     <span class="">
-                    <img src="../../../images/searchicon.png" alt="serch">
+                    <img src="{{ asset('images/searchicon.png') }}" alt="serch">
                     </span> -->
                 </p>
             </div>
@@ -164,7 +166,7 @@
         </div>
 
         <ul id="tab-button" class="tab-button">
-            <li class="all"><a href="#tab01">プロジェクト</a></li>
+            <li class="all  isActive"><a href="/company/project">プロジェクト</a></li>
             <li class="done"><a href="/company/project/done">完了したプロジェクト</a></li>
         </ul>
 
@@ -217,7 +219,7 @@
                         <li>
                             <span class="txt-underline">{{ $task_count_arr[$loop->index] }}</span>件
                         </li>
-                        <li>{{ $project->ended_at->format('Y年m月d日 H時') }}</li>
+                        <li>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</li>
                         <li>¥{{ number_format($project->budget) }}</li>
                         <li>¥{{ number_format($project->price) }}</li>
                     </ul>
@@ -227,7 +229,7 @@
 
             <div class="project-container__content__showmore">
                 <p id="showmore_btn" class="project-container__content__showmore__btn"><a>もっと見る</a>
-                    <span><img src="../../../images/arrowdown.png"></span>
+                    <span><img src="{{ asset('images/arrowdown.png') }}"></span>
                 </p>
             </div>
         </div> 

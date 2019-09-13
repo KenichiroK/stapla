@@ -6,16 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\CompanyUser;
+use App\Http\Requests\Companies\CompanyElseRequest;
 
 use Illuminate\Support\Facades\Auth;
 
 class CompanyElseController extends Controller
 {
-    public function index()
-    {
-        // 
-    }
-
     public function create()
     {
         $auth = Auth::user();
@@ -25,7 +21,7 @@ class CompanyElseController extends Controller
         return view('company/setting/companyElse/create', compact('company', 'company_user'));
     }
 
-    public function store(Request $request)
+    public function store(CompanyElseRequest $request)
     {
         $auth = Auth::user();
         $company_user = CompanyUser::where('auth_id', $auth->id)->get()->first();
@@ -37,25 +33,5 @@ class CompanyElseController extends Controller
 
             return redirect()->route('company.setting.companyElse.create')->with('completed', $completed);
         }
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -11,11 +11,6 @@ use App\Models\CompanyUser;
 
 class PersonalController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
     public function create()
     {
         $auth = Auth::user();
@@ -34,25 +29,5 @@ class PersonalController extends Controller
     {
         $auth = Auth::user();
         return view('company/auth/initialRegister/preview', compact('request'));
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -14,7 +14,7 @@
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -45,16 +45,18 @@
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
-            <div class="menu__container--label">
-                <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+			<a href="/company/dashboard">
+                <div class="menu__container--label">
+                    <div class="menu-label">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                    </div>
                 </div>
-            </div>
+            </a>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -64,7 +66,7 @@
                 <li>
                     <a href="/partner/dashboard">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -74,7 +76,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -84,7 +86,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="{{ asset('images/icon_products.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -94,7 +96,7 @@
                 <li>
                     <a href="#" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices-active.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -104,7 +106,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -114,7 +116,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -124,7 +126,7 @@
                 <li>
                     <a href="/partner/setting/invoice">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -160,7 +162,7 @@
 					</div>
 		
 					<div class="right">
-						<p>発注日: {{ $invoice->requested_at }}</p>
+						<p>発注日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
 						<p>{{ $invoice->partner->name }}</p>
 						<p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
 					</div>
@@ -268,7 +270,7 @@
 		
 				<div class="deadline-container">
 					<div class="header-container">
-						<p>ご入金期限: {{ $invoice->deadline_at }}</p>
+						<p>ご入金期限: {{ date("Y年m月d日", strtotime($invoice->deadline_at)) }}</p>
 					</div>
 		
 					<div class="content-container">
@@ -294,7 +296,7 @@
 				</div>
 	
 				<div class="right">
-					<p>発注日: {{ $invoice->requested_at }}</p>
+					<p>発注日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
 					<p>{{ $invoice->partner->name }}</p>
 					<p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
 				</div>
@@ -402,7 +404,7 @@
 	
 			<div class="deadline-container">
 				<div class="header-container">
-					<p>ご入金期限: {{ $invoice->deadline_at }}</p>
+					<p>ご入金期限: {{ date("Y年m月d日", strtotime($invoice->deadline_at)) }}</p>
 				</div>
 	
 				<div class="content-container">
@@ -414,19 +416,33 @@
 	</div>
 
 	@if($task->status === 11 && $task->partner->id === $partner->id)
-		<form action="{{ url('partner/invoice/send')}}" method="POST">
+		<form action="{{ route('partner.task.status.change') }}" method="POST">
 		@csrf
 			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+			<input type="hidden" name="status" value="12">
 			<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
 			<div class="button-container">
 				<button type="submit">送信</button>
 			</div>
 		</form>
 	@elseif($task->status > 11 && $task->partner->id === $partner->id)
-	<p class="send-done">この請求書は提出済みです</p>
+		<p class="send-done">この請求書は提出済みです</p>
 	@else
-	<p class="send-done">必要なアクションはありません</p>
+		<p class="send-done">必要なアクションはありません</p>
 	@endif
+
+	<div class="error-message-wrapper">
+		@if ($errors->has('task_id'))
+			<div class="error-msg" role="alert">
+				<strong>{{ $errors->first('task_id') }}</strong>
+			</div>
+		@endif
+		@if ($errors->has('status') && !$errors->has('task_id'))
+			<div class="error-msg" role="alert">
+				<strong>{{ $errors->first('status') }}</strong>
+			</div>
+		@endif
+	</div>
 </div>
 @endsection
 

@@ -16,20 +16,15 @@ use App\Models\TaskPartner;
 
 class PurchaseOrderController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
     public function create($id)
     {
         $auth = Auth::user();
         $task = Task::findOrFail($id);
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
 
-        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
+        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
 
-        return view('/company/document/purchaseOrder/create', compact('companyUser', 'companyUsers', 'task'));
+        return view('/company/document/purchaseOrder/create', compact('company_user', 'companyUsers', 'task'));
     }
 
     public function store(CreatePurchaseOrderRequest $request)
@@ -45,6 +40,7 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->partner_id           = $request->partner_id;
         $purchaseOrder->task_id              = $request->task_id;
         $purchaseOrder->status               = 0;
+        $purchaseOrder->ordered_at           = date("Y-m-d");;
         $purchaseOrder->company_name         = $company->company_name;
         $purchaseOrder->company_tel          = $company->tel;
         $purchaseOrder->company_zip_code     = $company->zip_code;
@@ -78,21 +74,5 @@ class PurchaseOrderController extends Controller
         }
 
         return view('company/document/purchaseOrder/show', compact('purchaseOrder', 'company_user', 'company_user_ids'));
-    }
-    
-
-    public function edit($id)
-    {
-        // 
-    }
-
-    public function update(Request $request, $id)
-    {
-        // 
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

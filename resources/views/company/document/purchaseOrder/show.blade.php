@@ -26,7 +26,7 @@ const setPreview = (input) => {
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -55,17 +55,18 @@ const setPreview = (input) => {
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
-            <div class="menu__container--label">
-                <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+            <a href="/company/dashboard">
+                <div class="menu__container--label">
+                    <div class="menu-label">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                    </div>
                 </div>
-            </div>
+            </a>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-home"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -74,9 +75,8 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/dashboard">
-                        <!-- <i class="fas fa-chart-bar"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -85,9 +85,8 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/project">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -96,9 +95,8 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/task">
-                        <!-- <i class="fas fa-tasks"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="{{ asset('images/icon_products.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -107,9 +105,8 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/document" class="isActive">
-                        <!-- <i class="fas fa-newspaper"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices-active.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -118,9 +115,8 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/partner">
-                        <!-- <i class="fas fa-user-circle"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
+                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             パートナー
@@ -129,9 +125,8 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-calendar-alt"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -140,9 +135,8 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-question"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -151,9 +145,8 @@ const setPreview = (input) => {
                 </li>
                 <li>
                     <a href="/company/setting/general">
-                        <!-- <i class="fas fa-cog"></i> -->
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -198,11 +191,11 @@ const setPreview = (input) => {
                         <div class="right">
                             <p class="text">下記の通り、発注します。</p>
                             <p class="name">件名: {{ $purchaseOrder->task_name }}</p>
-                            <p class="date">納期: {{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</p>
+                            <p class="date">納期: {{ date("Y年m月d日", strtotime($purchaseOrder->task_ended_at)) }}</p>
                         </div>
         
                         <div class="left">
-                            <p class="date">発注日: {{ explode(' ', $purchaseOrder->task_started_at)[0] }}</p>
+                            <p class="date">発注日: {{ date("Y年m月d日", strtotime($purchaseOrder->ordered_at)) }}</p>
                             <p clss="name">{{ $purchaseOrder->company_name }}</p>
                             <p class="tel">{{ $purchaseOrder->company_tel }}</p>
                             <p classs="address">〒{{ $purchaseOrder->company_zip_code }} {{ $purchaseOrder->company->address_prefecture }}{{ $purchaseOrder->company->address_city }}{{ $purchaseOrder->company->address_streetAddress }}</p>
@@ -329,11 +322,11 @@ const setPreview = (input) => {
                     <div class="right">
                         <p class="text">下記の通り、発注します。</p>
                         <p class="name">件名: {{ $purchaseOrder->task_name }}</p>
-                        <p class="date">納期: {{ explode(' ', $purchaseOrder->task_ended_at)[0] }}</p>
+                        <p class="date">納期: {{ date("Y年m月d日", strtotime($purchaseOrder->task_ended_at)) }}</p>
                     </div>
     
                     <div class="left">
-                        <p class="date">発注日: {{ explode(' ', $purchaseOrder->task_started_at)[0] }}</p>
+                        <p class="date">発注日: {{ date("Y年m月d日", strtotime($purchaseOrder->ordered_at)) }}</p>
                         <p clss="name">{{ $purchaseOrder->company_name }}</p>
                         <p class="tel">{{ $purchaseOrder->company_tel }}</p>
                         <p classs="address">〒{{ $purchaseOrder->company_zip_code }} {{ $purchaseOrder->company->address_prefecture }}{{ $purchaseOrder->company->address_city }}{{ $purchaseOrder->company->address_streetAddress }}</p>
@@ -451,7 +444,7 @@ const setPreview = (input) => {
 
     @if($purchaseOrder->task->status === 5 && in_array($company_user->id, $company_user_ids))
     <div class="submit-btn-container">
-        <form action="{{ url('company/task/status') }}" method="POST">
+        <form action="{{ route('company.task.status.change') }}" method="POST">
         @csrf
             <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
             <input type="hidden" name="status" value="6">
@@ -460,13 +453,13 @@ const setPreview = (input) => {
     </div>
     @elseif($purchaseOrder->task->status === 7 && $purchaseOrder->task->superior->id === $company_user->id)
     <div class="actionButton">
-        <form action="{{ url('company/task/status') }}" method="POST">
+        <form action="{{ route('company.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
                 <input type="hidden" name="status" value="6">
                 <button type="submit" class="undone">発注書を承認しない</button>
             </form>
-            <form action="{{ url('company/task/status') }}" method="POST">
+            <form action="{{ route('company.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
                 <input type="hidden" name="status" value="8">
@@ -480,6 +473,19 @@ const setPreview = (input) => {
     @else
     <p class="send-done">必要なアクションはありません</p>
     @endif
+    
+    <div class="error-message-wrapper">
+        @if ($errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('task_id') }}</strong>
+            </div>
+        @elseif ($errors->has('status'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('status') }}</strong>
+            </div>
+        @endif
+    </div>
+
 </div>
 @endsection
 

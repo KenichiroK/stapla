@@ -13,7 +13,7 @@
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -42,16 +42,18 @@
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
-            <div class="menu__container--label">
-                <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+            <a href="/company/dashboard">
+                <div class="menu__container--label">
+                    <div class="menu-label">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                    </div>
                 </div>
-            </div>
+            </a>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -61,7 +63,7 @@
                 <li>
                     <a href="/company/dashboard">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -71,7 +73,7 @@
                 <li>
                     <a href="/company/project">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -81,7 +83,7 @@
                 <li>
                     <a href="/company/task">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="{{ asset('images/icon_products.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -91,7 +93,7 @@
                 <li>
                     <a href="/company/document">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -101,7 +103,7 @@
                 <li>
                     <a href="/company/partner" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
+                            <img src="{{ asset('images/icon_customers-active.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             パートナー
@@ -111,7 +113,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -121,7 +123,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -131,7 +133,7 @@
                 <li>
                     <a href="/company/setting/general">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -160,7 +162,7 @@
                 <!-- <p class="control has-icons-left serch-wrp">
                     <input class="search-name input" type="text" placeholder="パートナーを検索">
                     <span class="icon">
-                    <img src="../../../images/searchicon.png" alt="serch">
+                    <img src="{{ asset('images/searchicon.png') }}" alt="serch">
                     </span>
                 </p> -->
             </div>
@@ -190,7 +192,7 @@
                             </div>
                             <div class="main-content__edit-icons">
                                 <div>
-                                    <a href="/partner/profile_setting"><img src="../../../images/edit.png" alt=""></a>
+                                    <a href="/partner/profile_setting"><img src="{{ asset('images/edit.png') }}" alt=""></a>
                                 </div>
                             </div>
                             <div class="main-content__close-icons">
@@ -201,11 +203,11 @@
                         </div>
                         <div class="icon-list-wrp">
                             <div class="icon-list">
-                                <div><a class="default-color github"><img src="../../../images/github.png" alt=""></a></div>
-                                <div><a class="default-color twitter"><img src="../../../images/twitter.png" alt=""></a></div>
-                                <div><a class="default-color facebook"><img src="../../../images/facebook.png" alt=""></a></div>
-                                <div><a class="default-color instagram"><img src="../../../images/insta.png" alt=""></a></div>
-                                <div><a class="default-color mail"><img src="../../../images/mail.png" alt=""></a></div>
+                                <div><a class="default-color github"><img src="{{ asset('images/github.png') }}" alt=""></a></div>
+                                <div><a class="default-color twitter"><img src="{{ asset('images/twitter.png') }}" alt=""></a></div>
+                                <div><a class="default-color facebook"><img src="{{ asset('images/facebook.png') }}" alt=""></a></div>
+                                <div><a class="default-color instagram"><img src="{{ asset('images/insta.png') }}" alt=""></a></div>
+                                <div><a class="default-color mail"><img src="{{ asset('images/mail.png') }}" alt=""></a></div>
                             </div>
                         </div>
                     </div>

@@ -13,7 +13,7 @@
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -44,16 +44,18 @@
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
-            <div class="menu__container--label">
-                <div class="menu-label">
-                    <img src="../../../images/logo.png" alt="logo">
+            <a href="/company/dashboard">
+                <div class="menu__container--label">
+                    <div class="menu-label">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                    </div>
                 </div>
-            </div>
+            </a>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -63,7 +65,7 @@
                 <li>
                     <a href="/partner/dashboard">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -73,7 +75,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -83,7 +85,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products.png" alt="">
+                            <img src="{{ asset('images/icon_products.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -93,7 +95,7 @@
                 <li>
                     <a href="#" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices-active.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -103,7 +105,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -113,7 +115,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -123,7 +125,7 @@
                 <li>
                     <a href="/partner/setting/invoice">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -159,7 +161,7 @@
             <div class="right">
                 <p class="text">下記の通り、発注します。</p>
                 <p class="name">件名: {{ $purchaseOrder->task->name }}</p>
-                <p class="date">納期: {{ explode(' ', $purchaseOrder->task->ended_at)[0] }}</p>
+                <p class="date">納期: {{ date("Y年m月d日", strtotime($purchaseOrder->task->ended_at)) }}</p>
             </div>
 
             <div class="left">
@@ -240,14 +242,14 @@
 
 
     @if($purchaseOrder->task->status === 9 && $purchaseOrder->partner->id === $partner->id)
-    <div class="button-container">
-        <form action="{{ url('partner/task/status') }}" method="POST">
+    <div class="actionButton">
+        <form action="{{ route('partner.task.status.change') }}" method="POST">
         @csrf
             <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
             <input type="hidden" name="status" value="8">
             <button type="submit" class="undone">断る</button>
         </form>
-        <form action="{{ url('partner/task/status') }}" method="POST">
+        <form action="{{ route('partner.task.status.change') }}" method="POST">
         @csrf
             <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
             <input type="hidden" name="status" value="10">
@@ -259,5 +261,18 @@
     @else
     <p class="send-done">必要なアククションはありません</p>
     @endif
+
+    <div class="error-message-wrapper">
+        @if ($errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('task_id') }}</strong>
+            </div>
+        @endif
+        @if ($errors->has('status') && !$errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('status') }}</strong>
+            </div>
+        @endif
+    </div>
 </div>
 @endsection
