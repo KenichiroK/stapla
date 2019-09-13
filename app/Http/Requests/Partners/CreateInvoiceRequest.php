@@ -24,26 +24,40 @@ class CreateInvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'companyUser_id'      => 'required',
-            'project_name'        => 'required',
-            'requested_at'        => 'required',
-            'deadline_at'         => 'required',
-            'tax'                 => 'required',
-            'item_name'           => 'required_with:item_num,item_unit_price,item_total',
-            'item_num'            => 'required_with:item_name,item_unit_price,item_total',
-            'item_unit_price'     => 'required_with:item_name,item_num,item_total',
-            'item_total'          => 'required_with:item_name,item_num,item_unit_price',
-            'expences_name'       => 'required_with:expences_num,expences_unit_price,expences_total',
-            'expences_num'        => 'required_with:expences_name,expences_unit_price,expences_total',
-            'expences_unit_price' => 'required_with:expences_name,expences_num,expences_total',
-            'expences_total'      => 'required_with:expences_name,expences_num,expences_unit_price',
+            'company_user_id'       => 'required | uuid',
+            'title'                 => 'required',
+            'requested_at'          => 'required | date',
+            'deadline_at'           => 'required | date',
+            'tax'                   => 'required | boolean',
+            'item_name.*'           => 'required_with:item_num.*,item_unit_price.*,item_total.*',
+            'item_num.*'            => 'required_with:item_name.*,item_unit_price.*,item_total.*',
+            'item_unit_price.*'     => 'required_with:item_name.*,item_num.*,item_total.*',
+            'item_total.*'          => 'required_with:item_name.*,item_num.*,item_unit_price.*',
+            'expences_name.*'       => 'required_with:expences_num.*,expences_unit_price.*,expences_total.*',
+            'expences_num.*'        => 'required_with:expences_name.*,expences_unit_price.*,expences_total.*',
+            'expences_unit_price.*' => 'required_with:expences_name.*,expences_num.*,expences_total.*',
+            'expences_total.*'      => 'required_with:expences_name.*,expences_num.*,expences_unit_price.*',
         ];
     }
 
     public function messages()
     {
         return [
+        ];
+    }
 
+    public function attributes()
+    {
+        return [
+            'title'                  => '件名',
+            'item_name.*'            => 'タスク品目',
+            'item_num.*'             => 'タスク数',
+            'item_unit_price.*'      => 'タスク単価',
+            'item_total.*'           => 'タスク合計金額',
+            'expences_name.*'        => '経費品目',
+            'expences_num.*'         => '経費数',
+            'expences_unit_price.*'  => '経費単価',
+            'expences_total.*'       => '経費合計金額',
         ];
     }
 }

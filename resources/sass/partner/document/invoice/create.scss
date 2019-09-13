@@ -216,6 +216,14 @@
                                 bottom: 4px;
                                 right: 4px;
                             }
+
+                            .task_request_total {
+                                width: 80%;
+                                font-size: 16px;
+                                padding: 4px;
+                                margin-bottom: 0;
+                                font-weight: bold;
+                            }
                         }
 
                         input {
@@ -238,6 +246,8 @@
                         .total {
                             width: 25%;
                         }
+
+                        
                     }
                 }
             }
@@ -321,6 +331,14 @@
                                 position: absolute;
                                 bottom: 4px;
                                 right: 4px;
+                            }
+
+                            .expence_total {
+                                width: 80%;
+                                font-size: 16px;
+                                padding: 4px;
+                                margin-bottom: 0;
+                                font-weight: bold;
                             }
                         }
 
