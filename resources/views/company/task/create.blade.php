@@ -11,7 +11,7 @@
 
 <script>
 // started_at
-const set_started_at = () => {
+function set_started_at(){
     const started_at_year = document.getElementById('started_at_year').value;
     const started_at_month = document.getElementById('started_at_month').value;
     let startedDayOption;
@@ -40,7 +40,7 @@ const set_started_at = () => {
     started_at.value = started_at_year + started_at_month + started_at_day + started_at_time;
     console.log(started_at.value);
 }
-const setStartedDay = () => {
+function setStartedDay(){
     const started_at_year = document.getElementById('started_at_year').value;
     const started_at_month = document.getElementById('started_at_month').value;
     const started_at_day = document.getElementById('started_at_day').value;
@@ -50,7 +50,7 @@ const setStartedDay = () => {
     console.log(started_at.value);
 }
 // ended_at
-const set_ended_at = () => {
+function set_ended_at(){
     const ended_at_year = document.getElementById('ended_at_year').value;
     const ended_at_month = document.getElementById('ended_at_month').value;
     let endedDayOption;
@@ -88,7 +88,7 @@ const setEndedDay = () => {
     ended_at.value = ended_at_year + ended_at_month + ended_at_day + ended_at_time;
     console.log(ended_at.value);
 }
-window.onload = () => {
+window.onload = function(){
     // started_at
     const started_at_year = document.getElementById('started_at_year').value;
     const started_at_month = document.getElementById('started_at_month').value;
@@ -323,7 +323,7 @@ $(function(){
                                     <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
                                         <option disabled selected></option>
                                         @foreach($projects as $project)
-                                            <option value="{{ $project->id }}" @if(old('project_id')===$project->id) selected @endif>{{ $project->name }}</option>
+                                            <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('project_id'))
@@ -408,7 +408,7 @@ $(function(){
                                                 <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
                                                     <option disabled selected></option>
                                                     @foreach($companyUsers as $companyUser)
-                                                        <option value="{{ $companyUser->id }}" @if(old('company_user_id') == $companyUser->id) selected @endif>{{ $companyUser->name }}</option>
+                                                        <option value="{{ $companyUser->id }}" {{ (old('company_user_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 
@@ -439,7 +439,7 @@ $(function(){
                                                 <select name='superior_id'>
                                                     <option disabled selected></option>
                                                     @foreach($companyUsers as $companyUser)
-                                                        <option value={{ $companyUser->id }} @if(old('superior_id') == $companyUser->id) selected @endif>{{ $companyUser->name }}</option>
+                                                        <option value={{ $companyUser->id }} {{ (old('superior_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 
@@ -470,7 +470,7 @@ $(function(){
                                                 <select name='accounting_id'>
                                                     <option disabled selected></option>
                                                     @foreach($companyUsers as $companyUser)
-                                                        <option value={{ $companyUser->id }} @if(old('accounting_id') === $companyUser->id) selected @endif>{{ $companyUser->name }}</option>
+                                                        <option value={{ $companyUser->id }} {{ (old('accounting_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 
@@ -504,7 +504,7 @@ $(function(){
                                             <select class="select-box" id="started_at_year" name="started_at_year" onChange="set_started_at()">
                                             @for($y=date('Y')-5; $y<=date('Y')+20; $y++)
                                                 @if(!empty(old('started_at_year')) === true )
-                                                    <option value="{{ $y }}" @if(old('started_at_year') == $y) selected @endif>{{ $y }}</option> 
+                                                    <option value="{{ $y }}" {{ (old('started_at_year') == $y) ? 'selected' : '' }}>{{ $y }}</option>
                                                 @else
                                                     @if($y == date('Y'))
                                                         <option value="{{ $y }}" selected>{{ $y }}</option> 
@@ -522,9 +522,9 @@ $(function(){
                                             @for($m=1; $m<=12; $m++)
                                                 @if(!empty(old('started_at_month')) === true)
                                                     @if($m < 10)
-                                                        <option value='0{{ $m }}' @if(substr(old('started_at_month'), 1, 2) == $m) selected @endif>{{ $m }}</option>
+                                                        <option value='0{{ $m }}' {{ (substr(old('started_at_month'), 1, 1) == $m) ? 'selected' : '' }}>{{ $m }}</option>
                                                     @else
-                                                        <option value='{{ $m }}' @if(old('started_at_month') == $m) selected @endif>{{ $m }}</option>
+                                                        <option value='{{ $m }}' {{ (substr(old('started_at_month'), 1, 2) == $m) ? 'selected' : '' }}>{{ $m }}</option>
                                                     @endif
                                                 @else
                                                     @if($m < 10)
@@ -552,11 +552,11 @@ $(function(){
                                         <div class="select-arrow">
                                             <select class="select-box" id="started_at_time" name="started_at_time" onChange="setStartedDay()">
                                             @for($h=0; $h<=24; $h++)
-                                            @if(!empty(old('started_at_time')) === true)
+                                                @if(!empty(old('started_at_time')) === true)
                                                     @if($h < 10)
-                                                        <option value='0{{ $h }}0000' @if(substr(old('started_at_time'), 1, 2) == $h) selected @endif>{{ $h }}</option>
+                                                        <option value='0{{ $h }}0000' {{ (substr(old('started_at_time'), 1, 1) == $h) ? 'selected' : '' }}>{{ $h }}</option>
                                                     @else
-                                                        <option value='{{ $h }}0000' @if(substr(old('started_at_time'), 0, 2) == $h) selected @endif>{{ $h }}</option>
+                                                        <option value='{{ $h }}0000' {{ (substr(old('started_at_time'), 0, 2) == $h) ? 'selected' : '' }}>{{ $h }}</option>
                                                     @endif
                                                 @else
                                                     @if($h < 10)
@@ -603,7 +603,7 @@ $(function(){
                                             <select class="select-box" id="ended_at_year" name="ended_at_year" onChange="set_ended_at()">
                                             @for($y=date('Y')-5; $y<=date('Y')+20; $y++)
                                                 @if(!empty(old('ended_at_year')) === true )
-                                                    <option value="{{ $y }}" @if(old('ended_at_year') == $y) selected @endif>{{ $y }}</option> 
+                                                <option value="{{ $y }}" {{ (old('ended_at_year') == $y) ? 'selected' : '' }}>{{ $y }}</option>
                                                 @else
                                                     @if($y == date('Y'))
                                                         <option value="{{ $y }}" selected>{{ $y }}</option> 
@@ -620,9 +620,9 @@ $(function(){
                                                 @for($m=1; $m<=12; $m++)
                                                     @if(!empty(old('ended_at_month')) === true)
                                                         @if($m < 10)
-                                                            <option value='0{{ $m }}' @if(substr(old('ended_at_month'), 1, 2) == $m) selected @endif>{{ $m }}</option>
-                                                        @else
-                                                            <option value='{{ $m }}' @if(old('ended_at_month') == $m) selected @endif>{{ $m }}</option>
+                                                        <option value='0{{ $m }}' {{ (substr(old('ended_at_month'), 1, 1) == $m) ? 'selected' : '' }}>{{ $m }}</option>
+                                                    @else
+                                                        <option value='{{ $m }}' {{ (substr(old('ended_at_month'), 1, 2) == $m) ? 'selected' : '' }}>{{ $m }}</option>
                                                         @endif
                                                     @else
                                                         @if($m < 10)
@@ -652,9 +652,9 @@ $(function(){
                                             @for($h=0; $h<=24; $h++)
                                                 @if(!empty(old('ended_at_time')) === true)
                                                     @if($h < 10)
-                                                        <option value='0{{ $h }}0000' @if(substr(old('ended_at_time'), 1, 2) == $h) selected @endif>{{ $h }}</option>
+                                                        <option value='0{{ $h }}0000' {{ (substr(old('ended_at_time'), 1, 1) == $h) ? 'selected' : '' }}>{{ $h }}</option>
                                                     @else
-                                                        <option value='{{ $h }}0000' @if(substr(old('ended_at_time'), 0, 2) == $h) selected @endif>{{ $h }}</option>
+                                                        <option value='{{ $h }}0000' {{ (substr(old('ended_at_time'), 0, 2) == $h) ? 'selected' : '' }}>{{ $h }}</option>
                                                     @endif
                                                 @else
                                                     @if($h < 10)
@@ -754,7 +754,7 @@ $(function(){
                                             <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
                                                 <option disabled selected></option>
                                                 @foreach($partners as $partner)
-                                                    <option value="{{ $partner->id }}" @if(old('partner_id') === $partner->id) selected @endif>{{ $partner->name }}</option>
+                                                    <option value="{{ $partner->id }}" {{ (old('partner_id') === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
                                                 @endforeach
                                             </select>
                                             

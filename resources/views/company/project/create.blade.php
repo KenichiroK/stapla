@@ -6,7 +6,7 @@
 
 <script>
 // stareted_at
-const set_started_at = () => {
+function set_started_at(){
     const started_at_year = document.getElementById('started_at_year').value;
     const started_at_month = document.getElementById('started_at_month').value;
 
@@ -35,7 +35,7 @@ const set_started_at = () => {
     started_at.value = Number(started_at_year + started_at_month + started_at_day);
 }
 
-const setStartedDay = () => {
+function setStartedDay (){
     const started_at_year = document.getElementById('started_at_year').value;
     const started_at_month = document.getElementById('started_at_month').value;
     const started_at_day = document.getElementById('started_at_day').value;
@@ -44,7 +44,7 @@ const setStartedDay = () => {
 }
 
 // ended_at
-const set_ended_at = () => {
+function set_ended_at(){
     const ended_at_year = document.getElementById('ended_at_year').value;
     const ended_at_month = document.getElementById('ended_at_month').value;
 
@@ -73,7 +73,7 @@ const set_ended_at = () => {
     ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
 }
 
-const setEndedDay = () => {
+function setEndedDay(){
     const ended_at_year = document.getElementById('ended_at_year').value;
     const ended_at_month = document.getElementById('ended_at_month').value;
     const ended_at_day = document.getElementById('ended_at_day').value;
@@ -81,7 +81,7 @@ const setEndedDay = () => {
     ended_at.value = Number(ended_at_year + ended_at_month + ended_at_day);
 }
 
-window.onload = () => {
+window.onload = function(){
     // started_at
     const started_at_year = document.getElementById('started_at_year').value;
     const started_at_month = document.getElementById('started_at_month').value;
@@ -151,7 +151,7 @@ window.onload = () => {
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}g" alt="">
         </div>
     </div>
     
@@ -324,7 +324,7 @@ window.onload = () => {
                                 <select name="company_user_id" class="select-box form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}" id="company-staff-name-list">
                                     <option disabled selected></option>
                                     @foreach( $company_users as $company_user )
-                                    <option value="{{ $company_user->id }}" {{ (old('company_user_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                    <option value="{{ $company_user->id }}" {{ (old('company_user_id') === $company_user->id)? 'selected' : '' }}>{{ $company_user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -397,25 +397,41 @@ window.onload = () => {
                             <div class="calendars__wrapper">
                                 <div class="calendars__wrapper__title start">開始日<i class="fas fa-calendar-alt"></i></div>
                                 <select class="select-box" id="started_at_year" name="started_at_year" onChange="set_started_at()">
-                                @for($y=date('Y'); $y<=date('Y')+20; $y++)
-                                    <option value="{{ $y }}">{{ $y }}</option>
+                                @for($y=date('Y')-5; $y<=date('Y')+20; $y++)
+                                    @if(!empty(old('started_at_year')) === true )
+                                        <option value="{{ $y }}" {{ (old('started_at_year') == $y) ? 'selected' : '' }}>{{ $y }}</option> 
+                                    @else
+                                        @if($y == date('Y'))
+                                            <option value="{{ $y }}" selected>{{ $y }}</option> 
+                                        @else
+                                            <option value="{{ $y }}">{{ $y }}</option> 
+                                        @endif
+                                    @endif
                                 @endfor
                                 </select>
                                 年
 
                                 <select class="select-box" id="started_at_month" name="started_at_month" onChange="set_started_at()">
                                 @for($m=1; $m<=12; $m++)
-                                    @if($m < 10)
-                                        @if($m == date('m'))
-                                            <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                    @if(!empty(old('started_at_month')) === true)
+                                        @if($m < 10)
+                                            <option value='0{{ $m }}' {{ (substr(old('started_at_month'), 1, 1) == $m) ? 'selected' : '' }}>{{ $m }}</option>
                                         @else
-                                            <option value='0{{ $m }}'>{{ $m }}</option>
+                                            <option value='{{ $m }}' {{ (substr(old('started_at_month'), 0, 2) == $m) ? 'selected' : '' }}>{{ $m }}</option>
                                         @endif
                                     @else
-                                        @if($m == date('m'))
-                                            <option value='{{ $m }}' selected>{{ $m }}</option>
+                                        @if($m < 10)
+                                            @if($m == date('m'))
+                                                <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                            @else
+                                                <option value='0{{ $m }}'>{{ $m }}</option>
+                                            @endif
                                         @else
-                                            <option value='{{ $m }}'>{{ $m }}</option>
+                                            @if($m == date('m'))
+                                                <option value='{{ $m }}' selected>{{ $m }}</option>
+                                            @else
+                                                <option value='{{ $m }}'>{{ $m }}</option>
+                                            @endif
                                         @endif
                                     @endif
                                 @endfor
@@ -437,25 +453,41 @@ window.onload = () => {
                             <div class="calendars__wrapper right">
                                 <div class="calendars__wrapper__title">終了日<i class="fas fa-calendar-alt"></i></div>
                                 <select class="select-box" id="ended_at_year" name="ended_at_year" onChange="set_ended_at()">
-                                @for($y=explode('-', date('Y-m-d', strtotime('1day')))[0]; $y<=date('Y')+20; $y++)
-                                    <option value="{{ $y }}">{{ $y }}</option>
+                                @for($y=date('Y')-5; $y<=date('Y')+20; $y++)
+                                    @if(!empty(old('ended_at_year')) === true )
+                                        <option value="{{ $y }}" {{ (old('ended_at_year') == $y) ? 'selected' : '' }}>{{ $y }}</option> 
+                                    @else
+                                        @if($y == date('Y'))
+                                            <option value="{{ $y }}" selected>{{ $y }}</option> 
+                                        @else
+                                            <option value="{{ $y }}">{{ $y }}</option> 
+                                        @endif
+                                    @endif
                                 @endfor
                                 </select>
                                 年
 
                                 <select class="select-box" id="ended_at_month" name="ended_at_month" onChange="set_ended_at()">
                                 @for($m=1; $m<=12; $m++)
-                                    @if($m < 10)
-                                        @if($m == explode('-', date('Y-m-d', strtotime('1day')))[1])
-                                            <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                    @if(!empty(old('ended_at_month')) === true)
+                                        @if($m < 10)
+                                            <option value='0{{ $m }}' {{ (substr(old('ended_at_month'), 1, 1) == $m) ? 'selected' : '' }}>{{ $m }}</option>
                                         @else
-                                            <option value='0{{ $m }}'>{{ $m }}</option>
+                                            <option value='{{ $m }}' {{ (substr(old('ended_at_month'), 0, 2) == $m) ? 'selected' : '' }}>{{ $m }}</option>
                                         @endif
                                     @else
-                                        @if($m == date('m'))
-                                            <option value='{{ $m }}' selected>{{ $m }}</option>
+                                        @if($m < 10)
+                                            @if($m == date('m'))
+                                                <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                            @else
+                                                <option value='0{{ $m }}'>{{ $m }}</option>
+                                            @endif
                                         @else
-                                            <option value='{{ $m }}'>{{ $m }}</option>
+                                            @if($m == date('m'))
+                                                <option value='{{ $m }}' selected>{{ $m }}</option>
+                                            @else
+                                                <option value='{{ $m }}'>{{ $m }}</option>
+                                            @endif
                                         @endif
                                     @endif
                                 @endfor
