@@ -30,8 +30,8 @@ class CreateTaskRequest extends FormRequest
             'company_user_id' => 'required',
             'superior_id'     => 'required',
             'accounting_id'   => 'required',
-            'started_at_date' => 'required',
-            'ended_at_date'   => 'required | after:started_at_date',
+            'started_at' => 'required',
+            'ended_at'   => 'required | after:started_at',
             'budget'          => 'required',
             'price'           => 'required',
             'cases'           => 'required | digits_between:1, 10',
@@ -43,20 +43,7 @@ class CreateTaskRequest extends FormRequest
     public function messages()
     {
         return [
-
-            'project_id'      => 'プロジェクトを選択してください',
-            'task_name'       => 'タスク名を入力してください',
-            'task_content'    => 'タスク詳細を入力してください',
-            'company_user_id' => '担当者を選択してください',
-            'superior_id'     => '上長を選択してください',
-            'accounting_id'   => '経理担当を選択してください',
-            'started_at'      => '開始日を選択してください',
-            'ended_at'        => '終了日を選択してください',
-            'budget'          => '予算を入力してください',
-            'price'           => '発注単価を入力してください',
-            'cases'           => '発注件数を入力してください',
-            'partner_id'      => 'パートナーを選択してください',
-            'fee_format'      => '報酬形式を選択してください',
+            // 
         ];
     }
 }

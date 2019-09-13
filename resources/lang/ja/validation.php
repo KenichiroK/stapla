@@ -185,8 +185,8 @@ return [
         // task
         'task_name'       => 'タスク名',
         'task_content'    => 'タスク内容',
-        'started_at_date' => '開始日',
-        'ended_at_date'   => '終了予定日',
+        'started_at'      => '開始日',
+        'ended_at'        => '終了日',
         'status'          => 'ステータス',
         'budget'          => '予算',
         'price'           => '金額',

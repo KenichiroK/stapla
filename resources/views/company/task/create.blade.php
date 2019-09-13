@@ -10,42 +10,140 @@
 </script>
 
 <script>
-const set_started_at_date = () => {
-  const started_at_date_year = document.getElementById('started_at_date_year').value;
-  const started_at_date_month = document.getElementById('started_at_date_month').value;
-  const started_at_date_day = document.getElementById('started_at_date_day').value;
-  const started_at_time = document.getElementById('started_at_time').value;
-  const started_at_date = document.getElementById('started_at_date');
-  started_at_date.value = started_at_date_year + started_at_date_month + started_at_date_day + started_at_time;
-  console.log(started_at_date.value);
+// started_at
+function set_started_at(){
+    const started_at_year = document.getElementById('started_at_year').value;
+    const started_at_month = document.getElementById('started_at_month').value;
+    let startedDayOption;
+    let startedToday =new Date();
+    let lastStartedDay = (new Date(started_at_year, started_at_month, 0)).getDate();
+    for(let d=1; d<=lastStartedDay; d++){
+        if(d < 10){
+            if(d == startedToday.getDate()){
+                startedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
+            } else{
+                startedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
+            }
+        } else{
+            if(d == startedToday.getDate()){
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            } else{
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        }
+    }
+    document.getElementById('started_at_day').innerHTML = startedDayOption;
+    
+    const started_at_day = document.getElementById('started_at_day').value;
+    const started_at_time = document.getElementById('started_at_time').value;
+    const started_at = document.getElementById('started_at');
+    started_at.value = started_at_year + started_at_month + started_at_day + started_at_time;
+    console.log(started_at.value);
 }
-const set_ended_at_date = () => {
-  const ended_at_date_year = document.getElementById('ended_at_date_year').value;
-  const ended_at_date_month = document.getElementById('ended_at_date_month').value;
-  const ended_at_date_day = document.getElementById('ended_at_date_day').value;
-  const ended_at_time = document.getElementById('ended_at_time').value;
-  const ended_at_date = document.getElementById('ended_at_date');
-  ended_at_date.value = ended_at_date_year + ended_at_date_month + ended_at_date_day + ended_at_time;
-  console.log(ended_at_date.value);
+function setStartedDay(){
+    const started_at_year = document.getElementById('started_at_year').value;
+    const started_at_month = document.getElementById('started_at_month').value;
+    const started_at_day = document.getElementById('started_at_day').value;
+    const started_at_time = document.getElementById('started_at_time').value;
+    const started_at = document.getElementById('started_at');
+    started_at.value = started_at_year + started_at_month + started_at_day + started_at_time;
+    console.log(started_at.value);
 }
-
-window.onload = () => {
-  const started_at_date_year = document.getElementById('started_at_date_year').value;
-  const started_at_date_month = document.getElementById('started_at_date_month').value;
-  const started_at_date_day = document.getElementById('started_at_date_day').value;
-  const started_at_time = document.getElementById('started_at_time').value;
-  const started_at_date = document.getElementById('started_at_date');
-  started_at_date.value = started_at_date_year + started_at_date_month + started_at_date_day + started_at_time;
-  console.log(started_at_date.value);
-
-  const ended_at_date_year = document.getElementById('ended_at_date_year').value;
-  const ended_at_date_month = document.getElementById('ended_at_date_month').value;
-  const ended_at_date_day = document.getElementById('ended_at_date_day').value;
-  const ended_at_time = document.getElementById('ended_at_time').value;
-  const ended_at_date = document.getElementById('ended_at_date');
-  ended_at_date.value = ended_at_date_year + ended_at_date_month + ended_at_date_day + ended_at_time;
+// ended_at
+function set_ended_at(){
+    const ended_at_year = document.getElementById('ended_at_year').value;
+    const ended_at_month = document.getElementById('ended_at_month').value;
+    let endedDayOption;
+    let endedToday =new Date();
+    let lastEndedDay = (new Date(ended_at_year, ended_at_month, 0)).getDate();
+    for(let d=1; d<=lastEndedDay; d++){
+        if(d < 10){
+            if(d == endedToday.getDate()){
+                endedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
+            } else{
+                endedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
+            }
+        } else{
+            if(d == endedToday.getDate()){
+                endedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            } else{
+                endedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        }
+    }
+    document.getElementById('ended_at_day').innerHTML = endedDayOption;
+    
+    const ended_at_day = document.getElementById('ended_at_day').value;
+    const ended_at_time = document.getElementById('ended_at_time').value;
+    const ended_at = document.getElementById('ended_at');
+    ended_at.value = ended_at_year + ended_at_month + ended_at_day + ended_at_time;
+    console.log(ended_at.value);
 }
-
+const setEndedDay = () => {
+    const ended_at_year = document.getElementById('ended_at_year').value;
+    const ended_at_month = document.getElementById('ended_at_month').value;
+    const ended_at_day = document.getElementById('ended_at_day').value;
+    const ended_at_time = document.getElementById('ended_at_time').value;
+    const ended_at = document.getElementById('ended_at');
+    ended_at.value = ended_at_year + ended_at_month + ended_at_day + ended_at_time;
+    console.log(ended_at.value);
+}
+window.onload = function(){
+    // started_at
+    const started_at_year = document.getElementById('started_at_year').value;
+    const started_at_month = document.getElementById('started_at_month').value;
+    let startedDayOption;
+    let startedToday =new Date();
+    let lastStartedDay = (new Date(started_at_year, started_at_month, 0)).getDate();
+    for(let d=1; d<=lastStartedDay; d++){
+        if(d < 10){
+            if(d == startedToday.getDate()){
+                startedDayOption += '<option value="' +0+d+ '" selected>' +0+d+ '</option>';
+            } else{
+                startedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
+            }
+        } else{
+            if(d == startedToday.getDate()){
+                startedDayOption += '<option value="' +d+ '" selected>' +d+ '</option>';
+            } else{
+                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        }
+    }
+    document.getElementById('started_at_day').innerHTML = startedDayOption;
+    const started_at_day = document.getElementById('started_at_day').value;
+    const started_at_time = document.getElementById('started_at_time').value;
+    const started_at = document.getElementById('started_at');
+    started_at.value = started_at_year + started_at_month + started_at_day + started_at_time; 
+    console.log(started_at.value);
+     // ended_at
+    const ended_at_year = document.getElementById('ended_at_year').value;
+    const ended_at_month = document.getElementById('ended_at_month').value;
+    let endedDayOption;
+    let endedToday =new Date();
+    let lastEndedDay = (new Date(ended_at_year, ended_at_month, 0)).getDate();
+    for(let d=1; d<=lastEndedDay; d++){
+        if(d < 10){
+            if(d == endedToday.getDate()){
+                endedDayOption += '<option value="' +0+d+ '" selected>' +0+d+ '</option>';
+            } else{
+                endedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
+            }
+        } else{
+            if(d == endedToday.getDate()){
+                endedDayOption += '<option value="' +d+ '" selected>' +d+ '</option>';
+            } else{
+                endedDayOption += '<option value="' +d+ '">' +d+ '</option>';
+            }
+        }
+    }
+    document.getElementById('ended_at_day').innerHTML = endedDayOption;
+    const ended_at_day = document.getElementById('ended_at_day').value;
+    const ended_at_time = document.getElementById('ended_at_time').value;
+    const ended_at = document.getElementById('ended_at');
+    ended_at.value = ended_at_year + ended_at_month + ended_at_day + ended_at_time;
+    console.log(ended_at.value);
+}
 $(function(){
     let $inputPrice = $('#inputPrice');
     let $outputPrice = $('.outputPrice');
@@ -55,8 +153,6 @@ $(function(){
         $outputPrice.text($value);
         $outputPriceWithTax($value);
     });
-
-
 })
 </script>
 @endsection
@@ -69,7 +165,7 @@ $(function(){
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -98,18 +194,16 @@ $(function(){
 <div class="sidebar__container">
     <div class="sidebar__container__wrapper">
         <aside class="menu menu__container">
-            <a href="/company/dashboard">
-                <div class="menu__container--label">
-                    <div class="menu-label">
-                        <img src="{{ asset('images/logo.png') }}" alt="logo">
-                    </div>
+            <div class="menu__container--label">
+                <div class="menu-label">
+                    <img src="{{ asset('images/logo.png') }}" alt="logo">
                 </div>
-            </a>
+            </div>
             <ul class="menu-list menu menu__container__menu-list">
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -119,7 +213,7 @@ $(function(){
                 <li>
                     <a href="/company/dashboard">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -129,7 +223,7 @@ $(function(){
                 <li>
                     <a href="/company/project">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -139,7 +233,7 @@ $(function(){
                 <li>
                     <a href="/company/task" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products-active.png" alt="">
+                            <img src="{{ asset('images/icon_products.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -149,7 +243,7 @@ $(function(){
                 <li>
                     <a href="/company/document">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -159,7 +253,7 @@ $(function(){
                 <li>
                     <a href="/company/partner">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
+                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             パートナー
@@ -169,7 +263,7 @@ $(function(){
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -179,7 +273,7 @@ $(function(){
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -189,7 +283,7 @@ $(function(){
                 <li>
                     <a href="/company/setting/general">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -227,20 +321,20 @@ $(function(){
                             <div class="select-container__wrapper__select-area__field__control control">
                                 <div class="select-container__wrapper__select-area__field__control__select select is-info">
                                     <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                        <option></option>
+                                        <option disabled selected></option>
                                         @foreach($projects as $project)
-                                            <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                            <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
                                         @endforeach
                                     </select>
+                                    @if ($errors->has('project_id'))
+                                        <div class="invalid-feedback error-msg" role="alert">
+                                            <strong>{{ $errors->first('project_id') }}</strong>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @if ($errors->has('project_id'))
-                        <div class="invalid-feedback error-msg" role="alert">
-                            <strong>{{ $errors->first('project_id') }}</strong>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
@@ -312,11 +406,9 @@ $(function(){
                                                 <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
                                                 <!-- <select v-model="taskInfo.staff"> -->
                                                 <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                                    <option></option>
+                                                    <option disabled selected></option>
                                                     @foreach($companyUsers as $companyUser)
-                                                        <option value="{{ $companyUser->id }}">
-                                                            {{ $companyUser->name }}
-                                                        </option>
+                                                        <option value="{{ $companyUser->id }}" {{ (old('company_user_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 
@@ -345,11 +437,9 @@ $(function(){
                                         <div class="select-container__wrapper__select-area__field__control control">
                                             <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
                                                 <select name='superior_id'>
-                                                    <option></option>
+                                                    <option disabled selected></option>
                                                     @foreach($companyUsers as $companyUser)
-                                                        <option value={{ $companyUser->id }}>
-                                                            {{ $companyUser->name }}
-                                                        </option>
+                                                        <option value={{ $companyUser->id }} {{ (old('superior_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 
@@ -378,11 +468,9 @@ $(function(){
                                         <div class="select-container__wrapper__select-area__field__control control">
                                             <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
                                                 <select name='accounting_id'>
-                                                    <option></option>
+                                                    <option disabled selected></option>
                                                     @foreach($companyUsers as $companyUser)
-                                                        <option value={{ $companyUser->id }}>
-                                                            {{ $companyUser->name }}
-                                                        </option>
+                                                        <option value={{ $companyUser->id }} {{ (old('accounting_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 
@@ -391,10 +479,10 @@ $(function(){
                                     </div>
                                 </div>
                                 @if ($errors->has('accounting_id'))
-                                                    <div class="invalid-feedback error-msg" role="alert">
-                                                        <strong>{{ $errors->first('accounting_id') }}</strong>
-                                                    </div>
-                                                @endif
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('accounting_id') }}</strong>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <!-- 項目：締め切り -->
@@ -413,28 +501,44 @@ $(function(){
                                     </div>
                                     <div class="select-date-wrp">
                                         <div class="select-arrow year">
-                                            <select class="select-box" id="started_at_date_year" name="started_at_date_year" onChange="set_started_at_date()">
-                                            @for($y=date('Y'); $y<=date('Y')+20; $y++)
-                                                <option value="{{ $y }}">{{ $y }}</option>
+                                            <select class="select-box" id="started_at_year" name="started_at_year" onChange="set_started_at()">
+                                            @for($y=date('Y')-5; $y<=date('Y')+20; $y++)
+                                                @if(!empty(old('started_at_year')) === true )
+                                                    <option value="{{ $y }}" {{ (old('started_at_year') == $y) ? 'selected' : '' }}>{{ $y }}</option>
+                                                @else
+                                                    @if($y == date('Y'))
+                                                        <option value="{{ $y }}" selected>{{ $y }}</option> 
+                                                    @else
+                                                        <option value="{{ $y }}">{{ $y }}</option> 
+                                                    @endif
+                                                @endif
                                             @endfor
                                             </select>
                                         </div>
                                         年
 
                                         <div class="select-arrow">
-                                            <select class="select-box" id="started_at_date_month" name="started_at_date_month" onChange="set_started_at_date()">
+                                            <select class="select-box" id="started_at_month" name="started_at_month" onChange="set_started_at()">
                                             @for($m=1; $m<=12; $m++)
-                                                @if($m < 10)
-                                                    @if($m == date('m'))
-                                                        <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                                @if(!empty(old('started_at_month')) === true)
+                                                    @if($m < 10)
+                                                        <option value='0{{ $m }}' {{ (substr(old('started_at_month'), 1, 1) == $m) ? 'selected' : '' }}>{{ $m }}</option>
                                                     @else
-                                                        <option value='0{{ $m }}'>{{ $m }}</option>
+                                                        <option value='{{ $m }}' {{ (substr(old('started_at_month'), 1, 2) == $m) ? 'selected' : '' }}>{{ $m }}</option>
                                                     @endif
                                                 @else
-                                                    @if($m == date('m'))
-                                                        <option value='{{ $m }}' selected>{{ $m }}</option>
+                                                    @if($m < 10)
+                                                        @if($m == date('m'))
+                                                            <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                                        @else
+                                                            <option value='0{{ $m }}'>{{ $m }}</option>
+                                                        @endif
                                                     @else
-                                                        <option value='{{ $m }}'>{{ $m }}</option>
+                                                        @if($m == date('m'))
+                                                            <option value='{{ $m }}' selected>{{ $m }}</option>
+                                                        @else
+                                                            <option value='{{ $m }}'>{{ $m }}</option>
+                                                        @endif
                                                     @endif
                                                 @endif
                                             @endfor
@@ -442,39 +546,31 @@ $(function(){
                                         </div>
                                         月
                                         <div class="select-arrow">
-                                            <select class="select-box" id="started_at_date_day" name="started_at_date_day" onChange="set_started_at_date()">
-                                            @for($d=1; $d<=31; $d++)
-                                                @if($d < 10)
-                                                    @if($d == date('d'))
-                                                        <option value='0{{ $d }}' selected>{{ $d }}</option>
-                                                    @else
-                                                        <option value='0{{ $d }}'>{{ $d }}</option>
-                                                    @endif
-                                                @else
-                                                    @if($d == date('d'))
-                                                        <option value='{{ $d }}' selected>{{ $d }}</option>
-                                                    @else
-                                                        <option value='{{ $d }}'>{{ $d }}</option>
-                                                    @endif
-                                                @endif
-                                            @endfor
-                                            </select>
+                                            <select class="select-box" id="started_at_day" name="started_at_day" onChange="setStartedDay();"></select>
                                         </div>
                                         日
                                         <div class="select-arrow">
-                                            <select class="select-box" id="started_at_time" name="started_at_time" onChange="set_started_at_date()">
+                                            <select class="select-box" id="started_at_time" name="started_at_time" onChange="setStartedDay()">
                                             @for($h=0; $h<=24; $h++)
-                                                @if($h < 10)
-                                                    @if($h == date('H'))
-                                                        <option value='0{{ $h }}0000' selected>{{ $h }}</option>
+                                                @if(!empty(old('started_at_time')) === true)
+                                                    @if($h < 10)
+                                                        <option value='0{{ $h }}0000' {{ (substr(old('started_at_time'), 1, 1) == $h) ? 'selected' : '' }}>{{ $h }}</option>
                                                     @else
-                                                        <option value='0{{ $h }}0000'>{{ $h }}</option>
+                                                        <option value='{{ $h }}0000' {{ (substr(old('started_at_time'), 0, 2) == $h) ? 'selected' : '' }}>{{ $h }}</option>
                                                     @endif
                                                 @else
-                                                    @if($h == date('H'))
-                                                        <option value='{{ $h }}0000' selected>{{ $h }}</option>
+                                                    @if($h < 10)
+                                                        @if($h == date('H'))
+                                                            <option value='0{{ $h }}0000' selected>{{ $h }}</option>
+                                                        @else
+                                                            <option value='0{{ $h }}0000'>{{ $h }}</option>
+                                                        @endif
                                                     @else
-                                                        <option value='{{ $h }}0000'>{{ $h }}</option>
+                                                        @if($h == date('H'))
+                                                            <option value='{{ $h }}0000' selected>{{ $h }}</option>
+                                                        @else
+                                                            <option value='{{ $h }}0000'>{{ $h }}</option>
+                                                        @endif
                                                     @endif
                                                 @endif
                                             @endfor
@@ -488,10 +584,10 @@ $(function(){
                                         時
                                     </div>
 
-                                    <!-- <input name="started_at_date" id="started_at_date" type="hidden" value="{{ old('started_at_date')}}"> -->
-                                    @if($errors->has('started_at_date'))
+                                    <input name="started_at" id="started_at" type="hidden" value="{{ old('started_at')}}">
+                                    @if($errors->has('started_at'))
                                         <div>
-                                            <strong style='color: #e3342f;'>{{ $errors->first('started_at_date') }}</strong>
+                                            <strong style='color: #e3342f;'>{{ $errors->first('started_at') }}</strong>
                                         </div>
                                     @endif
                                   
@@ -504,27 +600,43 @@ $(function(){
                                     </div>
                                     <div class="select-date-wrp">
                                         <div class="select-arrow year">
-                                            <select class="select-box" id="ended_at_date_year" name="ended_at_date_year" onChange="set_ended_at_date()">
-                                                @for($y=explode('-', date('Y-m-d', strtotime('1day')))[0]; $y<=date('Y')+20; $y++)
-                                                    <option value="{{ $y }}">{{ $y }}</option>
-                                                @endfor
+                                            <select class="select-box" id="ended_at_year" name="ended_at_year" onChange="set_ended_at()">
+                                            @for($y=date('Y')-5; $y<=date('Y')+20; $y++)
+                                                @if(!empty(old('ended_at_year')) === true )
+                                                <option value="{{ $y }}" {{ (old('ended_at_year') == $y) ? 'selected' : '' }}>{{ $y }}</option>
+                                                @else
+                                                    @if($y == date('Y'))
+                                                        <option value="{{ $y }}" selected>{{ $y }}</option> 
+                                                    @else
+                                                        <option value="{{ $y }}">{{ $y }}</option> 
+                                                    @endif
+                                                @endif
+                                            @endfor
                                             </select>
                                         </div>
                                         年
                                         <div class="select-arrow">
-                                            <select class="select-box" id="ended_at_date_month" name="ended_at_date_month" onChange="set_ended_at_date()">
+                                            <select class="select-box" id="ended_at_month" name="ended_at_month" onChange="set_ended_at()">
                                                 @for($m=1; $m<=12; $m++)
-                                                    @if($m < 10)
-                                                        @if($m == explode('-', date('Y-m-d', strtotime('1day')))[1])
-                                                            <option value='0{{ $m }}' selected>{{ $m }}</option>
-                                                        @else
-                                                            <option value='0{{ $m }}'>{{ $m }}</option>
+                                                    @if(!empty(old('ended_at_month')) === true)
+                                                        @if($m < 10)
+                                                        <option value='0{{ $m }}' {{ (substr(old('ended_at_month'), 1, 1) == $m) ? 'selected' : '' }}>{{ $m }}</option>
+                                                    @else
+                                                        <option value='{{ $m }}' {{ (substr(old('ended_at_month'), 1, 2) == $m) ? 'selected' : '' }}>{{ $m }}</option>
                                                         @endif
                                                     @else
-                                                        @if($m == date('m'))
-                                                            <option value='{{ $m }}' selected>{{ $m }}</option>
+                                                        @if($m < 10)
+                                                            @if($m == date('m'))
+                                                                <option value='0{{ $m }}' selected>{{ $m }}</option>
+                                                            @else
+                                                                <option value='0{{ $m }}'>{{ $m }}</option>
+                                                            @endif
                                                         @else
-                                                            <option value='{{ $m }}'>{{ $m }}</option>
+                                                            @if($m == date('m'))
+                                                                <option value='{{ $m }}' selected>{{ $m }}</option>
+                                                            @else
+                                                                <option value='{{ $m }}'>{{ $m }}</option>
+                                                            @endif
                                                         @endif
                                                     @endif
                                                 @endfor
@@ -532,39 +644,31 @@ $(function(){
                                         </div>
                                         月
                                         <div class="select-arrow">
-                                            <select class="select-box" id="ended_at_date_day" name="ended_date_at_day" onChange="set_ended_at_date()">
-                                                @for($d=1; $d<=31; $d++)
-                                                    @if($d < 10)
-                                                        @if($d == explode('-', date('Y-m-d', strtotime('1day')))[2])
-                                                            <option value='0{{ $d }}' selected>{{ $d }}</option>
-                                                        @else
-                                                            <option value='0{{ $d }}'>{{ $d }}</option>
-                                                        @endif
-                                                    @else
-                                                        @if($d == date('d')+1)
-                                                            <option value='{{ $d }}' selected>{{ $d }}</option>
-                                                        @else
-                                                            <option value='{{ $d }}'>{{ $d }}</option>
-                                                        @endif
-                                                    @endif
-                                                @endfor
-                                            </select>
+                                            <select class="select-box" id="ended_at_day" name="ended_at_day" onChange="setEndedDay();"></select>
                                         </div>
                                         日
                                         <div class="select-arrow">
-                                            <select class="select-box" id="ended_at_time" name="ended_at_time" onChange="set_ended_at_date()">
+                                            <select class="select-box" id="ended_at_time" name="ended_at_time" onChange="setEndedDay()">
                                             @for($h=0; $h<=24; $h++)
-                                                @if($h < 10)
-                                                    @if($h == date('H'))
-                                                        <option value='0{{ $h }}0000' selected>{{ $h }}</option>
+                                                @if(!empty(old('ended_at_time')) === true)
+                                                    @if($h < 10)
+                                                        <option value='0{{ $h }}0000' {{ (substr(old('ended_at_time'), 1, 1) == $h) ? 'selected' : '' }}>{{ $h }}</option>
                                                     @else
-                                                        <option value='0{{ $h }}0000'>{{ $h }}</option>
+                                                        <option value='{{ $h }}0000' {{ (substr(old('ended_at_time'), 0, 2) == $h) ? 'selected' : '' }}>{{ $h }}</option>
                                                     @endif
                                                 @else
-                                                    @if($h == date('H'))
-                                                        <option value='{{ $h }}0000' selected>{{ $h }}</option>
+                                                    @if($h < 10)
+                                                        @if($h == date('H'))
+                                                            <option value='0{{ $h }}0000' selected>{{ $h }}</option>
+                                                        @else
+                                                            <option value='0{{ $h }}0000'>{{ $h }}</option>
+                                                        @endif
                                                     @else
-                                                        <option value='{{ $h }}0000'>{{ $h }}</option>
+                                                        @if($h == date('H'))
+                                                            <option value='{{ $h }}0000' selected>{{ $h }}</option>
+                                                        @else
+                                                            <option value='{{ $h }}0000'>{{ $h }}</option>
+                                                        @endif
                                                     @endif
                                                 @endif
                                             @endfor
@@ -572,14 +676,12 @@ $(function(){
                                         </div>
                                         時
                                     </div>
-
-                                    <input id="ended_at_date" class="input form-control{{ $errors->has('ended_at_date') ? ' is-invalid' : '' }}" name="ended_at_date" type="hidden" value="{{ old('ended_at_date')}}">
-                                    @if ($errors->has('ended_at_date'))
+                                    <input id="ended_at" class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}" name='ended_at' type="hidden" value="{{ old('ended_at')}}">
+                                    @if ($errors->has('ended_at'))
                                         <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('ended_at_date') }}</strong>
+                                            <strong>{{ $errors->first('ended_at') }}</strong>
                                         </div>
-                                    @endif
-                                
+                                    @endif                            
                                 </div>
                             </div>
                         </div>
@@ -650,11 +752,9 @@ $(function(){
                                     <div class="select-container__wrapper__select-area__field__control control">
                                         <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
                                             <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                                <option></option>
+                                                <option disabled selected></option>
                                                 @foreach($partners as $partner)
-                                                    <option value={{ $partner->id }} >
-                                                        {{ $partner->name }}
-                                                    </option>
+                                                    <option value="{{ $partner->id }}" {{ (old('partner_id') === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
                                                 @endforeach
                                             </select>
                                             

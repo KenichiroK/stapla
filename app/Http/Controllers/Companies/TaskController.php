@@ -91,8 +91,8 @@ class TaskController extends Controller
         $task->partner_id      = $request->partner_id;
         $task->name            = $request->task_name;
         $task->content         = $request->task_content;
-        $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at_date));
-        $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at_date));
+        $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
+        $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
         $task->status          = 1;
         $task->purchaseorder   = false;
         $task->invoice         = false;
