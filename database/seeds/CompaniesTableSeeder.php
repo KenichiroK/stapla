@@ -7,6 +7,6 @@ class CompaniesTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create('ja_JP');
-        factory(App\Models\Company::class, 2)->create(); 
+        factory(App\Models\Company::class, 4)->create(); 
     }
 }
