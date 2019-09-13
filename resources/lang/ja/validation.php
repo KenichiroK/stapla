@@ -35,10 +35,8 @@ return [
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
     'different' => 'The :attribute and :other must be different.',
-    'digits' => ':attributeは:digits桁以内で入力してください',
-    // 範囲の指定が出てきた時に対応できるようにコメントアウトにしています。
-    // 'digits_between' => 'The :attribute must be between :min and :max digits.',
-    'digits_between' => ':attributeは正しい桁数で入力してください',
+    'digits' => ':attributeは:digits桁で入力してください',
+    'digits_between' => ':attributeは:min桁以上、:max桁以内で入力してください',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
     'email' => ':attribute は有効なEメールアドレスを入力してください.',

@@ -26,7 +26,7 @@ class CompanyAndCompanyUserRequest extends FormRequest
         return [
             'company_name'       => 'required | string | max:64',
             'representive_name'  => 'required | string | max:64',
-            'zip_code'           => 'required | numeric | digits:8',
+            'zip_code'           => 'required | numeric | digits:7',
             'address_prefecture' => 'required',
             'address_city'       => 'required | string | max:64',
             'tel'                => 'required | numeric | digits_between:10,11',
