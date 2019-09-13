@@ -20,6 +20,13 @@ const setPreview = (input) => {
   }
 }
 
+// 郵便番号入力欄の自動遷移
+function nextField(t, name, maxlength) {
+  if (t.value.length >= maxlength) {
+    t.form.elements[name].focus();
+  }
+}
+
 const setPostal = () => {
   const postal_front = document.getElementById('postal_front').value;
   const postal_back = document.getElementById('postal_back').value;
@@ -135,9 +142,9 @@ $pref = array(
 						<div class="input-container zipcode-container">
 							<p>郵便番号</p>
 							<div class="zipcode-container__wrapper">
-								<input type="text" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
+								<input type="text" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 								<span class="hyphen"><hr></span>
-								<input type="text" name="zip_code_back" id="postal_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+								<input type="text" name="zip_code_back" id="postal_back" value="{{ old('zip_code_back') }}" maxlength="4" onchange="setPostal()">
 								<input type="hidden" name="zip_code" id="postal" value="{{ old('zip_code') }}">
 							</div>	
 							@if ($errors->has('zip_code'))
@@ -188,11 +195,11 @@ $pref = array(
 						<div class="tel-container">
 							<p>電話番号</p>
 								<div class="tel-container__wrapper">
-									<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front') }}" onchange="setTel()">
+									<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front') }}" maxlength="4" onchange="setTel()">
 									<span class="hyphen"><hr></span>
-									<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle') }}" onchange="setTel()">
+									<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle') }}" maxlength="4" onchange="setTel()">
 									<span class="hyphen"><hr></span>
-									<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back') }}" onchange="setTel()">
+									<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back') }}" maxlength="4" onchange="setTel()">
 									<input type="hidden" name="tel" id="tel" value="{{ old('tel') }}">
 								</div>
 								@if ($errors->has('tel'))
@@ -252,8 +259,6 @@ $pref = array(
 					</div>
 				</div>
 				
-				
-
 				<div class="btn-container">
 					<button type="submit">確認</button>
 				</div>
