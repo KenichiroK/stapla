@@ -13,7 +13,7 @@
         </div>
 
         <div class="icon-imgbox">
-            <img src="../../../images/icon_small-down.png" alt="">
+            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
         </div>
     </div>
     
@@ -53,7 +53,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_home.png" alt="">
+                            <img src="{{ asset('images/icon_home.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ホーム
@@ -63,7 +63,7 @@
                 <li>
                     <a href="/company/dashboard">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_dashboard.png" alt="">
+                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ダッシュボード
@@ -73,7 +73,7 @@
                 <li>
                     <a href="/company/project">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_inbox.png" alt="">
+                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             プロジェクト
@@ -83,7 +83,7 @@
                 <li>
                     <a href="/company/task" class="isActive">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_products-active.png" alt="">
+                            <img src="{{ asset('images/icon_products-active.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             タスク
@@ -93,7 +93,7 @@
                 <li>
                     <a href="/company/document">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_invoices.png" alt="">
+                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             書類
@@ -103,7 +103,7 @@
                 <li>
                     <a href="/company/partner">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_customers.png" alt="">
+                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             パートナー
@@ -113,7 +113,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_calendar.png" alt="">
+                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             カレンダー
@@ -123,7 +123,7 @@
                 <li>
                     <a href="#">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_help-center.png" alt="">
+                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             ヘルプセンター
@@ -133,7 +133,7 @@
                 <li>
                     <a href="/company/setting/general">
                         <div class="icon-imgbox">
-                            <img src="../../../images/icon_setting.png" alt="">
+                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
                         </div>
                         <div class="textbox">
                             設定
@@ -167,27 +167,31 @@
                 <div class="content">
                     <!-- ステータス各部分 -->
                     <ul class="parts-container">
-                    @for($i = 0; $i < 14; $i++)
-                        <li class="parts-container__wrapper"> 
-                            <!-- ステータス名表示 -->
-                            <div class="parts-container__wrapper__textdisplayarea">
-                                <div class="parts-container__wrapper__textdisplayarea__textdisplay">
-                                    <div class="parts-container__wrapper__textdisplayarea__textdisplay__text">
-                                        {{ $statusName_arr[$i] }}
+                        @for($i = 0; $i < 14; $i++)
+                        <!-- <a href="task/create"> -->
+                            <li class="parts-container__wrapper">
+                            <a href="{{ route('company.task.status.statusIndex', ['task_status' => $i ]) }}">
+                                <!-- ステータス名表示 -->
+                                <div class="parts-container__wrapper__textdisplayarea">
+                                    <div class="parts-container__wrapper__textdisplayarea__textdisplay">
+                                        <div class="parts-container__wrapper__textdisplayarea__textdisplay__text">
+                                            {{ $statusName_arr[$i] }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- ステータス表示数部分 -->
-                            
-                            <div class="parts-container__wrapper__numberdisplayarea">
+                                <!-- ステータス表示数部分 -->
+                                
+                                <div class="parts-container__wrapper__numberdisplayarea">
 
-                                <div class="parts-container__wrapper__numberdisplayarea__numberdisplay">
-                                    <div class="parts-container__wrapper__numberdisplayarea__numberdisplay__number">
-                                        {{ $status_arr[$i] }}
+                                    <div class="parts-container__wrapper__numberdisplayarea__numberdisplay">
+                                        <div class="parts-container__wrapper__numberdisplayarea__numberdisplay__number">
+                                            {{ $status_arr[$i] }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
+                            </a>
+                            </li>
+                        <!-- </a> -->
                         @endfor
                     </ul>
                 </div>
@@ -196,8 +200,8 @@
         <!-- Task -->
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
-                <li class="all isActive"><a href="/company/task">タスク一覧</a></li>
-                <li class="done"><a href="/company/task/done">完了したタスク</a></li>
+                <li class="all isActive"><a href="{{ route('company.task.index') }}">タスク一覧</a></li>
+                <li class="done"><a href="{{ route('company.task.status.statusIndex', ['task_status' => 13 ]) }}">完了したタスク</a></li>
             </ul>
             <div class="task-container__createarea">
                 <div class="task-container__createarea__buttonarea control">
