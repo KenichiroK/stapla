@@ -11,7 +11,7 @@
 |
 */
 
-Auth::routes();
+// Auth::routes();
 
 Route::group(['prefix' => 'partner'], function(){
 	//login   
@@ -121,10 +121,13 @@ Route::group(['prefix' => 'company'], function(){
 
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
-		Route::get('/task/done', 'Companies\TaskController@doneIndex')->name('company.task.done.index');
-		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
+		// task statusIndex
+		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
+		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create.create');
         Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.create');
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
+		
+
 
 		// task status change
 		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');

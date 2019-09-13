@@ -104,6 +104,25 @@
             border-right: 1px solid #E9E9F0;
             height: 75px;
             margin-top: 0;
+            // display: inline-block;
+            // padding: 0 32px 16px;
+            &.isActive{
+                border-bottom: 4px solid #43425D;
+                padding: 0 32px 16px;
+                a{
+                    color: #43425D;
+                    font-weight: bold;
+                }
+            }
+            a{
+                color: #7B7A9A;
+                font-size: 16px;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+            
+
             &__numberdisplayarea {
                 &__numberdisplay {
                     padding:  10px 0;
