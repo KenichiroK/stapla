@@ -29,11 +29,11 @@ class PurchaseOrderController extends Controller
 
     public function store(CreatePurchaseOrderRequest $request)
     {
+        // return $request;
+
         $auth = Auth::user();
         $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
         $company = Company::findOrFail($companyUser->company_id);
-        $tasks = Task::where('company_id', $company->id)->with(['taskPartners.partner'])->get();
-
         $purchaseOrder = new PurchaseOrder;
         $purchaseOrder->company_id = $company->id;
         $purchaseOrder->companyUser_id       = $request->companyUser_id;
@@ -49,20 +49,23 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->company_building     = $company->address_building;
         $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->companyUser_id)->name;
         $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
-        $purchaseOrder->task_name            = $request->task_name;
         $purchaseOrder->task_delivery_format = $request->task_delivery_format;
         $task = Task::findOrFail($request->task_id);
+        // return $task;
+        $purchaseOrder->task_name            = $task->name;
         $purchaseOrder->task_ended_at        = $task->ended_at;
         $purchaseOrder->task_price           = $task->price;
         $purchaseOrder->task_tax             = $task->tax;
         $purchaseOrder->save();
+        // return $request;
 
-        return redirect()->route('company.document.purchaseOrder.show', [$purchaseOrder->id]);
+
+        return redirect()->route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]);
     }
 
-    public function show($id)
+    public function show($purchaseOrder_id)
     {
-        $purchaseOrder = PurchaseOrder::findOrFail($id);
+        $purchaseOrder = PurchaseOrder::findOrFail($purchaseOrder_id);
         $task = Task::findOrFail($purchaseOrder->task_id);
         $auth = Auth::user();
         $company_user = CompanyUser::where('auth_id', $auth->id)->first();

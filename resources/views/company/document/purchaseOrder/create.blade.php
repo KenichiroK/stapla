@@ -162,7 +162,8 @@
 				<dl>
 					<dt>タスク</dt>
 					<dd>
-						<p>{{ $task->name }}</p>
+                        <p>{{ $task->name }}</p>
+                        <input type="hidden" name="task_id" value="{{ $task->id }}">
 					</dd>
                 </dl>
                 
@@ -294,6 +295,7 @@
                     <dt>パートナー</dt>
                     <dd>
                         <p>{{ $task->partner->name }}</p>
+                        <input type="hidden" name="partner_id"  value="{{ $task->partner_id }}">
 					</dd>
                 </dl>
 
@@ -303,6 +305,7 @@
 		<div class="button-container">
 			<button type="submit">作成</button>
 		</div>
-	</form>
+    </form>
+    
 </div>
 @endsection
