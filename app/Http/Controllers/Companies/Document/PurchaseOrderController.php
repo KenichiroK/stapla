@@ -29,8 +29,6 @@ class PurchaseOrderController extends Controller
 
     public function store(CreatePurchaseOrderRequest $request)
     {
-        // return $request;
-
         $auth = Auth::user();
         $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
         $company = Company::findOrFail($companyUser->company_id);
@@ -51,14 +49,11 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
         $purchaseOrder->task_delivery_format = $request->task_delivery_format;
         $task = Task::findOrFail($request->task_id);
-        // return $task;
         $purchaseOrder->task_name            = $task->name;
         $purchaseOrder->task_ended_at        = $task->ended_at;
         $purchaseOrder->task_price           = $task->price;
         $purchaseOrder->task_tax             = $task->tax;
         $purchaseOrder->save();
-        // return $request;
-
 
         return redirect()->route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]);
     }
