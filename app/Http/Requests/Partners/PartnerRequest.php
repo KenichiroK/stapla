@@ -26,8 +26,8 @@ class PartnerRequest extends FormRequest
     {
         return [
             'name'         => 'required | string | max:64',
-            'name'         => 'required | string | max:64',
             'occupations'  => 'max:64',
+            'introduction' => 'max:200',
             'zip_code'     => 'required | numeric | digits:7',
             'prefecture'   => new Prefecture(),
             'city'         => 'required | string | max:64',
