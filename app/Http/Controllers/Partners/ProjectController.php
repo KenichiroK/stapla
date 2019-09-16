@@ -20,7 +20,7 @@ class ProjectController extends Controller
         $tasks = Task::where('project_id', $project->id)->where('partner_id', $partner->id)->get();
         $non_task = '';
         if ($tasks->count() === 0) {
-            $non_task = $partner->name.' 様がアサインさ入れているタスクはありません。';
+            $non_task = $partner->name.' 様がアサインされているタスクはありません。';
         }
         return view('partner/project/show', compact('partner', 'project', 'tasks', 'non_task'));
     }
