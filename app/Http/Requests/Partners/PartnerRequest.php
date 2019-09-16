@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Partners;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Prefecture;
 
 class PartnerRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ class PartnerRequest extends FormRequest
             'name'         => 'required | string | max:64',
             'occupations'  => 'max:64',
             'zip_code'     => 'required | numeric | digits:7',
-            'prefecture'   => 'required',
+            'prefecture'   => new Prefecture(),
             'city'         => 'required | string | max:64',
             'street'       => 'required | string | max:64',
             'tel'          => 'required | numeric | digits_between:10,11',
