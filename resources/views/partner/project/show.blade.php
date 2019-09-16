@@ -89,6 +89,9 @@
             </div>
 
             <div class="task-container__content">
+                @if ($tasks->count() === 0)
+                    <p class="non-task-text">{{ $non_task }}</p>
+                @endif
                 @foreach ($tasks as $task)
                 <a class="task-show-link" href="/partner/task/{{ $task->id }}">
                     <ul class="task-item-list task-container__content__list">

@@ -17,7 +17,11 @@ class ProjectController extends Controller
         $partnerAuth = Auth::user();
         $partner = Partner::where('partner_id', $partnerAuth->id)->first();
         $project = Project::findOrFail($project_id);
-        $tasks = Task::where('project_id', $project->id)->get();
-        return view('partner/project/show', compact('partner', 'project', 'tasks'));
+        $tasks = Task::where('project_id', $project->id)->where('partner_id', $partner->id)->get();
+        $non_task = '';
+        if ($tasks->count() === 0) {
+            $non_task = $partner->name.' 様がアサインさ入れているタスクはありません。';
+        }
+        return view('partner/project/show', compact('partner', 'project', 'tasks', 'non_task'));
     }
 }
