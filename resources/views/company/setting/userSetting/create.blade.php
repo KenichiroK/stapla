@@ -178,6 +178,9 @@ const setPreview = (input) => {
     <div class="charge-container__top-wrapper">
         <div class="title-container">
             <h3>会社担当者設定</h3>
+            <div class="btn-container">
+                <a href="/company/invite/company">担当者追加</a>
+            </div>
         </div>
     </div>
     <div class="charge-container__item">
@@ -209,8 +212,8 @@ const setPreview = (input) => {
             <p id="more_btn" class="charge-container__content__showmore__btn">もっと見る</p>
         </div>
     </div>
-    <div class="btn-container">
+    <!-- <div class="btn-container">
         <a href="/company/invite/company">担当者追加</a>
-    </div>
+    </div> -->
 </div>
 @endsection
