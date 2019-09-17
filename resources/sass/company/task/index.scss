@@ -163,10 +163,8 @@
         margin-bottom: 30px;
         li{
             display: inline-block;
-            padding: 0 32px 16px;
             &.isActive{
                 border-bottom: 4px solid #43425D;
-                padding: 0 32px 16px;
                 a{
                     color: #43425D;
                     font-weight: bold;
@@ -175,6 +173,9 @@
             a{
                 color: #7B7A9A;
                 font-size: 16px;
+                display: block;
+                padding: 0 32px 16px;
+                width: 100%;
                 &:hover{
                     text-decoration: none;
                 }
