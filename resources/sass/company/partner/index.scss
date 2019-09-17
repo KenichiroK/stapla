@@ -42,7 +42,17 @@
             }
 
             .btn-container {
-                font-weight: bold;
+                a{
+                    background-color: #43425d;
+                    border-color: #43425d;
+                    border-radius: 100px;
+                    color: #fff;
+                    font-size: 12px;
+                    padding: 10px 18px;
+                    font-weight: bold;
+                    text-decoration: none;
+                    display: block;
+                }
             }
         }
         .profile-list {
@@ -138,12 +148,6 @@
                     }
                 }
             }
-            .btn-container {
-                width: 100%;
-                text-align: center;
-                font-weight: bold;
-                margin-top: 32px;
-            }
         }
     }
 }
@@ -223,7 +227,7 @@
                 // display:flex;
                 // margin: 0 0 0 auto;
                 position: absolute;
-                right: 40px;
+                right: 10px;
                 top: 5px;
                 width: 16px;
                 &__pen {
@@ -231,36 +235,6 @@
                 }
                 &__pen:hover {
                     color: #4a4a4a;
-                }
-            }
-            &__close-icons {
-                position: absolute;
-                right: 0px;
-                top: 15px;
-                .close-parts {
-                    display: inline-block;
-                    width: 23px;
-                    height: 15px;
-                    position: relative;
-                    cursor: pointer;
-                }
-                .close-parts span::before,
-                .close-parts span::after {
-                    display: block;
-                    content: "";
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    width: 84%;
-                    height: 16%;
-                    margin: -8% 0 0 -42%;
-                    background: #a4afb7;
-                }
-                .close-parts span::before {
-                    transform: rotate(-45deg);
-                }
-                .close-parts span::after {
-                    transform: rotate(45deg);
                 }
             }
         }

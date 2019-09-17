@@ -158,14 +158,15 @@
 
         <div class="top-container">
             <h1 class="top-container__title">パートナー</h1>
-            <div>
                 <!-- <p class="control has-icons-left serch-wrp">
                     <input class="search-name input" type="text" placeholder="パートナーを検索">
                     <span class="icon">
                     <img src="{{ asset('images/searchicon.png') }}" alt="serch">
                     </span>
                 </p> -->
-            </div>
+                <div class="btn-container">
+                    <a href="/company/invite/partner">パートナー追加</a>
+                </div>
         </div>
         
         <div class="profile-list">
@@ -195,11 +196,6 @@
                                     <a href="/partner/profile_setting"><img src="{{ asset('images/edit.png') }}" alt=""></a>
                                 </div>
                             </div>
-                            <div class="main-content__close-icons">
-                                <div>
-                                    <a href=""><div class="close-parts"><span></span></div></a>
-                                </div>
-                            </div>
                         </div>
                         <div class="icon-list-wrp">
                             <div class="icon-list">
@@ -220,9 +216,6 @@
                 <div class="pagenate-container__wrapper">
                     {{ $partners->links() }}
                 </div>
-            </div>
-            <div class="btn-container">
-                <a href="/company/invite/partner">パートナーを招待する</a>
             </div>
         </div>
     </div>
