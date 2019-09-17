@@ -262,18 +262,34 @@ $pref = array(
 			<div class="title-container">
 				<h4>基本情報</h4>
 			</div>
-			<div class="name-container">
-				<p>屋号 / 名前</p>
-				@if ($partner)
-					<input type="text" name="name" value="{{ old('name', $partner->name) }}">
-				@else
-					<input type="text" name="name" value="{{ old('name') }}">
-				@endif
-				@if ($errors->has('name'))
-					<div class="error-msg">
-						<strong>{{ $errors->first('name') }}</strong>
-					</div>
-				@endif
+			<div class="yago-name-container">
+				<div class="yago-container">
+					<p>屋号</p>
+					@if ($partner)
+						<input type="text" name="name" value="{{ old('name', $partner->name) }}">
+					@else
+						<input type="text" name="name" value="{{ old('name') }}">
+					@endif
+					@if ($errors->has('name'))
+						<div class="error-msg">
+							<strong>{{ $errors->first('name') }}</strong>
+						</div>
+					@endif
+				</div>
+
+				<div class="name-container">
+					<p>名前</p>
+					@if ($partner)
+						<input type="text" name="name" value="{{ old('name', $partner->name) }}">
+					@else
+						<input type="text" name="name" value="{{ old('name') }}">
+					@endif
+					@if ($errors->has('name'))
+						<div class="error-msg">
+							<strong>{{ $errors->first('name') }}</strong>
+						</div>
+					@endif
+				</div>
 			</div>
 
 			<div class="above-address-container">
