@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/company/project">
+                    <a href="{{ route('company.project.index') }}">
                         <div class="icon-imgbox">
                             <img src="{{ asset('images/icon_inbox.png') }}" alt="">
                         </div>
@@ -198,7 +198,7 @@
         <div class="title-container">
             <h4>プロジェクト</h4>
             <div class="btn-container">
-                <a href="project/create">プロジェクト作成</a>
+                <a href="{{ route('company.project.create') }}">プロジェクト作成</a>
             </div>
         </div>
 
@@ -286,7 +286,7 @@
         <div class="title-container">
             <h4>タスク</h4>
             <div class="btn-container">
-                <a href="/company/task/create">タスク作成</a>
+                <a href="{{ route('company.task.create') }}">タスク作成</a>
             </div>
         </div>
 
