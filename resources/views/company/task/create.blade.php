@@ -489,7 +489,7 @@ $(function(){
                         <div class="main-container__wrapper__item-container">
                             <div class="item-name-wrapper period">
                                 <div class="item-name-wrapper__item-name">
-                                    プロジェクト期間
+                                    タスク期間
                                 </div>
                             </div>
                             <div class="main-container__wrapper__item-container__calendar-content">
