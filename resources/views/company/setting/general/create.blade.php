@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/setting/general/index.css') }}">
 <script>
-const setPreview = (input) => {
+function setPreview(input){
   const preview = document.getElementById('preview');
 
   if (input.files && input.files[0]) {
@@ -17,14 +17,21 @@ const setPreview = (input) => {
   }
 }
 
-const setPostal = () => {
+// 郵便番号自動遷移
+function nextField(t, name, maxlength){
+    if(t.value.length >= maxlength){
+        t.form.elements[name].focus();
+    }
+}
+
+function setPostal(){
   const postal_front = document.getElementById('postal_front').value;
   const postal_back = document.getElementById('postal_back').value;
   const postal = document.getElementById('postal');
   postal.value = postal_front + postal_back;
 }
 
-window.onload = () => {
+window.onload = function(){
   setPostal();
 }
 </script>
@@ -281,18 +288,18 @@ $pref = array(
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
 						@if($company)
-							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($company->zip_code, 0, 3)) }}" onchange="setPostal()">
+							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($company->zip_code, 0, 3)) }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($company->zip_code, 3, 7)) }}" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($company->zip_code, 3, 7)) }}" maxlength="4" onchange="setPostal()">
                             <input id="postal" type="hidden" name="zip_code">
 						@else
-							<input class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
+							<input class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
                             <span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" maxlength="4" onchange="setPostal()">
                             <input id="postal" type="hidden" name="zip_code">
 						@endif
 						
