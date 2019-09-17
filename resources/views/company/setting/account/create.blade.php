@@ -185,7 +185,7 @@ const setPreview = (input) => {
           <div class="plan">プラン</div>
           <div class="plan-name">ライトプラン（年払い）</div>
           <div class="btn-container">
-            <button type="submit">プラン変更</button>
+            <button type="button" onclick="submit();">プラン変更</button>
           </div>
       </div>
     </div>

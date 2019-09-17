@@ -303,7 +303,7 @@
 		</div>
 
 		<div class="button-container">
-			<button type="submit">作成</button>
+			<button type="button" onclick="submit();">作成</button>
 		</div>
     </form>
     

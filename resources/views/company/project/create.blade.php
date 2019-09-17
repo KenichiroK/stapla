@@ -287,7 +287,7 @@ window.onload = function(){
 
 @section('content')
 <div class="main__container">
-    <form action="{{ url('/company/project') }}" method='POST' enctype="multipart/form-data">
+    <form action="{{ route('company.project.store') }}" method='POST' enctype="multipart/form-data">
         @csrf
         <div class="main__container__wrapper">
             <div class="top-container">
@@ -543,10 +543,10 @@ window.onload = function(){
             </div>
             <div class="button-container">
                 <div class="preview-button-wrapper">
-                    <button type="submit" class="preview-button-wrapper__btn button">プレビュー</button>
+                    <button type="button" onclick="submit();" class="preview-button-wrapper__btn button">プレビュー</button>
                 </div>
                 <div class="button-wrapper">
-                    <button type="submit" class="button-wrapper__btn button">作成</button>
+                    <button type="button" onclick="submit();" class="button-wrapper__btn button">作成</button>
                 </div>
             </div>
         

@@ -862,7 +862,7 @@ $(function(){
                 </div>
 
                 <div class="button-wrapper">
-                    <button type='submit' class="button-wrapper__btn button">作成</button>
+                    <button type="button" onclick="submit();" class="button-wrapper__btn button">作成</button>
                 </div>
                 
             </div>
