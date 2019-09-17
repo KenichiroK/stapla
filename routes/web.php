@@ -55,8 +55,8 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
 		
 		// profile
-		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
-		Route::post('profile', 'Partners\ProfileController@store')->name('partner.profile.store');
+		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
+		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
 		
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
@@ -67,12 +67,12 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('setting/notification', 'Partners\Setting\NotificationController@store')->name('partner.setting.notification.store');
 		
 		// purchase-order
-		Route::get('order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.purchaseOrder.show');
+		Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.purchaseOrder.show');
 		
 		// invoice
-		Route::get('invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.invoice.create');
+		Route::get('document/invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
-		Route::get('invoice/{id}', 'Partners\InvoiceController@show')->name('partner.invoice.show');
+		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.invoice.show');
 
 		// logout
     	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');

@@ -40,7 +40,36 @@
                                 <a><img src="{{ asset('images/icon_notification.png') }}" alt="serch"></a>
                             </li>
                         </ul>
-                        @yield('header-profile')
+                        <div class="header-proflie">
+                            <div class="option">
+                                <div class="user-name">
+                                    {{ $company_user->name }}
+                                </div>
+
+                                <div class="icon-imgbox">
+                                    <img src="{{ asset('images/icon_small-down.png') }}" alt="">
+                                </div>
+                            </div>
+
+                            <div class="optionBox">
+                                <div class="balloon">
+                                    <ul>
+                                        <li><a href="">プロフィール設定</a></li>
+                                        <li>
+                                            <form method="POST" action="{{ route('company.logout') }}">
+                                                @csrf
+                                                <button type="submit">ログアウト</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+
+                            <div class="user-imgbox">
+                                <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -48,7 +77,112 @@
 
         <main>
             <div class="sidebar-wrapper">
-                @yield('sidebar')
+                <div class="sidebar__container">
+                    <div class="sidebar__container__wrapper">
+                        <aside class="menu menu__container">
+                            <a href="/company/dashboard">
+                                <div class="menu__container--label">
+                                    <div class="menu-label">
+                                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                                    </div>
+                                </div>
+                            </a>
+                            <ul class="menu-list menu menu__container__menu-list">
+                                <li>
+                                    <a href="#">
+                                        <div class="icon-imgbox">
+                                            <img src="{{ asset('images/icon_home.png') }}" alt="">
+                                        </div>
+                                        <div class="textbox">
+                                            ホーム
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('company.dashboard') }}" class="{{ strpos(request()->fullUrl(), 'dashboard') ? 'isActive' : '' }}">
+                                        <div class="icon-imgbox">
+                                            <img src="{{ asset('images/icon_dashboard-active.png') }}" alt="">
+                                        </div>
+                                        <div class="textbox">
+                                            ダッシュボード
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('company.project.index') }}" class="{{ strpos(request()->fullUrl(), 'project') ? 'isActive' : '' }}">
+                                        <div class="icon-imgbox">
+                                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
+                                        </div>
+                                        <div class="textbox">
+                                            プロジェクト
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('company.task.index') }}" class="{{ strpos(request()->fullUrl(), 'task') ? 'isActive' : '' }}">
+                                        <div class="icon-imgbox">
+                                            <img src="{{ asset('images/icon_products.png') }}" alt="">
+                                        </div>
+                                        <div class="textbox">
+                                            タスク
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('company.document.index') }}" class="{{ strpos(request()->fullUrl(), 'document') ? 'isActive' : '' }}">
+                                        <div class="icon-imgbox">
+                                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
+                                        </div>
+                                        <div class="textbox">
+                                            書類
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('company.partner.index') }}" class="{{ strpos(request()->fullUrl(), 'partner') ? 'isActive' : '' }}">
+                                        <div class="icon-imgbox">
+                                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
+                                        </div>
+                                        <div class="textbox">
+                                            パートナー
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="icon-imgbox">
+                                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
+                                        </div>
+                                        <div class="textbox">
+                                            カレンダー
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="icon-imgbox">
+                                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
+                                        </div>
+                                        <div class="textbox">
+                                            ヘルプセンター
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('company.setting.general.create') }}" class="{{ strpos(request()->fullUrl(), 'setting') ? 'isActive' : '' }}">
+                                        <div class="icon-imgbox">
+                                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
+                                        </div>
+                                        <div class="textbox">
+                                            設定
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            
+                        </aside>
+                    </div>
+                </div>
             </div>
 
             <div class="content-wrapper">
