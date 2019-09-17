@@ -176,6 +176,9 @@ return [
         // 担当者
         'tel' => '電話番号',
         'tel' => '電話番号',
+        
+        // パートナー
+        'address_building' => '建物名',
 
         // project
         'project_id'      => 'プロジェクト',
