@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Partners;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Prefecture;
 
 class PartnerRequest extends FormRequest
 {
@@ -24,24 +25,14 @@ class PartnerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'       => 'required',
-            'zip_code'   => 'required',
-            'prefecture' => 'required',
-            'city'       => 'required',
-            'street'     => 'required',
-            'tel'        => 'required',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'name'       => '氏名を入力してください',
-            'zip_code'   => '郵便番号を入力してださい',
-            'prefecture' => '都道府県を入力してください',
-            'city'       => '市町村を入力してください',
-            'street'     => '番地を入力してください',
-            'tel'        => '電話番号を入力してください',
+            'name'         => 'required | string | max:64',
+            'occupations'  => 'string | max:64',
+            'introduction' => 'string | max:200',
+            'zip_code'     => 'required | numeric | digits:7',
+            'prefecture'   => new Prefecture(),
+            'city'         => 'required | string | max:64',
+            'street'       => 'required | string | max:64',
+            'tel'          => 'required | numeric | digits_between:10,11',
         ];
     }
 }
