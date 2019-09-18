@@ -240,12 +240,17 @@
                     <table class="task-container__wrapper__table-wrapper__table">
                         <!-- タイトルヘッダー部分 -->
                         <tr class="task-container__wrapper__table-wrapper__table__headerrow">
-                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">プロジェクト</th>
+                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">プロジェクト
+                                <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
+                            </th>
                             <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">タスク</th>
                             <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">パートナー</th>
-                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">ステータス</th>
-                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">請求額</th>
-                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">ステータス変更</th>
+                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">ステータス
+                                <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
+                            </th>
+                            <th class="task-container__wrapper__table-wrapper__table__headerrow__tableheader">請求額
+                                <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
+                            </th>
                         </tr>
                         <!-- テーブルデータ部分 -->
                         @foreach($tasks as $task)
@@ -295,7 +300,6 @@
                                     </div>
                                 </td>
                                 <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata">¥{{ number_format($task->price) }}</td>
-                                <td class="task-container__wrapper__table-wrapper__table__datarow__tabledata"><button><a href="">完了</a></button></td>
                         </tr>
                         @endforeach
                     </table>
