@@ -5,6 +5,8 @@
 
     .title-container {
         margin-bottom: 40px;
+        display: flex;
+        justify-content: space-between;
 
         h3 {
             font-weight: bold;
@@ -12,6 +14,25 @@
             font-size: 28px;
             font-family: "Source Sans Pro";
             margin-bottom: 0;
+        }
+        .btn-container {
+
+            a {
+                background-color: #43425d;
+                font-weight: bold;
+                color: #fff;
+                padding: 8px 20px;
+                font-size: 15px;
+                border-radius: 100px;
+                outline: none;
+                text-decoration: none;
+                opacity: 1;
+                transition: 0.3s;
+            }
+
+            a:hover {
+                opacity: 0.7;
+            }
         }
     }
 
@@ -158,24 +179,6 @@
                 }
             }
         }
-        .btn-container {
-            text-align: center;
-
-            a {
-                background-color: #43425d;
-                font-weight: bold;
-                color: #fff;
-                padding: 8px 20px;
-                font-size: 15px;
-                border-radius: 100px;
-                outline: none;
-                text-decoration: none;
-            }
-
-            a:hover {
-                opacity: 0.7;
-                transition: 0.3s;
-            }
-        }
+        
     }
 }

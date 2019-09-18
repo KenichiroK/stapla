@@ -228,12 +228,7 @@ const setPreview = (input) => {
                     </div>
 
                     <div class="short-input-container">
-                        <p>企業名</p>
-                        <p class="text_content">{{ $companyUser->company->company_name }}</p>
-                    </div>
-
-                    <div class="short-input-container">
-                        <p>担当</p>
+                        <p>部署</p>
                         <input type="text" name="department" value="{{ old('department', $companyUser->department) }}">
                         @if ($errors->has('department'))
                             <div class="error-msg">
