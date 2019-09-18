@@ -156,6 +156,11 @@ $pref = array(
 						<div class="text-container">
 							<p>プロフィールメッセージ</p>
 							<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction') }}</textarea>
+							@if ($errors->has('introduction'))
+								<div class="error-msg">
+									<strong>{{ $errors->first('introduction') }}</strong>
+								</div>
+							@endif
 						</div>
 						
 					</div>

@@ -148,7 +148,7 @@
                 <!-- <a class="top-container__edit-btn" href="#"><div>編集</div></a> -->
             </div>
 
-            <div class="activity-log-container">
+            <!-- <div class="activity-log-container">
                 <div class="activity-log-container__left">
                     <div class="activity-log-container__left__name-container">
                         <div class="img-container"><img src="{{ asset('images/photoimg.png') }}" alt=""></div>
@@ -164,7 +164,7 @@
                         <i class="fa fa-list-ul"></i><span class="activity-log-container__right__btn-container__btn">アクティビティログ</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="detail-container">
                 <ul class="detail-container__list">
