@@ -178,6 +178,8 @@ return [
         'tel' => '電話番号',
         
         // パートナー
+        'occupations' => '職種',
+        'introduction' => 'プロフィールメッセージ',
         'address_building' => '建物名',
 
         // project
