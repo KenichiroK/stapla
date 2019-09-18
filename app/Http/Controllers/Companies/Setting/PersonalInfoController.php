@@ -16,11 +16,9 @@ class PersonalInfoController extends Controller
     public function edit()
     {
         $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
 
-        $completed = '';
-
-        return view('/company/setting/personalInfo/create', compact('companyUser', 'completed'));
+        return view('/company/setting/personalInfo/create', compact('company_user'));
     }
 
     public function update(PersonalRequest $request)

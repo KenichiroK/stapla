@@ -55,8 +55,8 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
 		
 		// profile
-		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
-		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
+		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.setting.profile.create');
+		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.setting.profile.store');
 		
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
@@ -67,12 +67,12 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('setting/notification', 'Partners\Setting\NotificationController@store')->name('partner.setting.notification.store');
 		
 		// purchase-order
-		Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.purchaseOrder.show');
+		Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.document.purchaseOrder.show');
 		
 		// invoice
-		Route::get('document/invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.invoice.create');
+		Route::get('document/invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
-		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.invoice.show');
+		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
 
 		// logout
     	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
@@ -150,7 +150,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document/outsourcingContract/{id}', 'Companies\Document\OutsourcingContractController@show')->name('company.document.OutsourcingContract.show');
 
 		//document invoice
-		Route::get('/document/invoice/{id}', 'Companies\Document\InvoiceController@show')->name('company.invoice.show');
+		Route::get('/document/invoice/{id}', 'Companies\Document\InvoiceController@show')->name('company.document.invoice.show');
 
 
 		// setting
@@ -158,8 +158,8 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/setting/general', 'Companies\Setting\GeneralController@update')->name('company.setting.general.update');
 		Route::get('/setting/companyElse', 'Companies\Setting\CompanyElseController@create')->name('company.setting.companyElse.create');
 		Route::post('/setting/companyElse', 'Companies\Setting\CompanyElseController@store')->name('company.setting.companyElse.store');
-		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create');
-		Route::get('/setting/account', 'Companies\Setting\AccountController@create');
+		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create')->name('company.setting.userSetting.create');
+		Route::get('/setting/account', 'Companies\Setting\AccountController@create')->name('company.setting.account.create');
 		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@edit')->name('company.setting.personalInfo.edit');
 		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@update')->name('company.setting.personalInfo.update');
         
@@ -176,7 +176,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
 
 		// invite
-		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.invite.partner.index');
+		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.partner.invite.partner.index');
 		Route::post('invite/partner',  'Companies\Invite\InvitePartnerController@send')->name('company.invite.partner.send');
 		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
 

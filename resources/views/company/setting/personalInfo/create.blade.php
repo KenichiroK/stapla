@@ -56,7 +56,7 @@ const setPreview = (input) => {
             <div class="edit-container">
                 <div class="image-container">
                     <div class="imgbox">
-                        <img id="profile_image_preview" src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                        <img id="profile_image_preview" src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
                     </div>
                     <label for="picture">
                         画像をアップロード
@@ -72,7 +72,7 @@ const setPreview = (input) => {
                 <div class="profile-container">
                     <div class="short-input-container">
                         <p>名前・ニックネーム</p>
-                        <input type="text" name="name" value="{{ old('name', $companyUser->name) }}">
+                        <input type="text" name="name" value="{{ old('name', $company_user->name) }}">
                         @if ($errors->has('name'))
                             <div class="error-msg">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -82,7 +82,7 @@ const setPreview = (input) => {
 
                     <div class="short-input-container">
                         <p>メールアドレス</p>
-                        <p class="text_content">{{ $companyUser->companyUserAuth->email }}</p>
+                        <p class="text_content">{{ $company_user->companyUserAuth->email }}</p>
                     </div>
 
                     <div class="short-input-container">
@@ -97,7 +97,7 @@ const setPreview = (input) => {
 
                     <div class="short-input-container last">
                         <p>職種</p>
-                        <input type="text" name="occupation" value="{{ old('occupation', $companyUser->occupation) }}">
+                        <input type="text" name="occupation" value="{{ old('occupation', $company_user->occupation) }}">
                         @if ($errors->has('occupation'))
                             <div class="error-msg">
                                 <strong>{{ $errors->first('occupation') }}</strong>
