@@ -167,14 +167,13 @@ const setPreview = (input) => {
     @endif
     
     <div class="title-container">
-        <h3>プロフィール管理画面</h3>
+        <h3>プロフィール設定</h3>
     </div>
 
     <div class="menu-container">
 		<ul>
 			<li><a href="" class="isActive">プロフィール</a></li>
 			<li><a href="">メールアドレス・パスワード設定</a></li>
-			<li><a href="">通知設定</a></li>
 		</ul>
 	</div>
 
