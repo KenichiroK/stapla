@@ -216,26 +216,32 @@
                 <ul class="detail-container__list">
                     <li class="detail-container__list__item margin--none"><div class="detail-container__list__item__name">プロジェクト名</div> <p class="detail-container__list__item__content">{{ $project->name }}</p> </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細</div><p class="detail-container__list__item__content desc-item">{{ $project->detail }}</p></li>
-                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">上長</div>
-                        <div class="detail-container__list__item__content">
-                            <div class="staff-item">
-                                <p class="name">井高 あすか</p>
-                            </div>
-                        </div> 
-                    </li>
-                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">経理</div>
-                        <div class="detail-container__list__item__content">
-                            <div class="staff-item">
-                                <p class="name">井高 あすか</p>
-                            </div>
-                        </div> 
-                    </li>
                     <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">担当者</div>
                         <div class="detail-container__list__item__content">
                             @foreach($project->projectCompanies as $projectCompany)
                             <div class="staff-item">
                                 <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectCompany->companyUser->picture) }}" alt=""></div>
                                 <p class="name">{{ $projectCompany->companyUser->name }}</p>
+                            </div>
+                            @endforeach
+                        </div> 
+                    </li>
+                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">上長</div>
+                        <div class="detail-container__list__item__content">
+                            @foreach($project->ProjectSuperiors as $projectSuperior)
+                            <div class="staff-item">
+                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectCompany->companyUser->picture) }}" alt=""></div>
+                                <p class="name">{{ $projectSuperior->companyUser->name }}</p>
+                            </div>
+                            @endforeach
+                        </div> 
+                    </li>
+                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">経理</div>
+                        <div class="detail-container__list__item__content">
+                            @foreach($project->ProjectAccountings as $projectAccounting)
+                            <div class="staff-item">
+                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectCompany->companyUser->picture) }}" alt=""></div>
+                                <p class="name">{{ $projectAccounting->companyUser->name }}</p>
                             </div>
                             @endforeach
                         </div> 
@@ -258,7 +264,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->price) }}円</div></li>
+                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->budget) }}円</div></li>
                     <!-- <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
                         <div class="detail-container__list__item__content file-item">
                             <div class="imgbox"><img src="{{ asset('images/file.png') }}" alt=""></div>
