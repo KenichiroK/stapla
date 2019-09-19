@@ -148,9 +148,6 @@
             <div class="page-title-container">
                 <div class="page-title-container__page-title">タスク詳細</div>
             </div>
-            <div class="button-wrapper">
-                <button type='submit' class="button-wrapper__btn button">編集</button>
-            </div>
         </div>
 
         <div class="detail">
