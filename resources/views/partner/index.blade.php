@@ -40,7 +40,38 @@
                                 <a><img src="{{ asset('images/icon_notification.png') }}" alt="serch"></a>
                             </li>
                         </ul>
-                        @yield('header-profile')
+                        <div class="header-proflie">
+                            <div class="option">
+                                <div class="user-name">
+                                    {{ $partner->name }}
+                                </div>
+
+                                <div class="icon-imgbox">
+                                    <img src="{{ asset('images/icon_small-down.png') }}" alt="">
+                                </div>
+                            </div>
+                            
+                            <div class="optionBox">
+                                <div class="balloon">
+                                    <ul>
+                                        <li><a href="">プロフィール設定</a></li>
+                                        <li>
+                                            <form method="POST" action="{{ route('partner.logout') }}">
+                                                @csrf
+                                                <button type="submit">ログアウト</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+
+                            <div class="user-imgbox">
+                                <a href="{{ route('partner.setting.profile.create') }}">
+                                    <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -48,7 +79,7 @@
 
         <main>
             <div class="sidebar-wrapper">
-                @yield('sidebar')
+               @include('partner.common.sidebar')
             </div>
 
             <div class="content-wrapper">
