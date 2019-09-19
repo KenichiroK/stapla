@@ -37,12 +37,15 @@ class CreateInvoiceRequest extends FormRequest
             'expences_num.*'        => 'required_with:expences_name.*,expences_unit_price.*,expences_total.*',
             'expences_unit_price.*' => 'required_with:expences_name.*,expences_num.*,expences_total.*',
             'expences_total.*'      => 'required_with:expences_name.*,expences_num.*,expences_unit_price.*',
+            'amount'                => 'lte:task_taxIncludedBudget'
+
         ];
     }
 
     public function messages()
     {
         return [
+            'amount.lte' => '請求額はタスクの予算内で作成して下さい。', 
         ];
     }
 
