@@ -321,9 +321,9 @@ const setPreview = (input) => {
             </div>
         </div>
         <div class="btn-container">
-            <div class="preview-btn">
+            <!-- <div class="preview-btn">
                 <button type="submit">プレビュー</button>
-            </div>
+            </div> -->
             <div class="save-btn">
                 <button type="submit">保存</button>
             </div>

@@ -145,7 +145,7 @@
     </div>
 
     <div class="message-container">
-        <h3>{{ $purchaseOrder->company->company_name }}様から{{ $purchaseOrder->task->name }}の以来が来ています。</h3>
+        <h3>{{ $purchaseOrder->company->company_name }}様から{{ $purchaseOrder->task->name }}の依頼が来ています。</h3>
     </div>
 
     <div class="document-container">

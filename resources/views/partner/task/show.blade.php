@@ -141,7 +141,6 @@
 @endsection
 
 @section('content')
-{{ $task }}
 <div class="main__container">
     <div class="main__container__wrapper">
         <div class="top">
