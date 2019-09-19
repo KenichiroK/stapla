@@ -141,7 +141,7 @@
 @endsection
 
 @section('content')
-
+{{ $task }}
 <div class="main__container">
     <div class="main__container__wrapper">
         <div class="top">
@@ -220,7 +220,7 @@
                 </dt>
                 <dd>
                     <div class="flex01 term-desc">
-                        <p class="start"><span>開始日</span>{{ date("Y年m月d日H時", strtotime($task->inspection_date)) }}</p>
+                        <p class="start"><span>開始日</span>{{ date("Y年m月d日H時", strtotime($task->started_at)) }}</p>
                         <p><span>終了日</span>{{ date("Y年m月d日H時", strtotime($task->ended_at)) }}</p>
                     </div>
                 </dd>
