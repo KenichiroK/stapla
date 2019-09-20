@@ -57,10 +57,21 @@ const calculateSumPrice = (e) => {
   }
   sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
 
+  // タスク予算額
+  let task_taxIncludedPrice = document.getElementById('task_taxIncludedPrice');
+  console.log(task_taxIncludedPrice.value);
+
   // 請求書合計金額
   let invoiceAmount = document.getElementById('invoiceAmount');
   invoiceAmount.value = taskSum + expencesSum;
   console.log(invoiceAmount.value);
+
+  const invoiceAmount_alert = document.getElementById('invoiceAmount_alert');
+  console.log(invoiceAmount_alert.style.color);
+
+    if(task_taxIncludedPrice.value < invoiceAmount.value){
+		invoiceAmount_alert.style.display = 'block';
+	}
 }
 
 const addtaskRequest = () => {
@@ -484,11 +495,11 @@ window.onload = () => {
 
 			<div class="total-container">
 				<p class="head">請求額</p>
-				@if ($errors->has('amount'))
-					<div class="error-msg">
-						<strong>{{ $errors->first('amount') }}</strong>
-					</div>					
-				@endif
+				
+				<div class="error-msg invoiceAmount_alert">
+					<strong id="invoiceAmount_alert">請求額はタスクの予算額を超えています。</strong>
+				</div>					
+				
 				<div class="sum-container">
 					<p>税込<span id="sum">￥0</span></p>
 				</div>
@@ -496,7 +507,7 @@ window.onload = () => {
 		</div>
 
 		<input type="hidden" name="task_id" value="{{ $task->id }}">
-		<input type="hidden" name="task_taxIncludedBudget" value="{{ $task->budget + ($task->budget * $task->tax) }}">
+		<input type="hidden" id="task_taxIncludedPrice" name="task_taxIncludedPrice" value="{{ $task->price + ($task->price * $task->tax) }}">
 		<input type="hidden" id="invoiceAmount" name="amount" value="">
 		
 

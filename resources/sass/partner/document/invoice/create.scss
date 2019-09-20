@@ -439,3 +439,8 @@
         }
     }
 }
+
+// 請求総額が発注学を超えた時のアラート
+#invoiceAmount_alert {
+    display: none;
+}
