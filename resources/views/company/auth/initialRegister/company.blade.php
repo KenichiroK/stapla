@@ -59,7 +59,7 @@
 
 				<div class="btn-container">
 					<button type="button">戻る</button>
-					<button type="submit">確認</button>
+					<button type="button" onclick="submit();">確認</button>
 				</div>
 			</form>
         </div>

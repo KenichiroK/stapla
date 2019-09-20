@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="button_wrapper">
-                        <button class="text" type="submit">ログイン</button>
+                        <button class="text" type="button" onclick="submit();">ログイン</button>
                     </div>
                 </form>
 
