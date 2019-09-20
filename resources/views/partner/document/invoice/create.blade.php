@@ -497,7 +497,7 @@ window.onload = () => {
 				<p class="head">請求額</p>
 				
 				<div class="error-msg invoiceAmount_alert">
-					<strong id="invoiceAmount_alert">請求額はタスクの予算額を超えています。</strong>
+					<strong id="invoiceAmount_alert">請求額がタスクの発注額を超えています。</strong>
 				</div>					
 				
 				<div class="sum-container">
