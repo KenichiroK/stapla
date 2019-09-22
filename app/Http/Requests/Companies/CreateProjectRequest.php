@@ -35,9 +35,4 @@ class CreateProjectRequest extends FormRequest
             'budget'           => 'required | integer | digits_between:1,12',
         ];
     }
-
-    public function messages()
-    {
-        // 
-    }
 }
