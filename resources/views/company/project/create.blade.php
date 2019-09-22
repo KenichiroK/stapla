@@ -116,7 +116,11 @@
                         <div class="calendars">
                             <div class="calendars__wrapper">
                                 <div class="calendars__wrapper__title start">開始日<i class="fas fa-calendar-alt"></i></div>
-                                <input type="date" name="started_at" value="{{ old('started_at')}}">
+                                <input
+                                    type="date"
+                                    name="started_at"
+                                    value="{{ old('started_at') ? old('started_at') : date('Y-m-d') }}"
+                                >
 
                                 @if($errors->has('started_at'))
                                     <div class="error-mes-wrp">
@@ -127,7 +131,11 @@
 
                             <div class="calendars__wrapper right">
                                 <div class="calendars__wrapper__title">終了日<i class="fas fa-calendar-alt"></i></div>
-                                <input type="date" name="ended_at" value="{{ old('ended_at')}}">
+                                <input
+                                    type="date"
+                                    name="ended_at"
+                                    value="{{ old('ended_at') ? old('ended_at') : date('Y-m-d') }}"
+                                >
 
                                 @if ($errors->has('ended_at'))
                                     <div class="invalid-feedback error-msg" role="alert">
