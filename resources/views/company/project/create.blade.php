@@ -119,7 +119,7 @@
                                 <input
                                     type="date"
                                     name="started_at"
-                                    value="{{ old('started_at') ? old('started_at') : date('Y-m-d') }}"
+                                    value="{{ old('started_at', date('Y-m-d')) }}"
                                 >
 
                                 @if($errors->has('started_at'))
@@ -134,7 +134,7 @@
                                 <input
                                     type="date"
                                     name="ended_at"
-                                    value="{{ old('ended_at') ? old('ended_at') : date('Y-m-d') }}"
+                                    value="{{ old('ended_at', date('Y-m-d')) }}"
                                 >
 
                                 @if ($errors->has('ended_at'))
