@@ -400,9 +400,9 @@ window.onload = function(){
                 </ul>
             </div>
             <div class="button-container">
-                <div class="preview-button-wrapper">
-                    <button type="button" onclick="submit();" class="preview-button-wrapper__btn button">プレビュー</button>
-                </div>
+                <!-- <div class="preview-button-wrapper">
+                    <button type="submit" class="preview-button-wrapper__btn button">プレビュー</button>
+                </div> -->
                 <div class="button-wrapper">
                     <button type="button" onclick="submit();" class="button-wrapper__btn button">作成</button>
                 </div>

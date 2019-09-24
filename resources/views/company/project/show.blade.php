@@ -49,7 +49,7 @@
             @endif
             <div class="top-container">
                 <h1 class="top-container__title">{{ $project->name }}詳細</h1>
-                <a class="top-container__edit-btn" href="#"><div>編集</div></a>
+                <!-- <a class="top-container__edit-btn" href="#"><div>編集</div></a> -->
             </div>
 
             <!-- <div class="activity-log-container">
