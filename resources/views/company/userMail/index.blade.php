@@ -68,7 +68,7 @@ const setPreview = (input) => {
             <input class="top-input input" type="" name="email" value="{{ old('email') }}" placeholder="">
 		</div>
 		<div class="btn-container">
-			<button type="submit">招待メール送信</button>
+			<button type="button" onclick="submit();">招待メール送信</button>
 		</div>
 	</form>
 </div>
