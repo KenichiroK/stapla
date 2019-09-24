@@ -40,7 +40,36 @@
                                 <a><img src="{{ asset('images/icon_notification.png') }}" alt="serch"></a>
                             </li>
                         </ul>
-                        @yield('header-profile')
+                        <div class="header-proflie">
+                            <div class="option">
+                                <div class="user-name">
+                                    {{ $company_user->name }}
+                                </div>
+
+                                <div class="icon-imgbox">
+                                    <img src="{{ asset('images/icon_small-down.png') }}" alt="">
+                                </div>
+                            </div>
+
+                            <div class="optionBox">
+                                <div class="balloon">
+                                    <ul>
+                                        <li><a href="">プロフィール設定</a></li>
+                                        <li>
+                                            <form method="POST" action="{{ route('company.logout') }}">
+                                                @csrf
+                                                <button type="submit">ログアウト</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+
+                            <div class="user-imgbox">
+                                <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -48,7 +77,7 @@
 
         <main>
             <div class="sidebar-wrapper">
-                @yield('sidebar')
+                @include('company.common.sidebar')
             </div>
 
             <div class="content-wrapper">

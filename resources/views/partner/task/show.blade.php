@@ -1,155 +1,16 @@
-@extends('company.index')
+@extends('partner.index')
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/partner/task/show.css') }}">
 @endsection
 
-@section('header-profile')
-<div class="header-proflie">
-    <div class="option">
-        <div class="user-name">
-            {{ $partner->name }}
-        </div>
-
-        <div class="icon-imgbox">
-            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
-        </div>
-    </div>
-    
-    <div class="optionBox">
-        <div class="balloon">
-            <ul>
-                <li><a href="">プロフィール設定</a></li>
-                <li>
-                    <form method="POST" action="{{ route('partner.logout') }}">
-                        @csrf
-                        <button type="submit">ログアウト</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-        
-    </div>
-
-    <div class="user-imgbox">
-        <a href="/partner/profile">
-            <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
-        </a>
-    </div>
-</div>
-@endsection
-
-@section('sidebar')
-
-<div class="sidebar__container">
-    <div class="sidebar__container__wrapper">
-        <aside class="menu menu__container">
-            <a href="/company/dashboard">
-                <div class="menu__container--label">
-                    <div class="menu-label">
-                        <img src="{{ asset('images/logo.png') }}" alt="logo">
-                    </div>
-                </div>
-            </a>
-            <ul class="menu-list menu menu__container__menu-list">
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_home.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ホーム
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/partner/dashboard">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ダッシュボード
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            プロジェクト
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="isActive">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_products-active.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            タスク
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            書類
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            カレンダー
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ヘルプセンター
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/partner/setting/invoice">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            設定
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </aside>
-    </div>
-</div>
-
-@endsection
-
 @section('content')
-
 <div class="main__container">
     <div class="main__container__wrapper">
         <div class="top">
             <div class="page-title-container">
                 <div class="page-title-container__page-title">タスク詳細</div>
-            </div>
-            <div class="button-wrapper">
-                <button type='submit' class="button-wrapper__btn button">編集</button>
             </div>
         </div>
 
@@ -223,7 +84,7 @@
                 </dt>
                 <dd>
                     <div class="flex01 term-desc">
-                        <p class="start"><span>開始日</span>{{ date("Y年m月d日H時", strtotime($task->inspection_date)) }}</p>
+                        <p class="start"><span>開始日</span>{{ date("Y年m月d日H時", strtotime($task->started_at)) }}</p>
                         <p><span>終了日</span>{{ date("Y年m月d日H時", strtotime($task->ended_at)) }}</p>
                     </div>
                 </dd>

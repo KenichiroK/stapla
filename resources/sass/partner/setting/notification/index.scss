@@ -21,28 +21,28 @@
       width: 100%;
       margin: auto;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
+      border-bottom: 1px solid #43425D;
 
       li {
-        width: 25%;
-        margin: auto;
         text-align: center;
 
         a {
           width: 100%;
-          font-size: 14px;
+          height: 39px;
+          font-size: 16px;
           display: block;
           color: #7B7A9A;
           padding-bottom: 10px;
-          border-bottom: 1px solid #43425D;
           text-decoration: none;
-          height: 35px;
+          padding: 0 30px;
         }
 
         a:hover {
           color: rgba(67, 66, 93, 0.7);
           font-weight: bold;
           border-bottom: 4px solid rgba(67, 66, 93, 0.7);
+          opacity: 1;
         }
 
         .isActive {

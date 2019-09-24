@@ -156,6 +156,11 @@ $pref = array(
 						<div class="text-container">
 							<p>プロフィールメッセージ</p>
 							<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction') }}</textarea>
+							@if ($errors->has('introduction'))
+								<div class="error-msg">
+									<strong>{{ $errors->first('introduction') }}</strong>
+								</div>
+							@endif
 						</div>
 						
 					</div>
@@ -252,7 +257,7 @@ $pref = array(
 				</div>
 
 				<div class="btn-container">
-					<button type="submit">確認</button>
+					<button type="button" onclick="submit();">確認</button>
 				</div>
 			</form>
         </div>

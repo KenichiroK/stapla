@@ -58,7 +58,7 @@ return [
     'image' => 'The :attribute must be an image.',
     'in' => '選択された:attributeは正しくありません。',
     'in_array' => 'The :attribute field does not exist in :other.',
-    'integer' => 'The :attribute must be an integer.',
+    'integer' => ':attributeは半角数字で入力してください',
     'ip' => 'The :attribute must be a valid IP address.',
     'ipv4' => 'The :attribute must be a valid IPv4 address.',
     'ipv6' => 'The :attribute must be a valid IPv6 address.',
@@ -176,6 +176,11 @@ return [
         // 担当者
         'tel' => '電話番号',
         'tel' => '電話番号',
+        
+        // パートナー
+        'occupations' => '職種',
+        'introduction' => 'プロフィールメッセージ',
+        'address_building' => '建物名',
 
         // project
         'project_id'      => 'プロジェクト',

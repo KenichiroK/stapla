@@ -19,7 +19,11 @@ body {
 .navbar-laravel {
 	background-color: #fff;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  }
+}
+a:hover{
+	text-decoration: none;
+	opacity: 0.7;
+}
   
 main {
 	width: 100%;

@@ -39,139 +39,6 @@ window.onload = () => {
 </script>
 @endsection
 
-@section('header-profile')
-<div class="header-proflie">
-    <div class="option">
-        <div class="user-name">
-            {{ $partner->name }}
-        </div>
-
-        <div class="icon-imgbox">
-            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
-        </div>
-    </div>
-    
-    <div class="optionBox">
-        <div class="balloon">
-            <ul>
-                <li><a href="">プロフィール設定</a></li>
-                <li>
-                    <form method="POST" action="{{ route('partner.logout') }}">
-                        @csrf
-                        <button type="submit">ログアウト</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-        
-    </div>
-
-    <div class="user-imgbox">
-        <a href="/partner/profile">
-            <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
-        </a>
-    </div>
-</div>
-@endsection
-
-@section('sidebar')
-<div class="sidebar__container">
-    <div class="sidebar__container__wrapper">
-        <aside class="menu menu__container">
-			<a href="/company/dashboard">
-                <div class="menu__container--label">
-                    <div class="menu-label">
-                        <img src="{{ asset('images/logo.png') }}" alt="logo">
-                    </div>
-                </div>
-            </a>
-            <ul class="menu-list menu menu__container__menu-list">
-				<li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_home.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ホーム
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/partner/dashboard">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ダッシュボード
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            プロジェクト
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_products.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            タスク
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            書類
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            カレンダー
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ヘルプセンター
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/partner/setting/invoice" class="isActive">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_setting-active.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            設定
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </aside>
-    </div>
-</div>
-@endsection
-
 @section('content')
 <?php
 $pref = array(
@@ -262,18 +129,34 @@ $pref = array(
 			<div class="title-container">
 				<h4>基本情報</h4>
 			</div>
-			<div class="name-container">
-				<p>屋号 / 名前</p>
-				@if ($partner)
-					<input type="text" name="name" value="{{ old('name', $partner->name) }}">
-				@else
-					<input type="text" name="name" value="{{ old('name') }}">
-				@endif
-				@if ($errors->has('name'))
-					<div class="error-msg">
-						<strong>{{ $errors->first('name') }}</strong>
-					</div>
-				@endif
+			<div class="yago-name-container">
+				<div class="yago-container">
+					<p>屋号</p>
+					@if ($partner)
+						<input type="text" name="name" value="{{ old('name', $partner->name) }}">
+					@else
+						<input type="text" name="name" value="{{ old('name') }}">
+					@endif
+					@if ($errors->has('name'))
+						<div class="error-msg">
+							<strong>{{ $errors->first('name') }}</strong>
+						</div>
+					@endif
+				</div>
+
+				<div class="name-container">
+					<p>名前</p>
+					@if ($partner)
+						<input type="text" name="name" value="{{ old('name', $partner->name) }}">
+					@else
+						<input type="text" name="name" value="{{ old('name') }}">
+					@endif
+					@if ($errors->has('name'))
+						<div class="error-msg">
+							<strong>{{ $errors->first('name') }}</strong>
+						</div>
+					@endif
+				</div>
 			</div>
 
 			<div class="above-address-container">
@@ -499,7 +382,7 @@ $pref = array(
 		</div>
 
 		<div class="btn-container">
-			<button type="submit">設定</button>
+			<button type="button" onclick="submit();">設定</button>
 		</div>
 	</form>
 </div>
