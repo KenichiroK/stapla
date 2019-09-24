@@ -21,7 +21,6 @@
     }
 }
 
-
 // ステータス
 .status-container {
     margin-bottom: 24px;
@@ -38,52 +37,19 @@
         margin-bottom: 24px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
         border-radius: 4px;
-        &__table-wrapper {
+        .table-wrapper {
             padding: 0 16px;
-            &__more {
-                &__area {
-                    text-align: center;
-                    padding: 30px 0;
-                    &__showmore {
-                        color:#43425D;
-                        font-size: 13px;
-                        font-weight: bold;
-                        cursor: pointer;
-                        position: relative;
-                        width: 65px;
-                        margin: 0 auto;
-                        &:after{
-                            content: "";
-                            width: 10px;
-                            height: 10px;
-                            border: 0px;
-                            border-bottom: solid 1px #43425D;
-                            border-right: solid 1px #43425D;
-                            transform: rotate(45deg);
-                            position: absolute;
-                            top: 1px;
-                            right: -18px;
-                        }
-                    }
-                }
-            } 
         }
     } 
 }
 
-
 // header
 .page-title-container {
-    &__page-title {
+    margin-bottom: 32px;
+    .page-title {
         font-size: 28px;
         font-weight: bold;
-    }
-}
-.top-container {
-    margin-bottom: 32px;
-    &__titlearea {
-        width: 160px;
-    }
+    } 
 }
 
 // ステータス表示部分
@@ -121,27 +87,21 @@
                     text-decoration: none;
                 }
             }
-            
-
-            &__numberdisplayarea {
-                &__numberdisplay {
-                    padding:  10px 0;
-                    text-align: center;
-                    &__number {
-                        font-size: 24px;
-                        color: #43425D;
-                        font-family: Source Sans Pro;
-                    }
-                }                  
+            .textdisplay {
+                text-align: center;
+                .text {
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: #C0BFD5;
+                }
             }
-            &__textdisplayarea {
-                &__textdisplay {
-                    text-align: center;
-                    &__text {
-                        font-size: 12px;
-                        font-weight: bold;
-                        color: #C0BFD5;
-                    }
+            .numberdisplay {
+                padding:  10px 0;
+                text-align: center;
+                .t-number {
+                    font-size: 24px;
+                    color: #43425D;
+                    font-family: Source Sans Pro;
                 }
             }
         }
@@ -152,8 +112,6 @@
         }
     }
 }
-
-
 
 // タスク
 .task-container{
@@ -182,31 +140,29 @@
             }
         }
     }
-    &__createarea {
-        &__buttonarea{
-            margin-bottom: 30px;
-            &__button{
-                width:100px;
-                border-radius: 100px;
-                font-size:12px;
-                font-weight:bold;
-                background: #43425D;
-                border-color: #43425D;
-                margin: 0 0 0 auto;
-                display: block;
-                padding: 10px 18px;
-                height: auto;
-                a{
-                    color:#fff;
-                }
-                a:hover{
-                    text-decoration: none;
-                }
+    .buttonarea{
+        margin-bottom: 30px;
+        .c-button{
+            width:100px;
+            border-radius: 100px;
+            font-size:12px;
+            font-weight:bold;
+            background: #43425D;
+            border-color: #43425D;
+            margin: 0 0 0 auto;
+            display: block;
+            padding: 10px 18px;
+            height: auto;
+            a{
+                color:#fff;
             }
-            &__button:hover{
-                opacity:0.8;
-                border-color: #43425D;
+            a:hover{
+                text-decoration: none;
             }
+        }
+        .c-button:hover{
+            opacity:0.8;
+            border-color: #43425D;
         }
     }
 }
@@ -257,14 +213,14 @@
         }
       }
   }
-.task-container__wrapper__table-wrapper__table {
+.table-wrapper table {
     width: 100%;
     margin: auto;
-    &__headerrow {
+    .headerrow {
         background-color: #F5F6FA;
         font-size: 12px;
         height: 48px;
-        &__tableheader {
+        th {
             vertical-align: middle;
             text-align: center !important;
             color: #A3A6B4;
@@ -272,14 +228,14 @@
             width: 16%;
         }
     }
-    &__datarow {
+    .datarow {
         font-size: 12px;
         height: 80px;
         border-bottom: 1px solid #F1F1F3;
         .project{
             font-weight: bold;
         }
-        &__tabledata {
+        td {
             vertical-align: middle;
             text-align: center !important;
             color: #4D4F5C;
@@ -289,25 +245,23 @@
                 &:hover{
                     text-decoration: none;
                 }
-            }             
-            &__statusaction {
-                &__status {
-                    height: 40px;
-                    width: 120px;
-                    border-radius: 25px;
-                    margin: auto;
-                    padding: 11px 0;
-                    font-weight: bold;
+            }
+            .status {
+                height: 40px;
+                width: 120px;
+                border-radius: 25px;
+                margin: auto;
+                padding: 11px 0;
+                font-weight: bold;
+                color: #7B7A9A;
+                .color01{
                     color: #7B7A9A;
-                    .color01{
-                        color: #7B7A9A;
-                    }
-                    .color02{
-                        color: #00CE47;
-                    }
-                    .color03{
-                        color: #FF0031;
-                    }
+                }
+                .color02{
+                    color: #00CE47;
+                }
+                .color03{
+                    color: #FF0031;
                 }
             }
             button{
@@ -326,4 +280,29 @@
         }
     }
 }
-
+// Show More
+.more__area {
+    text-align: center;
+    padding: 30px 0;
+    .showmore {
+        color:#43425D;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+        width: 65px;
+        margin: 0 auto;
+        &:after{
+            content: "";
+            width: 10px;
+            height: 10px;
+            border: 0px;
+            border-bottom: solid 1px #43425D;
+            border-right: solid 1px #43425D;
+            transform: rotate(45deg);
+            position: absolute;
+            top: 1px;
+            right: -18px;
+        }
+    }
+}
