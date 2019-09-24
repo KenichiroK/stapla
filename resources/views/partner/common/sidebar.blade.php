@@ -10,16 +10,6 @@
 			</a>
 			<ul class="menu-list menu menu__container__menu-list">
 				<li>
-					<a href="#">
-						<div class="icon-imgbox">
-							<img src="{{ asset('images/icon_home.png') }}" alt="">
-						</div>
-						<div class="textbox">
-							ホーム
-						</div>
-					</a>
-				</li>
-				<li>
 					<a href="{{ route('partner.dashboard') }}" class="{{ strpos(request()->route()->getName(), 'dashboard') ? 'isActive' : '' }}">
 						<div class="icon-imgbox">
 							<img src="{{ asset('images/icon_dashboard-active.png') }}" alt="">
@@ -59,7 +49,7 @@
 						</div>
 					</a>
 				</li>
-				<li>
+				<!-- <li>
 					<a href="#">
 						<div class="icon-imgbox">
 							<img src="{{ asset('images/icon_calendar.png') }}" alt="">
@@ -78,7 +68,7 @@
 							ヘルプセンター
 						</div>
 					</a>
-				</li>
+				</li> -->
 				<li>
 					<a href="{{ route('partner.setting.invoice.create') }}" class="{{ strpos(request()->route()->getName(), 'setting') ? 'isActive' : '' }}">
 						<div class="icon-imgbox">

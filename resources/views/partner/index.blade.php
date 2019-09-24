@@ -41,6 +41,11 @@
                             </li>
                         </ul>
                         <div class="header-proflie">
+                            <div class="user-imgbox">
+                                <a href="{{ route('partner.setting.profile.create') }}">
+                                    <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
+                                </a>
+                            </div>
                             <div class="option">
                                 <div class="user-name">
                                     {{ $partner->name }}
@@ -63,13 +68,6 @@
                                         </li>
                                     </ul>
                                 </div>
-                                
-                            </div>
-
-                            <div class="user-imgbox">
-                                <a href="{{ route('partner.setting.profile.create') }}">
-                                    <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
-                                </a>
                             </div>
                         </div>
                     </div>
