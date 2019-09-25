@@ -641,9 +641,9 @@ $(function(){
                                     </div>
                                     
         
-                                <div class="uninum">
+                                <div class="unit-num">
                                     <!-- 発注単位 input -->
-                                    <div class="uninum_contents">
+                                    <div class="unit-num_contents">
                                         <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price')}}">
                                         @if ($errors->has('price'))
                                             <div class="invalid-feedback error-msg" role="alert">
@@ -660,7 +660,7 @@ $(function(){
                                             件数
                                         </div>
                                     </div>
-                                    <div class="uninum_contents">
+                                    <div class="unit-num_contents">
                                         <input id="inputPrice" class="input form-control{{ $errors->has('cases') ? ' is-invalid' : '' }}" name='cases' type="text" value="{{ old('cases')}}">
                                         @if ($errors->has('cases'))
                                             <div class="invalid-feedback error-msg" role="alert">
