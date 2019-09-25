@@ -36,7 +36,7 @@ class PersonalInfoController extends Controller
             }
             $completed = '変更を保存しました。';
 
-            return redirect()->route('company.setting.personalInfo.edit')->with('completed', $completed);
+            return redirect()->route('company.setting.personalInfo.create')->with('completed', $completed);
         }
     }
 }
