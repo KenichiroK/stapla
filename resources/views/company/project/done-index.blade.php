@@ -24,8 +24,8 @@
         </div>
 
         <ul id="tab-button" class="tab-button">
-            <li class="all"><a href="/company/project">プロジェクト</a></li>
-            <li class="done isActive"><a href="/company/project/done">完了したプロジェクト</a></li>
+            <li class="all"><a href="{{ route('company.project.index') }}">プロジェクト</a></li>
+            <li class="done isActive"><a href="{{ route('company.project.done.index') }}">完了したプロジェクト</a></li>
         </ul>
 
         <div class="project-container">
@@ -45,7 +45,7 @@
 
             <div class="project-container__content">
                 @foreach( $projects as $project )
-                <a class="show-link" href="project/{{ $project->id }}">
+                <a class="show-link" href="{{ route('company.project.show', ['id' => $project->id]) }}">
                     <ul class="item-list project-container__content__list" >
                         <li class="item-list project-container__content__list__name">{{ $project->name }}</li>
                         <li>

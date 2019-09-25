@@ -23,7 +23,7 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::post('register/{company_id}', 'Partners\Auth\RegisterController@register')->name('partner.register');
 
 	// preRegister - 仮登録後に表示させるページ
-	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
+	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('partner.register.preRegisterd.index');
 
 	// invite
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
@@ -116,19 +116,17 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
 		Route::get('/project/done', 'Companies\ProjectController@doneIndex')->name('company.project.done.index');
 		Route::get('/project/create', 'Companies\ProjectController@create')->name('company.project.create');
-		Route::post('/project/create', 'Companies\ProjectController@store')->name('company.project.store');
+		Route::post('/project', 'Companies\ProjectController@store')->name('company.project.store');
 		Route::get('/project/{id}', 'Companies\ProjectController@show')->name('company.project.show');
 
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
 		// task statusIndex
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
-		Route::get('/task', 'Companies\TaskController@create')->name('company.task.create');
+		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
         Route::post('/task', 'Companies\TaskController@store')->name('company.task.store');
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
 		
-
-
 		// task status change
 		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');
 		
@@ -140,8 +138,8 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');
 		Route::get('/document/nda', 'Companies\Document\NdaController@create')->name('company.document.nda.create');
 		Route::post('/document/nda', 'Companies\Document\NdaController@store')->name('company.document.nda.store');
-		Route::get('/document/nda/{id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
-		Route::get('/document/purchaseOrder/create/{id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.edit');
+		Route::get('/document/nda/{nda_id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
+		Route::get('/document/purchaseOrder/create/{task_id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.create');
 		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
 		Route::get('/document/purchaseOrder/{purchaseOrder_id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');
 
@@ -150,7 +148,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document/outsourcingContract/{id}', 'Companies\Document\OutsourcingContractController@show')->name('company.document.OutsourcingContract.show');
 
 		//document invoice
-		Route::get('/document/invoice/{id}', 'Companies\Document\InvoiceController@show')->name('company.document.invoice.show');
+		Route::get('/document/invoice/{invoice_id}', 'Companies\Document\InvoiceController@show')->name('company.document.invoice.show');
 
 
 		// setting
@@ -160,8 +158,8 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/setting/companyElse', 'Companies\Setting\CompanyElseController@store')->name('company.setting.companyElse.store');
 		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create')->name('company.setting.userSetting.create');
 		Route::get('/setting/account', 'Companies\Setting\AccountController@create')->name('company.setting.account.create');
-		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@edit')->name('company.setting.personalInfo.edit');
-		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@update')->name('company.setting.personalInfo.update');
+		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@create')->name('company.setting.personalInfo.create');
+		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@store')->name('company.setting.personalInfo.store');
         
 		// mail(CompnayUser)
 		Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');

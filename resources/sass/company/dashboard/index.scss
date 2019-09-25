@@ -190,6 +190,10 @@
 				font-family: 'Source Sans Pro';
 				tr {
 					border-bottom: 1px solid #F1F1F3;
+					
+					a:visited {
+						color: #4D4F5C;
+					}
 
 					td {
 						padding: 12px;
@@ -357,6 +361,10 @@
 			tbody {
 				color: #4D4F5C;
 				font-family: 'Source Sans Pro';
+
+				a:visited {
+					color: #4D4F5C;
+				}
 				tr {
 					border-bottom: 1px solid #F1F1F3;
 

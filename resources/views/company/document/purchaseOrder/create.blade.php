@@ -11,7 +11,7 @@
 		<h3>発注書作成</h3>
 	</div>
 
-	<form action="{{ url('company/document/purchaseOrder') }}" method="POST">
+	<form action="{{ route('company.document.purchaseOrder.store') }}" method="POST">
 		@csrf
 		<div class="purchaseOrder-container">
 			

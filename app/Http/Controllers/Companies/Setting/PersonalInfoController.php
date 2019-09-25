@@ -13,7 +13,7 @@ use App\Http\Requests\Companies\PersonalRequest;
 
 class PersonalInfoController extends Controller
 {
-    public function edit()
+    public function create()
     {
         $auth = Auth::user();
         $company_user = CompanyUser::where('auth_id', $auth->id)->first();
@@ -21,7 +21,7 @@ class PersonalInfoController extends Controller
         return view('/company/setting/personalInfo/create', compact('company_user'));
     }
 
-    public function update(PersonalRequest $request)
+    public function store(PersonalRequest $request)
     {
         $auth = Auth::user();
         $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
