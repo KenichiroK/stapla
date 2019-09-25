@@ -22,7 +22,7 @@
 			</div>
 
 			<div class="btn-container">
-				<a href="/partner/dashboard">ダッシュボードに行く</a>
+				<a href="{{ route('partner.dashboard') }}">ダッシュボードに行く</a>
 			</div>
 		</div>
     </main>

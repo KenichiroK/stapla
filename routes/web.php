@@ -49,7 +49,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
 
 		// task
-		Route::get('/task/{id}', 'Partners\TaskController@show')->name('partner.task.show');
+		Route::get('/task/{task_id}', 'Partners\TaskController@show')->name('partner.task.show');
 		
 		// task status change
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
@@ -70,7 +70,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.document.purchaseOrder.show');
 		
 		// invoice
-		Route::get('document/invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
+		Route::get('document/invoice/create/{task_id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
 		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
 

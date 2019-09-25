@@ -190,10 +190,6 @@
 				font-family: 'Source Sans Pro';
 				tr {
 					border-bottom: 1px solid #F1F1F3;
-					
-					a:visited {
-						color: #4D4F5C;
-					}
 
 					td {
 						padding: 12px;
@@ -213,6 +209,11 @@
 						p {
 							margin-bottom: 0;
 						}
+
+						a {
+							color: #4D4F5C;
+						}
+
 						.underline{
 							text-decoration: underline;
 						}
@@ -362,9 +363,6 @@
 				color: #4D4F5C;
 				font-family: 'Source Sans Pro';
 
-				a:visited {
-					color: #4D4F5C;
-				}
 				tr {
 					border-bottom: 1px solid #F1F1F3;
 
@@ -376,6 +374,10 @@
 
 						p {
 							margin-bottom: 0;
+						}
+						
+						a {
+							color: #4D4F5C;
 						}
 					}
 					td.partner{
@@ -391,7 +393,6 @@
 						p{
 							font-size: 12px;
 						}
-
 					}
 
 					.project_name {
