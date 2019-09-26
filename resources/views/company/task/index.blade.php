@@ -54,7 +54,7 @@
                 <li class="done"><a href="{{ route('company.task.status.statusIndex', ['task_status' => 13 ]) }}">完了したタスク</a></li>
             </ul>
             <div class="buttonarea control">
-                <button class="c-button button"><a href="/company/task/create">タスク作成</a></button>
+                <button class="c-button button"><a href="{{ route('company.task.create') }}">タスク作成</a></button>
             </div>
             <div class="task-container__wrapper">
                 <!-- タイトル -->
@@ -104,7 +104,7 @@
                             @foreach($tasks as $task)
                             <tr class="datarow">
                                 <td class="project">{{ $task->project->name }}</td>
-                                <td><a href="task/{{ $task->id }}">{{ $task->name }}</a></td>
+                                <td><a href="{{ route('company.task.show', ['id' => $task->id ]) }}">{{ $task->name }}</a></td>
                                 <td>{{ $task->partner->name }}</td>
                                 <td>
                                     <div id ="state" class="status">

@@ -23,9 +23,9 @@
 
 			<div class="btn-container">
                 @if(isset($partner))
-                    <a href="/partner/dashboard">ダッシュボードに行く</a>
+                    <a href="{{ route('partner.dashboard') }}">ダッシュボードに行く</a>
                 @else
-                    <a href="/partner/register/initialRegistration">ユーザー情報を登録する</a>
+                    <a href="{{ route('partner.register.intialRegistration.createPartner') }}">ユーザー情報を登録する</a>
                 @endif
 			</div>
 		</div>

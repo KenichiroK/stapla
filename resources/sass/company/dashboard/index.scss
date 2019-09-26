@@ -209,6 +209,11 @@
 						p {
 							margin-bottom: 0;
 						}
+
+						a {
+							color: #4D4F5C;
+						}
+
 						.underline{
 							text-decoration: underline;
 						}
@@ -357,6 +362,7 @@
 			tbody {
 				color: #4D4F5C;
 				font-family: 'Source Sans Pro';
+
 				tr {
 					border-bottom: 1px solid #F1F1F3;
 
@@ -368,6 +374,10 @@
 
 						p {
 							margin-bottom: 0;
+						}
+						
+						a {
+							color: #4D4F5C;
 						}
 					}
 					td.partner{
@@ -383,7 +393,6 @@
 						p{
 							font-size: 12px;
 						}
-
 					}
 
 					.project_name {

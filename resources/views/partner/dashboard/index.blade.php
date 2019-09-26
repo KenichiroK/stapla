@@ -78,7 +78,7 @@
             <tbody>
                 @foreach($projects as $project)
                 <tr>
-                    <td class="project_name"><a href="project/{{ $project->project->id }}">{{ $project->project->name }}</a></td>
+                    <td class="project_name"><a href="{{ route('partner.project.show', ['project_id' => $project->project->id]) }}">{{ $project->project->name }}</a></td>
                     <td class="staff">
                         <div class="imgbox">
                             <img src="/{{ str_replace('public/', 'storage/', $project->project->projectCompanies[0]->companyUser->picture) }}" alt="プロフィール画像">
@@ -148,7 +148,7 @@
                 <tr>
                     <td class="project_name">{{ $task->project->name }}</td>
                     <td>
-                        <a href="task/{{ $task->id }}">
+                        <a href="{{ route('partner.task.show', ['task_id' => $task->id]) }}">
                             {{ $task->name }}</td>
                         </a>
                     <td class="staff">

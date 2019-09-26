@@ -23,7 +23,7 @@
                     </span>
                 </p> -->
                 <div class="btn-container">
-                    <a href="/company/invite/partner">パートナー追加</a>
+                    <a href="{{ route('company.partner.invite.partner.index') }}">パートナー追加</a>
                 </div>
         </div>
         
@@ -51,7 +51,7 @@
                             </div>
                             <div class="main-content__edit-icons">
                                 <div>
-                                    <a href="/partner/profile_setting"><img src="{{ asset('images/edit.png') }}" alt=""></a>
+                                    <a href="{{ route('company.partner.show', ['id' => $partner->id]) }}"><img src="{{ asset('images/edit.png') }}" alt=""></a>
                                 </div>
                             </div>
                         </div>

@@ -25,7 +25,7 @@ const setPreview = (input) => {
             <div class="page-title-container__page-title">機密保持契約書</div>
         </div>
         <div class="main-container">
-            <form action="{{ url('company/document/nda') }}" method="post">
+            <form action="{{ route('company.document.nda.store') }}" method="POST">
             @csrf
                 <div class="main-container__wrapper">
                     <!-- タスク -->

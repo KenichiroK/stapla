@@ -60,7 +60,7 @@
                 </form>
 
                 <div class="signup_wrapper">
-                    <a href="/partner/login">ログイン</a>
+                    <a href="{{ route('partner.login') }}">ログイン</a>
                 </div>
                 
             </div>

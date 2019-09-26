@@ -116,14 +116,14 @@ $pref = array(
 
 	<div class="menu-container">
 		<ul>
-			<li><a href="/partner/setting/invoice" class="isActive">請求情報設定</a></li>
+			<li><a href="{{ route('partner.setting.invoice.create') }}" class="isActive">請求情報設定</a></li>
 			<!-- <li><a href="#">メールアドレス・パスワード設定</a></li> -->
-			<li><a href="/partner/setting/notification">通知設定</a></li>
+			<li><a href="{{ route('partner.setting.notification.create') }}">通知設定</a></li>
 			<!-- <li><a href="#">個人情報の設定</a></li> -->
 		</ul>
 	</div>
 
-	<form action="{{ url('partner/setting/invoice') }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('partner.setting.invoice.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		<div class="profile-container">
 			<div class="title-container">
