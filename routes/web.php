@@ -23,7 +23,7 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::post('register/{company_id}', 'Partners\Auth\RegisterController@register')->name('partner.register');
 
 	// preRegister - 仮登録後に表示させるページ
-	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
+	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('partner.register.preRegisterd.index');
 
 	// invite
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
