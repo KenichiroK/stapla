@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <div class="project-container">
+    <div class="project-container table-container">
         <div class="title-container">
             <h4>プロジェクト</h4>
             <div class="btn-container">
@@ -121,7 +121,7 @@
         </table>
 
         <div class="more-container__wrapper">
-            <p id="projectShowMoreBtn" class="more-container__wrapper__showmore">もっと見る</p>
+            <p id="projectShowMoreBtn" class="showmore">もっと見る</p>
         </div>
     </div>
 
@@ -140,7 +140,7 @@
         </div>
     </div>
 
-    <div class="task-container">
+    <div class="task-container table-container">
         <div class="title-container">
             <h4>タスク</h4>
             <div class="btn-container">
@@ -215,14 +215,8 @@
             
         </table>
 
-        <!-- <div class="more-btn-container">
-            <button id="taskShowMoreBtn">
-                もっと見る
-                <i class="fas fa-angle-down"></i>
-            </button>
-        </div> -->
         <div class="more-container__wrapper">
-            <p id="taskShowMoreBtn" class="more-container__wrapper__showmore">もっと見る</p>
+            <p id="taskShowMoreBtn" class="showmore">もっと見る</p>
         </div>
 
 
