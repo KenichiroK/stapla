@@ -21,7 +21,7 @@
 				<h3>入力内容確認</h3>
 			</div>
 
-			<form action="/company/register/preview" method="POST" enctype="multipart/form-data">
+			<form action="{{ route('company.register.preview.store') }}" method="POST" enctype="multipart/form-data">
 				@csrf
 				<input type="hidden" name="">
 				<div class="edit-container">
@@ -93,7 +93,7 @@
 					</div>
 				</div>
 				<div class="btn-container">
-				<button type="button" onclick="submit();"><a type="button" href="/company/register/intialRegistration">戻る</a></button>
+				<button type="button" onclick="submit();"><a type="button" href="{{ route('company.register.personal.create') }}">戻る</a></button>
 				<button type="submit">登録</button>
 			</div>
 			</form>

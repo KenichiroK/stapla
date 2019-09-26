@@ -54,12 +54,12 @@
         <!-- Task -->
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
-                <li class="all"><a href="/company/task">タスク一覧</a></li>
-                <li class="done isActive"><a href="/company/task/done">完了したタスク</a></li>
+                <li class="all"><a href="{{ route('company.task.index') }}">タスク一覧</a></li>
+                <li class="done isActive"><a href="{{ route('company.task.status.statusIndex', ['task_status' => 13 ]) }}">完了したタスク</a></li>
             </ul>
             <div class="task-container__createarea">
                 <div class="task-container__createarea__buttonarea control">
-                    <button class="task-container__createarea__buttonarea__button button"><a href="/company/task/create">タスク作成</a></button>
+                    <button class="task-container__createarea__buttonarea__button button"><a href="{{ route('company.task.create') }}">タスク作成</a></button>
                 </div>
             </div>
             <div class="task-container__wrapper">

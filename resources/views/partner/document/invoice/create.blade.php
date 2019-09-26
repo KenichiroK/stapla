@@ -119,7 +119,7 @@ window.onload = () => {
 		<h3>請求書作成</h3>
 	</div>
 
-	<form action="{{ url('partner/invoice') }}" method="POST">
+	<form action="{{ route('partner.setting.invoice.store') }}" method="POST">
 		@csrf
 		<div class="invoice-container">
 			<div class="invoiceTo-container">

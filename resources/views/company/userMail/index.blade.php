@@ -54,14 +54,14 @@ const setPreview = (input) => {
 	</div>
 	<div class="menu-container">
 		<ul>
-			<li><a href="/company/setting/general" class="isActive">会社基本情報設定</a></li>
-			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
-			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
-			<li><a href="/company/setting/acount">アカウント設定</a></li>
-			<li><a href="/company/setting/personal">個人情報の設定</a></li>
+			<li><a href="{{ route('company.setting.general.create') }}" class="isActive">会社基本情報設定</a></li>
+			<li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li>
+			<li><a href="{{ route('company.setting.userSetting.create') }}">会社担当者設定</a></li>
+			<!-- <li><a href="{{ route('company.setting.account.create') }}">アカウント設定</a></li> -->
+			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
 		</ul>
 	</div>
-	<form action="{{ url('/company/companyMail/send') }}" method="POST">
+	<form action="{{ route('company.invite.partner.send') }}" method="POST">
 	@csrf
 		<div class="name-container">
 			<p>招待する担当者のアドレスを入力してて下さい</p>

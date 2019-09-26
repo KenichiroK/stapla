@@ -193,9 +193,9 @@
                     <button type="submit" class="done">タスク依頼を受ける</button>
                 </form>
             @elseif($task->status === 9 && $task->partner->id === $partner->id)
-                <a href="/partner/order/{{ $purchaseOrder->id }}" class="done">発注書を確認する</a>
+                <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
             @elseif($task->status === 11 && $task->partner->id === $partner->id)
-                <a href="/partner/invoice/create/{{ $task->id }}" class="done">請求書を作成する</a>
+                <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
             @elseif($task->status === 13)
                 <p class="non-action-text">このタスクは完了しています</p>
             @else

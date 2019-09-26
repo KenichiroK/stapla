@@ -21,7 +21,7 @@
 				<h3>入力内容確認</h3>
 			</div>
 
-			<form action="/partner/register/preview/previewStore" method="POST">
+			<form action="{{ route('partner.register.preview.previewStore') }}" method="POST">
 				@csrf
 				<input type="hidden" name="">
 				<div class="edit-container">
@@ -77,7 +77,7 @@
 					</div>
 				</div>
 				<div class="btn-container">
-				<button type="button"><a type="button" href="/partner/register/initialRegistration">戻る</a></button>
+				<button type="button"><a type="button" href="{{ route('partner.register.intialRegistration.createPartner') }}">戻る</a></button>
 				<button type="button" onclick="submit();">登録</button>
 			</div>
 			</form>

@@ -159,8 +159,8 @@ $(function(){
 
 @section('content')
 <div class="main__container">
-    <form aciton="{{ url('/company/task/create') }}" method='POST'  class="main__container__wrapper">
-    {{ csrf_field() }}
+    <form action="{{ route('company.task.store') }}" method='POST' class="main__container__wrapper">
+        @csrf
         <!-- ページタイトル エリア -->
         <div class="page-title-container">
             <div class="page-title-container__page-title">タスク作成</div>
