@@ -120,16 +120,16 @@ $pref = array(
 		<form action="{{ route('company.setting.general.update') }}" method="POST">
 		@csrf
 			<div class="top-area">
-				<div class="name-container">
+				<div class="name-container item-container">
 					<p>会社名</p>
                     <p class="text_content">{{ $company->company_name }}</p>
 				</div>
-				<div class="name-container">
+				<div class="name-container item-container">
 					<p>代表者名</p>
 					@if($company)
-						<input class="top-input input" type="text" name="representive_name" value="{{ old('representive_name', $company->representive_name) }}" placeholder="">
+						<input class="input" type="text" name="representive_name" value="{{ old('representive_name', $company->representive_name) }}" placeholder="">
 					@else
-						<input class="top-input input" type="text" name="representive_name" value="{{ old('representive_name') }}" placeholder="">
+						<input class="input" type="text" name="representive_name" value="{{ old('representive_name') }}" placeholder="">
 					@endif
 					@if ($errors->has('representive_name'))
 						<div class="error-msg">
@@ -140,18 +140,18 @@ $pref = array(
 			</div>
 			
 			<div class="above-address-container">
-				<div class="zipcode-container">
+				<div class="zipcode-container item-container">
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
 						@if($company)
-							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($company->zip_code, 0, 3)) }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
+							<input id="postal_front" class="input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($company->zip_code, 0, 3)) }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
 							</span>
 							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($company->zip_code, 3, 7)) }}" maxlength="4" onchange="setPostal()">
                             <input id="postal" type="hidden" name="zip_code">
 						@else
-							<input class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
+							<input class="input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
                             <span class="hyphen">
 								<hr>
 							</span>
@@ -167,7 +167,7 @@ $pref = array(
 						@endif
 				</div>
 	
-				<div class="prefecture-container">
+				<div class="prefecture-container item-container">
 					<p>都道府県</p>
 					<div class="select-arrow">
 						<select name="address_prefecture" id="prefecture">
@@ -185,12 +185,12 @@ $pref = array(
 			</div>
 			
 			<div class="below-address-container">
-				<div class="city-container">
+				<div class="city-container item-container">
 					<p>市区町村・番地</p>
 					@if($company)
-						<input class="top-input input" type="text" name="address_city" value="{{ old('address_city', $company->address_city) }}" placeholder="">
+						<input class="input" type="text" name="address_city" value="{{ old('address_city', $company->address_city) }}" placeholder="">
 					@else
-						<input class="top-input input" type="text" name="address_city" value="{{ old('address_city') }}" placeholder="">
+						<input class="input" type="text" name="address_city" value="{{ old('address_city') }}" placeholder="">
 					@endif
 					@if ($errors->has('address_city'))
 						<div class="error-msg">
@@ -199,7 +199,7 @@ $pref = array(
 					@endif
 				</div>
 	
-				<div class="building-container">
+				<div class="building-container item-container">
 					<p>建物名・部屋番号</p>
 					@if ($company)
 						<input type="text" name="address_building" value="{{ old('address_building', $company->address_building) }}">
