@@ -49,7 +49,7 @@
 							<div class="section-container">
 								<p>自己紹介</p>
 								<input type="hidden" name="self_introduction" value="{{ old('self_introduction', $request->self_introduction) }}">
-								<h4>{{ $request->self_introduction }}</h4>
+								<h4>{!! nl2br(e($request->self_introduction)) !!}</h4>
 							</div>
 						</div>
 					</div>

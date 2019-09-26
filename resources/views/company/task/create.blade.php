@@ -224,7 +224,7 @@ $(function(){
                             </div>
                         </div>
                         <!-- 項目：タスク作成日 -->
-                        <div class="main-container__wrapper__item-container">
+                        <!-- <div class="main-container__wrapper__item-container">
                             <div class="item-name-wrapper">
                                 <div class="item-name-wrapper__item-name">
                                     タスク作成日
@@ -235,7 +235,7 @@ $(function(){
                                        本日 {{ date('Y') }}年{{ date('m') }}月{{ date('d') }}日<i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- 項目：タスク内容 -->
                         <div class="main-container__wrapper__item-container">
                             <div class="item-name-wrapper contentsname">

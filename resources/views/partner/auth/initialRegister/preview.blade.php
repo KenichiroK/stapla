@@ -43,7 +43,7 @@
 							<div class="section-container">
 								<p>プロフィールメッセージ</p>
 								<input type="hidden" name="introduction" value="{{ old('introduction', $request->introduction) }}">
-								<h4>{{ $request->introduction }}</h4>
+								<h4>{!! nl2br(e($request->introduction)) !!}</h4>
 							</div>
 
                             <div class="section-container">
@@ -72,11 +72,6 @@
                                 <h4>{{ $request->tel }}</h4>
                             </div>
 
-							<div class="section-container">
-								<p>自己紹介</p>
-								<input type="hidden" name="introduction" value="{{ old('introduction', $request->introduction) }}">
-								<h4>{{ $request->introduction }}</h4>
-							</div>
                             <input type="hidden" name="company_id" value="{{ $request->company_id }}">
 						</div>
 					</div>

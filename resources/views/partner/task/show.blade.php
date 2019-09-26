@@ -10,7 +10,7 @@
     <div class="main__container__wrapper">
         <div class="top">
             <div class="page-title-container">
-                <div class="page-title-container__page-title">タスク詳細</div>
+                <div class="page-title-container__page-title">{{ $task->name }}詳細</div>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
                     タスク内容
                 </dt>
                 <dd>
-                    {{ $task->name }}
+                    {!! nl2br(e($task->content)) !!}
                 </dd>
             </dl>
             <dl>
@@ -89,22 +89,6 @@
                     </div>
                 </dd>
             </dl>
-            <dl>
-                <dt>
-                    予算
-                </dt>
-                <dd>
-                    {{ number_format($task->budget) }}円
-                </dd>
-            </dl>
-            <!-- <dl>
-                <dt>
-                    資料
-                </dt>
-                <dd>
-                    
-                </dd>
-            </dl> -->
         </div>
 
         <div class="patner">

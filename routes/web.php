@@ -11,7 +11,7 @@
 |
 */
 
-// Auth::routes();
+Auth::routes();
 
 Route::group(['prefix' => 'partner'], function(){
 	//login   

@@ -44,7 +44,7 @@ const setPreview = (input) => {
 		</ul>
 	</div>
 
-    <form action="{{ url('/partner/profile') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('partner.setting.profile.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body-container">
             <div class="title-container">
@@ -174,7 +174,7 @@ const setPreview = (input) => {
                     <div class="textarea-container">
                         <p>自己紹介</p>
                         @if ($partner)
-                            <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction', $partner->introduction) }}</textarea>                            
+                            <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction', $partner->introduction) }}</textarea>
                         @else
                             <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction') }}</textarea>
                         @endif
