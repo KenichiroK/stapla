@@ -12,6 +12,10 @@ use App\Models\ProjectPartner;
 
 class ProjectController extends Controller
 {
+    public function index()
+    {
+        return 'test';
+    }
     public function show($project_id)
     {
         $partnerAuth = Auth::user();

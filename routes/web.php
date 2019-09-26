@@ -49,6 +49,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
 
 		// task
+		Route::get('/task', 'Partners\TaskController@index')->name('partner.task.index');
 		Route::get('/task/{id}', 'Partners\TaskController@show')->name('partner.task.show');
 		
 		// task status change
