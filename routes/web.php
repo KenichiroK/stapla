@@ -11,7 +11,7 @@
 |
 */
 
-// Auth::routes();
+Auth::routes();
 
 Route::group(['prefix' => 'partner'], function(){
 	//login   
@@ -46,6 +46,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
 		
 		// project
+		Route::get('/project', 'Partners\ProjectController@index')->name('partner.project.index');
 		Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
 
 		// task

@@ -14,7 +14,9 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        return 'test';
+        $partnerAuth = Auth::user();
+        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        return view('partner/project/index', compact('partner'));
     }
     public function show($project_id)
     {

@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+    public function index()
+    {
+        return 'test task';
+    }
+
     public function show($id)
     {
         $task = Task::findOrFail($id);
