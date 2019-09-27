@@ -229,7 +229,7 @@ $(function(){
                                         type="datetime-local"
                                         name="started_at"
                                         class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
-                                        value="{{ old('started_at') ? str_replace(" ", "T", old('started_at')) : str_replace(" ", "T", date('Y-m-d H:i')) }}"
+                                        value="{{ old('started_at') ? str_replace(" ", "T", old('started_at')) : date('Y-m-d\TH:i') }}"
                                     >
 
                                     @if($errors->has('started_at'))
@@ -249,7 +249,7 @@ $(function(){
                                         type="datetime-local"
                                         class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
                                         name='ended_at'
-                                        value="{{ old('ended_at') ? str_replace(" ", "T", old('ended_at')) : str_replace(" ", "T", date('Y-m-d H:i')) }}"
+                                        value="{{ old('ended_at') ? str_replace(" ", "T", old('ended_at')) : date('Y-m-d\TH:i') }}"
                                     >
 
                                     @if ($errors->has('ended_at'))
