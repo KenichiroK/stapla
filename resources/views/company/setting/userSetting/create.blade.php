@@ -23,12 +23,12 @@ const setPreview = (input) => {
 		<h3>設定</h3>
 	</div>
 	<div class="menu-container">
-		<ul>
-			<li><a href="/company/setting/general">会社基本情報設定</a></li>
-			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
-			<li><a href="/company/setting/userSetting"  class="isActive">会社担当者設定</a></li>
-			<!-- <li><a href="/company/setting/account">アカウント設定</a></li> -->
-			<li><a href="/company/setting/personalInfo">個人情報の設定</a></li>
+        <ul>
+			<li><a href="{{ route('company.setting.general.create') }}">会社基本情報設定</a></li>
+			<li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li>
+			<li><a href="{{ route('company.setting.userSetting.create') }}" class="isActive">会社担当者設定</a></li>
+			<!-- <li><a href="{{ route('company.setting.account.create') }}">アカウント設定</a></li> -->
+			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
 		</ul>
   </div>
   <div id="charge" class="charge-container">
@@ -36,7 +36,7 @@ const setPreview = (input) => {
         <div class="title-container">
             <h3>会社担当者設定</h3>
             <div class="btn-container">
-                <a href="/company/invite/company">担当者追加</a>
+                <a href="">担当者追加</a>
             </div>
         </div>
     </div>

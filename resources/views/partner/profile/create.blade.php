@@ -44,7 +44,7 @@ const setPreview = (input) => {
 		</ul>
 	</div>
 
-    <form action="{{ url('/partner/profile') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('partner.setting.profile.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body-container">
             <div class="title-container">

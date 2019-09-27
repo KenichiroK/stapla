@@ -109,7 +109,7 @@ $pref = array(
 				<h3>プロフィール設定</h3>
 			</div>
 
-			<form action="{{ url('partner/register/initial/personal') }}" method="POST">
+			<form action="{{ route('partner.register.intialRegistrationPost') }}" method="POST">
 				@csrf
 				<div class="edit-container top">
 					<div class="image-container">

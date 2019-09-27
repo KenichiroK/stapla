@@ -16,7 +16,18 @@ class ProjectController extends Controller
     {
         $partnerAuth = Auth::user();
         $partner = Partner::where('partner_id', $partnerAuth->id)->first();
-        return view('partner/project/index', compact('partner'));
+        $projectPartners = ProjectPartner::where('user_id', $partner->id)->get();
+        // return $companyProjects = Project::where('company_id', $partner->company_id)->get();
+        foreach ($projectPartners as $projectPartner) {
+            $projects = Project::where('id', $projectPartner->project_id)->get();
+        }
+
+        $task_count_arr = []; 
+        for($i = 0; $i < count($projects); $i++){
+            $taskCount = count($projects[$i]->tasks);
+            array_push($task_count_arr, $taskCount);
+        }
+        return view('partner/project/index', compact('partner', 'projects', 'task_count_arr'));
     }
     public function show($project_id)
     {

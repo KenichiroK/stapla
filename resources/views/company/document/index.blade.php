@@ -165,7 +165,7 @@
                                 <td>
                                     <div class="create-container">
                                         <div class="create">
-                                            <a href="/company/document/purchaseOrder/{{ $purchaseOrder->id }}">詳細</a>
+                                            <a href="{{ route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}">詳細</a>
                                         </div>
                                     </div>
                                 </td>
@@ -267,7 +267,7 @@
                                 <td>
                                     <div class="create-container">
                                         <div class="create">
-                                            <a href="document/nda/{{ $nda->id }}">詳細</a>
+                                            <a href="{{ route('company.document.nda.show', ['nda_id' => $nda->id]) }}">詳細</a>
                                         </div>
                                     </div>
                                 </td>
@@ -316,7 +316,7 @@
                                 <td>
                                     <div class="create-container">
                                         <div class="create">
-                                            <a href="document/invoice/{{ $invoice->id }}">詳細</a>
+                                            <a href="{{ route('company.document.invoice.show', ['invoice_id' => $invoice->id]) }}">詳細</a>
                                         </div>
                                     </div>
                                 </td>

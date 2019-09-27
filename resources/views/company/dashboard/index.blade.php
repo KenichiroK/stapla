@@ -52,11 +52,11 @@
         </div>
     </div>
 
-    <div class="project-container">
+    <div class="project-container table-container">
         <div class="title-container">
             <h4>プロジェクト</h4>
             <div class="btn-container">
-                <a href="project/create">プロジェクト作成</a>
+                <a href="{{ route('company.project.create') }}">プロジェクト作成</a>
             </div>
         </div>
 
@@ -81,7 +81,7 @@
             <tbody>
                 @foreach($projects as $project)
                 <tr>
-                    <td class="project_name">{{ $project->project->name }}</td>
+                    <td class="project_name"><a href="{{ route('company.project.show', ['id' => $project->project->id]) }}">{{ $project->project->name }}</a></td>
                     <td>
                         <div class="imgbox">
                             <img src="/{{ str_replace('public/', 'storage/', $project->project->projectCompanies[0]->companyUser->picture) }}" alt="">
@@ -121,7 +121,7 @@
         </table>
 
         <div class="more-container__wrapper">
-            <p id="projectShowMoreBtn" class="more-container__wrapper__showmore">もっと見る</p>
+            <p id="projectShowMoreBtn" class="showmore">もっと見る</p>
         </div>
     </div>
 
@@ -140,11 +140,11 @@
         </div>
     </div>
 
-    <div class="task-container">
+    <div class="task-container table-container">
         <div class="title-container">
             <h4>タスク</h4>
             <div class="btn-container">
-                <a href="/company/task/create">タスク作成</a>
+                <a href="{{ route('company.task.create') }}">タスク作成</a>
             </div>
         </div>
 
@@ -168,7 +168,7 @@
                 @foreach($tasks as $task)
                 <tr>
                     <td class="project_name">{{ $task->task->project->name }}</td>
-                    <td>{{ $task->task->name }}</td>
+                    <td><a href="{{ route('company.task.show', ['id' => $task->task->id]) }}">{{ $task->task->name }}</a></td>
                     <td class="partner">
                         <div class="imgbox">
                             <img src="/{{ str_replace('public/', 'storage/', $task->task->partner->picture) }}" alt="">
@@ -215,14 +215,8 @@
             
         </table>
 
-        <!-- <div class="more-btn-container">
-            <button id="taskShowMoreBtn">
-                もっと見る
-                <i class="fas fa-angle-down"></i>
-            </button>
-        </div> -->
         <div class="more-container__wrapper">
-            <p id="taskShowMoreBtn" class="more-container__wrapper__showmore">もっと見る</p>
+            <p id="taskShowMoreBtn" class="showmore">もっと見る</p>
         </div>
 
 

@@ -16,7 +16,9 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return 'test task';
+        $partnerAuth = Auth::user();
+        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        return view('partner/task/index', compact('partner'));
     }
 
     public function show($id)

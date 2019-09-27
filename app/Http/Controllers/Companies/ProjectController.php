@@ -62,7 +62,6 @@ class ProjectController extends Controller
 
     public function store(CreateProjectRequest $request)
     {   
-        // return $request;
         $time = date("Y_m_d_H_i_s");
 
         $user = Auth::user();

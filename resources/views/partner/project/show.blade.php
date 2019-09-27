@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/project/show.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/project/index.css') }}">
 @endsection
 
 @section('content')
