@@ -169,30 +169,26 @@ $(function(){
         <div class="select-container">
             <div class="select-container__wrapper">
                 <!-- プロジェクトを選択する -->
-                <div class="select-container__wrapper__textarea">
-                    <div class="select-container__wrapper__textarea__text">
+                <div class="select-textarea">
+                    <div class="select-text">
                         プロジェクトを選択する
                     </div>
                 </div>
                 <!-- セレクトエリア -->
                 <div class="select-error-wrp">
-                    <div class="select-container__wrapper__select-area control">
-                        <div class="select-container__wrapper__select-area__field field">
-                            <div class="select-container__wrapper__select-area__field__control control">
-                                <div class="select-container__wrapper__select-area__field__control__select select is-info">
-                                    <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                        <option disabled selected></option>
-                                        @foreach($projects as $project)
-                                            <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @if ($errors->has('project_id'))
-                                        <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('project_id') }}</strong>
-                                        </div>
-                                    @endif
+                    <div class="select-area control">
+                        <div class="select-wrp select is-info">
+                            <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
+                                <option disabled selected></option>
+                                @foreach($projects as $project)
+                                    <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('project_id'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('project_id') }}</strong>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -204,46 +200,44 @@ $(function(){
                 <div class="main-container">
                     <div class="main-container__wrapper">
                         <!-- 項目：タスク名 -->
-                        <div class="main-container__wrapper__item-container">
+                        <div class="item-container">
                             <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
+                                <div class="item-name">
                                     タスク名
                                 </div>
                             </div>
-                            <div class="main-container__wrapper__item-container__inputarea">
-                                <div class="main-container__wrapper__item-container__inputarea__field">
-                                    <div class="main-container__wrapper__item-container__inputarea__field__control">
-                                        <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" value="{{ old('task_name')}}">
-                                        @if ($errors->has('task_name'))
-                                            <div class="invalid-feedback error-msg" role="alert">
-                                                <strong>{{ $errors->first('task_name') }}</strong>
-                                            </div>
-                                        @endif
-                                    </div>
+                            <div class="inputarea">
+                                <div class="input-control">
+                                    <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" value="{{ old('task_name')}}">
+                                    @if ($errors->has('task_name'))
+                                        <div class="invalid-feedback error-msg" role="alert">
+                                            <strong>{{ $errors->first('task_name') }}</strong>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                         <!-- 項目：タスク作成日 -->
-                        <div class="main-container__wrapper__item-container">
+                        <div class="item-container">
                             <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
+                                <div class="item-name">
                                     タスク作成日
                                 </div>
                             </div>
-                            <div class="main-container__wrapper__item-container__datewrapper">
-                                <div class="main-container__wrapper__item-container__datewrapper__date">
+                            <div class="cre-datewrapper">
+                                <div class="cre-date">
                                        本日 {{ date('Y') }}年{{ date('m') }}月{{ date('d') }}日<i class="fas fa-calendar-alt"></i>
                                 </div>
                             </div>
                         </div>
                         <!-- 項目：タスク内容 -->
-                        <div class="main-container__wrapper__item-container">
+                        <div class="item-container">
                             <div class="item-name-wrapper contentsname">
-                                <div class="item-name-wrapper__item-name">
+                                <div class="item-name">
                                     タスク内容
                                 </div>
                             </div>
-                            <div class="main-container__wrapper__item-container__textarea">
+                            <div class="textarea-wrp">
                                 <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'>{{ old('task_content') }}</textarea>
                                 @if ($errors->has('task_content'))
                                     <div class="invalid-feedback error-msg" role="alert">
@@ -253,27 +247,22 @@ $(function(){
                             </div>
                         </div>
                         <!-- 担当者 -->
-                        <div class="main-container__wrapper__item-container">
+                        <div class="item-container">
                                 <div class="item-name-wrapper">
-                                    <div class="item-name-wrapper__item-name">
+                                    <div class="item-name">
                                         担当者
                                     </div>
                                 </div>
                                 <div class="select-error-wrp">
-                                    <div class="select-container__wrapper__select-area control staff">
-                                        <div class="select-container__wrapper__select-area__field field">
-                                            <div class="select-container__wrapper__select-area__field__control control">
-                                                <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                                <!-- <select v-model="taskInfo.staff"> -->
-                                                <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                                    <option disabled selected></option>
-                                                    @foreach($companyUsers as $companyUser)
-                                                        <option value="{{ $companyUser->id }}" {{ (old('company_user_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                
-                                                </div>
-                                            </div>
+                                    <div class="select-area control staff">
+                                        <div class="select-wrp select-plusicon is-info">
+                                            <!-- <select v-model="taskInfo.staff"> -->
+                                            <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
+                                                <option disabled selected></option>
+                                                @foreach($companyUsers as $companyUser)
+                                                    <option value="{{ $companyUser->id }}" {{ (old('company_user_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div> 
                                     @if ($errors->has('company_user_id'))
@@ -285,26 +274,22 @@ $(function(){
                         </div>                        
 
                         <!-- 上長 -->
-                        <div class="main-container__wrapper__item-container">
+                        <div class="item-container">
                             <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
+                                <div class="item-name">
                                     上長
                                 </div>
                             </div>
                             <div class="select-error-wrp">
-                                <div class="select-container__wrapper__select-area control staff">
-                                    <div class="select-container__wrapper__select-area__field field">
-                                        <div class="select-container__wrapper__select-area__field__control control">
-                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                                <select name='superior_id'>
-                                                    <option disabled selected></option>
-                                                    @foreach($companyUsers as $companyUser)
-                                                        <option value={{ $companyUser->id }} {{ (old('superior_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                
-                                            </div>
-                                        </div>
+                                <div class="select-area control staff">
+                                    <div class="select-wrp select-plusicon is-info">
+                                        <select name='superior_id'>
+                                            <option disabled selected></option>
+                                            @foreach($companyUsers as $companyUser)
+                                                <option value={{ $companyUser->id }} {{ (old('superior_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        
                                     </div>
                                 </div>
                                 @if ($errors->has('superior_id'))
@@ -316,26 +301,21 @@ $(function(){
                         </div>
 
                         <!-- 経理 -->
-                        <div class="main-container__wrapper__item-container">
+                        <div class="item-container">
                             <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
+                                <div class="item-name">
                                     経理
                                 </div>
                             </div>
                             <div class="select-error-wrp">
-                                <div class="select-container__wrapper__select-area control staff">
-                                    <div class="select-container__wrapper__select-area__field field">
-                                        <div class="select-container__wrapper__select-area__field__control control">
-                                            <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                                <select name='accounting_id'>
-                                                    <option disabled selected></option>
-                                                    @foreach($companyUsers as $companyUser)
-                                                        <option value={{ $companyUser->id }} {{ (old('accounting_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                
-                                            </div>
-                                        </div>
+                                <div class="select-area control staff">
+                                    <div class="select-wrp select-plusicon is-info">
+                                        <select name='accounting_id'>
+                                            <option disabled selected></option>
+                                            @foreach($companyUsers as $companyUser)
+                                                <option value={{ $companyUser->id }} {{ (old('accounting_id') === $companyUser->id) ? 'selected' : '' }}>{{ $companyUser->name }}</option>
+                                            @endforeach
+                                        </select> 
                                     </div>
                                 </div>
                                 @if ($errors->has('accounting_id'))
@@ -346,17 +326,17 @@ $(function(){
                             </div>
                         </div>
                         <!-- 項目：締め切り -->
-                        <div class="main-container__wrapper__item-container">
+                        <div class="item-container">
                             <div class="item-name-wrapper period">
-                                <div class="item-name-wrapper__item-name">
+                                <div class="item-name">
                                     タスク期間
                                 </div>
                             </div>
-                            <div class="main-container__wrapper__item-container__calendar-content">
+                            <div class="calendar-wrp">
                                 <!-- 開始日カレンダー -->
-                                <div class="main-container__wrapper__item-container__calendar-content__content">                               
+                                <div class="calendar-item">                               
                                     
-                                    <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name start">
+                                    <div class="calendar-name start">
                                         開始日<i class="fas fa-calendar-alt"></i>
                                     </div>
                                     <div class="select-date-wrp">
@@ -453,9 +433,9 @@ $(function(){
                                   
                                 </div>
                                 <!-- 終了日カレンダー -->
-                                <div class="main-container__wrapper__item-container__calendar-content__content end">                               
+                                <div class="calendar-item end">                               
                                     
-                                    <div class="main-container__wrapper__item-container__calendar-content__content__item-name-wrapper__item-name">
+                                    <div class="calendar-name">
                                         終了日<i class="fas fa-calendar-alt"></i>
                                     </div>
                                     <div class="select-date-wrp">
@@ -546,41 +526,39 @@ $(function(){
                             </div>
                         </div>
                         <!-- 予算 -->
-                        <div class="main-container__wrapper__item-container">
+                        <div class="item-container">
                             <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
+                                <div class="item-name">
                                     予算
                                 </div>
                             </div>
-                            <div class="main-container__wrapper__item-container__inputarea">
-                                <div class="main-container__wrapper__item-container__inputarea__field">
-                                    <div class="main-container__wrapper__item-container__inputarea__field__control budget">
-                                        <input id="inputPrice" class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text" value="{{ old('budget')}}">
-                                        @if ($errors->has('budget'))
-                                            <div class="invalid-feedback error-msg" role="alert">
-                                                <strong>{{ $errors->first('budget') }}</strong>
-                                            </div>
-                                        @endif
-                           
-                                        <div class="main-container__wrapper__item-container__inputarea__field__control-yen">
-                                            円
+                            <div class="inputarea">
+                                <div class="input-control budget">
+                                    <input id="inputPrice" class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text" value="{{ old('budget')}}">
+                                    @if ($errors->has('budget'))
+                                        <div class="invalid-feedback error-msg" role="alert">
+                                            <strong>{{ $errors->first('budget') }}</strong>
                                         </div>
+                                    @endif
+                        
+                                    <div class="input-yen">
+                                        円
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- 項目：資料 -->
-                        <!-- <div class="main-container__wrapper__item-container">
+                        <!-- <div class="item-container">
                             <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name document">
+                                <div class="item-name document">
                                     資料
                                 </div>
                             </div>
-                            <div class="is-boxed main-container__wrapper__item-container__filearea">
+                            <div class="is-boxed filearea">
                                 <p class="uplaod">アップロード</p> -->
-                                <!-- <label class="file-label main-container__wrapper__item-container__filearea__label">
-                                    <input class="file-input file-label main-container__wrapper__item-container__filearea__label" type="file" name="resume" >
-                                    <span class="file-cta main-container__wrapper__item-container__filearea__label__file-cta">
+                                <!-- <label class="file-label">
+                                    <input class="file-input file-label" type="file" name="resume" >
+                                    <span class="file-cta">
                                     <span class="file-icon">
                                         <i class="fas fa-upload"></i>
                                     </span>
@@ -601,25 +579,20 @@ $(function(){
                     <p class="partner-container__title">パートナー契約内容</p>
                     <div class="partner-container__wrpper">
                         <!-- パートナー -->
-                        <div class="partner-container__wrpper__item-container">
+                        <div class="item-container">
                             <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
+                                <div class="item-name">
                                     パートナー
                                 </div>
                             </div>
-                            <div class="select-container__wrapper__select-area control">
-                                <div class="select-container__wrapper__select-area__field field">
-                                    <div class="select-container__wrapper__select-area__field__control control">
-                                        <div class="select-container__wrapper__select-area__field__control__select select-plusicon is-info">
-                                            <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                                <option disabled selected></option>
-                                                @foreach($partners as $partner)
-                                                    <option value="{{ $partner->id }}" {{ (old('partner_id') === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            
-                                        </div>
-                                    </div>
+                            <div class="select-area control">
+                                <div class="select-wrp select-plusicon is-info">
+                                    <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
+                                        <option disabled selected></option>
+                                        @foreach($partners as $partner)
+                                            <option value="{{ $partner->id }}" {{ (old('partner_id') === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 @if ($errors->has('partner_id'))
                                     <div class="invalid-feedback error-msg" role="alert">
@@ -629,14 +602,13 @@ $(function(){
                             </div>
                         </div>
                         <!-- 報酬形式 -->
-                        <div class="partner-container__wrpper__item-container fee">
+                        <div class="item-container fee">
                             <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
+                                <div class="item-name">
                                     報酬形式
                                 </div>
                             </div>
                             
-
                             <div class="fee-container__control">
                                 <label>
                                     <span class="title">固定</span>
@@ -654,51 +626,48 @@ $(function(){
                                     <span class="radio01-parts date"></span>
                                 </label>
                             </div>
-                            
-
-
-                            
+                             
                         </div>
                         
                         <!-- 発注単価・件数 -->
-                        <div class="partner-container__wrpper__item-container order__unit-number">
-                            <div class="partner-container__wrpper__item-container__order">
+                        <div class="item-container order__unit-number">
+                            <div class="order-wrp">
                                 
                                     <!-- 発注単価　タイトル -->
                                     <div class="item-name-wrapper unitname">
-                                        <div class="item-name-wrapper__item-name">
+                                        <div class="item-name">
                                             発注単価<span class="tax">（税抜）</span>
                                         </div>
                                     </div>
                                     
         
-                                <div class="partner-container__wrpper__item-container__order-uninum">
+                                <div class="unit-num">
                                     <!-- 発注単位 input -->
-                                    <div class="partner-container__wrpper__item-container__order-uninum__unit__contents">
+                                    <div class="unit-num_contents">
                                         <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price')}}">
                                         @if ($errors->has('price'))
                                             <div class="invalid-feedback error-msg" role="alert">
                                                 <strong>{{ $errors->first('price') }}</strong>
                                             </div>
                                         @endif
-                                        <div class="partner-container__wrpper__item-container__order-uninum__unit__contents__class">
+                                        <div class="aux-text">
                                             円
                                         </div>
                                     </div>  
                                     <!-- 件数 -->
                                     <div class="item-name-wrapper numbername">
-                                        <div class="item-name-wrapper__item-name">
+                                        <div class="item-name">
                                             件数
                                         </div>
                                     </div>
-                                    <div class="partner-container__wrpper__item-container__order-uninum__number__contents">
+                                    <div class="unit-num_contents">
                                         <input id="inputPrice" class="input form-control{{ $errors->has('cases') ? ' is-invalid' : '' }}" name='cases' type="text" value="{{ old('cases')}}">
                                         @if ($errors->has('cases'))
                                             <div class="invalid-feedback error-msg" role="alert">
                                                 <strong>{{ $errors->first('cases') }}</strong>
                                             </div>
                                         @endif
-                                        <div class="partner-container__wrpper__item-container__order-uninum__number__contents__class">
+                                        <div class="aux-text">
                                             件
                                         </div>
                                     </div>
@@ -706,9 +675,9 @@ $(function(){
                             </div>
                         </div>
                         <!-- 発注額 -->
-                        <!-- <div class="partner-container__wrpper__item-container price">
+                        <!-- <div class="item-container price">
                             <div class="item-name-wrapper">
-                                <div class="item-name-wrapper__item-name">
+                                <div class="item-name">
                                     発注額
                                 </div>
                             </div>
