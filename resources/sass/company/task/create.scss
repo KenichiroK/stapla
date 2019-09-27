@@ -23,7 +23,7 @@
     display: table;
     height: 48px;
     padding-right: 30px;
-    &__item-name {
+    .item-name {
         margin-bottom:8px;
         vertical-align: middle;
         display: table-cell;
@@ -37,7 +37,7 @@
             margin-left: -5px;
         }
     }
-    &__item-name.document{
+    .item-name.document{
         vertical-align: top;
     }
 }
@@ -120,11 +120,11 @@
         border-radius: 4px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
         display: flex;
-        &__textarea {
+        .select-textarea {
             display: table;
             height: 48px;
             padding-right: 10px;
-            &__text {
+            .select-text {
                 vertical-align: middle;
                 display: table-cell;
                 color: #43425D;
@@ -133,23 +133,18 @@
                 font-family: 'Source Sans Pro';
             }
         }
-        // セレクトエリア
-        &__select-area.staff{
-            width: 66%;
-        }
-        &__select-area {
-            width: 70%;
-            &__field {
-                &__control {
-                    &__select select {
-                        width: 100%;
-                        height: 48px;
-                        border-radius: 2px;
-                        border-color: #3B86FF;
-                    }
-                }
-            }
-        }
+    }
+}
+.select-area.staff{
+    width: 66%;
+}
+.select-area {
+    width: 70%;
+    .select-wrp select {
+        width: 100%;
+        height: 48px;
+        border-radius: 2px;
+        border-color: #3B86FF;
     }
 }
 .select.is-info select{
@@ -164,7 +159,7 @@
 }
 .select-error-wrp{
     width: 66%;
-    .select-container__wrapper__select-area.control{
+    .select-area.control{
         width: 100%
     }
 }
@@ -180,26 +175,24 @@
         padding:  40px 16px 1px;
         border-radius: 4px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
-        &__item-container {
+        .item-container {
             margin-bottom: 30px;
             display: flex;
             // タスク名
-            &__inputarea {
+            .inputarea {
                 width: 66%;
-                &__field {
-                    &__control input {
-                        box-shadow: none;
-                        border-radius: 2px;
-                        border: 1px solid #E9E9F0;
-                        height: 48px;
-                    }
+                .input-control input {
+                    box-shadow: none;
+                    border-radius: 2px;
+                    border: 1px solid #E9E9F0;
+                    height: 48px;
                 }
             }
             // タスク作成日
-            &__datewrapper{
+            .cre-datewrapper{
                 display: table;
                 height: 48px;
-                &__date{
+                .cre-date{
                     vertical-align: middle;
                     display: table-cell;
                     font-size: 18px;
@@ -212,36 +205,34 @@
                 }
             }
             // タスク内容
-            &__textarea {
+            .textarea-wrp {
                 height: 120px;
                 width: 66%;
             }
-            &__textarea textarea {
+            .textarea-wrp textarea {
                 border-radius: 2px;
                 border: 1px solid #E9E9F0;
                 box-shadow: none;
                 resize: none;
             }
-            // 締め切り
-            &__calendar-content {
-                &__content{
-                    display: block;
-                    &__item-name-wrapper__item-name{
-                        font-size: 18px;
-                        margin-bottom: 3px;
-                        i{
-                            color: #A5A4BF;
-                            padding-left: 26px;
-                        }
-                    }
-                    &__item-name-wrapper__item-name.start{
-                        padding-right: 180px;  
+            // タスク期間
+            .calendar-item{
+                display: block;
+                .calendar-name{
+                    font-size: 18px;
+                    margin-bottom: 3px;
+                    i{
+                        color: #A5A4BF;
+                        padding-left: 26px;
                     }
                 }
-                &__content.end{
-                    margin-top: 12px;
+                .calendar-name.start{
+                    padding-right: 180px;  
+                }
+            }
+            .calendar-item.end{
+                margin-top: 12px;
 
-                }
             }
             // プロジェクト期間
             .select-date-wrp{
@@ -307,7 +298,7 @@
             }
             
             // 予算
-            &__inputarea__field__control.budget{
+            .input-control.budget{
                 position: relative;
                 width: 40%;
                 input{
@@ -315,14 +306,14 @@
                     width: 100%;
                 }
             }
-            &__inputarea__field__control-yen{
+            .input-yen{
                 display: inline-block;
                 position: absolute;
                 bottom: 0px;
                 right: -25px;
             }
             // 資料
-            &__filearea {
+            .filearea {
                 padding: 20px 30px 30px;
                 background: #fff;
                 box-shadow: 0 2px 6px rgba(0,0,0,0.04);
@@ -349,26 +340,25 @@
         margin-bottom: 25px;
     }
     &__wrpper{
-        &__item-container.fee{
+        .item-container.fee{
             margin-bottom: 20px;
         }
-        &__item-container.price{
+        .item-container.price{
             border-top: 1px solid #F1F1F3;
             padding-top: 25px;
             .item-name-wrapper{
                 padding-right:0;
             }
         }
-        &__item-container{
+        .item-container{
             margin-bottom: 30px;
             display: flex;
             // 発注単価・件数
-            &__order{
+            .order-wrp{
                 display: flex;
-                &-uninum{
+                .unit-num{
                     display: flex;
-                    // 発注単位
-                    &__unit__contents{
+                    .unit-num_contents{
                         position: relative;
                         height: 48px;
                         input{
@@ -379,26 +369,7 @@
                             border-radius: 2px;
                             border: 1px solid #E9E9F0;
                         }
-                        &__class{
-                            display: inline-block;
-                            position: absolute;
-                            bottom: 0px;
-                            right: -25px;
-                        }
-                    }
-                    // 件数
-                    &__number__contents{
-                        position: relative;
-                        height: 48px;
-                        input{
-                            display: inline-block;
-                            height: 48px;
-                            width: 200px;
-                            box-shadow: none;
-                            border-radius: 2px;
-                            border: 1px solid #E9E9F0;
-                        }
-                        &__class{
+                        .aux-text{
                             display: inline-block;
                             position: absolute;
                             bottom: 0px;
@@ -427,7 +398,7 @@
                 }
             }
         }
-        &__item-container.order__unit-number{
+        .item-container.order__unit-number{
             display: block;
         }
     }
@@ -486,80 +457,6 @@
     }
 }
 
-
-
-
-
-  
-.side-container {
-        width: 100%;
-        margin-top: 30px;
-    &__wrapper {
-        // テンプレート
-        &__template-container {
-            background-color: #ffffff;
-            padding: 16px 16px 32px;
-            margin-bottom: 24px;
-            &__wrapper {
-                
-            }
-        }
-        // 契約内容
-        &__agreement-container {     
-            background-color: #ffffff;
-            padding: 16px 16px 32px;
-            &__wrapper {
-                // 報酬形式
-                &__fee-container {
-                    margin-bottom: 24px;
-                    &__name {
-                        padding: 8px 0;
-                    }
-                    &__control {
-                        display: flex;
-                        justify-content: space-evenly;
-                        &__textarea {
-                            border-color: #808495;
-                            resize: none;
-                        }
-                    }
-                }
-                // 発注額
-                &__order-container {
-                    &__content {
-                        padding: 8px;
-                        margin-bottom: 24px;
-                        &__inputitem {
-                            margin-bottom: 8px;
-                            display: flex;
-                            &__class {
-                                margin-left: 8px;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                            }
-                        }
-                        &__hr {
-                            width: 95%;
-                            margin: 16px auto;
-                            border-bottom: 1px solid #F1F1F3;
-                        }
-                        &__item-wrapper {
-                            &__item {
-                                margin-bottom: 8px;
-                                display: flex;
-                                &__item-amount {
-                                    margin-left: auto;
-                                }
-                            }
-                        }
-                    }   
-                }
-            }
-        }
-    }
-}
-
 .button-wrapper{
     text-align: center;
     margin-top: 60px;
@@ -574,108 +471,5 @@
     &__btn:hover{
         opacity:0.8;
         color: #fff;
-    }
-}
-
-//作成確認用モーダル
-.p-modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow-y: auto;
-  visibility: hidden;
-  opacity: 0;
-  z-index: -1;
-  &.is-open {
-    visibility: visible;
-    opacity: 1;
-    z-index: 100;
-  }
-}
-
-.modal-mask {
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    display: table;
-    transition: opacity .3s ease;
-    &__wrapper{
-        display: table-cell;
-        vertical-align: middle;
-        &__container{
-            width: 560px;
-            margin: 0px auto;
-            padding: 20px 30px;
-            background-color: #fff;
-            border-radius: 2px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-            transition: all .3s ease;
-            &__title{
-                font-weight:bold;
-                font-size:24px;
-                margin-bottom:24px;
-                text-align: center;
-            }
-            &__row{
-                display:flex;
-                margin-bottom:8px;
-                &__item{
-                    font-size:16px;
-                    width:160px;
-                }
-                &__content{
-                    font-size:16px;
-                }
-            }
-            &__button-wrapper{
-                text-align: center;
-                &__ng-btn{
-                    width:140px;
-                    border-radius: 18px;
-                    color:#fff;
-                    font-weight:bold;
-                    background: rgb(110, 110, 110);
-                    margin-top: 32px;
-                }
-                &__ok-btn{
-                    width:140px;
-                    border-radius: 18px;
-                    color:#fff;
-                    font-weight:bold;
-                    background: #43425D;
-                    margin-top: 32px;
-                }
-                &__btn:hover{
-                    opacity:0.8;
-                }
-            }
-            .close{
-                margin-bottom:16px;
-                font-size: 24px;
-            }
-
-            &__register{
-                color:#31B404;
-                font-weight: bold;
-                font-size:24px;
-            }
-            &__item{
-                color:red;
-                font-size:16px;
-                margin-bottom:4px;
-            }
-            &__uninput{
-                text-align: center;
-                margin-bottom:24px;
-                font-weight: bold;
-                font-size:24px;
-            }
-        }
     }
 }
