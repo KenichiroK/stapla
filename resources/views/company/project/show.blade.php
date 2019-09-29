@@ -88,7 +88,7 @@
                         <div class="detail-container__list__item__content">
                             @foreach($project->ProjectSuperiors as $projectSuperior)
                             <div class="staff-item">
-                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectCompany->companyUser->picture) }}" alt=""></div>
+                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectSuperior->companyUser->picture) }}" alt=""></div>
                                 <p class="name">{{ $projectSuperior->companyUser->name }}</p>
                             </div>
                             @endforeach
@@ -98,7 +98,7 @@
                         <div class="detail-container__list__item__content">
                             @foreach($project->ProjectAccountings as $projectAccounting)
                             <div class="staff-item">
-                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectCompany->companyUser->picture) }}" alt=""></div>
+                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectAccounting->companyUser->picture) }}" alt=""></div>
                                 <p class="name">{{ $projectAccounting->companyUser->name }}</p>
                             </div>
                             @endforeach
