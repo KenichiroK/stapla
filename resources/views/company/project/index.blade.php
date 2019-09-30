@@ -18,7 +18,7 @@
                     </span> -->
                 </p>
             </div>
-            <div class="control project-wrp">
+            <div class="control project_btn-wrp">
                 <a href="project/create"><button class="button">プロジェクト作成</button></a>
             </div>
         </div>
@@ -30,7 +30,7 @@
 
         <div class="project-container">
             <div class="project-container__item">
-                <ul class="project-container__item__list">
+                <ul class="item_list">
                     <li>プロジェクト
                         <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
                     </li>
@@ -46,8 +46,8 @@
             <div class="project-container__content">
                 @foreach( $projects as $project )
                 <a class="show-link" href="{{ route('company.project.show', ['id' => $project->id]) }}">
-                    <ul class="item-list project-container__content__list" >
-                        <li class="item-list project-container__content__list__name">{{ $project->name }}</li>
+                    <ul class="item-list content_list" >
+                        <li class="item-list project-name">{{ $project->name }}</li>
                         <li>
                             <div class="photoimgbox">
                                 <img src="/{{ str_replace('public/', 'storage/', $project->projectCompanies[0]->companyUser->picture) }}" alt="担当者プロフィール画像">
@@ -85,8 +85,8 @@
                 @endforeach
             </div>
 
-            <div class="project-container__content__showmore">
-                <p id="showmore_btn" class="project-container__content__showmore__btn"><a>もっと見る</a>
+            <div class="showmore-wrp">
+                <p id="showmore_btn" class="showmore__btn"><a>もっと見る</a>
                     <span><img src="{{ asset('images/arrowdown.png') }}"></span>
                 </p>
             </div>
