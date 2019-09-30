@@ -2,6 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/setting/general/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/setting/userSetting/index.css') }}">
 <script>
 const setPreview = (input) => {
@@ -31,26 +32,24 @@ const setPreview = (input) => {
 			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
 		</ul>
   </div>
-  <div id="charge" class="charge-container">
-    <div class="charge-container__top-wrapper">
-        <div class="title-container">
-            <h3>会社担当者設定</h3>
-            <div class="btn-container">
-                <a href="">担当者追加</a>
-            </div>
+  <div id="charge" class="charge-container white-bg-container">
+    <div class="title-container">
+        <h3>会社担当者設定</h3>
+        <div class="btn-a-container">
+            <a href="">担当者追加</a>
         </div>
     </div>
-    <div class="charge-container__item">
-        <ul class="charge-container__item__list" style="display: flex">
+    <div class="charge-container_item">
+        <ul>
             <li>担当者名</li>
             <li>メールアドレス</li>
             <li>パートナー依頼中</li>
             <li>ステータス</li>
         </ul>
     </div>
-    <div class="charge-container__content">
+    <div class="charge-container_content">
         @foreach($companyUsers as $companyUser)
-        <ul class="company_user charge-container__content__list">
+        <ul>
             <li>
                 <div class="name-container">
                     <div class="name-container__img-container">
@@ -65,12 +64,9 @@ const setPreview = (input) => {
         </ul>
         @endforeach
         
-        <div class="charge-container__content__showmore">
-            <p id="more_btn" class="charge-container__content__showmore__btn">もっと見る</p>
+        <div class="showmore-wrp">
+            <p id="more_btn" class="showmore_btn">もっと見る</p>
         </div>
     </div>
-    <!-- <div class="btn-container">
-        <a href="/company/invite/company">担当者追加</a>
-    </div> -->
 </div>
 @endsection
