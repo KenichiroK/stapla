@@ -174,7 +174,7 @@ const setPreview = (input) => {
                     <div class="textarea-container">
                         <p>自己紹介</p>
                         @if ($partner)
-                            <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction', $partner->introduction) }}</textarea>                            
+                            <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction', $partner->introduction) }}</textarea>
                         @else
                             <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction') }}</textarea>
                         @endif

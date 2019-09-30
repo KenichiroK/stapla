@@ -53,7 +53,7 @@
                     タスク内容
                 </dt>
                 <dd>
-                    {{ $task->content }}
+                    {!! nl2br(e($task->content)) !!}
                 </dd>
             </dl>
             <dl>
