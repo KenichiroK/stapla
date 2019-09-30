@@ -192,7 +192,7 @@ $pref = array(
 						</div>
 					</div>
 					<div class="bottom-container last">
-						<div class="tel-container">
+						<div class="tel-container input-container">
 							<p>電話番号</p>
 								<div class="tel-container__wrapper">
 									<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front') }}" maxlength="4" onchange="setTel()">
@@ -211,7 +211,7 @@ $pref = array(
 					</div>
 				</div>
 
-				<div class="edit-container-personal">
+				<div class="edit-container-personal edit-container">
 					<div class="image-container">
 						<div class="imgbox">
 							<img id="profile_image_preview" src="{{ asset('images/upload4.png') }}" alt="プレビュー画像">

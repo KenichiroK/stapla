@@ -10,140 +10,6 @@
 </script>
 
 <script>
-// started_at
-function set_started_at(){
-    const started_at_year = document.getElementById('started_at_year').value;
-    const started_at_month = document.getElementById('started_at_month').value;
-    let startedDayOption;
-    let startedToday =new Date();
-    let lastStartedDay = (new Date(started_at_year, started_at_month, 0)).getDate();
-    for(let d=1; d<=lastStartedDay; d++){
-        if(d < 10){
-            if(d == startedToday.getDate()){
-                startedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
-            } else{
-                startedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
-            }
-        } else{
-            if(d == startedToday.getDate()){
-                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
-            } else{
-                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
-            }
-        }
-    }
-    document.getElementById('started_at_day').innerHTML = startedDayOption;
-    
-    const started_at_day = document.getElementById('started_at_day').value;
-    const started_at_time = document.getElementById('started_at_time').value;
-    const started_at = document.getElementById('started_at');
-    started_at.value = started_at_year + started_at_month + started_at_day + started_at_time;
-    console.log(started_at.value);
-}
-function setStartedDay(){
-    const started_at_year = document.getElementById('started_at_year').value;
-    const started_at_month = document.getElementById('started_at_month').value;
-    const started_at_day = document.getElementById('started_at_day').value;
-    const started_at_time = document.getElementById('started_at_time').value;
-    const started_at = document.getElementById('started_at');
-    started_at.value = started_at_year + started_at_month + started_at_day + started_at_time;
-    console.log(started_at.value);
-}
-// ended_at
-function set_ended_at(){
-    const ended_at_year = document.getElementById('ended_at_year').value;
-    const ended_at_month = document.getElementById('ended_at_month').value;
-    let endedDayOption;
-    let endedToday =new Date();
-    let lastEndedDay = (new Date(ended_at_year, ended_at_month, 0)).getDate();
-    for(let d=1; d<=lastEndedDay; d++){
-        if(d < 10){
-            if(d == endedToday.getDate()){
-                endedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
-            } else{
-                endedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
-            }
-        } else{
-            if(d == endedToday.getDate()){
-                endedDayOption += '<option value="' +d+ '">' +d+ '</option>';
-            } else{
-                endedDayOption += '<option value="' +d+ '">' +d+ '</option>';
-            }
-        }
-    }
-    document.getElementById('ended_at_day').innerHTML = endedDayOption;
-    
-    const ended_at_day = document.getElementById('ended_at_day').value;
-    const ended_at_time = document.getElementById('ended_at_time').value;
-    const ended_at = document.getElementById('ended_at');
-    ended_at.value = ended_at_year + ended_at_month + ended_at_day + ended_at_time;
-    console.log(ended_at.value);
-}
-const setEndedDay = () => {
-    const ended_at_year = document.getElementById('ended_at_year').value;
-    const ended_at_month = document.getElementById('ended_at_month').value;
-    const ended_at_day = document.getElementById('ended_at_day').value;
-    const ended_at_time = document.getElementById('ended_at_time').value;
-    const ended_at = document.getElementById('ended_at');
-    ended_at.value = ended_at_year + ended_at_month + ended_at_day + ended_at_time;
-    console.log(ended_at.value);
-}
-window.onload = function(){
-    // started_at
-    const started_at_year = document.getElementById('started_at_year').value;
-    const started_at_month = document.getElementById('started_at_month').value;
-    let startedDayOption;
-    let startedToday =new Date();
-    let lastStartedDay = (new Date(started_at_year, started_at_month, 0)).getDate();
-    for(let d=1; d<=lastStartedDay; d++){
-        if(d < 10){
-            if(d == startedToday.getDate()){
-                startedDayOption += '<option value="' +0+d+ '" selected>' +0+d+ '</option>';
-            } else{
-                startedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
-            }
-        } else{
-            if(d == startedToday.getDate()){
-                startedDayOption += '<option value="' +d+ '" selected>' +d+ '</option>';
-            } else{
-                startedDayOption += '<option value="' +d+ '">' +d+ '</option>';
-            }
-        }
-    }
-    document.getElementById('started_at_day').innerHTML = startedDayOption;
-    const started_at_day = document.getElementById('started_at_day').value;
-    const started_at_time = document.getElementById('started_at_time').value;
-    const started_at = document.getElementById('started_at');
-    started_at.value = started_at_year + started_at_month + started_at_day + started_at_time; 
-    console.log(started_at.value);
-     // ended_at
-    const ended_at_year = document.getElementById('ended_at_year').value;
-    const ended_at_month = document.getElementById('ended_at_month').value;
-    let endedDayOption;
-    let endedToday =new Date();
-    let lastEndedDay = (new Date(ended_at_year, ended_at_month, 0)).getDate();
-    for(let d=1; d<=lastEndedDay; d++){
-        if(d < 10){
-            if(d == endedToday.getDate()){
-                endedDayOption += '<option value="' +0+d+ '" selected>' +0+d+ '</option>';
-            } else{
-                endedDayOption += '<option value="' +0+d+ '">' +0+d+ '</option>';
-            }
-        } else{
-            if(d == endedToday.getDate()){
-                endedDayOption += '<option value="' +d+ '" selected>' +d+ '</option>';
-            } else{
-                endedDayOption += '<option value="' +d+ '">' +d+ '</option>';
-            }
-        }
-    }
-    document.getElementById('ended_at_day').innerHTML = endedDayOption;
-    const ended_at_day = document.getElementById('ended_at_day').value;
-    const ended_at_time = document.getElementById('ended_at_time').value;
-    const ended_at = document.getElementById('ended_at');
-    ended_at.value = ended_at_year + ended_at_month + ended_at_day + ended_at_time;
-    console.log(ended_at.value);
-}
 $(function(){
     let $inputPrice = $('#inputPrice');
     let $outputPrice = $('.outputPrice');
@@ -339,95 +205,16 @@ $(function(){
                                     <div class="calendar-name start">
                                         開始日<i class="fas fa-calendar-alt"></i>
                                     </div>
-                                    <div class="select-date-wrp">
-                                        <div class="select-arrow year">
-                                            <select class="select-box" id="started_at_year" name="started_at_year" onChange="set_started_at()">
-                                            @for($y=date('Y')-5; $y<=date('Y')+20; $y++)
-                                                @if(!empty(old('started_at_year')) === true )
-                                                    <option value="{{ $y }}" {{ (old('started_at_year') == $y) ? 'selected' : '' }}>{{ $y }}</option>
-                                                @else
-                                                    @if($y == date('Y'))
-                                                        <option value="{{ $y }}" selected>{{ $y }}</option> 
-                                                    @else
-                                                        <option value="{{ $y }}">{{ $y }}</option> 
-                                                    @endif
-                                                @endif
-                                            @endfor
-                                            </select>
-                                        </div>
-                                        年
+                                    <input
+                                        type="datetime-local"
+                                        name="started_at"
+                                        class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
+                                        value="{{ old('started_at') ? str_replace(" ", "T", old('started_at')) : date('Y-m-d\TH:i') }}"
+                                    >
 
-                                        <div class="select-arrow">
-                                            <select class="select-box" id="started_at_month" name="started_at_month" onChange="set_started_at()">
-                                            @for($m=1; $m<=12; $m++)
-                                                @if(!empty(old('started_at_month')) === true)
-                                                    @if($m < 10)
-                                                        <option value='0{{ $m }}' {{ (substr(old('started_at_month'), 1, 1) == $m) ? 'selected' : '' }}>{{ $m }}</option>
-                                                    @else
-                                                        <option value='{{ $m }}' {{ (substr(old('started_at_month'), 1, 2) == $m) ? 'selected' : '' }}>{{ $m }}</option>
-                                                    @endif
-                                                @else
-                                                    @if($m < 10)
-                                                        @if($m == date('m'))
-                                                            <option value='0{{ $m }}' selected>{{ $m }}</option>
-                                                        @else
-                                                            <option value='0{{ $m }}'>{{ $m }}</option>
-                                                        @endif
-                                                    @else
-                                                        @if($m == date('m'))
-                                                            <option value='{{ $m }}' selected>{{ $m }}</option>
-                                                        @else
-                                                            <option value='{{ $m }}'>{{ $m }}</option>
-                                                        @endif
-                                                    @endif
-                                                @endif
-                                            @endfor
-                                            </select>
-                                        </div>
-                                        月
-                                        <div class="select-arrow">
-                                            <select class="select-box" id="started_at_day" name="started_at_day" onChange="setStartedDay();"></select>
-                                        </div>
-                                        日
-                                        <div class="select-arrow">
-                                            <select class="select-box" id="started_at_time" name="started_at_time" onChange="setStartedDay()">
-                                            @for($h=0; $h<=24; $h++)
-                                                @if(!empty(old('started_at_time')) === true)
-                                                    @if($h < 10)
-                                                        <option value='0{{ $h }}0000' {{ (substr(old('started_at_time'), 1, 1) == $h) ? 'selected' : '' }}>{{ $h }}</option>
-                                                    @else
-                                                        <option value='{{ $h }}0000' {{ (substr(old('started_at_time'), 0, 2) == $h) ? 'selected' : '' }}>{{ $h }}</option>
-                                                    @endif
-                                                @else
-                                                    @if($h < 10)
-                                                        @if($h == date('H'))
-                                                            <option value='0{{ $h }}0000' selected>{{ $h }}</option>
-                                                        @else
-                                                            <option value='0{{ $h }}0000'>{{ $h }}</option>
-                                                        @endif
-                                                    @else
-                                                        @if($h == date('H'))
-                                                            <option value='{{ $h }}0000' selected>{{ $h }}</option>
-                                                        @else
-                                                            <option value='{{ $h }}0000'>{{ $h }}</option>
-                                                        @endif
-                                                    @endif
-                                                @endif
-                                            @endfor
-                                            </select>
-                                        </div>
-                                        @if($errors->has('started_at_time'))
-                                            <div>
-                                                <strong style='color: #e3342f;'>{{ $errors->first('started_at_time') }}</strong>
-                                            </div>
-                                        @endif
-                                        時
-                                    </div>
-
-                                    <input name="started_at" id="started_at" type="hidden" value="{{ old('started_at')}}">
                                     @if($errors->has('started_at'))
-                                        <div>
-                                            <strong style='color: #e3342f;'>{{ $errors->first('started_at') }}</strong>
+                                        <div class="invalid-feedback error-msg" role="alert">
+                                            <strong>{{ $errors->first('started_at') }}</strong>
                                         </div>
                                     @endif
                                   
@@ -438,85 +225,13 @@ $(function(){
                                     <div class="calendar-name">
                                         終了日<i class="fas fa-calendar-alt"></i>
                                     </div>
-                                    <div class="select-date-wrp">
-                                        <div class="select-arrow year">
-                                            <select class="select-box" id="ended_at_year" name="ended_at_year" onChange="set_ended_at()">
-                                            @for($y=date('Y')-5; $y<=date('Y')+20; $y++)
-                                                @if(!empty(old('ended_at_year')) === true )
-                                                <option value="{{ $y }}" {{ (old('ended_at_year') == $y) ? 'selected' : '' }}>{{ $y }}</option>
-                                                @else
-                                                    @if($y == date('Y'))
-                                                        <option value="{{ $y }}" selected>{{ $y }}</option> 
-                                                    @else
-                                                        <option value="{{ $y }}">{{ $y }}</option> 
-                                                    @endif
-                                                @endif
-                                            @endfor
-                                            </select>
-                                        </div>
-                                        年
-                                        <div class="select-arrow">
-                                            <select class="select-box" id="ended_at_month" name="ended_at_month" onChange="set_ended_at()">
-                                                @for($m=1; $m<=12; $m++)
-                                                    @if(!empty(old('ended_at_month')) === true)
-                                                        @if($m < 10)
-                                                        <option value='0{{ $m }}' {{ (substr(old('ended_at_month'), 1, 1) == $m) ? 'selected' : '' }}>{{ $m }}</option>
-                                                    @else
-                                                        <option value='{{ $m }}' {{ (substr(old('ended_at_month'), 1, 2) == $m) ? 'selected' : '' }}>{{ $m }}</option>
-                                                        @endif
-                                                    @else
-                                                        @if($m < 10)
-                                                            @if($m == date('m'))
-                                                                <option value='0{{ $m }}' selected>{{ $m }}</option>
-                                                            @else
-                                                                <option value='0{{ $m }}'>{{ $m }}</option>
-                                                            @endif
-                                                        @else
-                                                            @if($m == date('m'))
-                                                                <option value='{{ $m }}' selected>{{ $m }}</option>
-                                                            @else
-                                                                <option value='{{ $m }}'>{{ $m }}</option>
-                                                            @endif
-                                                        @endif
-                                                    @endif
-                                                @endfor
-                                            </select>
-                                        </div>
-                                        月
-                                        <div class="select-arrow">
-                                            <select class="select-box" id="ended_at_day" name="ended_at_day" onChange="setEndedDay();"></select>
-                                        </div>
-                                        日
-                                        <div class="select-arrow">
-                                            <select class="select-box" id="ended_at_time" name="ended_at_time" onChange="setEndedDay()">
-                                            @for($h=0; $h<=24; $h++)
-                                                @if(!empty(old('ended_at_time')) === true)
-                                                    @if($h < 10)
-                                                        <option value='0{{ $h }}0000' {{ (substr(old('ended_at_time'), 1, 1) == $h) ? 'selected' : '' }}>{{ $h }}</option>
-                                                    @else
-                                                        <option value='{{ $h }}0000' {{ (substr(old('ended_at_time'), 0, 2) == $h) ? 'selected' : '' }}>{{ $h }}</option>
-                                                    @endif
-                                                @else
-                                                    @if($h < 10)
-                                                        @if($h == date('H'))
-                                                            <option value='0{{ $h }}0000' selected>{{ $h }}</option>
-                                                        @else
-                                                            <option value='0{{ $h }}0000'>{{ $h }}</option>
-                                                        @endif
-                                                    @else
-                                                        @if($h == date('H'))
-                                                            <option value='{{ $h }}0000' selected>{{ $h }}</option>
-                                                        @else
-                                                            <option value='{{ $h }}0000'>{{ $h }}</option>
-                                                        @endif
-                                                    @endif
-                                                @endif
-                                            @endfor
-                                            </select>
-                                        </div>
-                                        時
-                                    </div>
-                                    <input id="ended_at" class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}" name='ended_at' type="hidden" value="{{ old('ended_at')}}">
+                                    <input
+                                        type="datetime-local"
+                                        class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
+                                        name='ended_at'
+                                        value="{{ old('ended_at') ? str_replace(" ", "T", old('ended_at')) : date('Y-m-d\TH:i') }}"
+                                    >
+
                                     @if ($errors->has('ended_at'))
                                         <div class="invalid-feedback error-msg" role="alert">
                                             <strong>{{ $errors->first('ended_at') }}</strong>
