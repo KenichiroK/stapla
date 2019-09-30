@@ -35,7 +35,7 @@
             <div class="detail-container">
                 <ul class="detail-container__list">
                     <li class="detail-container__list__item margin--none"><div class="detail-container__list__item__name">プロジェクト名</div> <p class="detail-container__list__item__content">{{ $project->name }}</p> </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細</div><p class="detail-container__list__item__content desc-item">{{ $project->detail }}</p></li>
+                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細</div><p class="detail-container__list__item__content desc-item">{!! nl2br(e($project->detail)) !!}</p></li>
                     <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">担当者</div>
                         <div class="detail-container__list__item__content">
                         {{ $project->task }}
@@ -65,13 +65,6 @@
                             </div>
                         </div>
                     </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->price) }}円</div></li>
-                    <!-- <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
-                        <div class="detail-container__list__item__content file-item">
-                            <div class="imgbox"><img src="{{ asset('images/file.png') }}" alt=""></div>
-                            <p>ファイル名</p>
-                        </div>
-                    </li> -->
                 </ul>
             </div>
         </div>

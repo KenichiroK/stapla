@@ -33,7 +33,7 @@ class ProfileController extends Controller
             }
             $completed = '変更を保存しました。';
 
-            return redirect()->route('partner.profile.create')->with('completed', $completed);
+            return redirect()->route('partner.setting.profile.create')->with('completed', $completed);
         }
     }
 }
