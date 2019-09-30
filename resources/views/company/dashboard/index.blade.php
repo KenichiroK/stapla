@@ -5,148 +5,6 @@
 <link rel="stylesheet" href="{{ mix('css/company/dashboard/index.css') }}">
 @endsection
 
-@section('header-profile')
-<div class="header-proflie">
-    <div class="option">
-        <div class="user-name">
-            {{ $company_user->name }}
-        </div>
-
-        <div class="icon-imgbox">
-            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
-        </div>
-    </div>
-    
-    <div class="optionBox">
-        <div class="balloon">
-            <ul>
-                <li><a href="">プロフィール設定</a></li>
-                <li>
-                    <form method="POST" action="{{ route('company.logout') }}">
-                        @csrf
-                        <button type="submit">ログアウト</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-        
-    </div>
-
-    <div class="user-imgbox">
-        <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
-    </div>
-</div>
-@endsection
-
-@section('sidebar')
-<div class="sidebar__container">
-    <div class="sidebar__container__wrapper">
-        <aside class="menu menu__container">
-            <a href="/company/dashboard">
-                <div class="menu__container--label">
-                    <div class="menu-label">
-                        <img src="{{ asset('images/logo.png') }}" alt="logo">
-                    </div>
-                </div>
-            </a>
-            <ul class="menu-list menu menu__container__menu-list">
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_home.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ホーム
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/dashboard" class="isActive">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_dashboard-active.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ダッシュボード
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/project">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            プロジェクト
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/task">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_products.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            タスク
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/document">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            書類
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/partner">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            パートナー
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            カレンダー
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ヘルプセンター
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/setting/general">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            設定
-                        </div>
-                    </a>
-                </li>
-            </ul>
-            
-        </aside>
-    </div>
-</div>
-@endsection
-
 @section('content')
 <div class="main-wrapper">
     <div class="title-container">
@@ -194,11 +52,11 @@
         </div>
     </div>
 
-    <div class="project-container">
+    <div class="project-container table-container">
         <div class="title-container">
             <h4>プロジェクト</h4>
             <div class="btn-container">
-                <a href="project/create">プロジェクト作成</a>
+                <a href="{{ route('company.project.create') }}">プロジェクト作成</a>
             </div>
         </div>
 
@@ -223,7 +81,7 @@
             <tbody>
                 @foreach($projects as $project)
                 <tr>
-                    <td class="project_name">{{ $project->project->name }}</td>
+                    <td class="project_name"><a href="{{ route('company.project.show', ['id' => $project->project->id]) }}">{{ $project->project->name }}</a></td>
                     <td>
                         <div class="imgbox">
                             <img src="/{{ str_replace('public/', 'storage/', $project->project->projectCompanies[0]->companyUser->picture) }}" alt="">
@@ -263,7 +121,7 @@
         </table>
 
         <div class="more-container__wrapper">
-            <p id="projectShowMoreBtn" class="more-container__wrapper__showmore">もっと見る</p>
+            <p id="projectShowMoreBtn" class="showmore">もっと見る</p>
         </div>
     </div>
 
@@ -282,11 +140,11 @@
         </div>
     </div>
 
-    <div class="task-container">
+    <div class="task-container table-container">
         <div class="title-container">
             <h4>タスク</h4>
             <div class="btn-container">
-                <a href="/company/task/create">タスク作成</a>
+                <a href="{{ route('company.task.create') }}">タスク作成</a>
             </div>
         </div>
 
@@ -310,7 +168,7 @@
                 @foreach($tasks as $task)
                 <tr>
                     <td class="project_name">{{ $task->task->project->name }}</td>
-                    <td>{{ $task->task->name }}</td>
+                    <td><a href="{{ route('company.task.show', ['id' => $task->task->id]) }}">{{ $task->task->name }}</a></td>
                     <td class="partner">
                         <div class="imgbox">
                             <img src="/{{ str_replace('public/', 'storage/', $task->task->partner->picture) }}" alt="">
@@ -357,14 +215,8 @@
             
         </table>
 
-        <!-- <div class="more-btn-container">
-            <button id="taskShowMoreBtn">
-                もっと見る
-                <i class="fas fa-angle-down"></i>
-            </button>
-        </div> -->
         <div class="more-container__wrapper">
-            <p id="taskShowMoreBtn" class="more-container__wrapper__showmore">もっと見る</p>
+            <p id="taskShowMoreBtn" class="showmore">もっと見る</p>
         </div>
 
 

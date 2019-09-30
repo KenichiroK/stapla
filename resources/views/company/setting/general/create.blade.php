@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/setting/general/index.css') }}">
 <script>
-const setPreview = (input) => {
+function setPreview(input){
   const preview = document.getElementById('preview');
 
   if (input.files && input.files[0]) {
@@ -17,162 +17,25 @@ const setPreview = (input) => {
   }
 }
 
-const setPostal = () => {
+// 郵便番号自動遷移
+function nextField(t, name, maxlength){
+    if(t.value.length >= maxlength){
+        t.form.elements[name].focus();
+    }
+}
+
+function setPostal(){
   const postal_front = document.getElementById('postal_front').value;
   const postal_back = document.getElementById('postal_back').value;
   const postal = document.getElementById('postal');
   postal.value = postal_front + postal_back;
 }
 
-window.onload = () => {
+window.onload = function(){
   setPostal();
 }
 </script>
 @endsection
-
-@section('header-profile')
-<div class="header-proflie">
-    <div class="option">
-        <div class="user-name">
-            {{ $company_user->name }}
-        </div>
-
-        <div class="icon-imgbox">
-            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
-        </div>
-    </div>
-    
-    <div class="optionBox">
-        <div class="balloon">
-            <ul>
-                <li><a href="">プロフィール設定</a></li>
-                <li>
-                    <form method="POST" action="{{ route('company.logout') }}">
-                        @csrf
-                        <button type="submit">ログアウト</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-        
-    </div>
-
-    <div class="user-imgbox">
-        <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
-    </div>
-</div>
-@endsection
-
-
-@section('sidebar')
-<div class="sidebar__container">
-    <div class="sidebar__container__wrapper">
-        <aside class="menu menu__container">
-            <a href="/company/dashboard">
-                <div class="menu__container--label">
-                    <div class="menu-label">
-                        <img src="{{ asset('images/logo.png') }}" alt="logo">
-                    </div>
-                </div>
-            </a>
-            <ul class="menu-list menu menu__container__menu-list">
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_home.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ホーム
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/dashboard">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ダッシュボード
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/project">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            プロジェクト
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/task">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_products.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            タスク
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/document">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            書類
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/partner">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_customers.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            パートナー
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            カレンダー
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ヘルプセンター
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/setting/general" class="isActive">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_setting-active.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            設定
-                        </div>
-                    </a>
-                </li>
-            </ul>
-            
-        </aside>
-    </div>
-</div>
-@endsection
-
 
 @section('content')
 <?php
@@ -246,27 +109,27 @@ $pref = array(
 	</div>
 	<div class="menu-container">
 		<ul>
-			<li><a href="/company/setting/general" class="isActive">会社基本情報設定</a></li>
-			<li><a href="/company/setting/companyElse">会社その他の設定</a></li>
-			<li><a href="/company/setting/userSetting">会社担当者設定</a></li>
-			<!-- <li><a href="/company/setting/account">アカウント設定</a></li> -->
-			<li><a href="/company/setting/personalInfo">個人情報の設定</a></li>
+			<li><a href="{{ route('company.setting.general.create') }}" class="isActive">会社基本情報設定</a></li>
+			<li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li>
+			<li><a href="{{ route('company.setting.userSetting.create') }}">会社担当者設定</a></li>
+			<!-- <li><a href="{{ route('company.setting.account.create') }}">アカウント設定</a></li> -->
+			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
 		</ul>
 	</div>
 	<div class=profile-container>
-		<form action="{{ url('/company/setting/general') }}" method="POST">
+		<form action="{{ route('company.setting.general.update') }}" method="POST">
 		@csrf
 			<div class="top-area">
-				<div class="name-container">
+				<div class="name-container item-container">
 					<p>会社名</p>
                     <p class="text_content">{{ $company->company_name }}</p>
 				</div>
-				<div class="name-container">
+				<div class="name-container item-container">
 					<p>代表者名</p>
 					@if($company)
-						<input class="top-input input" type="text" name="representive_name" value="{{ old('representive_name', $company->representive_name) }}" placeholder="">
+						<input class="input" type="text" name="representive_name" value="{{ old('representive_name', $company->representive_name) }}" placeholder="">
 					@else
-						<input class="top-input input" type="text" name="representive_name" value="{{ old('representive_name') }}" placeholder="">
+						<input class="input" type="text" name="representive_name" value="{{ old('representive_name') }}" placeholder="">
 					@endif
 					@if ($errors->has('representive_name'))
 						<div class="error-msg">
@@ -277,22 +140,22 @@ $pref = array(
 			</div>
 			
 			<div class="above-address-container">
-				<div class="zipcode-container">
+				<div class="zipcode-container item-container">
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
 						@if($company)
-							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($company->zip_code, 0, 3)) }}" onchange="setPostal()">
+							<input id="postal_front" class="input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($company->zip_code, 0, 3)) }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($company->zip_code, 3, 7)) }}" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($company->zip_code, 3, 7)) }}" maxlength="4" onchange="setPostal()">
                             <input id="postal" type="hidden" name="zip_code">
 						@else
-							<input class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
+							<input class="input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
                             <span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" maxlength="4" onchange="setPostal()">
                             <input id="postal" type="hidden" name="zip_code">
 						@endif
 						
@@ -304,7 +167,7 @@ $pref = array(
 						@endif
 				</div>
 	
-				<div class="prefecture-container">
+				<div class="prefecture-container item-container">
 					<p>都道府県</p>
 					<div class="select-arrow">
 						<select name="address_prefecture" id="prefecture">
@@ -322,12 +185,12 @@ $pref = array(
 			</div>
 			
 			<div class="below-address-container">
-				<div class="city-container">
+				<div class="city-container item-container">
 					<p>市区町村・番地</p>
 					@if($company)
-						<input class="top-input input" type="text" name="address_city" value="{{ old('address_city', $company->address_city) }}" placeholder="">
+						<input class="input" type="text" name="address_city" value="{{ old('address_city', $company->address_city) }}" placeholder="">
 					@else
-						<input class="top-input input" type="text" name="address_city" value="{{ old('address_city') }}" placeholder="">
+						<input class="input" type="text" name="address_city" value="{{ old('address_city') }}" placeholder="">
 					@endif
 					@if ($errors->has('address_city'))
 						<div class="error-msg">
@@ -336,7 +199,7 @@ $pref = array(
 					@endif
 				</div>
 	
-				<div class="building-container">
+				<div class="building-container item-container">
 					<p>建物名・部屋番号</p>
 					@if ($company)
 						<input type="text" name="address_building" value="{{ old('address_building', $company->address_building) }}">
@@ -351,7 +214,7 @@ $pref = array(
 				</div>
 			</div>
 			<div class="btn-container">
-				<button type="submit">設定</button>
+				<button type="button" onclick="submit();">設定</button>
 			</div>
 		</form>
 	</div>

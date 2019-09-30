@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="{{ mix('css/auth/initialRegister/personal.css') }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 	<script>
-	const setPreview = (input) => {
+	function setPreview(input) {
 	  const preview = document.getElementById('profile_image_preview');
 	  if (input.files && input.files[0]) {
 	    let reader = new FileReader();
@@ -20,14 +20,21 @@
 	  }
 	}
 
-	const setPostal = () => {
+	// 郵便番号入力欄の自動遷移
+	function nextField(t, name ,maxlength) {
+		if(t.value.length >= maxlength) {
+			t.form.elements[name].focus();
+		}
+	}
+
+	function setPostal(){
 	  const postal_front = document.getElementById('postal_front').value;
 	  const postal_back = document.getElementById('postal_back').value;
 	  const postal = document.getElementById('postal');
 	  postal.value = postal_front + postal_back;
 	}
 
-	const setTel = () => {
+	function setTel(){
 	  const tel_front = document.getElementById('tel_front').value;
 	  const tel_middle = document.getElementById('tel_middle').value;
 	  const tel_back = document.getElementById('tel_back').value;
@@ -102,7 +109,7 @@ $pref = array(
 				<h3>プロフィール設定</h3>
 			</div>
 
-			<form action="{{ url('partner/register/initial/personal') }}" method="POST">
+			<form action="{{ route('partner.register.intialRegistrationPost') }}" method="POST">
 				@csrf
 				<div class="edit-container top">
 					<div class="image-container">
@@ -116,7 +123,7 @@ $pref = array(
 					</div>
 					<div class="profile-container">
 
-						<div class="name-container short-input-container">
+						<div class="input-container">
 							<p>名前・ニックネーム<span class="required">(必須)</span></p>
 							<input type="text" name="name" value="{{ old('name') }}">								
 							@if ($errors->has('name'))
@@ -126,17 +133,17 @@ $pref = array(
 							@endif
 						</div>
 
-						<!-- <div class="short-input-container">
+						<!-- <div class="input-container">
 							<p>企業名<span class="any">(任意)</span></p>
 							<input type="text" name="" value="">	
 						</div>
 
-						<div class="short-input-container">
+						<div class="input-container">
 							<p>部署<span class="any">(任意)</span></p>
 							<input type="text" name="" value="">	
 						</div> -->
 
-						<div class="short-input-container">
+						<div class="input-container">
 							<p>職種<span class="any">(任意)</span></p>
 							<input type="text" name="occupations" value="{{ old('occupations') }}" placeholder="例）UIデザイナー、フロントエンドエンジニア、etc">	
 							@if ($errors->has('occupations'))
@@ -146,9 +153,14 @@ $pref = array(
 							@endif
 						</div>
 
-						<div class="text-container">
+						<div class="input-container last">
 							<p>プロフィールメッセージ</p>
 							<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction') }}</textarea>
+							@if ($errors->has('introduction'))
+								<div class="error-msg">
+									<strong>{{ $errors->first('introduction') }}</strong>
+								</div>
+							@endif
 						</div>
 						
 					</div>
@@ -156,12 +168,12 @@ $pref = array(
 
 				<div class="address-container">
 					<div class="above-address-container">
-							<div class="zipcode-container">
+							<div class="zipcode-container input-container">
 								<p>郵便番号</p>
 								<div class="zipcode-container__wrapper">
-									<input type="text" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
+									<input type="text" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 									<span class="hyphen"><hr></span>
-									<input type="text" name="zip_code_back" id="postal_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+									<input type="text" name="zip_code_back" id="postal_back" value="{{ old('zip_code_back') }}" maxlength="4" onchange="setPostal()">
 									<input type="hidden" name="zip_code" id="postal" value="{{ old('zip_code') }}">
 								</div>
 								@if ($errors->has('zip_code'))
@@ -171,7 +183,7 @@ $pref = array(
 								@endif
 							</div>
 
-							<div class="prefecture-container">
+							<div class="prefecture-container input-container">
 								<p>都道府県</p>
 								<div class="select-arrow">
 									<select name="prefecture" id="prefecture">
@@ -189,7 +201,7 @@ $pref = array(
 						</div>
 
 						<div class="below-address-container">
-							<div class="city-container">
+							<div class="city-container input-container">
 								<p>市区町村</p>
 									<input type="text" name="city" value="{{ old('city') }}">
 									@if ($errors->has('city'))
@@ -199,7 +211,7 @@ $pref = array(
 									@endif
 							</div>
 
-							<div class="building-container">
+							<div class="building-container input-container">
 								<p>番地</p>
 									<input type="text" name="street" value="{{ old('street') }}">
 									@if ($errors->has('street'))
@@ -211,7 +223,7 @@ $pref = array(
 						</div>
 
 						<div class="below-address-container">
-							<div class="building-container">
+							<div class="building-container input-container">
 								<p>建物</p>
 								<input type="text" name="building" value="{{ old('building') }}">
 								@if ($errors->has('building'))
@@ -223,14 +235,14 @@ $pref = array(
 						</div>
 
 						<div class="below-address-container last">
-							<div class="tel-container">
+							<div class="tel-container input-container">
 								<p>電話番号</p>
 								<div class="tel-container__wrapper">
-									<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front') }}" onchange="setTel()">
+									<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front') }}" maxlength="4" onchange="setTel()">
 									<span class="hyphen"><hr></span>
-									<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle') }}" onchange="setTel()">
+									<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle') }}" maxlength="4" onchange="setTel()">
 									<span class="hyphen"><hr></span>
-									<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back') }}" onchange="setTel()">
+									<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back') }}" maxlength="4" onchange="setTel()">
 									<input type="hidden" name="tel" id="tel" value="{{ old('tel') }}">
 								</div>
 								@if ($errors->has('tel'))
@@ -245,7 +257,7 @@ $pref = array(
 				</div>
 
 				<div class="btn-container">
-					<button type="submit">確認</button>
+					<button type="button" onclick="submit();">確認</button>
 				</div>
 			</form>
         </div>

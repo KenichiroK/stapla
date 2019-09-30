@@ -5,148 +5,6 @@
 <link rel="stylesheet" href="{{ mix('css/company/partner/index.css') }}">
 @endsection
 
-@section('header-profile')
-<div class="header-proflie">
-    <div class="option">
-        <div class="user-name">
-            {{ $company_user->name }}
-        </div>
-
-        <div class="icon-imgbox">
-            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
-        </div>
-    </div>
-    
-    <div class="optionBox">
-        <div class="balloon">
-            <ul>
-                <li><a href="">プロフィール設定</a></li>
-                <li>
-                    <form method="POST" action="{{ route('company.logout') }}">
-                        @csrf
-                        <button type="submit">ログアウト</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-        
-    </div>
-
-    <div class="user-imgbox">
-        <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
-    </div>
-</div>
-@endsection
-
-@section('sidebar')
-<div class="sidebar__container">
-    <div class="sidebar__container__wrapper">
-        <aside class="menu menu__container">
-            <a href="/company/dashboard">
-                <div class="menu__container--label">
-                    <div class="menu-label">
-                        <img src="{{ asset('images/logo.png') }}" alt="logo">
-                    </div>
-                </div>
-            </a>
-            <ul class="menu-list menu menu__container__menu-list">
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_home.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ホーム
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/dashboard">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ダッシュボード
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/project">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_inbox.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            プロジェクト
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/task">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_products.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            タスク
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/document">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            書類
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/partner" class="isActive">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_customers-active.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            パートナー
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            カレンダー
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ヘルプセンター
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/company/setting/general">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            設定
-                        </div>
-                    </a>
-                </li>
-            </ul>
-            
-        </aside>
-    </div>
-</div>
-@endsection
-
 @section('content')
 <div class="main__container">
     <div class="main__container__wrapper">
@@ -158,14 +16,15 @@
 
         <div class="top-container">
             <h1 class="top-container__title">パートナー</h1>
-            <div>
                 <!-- <p class="control has-icons-left serch-wrp">
                     <input class="search-name input" type="text" placeholder="パートナーを検索">
                     <span class="icon">
                     <img src="{{ asset('images/searchicon.png') }}" alt="serch">
                     </span>
                 </p> -->
-            </div>
+                <div class="btn-container">
+                    <a href="{{ route('company.partner.invite.partner.index') }}">パートナー追加</a>
+                </div>
         </div>
         
         <div class="profile-list">
@@ -192,12 +51,7 @@
                             </div>
                             <div class="main-content__edit-icons">
                                 <div>
-                                    <a href="/partner/profile_setting"><img src="{{ asset('images/edit.png') }}" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="main-content__close-icons">
-                                <div>
-                                    <a href=""><div class="close-parts"><span></span></div></a>
+                                    <a href="{{ route('company.partner.show', ['id' => $partner->id]) }}"><img src="{{ asset('images/edit.png') }}" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -220,9 +74,6 @@
                 <div class="pagenate-container__wrapper">
                     {{ $partners->links() }}
                 </div>
-            </div>
-            <div class="btn-container">
-                <a href="/company/invite/partner">パートナーを招待する</a>
             </div>
         </div>
     </div>

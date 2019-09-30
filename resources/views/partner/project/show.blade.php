@@ -5,141 +5,7 @@
 <link rel="stylesheet" href="{{ mix('css/company/project/show.css') }}">
 @endsection
 
-@section('header-profile')
-<div class="header-proflie">
-    <div class="option">
-        <div class="user-name">
-            {{ $partner->name }}
-        </div>
-
-        <div class="icon-imgbox">
-            <img src="{{ asset('images/icon_small-down.png') }}" alt="">
-        </div>
-    </div>
-    
-    <div class="optionBox">
-        <div class="balloon">
-            <ul>
-                <li><a href="">プロフィール設定</a></li>
-                <li>
-                    <form method="POST" action="{{ route('partner.logout') }}">
-                        @csrf
-                        <button type="submit">ログアウト</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-        
-    </div>
-
-    <div class="user-imgbox">
-        <a href="/partner/profile">
-            <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
-        </a>
-    </div>
-</div>
-@endsection
-
-@section('sidebar')
-<div class="sidebar__container">
-    <div class="sidebar__container__wrapper">
-        <aside class="menu menu__container">
-            <a href="/company/dashboard">
-                <div class="menu__container--label">
-                    <div class="menu-label">
-                        <img src="{{ asset('images/logo.png') }}" alt="logo">
-                    </div>
-                </div>
-            </a>
-            <ul class="menu-list menu menu__container__menu-list">
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_home.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ホーム
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/partner/dashboard">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_dashboard.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ダッシュボード
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="isActive">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_inbox-active.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            プロジェクト
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_products.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            タスク
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_invoices.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            書類
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_calendar.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            カレンダー
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_help-center.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            ヘルプセンター
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/partner/setting/invoice">
-                        <div class="icon-imgbox">
-                            <img src="{{ asset('images/icon_setting.png') }}" alt="">
-                        </div>
-                        <div class="textbox">
-                            設定
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </aside>
-    </div>
-</div>
-@endsection
-
 @section('content')
-
 <div class="main__container">
     <div class="main__container__wrapper">
         <div>
@@ -148,7 +14,7 @@
                 <!-- <a class="top-container__edit-btn" href="#"><div>編集</div></a> -->
             </div>
 
-            <div class="activity-log-container">
+            <!-- <div class="activity-log-container">
                 <div class="activity-log-container__left">
                     <div class="activity-log-container__left__name-container">
                         <div class="img-container"><img src="{{ asset('images/photoimg.png') }}" alt=""></div>
@@ -164,7 +30,7 @@
                         <i class="fa fa-list-ul"></i><span class="activity-log-container__right__btn-container__btn">アクティビティログ</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="detail-container">
                 <ul class="detail-container__list">
@@ -223,6 +89,9 @@
             </div>
 
             <div class="task-container__content">
+                @if ($tasks->count() === 0)
+                    <p class="non-task-text">{{ $partner->name }}様がアサインされているタスクはありません。</p>
+                @endif
                 @foreach ($tasks as $task)
                 <a class="task-show-link" href="/partner/task/{{ $task->id }}">
                     <ul class="task-item-list task-container__content__list">

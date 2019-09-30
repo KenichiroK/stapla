@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Companies;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Prefecture;
 
 class CompanyGeneralRequest extends FormRequest
 {
@@ -24,11 +25,11 @@ class CompanyGeneralRequest extends FormRequest
     public function rules()
     {
         return [
-            'representive_name'     => 'required',
-            'zip_code'              => 'required',
-            'address_prefecture'    => 'required',
-            'address_city'          => 'required',
-            'address_building'      => 'required',
+            'representive_name'     => 'required | string | max:6',
+            'zip_code'              => 'required | numeric | digits:7',
+            'address_prefecture'    => new Prefecture(),
+            'address_city'          => 'required | string | max:6',
+            'address_building'      => 'max:64',
         ];
     }
 }

@@ -23,7 +23,7 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::post('register/{company_id}', 'Partners\Auth\RegisterController@register')->name('partner.register');
 
 	// preRegister - 仮登録後に表示させるページ
-	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
+	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('partner.register.preRegisterd.index');
 
 	// invite
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
@@ -49,14 +49,14 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
 
 		// task
-		Route::get('/task/{id}', 'Partners\TaskController@show')->name('partner.task.show');
+		Route::get('/task/{task_id}', 'Partners\TaskController@show')->name('partner.task.show');
 		
 		// task status change
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
 		
 		// profile
-		Route::get('profile', 'Partners\ProfileController@create')->name('partner.profile.create');
-		Route::post('profile', 'Partners\ProfileController@store')->name('partner.profile.store');
+		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.setting.profile.create');
+		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.setting.profile.store');
 		
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
@@ -67,12 +67,12 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('setting/notification', 'Partners\Setting\NotificationController@store')->name('partner.setting.notification.store');
 		
 		// purchase-order
-		Route::get('order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.purchaseOrder.show');
+		Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.document.purchaseOrder.show');
 		
 		// invoice
-		Route::get('invoice/create/{id}', 'Partners\InvoiceController@create')->name('partner.invoice.create');
+		Route::get('document/invoice/create/{task_id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
-		Route::get('invoice/{id}', 'Partners\InvoiceController@show')->name('partner.invoice.show');
+		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
 
 		// logout
     	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
@@ -116,19 +116,17 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
 		Route::get('/project/done', 'Companies\ProjectController@doneIndex')->name('company.project.done.index');
 		Route::get('/project/create', 'Companies\ProjectController@create')->name('company.project.create');
-		Route::post('/project', 'Companies\ProjectController@store')->name('company.project.create');
+		Route::post('/project', 'Companies\ProjectController@store')->name('company.project.store');
 		Route::get('/project/{id}', 'Companies\ProjectController@show')->name('company.project.show');
 
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
 		// task statusIndex
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
-		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create.create');
-        Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.create');
+		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
+        Route::post('/task', 'Companies\TaskController@store')->name('company.task.store');
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
 		
-
-
 		// task status change
 		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');
 		
@@ -140,8 +138,8 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');
 		Route::get('/document/nda', 'Companies\Document\NdaController@create')->name('company.document.nda.create');
 		Route::post('/document/nda', 'Companies\Document\NdaController@store')->name('company.document.nda.store');
-		Route::get('/document/nda/{id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
-		Route::get('/document/purchaseOrder/create/{id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.edit');
+		Route::get('/document/nda/{nda_id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
+		Route::get('/document/purchaseOrder/create/{task_id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.create');
 		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
 		Route::get('/document/purchaseOrder/{purchaseOrder_id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');
 
@@ -150,7 +148,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document/outsourcingContract/{id}', 'Companies\Document\OutsourcingContractController@show')->name('company.document.OutsourcingContract.show');
 
 		//document invoice
-		Route::get('/document/invoice/{id}', 'Companies\Document\InvoiceController@show')->name('company.invoice.show');
+		Route::get('/document/invoice/{invoice_id}', 'Companies\Document\InvoiceController@show')->name('company.document.invoice.show');
 
 
 		// setting
@@ -158,10 +156,10 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/setting/general', 'Companies\Setting\GeneralController@update')->name('company.setting.general.update');
 		Route::get('/setting/companyElse', 'Companies\Setting\CompanyElseController@create')->name('company.setting.companyElse.create');
 		Route::post('/setting/companyElse', 'Companies\Setting\CompanyElseController@store')->name('company.setting.companyElse.store');
-		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create');
-		Route::get('/setting/account', 'Companies\Setting\AccountController@create');
-		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@edit')->name('company.setting.personalInfo.edit');
-		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@update')->name('company.setting.personalInfo.update');
+		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create')->name('company.setting.userSetting.create');
+		Route::get('/setting/account', 'Companies\Setting\AccountController@create')->name('company.setting.account.create');
+		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@create')->name('company.setting.personalInfo.create');
+		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@store')->name('company.setting.personalInfo.store');
         
 		// mail(CompnayUser)
 		Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
@@ -176,7 +174,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
 
 		// invite
-		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.invite.partner.index');
+		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.partner.invite.partner.index');
 		Route::post('invite/partner',  'Companies\Invite\InvitePartnerController@send')->name('company.invite.partner.send');
 		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
 

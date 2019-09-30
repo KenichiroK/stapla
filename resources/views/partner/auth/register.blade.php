@@ -55,12 +55,12 @@
                     </div>
 
                     <div class="button_wrapper">
-                        <button type="submit" class="text">新規会員登録</button>
+                        <button type="button" onclick="submit();" class="text">新規会員登録</button>
                     </div>
                 </form>
 
                 <div class="signup_wrapper">
-                    <a href="/partner/login">ログイン</a>
+                    <a href="{{ route('partner.login') }}">ログイン</a>
                 </div>
                 
             </div>

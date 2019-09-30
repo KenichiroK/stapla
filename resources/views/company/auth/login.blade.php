@@ -59,13 +59,13 @@
                     </div>
 
                     <div class="button_wrapper">
-                        <button class="text" type="submit">ログイン</button>
+                        <button class="text" type="button" onclick="submit();">ログイン</button>
                     </div>
                 </form>
 
                 <!-- 現在、担当者の自発的な会員登録はおこなわない -->
                 <div class="signup_wrapper">
-                    <a href="/company/register">新規会員登録</a>
+                    <a href="{{ route('company.register') }}">新規会員登録</a>
                 </div>
 
                 <div class="forget_password_wrapper">
