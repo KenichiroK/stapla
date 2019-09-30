@@ -123,7 +123,7 @@ $pref = array(
 					</div>
 					<div class="profile-container">
 
-						<div class="name-container short-input-container">
+						<div class="input-container">
 							<p>名前・ニックネーム<span class="required">(必須)</span></p>
 							<input type="text" name="name" value="{{ old('name') }}">								
 							@if ($errors->has('name'))
@@ -133,17 +133,17 @@ $pref = array(
 							@endif
 						</div>
 
-						<!-- <div class="short-input-container">
+						<!-- <div class="input-container">
 							<p>企業名<span class="any">(任意)</span></p>
 							<input type="text" name="" value="">	
 						</div>
 
-						<div class="short-input-container">
+						<div class="input-container">
 							<p>部署<span class="any">(任意)</span></p>
 							<input type="text" name="" value="">	
 						</div> -->
 
-						<div class="short-input-container">
+						<div class="input-container">
 							<p>職種<span class="any">(任意)</span></p>
 							<input type="text" name="occupations" value="{{ old('occupations') }}" placeholder="例）UIデザイナー、フロントエンドエンジニア、etc">	
 							@if ($errors->has('occupations'))
@@ -153,7 +153,7 @@ $pref = array(
 							@endif
 						</div>
 
-						<div class="text-container">
+						<div class="input-container last">
 							<p>プロフィールメッセージ</p>
 							<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction') }}</textarea>
 							@if ($errors->has('introduction'))
@@ -168,7 +168,7 @@ $pref = array(
 
 				<div class="address-container">
 					<div class="above-address-container">
-							<div class="zipcode-container">
+							<div class="zipcode-container input-container">
 								<p>郵便番号</p>
 								<div class="zipcode-container__wrapper">
 									<input type="text" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
@@ -183,7 +183,7 @@ $pref = array(
 								@endif
 							</div>
 
-							<div class="prefecture-container">
+							<div class="prefecture-container input-container">
 								<p>都道府県</p>
 								<div class="select-arrow">
 									<select name="prefecture" id="prefecture">
@@ -201,7 +201,7 @@ $pref = array(
 						</div>
 
 						<div class="below-address-container">
-							<div class="city-container">
+							<div class="city-container input-container">
 								<p>市区町村</p>
 									<input type="text" name="city" value="{{ old('city') }}">
 									@if ($errors->has('city'))
@@ -211,7 +211,7 @@ $pref = array(
 									@endif
 							</div>
 
-							<div class="building-container">
+							<div class="building-container input-container">
 								<p>番地</p>
 									<input type="text" name="street" value="{{ old('street') }}">
 									@if ($errors->has('street'))
@@ -223,7 +223,7 @@ $pref = array(
 						</div>
 
 						<div class="below-address-container">
-							<div class="building-container">
+							<div class="building-container input-container">
 								<p>建物</p>
 								<input type="text" name="building" value="{{ old('building') }}">
 								@if ($errors->has('building'))
@@ -235,7 +235,7 @@ $pref = array(
 						</div>
 
 						<div class="below-address-container last">
-							<div class="tel-container">
+							<div class="tel-container input-container">
 								<p>電話番号</p>
 								<div class="tel-container__wrapper">
 									<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front') }}" maxlength="4" onchange="setTel()">
