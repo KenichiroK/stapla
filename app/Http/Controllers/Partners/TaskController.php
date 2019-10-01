@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+    public function index()
+    {
+        $partnerAuth = Auth::user();
+        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        return view('partner/task/index', compact('partner'));
+    }
+
     public function show($id)
     {
         $task = Task::findOrFail($id);

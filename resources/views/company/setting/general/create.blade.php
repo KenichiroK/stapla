@@ -116,7 +116,7 @@ $pref = array(
 			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
 		</ul>
 	</div>
-	<div class=profile-container>
+	<div class="profile-container white-bg-container">
 		<form action="{{ route('company.setting.general.update') }}" method="POST">
 		@csrf
 			<div class="top-area">

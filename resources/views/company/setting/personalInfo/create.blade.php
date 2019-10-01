@@ -2,6 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/setting/general/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/setting/personalInfo/index.css') }}">
 <script>
 const setPreview = (input) => {
@@ -48,7 +49,7 @@ const setPreview = (input) => {
 
     <form action="{{ route('company.setting.personalInfo.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="body-container">
+        <div class="body-container white-bg-container">
             <div class="title-container">
                 <h4>個人情報の設定</h4>
             </div>
@@ -69,7 +70,7 @@ const setPreview = (input) => {
                     @endif
                 </div>
             
-                <div class="profile-container">
+                <div class="profile_edit-container">
                     <div class="short-input-container">
                         <p>名前・ニックネーム</p>
                         <input type="text" name="name" value="{{ old('name', $company_user->name) }}">
