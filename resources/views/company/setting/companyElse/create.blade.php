@@ -2,6 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/setting/general/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/setting/companyElse/index.css') }}">
 <script>
 const setPreview = (input) => {
@@ -46,7 +47,7 @@ const setPreview = (input) => {
     </div>
     <form action="{{ route('company.setting.companyElse.store') }}" method="POST">
 		@csrf
-		<div class="notification-container">
+		<div class="notification-container white-bg-container">
 			
 
 			<div class="radio-container">
@@ -135,7 +136,7 @@ const setPreview = (input) => {
                     <h4>書類</h4>
                 </div>
                 <div class="other-info-container__list__item__menu">
-                    <div class="purchase">
+                    <div class="purchase document-item">
                         <div class="radio-container">
                             <p>発注書</p>
                             @if ($company && $company->purchase_order_setting == true)
@@ -159,7 +160,7 @@ const setPreview = (input) => {
                             <img src="{{ asset('images/uploader.png') }}" alt="">
                         </div>
                     </div>
-                    <div class="confidential">
+                    <div class="confidential document-item">
                         <div class="radio-container last-container">
                             <p>機密保持契約書</p>
                             @if ($company && $company->confidential_setting == true)
