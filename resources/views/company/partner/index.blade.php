@@ -22,7 +22,7 @@
                     <img src="{{ asset('images/searchicon.png') }}" alt="serch">
                     </span>
                 </p> -->
-                <div class="btn-container">
+                <div class="btn-a-container">
                     <a href="{{ route('company.partner.invite.partner.index') }}">パートナー追加</a>
                 </div>
         </div>

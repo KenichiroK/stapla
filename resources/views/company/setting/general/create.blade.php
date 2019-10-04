@@ -213,7 +213,7 @@ $pref = array(
 					@endif
 				</div>
 			</div>
-			<div class="btn-container">
+			<div class="btn01-container">
 				<button type="button" onclick="submit();">設定</button>
 			</div>
 		</form>

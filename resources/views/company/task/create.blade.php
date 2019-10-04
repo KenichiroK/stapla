@@ -405,8 +405,8 @@ $(function(){
                     </div>
                 </div>
 
-                <div class="button-wrapper">
-                    <button type="button" onclick="submit();" class="button-wrapper__btn button">作成</button>
+                <div class="btn01-container">
+                    <button type="button" onclick="submit();">作成</button>
                 </div>
                 
             </div>

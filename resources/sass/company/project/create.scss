@@ -144,21 +144,13 @@
                         opacity:0.8;
                     }
                 }
-                .button-wrapper{
-                    text-align: center;
-                    &__btn{
-                        width:120px;
-                        border-radius: 100px;
-                        color:#fff;
-                        font-weight:bold;
+                .btn01-container{
+                    button{
+                        width: 120px;
                         font-size: 15px;
-                        background: #43425D;
-                    }
-                    &__btn:hover{
-                        opacity:0.8;
+                        padding: 4px 11px;
                     }
                 }
-
             }
             
         }

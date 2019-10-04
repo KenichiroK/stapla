@@ -10,13 +10,13 @@
     <div class="main__container__wrapper">
         <!--main__container__wrapperに記述していく-->
         <div class="head-container">
-            <div class="head-container__wrapper">
+            <div class="title_btn-container__wrapper">
                 <div class="page-title-container">
                     <div class="page-title-container__page-title">業務委託契約書</div>
                 </div>
-                <!-- printボタン -->
-                <div class="head-container__wrapper__print-btn-container">
-                    <a id="print_btn" class="button head-container__wrapper__print-btn-container__button">プリント</a>
+                <!-- downloadボタン -->
+                <div class="download-btn-container">
+                    <a id="print_btn" class="button download-button">ダウンロード</a>
                 </div>
             </div>
         </div>

@@ -457,19 +457,9 @@
     }
 }
 
-.button-wrapper{
-    text-align: center;
+.btn01-container{
     margin-top: 60px;
-    &__btn{
-        width: 140px;
-        border-radius: 100px;
-        color: #fff;
-        font-weight: bold;
+    button{
         font-size: 18px;
-        background: #43425D;
-    }
-    &__btn:hover{
-        opacity:0.8;
-        color: #fff;
     }
 }

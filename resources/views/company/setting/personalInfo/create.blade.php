@@ -108,7 +108,7 @@ const setPreview = (input) => {
                 </div>
             </div>
         </div>
-        <div class="btn-container">
+        <div class="btn01-container">
             <button type="button" onclick="submit();">保存</button>
         </div>
     </form>

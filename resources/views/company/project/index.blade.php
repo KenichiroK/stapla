@@ -18,8 +18,8 @@
                     </span> -->
                 </p>
             </div>
-            <div class="control project_btn-wrp">
-                <a href="project/create"><button class="button">プロジェクト作成</button></a>
+            <div class="control btn-a-container">
+                <a href="project/create">プロジェクト作成</a>
             </div>
         </div>
 
