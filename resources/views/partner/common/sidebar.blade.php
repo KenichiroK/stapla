@@ -1,7 +1,7 @@
  <div class="sidebar__container">
 	<div class="sidebar__container__wrapper">
 		<aside class="menu menu__container">
-			<a href="/company/dashboard">
+			<a href="{{ route('partner.dashboard') }}">
 				<div class="menu__container--label">
 					<div class="menu-label">
 						<img src="{{ asset('images/logo.png') }}" alt="logo">
@@ -20,7 +20,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" class="{{ strpos(request()->route()->getName(), 'project') ? 'isActive' : '' }}">
+					<a href="{{ route('partner.project.index') }}" class="{{ strpos(request()->route()->getName(), 'project') ? 'isActive' : '' }}">
 						<div class="icon-imgbox">
 							<img src="{{ asset('images/icon_inbox.png') }}" alt="">
 						</div>
@@ -30,7 +30,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" class="{{ strpos(request()->route()->getName(), 'task') ? 'isActive' : '' }}">
+					<a href="{{ route('partner.task.index') }}" class="{{ strpos(request()->route()->getName(), 'task') ? 'isActive' : '' }}">
 						<div class="icon-imgbox">
 							<img src="{{ asset('images/icon_products.png') }}" alt="">
 						</div>

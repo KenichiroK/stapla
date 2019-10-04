@@ -242,7 +242,7 @@
                     <button type="submit" class="done">パートナーに依頼する</button>
                 </form>
             @elseif($task->status === 5 && in_array($company_user->id, $company_user_ids))
-                <a href="{{ 'company.document.purchaseOrder.create', ['id' => $task_id] }}" class="done">発注書を作成する</a>
+                <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="done">発注書を作成する</a>
             @elseif($task->status === 6 && in_array($company_user->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf

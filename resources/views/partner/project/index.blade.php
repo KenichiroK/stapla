@@ -1,4 +1,4 @@
-@extends('company.index')
+@extends('partner.index')
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
@@ -24,8 +24,8 @@
         </div>
 
         <ul id="tab-button" class="tab-button">
-            <li class="all  isActive"><a href="{{ route('company.project.index') }}">プロジェクト</a></li>
-            <li class="done"><a href="{{ route('company.project.done.index') }}">完了したプロジェクト</a></li>
+            <li class="all  isActive"><a href="">プロジェクト</a></li>
+            <li class="done"><a href="">完了したプロジェクト</a></li>
         </ul>
 
         <div class="project-container">
@@ -44,45 +44,31 @@
             </div>
 
             <div class="project-container__content">
-                @foreach( $projects as $project )
-                <a class="show-link" href="{{ route('company.project.show', ['id' => $project->id]) }}">
+                
+                <a class="show-link" href="">
                     <ul class="item-list content_list" >
-                        <li class="item-list project-name">{{ $project->name }}</li>
+                        <li class="item-list project-name">ライティング</li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $project->projectCompanies[0]->companyUser->picture) }}" alt="担当者プロフィール画像">
+                                <img src="" alt="担当者プロフィール画像">
                             </div>
-                            @if ($project->projectCompanies->count() > 1) 
-                                <p>
-                                    {{ $project->projectCompanies[0]->companyUser->name }}
-                                    他{{ $project->projectCompanies->count() - 1 }}名
-                                </p>
-                            @else
-                                <p>{{ $project->projectCompanies[0]->companyUser->name }}</p>
-                            @endif 
+                                <p>宇野 裕樹</p>
                         </li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $project->projectPartners[0]->partner->picture) }}" alt="担当者プロフィール画像">
+                                <img src="" alt="担当者プロフィール画像">
                             </div>
-                            @if ($project->projectPartners->count() > 1) 
-                                <p>
-                                    {{ $project->projectPartners[0]->partner->name }}
-                                    他{{ $project->projectPartners->count() - 1 }}名
-                                </p>
-                            @else
-                                <p>{{ $project->projectPartners[0]->partner->name }}</p>
-                            @endif 
+                                <p>野村さゆり</p> 
                         </li>
                         <li>
-                            <span class="txt-underline">{{ $task_count_arr[$loop->index] }}</span>件
+                            <span class="txt-underline">3</span>件
                         </li>
-                        <li>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</li>
-                        <li>¥{{ number_format($project->budget) }}</li>
-                        <li>¥{{ number_format($project->price) }}</li>
+                        <li>2019年09月30日</li>
+                        <li>¥10,000</li>
+                        <li>¥50,000</li>
                     </ul>
                 </a>
-                @endforeach
+                
             </div>
 
             <div class="showmore-wrp">

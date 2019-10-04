@@ -28,7 +28,7 @@
                     <dt>件名</dt>
                     <dd>
 						<div class="input-container">
-							<input class="task-name" type="text" name="task_name" value="{{ old('task_name') }}">
+							<input class="task-name" type="text" name="task_name" value="{{ old('task_name', $task->name) }}">
 						</div>
                         @if ($errors->has('task_name'))
                             <div class="error-msg">
