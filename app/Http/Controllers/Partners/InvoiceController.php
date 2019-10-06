@@ -59,7 +59,7 @@ class InvoiceController extends Controller
         $invoiceExpencesController = new InvoiceExpencesController;
         app()->call([$invoiceExpencesController, 'store'], ['invoice_id' => $invoice->id]);
             
-        return redirect()->route('partner.invoice.show', ['id' => $invoice->id]);
+        return redirect()->route('partner.document.invoice.show', ['id' => $invoice->id]);
     }
 
     public function show($id)
