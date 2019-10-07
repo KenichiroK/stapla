@@ -158,55 +158,16 @@
 
 // セレクトボックス＋アイコン
 .select-plusicon {
-	overflow: hidden;
-    text-align: center;
-    position: relative;
-	border: 1px solid #E9E9F0;
-	border-radius: 2px;
-    background: #ffffff;
     select {
-        width: 100%;
-        padding-right: 1em;
-        cursor: pointer;
-        text-indent: 0.01px;
-        text-overflow: ellipsis;
-        border: none;
-        outline: none;
-        background: transparent;
-        background-image: none;
-        box-shadow: none;
-        -webkit-appearance: none;
-        appearance: none;
-        padding: 8px 38px 8px 8px;
-        color: #666666;
         height: 48px;
         border-radius: 2px;
     }
-
-    select::-ms-expand {
-        display: none;
-    }
-    &::before {
-        position: absolute;
-        top: 15px;
-        right: 22px;
-        width: 2px;
-        height: 5px;
-        padding: 0;
-        content: "";
-        border-top: 16px solid #A4AFB7;
-        pointer-events: none;
-    }
     &::after {
-        position: absolute;
         top: 22px;
         right: 15px;
         width: 16px;
         height: 2px;
-        padding: 0;
-        content: "";
         border-top: 2px solid #A4AFB7;
-        pointer-events: none;
     }
 }
 .select.is-info select{
