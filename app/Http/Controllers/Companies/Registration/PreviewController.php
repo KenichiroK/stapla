@@ -23,9 +23,9 @@ class PreviewController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function companyStore(Request $request)
     {
-        $auth = Auth::user();
+        $companyUser = Auth::user();
         
         $company = new Company;
         $company->company_name           = $request->company_name;
@@ -44,9 +44,27 @@ class PreviewController extends Controller
         $company->account_setting        = true;
         $company->save();
 
-        $companyUser = new CompanyUser;
-        $companyUser->auth_id = $auth->id;
         $companyUser->company_id = $company->id;
+        $companyUser->name = $request->name;
+        $companyUser->department = $request->department;
+        $companyUser->occupation = $request->occupation;
+        $companyUser->self_introduction = $request->self_introduction;
+        $time = date("Y_m_d_H_i_s");
+        if(isset($request->picture)){
+            $companyUser->picture = $request->picture->storeAs('public/images/companyUser/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
+        }else {
+            $companyUser->picture ='public/images/default/dummy_user.jpeg';
+        }
+        
+        $companyUser->save();
+
+        return view('company/auth/initialRegister/done');
+    }
+    
+    public function store(Request $request)
+    {
+        $companyUser = Auth::user();
+
         $companyUser->name = $request->name;
         $companyUser->department = $request->department;
         $companyUser->occupation = $request->occupation;

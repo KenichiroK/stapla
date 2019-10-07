@@ -16,14 +16,14 @@ class InvitePartnerController extends Controller
 {
     public function index()
     {
-        $company_user = Auth::user()->id;
+        $company_user = Auth::user();
         return view('company/invite/partner/create', compact('company_user'));
     }
 
     public function send(InvitePartnerRequest $request)
     {
         $email = $request->email;
-        $company_user = Auth::user()->id;
+        $company_user = Auth::user();
         $company_id = $company_user->company_id;
         Mail::to($request->email)->send(new InvitePartnerMail($company_id, $email));
 

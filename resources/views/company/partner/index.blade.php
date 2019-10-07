@@ -23,7 +23,7 @@
                     </span>
                 </p> -->
                 <div class="btn-container">
-                    <a href="{{ route('company.partner.invite.partner.index') }}">パートナー追加</a>
+                    <a href="{{ route('company.invite.partner.index') }}">パートナー追加</a>
                 </div>
         </div>
         

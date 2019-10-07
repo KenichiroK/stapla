@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Companies\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\CompanyUserAuth;
 use App\Models\CompanyUser;
-use App\User;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -38,7 +36,7 @@ class InviteRegisterController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = '/company/register/preRegistered';
+    protected $redirectTo = '/company/setting/userSetting';
 
    
 
@@ -61,12 +59,11 @@ class InviteRegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        return $user;
+        // $this->guard()->login($user);
 
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+        // return $this->registered($request, $user)
+        //                 ?: redirect($this->redirectPath());
+        return redirect()->route('company.setting.userSetting.create');
     }
 
     // /**
@@ -92,15 +89,15 @@ class InviteRegisterController extends Controller
     //  */
     protected function create(array $data)
     {
-        return CompanyUserAuth::create([
+        return CompanyUser::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'company_id' => $data['company_id'],
         ]);
     }
 
-    // protected function guard()
-    // {
-    //     return Auth::guard('company');
-    // }
+    protected function guard()
+    {
+        return Auth::guard('company');
+    }
 }
