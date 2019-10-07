@@ -176,8 +176,12 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
 
 		// invite
-		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.partner.invite.partner.index');
-		Route::post('invite/partner',  'Companies\Invite\InvitePartnerController@send')->name('company.invite.partner.send');
+		// Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.partner.invite.partner.index');
+		Route::get('nvite/partner', 'Partners\Auth\RegisterController@showRegisterForm')->name('company.partner.invite.partner.index');
+		// Route::post('invite/partner',  'Companies\Invite\InvitePartnerController@send')->name('company.invite.partner.send');
+		// partner仮登録
+		Route::post('invite/partnerr', 'Partners\Auth\RegisterController@register')->name('company.invite.partner.send');
+		
 		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
 
         // logout
