@@ -22,9 +22,7 @@ class CompanyUserMailController extends Controller
     {
         Mail::to($request->email)->send(new CompanyUserMail());
 
-
-        $auth = Auth::user(); 
-        $company_id = CompanyUser::where('auth_id', $auth->id)->first()->company_id;
+        $company_id = Auth::user()->company_id;
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
 
         return view('company/setting/userSetting/create', compact('companyUsers'));

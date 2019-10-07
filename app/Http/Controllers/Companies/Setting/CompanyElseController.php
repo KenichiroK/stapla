@@ -14,8 +14,7 @@ class CompanyElseController extends Controller
 {
     public function create()
     {
-        $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->get()->first();
+        $company_user = Auth::user();
         $company = Company::findOrFail($company_user->company_id);
 
         return view('company/setting/companyElse/create', compact('company', 'company_user'));
@@ -23,8 +22,7 @@ class CompanyElseController extends Controller
 
     public function store(CompanyElseRequest $request)
     {
-        $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->get()->first();
+        $company_user = Auth::user();
         $company = Company::findOrFail($company_user->company_id);
 
         if($company) {

@@ -13,13 +13,14 @@ class PersonalController extends Controller
 {
     public function create()
     {
-        $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        // return $auth = Auth::user();
+        $companyUser = Auth::user();
         
         $request = '';
 
+        return 'test';
         if(isset($companyUser)){
-            return  redirect('company/dashboard');
+            return redirect('company/dashboard');
         } else{
             return view('company/auth/initialRegister/personal', compact('request'));
         }

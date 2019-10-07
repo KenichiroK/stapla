@@ -175,8 +175,12 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/userMail', 'Companies\PartnerMailController@index')->name('company.userMail.index');
 		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
 
-		// invite
-		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.partner.invite.partner.index');
+		// invite(companyUser)
+		Route::get('invite/company-user', 'Companies\Auth\InviteRegisterController@index')->name('company.invite.company-user.invite');
+		Route::post('invite/company-user', 'Companies\Auth\InviteRegisterController@register')->name('company.invite.company-user.register');
+
+		// invite(partner)
+		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.invite.partner.index');
 		Route::post('invite/partner',  'Companies\Invite\InvitePartnerController@send')->name('company.invite.partner.send');
 		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
 

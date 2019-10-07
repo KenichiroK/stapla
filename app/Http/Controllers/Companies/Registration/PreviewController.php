@@ -12,8 +12,7 @@ class PreviewController extends Controller
 {
     public function create()
     {
-        $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $companyUser = Auth::user();
         
         $request = '';
 

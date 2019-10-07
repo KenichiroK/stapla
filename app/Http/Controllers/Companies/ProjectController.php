@@ -22,8 +22,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $company_user = Auth::user();
         $projects = Project::where('company_id', $company_user->company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();        
 
         $task_count_arr = []; 
@@ -36,8 +35,7 @@ class ProjectController extends Controller
 
     public function doneIndex()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $company_user = Auth::user();
         $projects = Project::where('company_id', $company_user->company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();        
 
         $task_count_arr = []; 
@@ -50,22 +48,20 @@ class ProjectController extends Controller
 
     public function create()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $company_user = Auth::user();
 
         $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
 
         $partner_users = Partner::where('company_id', $company_user->company_id)->get();
         
-        return view('company/project/create', compact('company_users', 'partner_users', 'company_user'));
+        return view('company/project/create', compact('company_user', 'company_users', 'partner_users'));
     }
 
     public function store(CreateProjectRequest $request)
     {   
         $time = date("Y_m_d_H_i_s");
 
-        $user = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+        $company_id = Auth::user()->company_id;
 
         $project = new Project;
         $project->company_id   = $company_id;
@@ -111,8 +107,7 @@ class ProjectController extends Controller
 
     public function show($id)
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $company_user = Auth::user();
 
         $project = Project::where('company_id', $company_user->company_id)->findOrFail($id);
         $tasks = Task::where('project_id',$project->id)->get();
