@@ -11,21 +11,50 @@
 		<h3>パートナーに招待メールを送る</h3>
 	</div>
 
-	<form action="{{ route('company.invite.partner.send') }}" method="POST">
-        @csrf
-		<div class='input-container'>
-			<p>メールアドレス</p>
-            <input class="input_text" type="email" name="email" placeholder="impro@example.com">
-            @if($errors->has('email'))
-                <div class="error-mes-wrp">
-                    <strong style='color: #e3342f;'>{{ $errors->first('email') }}</strong>
-                </div>
-            @endif
-		</div>
+	<div class="main_container">
+		<div class="form_wrapper">
+			<form method="POST" action="">
+				@csrf
+				<div class='input-container'>
+					<p>メールアドレス</p>
+					<input class="input_text" type="email" name="email" placeholder="impro@example.com">
+					@if($errors->has('email'))
+						<div class="error-mes-wrp">
+							<strong style='color: #e3342f;'>{{ $errors->first('email') }}</strong>
+						</div>
+					@endif
+				</div>
 
-		<div class='button-container'>
-			<button type="button" onclick="submit();">メールを送信する</button>
+				<div class='input-container'>
+					<p>パスワード</p>
+					<input class="input_text" type="password" name="password">
+					@if ($errors->has('password'))
+						<div class="invalid-feedback error-msg" role="alert">
+							<strong>{{ $errors->first('password') }}</strong>
+						</div>
+					@endif
+				</div>
+
+				<div class='input-container'>
+					<p>パスワード確認</p>
+					<input class="input_text" type="password" name="password_confirmation">
+					@if ($errors->has('password'))
+						<div class="invalid-feedback error-msg" role="alert">
+							<strong>{{ $errors->first('password') }}</strong>
+						</div>
+					@endif
+				</div>
+
+				<div class="input_wrapper">
+					<input class="input_text" type="hidden" name="company_id" value="">
+				</div>
+
+				<div class='button-container'>
+					<button type="button" onclick="submit();">メールを送信する</button>
+				</div>
+			</form>
+			
 		</div>
-	</form>
+	</div>
 </div>
 @endsection
