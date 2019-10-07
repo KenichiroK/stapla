@@ -13,7 +13,7 @@
 
 	<div class="main_container">
 		<div class="form_wrapper">
-			<form method="POST" action="{{ route('company.invite.partner.send') }}">
+			<form method="POST" action="{{ route('company.invite.partner.register') }}">
 				@csrf
 				<div class='input-container'>
 					<p>メールアドレス</p>

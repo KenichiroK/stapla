@@ -179,10 +179,10 @@ Route::group(['prefix' => 'company'], function(){
 
 		// invite
 		// Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.partner.invite.partner.index');
-		Route::get('nvite/partner', 'Partners\Auth\RegisterController@showRegisterForm')->name('company.partner.invite.partner.index');
+		Route::get('invite/partner', 'Partners\Auth\RegisterController@showRegisterForm')->name('company.invite.partner.index');
 		// Route::post('invite/partner',  'Companies\Invite\InvitePartnerController@send')->name('company.invite.partner.send');
 		// partner仮登録
-		Route::post('invite/partnerr', 'Partners\Auth\RegisterController@register')->name('company.invite.partner.send');
+		Route::post('invite/partner', 'Partners\Auth\RegisterController@register')->name('company.invite.partner.register');
 		
 		// invite(companyUser)
 		Route::get('invite/company-user', 'Companies\Auth\InviteRegisterController@index')->name('company.invite.company-user.invite');

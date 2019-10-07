@@ -61,7 +61,7 @@ const setPreview = (input) => {
 			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
 		</ul>
 	</div>
-	<form action="{{ route('company.invite.partner.send') }}" method="POST">
+	<form action="{{ route('company.invite.partner.register') }}" method="POST">
 	@csrf
 		<div class="name-container">
 			<p>招待する担当者のアドレスを入力してて下さい</p>

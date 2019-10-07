@@ -28,8 +28,7 @@ class RegisterController extends Controller
 
     public function showRegisterForm()
     {
-        $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = Auth::user();
         return view('partner.auth.register', compact('company_user'));
     }
 
