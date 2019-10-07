@@ -31,9 +31,7 @@
         <div class="project-container">
             <div class="project-container__item">
                 <ul class="item_list">
-                    <li>プロジェクト
-                        <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
-                    </li>
+                    <li>プロジェクト</li>
                     <li>担当者</li>
                     <li>パートナー</li>
                     <li>タスク</li>
