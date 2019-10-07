@@ -26,9 +26,11 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    public function showRegisterForm($company_id, $email)
+    public function showRegisterForm()
     {
-        return view('partner.auth.register', compact('company_id', 'email'));
+        $auth = Auth::user();
+        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        return view('partner.auth.register', compact('company_user'));
     }
 
     /**
@@ -36,17 +38,17 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/partner/register/preRegistered';
+    protected $redirectTo = '/company/partner';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest:partner');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('guest:partner');
+    // }
 
     /**
      * Get a validator for an incoming registration request.

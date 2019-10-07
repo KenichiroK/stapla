@@ -20,18 +20,19 @@ class PartnerVerifyEmail extends VerifyEmailNotification
 
          return (new MailMessage)
             ->subject(Lang::getFromJson('本登録メール'))
-            ->line(Lang::getFromJson('クリックして認証してください.'))
+            ->line(Lang::getFromJson('クリックして認証してください. {{ $company_user }}'))
             ->action(
                 Lang::getFromJson('improを始める'),
                 $this->verificationUrl($notifiable)
             )
             ->line(Lang::getFromJson('もしこのメールに覚えが無い場合は破棄してください。'));
+            
     }
 
     protected function verificationUrl($notifiable)
     {
         return URL::temporarySignedRoute(
-            'partner.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey(),]
+            'partner.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey(), 'company_id' => 'test']
         );
     }
 }
