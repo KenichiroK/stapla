@@ -107,8 +107,10 @@ Route::group(['prefix' => 'company'], function(){
 		// register_flow
 		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerify')->name('company.register.doneVerify');
 		Route::get('/register/personal', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');
+		Route::post('/register/company-and-personal', 'Companies\Registration\PersonalController@companyStore')->name('company.register.company-and-personal.store');
 		Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
 		Route::get('/register/preview', 'Companies\Registration\PreviewController@create')->name('company.register.preview.create');
+		Route::post('/register/company-preview', 'Companies\Registration\PreviewController@companyStore')->name('company.register.company-preview.store');
 		Route::post('/register/preview', 'Companies\Registration\PreviewController@store')->name('company.register.preview.store');
 		
 		// dashboard
@@ -182,7 +184,15 @@ Route::group(['prefix' => 'company'], function(){
 		// partner仮登録
 		Route::post('invite/partnerr', 'Partners\Auth\RegisterController@register')->name('company.invite.partner.send');
 		
-		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
+		// invite(companyUser)
+		Route::get('invite/company-user', 'Companies\Auth\InviteRegisterController@index')->name('company.invite.company-user.invite');
+		Route::post('invite/company-user', 'Companies\Auth\InviteRegisterController@register')->name('company.invite.company-user.register');
+
+		// 多分不要
+		// invite(partner) 
+		// Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.invite.partner.index');
+		// Route::post('invite/partner',  'Companies\Invite\InvitePartnerController@send')->name('company.invite.partner.send');
+		// Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
 
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');

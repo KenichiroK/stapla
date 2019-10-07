@@ -1,18 +1,42 @@
 <?php
 namespace App\Models;
 
-class CompanyUser extends BaseUuid
+use App\Notifications\UserVerifyEmailNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+
+class CompanyUser extends Authenticatable implements MustVerifyEmail
 {
+    use Notifiable;
+    public $incrementing = false;
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function($model){
+            $model->id = (string)\Illuminate\Support\Str::uuid();
+        });
+    }
     protected $table = 'company_users';
     
     protected $fillable = [
-        'auth_id', 'company_id', 'name', 'department', 'occupation', 'self_introduction', 'picture'
+        'email', 'password', 'company_id', 'name', 'department', 'occupation', 'self_introduction', 'picture'
     ];
 
-    public function companyUserAuth()
+    protected $hidden = [
+        'password', 'remember_token'
+    ];
+
+    public function sendEmailVerificationNotification()
     {
-        return $this->belongsTo('App\Models\CompanyUserAuth', 'auth_id', 'id');
+        $this->notify(new UserVerifyEmailNotification);
     }
+
+    // public function companyUserAuth()
+    // {
+    //     return $this->belongsTo('App\Models\CompanyUserAuth', 'auth_id', 'id');
+    // }
 
     public function company()
     {

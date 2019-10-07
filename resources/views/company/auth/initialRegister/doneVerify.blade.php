@@ -22,7 +22,7 @@
 			</div>
 
 			<div class="btn-container">
-                @if(isset($companyUser))
+                @if(isset($company_user->name))
                     <a href="{{ route('company.dashboard') }}">ダッシュボードに行く</a>
                 @else
                     <a href="{{ route('company.register.personal.create') }}">ユーザー情報を登録する</a>

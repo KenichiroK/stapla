@@ -58,19 +58,25 @@ const calculateSumPrice = (e) => {
   sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
 
   // タスク予算額
-  let task_taxIncludedPrice = document.getElementById('task_taxIncludedPrice');
-  console.log(task_taxIncludedPrice.value);
+  let task_taxIncludedPriceValue = document.getElementById('task_taxIncludedPrice').value;
+  console.log(task_taxIncludedPriceValue);
+  task_taxIncludedPrice = Number(task_taxIncludedPriceValue);
+  console.log(task_taxIncludedPrice);
+  console.log(typeof task_taxIncludedPrice);
 
   // 請求書合計金額
-  let invoiceAmount = document.getElementById('invoiceAmount');
-  invoiceAmount.value = taskSum + expencesSum;
-  console.log(invoiceAmount.value);
+  let invoiceAmount = document.getElementById('invoiceAmount').value;
+  invoiceAmount = taskSum + expencesSum;
+  console.log(invoiceAmount);
+  console.log(typeof invoiceAmount);
 
   const invoiceAmount_alert = document.getElementById('invoiceAmount_alert');
-  console.log(invoiceAmount_alert.style.color);
+//   console.log(invoiceAmount_alert.style.color);
 
-    if(task_taxIncludedPrice.value < invoiceAmount.value){
+    if(task_taxIncludedPrice < invoiceAmount){
 		invoiceAmount_alert.style.display = 'block';
+	}else {
+		invoiceAmount_alert.style.display = 'none';
 	}
 }
 
@@ -119,7 +125,7 @@ window.onload = () => {
 		<h3>請求書作成</h3>
 	</div>
 
-	<form action="{{ route('partner.setting.invoice.store') }}" method="POST">
+	<form action="{{ route('partner.invoice.store') }}" method="POST">
 		@csrf
 		<div class="invoice-container">
 			<div class="invoiceTo-container">

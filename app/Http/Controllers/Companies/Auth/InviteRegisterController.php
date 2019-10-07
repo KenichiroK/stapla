@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Companies\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\CompanyUser;
 
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class InviteRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -23,19 +25,18 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
 
-
-    public function showRegisterForm()
+    public function index()
     {
-        return view('company.auth.register');
+        $company_user = Auth::user();
+        return view('company.auth.inviteRegister', compact('company_user'));
     }
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/company/register/preRegistered';
+    protected $redirectTo = '/company/setting/userSetting';
 
    
 
@@ -44,17 +45,33 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+
+    //  guestの時だけ通す
+    // public function __construct()
+    // {
+    //     $this->middleware('guest:company');
+    // }
+
+    public function register(Request $request)
     {
-        $this->middleware('guest:company');
+        // return $request;
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+
+        // return $this->registered($request, $user)
+        //                 ?: redirect($this->redirectPath());
+        return redirect()->route('company.setting.userSetting.create');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
+    // /**
+    //  * Get a validator for an incoming registration request.
+    //  *
+    //  * @param  array  $data
+    //  * @return \Illuminate\Contracts\Validation\Validator
+    //  */
 
     protected function validator(array $data)
     {
@@ -64,17 +81,18 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\CompanyUserAuth
-     */
+    // /**
+    //  * Create a new user instance after a valid registration.
+    //  *
+    //  * @param  array  $data
+    //  * @return \App\Models\CompanyUserAuth
+    //  */
     protected function create(array $data)
     {
         return CompanyUser::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'company_id' => $data['company_id'],
         ]);
     }
 

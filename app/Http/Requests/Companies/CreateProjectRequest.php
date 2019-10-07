@@ -24,15 +24,15 @@ class CreateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'project_name'     => 'required | string | max:64',
-            'project_detail'   => 'required | string | max:200',
+            'project_name'     => 'bail | required | string | max:64',
+            'project_detail'   => 'bail | required | string | max:200',
             'company_user_id'  => 'required',
             'superior_id'      => 'required',
             'accounting_id'    => 'required',
             'partner_id'       => 'required',
             'started_at'       => 'required',
-            'ended_at'         => 'required | after:started_at',
-            'budget'           => 'required | integer | digits_between:1,12',
+            'ended_at'         => 'bail | required | after_or_equal:started_at',
+            'budget'           => 'bail | required | integer | digits_between:1,12',
         ];
     }
 }

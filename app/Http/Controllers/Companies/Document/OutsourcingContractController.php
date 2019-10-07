@@ -12,16 +12,14 @@ class OutsourcingContractController extends Controller
 
     public function create()
     {
-        $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = Auth::user();
 
         return view('company/document/OutsourcingContract/create', compact('company_user'));
     }
 
     public function show($id)
     {
-        $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = Auth::user();
 
         return view('company/document/OutsourcingContract/show', compact('company_user'));
     }

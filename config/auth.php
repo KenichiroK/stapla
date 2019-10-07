@@ -77,7 +77,7 @@ return [
     'providers' => [
         'companies' => [
             'driver' => 'eloquent',
-            'model' => App\Models\CompanyUserAuth::class,
+            'model' => App\Models\CompanyUser::class,
         ],
 
         'partners' => [

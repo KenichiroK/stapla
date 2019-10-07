@@ -83,7 +83,7 @@ const setPreview = (input) => {
 
                     <div class="short-input-container">
                         <p>メールアドレス</p>
-                        <p class="text_content">{{ $company_user->companyUserAuth->email }}</p>
+                        <p class="text_content">{{ $company_user->email }}</p>
                     </div>
 
                     <div class="short-input-container">

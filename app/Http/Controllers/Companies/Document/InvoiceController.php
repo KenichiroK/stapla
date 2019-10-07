@@ -19,8 +19,7 @@ class InvoiceController extends Controller
 {
     public function show($id)
     {
-        $auth_id = Auth::user()->id;
-        $company_user = CompanyUser::where('auth_id', $auth_id)->get()->first();
+        $company_user = Auth::user()->id;
         $invoice = Invoice::findOrFail($id);
         $task = Task::findOrFail($invoice->task_id);
         $total_sum = 0;
