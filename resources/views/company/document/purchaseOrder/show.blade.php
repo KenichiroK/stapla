@@ -22,15 +22,16 @@ const setPreview = (input) => {
 <div class="main-wrapper">
     <div class="main-wrapper__wrapper">
         <div class="head-container">
-            <div class="head-container__wrapper">
+            <div class="title_btn-container__wrapper">
                 <div class="page-title-container">
                     <div class="page-title-container__page-title">発注書</div>
                 </div>
-                <!-- printボタン -->
-                <div class="head-container__wrapper__print-btn-container">
-                    <a id="print_btn" class="button head-container__wrapper__print-btn-container__button">プリント</a>
+                <!-- downloadボタン -->
+                <div class="download-btn-container">
+                    <a id="print_btn" class="button download-button">ダウンロード</a>
                 </div>
             </div>
+            
         </div>
     
         <div id="print" class="document-container A4">

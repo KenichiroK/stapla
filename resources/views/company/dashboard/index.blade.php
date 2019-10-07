@@ -20,7 +20,7 @@
                 <h4>未請求書</h4>
                 <p>{{ $invoices->count() }}</p>
             </div>
-            <div class="btn-container">
+            <div class="btn01-container">
                 <!-- <button>確認</button> -->
             </div>
         </div>
@@ -33,7 +33,7 @@
                 <h4>発注書未対応</h4>
                 <p>{{ $purchaseOrders->count() }}</p>
             </div>
-            <div class="btn-container">
+            <div class="btn01-container">
                 <!-- <button>作成</button> -->
             </div>
         </div>
@@ -46,7 +46,7 @@
                 <h4>機密保持契約書未対応</h4>
                 <p>{{ $ndas->count() }}</p>
             </div>
-            <div class="btn-container">
+            <div class="btn01-container">
                 <!-- <button>作成</button> -->
             </div>
         </div>
@@ -55,7 +55,7 @@
     <div class="project-container table-container">
         <div class="title-container">
             <h4>プロジェクト</h4>
-            <div class="btn-container">
+            <div class="btn-a-container">
                 <a href="{{ route('company.project.create') }}">プロジェクト作成</a>
             </div>
         </div>
@@ -143,7 +143,7 @@
     <div class="task-container table-container">
         <div class="title-container">
             <h4>タスク</h4>
-            <div class="btn-container">
+            <div class="btn-a-container">
                 <a href="{{ route('company.task.create') }}">タスク作成</a>
             </div>
         </div>

@@ -10,7 +10,9 @@
 <div class="main-wrapper">
 	<div class="title-container">
 		<h3>請求書プレビュー</h3>
-		<button id="print_btn" type="button">プリント</button>
+        <div class="download-btn-container">
+            <a id="print_btn" class="button download-button">ダウンロード</a>
+        </div>
 	</div>
 	<div id="print" class="document-container A4">
         <!-- 印刷用 -->
