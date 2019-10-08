@@ -14,8 +14,7 @@ class InvoiceController extends Controller
 {
     public function create()
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
 
         $completed = '';
@@ -24,8 +23,7 @@ class InvoiceController extends Controller
 
     public function store(PartnerInvoiceRequest $request)
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $partner->update($request->all());
 
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();

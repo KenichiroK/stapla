@@ -13,8 +13,7 @@ class InitialRegisterController extends Controller
 {
     public function doneVerify()
     {
-        $partnerAuth = Auth::user();
-        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        $partner = Auth::user()->first();
         
         if(isset($partner)){
             return  redirect('partner/dashboard');
@@ -25,8 +24,7 @@ class InitialRegisterController extends Controller
 
     public function createPartner()
     {
-        $partnerAuth = Auth::user();
-        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        $partner = Auth::user()->first();
         
         if(isset($partner)){
             return  redirect('partner/dashboard');
@@ -42,8 +40,7 @@ class InitialRegisterController extends Controller
 
     public function previwShow(Request $request)
     {
-        $partnerAuth = Auth::user();
-        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        $partner = Auth::user()->first();
         
         if(isset($partner)){
             return  redirect('partner/dashboard');
@@ -55,11 +52,11 @@ class InitialRegisterController extends Controller
 
     public function previewStore(Request $request)
     {
-        $partnerAuth = Auth::user();
+        $partner = Auth::user();
         
         $partner = new Partner;
-        $partner->partner_id   = $partnerAuth->id;
-        $partner->company_id   = $partnerAuth->company_id;
+        $partner->partner_id   = $partner->id;
+        $partner->company_id   = $partner->company_id;
         $partner->name         = $request->name;
         $partner->occupations  = $request->occupations;
         $partner->introduction = $request->introduction;

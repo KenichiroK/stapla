@@ -82,7 +82,7 @@ return [
 
         'partners' => [
             'driver' => 'eloquent',
-            'model' => App\Models\PartnerAuth::class,
+            'model' => App\Models\Partner::class,
         ],
     ],
 

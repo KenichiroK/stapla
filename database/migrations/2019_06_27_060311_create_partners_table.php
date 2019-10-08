@@ -12,7 +12,10 @@ class CreatePartnersTable extends Migration
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary();
             $table->uuid('company_id');
-            $table->uuid('partner_id');
+            $table->string("email", 64);
+            $table->string("password", 64);
+            $table->rememberToken();
+            $table->timestamp("email_verified_at")->nullable();
             $table->string('name', 64);
             $table->string('nickname', 64)->nullable();
             $table->string('zip_code', 64);
@@ -45,7 +48,6 @@ class CreatePartnersTable extends Migration
             $table->string('attachment', 64)->nullable();      
             $table->timestamps();
 
-            $table->foreign('partner_id')->references('id')->on('partner_auths');
             $table->foreign('company_id')->references('id')->on('companies');
         });
     }

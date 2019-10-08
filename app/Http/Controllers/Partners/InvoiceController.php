@@ -21,8 +21,7 @@ class InvoiceController extends Controller
     public function create($id)
     {
         $task = Task::findOrFail($id);
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $company_id = $partner->company_id;
         $company = Company::findOrFail($company_id);
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
@@ -31,8 +30,7 @@ class InvoiceController extends Controller
 
     public function store(CreateInvoiceRequest $request)
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
         if (!$partner_invoice) {
             $completed = '';
@@ -64,8 +62,7 @@ class InvoiceController extends Controller
 
     public function show($id)
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $invoice = Invoice::findOrFail($id);
         $task = Task::findOrFail($invoice->task_id);
         $total_sum = 0;
