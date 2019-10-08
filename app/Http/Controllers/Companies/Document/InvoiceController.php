@@ -19,7 +19,7 @@ class InvoiceController extends Controller
 {
     public function show($id)
     {
-        $company_user = Auth::user()->id;
+        $company_user = Auth::user();
         $invoice = Invoice::findOrFail($id);
         $task = Task::findOrFail($invoice->task_id);
         $total_sum = 0;

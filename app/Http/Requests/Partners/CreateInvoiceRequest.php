@@ -24,19 +24,19 @@ class CreateInvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_user_id'       => 'required | uuid',
+            'company_user_id'       => 'bail | required | uuid',
             'title'                 => 'required',
-            'requested_at'          => 'required | date',
-            'deadline_at'           => 'required | date',
-            'tax'                   => 'required | boolean',
-            'item_name.*'           => 'required_with:item_num.*,item_unit_price.*,item_total.*',
-            'item_num.*'            => 'required_with:item_name.*,item_unit_price.*,item_total.*',
-            'item_unit_price.*'     => 'required_with:item_name.*,item_num.*,item_total.*',
-            'item_total.*'          => 'required_with:item_name.*,item_num.*,item_unit_price.*',
-            'expences_name.*'       => 'required_with:expences_num.*,expences_unit_price.*,expences_total.*',
-            'expences_num.*'        => 'required_with:expences_name.*,expences_unit_price.*,expences_total.*',
-            'expences_unit_price.*' => 'required_with:expences_name.*,expences_num.*,expences_total.*',
-            'expences_total.*'      => 'required_with:expences_name.*,expences_num.*,expences_unit_price.*',
+            'requested_at'          => 'bail | required | date',
+            'deadline_at'           => 'bail | required | date',
+            'tax'                   => 'bail | required | boolean',
+            'item_name.*'           => 'bail | required_with:item_num.*,item_unit_price.*,item_total.*',
+            'item_num.*'            => 'bail | required_with:item_name.*,item_unit_price.*,item_total.* | digits_between:1, 10',
+            'item_unit_price.*'     => 'bail | required_with:item_name.*,item_num.*,item_total.* | digits_between:1, 10',
+            'item_total.*'          => 'bail | required_with:item_name.*,item_num.*,item_unit_price.* | digits_between:1, 10',
+            'expences_name.*'       => 'bail | required_with:expences_num.*,expences_unit_price.*,expences_total.*',
+            'expences_num.*'        => 'bail | required_with:expences_name.*,expences_unit_price.*,expences_total.* | digits_between:1, 10',
+            'expences_unit_price.*' => 'bail | required_with:expences_name.*,expences_num.*,expences_total.*',
+            'expences_total.*'      => 'bail | required_with:expences_name.*,expences_num.*,expences_unit_price.*',
         ];
     }
 
