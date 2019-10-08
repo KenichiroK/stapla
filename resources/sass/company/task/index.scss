@@ -140,29 +140,15 @@
             }
         }
     }
-    .buttonarea{
+    .btn-a-container{
         margin-bottom: 30px;
-        .c-button{
-            width:100px;
-            border-radius: 100px;
-            font-size:12px;
-            font-weight:bold;
-            background: #43425D;
-            border-color: #43425D;
+        text-align: right;
+        a{
+            width: 100px;
+            font-size: 12px;
             margin: 0 0 0 auto;
             display: block;
             padding: 10px 18px;
-            height: auto;
-            a{
-                color:#fff;
-            }
-            a:hover{
-                text-decoration: none;
-            }
-        }
-        .c-button:hover{
-            opacity:0.8;
-            border-color: #43425D;
         }
     }
 }

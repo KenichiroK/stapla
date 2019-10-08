@@ -30,20 +30,13 @@
 			position: absolute;
 		}
 	}
-	.project_btn-wrp{
+	.btn-a-container{
 		margin-top: 5px;
-		.button {
-			background-color: #43425D;
+		a {
 			font-weight: bold;
-			border-radius:100px;
 			padding: 10px 12px;
-			color:#fff;
 			font-size: 12px;
-			height: 40px;
-		}
-		.button:hover {
-			opacity: 0.8;
-			transition: 0.3s;
+			display: block;
 		}
 	}
 }         

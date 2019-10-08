@@ -51,30 +51,6 @@
         caret-color: #3B86FF;
     }
 }
-
-.head-container {
-    &__wrapper {
-        display: flex;
-        &__print-btn-container {
-            margin-left: auto;
-            &__button {
-                height: 40px;
-                width: 140px;
-                background-color: #fff;
-                color: #43425D;
-                margin: 24px 0;
-                border-radius: 100px;
-                border: 2px solid #43425D;
-                font-size: 18px;
-                font-weight: bold;
-            }
-            &__button:hover{
-                text-decoration: none;
-                border: 2px solid #43425D;
-            }
-        }
-    }
-}
 .main-container {
     margin-bottom: 30px;
     &__wrapper {

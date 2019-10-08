@@ -72,3 +72,63 @@ main {
 		}
 	}
 }
+.btn01-container {
+    width: 100%;
+    text-align: center;
+    button {
+		border-color: #43425d;
+        background-color: #43425d;
+        font-weight: bold;
+        color: #fff;
+        padding: 8px 40px;
+        font-size: 16px;
+        border-radius: 100px;
+        outline: none;
+        width: 140px;
+        opacity: 1;
+        transition: 0.3s;
+    }
+    button:hover {
+        opacity: 0.7;
+    }
+}
+
+.btn-a-container {
+	a {
+		background-color: #43425d;
+		font-weight: bold;
+		color: #fff;
+		padding: 8px 20px;
+		font-size: 15px;
+		border-radius: 100px;
+		outline: none;
+		text-decoration: none;
+		opacity: 1;
+		transition: 0.3s;
+	}
+	a:hover {
+		opacity: 0.7;
+	}
+}
+// ダウンロードボタン
+.title_btn-container__wrapper {
+	display: flex;
+}
+.download-btn-container {
+	margin-left: auto;
+	.download-button {
+		height: 40px;
+		width: 140px;
+		background-color: #fff;
+		color: #43425D;
+		margin: 24px 0;
+		border-radius: 100px;
+		border: 2px solid #43425D;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.download-button:hover{
+		text-decoration: none;
+		border: 2px solid #43425D;
+	}
+}

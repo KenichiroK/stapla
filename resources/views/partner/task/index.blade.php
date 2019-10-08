@@ -53,8 +53,8 @@
                 <li class="all isActive"><a href="">タスク一覧</a></li>
                 <li class="done"><a href="">完了したタスク</a></li>
             </ul>
-            <div class="buttonarea control">
-                <button class="c-button button"><a href="">タスク作成</a></button>
+            <div class="btn-a-container">
+                <a href="">タスク作成</a>
             </div>
             <div class="task-container__wrapper">
                 <!-- タイトル -->
