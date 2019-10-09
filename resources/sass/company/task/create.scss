@@ -45,58 +45,6 @@
     padding-right: 23px;
 }
 
-
-// セレクトボックス＋アイコン
-.select-plusicon {
-	overflow: hidden;
-    text-align: center;
-    position: relative;
-	border: 1px solid #E9E9F0;
-	border-radius: 2px;
-    background: #ffffff;
-    select {
-        width: 100%;
-        padding-right: 1em;
-        cursor: pointer;
-        text-indent: 0.01px;
-        text-overflow: ellipsis;
-        border: none;
-        outline: none;
-        background: transparent;
-        background-image: none;
-        box-shadow: none;
-        -webkit-appearance: none;
-        appearance: none;
-        padding: 8px 38px 8px 8px;
-	    color: #666666;
-    }
-    select::-ms-expand {
-        display: none;
-    }
-    &::before {
-        position: absolute;
-        top: 15px;
-        right: 22px;
-        width: 2px;
-        height: 5px;
-        padding: 0;
-        content: "";
-        border-top: 16px solid #A4AFB7;
-        pointer-events: none;
-    }
-    &::after {
-        position: absolute;
-        top: 22px;
-        right: 15px;
-        width: 16px;
-        height: 2px;
-        padding: 0;
-        content: "";
-        border-top: 2px solid #A4AFB7;
-        pointer-events: none;
-    }
-}
-
 // タスク内容
 .item-name-wrapper.contentsname{
     height: 120px;
@@ -232,69 +180,6 @@
             }
             .calendar-item.end{
                 margin-top: 12px;
-
-            }
-            // プロジェクト期間
-            .select-date-wrp{
-                display: flex;
-                align-items: center;
-                // セレクトボックス 矢印アイコン
-                .select-arrow {
-                    overflow: hidden;
-                    text-align: center;
-                    position: relative;
-                    border: 1px solid #e9e9f0;
-                    border-radius: 2px;
-                    background: #ffffff;
-                    width: 53px;
-                    margin-left: 10px;
-                    margin-right: 5px;
-                    select {
-                        width: 100%;
-                        height: 46px;
-                        padding-right: 1em;
-                        cursor: pointer;
-                        text-indent: 0.01px;
-                        text-overflow: ellipsis;
-                        border: none;
-                        outline: none;
-                        background: transparent;
-                        background-image: none;
-                        box-shadow: none;
-                        -webkit-appearance: none;
-                        appearance: none;
-                        padding: 8px 25px 8px 8px;
-                        color: #666666;
-                    }
-                    select::-ms-expand {
-                        display: none;
-                    }
-                    &::after {
-                        right: 10px;
-                        padding: 0;
-                        border: 3px solid #94949400;
-                        border-radius: 2px;
-                        border-right: 0;
-                        border-top: 0;
-                        content: " ";
-                        display: block;
-                        height: 0.625em;
-                        margin-top: -0.4375em;
-                        pointer-events: none;
-                        position: absolute;
-                        top: 50%;
-                        -webkit-transform: rotate(-45deg);
-                        transform: rotate(-45deg);
-                        -webkit-transform-origin: center;
-                        transform-origin: center;
-                        width: 0.625em;
-                        border-color: #a4afb7;
-                    }
-                }
-                .select-arrow.year{
-                    width: 80px;
-                    margin-left: 0;
-                }
             }
             
             // 予算

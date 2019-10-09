@@ -375,13 +375,13 @@ $pref = array(
 					</div>
 				</div>
 
-				<div class="imprint-container">
+				<div class="imprint-container btn01-container">
 					<button type="button">電子印影を作成</button>
 				</div>
 			</div>
 		</div>
 
-		<div class="btn-container">
+		<div class="btn01-container">
 			<button type="button" onclick="submit();">設定</button>
 		</div>
 	</form>
