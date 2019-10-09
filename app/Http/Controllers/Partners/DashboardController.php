@@ -9,10 +9,6 @@ use App\Models\Project;
 use App\Models\ProjectPartner;
 use App\Models\TaskPartner;
 use App\Models\Task;
-use App\Models\Nda;
-use App\Models\Contract;
-use App\Models\PurchaseOrder;
-use App\Models\Invoice;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -25,11 +21,7 @@ class DashboardController extends Controller
         $partner = Partner::where('partner_id', $partner_auth_id)->get()->first();
         $projects = ProjectPartner::where('user_id', $partner_id)->get();
         $tasks = Task::where('partner_id', $partner_id)->get();
-        $ndas = Nda::where('partner_id', $partner_id)->where('status', 0)->get();
-        $contracts = Contract::where('partner_id', $partner_id)->where('status', 0)->get();
-        $purchaseOrders = PurchaseOrder::where('partner_id', $partner_id)->where('status', 0)->get();
-        $invoices = Invoice::where('partner_id', $partner_id)->get();
 
-        return view('partner/dashboard/index', compact(['projects', 'tasks', 'partner', 'invoices', 'purchaseOrders', 'ndas']));
+        return view('partner/dashboard/index', compact(['projects', 'tasks', 'partner']));
     }
 }

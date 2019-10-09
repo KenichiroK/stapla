@@ -14,35 +14,11 @@ header {
     padding: 0;
     background-color: #ffffff;
 
-    .serch-wrp{
-      margin-bottom: 0;
-      .search {
-        width: 540px;
-        height: 45px;
-        box-shadow: none;
-        border-color: #ffffff;
-        padding-left: 28px;
-        padding-top: 0;
-      }
-      span{
-        width: 16px;
-        left: 1px;
-        top: 9px;
-        position: absolute;
-      }
-      .search::placeholder{
-        color: #4D4F5C;
-        font-size: 13px;
-      }
-    }
     .icon-wrp{
       display: flex;
       align-items: center;
       margin-bottom: 0;
-      .sup{
-        width: 16px;
-        margin-right: 30px;
-      }
+
       .not{
         width: 19px;
         margin-top: -7px;

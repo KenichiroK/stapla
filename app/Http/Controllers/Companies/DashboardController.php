@@ -10,10 +10,6 @@ use App\Models\TaskCompany;
 use App\Models\Company;
 use App\Models\CompanyUser;
 use App\Models\Task;
-use App\Models\Nda;
-use App\Models\Contract;
-use App\Models\PurchaseOrder;
-use App\Models\Invoice;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -27,10 +23,6 @@ class DashboardController extends Controller
         $company_id = $company_user->company_id;
         $projects = ProjectCompany::where('user_id', $companyUser_id)->get();
         $tasks = TaskCompany::where('user_id', $companyUser_id)->get();
-        $invoices = Invoice::where('company_id', $company_id)->get();
-        $ndas = Nda::where('company_id', $company_id)->get();
-        $contacts = Contract::where('company_id', $company_id)->get();
-        $purchaseOrders = PurchaseOrder::where('company_id', $company_id)->get();
         $status_arr = [];
         for ($i = 0; $i < 15; $i++) {
             $status_arr[strval($i)] = 0;
@@ -43,6 +35,6 @@ class DashboardController extends Controller
             '発注書パートナー依頼前', '発注書パートナー確認中', '作業中', '請求書依頼中', '請求書確認中', '完了', 'キャンセル'
         ];
         
-        return view('company/dashboard/index', compact('projects', 'tasks', 'status_arr', 'statusName_arr', 'invoices', 'purchaseOrders', 'contacts', 'ndas', 'company_user'));
+        return view('company/dashboard/index', compact('projects', 'tasks', 'status_arr', 'statusName_arr', 'company_user'));
     }
 }
