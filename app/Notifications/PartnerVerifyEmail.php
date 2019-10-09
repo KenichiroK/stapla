@@ -30,9 +30,20 @@ class PartnerVerifyEmail extends VerifyEmailNotification
     }
 
     protected function verificationUrl($notifiable)
+    // $notifiable = 登録されたユーザーの情報が入っている。どこで飛ばしているのかは不明、たぶんModel(Partner.php)の
+    // public function sendEmailVerificationNotification()
+    // {
+    //     $this->notify(new PartnerVerifyEmail);
+    // }
+    // の $this->notify(new PartnerVerifyEmail); かな？
     {
+        // dd($notifiable);
+        // return $notifiable->access_key;
         return URL::temporarySignedRoute(
-            'partner.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey(), 'company_id' => 'test']
+            // dd($notifiable->access_key),
+            // return $notifiable->access_key,
+            // 'partner.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey(), 'access_key' => $notifiable->access_key]
+            'partner.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->id, 'access_key' => $notifiable->access_key]
         );
     }
 }

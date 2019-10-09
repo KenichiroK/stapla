@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Partners\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use App\Models\PartnerAuth;
+use App\Models\Partner;
 use App\Models\CompanyUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -55,11 +55,11 @@ class RegisterController extends Controller
     {
         // return $request;
         $this->validator($request->all())->validate();
-        return $request;
+        // return $request;
         
         event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
+        // return $user;
+        // $this->guard()->login($user);
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
@@ -87,11 +87,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return PartnerAuth::create([
+        $access_key = str_random(16);
+        return Partner::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'access_key' => str_random(32),
-            'company_id' => $data['company_id'],
+            'access_key' => $access_key,
+            // 'access_key' => 'aa',
+            'company_id' => $data['company_id']
         ]);
     }
 
