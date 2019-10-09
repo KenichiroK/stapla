@@ -6,10 +6,12 @@ use App\User;
 use App\Http\Controllers\Controller;
 use App\Models\PartnerAuth;
 use App\Models\CompanyUser;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -49,6 +51,20 @@ class RegisterController extends Controller
     //     $this->middleware('guest:partner');
     // }
 
+    public function register(Request $request)
+    {
+        // return $request;
+        $this->validator($request->all())->validate();
+        return $request;
+        
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -74,6 +90,7 @@ class RegisterController extends Controller
         return PartnerAuth::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'access_key' => str_random(32),
             'company_id' => $data['company_id'],
         ]);
     }

@@ -8,6 +8,7 @@ $factory->define(App\Models\Partner::class, function (Faker $faker) {
         'company_id'        => App\Models\Company::all()->random()->id,
         'email'             => $faker->safeEmail,
         'password'          => Hash::make('password'),
+        'access_key'        => $faker->shuffle('abcdefghijklmnopqrstuvwxyz'),
         'remember_token'    => str_random(10),
         'email_verified_at' => $faker->dateTimeThisDecade,
         'name'              => $name,
