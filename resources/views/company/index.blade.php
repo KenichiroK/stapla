@@ -29,12 +29,12 @@
                     <div class="navbar-end">
                         <ul class="icon-wrp">
                             <li class="not">
-                                <a><img src="https://dev-impro.s3-ap-northeast-1.amazonaws.com/common/icon_notification.png" alt="serch"></a>
+                                <a><img src="{{ asset('images/icon_notification.png') }}" alt="serch"></a>
                             </li>
                         </ul>
                         <div class="header-proflie">
                             <div class="user-imgbox">
-                                <img src="{{ $company_user->picture }}" alt="プロフィール画像">
+                                <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
                             </div>
                             <div class="option">
                                 <div class="user-name">
@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div class="icon-imgbox">
-                                    <img src="https://dev-impro.s3-ap-northeast-1.amazonaws.com/common/icon_small-down.png" alt="">
+                                    <img src="{{ asset('images/icon_small-down.png') }}" alt="">
                                 </div>
                             </div>
 

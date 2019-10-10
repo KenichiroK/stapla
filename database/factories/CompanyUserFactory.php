@@ -12,7 +12,7 @@ $factory->define(App\Models\CompanyUser::class, function (Faker $faker) {
         'department'        => $faker->randomElement(['総務部', '人事部', '営業部', '海外事業部', 'IT事業部']),
         'occupation'        => $faker->randomElement(['営業', '企画', 'エンジニア', 'アシスタント', 'ディレクター']),
         'self_introduction' => $faker->sentence,
-        'picture'           => 'https://dev-impro.s3-ap-northeast-1.amazonaws.com/test/docker.jpeg',
+        'picture'           => 'public/images/default/dummy_user.jpeg',
         'created_at'        => $faker->dateTimeThisDecade,
         'updated_at'        => $faker->dateTimeThisYear,
     ];
