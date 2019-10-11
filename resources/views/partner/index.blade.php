@@ -29,7 +29,7 @@
                     <div class="navbar-end">
                         <ul class="icon-wrp">
                             <li class="not">
-                                <a><img src="https://dev-impro.s3-ap-northeast-1.amazonaws.com/common/icon_notification.png" alt="serch"></a>
+                                <a><img src="{{ env('AWS_URL') }}/common/icon_notification.png" alt="serch"></a>
                             </li>
                         </ul>
                         <div class="header-proflie">
@@ -44,7 +44,7 @@
                                 </div>
 
                                 <div class="icon-imgbox">
-                                    <img src="https://dev-impro.s3-ap-northeast-1.amazonaws.com/common/icon_small-down.png" alt="">
+                                    <img src="{{ env('AWS_URL') }}/common/icon_small-down.png" alt="">
                                 </div>
                             </div>
                             
