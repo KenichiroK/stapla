@@ -40,10 +40,13 @@ class PartnerVerifyEmail extends VerifyEmailNotification
         // dd($notifiable);
         // return $notifiable->access_key;
         return URL::temporarySignedRoute(
-            // dd($notifiable->access_key),
-            // return $notifiable->access_key,
-            // 'partner.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey(), 'access_key' => $notifiable->access_key]
-            'partner.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->id, 'access_key' => $notifiable->access_key]
+        // ここではURLの有効期限、URLに乗せるデータを規定しているだけで、
+        // URLの形自体はweb.phpの
+        // Route::middleware('signed')->get('email/verify/{id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
+        // で定めている。
+            // 'partner.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey(), 'email' => $notifiable->email, 'access_key' => $notifiable->access_key]
+            'partner.firstLogin', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey(), 'email' => $notifiable->email, 'company_id' => $notifiable->company_id]
+            // 'partner.verification.verify'はおそらくnameの指定
         );
     }
 }

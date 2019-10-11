@@ -1,3 +1,4 @@
+
 @extends('company.index')
 
 @section('assets')

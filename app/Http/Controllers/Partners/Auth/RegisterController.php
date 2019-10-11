@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Partners\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use App\Models\Partner;
+use App\Models\PartnerAuth;
 use App\Models\CompanyUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -30,8 +30,10 @@ class RegisterController extends Controller
 
     public function showRegisterForm()
     {
+        // return $email;
+        // return $access_key;
         $company_user = Auth::user();
-        return view('partner.auth.register', compact('company_user'));
+        return view('partner.auth.register', compact('company_user', 'email', 'access_key'));
     }
 
     /**
@@ -75,7 +77,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:partners'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            // 'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
@@ -88,9 +90,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $access_key = str_random(16);
-        return Partner::create([
+        return PartnerAuth::create([
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            // 'password' => Hash::make($data['password']),
             'access_key' => $access_key,
             // 'access_key' => 'aa',
             'company_id' => $data['company_id']

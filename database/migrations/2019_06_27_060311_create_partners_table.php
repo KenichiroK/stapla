@@ -15,7 +15,7 @@ class CreatePartnersTable extends Migration
             $table->string("email", 64);
             
             // 実装時はnullable()
-            $table->string("access_key", 64);
+            // $table->string("access_key", 64);
             $table->string("password", 64)->nullable();
             $table->rememberToken();
             $table->timestamp("email_verified_at")->nullable();

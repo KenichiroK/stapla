@@ -15,7 +15,7 @@ class InitialRegisterController extends Controller
     {
         $partner = Auth::user()->first();
         
-        if(isset($partner)){
+        if(isset($partner->name)){
             return  redirect('partner/dashboard');
         } else{
             return view('partner/auth/initialRegister/doneVerify', compact('company_id'));

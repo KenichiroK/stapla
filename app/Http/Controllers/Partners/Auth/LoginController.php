@@ -22,8 +22,9 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
+        // return $request;
         return view('partner/auth/login');
     }
 

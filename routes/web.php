@@ -11,12 +11,17 @@
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::group(['prefix' => 'partner'], function(){
+	
 	//login   
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
+	
+	// first-login   
+	Route::get('first-login', 'Partners\Auth\FirstLoginController@showRegisterForm')->name('partner.firstLogin');
+	Route::post('first-login', 'Partners\Auth\FirstLoginController@register')->name('partner.firstLogin');
 	
 	//register
 	Route::get('register/{company_id}/{email}', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
@@ -31,7 +36,16 @@ Route::group(['prefix' => 'partner'], function(){
 	// emailverify - Eメール認証
 	Route::middleware('throttle:6,1')->get('email/resend','Partners\Auth\VerificationController@resend')->name('partner.verification.resend');
 	Route::middleware('throttle:6,1')->get('email/verify','Partners\Auth\VerificationController@show')->name('partner.verification.notice');
-	Route::middleware('signed')->get('email/verify/id/{id}/company_id/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
+	// Route::get('email/verify','Partners\Auth\VerificationController@show')->name('partner.verification.notice');
+	// Route::middleware('signed')->get('email/verify/{id}/{email}/{access_key}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
+	// Route::get('email/verify/{id}/{email}/{access_key}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
+	Route::get('email/verify/{id}/{email}/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
+	
+	
+
+	// register
+	// Route::get('passwordRegister', 'Partners\Auth\PasswordRegisterController@index')->name('passwordRegister.index');
+	// Route::post('passwordRegister', 'Partners\Auth\PasswordRegisterController@register')->name('partner.register');
 	
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 		

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Partner extends Authenticatable implements MustVerifyEmail
+class Partner extends Authenticatable
 {   
     use Notifiable;
     public $incrementing = false;
@@ -21,7 +21,7 @@ class Partner extends Authenticatable implements MustVerifyEmail
     protected $table = 'partners';
     
     protected $fillable = [
-        'company_id', 'email', 'access_key', 'password', 'name', 'nickname', 'zip_code', 'prefecture', 'city', 'street', 'building', 'tel', 'age',
+        'company_id', 'email', 'password', 'name', 'nickname', 'zip_code', 'prefecture', 'city', 'street', 'building', 'tel', 'age',
         'sex', 'picture', 'occupations', 'academic', 'slack', 'chatwork', 'twitter', 'facebook', 'github', 'instagram', 'careersummary', 'jobcareer', 
         'portfolio', 'introduction', 'possible', 'skill', 'feature', 'language', 'qualification', 'relatedlinks', 'attachment' 
     ];
