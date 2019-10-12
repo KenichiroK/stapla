@@ -35,7 +35,7 @@
                         <div class="header-proflie">
                             <div class="user-imgbox">
                                 <a href="{{ route('partner.setting.profile.create') }}">
-                                    <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プロフィール画像">
+                                    <img src="{{ $partner->picture }}" alt="プロフィール画像">
                                 </a>
                             </div>
                             <div class="option">

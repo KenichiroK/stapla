@@ -41,7 +41,7 @@
                         {{ $project->task }}
                             @foreach($project->projectCompanies as $projectCompany)
                             <div class="staff-item">
-                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectCompany->companyUser->picture) }}" alt=""></div>
+                                <div class="imgbox"><img src="{{ $projectCompany->companyUser->picture }}" alt=""></div>
                                 <p class="name">{{ $projectCompany->companyUser->name }}</p>
                             </div>
                             @endforeach
@@ -51,7 +51,7 @@
                         <div class="detail-container__list__item__content">
                             @foreach($project->projectPartners as $projectPartner)
                                 <div class="staff-item">
-                                    <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectPartner->partner->picture) }}" alt=""></div>
+                                    <div class="imgbox"><img src="{{ $projectPartner->partner->picture) }}" alt=""></div>
                                     <p class="name">{{ $projectPartner->partner->name }}</p>
                                 </div>
                             @endforeach
@@ -91,7 +91,7 @@
                         <li class="task-name">{{ $task->project->name }}</li>
                             <li>{{ $task->name }}</li>
                             <li class="partner-item">
-                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt=""></div>
+                                <div class="imgbox"><img src="{{ $task->partner->picture) }}" alt=""></div>
                                 <p class="name">{{ $task->partner->name }}</p>
                             </li>
                             @if($task->status === 0)

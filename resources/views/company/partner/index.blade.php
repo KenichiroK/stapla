@@ -37,7 +37,7 @@
                         <div class="main-content">
                             <div class="main-content__img-container">
                                 <!-- <img class="main-content__img-container__img" src="" alt=""> -->
-                                <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}"  alt="">
+                                <img src="{{ $partner->picture }}"  alt="">
                             </div>
                             <div class="main-content__info-list">
                                 <div class="main-content__info-list__name">{{ $partner->name }}</div>

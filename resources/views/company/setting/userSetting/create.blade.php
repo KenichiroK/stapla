@@ -53,7 +53,7 @@ const setPreview = (input) => {
             <li>
                 <div class="name-container">
                     <div class="name-container__img-container">
-                    <img src="/{{ str_replace('public/', 'storage/', $companyUser->picture) }}" alt="">
+                    <img src="{{ $companyUser->picture }}" alt="">
                     </div>
                     {{ $companyUser->name }}
                 </div>

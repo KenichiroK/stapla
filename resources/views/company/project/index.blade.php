@@ -48,7 +48,7 @@
                         <li class="item-list project-name">{{ $project->name }}</li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $project->projectCompanies[0]->companyUser->picture) }}" alt="担当者プロフィール画像">
+                                <img src="{{ $project->projectCompanies[0]->companyUser->picture }}" alt="担当者プロフィール画像">
                             </div>
                             @if ($project->projectCompanies->count() > 1) 
                                 <p>
@@ -61,7 +61,7 @@
                         </li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $project->projectPartners[0]->partner->picture) }}" alt="担当者プロフィール画像">
+                                <img src="{{ $project->projectPartners[0]->partner->picture }}" alt="担当者プロフィール画像">
                             </div>
                             @if ($project->projectPartners->count() > 1) 
                                 <p>
@@ -85,7 +85,7 @@
 
             <div class="showmore-wrp">
                 <p id="showmore_btn" class="showmore__btn"><a>もっと見る</a>
-                    <span><img src="{{ asset('images/arrowdown.png') }}"></span>
+                    <span><img src="{{ env('AWS_URL') }}/common/arrowdown.png"></span>
                 </p>
             </div>
         </div> 

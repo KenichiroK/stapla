@@ -154,7 +154,7 @@
                                 <td>{{ date("Y年m月d日", strtotime($purchaseOrder->task_ended_at)) }}</td>
                                 <td class="staff-data">
                                     <div class="imgbox">
-                                        <img src="/{{ str_replace('public/', 'storage/', $purchaseOrder->companyUser->picture) }}" alt="">
+                                        <img src="{{ $purchaseOrder->companyUser->picture }}" alt="">
                                     </div>
                                     <div class="name">
                                         {{ $purchaseOrder->companyUser->name }}
@@ -256,7 +256,7 @@
                                 <td>{{ date("Y年m月d日", strtotime($nda->task->ended_at)) }}</td>
                                 <td class="staff-data">
                                     <div class="imgbox">
-                                    <img src="/{{ str_replace('public/', 'storage/', $nda->companyUser->picture) }}"alt="">
+                                    <img src="{{ $nda->companyUser->picture }}"alt="">
                                     </div>
                                     <div class="name">
                                             {{ $nda->companyUser->name }}
@@ -305,7 +305,7 @@
                                 <td>{{ date("Y年m月d日", strtotime($invoice->task->ended_at)) }}</td>
                                 <td class="staff-data">
                                     <div class="imgbox">
-                                        <img src="/{{ str_replace('public/', 'storage/', $invoice->companyUser->picture) }}" alt="">
+                                        <img src="{{ $invoice->companyUser->picture }}" alt="">
                                     </div>
                                     <div class="name">
                                         {{ $invoice->companyUser->name }}

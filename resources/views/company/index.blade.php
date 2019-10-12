@@ -34,7 +34,7 @@
                         </ul>
                         <div class="header-proflie">
                             <div class="user-imgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+                                <img src="{{ $company_user->picture }}" alt="プロフィール画像">
                             </div>
                             <div class="option">
                                 <div class="user-name">

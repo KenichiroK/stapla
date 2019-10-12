@@ -64,7 +64,7 @@
                     @foreach($task->taskCompanies as $companyUser)
                         <div class="person-item">
                             <div class="imgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $companyUser->companyUser->picture) }}" alt="担当者プロフィール画像">
+                                <img src="{{ $companyUser->companyUser->picture }}" alt="担当者プロフィール画像">
                             </div>
                             <p>{{ $companyUser->companyUser->name }}</p>
                         </div>
@@ -78,7 +78,7 @@
                 <dd class="flex01">
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $task->superior->picture) }}" alt="上長プロフィール画像">
+                            <img src="{{ $task->superior->picture }}" alt="上長プロフィール画像">
                         </div>
                         <p>{{ $task->superior->name }}</p>
                     </div>
@@ -91,7 +91,7 @@
                 <dd class="flex01">
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $task->accounting->picture) }}" alt="経理プロフィール画像">
+                            <img src="{{ $task->accounting->picture }}" alt="経理プロフィール画像">
                         </div>
                         <p>{{ $task->accounting->name }}</p>
                     </div>
@@ -135,7 +135,7 @@
                 <dd class="flex01">
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="パートナープロフィール画像">
+                            <img src="{{ $task->partner->picture }}" alt="パートナープロフィール画像">
                         </div>
                         <p>{{ $task->partner->name }}</p>
                     </div>
