@@ -43,8 +43,8 @@
                                 <div class="main-content__info-list__name">{{ $partner->name }}</div>
                                 <div class="main-content__info-list__job">{{ $partner->occupations }}</div>
                                 <div class="main-content__info-list__assessment-achievement">
-                                    <div class="assessment">⭐⭐⭐⭐</div>
-                                    <div class="achievement">実績<span class="num">1</span><span class="ken">件</span></div>
+                                    <!-- <div class="assessment">⭐⭐⭐⭐</div> -->
+                                    <!-- <div class="achievement">実績<span class="num">1</span><span class="ken">件</span></div> -->
                                 
                                 </div>
                                 
