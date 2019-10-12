@@ -31,7 +31,7 @@
                     @csrf
                     <div class="input_wrapper">
                         <h4 class="title">ユーザーID</h4>
-                        <input class="input_text" type="email" name="email" placeholder="ユーザーネーム又はメールアドレス">
+                        <input class="input_text" type="email" name="email" placeholder="ユーザーネーム又はメールアドレス" value={{ old('email') }}>
                         @if ($errors->has('email'))
                             <div class="invalid-feedback error-msg" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
