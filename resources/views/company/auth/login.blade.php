@@ -77,8 +77,8 @@
     </main>
 
     <footer>
-        <span class="tos">ご利用規約</span>
-        <span class="privacy">プライバシーポリシー</span>
+        <span class="tos"><a href="/terms">ご利用規約</a></span>
+        <span class="privacy"><a href="/privacy">プライバシーポリシー</a></span>
     </footer>
 </body>
 </html>
