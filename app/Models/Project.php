@@ -24,24 +24,9 @@ class Project extends BaseUuid
         return $this->hasOne('App\Models\ProjectRoleRelation', 'project_id', 'id');
     }
 
-    public function projectPartners()
-    {
-        return $this->hasMany('App\Models\ProjectPartner', 'project_id', 'id');
-    }
-
     public function projectCompanies()
     {
         return $this->hasMany('App\Models\ProjectCompany', 'project_id', 'id');
-    }
-
-    public function ProjectSuperiors()
-    {
-        return $this->hasMany('App\Models\ProjectSuperior', 'project_id', 'id');
-    }
-
-    public function ProjectAccountings()
-    {
-        return $this->hasMany('App\Models\ProjectAccounting', 'project_id', 'id');
     }
 
     protected $dates = [
