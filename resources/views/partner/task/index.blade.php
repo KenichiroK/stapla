@@ -88,17 +88,11 @@
                         <table>
                             <!-- タイトルヘッダー部分 -->
                             <tr class="headerrow">
-                                <th>プロジェクト
-                                    <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
-                                </th>
+                                <th>プロジェクト</th>
                                 <th>タスク</th>
                                 <th>パートナー</th>
-                                <th>ステータス
-                                    <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
-                                </th>
-                                <th>請求額
-                                    <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
-                                </th>
+                                <th>ステータス</th>
+                                <th>請求額</th>
                             </tr>
                             <!-- テーブルデータ部分 -->
                             

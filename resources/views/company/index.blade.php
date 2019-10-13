@@ -25,24 +25,16 @@
     <div id="app">
         <header>
             <nav class="navbar" role="navigation" aria-label="main navigation">
-                <p class="control serch-wrp">
-                    <input type="text" placeholder="Search transactions, invoices or help" class="search input"> 
-                    <span class="icon"><img src="{{ asset('images/searchicon.png') }}" alt="serch"></span>
-                </p>
-
                 <div id="navbarHomeHeader" class="navbar-menu">
                     <div class="navbar-end">
                         <ul class="icon-wrp">
-                            <li class="sup">
-                                <a><img src="{{ asset('images/icon_support.png') }}" alt="serch"></a>
-                            </li>
                             <li class="not">
-                                <a><img src="{{ asset('images/icon_notification.png') }}" alt="serch"></a>
+                                <a><img src="{{ env('AWS_URL') }}/common/icon_notification.png" alt="serch"></a>
                             </li>
                         </ul>
                         <div class="header-proflie">
                             <div class="user-imgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プロフィール画像">
+                                <img src="{{ $company_user->picture }}" alt="プロフィール画像">
                             </div>
                             <div class="option">
                                 <div class="user-name">
@@ -50,7 +42,7 @@
                                 </div>
 
                                 <div class="icon-imgbox">
-                                    <img src="{{ asset('images/icon_small-down.png') }}" alt="">
+                                    <img src="{{ env('AWS_URL') }}/common/icon_small-down.png" alt="">
                                 </div>
                             </div>
 

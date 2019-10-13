@@ -159,7 +159,7 @@
 			</div>
 		</div>
 
-		<div class="button-container">
+		<div class="btn02-container">
 			<button type="button" onclick="submit();">作成</button>
 		</div>
     </form>

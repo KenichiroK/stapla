@@ -56,10 +56,10 @@ const setPreview = (input) => {
                 <div class="image-container">
                     @if ($partner)
                         <div class="imgbox">
-                            <img id="profile_image_preview" src="/{{ str_replace('public/', 'storage/', $partner->picture) }}" alt="プレビュー画像">
+                            <img id="profile_image_preview" src="{{ $partner->picture }}" alt="プレビュー画像">
                         </div>
                     @else
-                        <img id="profile_image_preview" src="/{{ str_replace('public/', 'storage/', 'images/default/preview.jpeg') }}" alt="プレビュー画像" width="140px" height="140px">
+                        <img id="profile_image_preview" src="{{ env('AWS_URL') }}/common/preview.jpeg" alt="プレビュー画像" width="140px" height="140px">
                     @endif
                     <label for="picture">
                         画像をアップロード
