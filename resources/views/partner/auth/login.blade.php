@@ -45,8 +45,8 @@
                     <div class="input_wrapper">
                         <h4 class="title">パスワード</h4>
                         <div class="pass-input-wrp">
-                            <input class="input_text" type="password" name="password">
-                            <p>表示</p>
+                            <input class="input_text" type="password" id="password" name="password">
+                            <p id="toggle-password" onclick="myfunc()">表示</p>
                         </div>
                         @if ($errors->has('password'))
                             <div class="invalid-feedback error-msg" role="alert">
@@ -82,5 +82,22 @@
         <span class="tos"><a href="/terms">ご利用規約</a></span>
         <span class="privacy"><a href="/privacy">プライバシーポリシー</a></span>
     </footer>
+
+    <script>
+        let count = 0;
+        let myfunc = function () {
+            count++
+            let pw = document.getElementById('password');
+            let pwCheck = document.getElementById('toggle-password');
+
+            if(count%2 == 1){
+                pw.setAttribute('type', 'text');
+                pwCheck.innerHTML = '非表示';
+            } else{
+                pw.setAttribute('type', 'password');
+                pwCheck.innerHTML = '表示';
+            }
+        }
+    </script>
 </body>
 </html>
