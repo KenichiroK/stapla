@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="button_wrapper">
-                        <button class="text" type="button" onclick="submit();">ログイン</button>
+                        <button class="text" id="button" type="button" onclick="submit();">ログイン</button>
                     </div>
                 </form>
 
@@ -84,6 +84,7 @@
     </footer>
 
     <script>
+        // passwordの表示/非表示 切替処理 
         let count = 0;
         let myfunc = function () {
             count++
@@ -98,6 +99,15 @@
                 pwCheck.innerHTML = '表示';
             }
         }
+
+        // Enterキーでログイン
+        window.onload=function(){
+            document.getElementById("password").addEventListener('keypress',function(e){
+                if(e.which == 13){
+                    document.getElementById("button").click() ;
+                }
+            });
+        };
     </script>
 </body>
 </html>
