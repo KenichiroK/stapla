@@ -30,8 +30,6 @@ class RegisterController extends Controller
 
     public function showRegisterForm()
     {
-        // return $email;
-        // return $access_key;
         $company_user = Auth::user();
         return view('partner.auth.register', compact('company_user', 'email', 'access_key'));
     }
@@ -55,13 +53,9 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        // return $request;
         $this->validator($request->all())->validate();
-        // return $request;
         
         event(new Registered($user = $this->create($request->all())));
-        // return $user;
-        // $this->guard()->login($user);
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
@@ -77,7 +71,6 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:partners'],
-            // 'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
@@ -92,9 +85,7 @@ class RegisterController extends Controller
         $access_key = str_random(16);
         return PartnerAuth::create([
             'email' => $data['email'],
-            // 'password' => Hash::make($data['password']),
             'access_key' => $access_key,
-            // 'access_key' => 'aa',
             'company_id' => $data['company_id']
         ]);
     }

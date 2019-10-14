@@ -7,6 +7,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use App\Models\CompanyUser;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,6 @@ class FirstLoginController extends Controller
     use RegistersUsers;
     public function showRegisterForm(Request $request)
     {
-        // return $request;
         return view('partner.auth.firstLogin', compact('request'));
     }
     /**
@@ -35,6 +35,19 @@ class FirstLoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest:partner');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+        
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
     /**
      * Get a validator for an incoming registration request.
