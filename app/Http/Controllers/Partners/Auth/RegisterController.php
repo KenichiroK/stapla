@@ -15,17 +15,6 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
     public function showRegisterForm()
@@ -34,22 +23,7 @@ class RegisterController extends Controller
         return view('partner.auth.register', compact('company_user', 'email', 'access_key'));
     }
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = '/company/partner';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('guest:partner');
-    // }
 
     public function register(Request $request)
     {
@@ -61,12 +35,6 @@ class RegisterController extends Controller
                         ?: redirect($this->redirectPath());
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -74,18 +42,10 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
     protected function create(array $data)
     {
-        $access_key = str_random(16);
         return PartnerAuth::create([
             'email' => $data['email'],
-            'access_key' => $access_key,
             'company_id' => $data['company_id']
         ]);
     }

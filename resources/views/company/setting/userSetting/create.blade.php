@@ -36,7 +36,7 @@ const setPreview = (input) => {
     <div class="title-container">
         <h3>会社担当者設定</h3>
         <div class="btn-a-container">
-            <a href="{{ route('company.invite.company-user.invite') }}">担当者追加</a>
+            <a href="{{ route('company.invitePreRegister') }}">担当者追加</a>
         </div>
     </div>
     <div class="charge-container_item">

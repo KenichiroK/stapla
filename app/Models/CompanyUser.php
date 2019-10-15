@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 
-class CompanyUser extends Authenticatable implements MustVerifyEmail
+class CompanyUser extends Authenticatable
 {
     use Notifiable;
     public $incrementing = false;
@@ -28,15 +28,10 @@ class CompanyUser extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token'
     ];
 
-    public function sendEmailVerificationNotification()
+    public function companyUserAuth()
     {
-        $this->notify(new UserVerifyEmailNotification);
+        return $this->belongsTo('App\Models\CompanyUserAuth', 'auth_id', 'id');
     }
-
-    // public function companyUserAuth()
-    // {
-    //     return $this->belongsTo('App\Models\CompanyUserAuth', 'auth_id', 'id');
-    // }
 
     public function company()
     {

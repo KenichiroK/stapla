@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Partners\Auth;
+namespace App\Http\Controllers\Companies\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Partner;
-use App\Models\CompanyUser;
+use App\Models\FirstCompanyUserAuth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,19 +11,21 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class FirstLoginController extends Controller
+class PreRegisterController extends Controller
 {
     use RegistersUsers;
-    public function showRegisterForm(Request $request)
+
+
+    public function showRegisterForm()
     {
-        return view('partner.auth.firstLogin', compact('request'));
+        return view('company.auth.preRegister');
     }
 
-    protected $redirectTo = '/partner/register/doneVerify';
+    protected $redirectTo = '/company/register/preRegistered';
 
     public function __construct()
     {
-        $this->middleware('guest:partner');
+        $this->middleware('guest:company');
     }
 
     public function register(Request $request)
@@ -33,9 +34,6 @@ class FirstLoginController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
-        
-
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
     }
@@ -43,21 +41,19 @@ class FirstLoginController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:partners'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:first_company_user_auths'],
         ]);
     }
 
     protected function create(array $data)
     {
-        return Partner::create([
+        return FirstCompanyUserAuth::create([
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'company_id' => $data['company_id'],
         ]);
     }
+
     protected function guard()
     {
-        return Auth::guard('partner');
+        return Auth::guard('company');
     }
 }

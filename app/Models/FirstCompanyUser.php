@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use App\Notifications\PartnerVerifyEmail;
+use App\Notifications\UserVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class PartnerAuth extends Authenticatable
-{   
+class FirstCompanyUser extends Authenticatable implements MustVerifyEmail
+{
     use Notifiable;
     public $incrementing = false;
     public static function boot()
@@ -18,17 +19,17 @@ class PartnerAuth extends Authenticatable
             $model->id = (string)\Illuminate\Support\Str::uuid();
         });
     }
-    protected $table = 'partner_auths';
+    protected $table = 'first_company_users';
     
     protected $fillable = [
-        'company_id', 'email'
-    ];
-    protected $hidden = [
-        'remember_token'
-    ];
+        'email', 'password'
+     ];
+     protected $hidden = [
+         'password', 'remember_token'
+     ];
 
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new PartnerVerifyEmail);
+        $this->notify(new UserVerifyEmail);
     }
 }
