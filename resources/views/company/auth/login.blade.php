@@ -42,7 +42,7 @@
                         <h4 class="title">パスワード</h4>
                         <div class="pass-input-wrp">
                             <input class="input_text" type="password" id="password" name="password">
-                            <p id="toggle-password" onclick="myfunc()">表示</p>
+                            <p id="toggle-password" onclick="isDisplayPw()">表示</p>
                         </div>
                         
                         @if ($errors->has('password'))
@@ -80,12 +80,11 @@
     </footer>
 
     <script>
-        // passwordの表示/非表示 切替処理 
-        let count = 0;
-        let myfunc = function () {
+        var count = 0;
+        var isDisplayPw = function () {
             count++
-            let pw = document.getElementById('password');
-            let pwCheck = document.getElementById('toggle-password');
+            var pw = document.getElementById('password');
+            var pwCheck = document.getElementById('toggle-password');
 
             if(count%2 == 1){
                 pw.setAttribute('type', 'text');

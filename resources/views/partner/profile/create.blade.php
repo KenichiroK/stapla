@@ -59,7 +59,7 @@ const setPreview = (input) => {
                             <img id="profile_image_preview" src="{{ $partner->picture }}" alt="プレビュー画像">
                         </div>
                     @else
-                        <img id="profile_image_preview" src="{{ 'images/default/preview.jpeg' }}" alt="プレビュー画像" width="140px" height="140px">
+                        <img id="profile_image_preview" src="{{ env('AWS_URL') }}/common/preview.jpeg" alt="プレビュー画像" width="140px" height="140px">
                     @endif
                     <label for="picture">
                         画像をアップロード
