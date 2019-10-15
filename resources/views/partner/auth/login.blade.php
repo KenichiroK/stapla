@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="button_wrapper">
-                        <button class="text" type="button" onclick="submit();">ログイン</button>
+                        <button class="text" id="button" type="button" onclick="submit();">ログイン</button>
                     </div>
                 </form>
 
@@ -98,6 +98,15 @@
                 pwCheck.innerHTML = '表示';
             }
         }
+
+        // Enterキーでログイン
+        window.onload=function(){
+            document.getElementById("password").addEventListener('keypress',function(e){
+                if(e.which == 13){
+                    document.getElementById("button").click() ;
+                }
+            });
+        };
     </script>
 </body>
 </html>
