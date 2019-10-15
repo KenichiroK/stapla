@@ -35,7 +35,7 @@
                     <td class="project_name"><a href="{{ route('partner.project.show', ['project_id' => $project->project->id]) }}">{{ $project->project->name }}</a></td>
                     <td class="staff">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $project->project->projectCompanies[0]->companyUser->picture) }}" alt="プロフィール画像">
+                            <img src="{{ $project->project->projectCompanies[0]->companyUser->picture }}" alt="プロフィール画像">
                         </div> 
                         @if ($project->project->projectCompanies->count() > 1) 
                             <p>
@@ -48,7 +48,7 @@
                     </td>
                     <td class="staff">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $project->project->projectPartners[0]->partner->picture) }}" alt="プロフィール画像">
+                            <img src="{{ $project->project->projectPartners[0]->partner->picture }}" alt="プロフィール画像">
                         </div> 
                         @if ($project->project->projectPartners->count() > 1) 
                             <p>
@@ -102,7 +102,7 @@
                         </a>
                     <td class="staff">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="プロフィール画像">
+                            <img src="{{ $task->partner->picture }}" alt="プロフィール画像">
                         </div> 
                             <p>{{ $task->partner->name }}</p>
                     </td>

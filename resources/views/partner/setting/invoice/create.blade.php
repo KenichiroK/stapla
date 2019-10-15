@@ -355,7 +355,7 @@ $pref = array(
 				<div class="image-container">
 					@if ($partner_invoice)
 						<div class="imgbox">
-							<img id="preview" src="/{{ str_replace('public/', 'storage/', $partner_invoice->mark_image) }}" alt="プレビュー画像">
+							<img id="preview" src="{{ $partner_invoice->mark_image }}" alt="プレビュー画像">
 						</div>	
 					@else
 						<div class="imgbox">

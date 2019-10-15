@@ -71,7 +71,7 @@
 
             <div class="showmore-wrp">
                 <p id="showmore_btn" class="showmore__btn"><a>もっと見る</a>
-                    <span><img src="{{ asset('images/arrowdown.png') }}"></span>
+                    <span><img src="{{ env('AWS_URL') }}/common/arrowdown.png"></span>
                 </p>
             </div>
         </div> 
