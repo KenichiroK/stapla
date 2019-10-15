@@ -37,14 +37,14 @@
                         <div class="main-content">
                             <div class="main-content__img-container">
                                 <!-- <img class="main-content__img-container__img" src="" alt=""> -->
-                                <img src="/{{ str_replace('public/', 'storage/', $partner->picture) }}"  alt="">
+                                <img src="{{ $partner->picture }}"  alt="">
                             </div>
                             <div class="main-content__info-list">
                                 <div class="main-content__info-list__name">{{ $partner->name }}</div>
                                 <div class="main-content__info-list__job">{{ $partner->occupations }}</div>
                                 <div class="main-content__info-list__assessment-achievement">
-                                    <div class="assessment">⭐⭐⭐⭐</div>
-                                    <div class="achievement">実績<span class="num">1</span><span class="ken">件</span></div>
+                                    <!-- <div class="assessment">⭐⭐⭐⭐</div> -->
+                                    <!-- <div class="achievement">実績<span class="num">1</span><span class="ken">件</span></div> -->
                                 
                                 </div>
                                 

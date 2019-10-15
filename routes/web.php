@@ -13,6 +13,13 @@
 
 Auth::routes(['verify' => true]);
 
+Route::get('/',        function () { return view('common_pages/home');    });
+Route::get('/privacy', function () { return view('common_pages/privacy'); });
+Route::get('/terms',   function () { return view('common_pages/terms');   });
+
+
+Auth::routes();
+
 Route::group(['prefix' => 'partner'], function(){
 	
 	//login   

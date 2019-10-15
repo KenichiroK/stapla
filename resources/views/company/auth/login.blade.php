@@ -7,7 +7,6 @@
     <title>Impro</title>
     <link href="{{ mix('css/auth/login/index.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-
 </head>
 <body>
     <header>
@@ -31,7 +30,7 @@
                     @csrf
                     <div class="input_wrapper">
                         <h4 class="title">ユーザーID</h4>
-                        <input class="input_text" type="email" name="email" placeholder="ユーザーネーム又はメールアドレス">
+                        <input class="input_text" type="email" name="email" placeholder="ユーザーネーム又はメールアドレス" value={{ old('email') }}>
                         @if ($errors->has('email'))
                             <div class="invalid-feedback error-msg" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -42,8 +41,8 @@
                     <div class="input_wrapper">
                         <h4 class="title">パスワード</h4>
                         <div class="pass-input-wrp">
-                            <input class="input_text" type="password" name="password">
-                            <p>表示</p>
+                            <input class="input_text" type="password" id="password" name="password">
+                            <p id="toggle-password" onclick="isDisplayPw()">表示</p>
                         </div>
                         
                         @if ($errors->has('password'))
@@ -59,7 +58,7 @@
                     </div>
 
                     <div class="button_wrapper">
-                        <button class="text" type="button" onclick="submit();">ログイン</button>
+                        <button class="text" id="button" type="button" onclick="submit();">ログイン</button>
                     </div>
                 </form>
 
@@ -70,15 +69,40 @@
 
                 <div class="forget_password_wrapper">
                     <a href="#">パスワードをお忘れの場合はこちら</a>
-                </div>
-                
+                </div>                
             </div>
         </div>
     </main>
 
     <footer>
-        <span class="tos">ご利用規約</span>
-        <span class="privacy">プライバシーポリシー</span>
+        <span class="tos"><a href="/terms">ご利用規約</a></span>
+        <span class="privacy"><a href="/privacy">プライバシーポリシー</a></span>
     </footer>
+
+    <script>
+        var count = 0;
+        var isDisplayPw = function () {
+            count++
+            var pw = document.getElementById('password');
+            var pwCheck = document.getElementById('toggle-password');
+
+            if(count%2 == 1){
+                pw.setAttribute('type', 'text');
+                pwCheck.innerHTML = '非表示';
+            } else{
+                pw.setAttribute('type', 'password');
+                pwCheck.innerHTML = '表示';
+            }
+        }
+
+        // Enterキーでログイン
+        window.onload=function(){
+            document.getElementById("password").addEventListener('keypress',function(e){
+                if(e.which == 13){
+                    document.getElementById("button").click() ;
+                }
+            });
+        };
+    </script>
 </body>
 </html>
