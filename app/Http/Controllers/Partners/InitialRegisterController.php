@@ -69,12 +69,7 @@ class InitialRegisterController extends Controller
         $partner->picture      ='public/images/default/dummy_user.jpeg';
         $partner->save();
 
-        return view('partner/auth/initialRegister/done');
-    }
-
-    public function done()
-    {
-        return view('partner/auth/regitster/done');
+        return view('partner/auth/initialRegister/done', compact('partner'));
     }
 
     public function resetPassword()
