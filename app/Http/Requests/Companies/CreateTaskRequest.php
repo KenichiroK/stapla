@@ -25,16 +25,16 @@ class CreateTaskRequest extends FormRequest
     {
         return [
             'project_id'      => 'required',
-            'task_name'       => 'required',
-            'task_content'    => 'required',
+            'task_name'       => 'required | string | max:64',
+            'task_content'    => 'required | string | max:200',
             'company_user_id' => 'required',
             'superior_id'     => 'required',
             'accounting_id'   => 'required',
-            'started_at' => 'required',
-            'ended_at'   => 'required | after:started_at',
-            'budget'          => 'required',
-            'price'           => 'required',
-            'cases'           => 'required | digits_between:1, 10',
+            'started_at'      => 'required',
+            'ended_at'        => 'required | after:started_at',
+            'budget'          => 'required | integer | digits_between:1, 12',
+            'price'           => 'required | integer | digits_between:1, 12',
+            'cases'           => 'required | integer | digits_between:1, 10',
             'partner_id'      => 'required',
             'fee_format'      => 'required',
         ];
