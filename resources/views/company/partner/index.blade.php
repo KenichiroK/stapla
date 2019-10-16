@@ -54,15 +54,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="icon-list-wrp">
-                        <div class="icon-list">
-                            <div><a class="default-color github"><img src="{{ env('AWS_URL') }}/common/github.png" alt=""></a></div>
-                            <div><a class="default-color twitter"><img src="{{ env('AWS_URL') }}/common/twitter.png" alt=""></a></div>
-                            <div><a class="default-color facebook"><img src="{{ env('AWS_URL') }}/common/facebook.png" alt=""></a></div>
-                            <div><a class="default-color instagram"><img src="{{ env('AWS_URL') }}/common/insta.png" alt=""></a></div>
-                            <div><a class="default-color mail"><img src="{{ env('AWS_URL') }}/common/mail.png" alt=""></a></div>
-                        </div>
-                    </div>
                 </div>
             </div>
             
