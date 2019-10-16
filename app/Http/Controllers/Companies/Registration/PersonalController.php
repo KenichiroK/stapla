@@ -18,7 +18,7 @@ class PersonalController extends Controller
         
         $request = '';
 
-        if(isset($companyUser->name)){
+        if(CompanyUser::isRegistered()){
             return redirect('company/dashboard');
         } else{
             return view('company/auth/initialRegister/personal', compact('request', 'companyUser'));

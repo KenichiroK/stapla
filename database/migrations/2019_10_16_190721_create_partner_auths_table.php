@@ -13,7 +13,6 @@ class CreatePartnerAuthsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('company_id')->nullable();
             $table->string("email", 64);
-            // $table->string("password", 64);
             $table->rememberToken();
             $table->timestamp("email_verified_at")->nullable();
             $table->timestamps();

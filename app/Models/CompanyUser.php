@@ -28,6 +28,12 @@ class CompanyUser extends Authenticatable
         'password', 'remember_token'
     ];
 
+    // 登録済みかどうかの判定
+    public function scopeIsRegistered()
+    {
+        return isset($companyUser);
+    }
+
     public function companyUserAuth()
     {
         return $this->belongsTo('App\Models\CompanyUserAuth', 'auth_id', 'id');

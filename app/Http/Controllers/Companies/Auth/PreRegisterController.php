@@ -41,7 +41,7 @@ class PreRegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:first_company_user_auths'],
+            'email' => ['required', 'string', 'email', 'max:255'],
         ]);
     }
 

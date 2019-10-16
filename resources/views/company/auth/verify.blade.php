@@ -22,6 +22,8 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header">登録したメールを確認してください。</div>
+                            <div class="card-body">続行する前に、電子メールで確認リンクを確認してください。メールが届かない場合は、 <br/>
+                            <a href="{{ route('company.PreRegister') }}">ここをクリックしてもう一度、新規会員登録をおこなってください</a>。</div>
 
                             <div class="card-body">
                                 @if (session('resent'))

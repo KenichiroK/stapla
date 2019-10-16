@@ -13,10 +13,10 @@ class PreviewController extends Controller
     public function create()
     {
         $companyUser = Auth::user();
-        
         $request = '';
+        
 
-        if(isset($companyUser)){
+        if(CompanyUser::isRegistered()){
             return  redirect('company/dashboard');
         } else{
             return view('company/auth/initialRegister/preview', compact('request'));
