@@ -18,7 +18,7 @@
     <header>
         <div class="logo_container">
             <div class="imgbox">
-                <img src="{{ asset('images/logo2.png') }}" alt="logo">
+                <img src="{{ env('AWS_URL') }}/common/logo2.png" alt="logo">
             </div>
         </div>
     </header>

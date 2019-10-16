@@ -42,7 +42,7 @@
                             <div class="date-container__wrapper">
                                 <div class="text">作成日</div>
                                 <div class="icon-imgbox">
-                                    <img src="{{ asset('images/icon_calendar.png') }}" alt="">
+                                    <img src="{{ env('AWS_URL') }}/common/icon_calendar.png" alt="">
                                 </div>
                             </div>
                         </div>

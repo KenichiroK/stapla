@@ -14,7 +14,7 @@
                 <p class="control has-icons-left serch-wrp">
                     <!-- <input class="search-project input" type="text" placeholder="プロジェクトを検索">
                     <span class="">
-                    <img src="{{ asset('images/searchicon.png') }}" alt="serch">
+                    <img src="{{ env('AWS_URL') }}/common/searchicon.png" alt="serch">
                     </span> -->
                 </p>
             </div>
@@ -87,7 +87,7 @@
 
             <div class="showmore-wrp">
                 <p id="showmore_btn" class="showmore__btn"><a>もっと見る</a>
-                    <span><img src="{{ asset('images/arrowdown.png') }}"></span>
+                    <span><img src="{{ env('AWS_URL') }}/common/arrowdown.png"></span>
                 </p>
             </div>
         </div> 

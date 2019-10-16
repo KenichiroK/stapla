@@ -17,7 +17,7 @@
         <div class="notification-wrp">
             <div class="notification-container">
                 <div class="notification-container__img-container">
-                    <img src="{{ asset('images/photoimg.png') }}" alt="">
+                    <img src="{{ env('AWS_URL') }}/common/photoimg.png" alt="">
                 </div>
                 <div class="notification-container__content">
                     <p class="notification-container__content__name">永瀬達也</p>
@@ -29,7 +29,7 @@
         <div class="notification-wrp">
             <div class="notification-container">
                 <div class="notification-container__img-container">
-                    <img src="{{ asset('images/photoimg.png') }}" alt="">
+                    <img src="{{ env('AWS_URL') }}/common/photoimg.png" alt="">
                 </div>
                 <div class="notification-container__content">
                     <p class="notification-container__content__name">永瀬達也</p>
@@ -55,7 +55,7 @@
             <!-- <div class="activity-log-container">
                 <div class="activity-log-container__left">
                     <div class="activity-log-container__left__name-container">
-                        <div class="img-container"><img src="{{ asset('images/photoimg.png') }}" alt=""></div>
+                        <div class="img-container"><img src="{{ env('AWS_URL') }}/common/photoimg.png" alt=""></div>
                         <p class="name">永瀬達也</p>
                     </div>
                     <div class="activity-log-container__left__content">
@@ -125,7 +125,7 @@
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->budget) }}円</div></li>
                     <!-- <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
                         <div class="detail-container__list__item__content file-item">
-                            <div class="imgbox"><img src="{{ asset('images/file.png') }}" alt=""></div>
+                            <div class="imgbox"><img src="{{ env('AWS_URL') }}/common/file.png" alt=""></div>
                             <p>ファイル名</p>
                         </div>
                     </li> -->

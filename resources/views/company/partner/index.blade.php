@@ -19,7 +19,7 @@
                 <!-- <p class="control has-icons-left serch-wrp">
                     <input class="search-name input" type="text" placeholder="パートナーを検索">
                     <span class="icon">
-                    <img src="{{ asset('images/searchicon.png') }}" alt="serch">
+                    <img src="{{ env('AWS_URL') }}/common/searchicon.png" alt="serch">
                     </span>
                 </p> -->
                 <div class="btn-a-container">
@@ -51,17 +51,17 @@
                             </div>
                             <div class="main-content__edit-icons">
                                 <div>
-                                    <a href="{{ route('company.partner.show', ['id' => $partner->id]) }}"><img src="{{ asset('images/edit.png') }}" alt=""></a>
+                                    <a href="{{ route('company.partner.show', ['id' => $partner->id]) }}"><img src="{{ env('AWS_URL') }}/common/edit.png" alt=""></a>
                                 </div>
                             </div>
                         </div>
                         <div class="icon-list-wrp">
                             <div class="icon-list">
-                                <div><a class="default-color github"><img src="{{ asset('images/github.png') }}" alt=""></a></div>
-                                <div><a class="default-color twitter"><img src="{{ asset('images/twitter.png') }}" alt=""></a></div>
-                                <div><a class="default-color facebook"><img src="{{ asset('images/facebook.png') }}" alt=""></a></div>
-                                <div><a class="default-color instagram"><img src="{{ asset('images/insta.png') }}" alt=""></a></div>
-                                <div><a class="default-color mail"><img src="{{ asset('images/mail.png') }}" alt=""></a></div>
+                                <div><a class="default-color github"><img src="{{ env('AWS_URL') }}/common/github.png" alt=""></a></div>
+                                <div><a class="default-color twitter"><img src="{{ env('AWS_URL') }}/common/twitter.png" alt=""></a></div>
+                                <div><a class="default-color facebook"><img src="{{ env('AWS_URL') }}/common/facebook.png" alt=""></a></div>
+                                <div><a class="default-color instagram"><img src="{{ env('AWS_URL') }}/common/insta.png" alt=""></a></div>
+                                <div><a class="default-color mail"><img src="{{ env('AWS_URL') }}/common/mail.png" alt=""></a></div>
                             </div>
                         </div>
                     </div>
