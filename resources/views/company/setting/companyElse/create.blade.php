@@ -157,7 +157,7 @@ const setPreview = (input) => {
                             @endif
                         </div>
                         <div class="imgbox">
-                            <img src="{{ asset('images/uploader.png') }}" alt="">
+                            <img src="{{ env('AWS_URL') }}/common/uploader.png" alt="">
                         </div>
                     </div>
                     <div class="confidential document-item">
@@ -181,7 +181,7 @@ const setPreview = (input) => {
                             @endif
                         </div>
                         <div class="imgbox">
-                            <img src="{{ asset('images/uploader.png') }}" alt="">
+                            <img src="{{ env('AWS_URL') }}/common/uploader.png" alt="">
                         </div>
                     </div>
                 </div>

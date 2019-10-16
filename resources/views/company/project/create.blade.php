@@ -175,7 +175,7 @@
                                 </span>
                             </label>
                             </div>
-                            <img src="{{ asset('images/dragdrop.png') }}" alt="">
+                            <img src="{{ env('AWS_URL') }}/common/dragdrop.png" alt="">
                         </div>
                     </li> -->
                 </ul>

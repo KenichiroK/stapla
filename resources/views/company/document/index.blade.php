@@ -16,7 +16,7 @@
             <div class="head-container__wrapper">
                 <div class="item-container">
                     <div class="icon-container">
-                        <div class="icon-imgbox"><img src="{{ asset('images/order.png') }}" alt=""></div>
+                        <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div>
                     </div>
                     <div class="content-container">
                         <div class="content-container__wrapper">
@@ -32,7 +32,7 @@
             <div class="head-container__wrapper">
                 <div class="item-container">
                     <div class="icon-container">
-                        <div class="icon-imgbox"><img src="{{ asset('images/outsourcing.png') }}" alt=""></div>
+                        <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/outsourcing.png" alt=""></div>
                     </div>
                     <div class="content-container">
                         <div class="content-container__wrapper">
@@ -48,7 +48,7 @@
             <div class="head-container__wrapper">
                 <div class="item-container">
                     <div class="icon-container">
-                        <div class="icon-imgbox"><img src="{{ asset('images/non-disclosur.png') }}" alt=""></div>
+                        <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/non-disclosur.png" alt=""></div>
                     </div>
                     <div class="content-container">
                         <div class="content-container__wrapper">
@@ -64,7 +64,7 @@
             <div class="head-container__wrapper">
                 <div class="item-container">
                     <div class="icon-container">
-                        <div class="icon-imgbox"><img src="{{ asset('images/invoice.png') }}" alt=""></div>
+                        <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/invoice.png" alt=""></div>
                     </div>
                     <div class="content-container">
                         <div class="content-container__wrapper">
@@ -95,7 +95,7 @@
                                 <th>完了</th>
                             </tr>
                             <tr class="data-row">
-                                <td><div class="icon-imgbox"><img src="{{ asset('images/order.png') }}" alt=""></div></td>
+                                <td><div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div></td>
                                 <td class="doc-title">発注書</td>
                                 <td>{{ $purchaseOrders_0status->count() }}件</td>
                                 <td>{{ $purchaseOrders_1status->count() }}件</td>
@@ -103,7 +103,7 @@
                                 <td>{{ $purchaseOrders_3status->count() }}件</td>
                             </tr>
                             <tr class="data-row">
-                                <td><div class="icon-imgbox"><img src="{{ asset('images/outsourcing.png') }}" alt=""></div></td>
+                                <td><div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/outsourcing.png" alt=""></div></td>
                                 <td class="doc-title">業務委託契約書</td>
                                 <td>件</td>
                                 <td>件</td>
@@ -111,7 +111,7 @@
                                 <td>件</td>
                             </tr>
                             <tr class="data-row">
-                                <td><div class="icon-imgbox"><img src="{{ asset('images/non-disclosur.png') }}" alt=""></div></td>
+                                <td><div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/non-disclosur.png" alt=""></div></td>
                                 <td class="doc-title">機密保持契約書</td>
                                 <td>{{ $ndas_0status->count() }}件</td>
                                 <td>{{ $ndas_1status->count() }}件</td>
@@ -119,7 +119,7 @@
                                 <td>{{ $ndas_3status->count() }}件</td>
                             </tr>
                             <tr class="data-row">
-                                <td><div class="icon-imgbox"><img src="{{ asset('images/invoice.png') }}" alt=""></div></td>
+                                <td><div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/invoice.png" alt=""></div></td>
                                 <td class="doc-title">請求書</td>
                                 <td>{{ $invoices_0status->count() }}件</td>
                                 <td>{{ $invoices_1status->count() }}件</td>
@@ -135,7 +135,7 @@
              <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                    <div class="icon-imgbox"><img src="{{ asset('images/order.png') }}" alt=""></div>
+                    <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div>
                         <div class="item-name-wrapper__item-name">発注書</div>
                     </div>
                     <div class="table-container">
@@ -184,7 +184,7 @@
             <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                    <div class="icon-imgbox"><img src="{{ asset('images/outsourcing.png') }}" alt=""></div>
+                    <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/outsourcing.png" alt=""></div>
                         <div class="item-name-wrapper__item-name">業務委託契約書</div>
                     </div>
                     <div class="table-container">
@@ -206,7 +206,7 @@
                                 </td>
                                 <td class="staff-data">
                                     <div class="imgbox">
-                                        <img src="{{ asset('images/photoimg.png') }}" alt="">
+                                        <img src="{{ env('AWS_URL') }}/common/photoimg.png" alt="">
                                     </div>
                                     <div class="name">
                                         加藤 裕美子
@@ -237,7 +237,7 @@
             <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                    <div class="icon-imgbox"><img src="{{ asset('images/non-disclosur.png') }}" alt=""></div>
+                    <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/non-disclosur.png" alt=""></div>
                         <div class="item-name-wrapper__item-name">機密保持契約書</div>
                     </div>
                     <div class="table-container">
@@ -286,7 +286,7 @@
             <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                        <div class="icon-imgbox"><img src="{{ asset('images/invoice.png') }}" alt=""></div>
+                        <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/invoice.png" alt=""></div>
                         <div class="item-name-wrapper__item-name">請求書</div>
                     </div>
                     <div class="table-container">
