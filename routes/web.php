@@ -109,10 +109,6 @@ Route::group(['prefix' => 'company'], function(){
 	
 	
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
-
-		// invite companyUser - 招待による企業ユーザー仮登録
-		Route::get('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@showRegisterForm')->name('company.invitePreRegister');
-		Route::post('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@register')->name('company.invitePreRegister');
 		
 		// register_flow
 		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerify')->name('company.register.doneVerify');
@@ -174,6 +170,10 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/setting/account', 'Companies\Setting\AccountController@create')->name('company.setting.account.create');
 		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@create')->name('company.setting.personalInfo.create');
 		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@store')->name('company.setting.personalInfo.store');
+
+		// invite companyUser - 招待による企業ユーザー仮登録
+		Route::get('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@showRegisterForm')->name('company.invitePreRegister');
+		Route::post('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@register')->name('company.invitePreRegister');
 
 		// invite partner - 招待によるパートナー仮登録
 		Route::get('invite/partner', 'Partners\Auth\InvitePreRegisterController@showRegisterForm')->name('company.invite.partner');

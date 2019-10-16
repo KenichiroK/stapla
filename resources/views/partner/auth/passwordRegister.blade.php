@@ -47,8 +47,7 @@
 				</div> -->
 				<div class='input-container'>
 					<p>企業ID</p>
-					<!-- <input class="input_text" type="hidden" name="company_id" value="{{ $company_user->company_id }}"> -->
-					<input class="input_text" type="" name="company_id" value="{{ $company_user->company_id }}">
+					<input class="input_text" type="" name="company_id" value="{{ Auth::user()->company_id }}">
 				</div>
 
 				<div class='button-container'>

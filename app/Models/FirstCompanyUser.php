@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+// FirstCompanyUser - 最初にimproに登録する企業ユーザー
 class FirstCompanyUser extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;

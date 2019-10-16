@@ -10,14 +10,13 @@
 	<div class="title-container">
 		<h3>招待メールを送る</h3>
 	</div>
-
 	<div class="main_container">
 		<div class="form_wrapper">
             <form method="POST" action="{{ route('company.invitePreRegister') }}">
 				@csrf
 				<div class='input-container'>
 					<p>メールアドレス</p>
-					<input class="input_text" type="email" name="email" placeholder="impro@example.com">
+					<input class="input_text" type="email" name="email" value="{{ old('email') }}" placeholder="impro@example.com">
                     @if($errors->has('email'))
                         <div class="invalid-feedback error-msg" role="alert">
                             <strong>{{ $errors->first('email') }}</strong>
@@ -26,7 +25,7 @@
 				</div>
 
 				<div class='input-container'>
-					<input class="input_text" type="hidden" name="company_id" value="{{ $company_user->company_id }}">
+					<input class="input_text" type="hidden" name="company_id" value="{{ Auth::user()->company_id }}">
 				</div>
 
 				<div class='button-container'>

@@ -21,6 +21,7 @@
 				<h3>入力内容確認</h3>
 			</div>
 
+			<!-- 最初に登録するユーザー($requestにcompany_nameあり)か、招待されて登録するユーザー($requestにcompany_nameなし)かの判定 -->
 			@if(isset($request->company_name))
 			<form action="{{ route('company.register.company-preview.store') }}" method="POST" enctype="multipart/form-data">
 				@csrf
@@ -99,6 +100,7 @@
 				</div>
 			</form>
 
+			<!-- 最初に登録するユーザーか、招待されて登録するユーザーかの判定 -->
 			@else
 
 			<form action="{{ route('company.register.preview.store') }}" method="POST" enctype="multipart/form-data">

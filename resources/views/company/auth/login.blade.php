@@ -62,11 +62,6 @@
                     </div>
                 </form>
 
-                <!-- 現在、担当者の自発的な会員登録はおこなわない -->
-                <div class="signup_wrapper">
-                    <a href="{{ route('company.PreRegister') }}">新規会員登録</a>
-                </div>
-
                 <div class="forget_password_wrapper">
                     <a href="#">パスワードをお忘れの場合はこちら</a>
                 </div>                

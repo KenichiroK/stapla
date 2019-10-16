@@ -11,7 +11,7 @@ class CreateCompanyUserAuthsTable extends Migration
         Schema::create('company_user_auths', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary();
-            $table->string('email', 64)->unique();
+            $table->string('email', 64);
             $table->string('company_id', 64);
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();

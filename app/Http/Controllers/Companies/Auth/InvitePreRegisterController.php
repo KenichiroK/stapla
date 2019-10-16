@@ -17,8 +17,7 @@ class InvitePreRegisterController extends Controller
 
     public function showRegisterForm()
     {
-        $company_user = Auth::user();
-        return view('company.auth.invitePreRegister', compact('company_user'));
+        return view('company.auth.invitePreRegister');
     }
     
     protected $redirectTo = '/company/setting/userSetting';
@@ -36,7 +35,7 @@ class InvitePreRegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:company_user_auths'],
+            'email' => ['required', 'string', 'email', 'max:255'],
         ]);
     }
 

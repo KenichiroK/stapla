@@ -9,10 +9,6 @@ class PasswordRegisterConroller extends Controller
 {
     public function index()
     {
-        return 'test';
-        // return $email;
-        // return $access_key;
-        $company_user = Auth::user();
-        return view('partner.auth.passwordRegister', compact('company_user', 'email', 'access_key'));
+        return view('partner.auth.passwordRegister');
     }
 }
