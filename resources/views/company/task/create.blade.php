@@ -121,7 +121,7 @@ $(function(){
                                 </div>
                                 <div class="select-error-wrp">
                                     <div class="select-area control staff">
-                                        <div class="select-wrp select-plusicon is-info">
+                                        <div class="select-wrp select is-info">
                                             <!-- <select v-model="taskInfo.staff"> -->
                                             <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
                                                 <option disabled selected></option>
@@ -148,7 +148,7 @@ $(function(){
                             </div>
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
-                                    <div class="select-wrp select-plusicon is-info">
+                                    <div class="select-wrp select is-info">
                                         <select name='superior_id'>
                                             <option disabled selected></option>
                                             @foreach($companyUsers as $companyUser)
@@ -175,7 +175,7 @@ $(function(){
                             </div>
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
-                                    <div class="select-wrp select-plusicon is-info">
+                                    <div class="select-wrp select is-info">
                                         <select name='accounting_id'>
                                             <option disabled selected></option>
                                             @foreach($companyUsers as $companyUser)
@@ -301,7 +301,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="select-area control">
-                                <div class="select-wrp select-plusicon is-info">
+                                <div class="select-wrp select is-info">
                                     <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
                                         <option disabled selected></option>
                                         @foreach($partners as $partner)
