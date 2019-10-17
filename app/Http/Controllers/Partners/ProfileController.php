@@ -27,10 +27,13 @@ class ProfileController extends Controller
             $partner->update($request->all());
             $time = date("Y_m_d_H_i_s");
 
-            if ($request->picture) {
-                $partner->picture = $request->picture->storeAs('public/images/partner/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
+            if($request->picture) {
+                $picture          = $request->picture;
+                $path_picture     = \Storage::disk('s3')->putFileAs($auth_id, $picture,$time.'_'.$auth_id .'.'. $picture->getClientOriginalExtension(), 'public');
+                $partner->picture = \Storage::disk('s3')->url($path_picture);
                 $partner->save();
             }
+            
             $completed = '変更を保存しました。';
 
             return redirect()->route('partner.setting.profile.create')->with('completed', $completed);

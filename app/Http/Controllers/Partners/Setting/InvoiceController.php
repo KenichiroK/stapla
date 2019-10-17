@@ -37,6 +37,13 @@ class InvoiceController extends Controller
                 $partner_invoice->save();  
             }
 
+            if($request->mark_image) {
+                $picture          = $request->mark_image;
+                $path_picture     = \Storage::disk('s3')->putFileAs($auth_id, $picture,$time.'_'.$auth_id .'.'. $picture->getClientOriginalExtension(), 'public');
+                $partner_invoice->mark_image = \Storage::disk('s3')->url($path_picture);
+                $partner_invoice->save();
+            }
+
             $completed = '変更を保存しました。';
 
             return redirect()->route('partner.setting.invoice.create')->with('completed', $completed);

@@ -31,7 +31,9 @@ class PersonalInfoController extends Controller
             $time = date("Y_m_d_H_i_s");
 
             if($request->picture) {
-                $companyUser->picture = $request->picture->storeAs('public/images/company/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
+                $picture              = $request->picture;
+                $path_picture         = \Storage::disk('s3')->putFileAs($auth->id, $picture,$time.'_'.$auth->id .'.'. $picture->getClientOriginalExtension(), 'public');
+                $companyUser->picture = \Storage::disk('s3')->url($path_picture);
                 $companyUser->save();
             }
             $completed = '変更を保存しました。';
