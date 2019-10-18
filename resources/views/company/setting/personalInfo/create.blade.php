@@ -57,7 +57,7 @@ const setPreview = (input) => {
             <div class="edit-container">
                 <div class="image-container">
                     <div class="imgbox">
-                        <img id="profile_image_preview" src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                        <img id="profile_image_preview" src="{{ $company_user->picture }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
                     </div>
                     <label for="picture">
                         画像をアップロード

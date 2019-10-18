@@ -142,7 +142,6 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// partner
 		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
-		Route::get('/partner/{id}', 'Companies\PartnerController@show')->name('company.partner.show');
 		
 		// document
 		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');

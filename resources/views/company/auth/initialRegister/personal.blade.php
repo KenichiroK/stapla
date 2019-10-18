@@ -288,7 +288,7 @@ $pref = array(
 				<div class="edit-container-personal edit-container">
 					<div class="image-container">
 						<div class="imgbox">
-							<img id="profile_image_preview" src="{{ asset('images/upload4.png') }}" alt="プレビュー画像">
+							<img id="profile_image_preview" src="{{ env('AWS_URL') }}/common/upload4.png" alt="プレビュー画像">
 						</div> 
 						<label for="picture">
 							画像をアップロード

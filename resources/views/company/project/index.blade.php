@@ -14,7 +14,7 @@
                 <p class="control has-icons-left serch-wrp">
                     <!-- <input class="search-project input" type="text" placeholder="プロジェクトを検索">
                     <span class="">
-                    <img src="{{ asset('images/searchicon.png') }}" alt="serch">
+                    <img src="{{ env('AWS_URL') }}/common/searchicon.png" alt="serch">
                     </span> -->
                 </p>
             </div>
@@ -33,7 +33,6 @@
                 <ul class="item_list">
                     <li>プロジェクト</li>
                     <li>担当者</li>
-                    <li>パートナー</li>
                     <li>タスク</li>
                     <li>期限</li>
                     <li>予算</li>
@@ -57,19 +56,6 @@
                                 </p>
                             @else
                                 <p>{{ $project->projectCompanies[0]->companyUser->name }}</p>
-                            @endif 
-                        </li>
-                        <li>
-                            <div class="photoimgbox">
-                                <img src="{{ $project->projectPartners[0]->partner->picture }}" alt="担当者プロフィール画像">
-                            </div>
-                            @if ($project->projectPartners->count() > 1) 
-                                <p>
-                                    {{ $project->projectPartners[0]->partner->name }}
-                                    他{{ $project->projectPartners->count() - 1 }}名
-                                </p>
-                            @else
-                                <p>{{ $project->projectPartners[0]->partner->name }}</p>
                             @endif 
                         </li>
                         <li>

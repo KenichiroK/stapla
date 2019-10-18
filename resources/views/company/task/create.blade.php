@@ -121,7 +121,7 @@ $(function(){
                                 </div>
                                 <div class="select-error-wrp">
                                     <div class="select-area control staff">
-                                        <div class="select-wrp select-plusicon is-info">
+                                        <div class="select-wrp select is-info">
                                             <!-- <select v-model="taskInfo.staff"> -->
                                             <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
                                                 <option disabled selected></option>
@@ -148,7 +148,7 @@ $(function(){
                             </div>
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
-                                    <div class="select-wrp select-plusicon is-info">
+                                    <div class="select-wrp select is-info">
                                         <select name='superior_id'>
                                             <option disabled selected></option>
                                             @foreach($companyUsers as $companyUser)
@@ -175,7 +175,7 @@ $(function(){
                             </div>
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
-                                    <div class="select-wrp select-plusicon is-info">
+                                    <div class="select-wrp select is-info">
                                         <select name='accounting_id'>
                                             <option disabled selected></option>
                                             @foreach($companyUsers as $companyUser)
@@ -209,7 +209,7 @@ $(function(){
                                         type="datetime-local"
                                         name="started_at"
                                         class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
-                                        value="{{ old('started_at') ? str_replace(" ", "T", old('started_at')) : date('Y-m-d\TH:i') }}"
+                                        value="{{ old('started_at') ? str_replace(" ", "T", old('started_at')) : date('Y-m-d\T00:00') }}"
                                     >
 
                                     @if($errors->has('started_at'))
@@ -229,7 +229,7 @@ $(function(){
                                         type="datetime-local"
                                         class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
                                         name='ended_at'
-                                        value="{{ old('ended_at') ? str_replace(" ", "T", old('ended_at')) : date('Y-m-d\TH:i') }}"
+                                        value="{{ old('ended_at') ? str_replace(" ", "T", old('ended_at')) : date('Y-m-d\T23:59') }}"
                                     >
 
                                     @if ($errors->has('ended_at'))
@@ -283,7 +283,7 @@ $(function(){
                                     </span>
                                     </span>
                                 </label> -->
-                                <!-- <img src="../../../images/dragdrop.png" alt="">
+                                <!-- <img src="{{ env('AWS_URL') }}/common/dragdrop.png" alt="">
                             </div>
                         </div> -->
                     </div>      
@@ -301,7 +301,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="select-area control">
-                                <div class="select-wrp select-plusicon is-info">
+                                <div class="select-wrp select is-info">
                                     <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
                                         <option disabled selected></option>
                                         @foreach($partners as $partner)

@@ -17,7 +17,7 @@
         <div class="notification-wrp">
             <div class="notification-container">
                 <div class="notification-container__img-container">
-                    <img src="{{ asset('images/photoimg.png') }}" alt="">
+                    <img src="{{ env('AWS_URL') }}/common/photoimg.png" alt="">
                 </div>
                 <div class="notification-container__content">
                     <p class="notification-container__content__name">永瀬達也</p>
@@ -29,7 +29,7 @@
         <div class="notification-wrp">
             <div class="notification-container">
                 <div class="notification-container__img-container">
-                    <img src="{{ asset('images/photoimg.png') }}" alt="">
+                    <img src="{{ env('AWS_URL') }}/common/photoimg.png" alt="">
                 </div>
                 <div class="notification-container__content">
                     <p class="notification-container__content__name">永瀬達也</p>
@@ -55,7 +55,7 @@
             <!-- <div class="activity-log-container">
                 <div class="activity-log-container__left">
                     <div class="activity-log-container__left__name-container">
-                        <div class="img-container"><img src="{{ asset('images/photoimg.png') }}" alt=""></div>
+                        <div class="img-container"><img src="{{ env('AWS_URL') }}/common/photoimg.png" alt=""></div>
                         <p class="name">永瀬達也</p>
                     </div>
                     <div class="activity-log-container__left__content">
@@ -84,36 +84,6 @@
                             @endforeach
                         </div> 
                     </li>
-                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">上長</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->ProjectSuperiors as $projectSuperior)
-                            <div class="staff-item">
-                                <div class="imgbox"><img src="{{ $projectSuperior->companyUser->picture }}" alt=""></div>
-                                <p class="name">{{ $projectSuperior->companyUser->name }}</p>
-                            </div>
-                            @endforeach
-                        </div> 
-                    </li>
-                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">経理</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->ProjectAccountings as $projectAccounting)
-                            <div class="staff-item">
-                                <div class="imgbox"><img src="{{ $projectAccounting->companyUser->picture }}" alt=""></div>
-                                <p class="name">{{ $projectAccounting->companyUser->name }}</p>
-                            </div>
-                            @endforeach
-                        </div> 
-                    </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">パートナー</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->projectPartners as $projectPartner)
-                                <div class="staff-item">
-                                    <div class="imgbox"><img src="{{ $projectPartner->partner->picture }}" alt=""></div>
-                                    <p class="name">{{ $projectPartner->partner->name }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                    </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
                         <div class="period__wrapper">
                             <div class="period__wrapper__container">
@@ -125,7 +95,7 @@
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->budget) }}円</div></li>
                     <!-- <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
                         <div class="detail-container__list__item__content file-item">
-                            <div class="imgbox"><img src="{{ asset('images/file.png') }}" alt=""></div>
+                            <div class="imgbox"><img src="{{ env('AWS_URL') }}/common/file.png" alt=""></div>
                             <p>ファイル名</p>
                         </div>
                     </li> -->

@@ -359,7 +359,7 @@ $pref = array(
 						</div>	
 					@else
 						<div class="imgbox">
-							<img id="preview" src="{{ asset('images/upload3.png') }}" alt="プレビュー画像">
+							<img id="preview" src="{{ env('AWS_URL') }}/common/upload3.png" alt="プレビュー画像">
 						</div>
 					@endif
 					<div>

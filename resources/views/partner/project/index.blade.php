@@ -14,12 +14,9 @@
                 <p class="control has-icons-left serch-wrp">
                     <!-- <input class="search-project input" type="text" placeholder="プロジェクトを検索">
                     <span class="">
-                    <img src="{{ asset('images/searchicon.png') }}" alt="serch">
+                    <img src="{{ env('AWS_URL') }}/common/searchicon.png" alt="serch">
                     </span> -->
                 </p>
-            </div>
-            <div class="control btn-a-container">
-                <a href="project/create">プロジェクト作成</a>
             </div>
         </div>
 
@@ -33,7 +30,6 @@
                 <ul class="item_list">
                     <li>プロジェクト</li>
                     <li>担当者</li>
-                    <li>パートナー</li>
                     <li>タスク</li>
                     <li>期限</li>
                     <li>予算</li>

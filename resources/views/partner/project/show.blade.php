@@ -17,7 +17,7 @@
             <!-- <div class="activity-log-container">
                 <div class="activity-log-container__left">
                     <div class="activity-log-container__left__name-container">
-                        <div class="img-container"><img src="{{ asset('images/photoimg.png') }}" alt=""></div>
+                        <div class="img-container"><img src=<img src="{{ env('AWS_URL') }}/common/photoimg.png" alt=""></div>
                         <p class="name">永瀬達也</p>
                     </div>
                     <div class="activity-log-container__left__content">
