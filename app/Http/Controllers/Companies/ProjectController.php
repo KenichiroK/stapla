@@ -72,11 +72,12 @@ class ProjectController extends Controller
         $project->budget       = $request->budget;
         $project->price        = 0;
 
-        if($request->file){
-            $file_name = $time.'_'.Auth::user()->id .'.'. $request->file->getClientOriginalExtension();
-            $project->file = $file_name;
-            $request->file('file')->storeAs('public/images/company/project/file' , $file_name);
-        }
+        // if($request->file) {
+        //     $picture              = $request->file;
+        //     $path_picture         = \Storage::disk('s3')->putFileAs($user->id, $picture,$time.'_'.$auth->id .'.'. $picture->getClientOriginalExtension(), 'public');
+        //     $companyUser->picture = \Storage::disk('s3')->url($path_picture);
+        //     $companyUser->save();
+        // }
         $project->save();
 
         $project_id = $project->id;
