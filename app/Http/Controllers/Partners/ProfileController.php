@@ -29,8 +29,8 @@ class ProfileController extends Controller
 
             if($request->picture) {
                 $picture          = $request->picture;
-                $path_picture     = \Storage::disk('s3')->putFileAs($auth_id, $picture,$time.'_'.$auth_id .'.'. $picture->getClientOriginalExtension(), 'public');
-                $partner->picture = \Storage::disk('s3')->url($path_picture);
+                $pathPicture      = \Storage::disk('s3')->putFileAs("partner-profile", $picture,$time.'_'.$auth_id .'.'. $picture->getClientOriginalExtension(), 'public');
+                $partner->picture = \Storage::disk('s3')->url($pathPicture);
                 $partner->save();
             }
             

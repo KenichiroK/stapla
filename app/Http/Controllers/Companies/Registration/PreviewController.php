@@ -55,8 +55,8 @@ class PreviewController extends Controller
         $time = date("Y_m_d_H_i_s");
         if(isset($request->picture)){
             $picture              = $request->picture;
-            $path_picture         = \Storage::disk('s3')->putFileAs($auth_id, $picture,$time.'_'.$auth->id .'.'. $picture->getClientOriginalExtension(), 'public');
-            $companyUser->picture = \Storage::disk('s3')->url($path_picture);
+            $pathPicture         = \Storage::disk('s3')->putFileAs("regisrtration", $picture,$time.'_'.$auth->id .'.'. $picture->getClientOriginalExtension(), 'public');
+            $companyUser->picture = \Storage::disk('s3')->url($pathPicture);
             $companyUser->save();
         }else {
             $companyUser->picture ='public/images/default/dummy_user.jpeg';

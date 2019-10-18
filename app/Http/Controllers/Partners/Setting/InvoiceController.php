@@ -39,8 +39,8 @@ class InvoiceController extends Controller
 
             if($request->mark_image) {
                 $picture          = $request->mark_image;
-                $path_picture     = \Storage::disk('s3')->putFileAs($auth_id, $picture,$time.'_'.$auth_id .'.'. $picture->getClientOriginalExtension(), 'public');
-                $partner_invoice->mark_image = \Storage::disk('s3')->url($path_picture);
+                $pathPicture     = \Storage::disk('s3')->putFileAs("invoice", $picture,$time.'_'.$auth_id .'.'. $picture->getClientOriginalExtension(), 'public');
+                $partner_invoice->mark_image = \Storage::disk('s3')->url($pathPicture);
                 $partner_invoice->save();
             }
 
