@@ -14,9 +14,8 @@ class PartnerController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
-        $partners = Partner::where('company_id', $company_user->company_id)->paginate(6);;
-        return view('company/partner/index', compact('partners', 'company_user'));
+        $companyUser = Auth::user();
+        $partners = Partner::where('company_id', $companyUser->company_id)->paginate(6);;
+        return view('company/partner/index', compact('partners'));
     }
 }

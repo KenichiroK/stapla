@@ -17,10 +17,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // $auth_id = Auth::user()->id;
-        $company_user = Auth::user();
-        $companyUser_id = $company_user->id;
-        $company_id = $company_user->company_id;
+        $companyUser = Auth::user();
+        $companyUser_id = $companyUser->id;
+        $company_id = $companyUser->company_id;
         $projects = ProjectCompany::where('user_id', $companyUser_id)->get();
         $tasks = TaskCompany::where('user_id', $companyUser_id)->get();
         $status_arr = [];
@@ -35,6 +34,6 @@ class DashboardController extends Controller
             '発注書パートナー依頼前', '発注書パートナー確認中', '作業中', '請求書依頼中', '請求書確認中', '完了', 'キャンセル'
         ];
         
-        return view('company/dashboard/index', compact('projects', 'tasks', 'status_arr', 'statusName_arr', 'company_user'));
+        return view('company/dashboard/index', compact('projects', 'tasks', 'status_arr', 'statusName_arr'));
     }
 }

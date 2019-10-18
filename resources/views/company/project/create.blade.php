@@ -43,7 +43,7 @@
                             <div class="select-container select id-normal select-plusicon is-multiple"> 
                                 <select name="company_user_id" class="select-box form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}" id="company-staff-name-list">
                                     <option disabled selected></option>
-                                    @foreach( $company_users as $company_user )
+                                    @foreach( $companyUsers as $company_user )
                                     <option value="{{ $company_user->id }}" {{ (old('company_user_id') === $company_user->id)? 'selected' : '' }}>{{ $company_user->name }}</option>
                                     @endforeach
                                 </select>

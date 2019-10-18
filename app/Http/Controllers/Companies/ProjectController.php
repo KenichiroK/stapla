@@ -19,23 +19,21 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
-        $projects = Project::where('company_id', $company_user->company_id)->get();        
+        $companyUser = Auth::user();
+        $projects = Project::where('company_id', $companyUser->company_id)->get();        
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
             $taskCount = count($projects[$i]->tasks);
             array_push($task_count_arr, $taskCount);
         }
-        return view('company/project/index', compact('projects', 'task_count_arr', 'company_user'));
+        return view('company/project/index', compact('projects', 'task_count_arr'));
     }
 
     public function doneIndex()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
-        $projects = Project::where('company_id', $company_user->company_id)->get();        
+        $companyUser = Auth::user();
+        $projects = Project::where('company_id', $companyUser->company_id)->get();        
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
@@ -47,13 +45,13 @@ class ProjectController extends Controller
 
     public function create()
     {
-        $company_user = Auth::user();
+        $companyUser = Auth::user();
 
-        $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
+        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
 
-        $partner_users = Partner::where('company_id', $company_user->company_id)->get();
+        $partnerUsers = Partner::where('company_id', $companyUser->company_id)->get();
         
-        return view('company/project/create', compact('company_user', 'company_users', 'partner_users'));
+        return view('company/project/create', compact('companyUser', 'companyUsers'));
     }
 
     public function store(CreateProjectRequest $request)
@@ -92,11 +90,11 @@ class ProjectController extends Controller
 
     public function show($id)
     {
-        $company_user = Auth::user();
+        $companyUser = Auth::user();
 
-        $project = Project::where('company_id', $company_user->company_id)->findOrFail($id);
+        $project = Project::where('company_id', $companyUser->company_id)->findOrFail($id);
         $tasks = Task::where('project_id',$project->id)->get();
         
-        return view('/company/project/show', compact('project','tasks', 'company_user'));
+        return view('/company/project/show', compact('project','tasks', 'companyUser'));
     }
 }
