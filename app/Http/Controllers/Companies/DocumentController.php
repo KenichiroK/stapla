@@ -23,10 +23,7 @@ class DocumentController extends Controller
         $company_user = CompanyUser::where('auth_id', $auth_id)->first();
         
         // ionvoices
-        $invoices = Invoice::where('company_id', $company_user->company_id)->with('task', 'task.taskCompanies', 'task.taskCompanies.companyUser')->get();
-        
-        // 未対応
-        $invoices_0status = Invoice::where('company_id', $company_user->company_id)->where('status', 0)->get();
+        $invoices = Invoice::where('company_id', $company_user->company_id)->with('task', 'task.taskCompanies', 'task.taskCompanies.companyUser')->get(); 
         // 他依頼中
         $invoices_1status = Invoice::where('company_id', $company_user->company_id)->where('status', 1)->get();
         // 依頼中
@@ -36,8 +33,6 @@ class DocumentController extends Controller
         
         // purhaseOrder
         $purchaseOrders = PurchaseOrder::where('company_id', $company_user->company_id)->with('task', 'task.taskCompanies', 'task.taskCompanies.companyUser')->get();
-        // 未対応
-        $purchaseOrders_0status = PurchaseOrder::where('company_id', $company_user->company_id)->where('status', 0)->get();
         // 他依頼中
         $purchaseOrders_1status = PurchaseOrder::where('company_id', $company_user->company_id)->where('status', 1)->get();
         // 依頼中
@@ -45,22 +40,11 @@ class DocumentController extends Controller
         // 完了
         $purchaseOrders_3status = PurchaseOrder::where('company_id', $company_user->company_id)->where('status', 3)->get();
         
-        // Nda
-        $ndas = Nda::where('company_id', $company_user->company_id)->with('task', 'task.taskCompanies', 'task.taskCompanies.companyUser')->get();
-        // 未対応
-        $ndas_0status = Nda::where('company_id', $company_user->company_id)->where('status', 0)->get();
-        // 他依頼中
-        $ndas_1status = Nda::where('company_id', $company_user->company_id)->where('status', 1)->get();
-        // 依頼中
-        $ndas_2status = Nda::where('company_id', $company_user->company_id)->where('status', 2)->get();
-        // 完了
-        $ndas_3status = Nda::where('company_id', $company_user->company_id)->where('status', 3)->get();
-
         return view('company.document.index', 
             compact(
-                'invoices', 'invoices_0status', 'invoices_1status', 'invoices_2status', 'invoices_3status',
-                'purchaseOrders', 'purchaseOrders_0status', 'purchaseOrders_1status', 'purchaseOrders_2status', 'purchaseOrders_3status',
-                'ndas', 'ndas_0status', 'ndas_1status', 'ndas_2status', 'ndas_3status', 'company_user'
+                'invoices', 'invoices_1status', 'invoices_2status', 'invoices_3status',
+                'purchaseOrders', 'purchaseOrders_1status', 'purchaseOrders_2status', 'purchaseOrders_3status',
+                'company_user'
             ));
     }
 }

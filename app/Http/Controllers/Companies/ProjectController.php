@@ -7,9 +7,6 @@ use App\Models\Project;
 use App\Models\CompanyUser;
 use App\Models\Partner;
 use App\Models\ProjectCompany;
-use App\Models\ProjectPartner;
-use App\Models\ProjectSuperior;
-use App\Models\ProjectAccounting;
 use App\Models\Task;
 
 use Illuminate\Http\Request;
@@ -24,7 +21,7 @@ class ProjectController extends Controller
     {
         $user = Auth::user();
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
-        $projects = Project::where('company_id', $company_user->company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();        
+        $projects = Project::where('company_id', $company_user->company_id)->get();        
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
@@ -38,7 +35,7 @@ class ProjectController extends Controller
     {
         $user = Auth::user();
         $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
-        $projects = Project::where('company_id', $company_user->company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();        
+        $projects = Project::where('company_id', $company_user->company_id)->get();        
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
@@ -90,21 +87,6 @@ class ProjectController extends Controller
         $projectCompany->user_id = $request->company_user_id;
         $projectCompany->project_id = $project_id;
         $projectCompany->save();
-
-        $projectPartner = new ProjectPartner;
-        $projectPartner->user_id = $request->partner_id;
-        $projectPartner->project_id = $project_id;
-        $projectPartner->save();
-
-        $project_superior = new ProjectSuperior;
-        $project_superior->project_id =  $project_id;
-        $project_superior->user_id    =  $request->superior_id;
-        $project_superior->save();
-
-        $project_accounting = new ProjectAccounting;
-        $project_accounting->project_id =  $project_id;
-        $project_accounting->user_id    =  $request->accounting_id;
-        $project_accounting->save();
         
         return redirect()->route('company.project.show', ['id' => $project->id])->with('completed', '「'.$project->name.'」を作成しました。');
     }

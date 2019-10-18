@@ -84,36 +84,6 @@
                             @endforeach
                         </div> 
                     </li>
-                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">上長</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->ProjectSuperiors as $projectSuperior)
-                            <div class="staff-item">
-                                <div class="imgbox"><img src="{{ $projectSuperior->companyUser->picture }}" alt=""></div>
-                                <p class="name">{{ $projectSuperior->companyUser->name }}</p>
-                            </div>
-                            @endforeach
-                        </div> 
-                    </li>
-                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">経理</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->ProjectAccountings as $projectAccounting)
-                            <div class="staff-item">
-                                <div class="imgbox"><img src="{{ $projectAccounting->companyUser->picture }}" alt=""></div>
-                                <p class="name">{{ $projectAccounting->companyUser->name }}</p>
-                            </div>
-                            @endforeach
-                        </div> 
-                    </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">パートナー</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->projectPartners as $projectPartner)
-                                <div class="staff-item">
-                                    <div class="imgbox"><img src="{{ $projectPartner->partner->picture }}" alt=""></div>
-                                    <p class="name">{{ $projectPartner->partner->name }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                    </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
                         <div class="period__wrapper">
                             <div class="period__wrapper__container">
