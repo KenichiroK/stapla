@@ -81,10 +81,7 @@ mix.sass(
         "resources/sass/company/partner/index.scss",
         "public/css/company/partner"
     )
-    .sass(
-        "resources/sass/company/partner/show.scss",
-        "public/css/company/partner"
-    )
+
     .sass(
         "resources/sass/company/partnerMail/index.scss",
         "public/css/company/partnerMail"
