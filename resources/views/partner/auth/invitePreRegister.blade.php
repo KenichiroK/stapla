@@ -16,7 +16,6 @@
 			<form method="POST" action="{{ route('company.invite.partner') }}">
 				@csrf
 				<div class='input-container'>
-					<p>メールアドレス</p>
 					<input class="input_text" type="email" name="email" placeholder="impro@example.com">
 					@if($errors->has('email'))
 						<div class="error-mes-wrp">
@@ -26,27 +25,7 @@
 				</div>
 
 				<div class='input-container'>
-					<p>パスワード</p>
-					<input class="input_text" type="password" name="password">
-					@if ($errors->has('password'))
-						<div class="invalid-feedback error-msg" role="alert">
-							<strong>{{ $errors->first('password') }}</strong>
-						</div>
-					@endif
-				</div>
-
-				<div class='input-container'>
-					<p>パスワード確認</p>
-					<input class="input_text" type="password" name="password_confirmation">
-					@if ($errors->has('password'))
-						<div class="invalid-feedback error-msg" role="alert">
-							<strong>{{ $errors->first('password') }}</strong>
-						</div>
-					@endif
-				</div>
-
-				<div class="input_wrapper">
-					<input class="input_text" type="hidden" name="company_id" value="">
+					<input class="input_text" type="hidden" name="company_id" value="{{ $company_user->company_id }}">
 				</div>
 
 				<div class='button-container'>

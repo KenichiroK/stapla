@@ -1,3 +1,4 @@
+
 @extends('company.index')
 
 @section('assets')
@@ -25,7 +26,7 @@
 					@endif
 				</div>
 
-				<div class='input-container'>
+				<!-- <div class='input-container'>
 					<p>パスワード</p>
 					<input class="input_text" type="password" name="password">
 					@if ($errors->has('password'))
@@ -43,10 +44,10 @@
 							<strong>{{ $errors->first('password') }}</strong>
 						</div>
 					@endif
-				</div>
-
-				<div class="input_wrapper">
-					<input class="input_text" type="hidden" name="company_id" value="">
+				</div> -->
+				<div class='input-container'>
+					<p>企業ID</p>
+					<input class="input_text" type="" name="company_id" value="{{ Auth::user()->company_id }}">
 				</div>
 
 				<div class='button-container'>

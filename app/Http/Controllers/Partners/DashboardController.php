@@ -16,9 +16,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $partner_auth_id = Auth::user()->id;
-        $partner_id = Partner::where('partner_id', $partner_auth_id)->get()->first()->id;
-        $partner = Partner::where('partner_id', $partner_auth_id)->get()->first();
+        $partner = Auth::user();
+        $partner_id = $partner->id;
         $projects = ProjectPartner::where('user_id', $partner_id)->get();
         $tasks = Task::where('partner_id', $partner_id)->get();
 

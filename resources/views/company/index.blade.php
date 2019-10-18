@@ -34,11 +34,11 @@
                         </ul>
                         <div class="header-proflie">
                             <div class="user-imgbox">
-                                <img src="{{ $company_user->picture }}" alt="プロフィール画像">
+                                <img src="{{ Auth::user()->picture }}" alt="プロフィール画像">
                             </div>
                             <div class="option">
                                 <div class="user-name">
-                                    {{ $company_user->name }}
+                                    {{ Auth::user()->name }}
                                 </div>
 
                                 <div class="icon-imgbox">

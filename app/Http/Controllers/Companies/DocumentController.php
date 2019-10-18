@@ -19,8 +19,7 @@ class DocumentController extends Controller
 
     public function index()
     {
-        $auth_id = Auth::user()->id;
-        $company_user = CompanyUser::where('auth_id', $auth_id)->first();
+        $company_user = Auth::user();
         
         // ionvoices
         $invoices = Invoice::where('company_id', $company_user->company_id)->with('task', 'task.taskCompanies', 'task.taskCompanies.companyUser')->get(); 

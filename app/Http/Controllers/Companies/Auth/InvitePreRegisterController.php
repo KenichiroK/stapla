@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Companies\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\CompanyUser;
+use App\Models\CompanyUserAuth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,30 +11,38 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class InvitePreRegisterController extends Controller
 {
     use RegistersUsers;
 
-    public function showRegisterForm(Request $request)
+    public function showRegisterForm()
     {
-        return view('company.auth.register', compact('request'));
+        return view('company.auth.invitePreRegister');
     }
+    
+    protected $redirectTo = '/company/setting/userSetting';
 
-    protected $redirectTo = '/company/register/doneVerify';
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
 
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:company_users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255'],
         ]);
     }
 
     protected function create(array $data)
     {
-        return CompanyUser::create([
+        return CompanyUserAuth::create([
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
             'company_id' => $data['company_id'],
         ]);
     }

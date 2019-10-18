@@ -18,8 +18,7 @@ class NdaController extends Controller
 {
     public function create()
     {
-        $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = Auth::user();
         $company = Company::findOrFail($company_user->company_id);
 
         $companyUsers = CompanyUser::where('company_id', $company->id)->get();
@@ -61,8 +60,7 @@ class NdaController extends Controller
 
     public function store(NdaRequest $request)
     {
-        $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $companyUser = Auth::user();
         $company = Company::findOrFail($companyUser->company_id);
 
         $nda= new Nda;
@@ -82,8 +80,7 @@ class NdaController extends Controller
     public function show($id)
     {
         $nda = Nda::findOrFail($id);
-        $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = Auth::user();
         return view('company/document/nda/show', compact('nda', 'company_user'));
     }
 }

@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes(['verify' => true]);
+
 Route::get('/',        function () { return view('common_pages/home');    });
 Route::get('/privacy', function () { return view('common_pages/privacy'); });
 Route::get('/terms',   function () { return view('common_pages/terms');   });
@@ -19,13 +21,15 @@ Route::get('/terms',   function () { return view('common_pages/terms');   });
 Auth::routes();
 
 Route::group(['prefix' => 'partner'], function(){
+	
 	//login   
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
 	
-	//register
-	Route::get('register/{company_id}/{email}', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
-	Route::post('register/{company_id}', 'Partners\Auth\RegisterController@register')->name('partner.register');
+	// register   
+	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
+	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
+	
 
 	// preRegister - 仮登録後に表示させるページ
 	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('partner.register.preRegisterd.index');
@@ -34,9 +38,7 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
 
 	// emailverify - Eメール認証
-	Route::middleware('throttle:6,1')->get('email/resend','Partners\Auth\VerificationController@resend')->name('partner.verification.resend');
-	Route::middleware('throttle:6,1')->get('email/verify','Partners\Auth\VerificationController@show')->name('partner.verification.notice');
-	Route::middleware('signed')->get('email/verify/id/{id}/company_id/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
+	Route::get('email/verify/{id}/{email}/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
 	
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 		
@@ -94,26 +96,27 @@ Route::group(['prefix' => 'company'], function(){
 	Route::get('login', 'Companies\Auth\LoginController@showLoginForm')->name('company.login');
 	Route::post('login', 'Companies\Auth\LoginController@login')->name('company.login');
 
-	//register
+	// register - 1st企業ユーザー仮登録
+	Route::get('pre-register', 'Companies\Auth\PreRegisterController@showRegisterForm')->name('company.PreRegister');
+	Route::post('pre-register', 'Companies\Auth\PreRegisterController@register')->name('company.PreRegister');
+
+	// preRegister - 1st企業ユーザー仮登録完了ページ
+	Route::get('/register/preRegistered', 'Companies\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
+
+	// register - 企業ユーザー本登録
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
 	Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
 	
-	// preRegister
-	Route::get('/register/preRegistered', 'Companies\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
-
-
-	// emailverify
-	Route::middleware('throttle:6,1')->get('email/resend','Companies\Auth\VerificationController@resend')->name('company.verification.resend');
-	Route::middleware('throttle:6,1')->get('email/verify','Companies\Auth\VerificationController@show')->name('company.verification.notice');
-	Route::middleware('signed')->get('email/verify/{id}','Companies\Auth\VerificationController@verify')->name('company.verification.verify');
 	
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
 		
 		// register_flow
 		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerify')->name('company.register.doneVerify');
 		Route::get('/register/personal', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');
+		Route::post('/register/company-and-personal', 'Companies\Registration\PersonalController@companyStore')->name('company.register.company-and-personal.store');
 		Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
 		Route::get('/register/preview', 'Companies\Registration\PreviewController@create')->name('company.register.preview.create');
+		Route::post('/register/company-preview', 'Companies\Registration\PreviewController@companyStore')->name('company.register.company-preview.store');
 		Route::post('/register/preview', 'Companies\Registration\PreviewController@store')->name('company.register.preview.store');
 		
 		// dashboard
@@ -166,23 +169,14 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/setting/account', 'Companies\Setting\AccountController@create')->name('company.setting.account.create');
 		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@create')->name('company.setting.personalInfo.create');
 		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@store')->name('company.setting.personalInfo.store');
-        
-		// mail(CompnayUser)
-		Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
-		Route::post('/mail/company-send', 'Companies\CompanyUserMailController@send')->name('company.mail.company-send');
 
-        // mail(CompnayUser)
-        Route::get('/companyMail', 'Companies\CompanyUserMailController@index')->name('company.companyMail.index');
-        Route::post('/companyMail/send', 'Companies\CompanyUserMailController@send')->name('company.mail.companyMail.send');
+		// invite companyUser - 招待による企業ユーザー仮登録
+		Route::get('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@showRegisterForm')->name('company.invitePreRegister');
+		Route::post('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@register')->name('company.invitePreRegister');
 
-		// mail(Partner)
-		Route::get('/userMail', 'Companies\PartnerMailController@index')->name('company.userMail.index');
-		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
-
-		// invite
-		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.partner.invite.partner.index');
-		Route::post('invite/partner',  'Companies\Invite\InvitePartnerController@send')->name('company.invite.partner.send');
-		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
+		// invite partner - 招待によるパートナー仮登録
+		Route::get('invite/partner', 'Partners\Auth\InvitePreRegisterController@showRegisterForm')->name('company.invite.partner');
+		Route::post('invite/partner', 'Partners\Auth\InvitePreRegisterController@register')->name('company.invite.partner');
 
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');

@@ -21,20 +21,14 @@ class PartnerAuth extends Authenticatable implements MustVerifyEmail
     protected $table = 'partner_auths';
     
     protected $fillable = [
-        'company_id', 'email','password'
+        'company_id', 'email'
     ];
     protected $hidden = [
-        'password', 'remember_token'
+        'remember_token'
     ];
 
     public function sendEmailVerificationNotification()
     {
         $this->notify(new PartnerVerifyEmail);
     }
-
-    public function partner()
-    {
-        return $this->hasOne('App\Models\Partner', 'partner_id', 'id');
-    }
-    
 }

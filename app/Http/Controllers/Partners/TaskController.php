@@ -16,8 +16,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $partnerAuth = Auth::user();
-        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        $partner = Auth::user();
         return view('partner/task/index', compact('partner'));
     }
 
@@ -26,9 +25,7 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $purchaseOrder = PurchaseOrder::where('task_id', $id)->first();
 
-
-        $user = Auth::user();
-        $partner = Partner::where('partner_id', $user->id)->get()->first();
+        $partner = Auth::user();
 
         return view('/partner/task/show', compact('task', 'partner', 'purchaseOrder'));
     }

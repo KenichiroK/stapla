@@ -12,8 +12,7 @@ class ProfileController extends Controller
 {
     public function create()
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $completed = '';
 
         return view('partner/profile/create', compact(['partner', 'completed']));
@@ -21,8 +20,7 @@ class ProfileController extends Controller
 
     public function store(ProfileRequest $request)
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         if ($partner) {
             $partner->update($request->all());
             $time = date("Y_m_d_H_i_s");

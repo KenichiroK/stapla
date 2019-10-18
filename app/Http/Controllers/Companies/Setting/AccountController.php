@@ -11,8 +11,7 @@ class AccountController extends Controller
 {
     public function create()
     {
-        $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = Auth::user();
         return view('company/setting/account/create', compact('company_user'));
     }
 }

@@ -2,37 +2,36 @@
 
 namespace App\Notifications;
 
-use App\Models\CompanyUser;
 use Illuminate\Auth\Notifications\VerifyEmail as VerifyEmailNotification;
 use Illuminate\Notifications\Messages\MailMessage;
+
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Lang;
 
-class PartnerVerifyEmail extends VerifyEmailNotification
+class UserVerifyEmail extends VerifyEmailNotification
 {
     public function toMail($notifiable)
     {
-        if(static::$toMailCallback){
+        if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable);
         }
 
-         return (new MailMessage)
+        return (new MailMessage)
             ->subject(Lang::getFromJson('本登録メール'))
-            ->line(Lang::getFromJson('クリックして認証してください. {{ $company_user }}'))
+            ->line(Lang::getFromJson('クリックして認証してください.'))
             ->action(
-                Lang::getFromJson('improを始める'),
+                Lang::getFromJson('メール認証'),
                 $this->verificationUrl($notifiable)
             )
             ->line(Lang::getFromJson('もしこのメールに覚えが無い場合は破棄してください。'));
-            
     }
+
 
     protected function verificationUrl($notifiable)
     {
         return URL::temporarySignedRoute(
-            'partner.register', Carbon::now()->addMinutes(60), ['email' => $notifiable->email, 'company_id' => $notifiable->company_id]
+            'company.register', Carbon::now()->addMinutes(60), ['email' => $notifiable->email]
         );
     }
 }

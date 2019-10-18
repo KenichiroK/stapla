@@ -16,15 +16,14 @@ class PersonalInfoController extends Controller
     public function create()
     {
         $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = Auth::user();
 
         return view('/company/setting/personalInfo/create', compact('company_user'));
     }
 
     public function store(PersonalRequest $request)
     {
-        $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $companyUser = Auth::user();
         
         if($companyUser) {
             $companyUser->update($request->all());

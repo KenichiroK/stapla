@@ -12,12 +12,13 @@ class VerificationController extends Controller
 {
     use VerifiesEmails;
 
-    protected $redirectTo = '/partner/register/doneVerify';
+    protected $redirectTo = '/partner/auth/firstLogin';
 
     public function __construct()
     {
         $this->middleware('auth:partner');
         $this->middleware('signed')->only('verify');
+        $this->middleware('throttle:6,1')->only('verify', 'resend');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
@@ -26,5 +27,23 @@ class VerificationController extends Controller
         return $request->user()->hasVerifiedEmail()
                         ? redirect($this->redirectPath())
                         : view('partner.auth.verify');
+    }
+
+
+    public function verify(Request $request, $id, $email, $access_key)
+    {
+        if ($request->route('id') != $request->user()->getKey()) {
+            throw new AuthorizationException('本人しか更新はできません');
+        }
+
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect($this->redirectPath());
+        }
+
+        if ($request->user()->markEmailAsVerified()) {
+            event(new Verified($request->user()));
+        }
+
+        return redirect($this->redirectPath())->with('verified', true);
     }
 }

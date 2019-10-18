@@ -101,6 +101,80 @@ $pref = array(
         </div>
     </header>
 
+	<!-- 最初に登録するユーザー($companyUserにcompany_idなし)か、招待されて登録するユーザー($companyUserにcompany_idあり)かの判定 -->
+	@if(isset($companyUser->company_id))
+	<main>
+        <div class="main-wrapper">
+			@if(count($errors) > 0)
+				<div class="error-container">
+					<p>入力に問題があります。再入力して下さい。</p>
+				</div>
+			@endif
+
+			<div class="title-container">
+				<h3>個人情報登録</h3>
+			</div>
+
+			<form action="{{ route('company.register.personal.store') }}" method="POST" enctype="multipart/form-data">
+				@csrf
+				<div class="edit-container-personal edit-container">
+					<div class="image-container">
+						<div class="imgbox">
+							<img id="profile_image_preview" src="{{ asset('images/upload4.png') }}" alt="プレビュー画像">
+						</div> 
+						<label for="picture">
+							画像をアップロード
+							<input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" onchange="setPreview(this)" style="display: none;">
+						</label>
+					</div>
+					<div class="profile-container">
+						<div class="input-container">
+							<p>名前</p>
+							<input type="text" name="name" value="{{ old('name') }}">								
+							@if ($errors->has('name'))
+								<div class="error-msg">
+									<strong>{{ $errors->first('name') }}</strong>
+								</div>
+							@endif
+						</div>
+
+						<div class="input-container">
+							<p>担当</p>
+							<input type="text" name="department" value="{{ old('department') }}">
+							@if ($errors->has('department'))
+								<div class="error-msg">
+									<strong>{{ $errors->first('department') }}</strong>
+								</div>
+							@endif
+						</div>
+
+						<div class="input-container">
+							<p>職種</p>
+							<input type="text" name="occupation" value="{{ old('occupation') }}">
+						</div>
+
+						<div class="input-container last">
+							<p>自己紹介</p>
+							<textarea type="text" name="self_introduction" cols="30" rows="10">{{ old('self_introduction') }}</textarea>
+							@if ($errors->has('self_introduction'))
+								<div class="error-msg">
+									<strong>{{ $errors->first('self_introduction') }}</strong>
+								</div>
+							@endif
+						</div>
+					</div>
+				</div>
+				
+				<div class="btn-container">
+					<button type="button" onclick="submit();">確認</button>
+				</div>
+			</form>
+        </div>
+    </main>
+
+	<!-- 最初に登録するユーザーか、招待されて登録するユーザーかの判定 -->
+	@else
+
     <main>
         <div class="main-wrapper">
 			@if(count($errors) > 0)
@@ -113,7 +187,7 @@ $pref = array(
 				<h3>企業情報登録</h3>
 			</div>
 
-			<form action="{{ route('company.register.personal.store') }}" method="POST" enctype="multipart/form-data">
+			<form action="{{ route('company.register.company-and-personal.store') }}" method="POST" enctype="multipart/form-data">
 				@csrf
 
 				<div class="edit-container-company">
@@ -265,6 +339,7 @@ $pref = array(
 			</form>
         </div>
     </main>
+	@endif
 
     <footer>
         <span>ご利用規約</span>
