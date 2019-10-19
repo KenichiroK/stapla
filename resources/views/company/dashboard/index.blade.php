@@ -24,7 +24,7 @@
                 <tr>
                     <th>プロジェクト</th>
                     <th>担当者</th>
-                    <th>パートナー</th>
+                    <!-- <th>パートナー</th> -->
                     <th>タスク</th>
                     <th>期限</th>
                     <th>予算</th>
@@ -49,19 +49,8 @@
                             <p>{{ $project->project->projectCompanies[0]->companyUser->name }}</p>
                         @endif
                     </td>
-                    <td>
-                        <div class="imgbox">
-                            <img src="{{ $project->project->projectPartners[0]->partner->picture }}" alt="">
-                        </div>
-                        @if ($project->project->projectPartners->count() > 1) 
-                            <p>
-                                {{ $project->project->projectPartners[0]->partner->name }} 
-                                他{{ $project->project->projectPartners->count() - 1 }}名
-                            </p>
-                        @else
-                            <p>{{ $project->project->projectPartners[0]->partner->name }}</p>
-                        @endif
-                    </td>
+                    <!-- パートナー -->
+                    <!-- <td></td> -->
                     <td><span class="underline">{{ $project->project->tasks->count() }}</span>件</td>
                     <td>
                         {{ date("Y年m月d日", strtotime($project->project->ended_at)) }}
