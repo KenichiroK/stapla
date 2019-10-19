@@ -40,27 +40,30 @@
             <div class="project-container__content">
                 
                 <a class="show-link" href="">
+                    @foreach($projects as $project)
                     <ul class="item-list content_list" >
-                        <li class="item-list project-name">ライティング</li>
+                        <li class="item-list project-name">{{ $project->name }}</li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="" alt="担当者プロフィール画像">
+                                <img src="{ $project->projectCompanies[0]->companyUser->picture }}" alt="担当者プロフィール画像">
                             </div>
-                                <p>宇野 裕樹</p>
+                                @if ($project->projectCompanies->count() > 1) 
+                                    <p>
+                                        {{ $project->projectCompanies[0]->companyUser->name }} 
+                                        他{{ $project->projectCompanies->count() - 1 }}名
+                                    </p>
+                                @else
+                                    <p>{{ $project->projectCompanies[0]->companyUser->name }}</p>
+                                @endif
                         </li>
                         <li>
-                            <div class="photoimgbox">
-                                <img src="" alt="担当者プロフィール画像">
-                            </div>
-                                <p>野村さゆり</p> 
+                            <span class="txt-underline">{{ $project->tasks->count() }}</span>件
                         </li>
-                        <li>
-                            <span class="txt-underline">3</span>件
-                        </li>
-                        <li>2019年09月30日</li>
-                        <li>¥10,000</li>
-                        <li>¥50,000</li>
+                        <li>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</li>
+                        <li>¥{{ number_format($project->budget) }}</li>
+                        <li>¥{{ number_format($project->price) }}</li>
                     </ul>
+                    @endforeach
                 </a>
                 
             </div>
