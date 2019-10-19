@@ -38,9 +38,8 @@
             </div>
 
             <div class="project-container__content">
-                
-                <a class="show-link" href="">
-                    @foreach($projects as $project)
+                @foreach($projects as $project)
+                <a class="show-link" href="{{ route('partner.project.show', ['project_id' => $project->id]) }}">
                     <ul class="item-list content_list" >
                         <li class="item-list project-name">{{ $project->name }}</li>
                         <li>
@@ -63,9 +62,8 @@
                         <li>¥{{ number_format($project->budget) }}</li>
                         <li>¥{{ number_format($project->price) }}</li>
                     </ul>
-                    @endforeach
                 </a>
-                
+                @endforeach
             </div>
 
             <div class="showmore-wrp">
