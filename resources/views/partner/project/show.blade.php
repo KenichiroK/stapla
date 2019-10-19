@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/project/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/project/show.css') }}">
 @endsection
 
 @section('content')
@@ -47,16 +47,6 @@
                             @endforeach
                         </div> 
                     </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">パートナー</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->projectPartners as $projectPartner)
-                                <div class="staff-item">
-                                    <div class="imgbox"><img src="{{ $projectPartner->partner->picture) }}" alt=""></div>
-                                    <p class="name">{{ $projectPartner->partner->name }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                    </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
                         <div class="period__wrapper">
                             <div class="period__wrapper__container">
@@ -91,7 +81,7 @@
                         <li class="task-name">{{ $task->project->name }}</li>
                             <li>{{ $task->name }}</li>
                             <li class="partner-item">
-                                <div class="imgbox"><img src="{{ $task->partner->picture) }}" alt=""></div>
+                                <div class="imgbox"><img src="{{ $task->partner->picture }}" alt=""></div>
                                 <p class="name">{{ $task->partner->name }}</p>
                             </li>
                             @if($task->status === 0)
