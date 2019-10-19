@@ -48,7 +48,7 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->task_delivery_format = $request->task_delivery_format;
         $task = Task::findOrFail($request->task_id);
         $purchaseOrder->task_name            = $task->name;
-        $purchaseOrder->task_ended_at        = $task->ended_at;
+        $purchaseOrder->task_ended_at        = $request->task_ended_at;
         $purchaseOrder->task_price           = $task->price;
         $purchaseOrder->task_tax             = $task->tax;
         $purchaseOrder->save();
