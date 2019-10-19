@@ -21,7 +21,7 @@ $factory->define(App\Models\Partner::class, function (Faker $faker) {
         'tel'               => $faker->phoneNumber,
         'age'               => $faker->randomNumber,
         'sex'               => $faker->numberBetween($min = 0, $max = 1),
-        'picture'           => 'public/images/default/dummy_user.jpeg',
+        'picture'           => 'https://dev-impro.s3-ap-northeast-1.amazonaws.com/test/docker.jpeg',
         'occupations'       => 'エンジニア',
         'academic'          => '東京大学 経済学部 経済学科 卒業',
         'careersummary'     => 'エンジニア歴 3年',
