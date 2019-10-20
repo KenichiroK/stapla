@@ -47,43 +47,23 @@
 							<div class="icon-imgbox">
 								<img src="{{ env('AWS_URL') }}/common/icon_calendar.png" alt="">
 							</div>
-							<div class="radio-container">
-							<!-- <span id="deadline_at_text"></span> -->
-							<label for="end_of_next_month">
-								<span class="title">来月末にする</span> 
-								<input
-									class="radio-input radio01-input"
-									type="radio" 
-									name="task_ended_at" 
-									value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) }}" 
-									id="end_of_next_month" 
-									onclick="checkDeadline()"
-									{{ old('task_ended_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) ? 'checked' : '' }}
-								>
-								<span class="radio01-parts"></span>
-							</label>
-							<label for="end_of_month_after_next">
-								<span class="title">再来月末にする</span>
-								<input
-									class="radio-input radio01-input" 
-									type="radio" 
-									name="task_ended_at" 
-									value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) }}" 
-									id="end_of_month_after_next" 
-									onclick="checkDeadline()"
-									{{ old('task_ended_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) ? 'checked' : '' }}
-								>
-								<span class="radio01-parts"></span>
-							</label>
 						</div>
-						
-						</div>
-						@if ($errors->has('task_ended_at'))
-							<div class="error-msg">
-								<strong>{{ $errors->first('task_ended_at') }}</strong>
-							</div>					
-						@endif
-						
+						<div class="calendars">
+							<div class="calendars__wrapper">
+								<!-- <div class="calendars__wrapper__title start">開始日<i class="fas fa-calendar-alt"></i></div> -->
+								<input
+									type="date"
+									name="task_ended_at"
+									value="{{ old('task_ended_at', date('Y-m-d')) }}"
+								>
+
+								@if($errors->has('task_ended_at'))
+									<div class="error-mes-wrp">
+										<strong style='color: #e3342f;'>{{ $errors->first('task_ended_at') }}</strong>
+									</div>
+								@endif
+							</div>
+						</div>						
 					</div>
 						
 					</dd>
