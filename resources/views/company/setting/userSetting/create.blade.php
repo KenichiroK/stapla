@@ -43,7 +43,7 @@ const setPreview = (input) => {
         <ul>
             <li>担当者名</li>
             <li>メールアドレス</li>
-            <li>パートナー依頼中</li>
+            <!-- <li>パートナー依頼中</li> -->
             <li>ステータス</li>
         </ul>
     </div>
@@ -59,7 +59,7 @@ const setPreview = (input) => {
                 </div>
             </li>
             <li>{{ $companyUser->email }}</li>
-            <li>管理者</li>
+            <!-- <li>管理者</li> -->
             <li>登録済み</li>
         </ul>
         @endforeach
