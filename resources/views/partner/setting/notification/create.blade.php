@@ -65,7 +65,7 @@
 				@endif
 			</div>
 
-			<div class="radio-container">
+			<!-- <div class="radio-container">
 				<p class="text">デイリーメールの受信</p>
 				<p class="sub-text">毎朝、期限切れのタスクがある場合にメールを送ります。</p>
 				@if ($setting && $setting->daily_mail == true)
@@ -89,9 +89,9 @@
 						<strong>{{ $errors->first('daily_mail') }}</strong>
 					</div>					
 				@endif
-			</div>
+			</div> -->
 
-			<div class="radio-container last">
+			<!-- <div class="radio-container last">
 				<p class="text">Slack連携</p>
 				<p class="sub-text">Slackと連携すると、improからの通知がSlackに届きます。</p>
 				@if ($setting && $setting->slack == true)
@@ -115,7 +115,7 @@
 						<strong>{{ $errors->first('slack') }}</strong>
 					</div>					
 				@endif
-			</div>
+			</div> -->
 		</div>
 
 		<div class="btn-container">
