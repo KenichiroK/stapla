@@ -17,7 +17,8 @@ class TaskController extends Controller
     public function index()
     {
         $partner = Auth::user();
-        return view('partner/task/index', compact('partner'));
+        $tasks = Task::where('partner_id', $partner->id)->get();
+        return view('partner/task/index', compact('partner', 'tasks'));
     }
 
     public function show($id)

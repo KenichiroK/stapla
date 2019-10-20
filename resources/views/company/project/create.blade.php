@@ -93,7 +93,7 @@
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">予算</div>
                         <div class="budget-container input-container">
-                            <input name="budget" type="text" placeholder="" value="{{ old('budget')}}"><span class="budget-container__yen">円</span>
+                            <input id="inputPrice" name="budget" type="text" placeholder="" value="{{ old('budget')}}"><span class="budget-container__yen">円</span>
                             @if ($errors->has('budget'))
                                 <div class="invalid-feedback error-msg" role="alert">
                                     <strong>{{ $errors->first('budget') }}</strong>
