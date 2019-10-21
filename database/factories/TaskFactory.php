@@ -18,7 +18,7 @@ $factory->define(App\Models\Task::class, function (Faker $faker) {
         'content'           => $faker->sentence,
         'started_at'        => $faker->dateTimeThisDecade,
         'ended_at'          => $faker->dateTimeThisDecade,
-        'status'            => $faker->numberBetween($min = 1, $max = 13),
+        'status'            => $faker->numberBetween($min = 1, $max = 20),
         'purchaseorder'     => true,
         'invoice'           => true,
         'budget'            => $faker->randomElement([10000, 50000, 100000]),

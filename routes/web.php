@@ -128,10 +128,15 @@ Route::group(['prefix' => 'company'], function(){
 
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
-		// task statusIndex
+			// task statusIndex
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
+			// task-create
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-        Route::post('/task', 'Companies\TaskController@store')->name('company.task.store');
+		Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.store');
+			// task-preview
+		Route::get('/task/preview', 'Companies\TaskController@previewCreate')->name('company.task.previewCreate');
+		Route::post('/task/preview', 'Companies\TaskController@previewStore')->name('company.task.previewStore');
+			// task-show
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
 		
 		// task status change
