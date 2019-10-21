@@ -98,10 +98,10 @@ class TaskController extends Controller
         $task->budget          = $request->budget;
         $task->tax             = 0.08;
         $task->price           = $request->price;
-        $task->cases           = $request->cases;
+        $task->cases           = 1;
         $task->comment         = $request->comment;
         $task->inspection_date = $request->inspection_date;
-        $task->fee_format      = $request->fee_format;
+        $task->fee_format      = "固定";
         $task->delivery_format = $request->delivery_format;
         $task->payment_terms   = $request->payment_terms;
         $task->rating          = $request->rating;
