@@ -31,7 +31,7 @@ $(function(){
         <div class="page-title-container">
             <div class="page-title-container__page-title">タスク作成</div>
         </div>
-        <!-- プロジェクトを選択する エリア -->
+
         <div class="select-container">
             <div class="select-container__wrapper">
                 <!-- プロジェクトを選択する -->

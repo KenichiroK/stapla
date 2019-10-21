@@ -119,7 +119,17 @@ class TaskController extends Controller
         $projects = Project::where('company_id', $companyUser->company_id)->get();
         $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
         $partners = Partner::where('company_id', $companyUser->company_id)->get();
-        return view('company/task/create', compact('projects','companyUsers', 'partners'));
+        $request = null;
+        return view('company/task/create', compact('request', 'projects','companyUsers', 'partners'));
+    }
+
+    public function recreate(Request $request)
+    {
+        $companyUser = Auth::user();
+        $projects = Project::where('company_id', $companyUser->company_id)->get();
+        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
+        $partners = Partner::where('company_id', $companyUser->company_id)->get();
+        return view('company/task/create', compact('request', 'projects','companyUsers', 'partners'));
     }
     
     // 作成 & プレビュー表示
@@ -157,7 +167,8 @@ class TaskController extends Controller
             $projects = Project::where('company_id', $companyUser->company_id)->get();
             $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
             $partners = Partner::where('company_id', $companyUser->company_id)->get();
-            return view('company/task/create', compact('request', 'projects','companyUsers', 'partners'));
+            // return redirect()->route('company.task.create', compact('request'));
+            return redirect()->route('company.task.recreate', [$request]);
             break;
 
             case 'save':
