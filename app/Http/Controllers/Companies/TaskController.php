@@ -96,7 +96,7 @@ class TaskController extends Controller
         $task->purchaseorder   = false;
         $task->invoice         = false;
         $task->budget          = $request->budget;
-        $task->tax             = 0.08;
+        $task->tax             = 0.1;
         $task->price           = $request->price;
         $task->cases           = 1;
         $task->comment         = $request->comment;
