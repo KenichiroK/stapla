@@ -21,7 +21,9 @@
 				<h3>入力内容確認</h3>
 			</div>
 
-			<form action="{{ route('company.register.preview.store') }}" method="POST" enctype="multipart/form-data">
+			<!-- 最初に登録するユーザー($requestにcompany_nameあり)か、招待されて登録するユーザー($requestにcompany_nameなし)かの判定 -->
+			@if(isset($request->company_name))
+			<form action="{{ route('company.register.company-preview.store') }}" method="POST" enctype="multipart/form-data">
 				@csrf
 				<input type="hidden" name="">
 				<div class="edit-container">
@@ -93,11 +95,55 @@
 					</div>
 				</div>
 				<div class="btn-container">
-				<button type="button" onclick="submit();"><a type="button" href="{{ route('company.register.personal.create') }}">戻る</a></button>
-				<button type="submit">登録</button>
-			</div>
+					<button type="button" onclick="submit();"><a type="button" href="{{ route('company.register.personal.create') }}">戻る</a></button>
+					<button type="submit">登録</button>
+				</div>
 			</form>
 
+			<!-- 最初に登録するユーザーか、招待されて登録するユーザーかの判定 -->
+			@else
+
+			<form action="{{ route('company.register.preview.store') }}" method="POST" enctype="multipart/form-data">
+				@csrf
+				<input type="hidden" name="">
+				<div class="edit-container">
+
+					<div class="company-container">
+						<div class="profile-container">
+							<div class="section-container">
+								<p>名前</p>
+								<input type="hidden" name="name" value="{{ old('name', $request->name) }}">
+								<h4>{{ $request->name }}</h4>
+							</div>
+
+							<div class="section-container">
+								<p>担当</p>
+								<input type="hidden" name="department" value="{{ old('department', $request->department) }}">
+								<h4>{{ $request->department }}</h4>
+							</div>
+
+							<div class="section-container">
+								<p>職種</p>
+								<input type="hidden" name="occupation" value="{{ old('occupation', $request->occupation) }}">
+								<h4>{{ $request->occupation }}</h4>
+							</div>
+
+							<div class="section-container">
+								<p>自己紹介</p>
+								<input type="hidden" name="self_introduction" value="{{ old('self_introduction', $request->self_introduction) }}">
+								<h4>{!! nl2br(e($request->self_introduction)) !!}</h4>
+							</div>
+						</div>
+					</div>
+
+					
+				</div>
+				<div class="btn-container">
+					<button type="button" onclick="submit();"><a type="button" href="{{ route('company.register.personal.create') }}">戻る</a></button>
+					<button type="submit">登録</button>
+				</div>
+			</form>
+			@endif
 			
         </div>
     </main>

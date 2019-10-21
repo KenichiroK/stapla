@@ -24,15 +24,14 @@
             <div class="form_wrapper">
                 <form method="POST" action="{{ route('company.register') }}">
                     @csrf
+
                     <div class="input_wrapper">
-                        <h4 class="title">メールアドレス</h4>
-                        <input class="input_text" type="email" name="email" placeholder="impro@example.com">
+                        <input class="input_text" type="hidden" name="email" value="{{ $request->email }}">
                         @if ($errors->has('email'))
                             <div class="invalid-feedback error-msg" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
                             </div>
                         @endif
-
                     </div>
 
                     <div class="input_wrapper">
@@ -48,6 +47,15 @@
                     <div class="input_wrapper">
                         <h4 class="title">パスワード確認</h4>
                         <input class="input_text" type="password" name="password_confirmation">
+                    </div>
+
+                    <div class="input_wrapper">
+                        <input class="input_text" type="hidden" name="company_id" value="{{ $request->company_id }}">
+                        @if ($errors->has('company_id'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('company_id') }}</strong>
+                        </div>
+                    @endif
                     </div>
 
                     <div class="checkbox_wrapper">

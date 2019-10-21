@@ -16,22 +16,23 @@ class PersonalInfoController extends Controller
     public function create()
     {
         $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = Auth::user();
 
         return view('/company/setting/personalInfo/create', compact('company_user'));
     }
 
     public function store(PersonalRequest $request)
     {
-        $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $companyUser = Auth::user();
         
         if($companyUser) {
             $companyUser->update($request->all());
             $time = date("Y_m_d_H_i_s");
 
             if($request->picture) {
-                $companyUser->picture = $request->picture->storeAs('public/images/company/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
+                $picture              = $request->picture;
+                $pathPicture          = \Storage::disk('s3')->putFileAs("company-user-profile", $picture,$time.'_'.$companyUser->id .'.'. $picture->getClientOriginalExtension(), 'public');
+                $companyUser->picture = \Storage::disk('s3')->url($pathPicture);
                 $companyUser->save();
             }
             $completed = '変更を保存しました。';

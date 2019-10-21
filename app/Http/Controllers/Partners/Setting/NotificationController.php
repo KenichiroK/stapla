@@ -14,8 +14,7 @@ class NotificationController extends Controller
 {
     public function create()
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $setting = PartnerAccountSetting::where('partner_id', $partner->id)->get()->first();
 
         $completed = '';
@@ -24,8 +23,7 @@ class NotificationController extends Controller
 
     public function store(PartnerNotificationRequest $request)
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $setting = PartnerAccountSetting::where('partner_id', $partner->id)->get()->first();
 
         if ($setting) {

@@ -20,8 +20,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $company_user = Auth::user();
         $tasks = Task::where('company_id', $company_user->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
             
         $status_arr = [];
@@ -65,8 +64,7 @@ class TaskController extends Controller
 
     public function statusIndex($task_status)
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $company_user = Auth::user();
         $alltasks = Task::where('company_id', $company_user->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
         $status_arr = [];
         for ($i = 0; $i < 15; $i++) {
@@ -118,8 +116,7 @@ class TaskController extends Controller
 
     public function create()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $company_user = Auth::user();
         $projects = Project::where('company_id', $company_user->company_id)->get();
        
         
@@ -187,8 +184,7 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $purchaseOrder = PurchaseOrder::where('task_id', $id)->first();
         $invoice = Invoice::where('task_id', $id)->first();
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $company_user = Auth::user();
         $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
 
         $company_user_ids = array();

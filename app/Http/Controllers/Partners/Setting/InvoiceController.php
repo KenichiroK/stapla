@@ -14,8 +14,7 @@ class InvoiceController extends Controller
 {
     public function create()
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
 
         $completed = '';
@@ -24,8 +23,7 @@ class InvoiceController extends Controller
 
     public function store(PartnerInvoiceRequest $request)
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $partner->update($request->all());
 
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
@@ -35,6 +33,13 @@ class InvoiceController extends Controller
             if ($request->mark_image) {
                 $partner_invoice->mark_image = $request->file('mark_image')->storeAs('public/images/partner/invoice_mark', $time.'_'.Auth::user()->id . '.png'); 
                 $partner_invoice->save();  
+            }
+
+            if($request->mark_image) {
+                $picture          = $request->mark_image;
+                $pathPicture     = \Storage::disk('s3')->putFileAs("invoice", $picture,$time.'_'.$auth_id .'.'. $picture->getClientOriginalExtension(), 'public');
+                $partner_invoice->mark_image = \Storage::disk('s3')->url($pathPicture);
+                $partner_invoice->save();
             }
 
             $completed = '変更を保存しました。';

@@ -12,18 +12,21 @@ class CreatePartnersTable extends Migration
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary();
             $table->uuid('company_id');
-            $table->uuid('partner_id');
-            $table->string('name', 64);
+            $table->string("email", 64);
+            $table->string("password", 64)->nullable();
+            $table->rememberToken();
+            $table->timestamp("email_verified_at")->nullable();
+            $table->string('name', 64)->nullable();
             $table->string('nickname', 64)->nullable();
-            $table->string('zip_code', 64);
-            $table->string('prefecture', 64);
-            $table->string('city', 64);
-            $table->string('street', 64);
+            $table->string('zip_code', 64)->nullable();
+            $table->string('prefecture', 64)->nullable();
+            $table->string('city', 64)->nullable();
+            $table->string('street', 64)->nullable();
             $table->string('building', 64)->nullable();
-            $table->string('tel');
+            $table->string('tel')->nullable();
             $table->integer('age')->nullable();
             $table->integer('sex')->nullable();
-            $table->string('picture');
+            $table->string('picture')->nullable();
             $table->string('occupations', 64)->nullable();
             $table->text('academic')->nullable();
             $table->string('slack', 64)->nullable();
@@ -45,7 +48,6 @@ class CreatePartnersTable extends Migration
             $table->string('attachment', 64)->nullable();      
             $table->timestamps();
 
-            $table->foreign('partner_id')->references('id')->on('partner_auths');
             $table->foreign('company_id')->references('id')->on('companies');
         });
     }

@@ -7,9 +7,6 @@ use App\Models\Project;
 use App\Models\CompanyUser;
 use App\Models\Partner;
 use App\Models\ProjectCompany;
-use App\Models\ProjectPartner;
-use App\Models\ProjectSuperior;
-use App\Models\ProjectAccounting;
 use App\Models\Task;
 
 use Illuminate\Http\Request;
@@ -22,23 +19,21 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
-        $projects = Project::where('company_id', $company_user->company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();        
+        $companyUser = Auth::user();
+        $projects = Project::where('company_id', $companyUser->company_id)->get();        
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
             $taskCount = count($projects[$i]->tasks);
             array_push($task_count_arr, $taskCount);
         }
-        return view('company/project/index', compact('projects', 'task_count_arr', 'company_user'));
+        return view('company/project/index', compact('projects', 'task_count_arr'));
     }
 
     public function doneIndex()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
-        $projects = Project::where('company_id', $company_user->company_id)->with(['company', 'tasks', 'projectRoleRelation', 'projectPartners.partner', 'projectCompanies.companyUser'])->get();        
+        $companyUser = Auth::user();
+        $projects = Project::where('company_id', $companyUser->company_id)->get();        
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
@@ -50,22 +45,20 @@ class ProjectController extends Controller
 
     public function create()
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $companyUser = Auth::user();
 
-        $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
+        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
 
-        $partner_users = Partner::where('company_id', $company_user->company_id)->get();
+        $partnerUsers = Partner::where('company_id', $companyUser->company_id)->get();
         
-        return view('company/project/create', compact('company_users', 'partner_users', 'company_user'));
+        return view('company/project/create', compact('companyUser', 'companyUsers'));
     }
 
     public function store(CreateProjectRequest $request)
     {   
         $time = date("Y_m_d_H_i_s");
 
-        $user = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
+        $company_id = Auth::user()->company_id;
 
         $project = new Project;
         $project->company_id   = $company_id;
@@ -77,11 +70,12 @@ class ProjectController extends Controller
         $project->budget       = $request->budget;
         $project->price        = 0;
 
-        if($request->file){
-            $file_name = $time.'_'.Auth::user()->id .'.'. $request->file->getClientOriginalExtension();
-            $project->file = $file_name;
-            $request->file('file')->storeAs('public/images/company/project/file' , $file_name);
-        }
+        // if($request->file) {
+        //     $picture              = $request->file;
+        //     $path_picture         = \Storage::disk('s3')->putFileAs($user->id, $picture,$time.'_'.$auth->id .'.'. $picture->getClientOriginalExtension(), 'public');
+        //     $companyUser->picture = \Storage::disk('s3')->url($path_picture);
+        //     $companyUser->save();
+        // }
         $project->save();
 
         $project_id = $project->id;
@@ -90,33 +84,17 @@ class ProjectController extends Controller
         $projectCompany->user_id = $request->company_user_id;
         $projectCompany->project_id = $project_id;
         $projectCompany->save();
-
-        $projectPartner = new ProjectPartner;
-        $projectPartner->user_id = $request->partner_id;
-        $projectPartner->project_id = $project_id;
-        $projectPartner->save();
-
-        $project_superior = new ProjectSuperior;
-        $project_superior->project_id =  $project_id;
-        $project_superior->user_id    =  $request->superior_id;
-        $project_superior->save();
-
-        $project_accounting = new ProjectAccounting;
-        $project_accounting->project_id =  $project_id;
-        $project_accounting->user_id    =  $request->accounting_id;
-        $project_accounting->save();
         
         return redirect()->route('company.project.show', ['id' => $project->id])->with('completed', '「'.$project->name.'」を作成しました。');
     }
 
     public function show($id)
     {
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $companyUser = Auth::user();
 
-        $project = Project::where('company_id', $company_user->company_id)->findOrFail($id);
+        $project = Project::where('company_id', $companyUser->company_id)->findOrFail($id);
         $tasks = Task::where('project_id',$project->id)->get();
         
-        return view('/company/project/show', compact('project','tasks', 'company_user'));
+        return view('/company/project/show', compact('project','tasks', 'companyUser'));
     }
 }

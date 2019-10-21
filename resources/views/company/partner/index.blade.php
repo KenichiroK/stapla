@@ -23,7 +23,7 @@
                     </span>
                 </p> -->
                 <div class="btn-a-container">
-                    <a href="{{ route('company.partner.invite.partner.index') }}">パートナー追加</a>
+                    <a href="{{ route('company.invite.partner') }}">パートナー追加</a>
                 </div>
         </div>
         
@@ -32,40 +32,29 @@
             @foreach( $partners as $partner )
             
             <div class="profile-card-container">
-                <!-- <a href="/company/partner/{{ $partner->id }}"> -->
-                    <div class="profile-card-container__wrapper">
-                        <div class="main-content">
-                            <div class="main-content__img-container">
-                                <!-- <img class="main-content__img-container__img" src="" alt=""> -->
-                                <img src="{{ $partner->picture }}"  alt="">
-                            </div>
-                            <div class="main-content__info-list">
-                                <div class="main-content__info-list__name">{{ $partner->name }}</div>
-                                <div class="main-content__info-list__job">{{ $partner->occupations }}</div>
-                                <div class="main-content__info-list__assessment-achievement">
-                                    <!-- <div class="assessment">⭐⭐⭐⭐</div> -->
-                                    <!-- <div class="achievement">実績<span class="num">1</span><span class="ken">件</span></div> -->
-                                
-                                </div>
-                                
-                            </div>
-                            <div class="main-content__edit-icons">
-                                <div>
-                                    <a href="{{ route('company.partner.show', ['id' => $partner->id]) }}"><img src="{{ env('AWS_URL') }}/common/edit.png" alt=""></a>
-                                </div>
-                            </div>
+                <div class="profile-card-container__wrapper">
+                    <div class="main-content">
+                        <div class="main-content__img-container">
+                            <!-- <img class="main-content__img-container__img" src="" alt=""> -->
+                            <img src="{{ $partner->picture }}"  alt="">
                         </div>
-                        <div class="icon-list-wrp">
-                            <div class="icon-list">
-                                <div><a class="default-color github"><img src="{{ env('AWS_URL') }}/common/github.png" alt=""></a></div>
-                                <div><a class="default-color twitter"><img src="{{ env('AWS_URL') }}/common/twitter.png" alt=""></a></div>
-                                <div><a class="default-color facebook"><img src="{{ env('AWS_URL') }}/common/facebook.png" alt=""></a></div>
-                                <div><a class="default-color instagram"><img src="{{ env('AWS_URL') }}/common/insta.png" alt=""></a></div>
-                                <div><a class="default-color mail"><img src="{{ env('AWS_URL') }}/common/mail.png" alt=""></a></div>
+                        <div class="main-content__info-list">
+                            <div class="main-content__info-list__name">{{ $partner->name }}</div>
+                            <div class="main-content__info-list__job">{{ $partner->occupations }}</div>
+                            <div class="main-content__info-list__assessment-achievement">
+                                <!-- <div class="assessment">⭐⭐⭐⭐</div> -->
+                                <!-- <div class="achievement">実績<span class="num">1</span><span class="ken">件</span></div> -->
+                            
+                            </div>
+                            
+                        </div>
+                        <div class="main-content__edit-icons">
+                            <div>
+                                <img src="{{ env('AWS_URL') }}/common/edit.png" alt="">
                             </div>
                         </div>
                     </div>
-                <!-- </a> -->
+                </div>
             </div>
             
             @endforeach

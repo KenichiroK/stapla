@@ -1,13 +1,38 @@
 <?php
 namespace App\Models;
 
-class CompanyUser extends BaseUuid
+use App\Notifications\UserVerifyEmailNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+
+class CompanyUser extends Authenticatable
 {
+    use Notifiable;
+    public $incrementing = false;
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function($model){
+            $model->id = (string)\Illuminate\Support\Str::uuid();
+        });
+    }
     protected $table = 'company_users';
     
     protected $fillable = [
-        'auth_id', 'company_id', 'name', 'department', 'occupation', 'self_introduction', 'picture'
+        'email', 'password', 'company_id', 'name', 'department', 'occupation', 'self_introduction', 'picture'
     ];
+
+    protected $hidden = [
+        'password', 'remember_token'
+    ];
+
+    // 登録済みかどうかの判定
+    public function scopeIsRegistered()
+    {
+        return isset($companyUser);
+    }
 
     public function companyUserAuth()
     {

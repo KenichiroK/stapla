@@ -13,8 +13,7 @@ class PurchaseOrderController extends Controller
     public function show($id)
     {
         $purchaseOrder = PurchaseOrder::findOrFail($id);
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         if($purchaseOrder->partner->id !== $partner->id) {
             return 'アカウントをお確かめください';
         }

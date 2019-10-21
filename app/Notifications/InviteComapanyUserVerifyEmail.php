@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Lang;
 
-class UserVerifyEmailNotification extends VerifyEmailNotification
+class InviteComapanyUserVerifyEmail extends VerifyEmailNotification
 {
     public function toMail($notifiable)
     {
@@ -31,7 +31,7 @@ class UserVerifyEmailNotification extends VerifyEmailNotification
     protected function verificationUrl($notifiable)
     {
         return URL::temporarySignedRoute(
-            'company.verification.verify', Carbon::now()->addMinutes(60), ['id' => $notifiable->getKey()]
+            'company.register', Carbon::now()->addMinutes(60), ['email' => $notifiable->email, 'company_id' => $notifiable->company_id]
         );
     }
 }

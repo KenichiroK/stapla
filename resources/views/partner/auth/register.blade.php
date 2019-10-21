@@ -7,11 +7,19 @@
     <title>Impro</title>
     <link href="{{ mix('css/auth/login/index.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body: {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="logo_container">
-            <p class="logo">impro</p>
+            <div class="imgbox">
+                <img src="{{ asset('images/logo2.png') }}" alt="logo">
+            </div>
         </div>
     </header>
 
@@ -22,12 +30,15 @@
             </div>
 
             <div class="form_wrapper">
-                <form method="POST" action="/partner/register/{{ $company_id }}">
+                <form method="POST" action="">
                     @csrf
                     <div class="input_wrapper">
-                        <h4 class="title">メールアドレス</h4>
-                        {{ $email }}
-                        <input class="input_text" type="hidden" name="email" value="{{ $email }}">
+                        <input class="input_text" type="hidden" name="email" value="{{ $request->email }}">
+                        @if ($errors->has('email'))
+                            <div class="invalid-feedback error-msg" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="input_wrapper">
@@ -46,7 +57,12 @@
                     </div>
 
                     <div class="input_wrapper">
-                        <input class="input_text" type="hidden" name="company_id" value="{{ $company_id }}">
+                        <input class="input_text" type="hidden" name="company_id" value="{{ $request->company_id }}">
+                        @if ($errors->has('company_id'))
+                            <div class="invalid-feedback error-msg" role="alert">
+                                <strong>{{ $errors->first('company_id') }}</strong>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="checkbox_wrapper">
@@ -68,8 +84,8 @@
     </main>
 
     <footer>
-        <span>ご利用規約</span>
-        <span>プライバシーポリシー</span>
+        <span class="tos">ご利用規約</span>
+        <span class="privacy">プライバシーポリシー</span>
     </footer>
 </body>
 </html>

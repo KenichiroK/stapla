@@ -13,13 +13,12 @@ class InitialRegisterController extends Controller
 {
     public function doneVerify()
     {
-        $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $companyUser = Auth::user();
         
-        if(isset($companyUser)){
-            return  redirect('company/dashboard');
+        if(CompanyUser::isRegistered()){
+            return redirect('company/dashboard');
         } else{
-            return view('company/auth/initialRegister/doneVerify' ,compact('companyUser'));
+            return view('company/auth/initialRegister/doneVerify' ,compact('company_user'));
         }
     }
 }

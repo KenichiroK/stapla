@@ -13,10 +13,9 @@ class InitialRegisterController extends Controller
 {
     public function doneVerify()
     {
-        $partnerAuth = Auth::user();
-        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        $partner = Auth::user();
         
-        if(isset($partner)){
+        if(isset($partner->name)){
             return  redirect('partner/dashboard');
         } else{
             return view('partner/auth/initialRegister/doneVerify', compact('company_id'));
@@ -25,10 +24,9 @@ class InitialRegisterController extends Controller
 
     public function createPartner()
     {
-        $partnerAuth = Auth::user();
-        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        $partner = Auth::user();
         
-        if(isset($partner)){
+        if(isset($partner->name)){
             return  redirect('partner/dashboard');
         } else{
             return view('partner/auth/initialRegister/personal');
@@ -42,10 +40,9 @@ class InitialRegisterController extends Controller
 
     public function previwShow(Request $request)
     {
-        $partnerAuth = Auth::user();
-        $partner = Partner::where('partner_id', $partnerAuth->id)->first();
+        $partner = Auth::user()->first();
         
-        if(isset($partner)){
+        if(isset($partner->name)){
             return  redirect('partner/dashboard');
         } else{
             return view('partner/auth/initialRegister/preview', compact('request'));
@@ -55,11 +52,9 @@ class InitialRegisterController extends Controller
 
     public function previewStore(Request $request)
     {
-        $partnerAuth = Auth::user();
-        
-        $partner = new Partner;
-        $partner->partner_id   = $partnerAuth->id;
-        $partner->company_id   = $partnerAuth->company_id;
+        $partner = Auth::user();
+
+        $partner->company_id   = $partner->company_id;
         $partner->name         = $request->name;
         $partner->occupations  = $request->occupations;
         $partner->introduction = $request->introduction;
@@ -74,12 +69,7 @@ class InitialRegisterController extends Controller
         $partner->picture      ='public/images/default/dummy_user.jpeg';
         $partner->save();
 
-        return view('partner/auth/initialRegister/done');
-    }
-
-    public function done()
-    {
-        return view('partner/auth/regitster/done');
+        return view('partner/auth/initialRegister/done', compact('partner'));
     }
 
     public function resetPassword()

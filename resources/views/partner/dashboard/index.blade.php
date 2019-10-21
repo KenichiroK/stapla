@@ -21,7 +21,6 @@
                 <tr>
                     <th>プロジェクト</th>
                     <th>担当者</th>
-                    <th>パートナー</th>
                     <th>タスク</th>
                     <th>期限</th>
                     <th>予算</th>
@@ -32,37 +31,24 @@
             <tbody>
                 @foreach($projects as $project)
                 <tr>
-                    <td class="project_name"><a href="{{ route('partner.project.show', ['project_id' => $project->project->id]) }}">{{ $project->project->name }}</a></td>
+                    <td class="project_name"><a href="{{ route('partner.project.show', ['project_id' => $project->id]) }}">{{ $project->name }}</a></td>
                     <td class="staff">
                         <div class="imgbox">
-                            <img src="{{ $project->project->projectCompanies[0]->companyUser->picture }}" alt="プロフィール画像">
+                            <img src="{{ $project->projectCompanies[0]->companyUser->picture }}" alt="プロフィール画像">
                         </div> 
-                        @if ($project->project->projectCompanies->count() > 1) 
+                        @if ($project->projectCompanies->count() > 1) 
                             <p>
-                                {{ $project->project->projectCompanies[0]->companyUser->name }} 
-                                他{{ $project->project->projectCompanies->count() - 1 }}名
+                                {{ $project->projectCompanies[0]->companyUser->name }} 
+                                他{{ $project->projectCompanies->count() - 1 }}名
                             </p>
                         @else
-                            <p>{{ $project->project->projectCompanies[0]->companyUser->name }}</p>
+                            <p>{{ $project->projectCompanies[0]->companyUser->name }}</p>
                         @endif
                     </td>
-                    <td class="staff">
-                        <div class="imgbox">
-                            <img src="{{ $project->project->projectPartners[0]->partner->picture }}" alt="プロフィール画像">
-                        </div> 
-                        @if ($project->project->projectPartners->count() > 1) 
-                            <p>
-                                {{ $project->project->projectPartners[0]->partner->name }} 
-                                他{{ $project->project->projectPartners->count() - 1 }}名
-                            </p>
-                        @else
-                            <p>{{ $project->project->projectPartners[0]->partner->name }}</p>
-                        @endif
-                    </td>
-                    <td><span class="underline">{{ $project->project->tasks->count() }}</span>件</td>
-                    <td>{{ date("Y年m月d日", strtotime($project->project->ended_at)) }}</td>
-                    <td>¥{{ $project->project->budget }}</td>
-                    <td>¥{{ $project->project->budget }}</td>
+                    <td><span class="underline">{{ $project->tasks->count() }}</span>件</td>
+                    <td>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</td>
+                    <td>¥{{ $project->budget }}</td>
+                    <td>¥{{ $project->price }}</td>
                 </tr>
                 @endforeach
             </tbody>

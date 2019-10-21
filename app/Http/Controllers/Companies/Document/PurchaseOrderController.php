@@ -18,9 +18,8 @@ class PurchaseOrderController extends Controller
 {
     public function create($id)
     {
-        $auth = Auth::user();
         $task = Task::findOrFail($id);
-        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = Auth::user();
 
         $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
 
@@ -29,8 +28,7 @@ class PurchaseOrderController extends Controller
 
     public function store(CreatePurchaseOrderRequest $request)
     {
-        $auth = Auth::user();
-        $companyUser = CompanyUser::where('auth_id', $auth->id)->first();
+        $companyUser = Auth::user();
         $company = Company::findOrFail($companyUser->company_id);
         $purchaseOrder = new PurchaseOrder;
         $purchaseOrder->company_id = $company->id;
@@ -50,7 +48,7 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->task_delivery_format = $request->task_delivery_format;
         $task = Task::findOrFail($request->task_id);
         $purchaseOrder->task_name            = $task->name;
-        $purchaseOrder->task_ended_at        = $task->ended_at;
+        $purchaseOrder->task_ended_at        = $request->task_ended_at;
         $purchaseOrder->task_price           = $task->price;
         $purchaseOrder->task_tax             = $task->tax;
         $purchaseOrder->save();
@@ -62,8 +60,7 @@ class PurchaseOrderController extends Controller
     {
         $purchaseOrder = PurchaseOrder::findOrFail($purchaseOrder_id);
         $task = Task::findOrFail($purchaseOrder->task_id);
-        $auth = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $auth->id)->first();
+        $company_user = Auth::user();
         $company_user_ids = array();
         if ($task->taskCompanies) {
             foreach($task->taskCompanies as $companyUser) {
