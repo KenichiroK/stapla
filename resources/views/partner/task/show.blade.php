@@ -146,32 +146,40 @@
                     @if(($task->status) === 0)
                         下書き
                     @elseif(($task->status) === 1)
-                        タスク上長確認前
-                    @elseif(($task->status) === 2)
                         タスク上長確認中
-                    @elseif(($task->status) === 3)
+                    @elseif(($task->status) === 2)
                         タスクパートナー依頼前
+                    @elseif(($task->status) === 3)
+                        タスクパートナー確認中
                     @elseif(($task->status) === 4)
-                        タスクパートナー依頼中
+                        発注書作成前
                     @elseif(($task->status) === 5)
-                        発注書作成中
-                    @elseif(($task->status) === 6)
-                        発注書作成完了
-                    @elseif(($task->status) === 7)
                         発注書上長確認中
-                    @elseif(($task->status) === 8)
+                    @elseif(($task->status) === 6)
                         発注書パートナー依頼前
-                    @elseif(($task->status) === 9)
+                    @elseif(($task->status) === 7)
                         発注書パートナー確認中
-                    @elseif(($task->status) === 10)
+                    @elseif(($task->status) === 8)
+                        作業前
+                    @elseif(($task->status) === 9)
                         作業中
+                    @elseif(($task->status) === 10)
+                        検品中
                     @elseif(($task->status) === 11)
-                        請求書依頼中
+                        請求書作成前
                     @elseif(($task->status) === 12)
-                        請求書確認中
+                        請求書下書き
                     @elseif(($task->status) === 13)
-                        完了
+                        請求書担当者確認前
                     @elseif(($task->status) === 14)
+                        請求書担当者確認中
+                    @elseif(($task->status) === 15)
+                        請求書経理提出
+                    @elseif(($task->status) === 16)
+                        請求書経理承認済み
+                    @elseif(($task->status) === 17)
+                        完了
+                    @elseif(($task->status) === 18)
                         キャンセル
                     @endif
                 </dd>
@@ -179,17 +187,17 @@
         </div>
         
         <div class="actionButton">
-            @if($task->status === 4 && $task->partner->id === $partner->id)
+            @if($task->status === 3 && $task->partner->id === $partner->id)
                 <form action="{{ route('partner.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="3">
+                    <input type="hidden" name="status" value="0">
                     <button type="submit" class="undone">タスク依頼を受けない</button>
                 </form>
                 <form action="{{ route('partner.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="5">
+                    <input type="hidden" name="status" value="4">
                     <button type="submit" class="done">タスク依頼を受ける</button>
                 </form>
             @elseif($task->status === 9 && $task->partner->id === $partner->id)

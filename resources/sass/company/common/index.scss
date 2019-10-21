@@ -88,6 +88,19 @@ main {
         opacity: 1;
         transition: 0.3s;
     }
+    .back_button{
+        border-color: #43425d;
+        background-color: #fff;
+        font-weight: bold;
+        color: #43425d;
+        padding: 8px 40px;
+        font-size: 16px;
+        border-radius: 100px;
+        outline: none;
+        width: 140px;
+        opacity: 1;
+        transition: 0.3s;
+    }
     button:hover {
         opacity: 0.7;
     }

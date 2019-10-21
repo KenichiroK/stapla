@@ -37,7 +37,7 @@
                     タスク作成日
                 </dt>
                 <dd>
-                    {{ date("Y年m月d日", strtotime($task->created_at)) }}
+                    {{ date("Y年m月d日H", strtotime($task->created_at)) }}
                 </dd>
             </dl>
             <dl>
@@ -181,32 +181,40 @@
                     @if(($task->status) === 0)
                         下書き
                     @elseif(($task->status) === 1)
-                        タスク上長確認前
-                    @elseif(($task->status) === 2)
                         タスク上長確認中
-                    @elseif(($task->status) === 3)
+                    @elseif(($task->status) === 2)
                         タスクパートナー依頼前
+                    @elseif(($task->status) === 3)
+                        タスクパートナー確認中
                     @elseif(($task->status) === 4)
-                        タスクパートナー依頼中
+                        発注書作成前
                     @elseif(($task->status) === 5)
-                        発注書作成中
-                    @elseif(($task->status) === 6)
-                        発注書作成完了
-                    @elseif(($task->status) === 7)
                         発注書上長確認中
-                    @elseif(($task->status) === 8)
+                    @elseif(($task->status) === 6)
                         発注書パートナー依頼前
-                    @elseif(($task->status) === 9)
+                    @elseif(($task->status) === 7)
                         発注書パートナー確認中
-                    @elseif(($task->status) === 10)
+                    @elseif(($task->status) === 8)
+                        作業前
+                    @elseif(($task->status) === 9)
                         作業中
+                    @elseif(($task->status) === 10)
+                        検品中
                     @elseif(($task->status) === 11)
-                        請求書依頼中
+                        請求書作成前
                     @elseif(($task->status) === 12)
-                        請求書確認中
+                        請求書下書き
                     @elseif(($task->status) === 13)
-                        完了
+                        請求書担当者確認前
                     @elseif(($task->status) === 14)
+                        請求書担当者確認中
+                    @elseif(($task->status) === 15)
+                        請求書経理提出
+                    @elseif(($task->status) === 16)
+                        請求書経理承認済み
+                    @elseif(($task->status) === 17)
+                        完了
+                    @elseif(($task->status) === 18)
                         キャンセル
                     @endif
                 </dd>
@@ -214,15 +222,34 @@
         </div>
         
         <div class="actionButton">
-            @if($task->status === 1 && in_array($company_user->id, $company_user_ids))
+            @if($task->status === 0)
                 <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="1">
+                    <button type="submit" class="done">上長に確認を依頼する</button>
+                </form>
+            @elseif($task->status === 1 && in_array($company_user->id, $company_user_ids))
+                <!-- <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="2">
                     <button type="submit" class="done">上長に確認を依頼する</button>
+                </form> -->
+                <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="0">
+                    <button type="submit" class="undone">タスクを承認しない</button>
+                </form>
+                <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="2">
+                    <button type="submit" class="done">タスクを承認する</button>
                 </form>
             @elseif($task->status === 2 && $task->superior->id === $company_user->id)
-                <form action="{{ route('company.task.status.change') }}" method="POST">
+                <!-- <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="1">
@@ -233,15 +260,15 @@
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="3">
                     <button type="submit" class="done">タスクを承認する</button>
-                </form>
-            @elseif($task->status === 3 && in_array($company_user->id, $company_user_ids))
+                </form> -->
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="4">
+                    <input type="hidden" name="status" value="3">
                     <button type="submit" class="done">パートナーに依頼する</button>
                 </form>
-            @elseif($task->status === 5 && in_array($company_user->id, $company_user_ids))
+         
+            @elseif($task->status === 4 && in_array($company_user->id, $company_user_ids))
                 <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="done">発注書を作成する</a>
             @elseif($task->status === 6 && in_array($company_user->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">

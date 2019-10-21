@@ -25,7 +25,7 @@ class PartnerTaskStatus implements Rule
      */
     public function passes($attribute, $value)
     {
-        return in_array($value, ['3', '5', '8', '10', '12']);
+        return in_array($value, ['0', '4', '5', '8', '10', '12']);
     }
 
     /**
