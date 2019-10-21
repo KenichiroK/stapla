@@ -389,7 +389,7 @@ $(function(){
                             </div>
                         </div>
                         <!-- 報酬形式 -->
-                        <div class="item-container fee">
+                        <!-- <div class="item-container fee">
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     報酬形式
@@ -403,7 +403,7 @@ $(function(){
                                     <span class="radio01-parts"></span>
                                 </label>
                             </div>
-                        </div>
+                        </div> -->
                         
                         <!-- 発注単価・件数 -->
                         <div class="item-container order__unit-number">
