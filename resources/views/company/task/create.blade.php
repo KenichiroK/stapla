@@ -403,7 +403,6 @@ $(function(){
                                     <span class="radio01-parts"></span>
                                 </label>
                             </div>
-                            
                         </div>
                         
                         <!-- 発注単価・件数 -->
@@ -438,7 +437,7 @@ $(function(){
                                         </div>
                                     </div>  
                                     <!-- 件数 -->
-                                    <div class="item-name-wrapper numbername">
+                                    <!-- <div class="item-name-wrapper numbername">
                                         <div class="item-name">
                                             件数
                                         </div>
@@ -461,7 +460,7 @@ $(function(){
                                         <div class="aux-text">
                                             件
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

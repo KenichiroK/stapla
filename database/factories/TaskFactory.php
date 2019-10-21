@@ -22,7 +22,7 @@ $factory->define(App\Models\Task::class, function (Faker $faker) {
         'purchaseorder'     => true,
         'invoice'           => true,
         'budget'            => $faker->randomElement([10000, 50000, 100000]),
-        'tax'               => 0.08,
+        'tax'               => 0.10,
         'price'             => $faker->randomElement([10000, 50000, 100000]),
         'cases'             => $faker->randomElement([1, 1, 1, 2, 3]),
         'comment'           => $faker->sentence,

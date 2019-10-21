@@ -141,14 +141,14 @@
                     </div>
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     報酬形式
                 </dt>
                 <dd>
                     固定
                 </dd>
-            </dl>
+            </dl> -->
             <dl>
                 <dt>
                     発注単価<span>(税抜)</span>
@@ -157,14 +157,14 @@
                     {{ number_format($task->price) }}円
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     件数
                 </dt>
                 <dd>
                     {{ $task->cases }}件
                 </dd>
-            </dl>
+            </dl> -->
             <dl>
                 <dt>
                     発注額

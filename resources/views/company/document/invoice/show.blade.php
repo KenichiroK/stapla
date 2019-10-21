@@ -121,23 +121,23 @@
                             @if ($invoice->tax === 0)
                                 <p>{{ number_format($total_sum) }}</p>
                             @else
-                                <p>{{ number_format($total_sum / 1.08) }}</p>
+                                <p>{{ number_format($total_sum / 1.10) }}</p>
                             @endif
                         </div>
         
                         <div class="section-container">
                             <p class="sub-column">消費税</p>
                             @if ($invoice->tax === 0)
-                                <p>{{ number_format($total_sum * 0.08) }}</p>
+                                <p>{{ number_format($total_sum * 0.10) }}</p>
                             @else
-                                <p>{{ number_format($total_sum / 1.08 * 0.08) }}</p>
+                                <p>{{ number_format($total_sum / 1.10 * 0.10) }}</p>
                             @endif
                         </div>
         
                         <div class="section-container">
                             <p class="sub-column">総額</p>
                             @if ($invoice->tax === 0)
-                                <p class="total-text">{{ number_format($total_sum * 1.08) }}</p>
+                                <p class="total-text">{{ number_format($total_sum * 1.10) }}</p>
                             @else
                                 <p class="total-text">{{ number_format($total_sum) }}</p>
                             @endif
@@ -267,23 +267,23 @@
 						@if ($invoice->tax === 0)
 							<p>{{ number_format($total_sum) }}</p>
 						@else
-							<p>{{ number_format($total_sum / 1.08) }}</p>
+							<p>{{ number_format($total_sum / 1.10) }}</p>
 						@endif
 					</div>
 	
 					<div class="section-container">
 						<p class="sub-column">消費税</p>
 						@if ($invoice->tax === 0)
-							<p>{{ number_format($total_sum * 0.08) }}</p>
+							<p>{{ number_format($total_sum * 0.10) }}</p>
 						@else
-							<p>{{ number_format($total_sum / 1.08 * 0.08) }}</p>
+							<p>{{ number_format($total_sum / 1.10 * 0.10) }}</p>
 						@endif
 					</div>
 	
 					<div class="section-container">
 						<p class="sub-column">総額</p>
 						@if ($invoice->tax === 0)
-							<p class="total-text">{{ number_format($total_sum * 1.08) }}</p>
+							<p class="total-text">{{ number_format($total_sum * 1.10) }}</p>
 						@else
 							<p class="total-text">{{ number_format($total_sum) }}</p>
 						@endif
