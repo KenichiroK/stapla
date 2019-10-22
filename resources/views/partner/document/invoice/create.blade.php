@@ -56,22 +56,17 @@ const calculateSumPrice = (e) => {
     expencesSum += expencesNum * expencesUnitPrice;
   }
   sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
+  sum_plus_tax.textContent = `￥${Math.floor((taskSum + expencesSum)*1.10).toLocaleString()}`;
 
   // タスク予算額
   let task_taxIncludedPriceValue = document.getElementById('task_taxIncludedPrice').value;
-  console.log(task_taxIncludedPriceValue);
   task_taxIncludedPrice = Number(task_taxIncludedPriceValue);
-//   console.log(task_taxIncludedPrice);
-//   console.log(typeof task_taxIncludedPrice);
 
   // 請求書合計金額
   let invoiceAmount = document.getElementById('invoiceAmount').value;
   invoiceAmount = taskSum + expencesSum;
-//   console.log(invoiceAmount);
-//   console.log(typeof invoiceAmount);
 
   const invoiceAmount_alert = document.getElementById('invoiceAmount_alert');
-//   console.log(invoiceAmount_alert.style.color);
 
     if(task_taxIncludedPrice < invoiceAmount){
 		invoiceAmount_alert.style.display = 'block';
@@ -110,19 +105,6 @@ window.onload = () => {
   checkInvoiceDate();
   checkDeadline();
 }
-
-// 税込/税抜 表示変更
-const isTaxView = () => {
-	var taxRadio = document.getElementsByName('tax');
-	var isTaxView = document.getElementById('isTaxView');
-
-	if(taxRadio[0].checked){
-		isTaxView.textContent = `税込`;
-	} else if(taxRadio[1].checked){
-		isTaxView.textContent = `税別(10%)`;
-	}
-}
-
 </script>
 @endsection
 
@@ -264,20 +246,18 @@ const isTaxView = () => {
 								name="tax"
 								value="1"
 								id="include_tax"
-								onclick="isTaxView()"
 								{{ old('tax') === "1" ? 'checked' : '' }}
 							>
-							<label for="include_tax">税込表示</label>
+							<label for="include_tax">税込表示(10%)</label>
 							<input
 								class="radio-input"
 								type="radio"
 								name="tax"
 								value="0"
 								id="not_include_tax"
-								onclick="isTaxView()"
 								{{ old('tax') === "0" ? 'checked' : '' }}
 							>
-							<label for="not_include_tax">税別表示 (10%)</label>
+							<label for="not_include_tax">税別表示</label>
 						</div>
 						@if ($errors->has('tax'))
 							<div class="error-msg">
@@ -389,7 +369,8 @@ const isTaxView = () => {
 				</div>					
 				
 				<div class="sum-container">
-					<p id="isTaxView"></p><span id="sum">￥0</span>
+					<p>税抜<span id="sum">￥0</span></p>
+					<p>税込<span id="sum_plus_tax">￥0</span></p>
 				</div>
 			</div>
 		</div>
