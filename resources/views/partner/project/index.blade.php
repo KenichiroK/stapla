@@ -56,7 +56,7 @@
                                 @endif
                         </li>
                         <li>
-                            <span class="txt-underline">{{ $project->tasks->count() }}</span>件
+                            <span>{{ $project->tasks->count() }}</span>件
                         </li>
                         <li>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</li>
                         <li>¥{{ number_format($project->budget) }}</li>

@@ -51,7 +51,7 @@
                     </td>
                     <!-- パートナー -->
                     <!-- <td></td> -->
-                    <td><span class="underline">{{ $project->project->tasks->count() }}</span>件</td>
+                    <td><span>{{ $project->project->tasks->count() }}</span>件</td>
                     <td>
                         {{ date("Y年m月d日", strtotime($project->project->ended_at)) }}
                     </td>
