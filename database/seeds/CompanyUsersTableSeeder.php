@@ -21,7 +21,7 @@ class CompanyUsersTableSeeder extends Seeder
         //     'department'        => 'sample sample',
         //     'occupation'        => 'sample sample',
         //     'self_introduction' => 'sample sample',
-        //     'picture'           => 'public/images/default/dummy_user.jpeg',
+        //     'picture'           => 'https://dev-impro.s3-ap-northeast-1.amazonaws.com/test/docker.jpeg',
         //     'created_at'        => '2019-02-10 00:41:14',
         //     'updated_at'        => '2019-02-10 00:41:14',
         // ]);
