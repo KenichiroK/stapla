@@ -268,8 +268,10 @@
                 </form>
             @elseif($task->status === 12 && in_array($company_user->id, $company_user_ids))
                 <a href="{{ route('company.document.invoice.show', ['id' => $invoice->id]) }}" class="done">請求書を確認する</a>
-            @elseif($task->status === 13)
+            @elseif($task->status === 17)
                 <p class="non-action-text">このタスクは完了しています</p>
+            @elseif($task->status === 18)
+                <p class="non-action-text">このタスクはキャンセルされています</p>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif

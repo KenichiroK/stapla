@@ -71,8 +71,7 @@ class TaskController extends Controller
     public function create()
     {
         $company_user = Auth::user();
-        $projects = Project::where('company_id', $company_user->company_id)->get();
-       
+        $projects = Project::where('company_id', $company_user->company_id)->whereNotIn('status',[17])->get();
         
         $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
         $partners = Partner::where('company_id', $company_user->company_id)->get();

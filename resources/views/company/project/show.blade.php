@@ -197,6 +197,53 @@
                 <p id="showmore_task_btn" class="task-container__content__showmore__btn">もっと見る</p>
             </div>
         </div>
+
+        @if($projectCompany->companyUser->id === Auth::id())
+            <form onsubmit="return checkStatus()" action="{{ route('company.project.complete', ['id' => $project->id, 'status' => $project->status]) }}" name="form1" method='POST' enctype="multipart/form-data">
+                @csrf
+
+                @foreach($tasks as $task)
+                    <input type="hidden" name="taskStatus[]" value="{{ $task->status }}">
+                @endforeach
+
+                <div class="button-container">
+                    <!-- <div class="preview-button-wrapper">
+                        <button type="submit" class="preview-button-wrapper__btn button">プレビュー</button>
+                    </div> -->
+
+                    @if($project->status == 0)
+                        <div class="btn01-container">
+                            <button type="submit">完了</button>
+                            <input type="hidden" name="projectStatus" value="{{ $project->status }}">
+                        </div>
+                    @elseif($project->status == 1)
+                        <div class="btn01-container">
+                            <button type="submit">再オープン</button>
+                            <input type="hidden" name="projectStatus" value="{{ $project->status }}">
+                        </div>
+                    @endif
+                </div>
+            </form>
+        @endif
     </div>    
 </div>
+
+<script>
+    function checkStatus() {
+        const projectStatus = document.getElementsByName('projectStatus');
+
+        if(projectStatus[0].value == 0) {
+            const taskStatuses = document.getElementsByName('taskStatus[]');
+            for (i=0; i<taskStatuses.length; i++) {
+                if(taskStatuses[i].value != 17 || 18){
+                    alert(" *「全てのタスクを完了またはキャンセルしてから、プロジェクトを完了してください。」")
+                    return false;
+                }
+            };
+            alert(" *「プロジェクトを完了してよろしいですか？」")
+        } else if(projectStatus[0].value == 1){
+            alert(" *「再オープンしてよろしいですか？」")
+        }
+    };
+</script>
 @endsection
