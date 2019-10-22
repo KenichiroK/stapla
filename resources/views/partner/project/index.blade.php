@@ -44,7 +44,7 @@
                         <li class="item-list project-name">{{ $project->name }}</li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="{ $project->projectCompanies[0]->companyUser->picture }}" alt="担当者プロフィール画像">
+                                <img src="{{ $project->projectCompanies[0]->companyUser->picture }}" alt="担当者プロフィール画像">
                             </div>
                                 @if ($project->projectCompanies->count() > 1) 
                                     <p>
@@ -56,7 +56,7 @@
                                 @endif
                         </li>
                         <li>
-                            <span class="txt-underline">{{ $project->tasks->count() }}</span>件
+                            <span>{{ $project->tasks->count() }}</span>件
                         </li>
                         <li>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</li>
                         <li>¥{{ number_format($project->budget) }}</li>

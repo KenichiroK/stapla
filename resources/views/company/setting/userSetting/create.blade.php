@@ -26,7 +26,7 @@ const setPreview = (input) => {
 	<div class="menu-container">
         <ul>
 			<li><a href="{{ route('company.setting.general.create') }}">会社基本情報設定</a></li>
-			<li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li>
+			<!-- <li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li> -->
 			<li><a href="{{ route('company.setting.userSetting.create') }}" class="isActive">会社担当者設定</a></li>
 			<!-- <li><a href="{{ route('company.setting.account.create') }}">アカウント設定</a></li> -->
 			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
@@ -43,7 +43,7 @@ const setPreview = (input) => {
         <ul>
             <li>担当者名</li>
             <li>メールアドレス</li>
-            <li>パートナー依頼中</li>
+            <!-- <li>パートナー依頼中</li> -->
             <li>ステータス</li>
         </ul>
     </div>
@@ -59,7 +59,7 @@ const setPreview = (input) => {
                 </div>
             </li>
             <li>{{ $companyUser->email }}</li>
-            <li>管理者</li>
+            <!-- <li>管理者</li> -->
             <li>登録済み</li>
         </ul>
         @endforeach

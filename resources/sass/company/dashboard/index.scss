@@ -1,211 +1,206 @@
 .main-wrapper {
-	width: 100%;
-	margin: auto;
-	padding: 40px;
+    width: 100%;
+    margin: auto;
+    padding: 40px;
 
-	.title-container {
+    .title-container {
+        h3 {
+            font-weight: bold;
+            font-size: 28px;
+            font-family: "Source Sans Pro";
+            color: #43425d;
+            margin-bottom: 0;
+        }
+    }
 
-		h3 {
-			font-weight: bold;
-    		font-size: 28px;
-    		font-family: 'Source Sans Pro';
-			color: #43425d;
-			margin-bottom: 0;
-		}
-	}
+    .table-container {
+        width: 100%;
+        background-color: #fff;
+        padding: 24px 24px 0;
+        margin-top: 26px;
+        margin-bottom: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 
-	.table-container {
-		width: 100%;
-		background-color: #fff;
-		padding: 24px 24px 0;
-		margin-top: 26px;
-		margin-bottom: 60px;
-		border-radius: 4px;
-    	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
 
-		.title-container {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			margin-bottom: 24px;
+            h4 {
+                font-size: 18px;
+                color: #43425d;
+                font-weight: bold;
+                margin-bottom: 0;
+            }
+            .btn-a-container {
+                a {
+                    font-size: 11px;
+                    padding: 8px 10px;
+                    width: 112px;
+                }
+            }
+        }
 
-			h4 {
-				font-size: 18px;
-				color: #43425d;
-				font-weight: bold;
-				margin-bottom: 0;
-			}
-			.btn-a-container{
-				a {
-					font-size: 11px;
-					padding: 8px 10px;
-					width: 112px;
-				}
-			}
-		}
+        table {
+            width: 100%;
+            margin: auto;
 
-		table {
-			width: 100%;
-			margin: auto;
+            thead {
+                background-color: #f5f6fa;
+                padding: 12px;
 
-			thead {
-				background-color: #F5F6FA;
-				padding: 12px;
+                th {
+                    color: #a3a6b4;
+                    padding: 12px;
+                    font-size: 12px;
+                    text-align: center;
+                    width: 14%;
+                }
+            }
 
-				th {
-					color: #A3A6B4;
-					padding: 12px;
-					font-size: 12px;
-					text-align: center;
-					width: 14%;
-				}
-			}
+            tbody {
+                color: #4d4f5c;
+                font-family: "Source Sans Pro";
+                tr {
+                    border-bottom: 1px solid #f1f1f3;
 
-			tbody {
-				color: #4D4F5C;
-				font-family: 'Source Sans Pro';
-				tr {
-					border-bottom: 1px solid #F1F1F3;
+                    td {
+                        padding: 12px;
+                        font-size: 12px;
+                        text-align: center;
+                        vertical-align: middle;
+                        .imgbox {
+                            width: 31px;
+                            margin: 0 auto;
+                        }
 
-					td {
-						padding: 12px;
-						font-size: 12px;
-						text-align: center;
-						vertical-align: middle;
-						.imgbox{
-							width: 31px;
-							margin: 0 auto;
-						}
+                        img {
+                            border-radius: 50%;
+                            margin-bottom: 4px;
+                        }
 
-						img {
-							border-radius: 50%;
-							margin-bottom: 4px;
-						}
+                        p {
+                            margin-bottom: 0;
+                        }
+                        a {
+                            color: #43425d;
+                        }
+                    }
 
-						p {
-							margin-bottom: 0;
-						}
-						a {
-							color: #43425D;
-						}
-						.underline{
-							text-decoration: underline;
-						}
-					}
+                    .project_name {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
 
-					.project_name {
-						font-weight: bold;
-					}
-				}
-			}
-		}
-	}
+    .taskStatus-container {
+        width: 100%;
+        background-color: #fff;
+        padding: 24px;
+        margin-bottom: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 
-	.taskStatus-container {
-		width: 100%;
-		background-color: #fff;
-		padding: 24px;
-		margin-bottom: 60px;
-		border-radius: 4px;
-    	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        .title-container {
+            margin-bottom: 30px;
 
-		.title-container {
-			margin-bottom: 30px;
+            h4 {
+                font-size: 16px;
+                color: #43425d;
+                font-weight: bold;
+                margin-bottom: 0;
+            }
+        }
 
-			h4 {
-				font-size: 16px;
-				color: #43425d;
-				font-weight: bold;
-				margin-bottom: 0;
-			}
-		}
+        .section-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-		.section-container {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+            .status-card {
+                width: 10%;
+                border-right: 1px solid #e9e9f0;
 
-			.status-card {
-				width: 10%;
-				border-right: 1px solid #E9E9F0;
+                p {
+                    text-align: center;
+                    color: #43425d;
+                }
 
-				p {
-					text-align: center;
-					color: #43425d;
-				}
-	
-				.key {
-					font-size: 13px;
-					color: #C0BFD5;
-					font-weight: bold;
-					margin-bottom: 10px;
-				}
-	
-				.value {
-					font-size: 24px;
-    				font-family: 'Source Sans Pro';
-				}
-			}
+                .key {
+                    font-size: 13px;
+                    color: #c0bfd5;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
 
-			.status-card:last-child {
-				border-right: none;
-			}
-		}
-	}
-	.task-container	table thead th {	
-		width: 20%;
-	}
-	.task-container	table tbody tr {
-		td {
-			font-size: 14px;
-		}
-		td.partner p{
-			font-size: 12px;
-		}
-	}
+                .value {
+                    font-size: 24px;
+                    font-family: "Source Sans Pro";
+                }
+            }
+
+            .status-card:last-child {
+                border-right: none;
+            }
+        }
+    }
+    .task-container table thead th {
+        width: 20%;
+    }
+    .task-container table tbody tr {
+        td {
+            font-size: 14px;
+        }
+        td.partner p {
+            font-size: 12px;
+        }
+    }
 }
 
-
 .more-container__wrapper {
-	text-align: center;
-	padding: 30px 0 30px;
-	.showmore{
-		color: #43425D;
-		font-size: 13px;
-		font-weight: bold;
-		cursor: pointer;
-		position: relative;
-		width: 65px;
-		margin: 0 auto;
-	}
-	.showmore:after{
-		content: "";
-		width: 10px;
-		height: 10px;
-		border: 0px;
-		border-bottom: solid 1px #43425D;
-		border-right: solid 1px #43425D;
-		-webkit-transform: rotate(45deg);
-		transform: rotate(45deg);
-		position: absolute;
-		top: 1px;
-		right: -18px;
-	}
+    text-align: center;
+    padding: 30px 0 30px;
+    .showmore {
+        color: #43425d;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+        width: 65px;
+        margin: 0 auto;
+    }
+    .showmore:after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border: 0px;
+        border-bottom: solid 1px #43425d;
+        border-right: solid 1px #43425d;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: absolute;
+        top: 1px;
+        right: -18px;
+    }
 }
 
 // ステータス色分け
-.done{
-	color: #00CE47;
-	font-weight: bold;
-	margin-bottom: 0;
+.done {
+    color: #00ce47;
+    font-weight: bold;
+    margin-bottom: 0;
 }
-.cancel{
-	color: #FF0031;
-	font-weight: bold;
-	margin-bottom: 0;
+.cancel {
+    color: #ff0031;
+    font-weight: bold;
+    margin-bottom: 0;
 }
 .default {
-	color: #7B7A9A;
-	font-weight: bold;
-	margin-bottom: 0;
+    color: #7b7a9a;
+    font-weight: bold;
+    margin-bottom: 0;
 }

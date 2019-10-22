@@ -110,7 +110,7 @@ $pref = array(
 	<div class="menu-container">
 		<ul>
 			<li><a href="{{ route('company.setting.general.create') }}" class="isActive">会社基本情報設定</a></li>
-			<li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li>
+			<!-- <li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li> -->
 			<li><a href="{{ route('company.setting.userSetting.create') }}">会社担当者設定</a></li>
 			<!-- <li><a href="{{ route('company.setting.account.create') }}">アカウント設定</a></li> -->
 			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
