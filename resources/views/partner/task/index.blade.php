@@ -51,7 +51,7 @@
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
                 <li class="all isActive"><a href="">タスク一覧</a></li>
-                <li class="done"><a href="">完了したタスク</a></li>
+                <li class="done"><a href="{{ route('partner.task.status', ['task_status' => 17 ]) }}">完了したタスク</a></li>
             </ul>
             <div class="btn-a-container">
                 <a href="">タスク作成</a>

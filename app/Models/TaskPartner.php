@@ -5,7 +5,7 @@ class TaskPartner extends BaseUuid
     protected $table = 'task_partners';
     
     protected $fillable = [
-        'user_id', 'task_id'
+        'partner_id', 'task_id'
     ];
     public function task()
     {
@@ -13,6 +13,6 @@ class TaskPartner extends BaseUuid
     }
     public function partner()
     {
-        return $this->belongsTo('App\Models\Partner', 'user_id', 'id');
+        return $this->belongsTo('App\Models\Partner', 'partner_id', 'id');
     }
 }

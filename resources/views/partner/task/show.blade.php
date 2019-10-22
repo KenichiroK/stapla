@@ -200,8 +200,17 @@
                     <input type="hidden" name="status" value="4">
                     <button type="submit" class="done">タスク依頼を受ける</button>
                 </form>
-            @elseif($task->status === 9 && $task->partner->id === $partner->id)
+            @elseif($task->status === 7 && $task->partner->id === $partner->id)
                 <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
+            @elseif($task->status === 8 && $task->partner->id === $partner->id)
+                <form action="{{ route('partner.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="9">
+                    <button type="submit" class="done">作業に入る</button>
+                </form>
+            @elseif($task->status === 9 && $task->partner->id === $partner->id)
+                <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">納品を行う</a>
             @elseif($task->status === 11 && $task->partner->id === $partner->id)
                 <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
             @elseif($task->status === 13)

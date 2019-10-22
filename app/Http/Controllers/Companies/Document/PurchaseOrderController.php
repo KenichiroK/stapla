@@ -68,6 +68,6 @@ class PurchaseOrderController extends Controller
             }
         }
 
-        return view('company/document/purchaseOrder/show', compact('purchaseOrder', 'company_user', 'company_user_ids'));
+        return view('company/document/purchaseOrder/show', compact('purchaseOrder', 'company_user', 'company_user_ids', 'task'));
     }
 }

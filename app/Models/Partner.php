@@ -37,7 +37,7 @@ class Partner extends Authenticatable
     
     public function taskPartners()
     {
-        return $this->hasMany('App\Models\TaskPartner', 'user_id', 'id');
+        return $this->hasMany('App\Models\TaskPartner', 'partner_id', 'id');
     }
 
     public function projectPartners()
