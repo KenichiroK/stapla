@@ -21,7 +21,6 @@ class CreatePartnerInvoicesTable extends Migration
             $table->string('deposit_type');
             $table->integer('account_number');
             $table->string('account_holder');
-            $table->string('mark_image');
             $table->timestamps();
 
             $table->foreign('partner_id')->references('id')->on('partners');
