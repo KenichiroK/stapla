@@ -35,7 +35,6 @@ class PartnerInvoiceRequest extends FormRequest
             'deposit_type'          => 'required',
             'account_number'        => 'required',
             'account_holder'        => 'required',
-            'mark_image'            => 'required',
         ];
     }
 
@@ -52,7 +51,6 @@ class PartnerInvoiceRequest extends FormRequest
             'deposit_type.required'          => "預金種類は必須項目です。",
             'account_number.required'        => "口座番号は必須項目です。",
             'account_holder.required'        => "口座名義は必須項目です。",
-            'mark_image.required'            => "請求書印は必須項目です。",
         ];
     }
 }

@@ -12,6 +12,5 @@ $factory->define(App\Models\PartnerInvoice::class, function (Faker $faker) {
         'deposit_type' => '普通',
         'account_number' => '1234567',
         'account_holder' => 'ヤマダ タロウ',
-        'mark_image' => 'public/images/default/dummy_user.jpeg',
     ];
 });
