@@ -44,7 +44,7 @@
                         <li class="item-list project-name">{{ $project->name }}</li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="{ $project->projectCompanies[0]->companyUser->picture }}" alt="担当者プロフィール画像">
+                                <img src="{{ $project->projectCompanies[0]->companyUser->picture }}" alt="担当者プロフィール画像">
                             </div>
                                 @if ($project->projectCompanies->count() > 1) 
                                     <p>
