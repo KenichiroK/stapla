@@ -45,7 +45,7 @@
                             <p>{{ $project->projectCompanies[0]->companyUser->name }}</p>
                         @endif
                     </td>
-                    <td><span class="underline">{{ $project->tasks->count() }}</span>件</td>
+                    <td><span>{{ $project->tasks->count() }}</span>件</td>
                     <td>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</td>
                     <td>¥{{ $project->budget }}</td>
                     <td>¥{{ $project->price }}</td>
