@@ -25,7 +25,10 @@ class TaskController extends Controller
     public function statusIndex($task_status)
     {
         $partner = Auth::user();
-        return $taskPartners = TaskPartner::where('partner_id', $partner->id)->get();
+        $alltasks = Task::where('company_id', $partner->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+
+        $taskPartners = TaskPartner::where('partner_id', $partner->id)->get();
+        
         $status_arr = [];
         for ($i = 0; $i < 19; $i++) {
             $status_arr[strval($i)] = 0;
@@ -61,7 +64,12 @@ class TaskController extends Controller
             'キャンセル', 
         ];
 
-        // $tasks = Task::where('')
+        $tasks = Task::where('company_id', $partner->company_id)
+                                ->where('status', $task_status)
+                                ->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])
+                                ->get();
+
+        return view('partner/task/index', compact('partner', 'tasks', 'statusName_arr', 'status_arr'));
     }
 
     public function show($id)

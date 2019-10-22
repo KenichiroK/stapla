@@ -50,12 +50,10 @@
         <!-- Task -->
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
-                <li class="all isActive"><a href="">タスク一覧</a></li>
+                <li class="all isActive"><a href="{{ route('partner.task.index') }}">タスク一覧</a></li>
                 <li class="done"><a href="{{ route('partner.task.status', ['task_status' => 17 ]) }}">完了したタスク</a></li>
             </ul>
-            <div class="btn-a-container">
-                <a href="">タスク作成</a>
-            </div>
+
             <div class="task-container__wrapper">
                 <!-- タイトル -->
                     <div class="item-name-select-wrapper">
