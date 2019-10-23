@@ -235,14 +235,15 @@
         if(projectStatus[0].value == 0) {
             const taskStatuses = document.getElementsByName('taskStatus[]');
             for (i=0; i<taskStatuses.length; i++) {
-                if(taskStatuses[i].value != 17 || 18){
-                    alert(" *「全てのタスクを完了またはキャンセルしてから、プロジェクトを完了してください。」")
+                console.log(taskStatuses[i].value)
+                if(taskStatuses[i].value != 17 && taskStatuses[i].value != 18){
+                    alert("「全てのタスクを完了またはキャンセルしてから、プロジェクトを完了してください。」")
                     return false;
                 }
             };
-            alert(" *「プロジェクトを完了してよろしいですか？」")
+            alert("「プロジェクトを完了してよろしいですか？」")
         } else if(projectStatus[0].value == 1){
-            alert(" *「再オープンしてよろしいですか？」")
+            alert("「再オープンしてよろしいですか？」")
         }
     };
 </script>
