@@ -20,7 +20,7 @@ class ProjectController extends Controller
     public function index()
     {
         $companyUser = Auth::user();
-        $projects = Project::where('company_id', $companyUser->company_id)->get();        
+        $projects = Project::where('company_id', $companyUser->company_id)->where('status', '!=', 1)->get();        
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
@@ -33,7 +33,7 @@ class ProjectController extends Controller
     public function doneIndex()
     {
         $companyUser = Auth::user();
-        $projects = Project::where('company_id', $companyUser->company_id)->get();        
+        $projects = Project::where('company_id', $companyUser->company_id)->where('status', 1)->get();
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
@@ -96,5 +96,19 @@ class ProjectController extends Controller
         $tasks = Task::where('project_id',$project->id)->get();
         
         return view('/company/project/show', compact('project','tasks', 'companyUser'));
+    }
+
+    public function complete($id, $status)
+    {
+        if($status == 0) {
+            $project = Project::findOrFail($id);
+            $project->status = 1;
+            $project->save();
+        } elseif($status == 1) {
+            $project = Project::findOrFail($id);
+            $project->status = 0;
+            $project->save();
+        }
+        return redirect()->route('company.project.index');
     }
 }
