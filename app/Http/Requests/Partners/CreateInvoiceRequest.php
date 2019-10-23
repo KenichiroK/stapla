@@ -34,9 +34,9 @@ class CreateInvoiceRequest extends FormRequest
             'item_unit_price.*'     => 'bail | required_with:item_name.*,item_num.*,item_total.* | digits_between:1, 10',
             'item_total.*'          => 'bail | required_with:item_name.*,item_num.*,item_unit_price.* | digits_between:1, 10',
             // 'expences_name.*'       => 'bail | required_with:expences_num.*,expences_unit_price.*,expences_total.*',
-            // 'expences_num.*'        => 'bail | required_with:expences_name.*,expences_unit_price.*,expences_total.* | digits_between:1, 10',
-            // 'expences_unit_price.*' => 'bail | required_with:expences_name.*,expences_num.*,expences_total.*',
-            // 'expences_total.*'      => 'bail | required_with:expences_name.*,expences_num.*,expences_unit_price.*',
+            'expences_num.*'        => 'bail | nullable | digits_between:1, 10 | required_with:expences_name.*',
+            'expences_unit_price.*' => 'bail | nullable | numeric | required_with:expences_name.*',
+            'expences_total.*'      => 'bail | nullable | numeric | required_with:expences_name.*',
         ];
     }
 
