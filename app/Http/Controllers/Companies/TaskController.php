@@ -13,8 +13,6 @@ use App\Models\TaskPartner;
 use App\Models\PurchaseOrder;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
-
-
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -22,8 +20,10 @@ class TaskController extends Controller
     public function index()
     {
         $company_user = Auth::user();
-        $tasks = Task::where('company_id', $company_user->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
-            
+        $tasks = Task::where('company_id', $company_user->company_id)
+                                ->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])
+                                ->get();
+
         $status_arr = [];
         for ($i = 0; $i < 19; $i++) {
             $status_arr[strval($i)] = 0;
@@ -65,7 +65,9 @@ class TaskController extends Controller
     public function statusIndex($task_status)
     {
         $company_user = Auth::user();
-        $alltasks = Task::where('company_id', $company_user->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+        $alltasks = Task::where('company_id', $company_user->company_id)
+                                    ->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])
+                                    ->get();
         $status_arr = [];
         for ($i = 0; $i < 19; $i++) {
             $status_arr[strval($i)] = 0;
@@ -98,9 +100,9 @@ class TaskController extends Controller
             '経理承認済',
             // その他
             '完了',
-            'キャンセル', 
+            'キャンセル',
         ];
- 
+
         $tasks = Task::where('company_id', $company_user->company_id)
                                 ->where('status', $task_status)
                                 ->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])
@@ -119,95 +121,41 @@ class TaskController extends Controller
         $projects = Project::where('company_id', $companyUser->company_id)->get();
         $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
         $partners = Partner::where('company_id', $companyUser->company_id)->get();
-        $request = null;
-        return view('company/task/create', compact('request', 'projects','companyUsers', 'partners'));
-    }
-
-    public function recreate(Request $request)
-    {
-        $companyUser = Auth::user();
-        $projects = Project::where('company_id', $companyUser->company_id)->get();
-        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
-        $partners = Partner::where('company_id', $companyUser->company_id)->get();
-        return view('company/task/create', compact('request', 'projects','companyUsers', 'partners'));
-    }
-    
-    // 作成 & プレビュー表示
-    public function store(CreateTaskRequest $request)
-    {
-        $companyUser = Auth::user();
-        $project = Project::findOrFail($request->project_id);
-        // 担当者
-        $companyUser = CompanyUser::findOrFail($request->company_user_id);
-        // 上長
-        if(isset($request->superior_id)){
-            $superiorUser = CompanyUser::findOrFail($request->superior_id);
-        } else{
-            $superiorUser = null;
-        }
-        // 経理
-        if(isset($request->accounting_id)){
-            $accountingUser = CompanyUser::findOrFail($request->accounting_id);
-        } else{
-            $accountingUser = null;
-        }
-        // パートナー
-        $partner = Partner::findORFail($request->partner_id);
-        // タスクステータス
-        $task_status = 0;
-        return view('company.task.preview', compact('request', 'project', 'companyUser', 'superiorUser', 'accountingUser', 'partner', 'task_status'));
+        return view('company/task/create', compact('projects','companyUsers', 'partners'));
     }
 
     // 保存
-    public function previewStore(Request $request)
+    public function store(CreateTaskRequest $request)
     {
-        switch($request->input('backOrSave')){
-            case 'back':
-            $companyUser = Auth::user();
-            $projects = Project::where('company_id', $companyUser->company_id)->get();
-            $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
-            $partners = Partner::where('company_id', $companyUser->company_id)->get();
-            // return redirect()->route('company.task.create', compact('request'));
-            return redirect()->route('company.task.recreate', [$request]);
-            break;
+        $task = new Task;
+        $task->project_id      = $request->project_id;
+        $company_id = Auth::user()->company_id;
+        $task->company_id      = $company_id;
+        $task->superior_id     = $request->superior_id;
+        $task->accounting_id   = $request->accounting_id;
+        $task->partner_id      = $request->partner_id;
+        $task->name            = $request->task_name;
+        $task->content         = $request->task_content;
+        $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
+        $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
+        $task->status          = 1;
+        $task->purchaseorder   = false;
+        $task->invoice         = false;
+        $task->budget          = $request->budget;
+        $task->tax             = 0.1;
+        $task->price           = $request->price;
+        $task->cases           = 1;
+        $task->comment         = $request->comment;
+        $task->inspection_date = $request->inspection_date;
+        $task->fee_format      = "固定";
+        $task->save();
+        $taskCompany = new TaskCompany;
+        $taskCompany->user_id = $request->company_user_id;
+        $task_id = $task->id;
+        $taskCompany->task_id = $task_id;
+        $taskCompany->save();
 
-            case 'save':
-                $task = new Task;
-                $task->project_id      = $request->project_id;
-                $user = Auth::user();
-                $company_id = $user->company_id;
-                $task->company_id      = $company_id;
-                $task->superior_id     = $request->superior_id;
-                $task->accounting_id   = $request->accounting_id;
-                $task->partner_id      = $request->partner_id;
-                $task->name            = $request->task_name;
-                $task->content         = $request->task_content;
-                $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
-                $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
-                $task->status          = 1;
-                $task->purchaseorder   = false;
-                $task->invoice         = false;
-                $task->budget          = $request->budget;
-                $task->tax             = 0.08;
-                $task->price           = $request->price;
-                $task->cases           = $request->cases;
-                $task->comment         = $request->comment;
-                $task->inspection_date = $request->inspection_date;
-                $task->fee_format      = $request->fee_format;
-                $task->delivery_format = $request->delivery_format;
-                $task->payment_terms   = $request->payment_terms;
-                $task->rating          = $request->rating;
-                $task->save();
-        
-                $taskCompany = new TaskCompany;
-                $taskCompany->user_id = $request->company_user_id;
-                $task_id = $task->id;
-                $taskCompany->task_id = $task_id;
-                $taskCompany->save();
-        
-                return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
-            break;
-        }
+        return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
     }
 
     public function show($id)

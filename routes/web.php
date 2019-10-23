@@ -135,7 +135,6 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
 			// task-create
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-		Route::get('/task/recreate', 'Companies\TaskController@recreate')->name('company.task.recreate');
 		Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.store');
 			// task-preview
 		Route::post('/task/preview', 'Companies\TaskController@previewStore')->name('company.task.previewStore');
