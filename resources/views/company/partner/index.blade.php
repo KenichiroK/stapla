@@ -48,11 +48,11 @@
                             </div>
                             
                         </div>
-                        <div class="main-content__edit-icons">
+                        <!-- <div class="main-content__edit-icons">
                             <div>
                                 <img src="{{ env('AWS_URL') }}/common/edit.png" alt="">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

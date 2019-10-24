@@ -77,6 +77,6 @@
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    @yield('pdf-js')
+    @yield('asset-js')
 </body>
 </html>

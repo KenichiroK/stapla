@@ -50,8 +50,8 @@
         <!-- Task -->
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
-                <li class="all isActive"><a href="">タスク一覧</a></li>
-                <li class="done"><a href="">完了したタスク</a></li>
+                <li id="non_complete_label" class="all"><a href="">タスク一覧</a></li>
+                <li id="complete_label" class="done"><a href="">完了したタスク</a></li>
             </ul>
             <div class="btn-a-container">
                 <a href="">タスク作成</a>
@@ -159,4 +159,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section("asset-js")
+    <script src="{{ asset('js/common/task-status.js') }}" defer></script>
 @endsection

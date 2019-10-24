@@ -37,6 +37,14 @@ mix.js(
     "public/js/pdf.js"
 );
 
+mix.js(
+    [
+        //change label of task_index
+        "resources/js/common/task-status.js"
+    ],
+    "public/js/common/task-status.js"
+);
+
 mix.sass(
     "resources/sass/company/common/index.scss",
     "public/css/company/common"

@@ -30,17 +30,6 @@ class InvoiceController extends Controller
         if ($partner_invoice) {
             $time = date("Y_m_d_H_i_s");
             $partner_invoice->update($request->all());
-            if ($request->mark_image) {
-                $partner_invoice->mark_image = $request->file('mark_image')->storeAs('public/images/partner/invoice_mark', $time.'_'.Auth::user()->id . '.png'); 
-                $partner_invoice->save();  
-            }
-
-            if($request->mark_image) {
-                $picture          = $request->mark_image;
-                $pathPicture     = \Storage::disk('s3')->putFileAs("invoice", $picture,$time.'_'.$auth_id .'.'. $picture->getClientOriginalExtension(), 'public');
-                $partner_invoice->mark_image = \Storage::disk('s3')->url($pathPicture);
-                $partner_invoice->save();
-            }
 
             $completed = '変更を保存しました。';
 
@@ -55,7 +44,6 @@ class InvoiceController extends Controller
         $new_partner_invoice->deposit_type          = $request->deposit_type;
         $new_partner_invoice->account_number        = $request->account_number;
         $new_partner_invoice->account_holder        = $request->account_holder;
-        $new_partner_invoice->mark_image            = $request->mark_image->storeAs('public/images/partner/invoice_mark', $time.'_'.Auth::user()->id . '.png');
         $new_partner_invoice->save();
 
         $partner_invoice = $new_partner_invoice;
