@@ -65,6 +65,7 @@ class InvoiceController extends Controller
         $partner = Auth::user();
         $invoice = Invoice::findOrFail($id);
         $task = Task::findOrFail($invoice->task_id);
+        $companyUsers = CompanyUser::where('company_id', $partner->company_id)->get();
         $total_sum = 0;
         if ($partner->id !== $invoice->partner_id) {
             return 'no data';
@@ -81,6 +82,6 @@ class InvoiceController extends Controller
             }
         }
 
-        return view('/partner/document/invoice/show', compact('partner', 'invoice', 'task', 'total_sum'));
+        return view('/partner/document/invoice/show', compact('partner', 'companyUsers', 'invoice', 'task', 'total_sum'));
     }
 }

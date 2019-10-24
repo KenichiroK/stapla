@@ -62,10 +62,8 @@ class PurchaseOrderController extends Controller
         $task = Task::findOrFail($purchaseOrder->task_id);
         $company_user = Auth::user();
         $company_user_ids = array();
-        if ($task->taskCompanies) {
-            foreach($task->taskCompanies as $companyUser) {
-                array_push($company_user_ids, $companyUser->companyUser->id);
-            }
+        if ($task->companyUser) {
+            array_push($company_user_ids, $task->companyUser->id);
         }
 
         return view('company/document/purchaseOrder/show', compact('purchaseOrder', 'company_user', 'company_user_ids', 'task'));

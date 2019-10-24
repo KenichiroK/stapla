@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateDeliverLogsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('deliver_logs', function (Blueprint $table) {
@@ -22,11 +17,6 @@ class CreateDeliverLogsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('deliver_logs');

@@ -308,7 +308,7 @@
 		</div>
 	</div>
 ​
-	@if($task->status === 12 && in_array($company_user->id, $company_user_ids))
+	@if($task->status === 13 && in_array($company_user->id, $company_user_ids))
 	<div class="actionButton">
 		<form action="{{ route('company.task.status.change') }}" method="POST">
 		@csrf
@@ -321,13 +321,32 @@
 		<form action="{{ route('company.task.status.change')}}" method="POST">
 		@csrf
 			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+			<input type="hidden" name="status" value="15">
+			<div class="button-container">
+				<button class="done" type="submit">経理に送信</button>
+			</div>
+		</form>
+	</div>
+	@elseif($task->status === 15 && $task->accounting->id === $company_user->id)
+	<div class="actionButton">
+		<form action="{{ route('company.task.status.change') }}" method="POST">
+		@csrf
+			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 			<input type="hidden" name="status" value="13">
+			<div class="button-container">
+				<button class="undone" type="submit">請求書を拒否する</button>
+			</div>
+		</form>
+		<form action="{{ route('company.task.status.change')}}" method="POST">
+		@csrf
+			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+			<input type="hidden" name="status" value="16">
 			<div class="button-container">
 				<button class="done" type="submit">請求書を承認する</button>
 			</div>
 		</form>
 	</div>
-	@elseif($task->status > 12 && in_array($company_user->id, $company_user_ids))
+	@elseif($task->status > 14 && in_array($company_user->id, $company_user_ids))
 	<p class="send-done">この請求書は承認済みです</p>
 	@else
 	<p class="send-done">必要なアクションはありません</p>

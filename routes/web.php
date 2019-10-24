@@ -64,6 +64,10 @@ Route::group(['prefix' => 'partner'], function(){
 		
 		// task status change
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
+
+		// Deliver
+		Route::get('/deliver/{task_id}', 'Partners\DeliverController@create')->name('partner.deliver.create');
+		Route::post('/deliver', 'Partners\DeliverController@store')->name('partner.deliver.store');
 		
 		// profile
 		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.setting.profile.create');

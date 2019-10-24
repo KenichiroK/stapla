@@ -208,11 +208,18 @@
                     <button type="submit" class="done">作業に入る</button>
                 </form>
             @elseif($task->status === 9 && $task->partner->id === $partner->id)
-                <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">納品を行う</a>
+                <form action="{{ route('partner.deliver.store') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="10">
+                    <button type="submit" class="done">納品する</button>
+                </form>
             @elseif($task->status === 11 && $task->partner->id === $partner->id)
                 <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
-            @elseif($task->status === 13)
+            @elseif($task->status === 17)
                 <p class="non-action-text">このタスクは完了しています</p>
+            @elseif($task->status === 18)
+                <p class="non-action-text">このタスクはキャンセルされました</p>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif
