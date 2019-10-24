@@ -12,39 +12,6 @@
             <div class="page-title">書類一覧</div>
         </div>
         <div>
-            <div class="main-container">
-                <div class="main-container__wrapper">
-                    <div class="item-name-wrapper">
-                        <div class="item-name-wrapper__item-name">書類</div>
-                    </div>
-                    <div class="table-container">
-                        <table class="document-table">
-                            <tr class="head-row">
-                                <th class="icon-th"></th>
-                                <th>書類</th>
-                                <th>他依頼中</th>
-                                <th>パートナー依頼中</th>
-                                <th>完了</th>
-                            </tr>
-                            <tr class="data-row">
-                                <td><div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div></td>
-                                <td class="doc-title">発注書</td>
-                                <td>{{ $purchaseOrders_1status->count() }}件</td>
-                                <td>{{ $purchaseOrders_2status->count() }}件</td>
-                                <td>{{ $purchaseOrders_3status->count() }}件</td>
-                            </tr>
-                            <tr class="data-row">
-                                <td><div class="icon-imgbox"><img src="{{ asset('images/invoice.png') }}" alt=""></div></td>
-                                <td class="doc-title">請求書</td>
-                                <td>{{ $invoices_1status->count() }}件</td>
-                                <td>{{ $invoices_2status->count() }}件</td>
-                                <td>{{ $invoices_3status->count() }}件</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
              <!-- 発注書 -->
              <div class="main-container">
                 <div class="main-container__wrapper">
