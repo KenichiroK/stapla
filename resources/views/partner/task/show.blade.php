@@ -42,14 +42,12 @@
                     担当者
                 </dt>
                 <dd class="flex01">
-                @foreach($task->taskCompanies as $companyUser)
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="{{ $companyUser->companyUser->picture }}" alt="担当者プロフィール画像">
+                            <img src="{{ $task->companyUser->picture }}" alt="担当者プロフィール画像">
                         </div>
-                        <p>{{ $companyUser->companyUser->name }}</p>
+                        <p>{{ $task->companyUser->name }}</p>
                     </div>
-                @endforeach
                 </dd>
             </dl>
             <dl>

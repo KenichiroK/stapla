@@ -8,8 +8,6 @@ use App\Models\Task;
 use App\Models\Project;
 use App\Models\Partner;
 use App\Models\CompanyUser;
-use App\Models\TaskCompany;
-use App\Models\TaskPartner;
 use App\Models\PurchaseOrder;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
@@ -21,7 +19,7 @@ class TaskController extends Controller
     {
         $company_user = Auth::user();
         $tasks = Task::where('company_id', $company_user->company_id)
-                                ->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])
+                                ->with(['project', 'partner', 'taskRoleRelation'])
                                 ->get();
 
         $status_arr = [];
@@ -66,7 +64,7 @@ class TaskController extends Controller
     {
         $company_user = Auth::user();
         $alltasks = Task::where('company_id', $company_user->company_id)
-                                    ->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])
+                                    ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
                                     ->get();
         $status_arr = [];
         for ($i = 0; $i < 19; $i++) {
@@ -105,7 +103,7 @@ class TaskController extends Controller
 
         $tasks = Task::where('company_id', $company_user->company_id)
                                 ->where('status', $task_status)
-                                ->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])
+                                ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
                                 ->get();
         return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'company_user'));
     }
@@ -131,6 +129,7 @@ class TaskController extends Controller
         $task->project_id      = $request->project_id;
         $company_id = Auth::user()->company_id;
         $task->company_id      = $company_id;
+        $task->company_user_id = $request->company_user_id;
         $task->superior_id     = $request->superior_id;
         $task->accounting_id   = $request->accounting_id;
         $task->partner_id      = $request->partner_id;
@@ -145,15 +144,8 @@ class TaskController extends Controller
         $task->tax             = 0.1;
         $task->price           = $request->price;
         $task->cases           = 1;
-        $task->comment         = $request->comment;
-        $task->inspection_date = $request->inspection_date;
         $task->fee_format      = "固定";
         $task->save();
-        $taskCompany = new TaskCompany;
-        $taskCompany->user_id = $request->company_user_id;
-        $task_id = $task->id;
-        $taskCompany->task_id = $task_id;
-        $taskCompany->save();
 
         return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
     }
@@ -167,14 +159,12 @@ class TaskController extends Controller
         $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
 
         $company_user_ids = array();
-        if ($task->taskCompanies) {
-            foreach($task->taskCompanies as $companyUser) {
-                array_push($company_user_ids, $companyUser->companyUser->id);
-            }
+        if ($task->companyUser) {
+            array_push($company_user_ids, $task->companyUser->id);
         }
 
         $partners = Partner::where('company_id', $company_user->company_id)->get();
 
-        return view('/company/task/show', compact('task', 'project_count', 'companyUsers', 'partners', 'company_user', 'purchaseOrder', 'invoice', 'company_user_ids'));
+        return view('/company/task/show', compact('task', 'project_count', 'company_user', 'companyUsers', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids'));
     }
 }

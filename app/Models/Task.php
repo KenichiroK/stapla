@@ -6,17 +6,20 @@ class Task extends BaseUuid
     protected $table = 'tasks';
     
     protected $fillable = [
-        'project_id', 'company_id', 'partner_id', 'superior_id',  'accounting_id',  'name', 'content', 'started_at', 'ended_at','status', 
+        'company_id', 'project_id', 'company_user_id', 'partner_id', 'superior_id',
+        'accounting_id', 'name', 'content', 'started_at', 'ended_at','status', 
         'purchaseorder', 'invoice','budget','price', 'task', 'comment', 'inspection_date', 'fee_format', 
         'delivery_format', 'payment_terms', 'rating', 'rating_comment', 'remarks'
     ];
-    public function project(){
+
+    public function project()
+    {
         return $this->belongsTo('App\Models\Project', 'project_id', 'id');
     }
 
-    public function taskCompanies()
+    public function companyUser()
     {
-        return $this->hasMany('App\Models\TaskCompany', 'task_id', 'id');
+        return $this->belongsTo('App\Models\CompanyUser', 'company_user_id', 'id');
     }
 
     public function partner()
