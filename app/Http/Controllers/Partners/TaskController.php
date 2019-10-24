@@ -10,7 +10,6 @@ use App\Models\TaskPartner;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller

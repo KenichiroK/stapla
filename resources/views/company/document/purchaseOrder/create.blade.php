@@ -114,8 +114,12 @@
                             <div class="select-container__wrapper select-plusicon">
 								<select name="companyUser_id">
 									<option value="" hidden></option>
-									@foreach($task->taskCompanies as $companyUser)
-										<option value="{{ $companyUser->companyUser->id }}" {{ old('companyUser_id') === $companyUser->companyUser->id ? 'selected' : ''}}>{{ $companyUser->companyUser->name }}</option>
+									@foreach($companyUsers as $companyUser)
+										@if(old('companyUser_id'))
+										<option value="{{ $companyUser->id }}" {{ old('companyUser_id') === $companyUser->id ? 'selected' : ''}}>{{ $companyUser->name }}</option>
+										@else
+										<option value="{{ $companyUser->id }}" {{ $task->companyUser->id === $companyUser->id ? 'selected' : ''}}>{{ $companyUser->name }}</option>
+										@endif
 									@endforeach
 								</select>
 							</div>

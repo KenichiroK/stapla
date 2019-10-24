@@ -61,14 +61,12 @@
                     担当者
                 </dt>
                 <dd class="flex01">
-                    @foreach($task->taskCompanies as $companyUser)
-                        <div class="person-item">
-                            <div class="imgbox">
-                                <img src="{{ $companyUser->companyUser->picture }}" alt="担当者プロフィール画像">
-                            </div>
-                            <p>{{ $companyUser->companyUser->name }}</p>
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="{{ $task->companyUser->picture }}" alt="担当者プロフィール画像">
                         </div>
-                    @endforeach
+                        <p>{{ $task->companyUser->name }}</p>
+                    </div>
                 </dd>
             </dl>
             <dl>
@@ -229,7 +227,7 @@
                     <input type="hidden" name="status" value="1">
                     <button type="submit" class="done">上長に確認を依頼する</button>
                 </form>
-            @elseif($task->status === 1 && in_array($company_user->id, $company_user_ids))
+            @elseif($task->status === 1 && $task->superior->id === $company_user->id)
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
@@ -249,6 +247,7 @@
                     <input type="hidden" name="status" value="3">
                     <button type="submit" class="done">パートナーに依頼する</button>
                 </form>
+
             @elseif($task->status === 4 && in_array($company_user->id, $company_user_ids))
                 <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="done">発注書を作成する</a>
             @elseif($task->status === 5 && in_array($company_user->id, $company_user_ids))
