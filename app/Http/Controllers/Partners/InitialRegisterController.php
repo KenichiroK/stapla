@@ -66,7 +66,7 @@ class InitialRegisterController extends Controller
         $partner->tel          = $request->tel;
         $partner->introduction = $request->introduction;
         $time = date("Y_m_d_H_i_s");
-        $partner->picture      ='public/images/default/dummy_user.jpeg';
+        $partner->picture      = env('AWS_URL').'/common/dummy_profile_icon.png';
         $partner->save();
 
         return view('partner/auth/initialRegister/done', compact('partner'));

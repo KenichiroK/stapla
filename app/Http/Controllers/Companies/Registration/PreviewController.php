@@ -56,7 +56,7 @@ class PreviewController extends Controller
             $companyUser->picture = \Storage::disk('s3')->url($pathPicture);
             $companyUser->save();
         }else {
-            $companyUser->picture ='public/images/default/dummy_user.jpeg';
+            $companyUser->picture = env('AWS_URL').'/common/dummy_profile_icon.png';
         }
         
         $companyUser->save();
@@ -76,7 +76,7 @@ class PreviewController extends Controller
         if(isset($request->picture)){
             $companyUser->picture = $request->picture->storeAs('public/images/companyUser/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
         }else {
-            $companyUser->picture ='public/images/default/dummy_user.jpeg';
+            $companyUser->picture = env('AWS_URL').'/common/dummy_profile_icon.png';
         }
         
         $companyUser->save();
