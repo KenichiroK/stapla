@@ -285,6 +285,34 @@
                 }
             }
         }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            .preview-button-wrapper {
+                text-align: center;
+                margin-right: 40px;
+                &__btn {
+                    width: 120px;
+                    border-radius: 100px;
+                    color: #43425d;
+                    font-weight: bold;
+                    font-size: 15px;
+                    background: #ffffff;
+                    border: 2px solid #43425d;
+                }
+                &__btn:hover {
+                    opacity: 0.8;
+                }
+            }
+            .btn01-container {
+                button {
+                    width: 120px;
+                    font-size: 15px;
+                    padding: 4px 11px;
+                }
+            }
+        }
     }
     // モーダルメニュー
     .activity-log-menu {

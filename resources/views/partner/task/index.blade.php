@@ -158,3 +158,7 @@
         </div>
     </div>
 @endsection
+
+@section("asset-js")
+    <script src="{{ asset('js/common/task-status.js') }}" defer></script>
+@endsection

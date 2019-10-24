@@ -348,37 +348,6 @@ $pref = array(
 					</div>
 				@endif
 			</div>
-			
-			<div class="mark-container">
-				<p class="title">請求書印</p>
-				<p class="caution">背景が透明な140px以上の正方形のpng画像を用意してください。</p>
-				<div class="image-container">
-					@if ($partner_invoice)
-						<div class="imgbox">
-							<img id="preview" src="{{ $partner_invoice->mark_image }}" alt="プレビュー画像">
-						</div>	
-					@else
-						<div class="imgbox">
-							<img id="preview" src="{{ env('AWS_URL') }}/common/upload3.png" alt="プレビュー画像">
-						</div>
-					@endif
-					<div>
-					<label for="mark_image">
-						画像をアップロード
-						<input type="file" id="mark_image" name="mark_image" style="display: none;" accept="image/png" onchange="setPreview(this)">
-					</label>
-					@if ($errors->has('mark_image'))
-						<div class="image-error_message error-msg">
-							<strong>{{ $errors->first('mark_image') }}</strong>
-						</div>
-					@endif
-					</div>
-				</div>
-
-				<div class="imprint-container btn01-container">
-					<button type="button">電子印影を作成</button>
-				</div>
-			</div>
 		</div>
 
 		<div class="btn01-container">

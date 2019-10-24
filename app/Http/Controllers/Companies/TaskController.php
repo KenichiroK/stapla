@@ -115,21 +115,12 @@ class TaskController extends Controller
 
     public function create()
     {
-        $companyUser = Auth::user();
-        $projects = Project::where('company_id', $companyUser->company_id)->get();
-        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
-        $partners = Partner::where('company_id', $companyUser->company_id)->get();
-        $request = null;
-        return view('company/task/create', compact('request', 'projects','companyUsers', 'partners'));
-    }
-
-    public function recreate(Request $request)
-    {
-        $companyUser = Auth::user();
-        $projects = Project::where('company_id', $companyUser->company_id)->get();
-        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
-        $partners = Partner::where('company_id', $companyUser->company_id)->get();
-        return view('company/task/create', compact('request', 'projects','companyUsers', 'partners'));
+        $company_user = Auth::user();
+        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', 17)->get();
+        
+        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
+        $partners = Partner::where('company_id', $company_user->company_id)->get();
+        return view('company/task/create', compact('projects','companyUsers', 'partners', 'company_user'));
     }
     
     // 作成 & プレビュー表示
