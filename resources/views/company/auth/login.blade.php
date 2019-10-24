@@ -63,7 +63,7 @@
                 </form>
 
                 <div class="forget_password_wrapper">
-                    <a href="#">パスワードをお忘れの場合はこちら</a>
+                    <a href="{{  route('company.password.request')  }}">パスワードをお忘れの場合はこちら</a>
                 </div>                
             </div>
         </div>

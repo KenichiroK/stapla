@@ -5,7 +5,7 @@ use App\Notifications\UserVerifyEmailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Notifications\CompanyPasswordResetNotification;
 
 class CompanyUser extends Authenticatable
 {
@@ -27,6 +27,11 @@ class CompanyUser extends Authenticatable
     protected $hidden = [
         'password', 'remember_token'
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CompanyPasswordResetNotification($token));
+    }
 
     // 登録済みかどうかの判定
     public function scopeIsRegistered()

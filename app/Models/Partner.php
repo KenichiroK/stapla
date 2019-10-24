@@ -5,6 +5,7 @@ use App\Notifications\PartnerVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\PartnerPasswordResetNotification;
 
 class Partner extends Authenticatable
 {   
@@ -29,6 +30,11 @@ class Partner extends Authenticatable
     protected $hidden = [
         'password', 'remember_token'
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PartnerPasswordResetNotification($token));
+    }
 
     public function sendEmailVerificationNotification()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Partners\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
@@ -27,6 +27,18 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:partner');
+    }
+    public function showLinkRequestForm()
+    {
+        return view('partner.auth.passwords.email');
+    }
+    protected function guard()
+    {
+        return \Auth::guard('partner');
+    }
+    public function broker()
+    {
+        return \Password::broker('partners');
     }
 }
