@@ -16,7 +16,10 @@ class DashboardController extends Controller
     public function index()
     {
         $partner = Auth::user();
-        $tasks = Task::where('partner_id', $partner->id)->get();
+        $tasks = Task::where('partner_id', $partner->id)
+                                ->whereNotIn('status', [17, 18])
+                                ->get();
+
         $projectsAccordingTask;
         $projects = array();
      

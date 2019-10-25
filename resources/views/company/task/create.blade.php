@@ -262,30 +262,6 @@ $(function(){
                                 </div>
                             </div>
                         </div>
-                        <!-- 項目：資料 -->
-                        <!-- <div class="item-container">
-                            <div class="item-name-wrapper">
-                                <div class="item-name document">
-                                    資料
-                                </div>
-                            </div>
-                            <div class="is-boxed filearea">
-                                <p class="uplaod">アップロード</p> -->
-                                <!-- <label class="file-label">
-                                    <input class="file-input file-label" type="file" name="resume" >
-                                    <span class="file-cta">
-                                    <span class="file-icon">
-                                        <i class="fas fa-upload"></i>
-                                    </span>
-                                    <span class="file-label">
-                                        <input type="file" name="">
-                                        Choose a file…
-                                    </span>
-                                    </span>
-                                </label> -->
-                                <!-- <img src="{{ env('AWS_URL') }}/common/dragdrop.png" alt="">
-                            </div>
-                        </div> -->
                     </div>      
                 </div>
 
@@ -405,7 +381,7 @@ $(function(){
                 </div>
 
                 <div class="btn01-container">
-                    <button type="button" onclick="submit();">作成</button>
+                    <button type="button" onclick="submit();" style="width:auto">作成/上長に提出</button>
                 </div>
                 
             </div>

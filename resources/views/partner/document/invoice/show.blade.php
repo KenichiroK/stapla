@@ -247,17 +247,20 @@
 		</div>
 	</div>
 
-	@if($task->status === 11 && $task->partner->id === $partner->id)
-		<form action="{{ route('partner.task.status.change') }}" method="POST">
-		@csrf
-			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-			<input type="hidden" name="status" value="12">
-			<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-			<div class="button-container">
-				<button type="submit">送信</button>
-			</div>
-		</form>
-	@elseif($task->status > 11 && $task->partner->id === $partner->id)
+	@if($task->status === 12 && $task->partner->id === $partner->id)
+		<div class="actionButton">
+			<a href="{{ route('partner.document.invoice.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
+			<form action="{{ route('partner.task.status.change') }}" method="POST">
+			@csrf
+				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+				<input type="hidden" name="status" value="13">
+				<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+				<div class="button-container">
+					<button type="submit">送信</button>
+				</div>
+			</form>
+		</div>
+	@elseif($task->status > 12 && $task->partner->id === $partner->id)
 		<p class="send-done">この請求書は提出済みです</p>
 	@else
 		<p class="send-done">必要なアクションはありません</p>

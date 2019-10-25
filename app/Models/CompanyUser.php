@@ -21,7 +21,7 @@ class CompanyUser extends Authenticatable
     protected $table = 'company_users';
     
     protected $fillable = [
-        'email', 'password', 'company_id', 'name', 'department', 'occupation', 'self_introduction', 'picture'
+        'email', 'password', 'company_id', 'task_id', 'name', 'department', 'occupation', 'self_introduction', 'picture'
     ];
 
     protected $hidden = [
@@ -32,11 +32,6 @@ class CompanyUser extends Authenticatable
     public function scopeIsRegistered()
     {
         return isset($companyUser);
-    }
-
-    public function companyUserAuth()
-    {
-        return $this->belongsTo('App\Models\CompanyUserAuth', 'auth_id', 'id');
     }
 
     public function company()
@@ -54,11 +49,6 @@ class CompanyUser extends Authenticatable
         return $this->hasMany('App\Models\ProjectCompany', 'user_id', 'id');
     }
 
-    public function taskCompanies()
-    {
-        return $this->hasMany('App\Models\TaskCompany', 'user_id', 'id');
-    }
-
     public function companyUserAccountSetting()
     {
         return $this->hasOne('App\Models\CompanyUserAcountSetting', 'user_id', 'id');
@@ -74,6 +64,11 @@ class CompanyUser extends Authenticatable
         return $this->hasMany('App\Models\ProjectAccounting', 'user_id', 'id');
     }
     
+    public function taskCompanyUser()
+    {
+        return $this->hasone('App\Models\Task', 'company_user_id', 'id');
+    }
+
     public function taskSuperior()
     {
         return $this->hasOne('App\Models\Task', 'superior_id', 'id');

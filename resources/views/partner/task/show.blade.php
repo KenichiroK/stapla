@@ -42,14 +42,12 @@
                     担当者
                 </dt>
                 <dd class="flex01">
-                @foreach($task->taskCompanies as $companyUser)
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="{{ $companyUser->companyUser->picture }}" alt="担当者プロフィール画像">
+                            <img src="{{ $task->companyUser->picture }}" alt="担当者プロフィール画像">
                         </div>
-                        <p>{{ $companyUser->companyUser->name }}</p>
+                        <p>{{ $task->companyUser->name }}</p>
                     </div>
-                @endforeach
                 </dd>
             </dl>
             <dl>
@@ -106,14 +104,14 @@
                     </div>
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     報酬形式
                 </dt>
                 <dd>
                     固定
                 </dd>
-            </dl>
+            </dl> -->
             <dl>
                 <dt>
                     発注単価<span>(税抜)</span>
@@ -122,14 +120,14 @@
                     {{ number_format($task->budget) }}円
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     件数
                 </dt>
                 <dd>
                     {{ $task->project->tasks->count() }}件
                 </dd>
-            </dl>
+            </dl> -->
             <dl>
                 <dt>
                     発注額
@@ -146,32 +144,40 @@
                     @if(($task->status) === 0)
                         下書き
                     @elseif(($task->status) === 1)
-                        タスク上長確認前
-                    @elseif(($task->status) === 2)
                         タスク上長確認中
-                    @elseif(($task->status) === 3)
+                    @elseif(($task->status) === 2)
                         タスクパートナー依頼前
+                    @elseif(($task->status) === 3)
+                        タスクパートナー確認中
                     @elseif(($task->status) === 4)
-                        タスクパートナー依頼中
+                        発注書作成前
                     @elseif(($task->status) === 5)
-                        発注書作成中
-                    @elseif(($task->status) === 6)
-                        発注書作成完了
-                    @elseif(($task->status) === 7)
                         発注書上長確認中
-                    @elseif(($task->status) === 8)
+                    @elseif(($task->status) === 6)
                         発注書パートナー依頼前
-                    @elseif(($task->status) === 9)
+                    @elseif(($task->status) === 7)
                         発注書パートナー確認中
-                    @elseif(($task->status) === 10)
+                    @elseif(($task->status) === 8)
+                        作業前
+                    @elseif(($task->status) === 9)
                         作業中
+                    @elseif(($task->status) === 10)
+                        検品中
                     @elseif(($task->status) === 11)
-                        請求書依頼中
+                        請求書作成前
                     @elseif(($task->status) === 12)
-                        請求書確認中
+                        請求書下書き
                     @elseif(($task->status) === 13)
-                        完了
+                        請求書担当者確認前
                     @elseif(($task->status) === 14)
+                        請求書担当者確認中
+                    @elseif(($task->status) === 15)
+                        請求書経理提出
+                    @elseif(($task->status) === 16)
+                        請求書経理承認済み
+                    @elseif(($task->status) === 17)
+                        完了
+                    @elseif(($task->status) === 18)
                         キャンセル
                     @endif
                 </dd>
@@ -179,25 +185,43 @@
         </div>
         
         <div class="actionButton">
-            @if($task->status === 4 && $task->partner->id === $partner->id)
+            @if($task->status === 3 && $task->partner->id === $partner->id)
                 <form action="{{ route('partner.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="3">
+                    <input type="hidden" name="status" value="0">
                     <button type="submit" class="undone">タスク依頼を受けない</button>
                 </form>
                 <form action="{{ route('partner.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="5">
+                    <input type="hidden" name="status" value="4">
                     <button type="submit" class="done">タスク依頼を受ける</button>
                 </form>
-            @elseif($task->status === 9 && $task->partner->id === $partner->id)
+            @elseif($task->status === 7 && $task->partner->id === $partner->id)
                 <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
+            @elseif($task->status === 8 && $task->partner->id === $partner->id)
+                <form action="{{ route('partner.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="9">
+                    <button type="submit" class="done">作業に入る</button>
+                </form>
+            @elseif($task->status === 9 && $task->partner->id === $partner->id)
+                <form action="{{ route('partner.deliver.store') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="10">
+                    <button type="submit" class="done">納品する</button>
+                </form>
             @elseif($task->status === 11 && $task->partner->id === $partner->id)
                 <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
-            @elseif($task->status === 13)
+            @elseif($task->status === 12 && $task->partner->id === $partner->id)
+                <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
+            @elseif($task->status === 17)
                 <p class="non-action-text">このタスクは完了しています</p>
+            @elseif($task->status === 18)
+                <p class="non-action-text">このタスクはキャンセルされました</p>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif

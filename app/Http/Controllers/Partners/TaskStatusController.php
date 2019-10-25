@@ -17,7 +17,7 @@ class TaskStatusController extends Controller
             $task->status = $request->status;
             $task->save();
 
-            if ($task->status === 12) {
+            if ($task->status === 17) {
                 return redirect()->route('partner.invoice.show', ['id' => $request->invoice_id]);
             }
 

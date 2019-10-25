@@ -58,10 +58,16 @@ Route::group(['prefix' => 'partner'], function(){
 
 		// task
 		Route::get('/task', 'Partners\TaskController@index')->name('partner.task.index');
+			// task statusIndex
+		Route::get('task/status/{task_status}', 'Partners\TaskController@statusIndex')->name('partner.task.status');
 		Route::get('/task/{task_id}', 'Partners\TaskController@show')->name('partner.task.show');
 		
 		// task status change
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
+
+		// Deliver
+		Route::get('/deliver/{task_id}', 'Partners\DeliverController@create')->name('partner.deliver.create');
+		Route::post('/deliver', 'Partners\DeliverController@store')->name('partner.deliver.store');
 		
 		// profile
 		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.setting.profile.create');
@@ -132,10 +138,14 @@ Route::group(['prefix' => 'company'], function(){
 
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
-		// task statusIndex
+			// task statusIndex
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
+			// task-create
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-        Route::post('/task', 'Companies\TaskController@store')->name('company.task.store');
+		Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.store');
+			// task-preview
+		Route::post('/task/preview', 'Companies\TaskController@previewStore')->name('company.task.previewStore');
+			// task-show
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
 		
 		// task status change
@@ -149,6 +159,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document/nda', 'Companies\Document\NdaController@create')->name('company.document.nda.create');
 		Route::post('/document/nda', 'Companies\Document\NdaController@store')->name('company.document.nda.store');
 		Route::get('/document/nda/{nda_id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
+			// purchaseOrder
 		Route::get('/document/purchaseOrder/create/{task_id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.create');
 		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
 		Route::get('/document/purchaseOrder/{purchaseOrder_id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');

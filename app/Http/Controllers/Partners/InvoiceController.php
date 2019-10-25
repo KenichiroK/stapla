@@ -18,9 +18,13 @@ use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
-    public function create($id)
+    public function create($task_id)
     {
-        $task = Task::findOrFail($id);
+        // タスクステータスのアップデート
+        $task = Task::findOrFail($task_id)
+                            ->update(['status' => 12]);
+
+        $task = Task::findOrFail($task_id);
         $partner = Auth::user();
         $company_id = $partner->company_id;
         $company = Company::findOrFail($company_id);
@@ -65,6 +69,7 @@ class InvoiceController extends Controller
         $partner = Auth::user();
         $invoice = Invoice::findOrFail($id);
         $task = Task::findOrFail($invoice->task_id);
+        $companyUsers = CompanyUser::where('company_id', $partner->company_id)->get();
         $total_sum = 0;
         if ($partner->id !== $invoice->partner_id) {
             return 'no data';
@@ -81,6 +86,6 @@ class InvoiceController extends Controller
             }
         }
 
-        return view('/partner/document/invoice/show', compact('partner', 'invoice', 'task', 'total_sum'));
+        return view('/partner/document/invoice/show', compact('partner', 'companyUsers', 'invoice', 'task', 'total_sum'));
     }
 }

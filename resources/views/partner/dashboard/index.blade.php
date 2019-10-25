@@ -93,37 +93,47 @@
                             <p>{{ $task->partner->name }}</p>
                     </td>
                     <td>
-                        @if($task->status == 0)
-                            <p class="default">下書き</p>
-                        @elseif ($task->status == 1)
-                            <p class="default">タスク上長確認前</p>
-                        @elseif ($task->status == 2)
-                            <p class="default">タスク上長確認中</p>
-                        @elseif ($task->status == 3)
-                            <p class="default">タスクパートナー依頼前</p>
-                        @elseif ($task->status == 4)
-                            <p class="default">タスクパートナー依頼中</p>
-                        @elseif ($task->status == 5)
-                            <p class="default">発注書作成中</p>
-                        @elseif ($task->status == 6)
-                            <p class="default">発注書作成完了</p>
-                        @elseif ($task->status == 7)
-                            <p class="default">発注書上長確認中</p>
-                        @elseif ($task->status == 8)
-                            <p class="default">発注書パートナー依頼前</p>
-                        @elseif ($task->status == 9)
-                            <p class="default">発注書パートナー確認中</p>
-                        @elseif ($task->status == 10)
-                            <p class="default">作業中</p>
-                        @elseif ($task->status == 11)
-                            <p class="default">請求書依頼中</p>
-                        @elseif ($task->status == 12)
-                            <p class="default">請求書確認中</p>
-                        @elseif ($task->status == 13)
-                            <p class="done">完了</p>
-                        @elseif ($task->status == 14)
-                            <p class="default">キャンセル</p>
-                        @endif
+                        <div id ="state" class="status">
+                            @if($task->status == 0)
+                                <div class="color01">下書き</div>
+                            @elseif($task->status == 1)
+                                <div class="color01">タスク上長確認中</div>
+                            @elseif($task->status == 2)
+                                <div class="color01">タスクパートナー依頼前</div>
+                            @elseif($task->status == 3)
+                                <div class="color01">タスクパートナー確認中</div>
+                            @elseif($task->status == 4)
+                                <div class="color01">発注書作成前</div>
+                            @elseif($task->status == 5)
+                                <div class="color01">発注書上長確認中</div>
+                            @elseif($task->status == 6)
+                                <div class="color01">発注書パートナー依頼前</div>
+                            @elseif($task->status == 7)
+                                <div class="color01">発注書パートナー確認中</div>
+                            @elseif($task->status == 8)
+                                <div class="color01">作業前</div>
+                            @elseif($task->status == 9)
+                                <div class="color01">作業中</div>
+                            @elseif($task->status == 10)
+                                <div class="color01">検品中</div>
+                            @elseif($task->status == 11)
+                                <div class="color01">請求書作成前</div>
+                            @elseif($task->status == 12)
+                                <div class="color01">請求書下書き</div>
+                            @elseif($task->status == 13)
+                                <div class="color01">請求書担当者確認前</div>
+                            @elseif($task->status == 14)
+                                <div class="color01">請求書担当者確認中</div>
+                            @elseif($task->status == 15)
+                                <div class="color01">請求書経理提出</div>
+                            @elseif($task->status == 16)
+                                <div class="color01">請求書経理承認済み</div>
+                            @elseif($task->status == 17)
+                                <div class="color02">完了</div>
+                            @elseif($task->status == 18)
+                                <div class="color03">キャンセル</div>
+                            @endif
+                        </div>
                     </td>
                     <td>¥{{ number_format($task->price) }}</td>
                 </tr>
