@@ -13,6 +13,7 @@ class CreatePartnerInvoicesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('partner_invoices');
         Schema::create('partner_invoices', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('partner_id');
