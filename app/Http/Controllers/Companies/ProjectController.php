@@ -102,11 +102,11 @@ class ProjectController extends Controller
     {
         if($status == 0) {
             $project = Project::findOrFail($id);
-            $project->status = 1;
+            $project->status = config('const.PROJECT_COMPLETE');
             $project->save();
-        } elseif($status == 1) {
+        } elseif($status == config('const.PROJECT_COMPLETE')) {
             $project = Project::findOrFail($id);
-            $project->status = 0;
+            $project->status = config('const.PROJECT_CREATE');
             $project->save();
         }
         return redirect()->route('company.project.index');
