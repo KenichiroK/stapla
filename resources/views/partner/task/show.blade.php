@@ -104,14 +104,14 @@
                     </div>
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     報酬形式
                 </dt>
                 <dd>
                     固定
                 </dd>
-            </dl>
+            </dl> -->
             <dl>
                 <dt>
                     発注単価<span>(税抜)</span>
@@ -120,14 +120,14 @@
                     {{ number_format($task->budget) }}円
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     件数
                 </dt>
                 <dd>
                     {{ $task->project->tasks->count() }}件
                 </dd>
-            </dl>
+            </dl> -->
             <dl>
                 <dt>
                     発注額
@@ -215,6 +215,8 @@
                     <button type="submit" class="done">納品する</button>
                 </form>
             @elseif($task->status === 11 && $task->partner->id === $partner->id)
+                <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
+            @elseif($task->status === 12 && $task->partner->id === $partner->id)
                 <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
             @elseif($task->status === 17)
                 <p class="non-action-text">このタスクは完了しています</p>

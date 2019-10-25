@@ -247,7 +247,7 @@
 		</div>
 	</div>
 
-	@if($task->status === 11 && $task->partner->id === $partner->id)
+	@if($task->status === 12 && $task->partner->id === $partner->id)
 		<div class="actionButton">
 			<a href="{{ route('partner.document.invoice.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
 			<form action="{{ route('partner.task.status.change') }}" method="POST">
@@ -260,7 +260,7 @@
 				</div>
 			</form>
 		</div>
-	@elseif($task->status > 11 && $task->partner->id === $partner->id)
+	@elseif($task->status > 12 && $task->partner->id === $partner->id)
 		<p class="send-done">この請求書は提出済みです</p>
 	@else
 		<p class="send-done">必要なアクションはありません</p>

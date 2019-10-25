@@ -69,24 +69,23 @@
 					</dd>
                 </dl>
                 
-                <dl>
+                <!-- <dl>
 					<dt>納品場所</dt>
 					<dd>
 						<div class="input_link-container">
 							<div class="input-container">
-								<input class="task-name" type="text" name="task_delivery_format" value="{{ old('task_delivery_format') }}">
+								@if(old('task_delivery_format'))
+								<input class="task-name" type="hidden" name="task_delivery_format" value="{{ old('task_delivery_format') }}">
+								@else
+								<input class="task-name" type="hidden" name="task_delivery_format" value="this">
+								@endif
 							</div>
-							<!-- <div class="link-container">
+							<div class="link-container">
 								<a href="">データによる送付</a>
-							</div> -->
+							</div>
 						</div>
-						@if ($errors->has('task_delivery_format'))
-							<div class="error-msg">
-								<strong>{{ $errors->first('task_delivery_format') }}</strong>
-							</div>					
-						@endif
 					</dd>
-				</dl>
+				</dl> -->
 				
 				<!-- <dl>
 					<dt>支払い条件</dt>

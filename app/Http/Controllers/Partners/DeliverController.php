@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Partners;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\DeliverLog;
+use App\Models\Partner;
 use App\Models\Task;
 
 class DeliverController extends Controller
@@ -25,7 +27,11 @@ class DeliverController extends Controller
     public function store(Request $request)
     {
         $task = Task::findOrFail($request->task_id);
-
+        $partner = Auth::user();
+        $deliverLog = new DeliverLog;
+        $deliverLog->task_id = $request->task_id;
+        $deliverLog->partner_id = $partner->id;
+        $deliverLog->save();
 
         if($task->count()) {
             $task->status = $request->status;

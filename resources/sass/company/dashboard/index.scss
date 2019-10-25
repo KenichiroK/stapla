@@ -188,19 +188,22 @@
     }
 }
 
-// ステータス色分け
-.done {
-    color: #00ce47;
+// リスト内のステータス名表示
+.status {
+    height: 40px;
+    width: 120px;
+    border-radius: 25px;
+    margin: auto;
+    padding: 11px 0;
     font-weight: bold;
-    margin-bottom: 0;
-}
-.cancel {
-    color: #ff0031;
-    font-weight: bold;
-    margin-bottom: 0;
-}
-.default {
-    color: #7b7a9a;
-    font-weight: bold;
-    margin-bottom: 0;
+    color: #7B7A9A;
+    .color01{
+        color: #7B7A9A;
+    }
+    .color02{
+        color: #00CE47;
+    }
+    .color03{
+        color: #FF0031;
+    }
 }

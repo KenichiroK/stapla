@@ -18,9 +18,13 @@ use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
-    public function create($id)
+    public function create($task_id)
     {
-        $task = Task::findOrFail($id);
+        // タスクステータスのアップデート
+        $task = Task::findOrFail($task_id)
+                            ->update(['status' => 12]);
+
+        $task = Task::findOrFail($task_id);
         $partner = Auth::user();
         $company_id = $partner->company_id;
         $company = Company::findOrFail($company_id);

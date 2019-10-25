@@ -51,7 +51,7 @@
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
                 <li id="non_complete_label" class="all"><a href="{{ route('company.task.index') }}">タスク一覧</a></li>
-                <li id="complete_label" class="done"><a href="{{ route('company.task.status.statusIndex', ['task_status' => 13 ]) }}">完了したタスク</a></li>
+                <li id="complete_label" class="done"><a href="{{ route('company.task.status.statusIndex', ['task_status' => 17 ]) }}">完了したタスク</a></li>
             </ul>
             <div class="btn-a-container">
                 <a href="{{ route('company.task.create') }}">タスク作成</a>
@@ -129,9 +129,9 @@
                                         @elseif($task->status == 12)
                                             <div class="color01">請求書下書き</div>
                                         @elseif($task->status == 13)
-                                            <div class="color02">請求書担当者確認前</div>
+                                            <div class="color01">請求書担当者確認前</div>
                                         @elseif($task->status == 14)
-                                            <div class="color03">請求書担当者確認中</div>
+                                            <div class="color01">請求書担当者確認中</div>
                                         @elseif($task->status == 15)
                                             <div class="color01">請求書経理提出</div>
                                         @elseif($task->status == 16)

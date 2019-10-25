@@ -11,7 +11,6 @@ class CreateDeliverLogsTable extends Migration
         Schema::create('deliver_logs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('task_id');
-            $table->uuid('companyUser_id');
             $table->uuid('partner_id');
             $table->timestamps();
         });

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\ProjectCompany;
-use App\Models\TaskCompany;
 use App\Models\Company;
 use App\Models\CompanyUser;
 use App\Models\Task;
@@ -21,13 +20,21 @@ class DashboardController extends Controller
         $companyUser_id = $companyUser->id;
         $company_id = $companyUser->company_id;
         $projects = ProjectCompany::where('user_id', $companyUser_id)->get();
-        $tasks = TaskCompany::where('user_id', $companyUser_id)->get();
+        $tasks = Task::where('company_user_id', $companyUser_id)
+                                ->whereNotIn('status', [17, 18])
+                                ->orWhere('superior_id', $companyUser_id)
+                                ->whereNotIn('status', [17, 18])
+                                ->orWhere('accounting_id', $companyUser_id)
+                                ->whereNotIn('status', [17, 18])
+                                ->get();
+
         $status_arr = [];
-        for ($i = 0; $i < 19; $i++) {
+        for ($i = 0; $i <= 18; $i++) {
             $status_arr[strval($i)] = 0;
         }
+
         for ($i = 0; $i < $tasks->count(); $i++) {
-            $status_arr[$tasks[$i]->task->status]++;
+            $status_arr[$tasks[$i]->status]++;
         }
         $statusName_arr = [
             // タスク

@@ -26,7 +26,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('companyUser_name');
             $table->string('partner_name');
             $table->string('task_name');
-            $table->string('task_delivery_format');
+            $table->string('task_delivery_format')->nullable();
             $table->dateTime('task_ended_at');
             $table->integer('task_price');
             $table->float('task_tax', 3, 2);

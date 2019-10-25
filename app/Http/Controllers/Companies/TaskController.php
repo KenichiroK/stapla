@@ -19,6 +19,7 @@ class TaskController extends Controller
     {
         $company_user = Auth::user();
         $tasks = Task::where('company_id', $company_user->company_id)
+                                ->whereNotIn('status', [17, 18])
                                 ->with(['project', 'partner', 'taskRoleRelation'])
                                 ->get();
 

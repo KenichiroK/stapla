@@ -128,9 +128,9 @@
                                             @elseif($task->status == 12)
                                                 <div class="color01">請求書下書き</div>
                                             @elseif($task->status == 13)
-                                                <div class="color02">請求書担当者確認前</div>
+                                                <div class="color01">請求書担当者確認前</div>
                                             @elseif($task->status == 14)
-                                                <div class="color03">請求書担当者確認中</div>
+                                                <div class="color01">請求書担当者確認中</div>
                                             @elseif($task->status == 15)
                                                 <div class="color01">請求書経理提出</div>
                                             @elseif($task->status == 16)

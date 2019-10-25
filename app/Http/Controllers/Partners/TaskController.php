@@ -17,14 +17,18 @@ class TaskController extends Controller
     public function index()
     {
         $partner = Auth::user();
-        $tasks = Task::where('partner_id', $partner->id)->get();
+        $tasks = Task::where('partner_id', $partner->id)
+                                ->whereNotIn('status', [17, 18])
+                                ->get();
         return view('partner/task/index', compact('partner', 'tasks'));
     }
     
     public function statusIndex($task_status)
     {
         $partner = Auth::user();
-        $alltasks = Task::where('company_id', $partner->company_id)->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])->get();
+        $alltasks = Task::where('company_id', $partner->company_id)
+                                    ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
+                                    ->get();
 
         $taskPartners = TaskPartner::where('partner_id', $partner->id)->get();
         
@@ -65,7 +69,7 @@ class TaskController extends Controller
 
         $tasks = Task::where('company_id', $partner->company_id)
                                 ->where('status', $task_status)
-                                ->with(['project', 'taskCompanies.companyUser', 'taskPartners.partner', 'taskRoleRelation'])
+                                ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
                                 ->get();
 
         return view('partner/task/index', compact('partner', 'tasks', 'statusName_arr', 'status_arr'));
