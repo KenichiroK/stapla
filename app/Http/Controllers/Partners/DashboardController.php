@@ -32,6 +32,8 @@ class DashboardController extends Controller
             }
         }
 
+        // dd(config('const.TASK_STATUS_LIST'));
+
         return view('partner/dashboard/index', compact(['projects', 'tasks', 'partner']));
     }
 }
