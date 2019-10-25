@@ -12,7 +12,7 @@ $(function () {
     }
 
     function showMoreList() {
-      $('#invoiceShowMoreBtn').on('click', () => {
+      $('#invoice_show_more_btn').on('click', () => {
         invoiceDefault += 4;
         for (let i = 0; i < invoiceDefault; i++) {
           $(itemList[i]).show();
@@ -23,7 +23,7 @@ $(function () {
 
     function hideShowMoreBtn() {
       if (invoiceDefault >= allListCount) {
-        $('#invoiceShowMoreBtn').hide();
+        $('#invoice_show_more_btn').hide();
       }
     }
     defaultShowList();
@@ -45,7 +45,7 @@ $(function () {
     }
 
     function showMoreList() {
-      $('#orderShowMoreBtn').on('click', () => {
+      $('#order_show_more_btn').on('click', () => {
         orderDefault += 4;
         for (let i = 0; i < orderDefault; i++) {
           $(itemList[i]).show();
@@ -56,7 +56,7 @@ $(function () {
 
     function hideShowMoreBtn() {
       if (orderDefault >= allListCount) {
-        $('#orderShowMoreBtn').hide();
+        $('#order_show_more_btn').hide();
       }
     }
 

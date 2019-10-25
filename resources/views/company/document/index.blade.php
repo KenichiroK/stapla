@@ -55,7 +55,7 @@
                         </table>
                         <!-- Show More部分 -->
                         <div class="more-container">
-                            <p id="orderShowMoreBtn" class="showmore">もっと見る</p>
+                            <p id="order_show_more_btn" class="showmore">もっと見る</p>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                         </table>
                         <!-- Show More部分 -->
                         <div class="more-container">
-                            <p id="invoiceShowMoreBtn" class="showmore">もっと見る</p>
+                            <p id="invoice_show_more_btn" class="showmore">もっと見る</p>
                         </div>
                     </div>
                 </div>
