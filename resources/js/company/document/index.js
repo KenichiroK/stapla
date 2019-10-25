@@ -66,39 +66,4 @@ $(function () {
   }
   orderShow();
 
-  function ndaShow() {
-    let ndaDefault = 5;
-    const allListCount = $('.nda-table > tbody').children('tr').length;
-    const itemList = $('.nda-table > tbody').children('tr');
-
-    function defaultShowList() {
-      itemList.hide();
-      for (let i = 0; i < ndaDefault; i++) {
-        $(itemList[i]).show();
-      }
-    }
-
-    function showMoreList() {
-      $('#ndaShowMoreBtn').on('click', () => {
-        ndaDefault += 4;
-        for (let i = 0; i < ndaDefault; i++) {
-          $(itemList[i]).show();
-        }
-        hideShowMoreBtn();
-      });
-    }
-
-    function hideShowMoreBtn() {
-      if (ndaDefault >= allListCount) {
-        $('#ndaShowMoreBtn').hide();
-      }
-    }
-
-    defaultShowList();
-    showMoreList();
-    hideShowMoreBtn();
-  }
-  ndaShow();
-
-
 });
