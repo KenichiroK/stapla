@@ -19,6 +19,6 @@ class DocumentController extends Controller
         $invoices = Invoice::where('partner_id', $partner->id)->get(); 
         $purchaseOrders = PurchaseOrder::where('partner_id', $partner->id)->get();
 
-        return view('partner.document.index', compact('invoices', 'purchaseOrders', 'partner'));
+        return view('partner.document.index', compact('invoices', 'purchaseOrders'));
     }
 }

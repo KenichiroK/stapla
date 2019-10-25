@@ -29,7 +29,7 @@ class InvoiceController extends Controller
         $company_id = $partner->company_id;
         $company = Company::findOrFail($company_id);
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
-        return view('/partner/document/invoice/create', compact('partner', 'companyUsers', 'company', 'task'));
+        return view('/partner/document/invoice/create', compact('companyUsers', 'company', 'task'));
     }
 
     public function store(CreateInvoiceRequest $request)
@@ -86,6 +86,6 @@ class InvoiceController extends Controller
             }
         }
 
-        return view('/partner/document/invoice/show', compact('partner', 'companyUsers', 'invoice', 'task', 'total_sum'));
+        return view('/partner/document/invoice/show', compact('companyUsers', 'invoice', 'task', 'total_sum'));
     }
 }

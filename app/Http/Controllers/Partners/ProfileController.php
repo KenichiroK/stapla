@@ -12,10 +12,7 @@ class ProfileController extends Controller
 {
     public function create()
     {
-        $partner = Auth::user();
-        $completed = '';
-
-        return view('partner/profile/create', compact(['partner', 'completed']));
+        return view('partner/profile/create');
     }
 
     public function store(ProfileRequest $request)

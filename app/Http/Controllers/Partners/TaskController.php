@@ -21,7 +21,7 @@ class TaskController extends Controller
         $tasks = Task::where('partner_id', $partner->id)
                                 ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
                                 ->get();
-        return view('partner/task/index', compact('partner', 'tasks'));
+        return view('partner/task/index', compact('tasks'));
     }
     
     public function statusIndex($task_status)
@@ -59,6 +59,6 @@ class TaskController extends Controller
 
         $partner = Auth::user();
 
-        return view('/partner/task/show', compact('task', 'partner', 'purchaseOrder'));
+        return view('/partner/task/show', compact('task', 'purchaseOrder'));
     }
 }
