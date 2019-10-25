@@ -11,11 +11,6 @@ use App\Models\Task;
 
 class DeliverController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
     public function create($task_id)
     {
         // task_id;
@@ -37,31 +32,11 @@ class DeliverController extends Controller
             $task->status = $request->status;
             $task->save();
 
-            if ($task->status === 16) {
+            if ($task->status === config('const.APPROVAL_ACCOUNTING')) {
                 return redirect()->route('partner.invoice.show', ['id' => $request->invoice_id]);
             }
 
             return redirect()->route('partner.task.show', ['id' => $task->id]);
         }
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
+    } 
 }

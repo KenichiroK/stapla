@@ -12,6 +12,7 @@ use App\Models\PurchaseOrder;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
 class TaskController extends Controller
 {
@@ -19,44 +20,20 @@ class TaskController extends Controller
     {
         $company_user = Auth::user();
         $tasks = Task::where('company_id', $company_user->company_id)
-                                ->whereNotIn('status', [17, 18])
+                                ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
                                 ->with(['project', 'partner', 'taskRoleRelation'])
                                 ->get();
 
         $status_arr = [];
-        for ($i = 0; $i < 19; $i++) {
+        for ($i = 0; $i <= config('const.TASK_CANCELED'); $i++) {
             $status_arr[strval($i)] = 0;
         }
         for ($i = 0; $i < $tasks->count(); $i++) {
             $status_arr[$tasks[$i]->status]++;
         }
 
-        $statusName_arr = [
-            // タスク
-            'タスク下書き',
-            'タスク上長確認中',
-            'タスクパートナー依頼前',
-            'タスクパートナー確認中',
-            '発注書作成前',
-            // 発注書
-            '発注書上長確認中',
-            '発注書パートナー依頼前',
-            '発注書パートナー確認中',
-            '作業前',
-            // 作業中
-            '作業中',
-            '検品中',
-            '請求書作成前',
-            // 請求書
-            '請求書下書き',
-            '請求書担当者確認前',
-            '担当者確認中',
-            '経理確認中',
-            '経理承認済',
-            // その他
-            '完了',
-            'キャンセル', 
-        ];
+        // タスクステータスを外部ファイルで定数化（congfig/const.php）
+        $statusName_arr = config('const.TASK_STATUS_LIST');
 
         return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'company_user'));
     }
@@ -68,39 +45,15 @@ class TaskController extends Controller
                                     ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
                                     ->get();
         $status_arr = [];
-        for ($i = 0; $i < 19; $i++) {
+        for ($i = 0; $i <= config('const.TASK_CANCELED'); $i++) {
             $status_arr[strval($i)] = 0;
         }
         for ($i = 0; $i < $alltasks->count(); $i++) {
             $status_arr[$alltasks[$i]->status]++;
         }
 
-        $statusName_arr = [
-            // タスク
-            'タスク下書き',
-            'タスク上長確認中',
-            'タスクパートナー依頼前',
-            'タスクパートナー確認中',
-            '発注書作成前',
-            // 発注書
-            '発注書上長確認中',
-            '発注書パートナー依頼前',
-            '発注書パートナー確認中',
-            '作業前',
-            // 作業中
-            '作業中',
-            '検品中',
-            '請求書作成前',
-            // 請求書
-            '請求書下書き',
-            '請求書担当者確認前',
-            '担当者確認中',
-            '経理確認中',
-            '経理承認済',
-            // その他
-            '完了',
-            'キャンセル',
-        ];
+        // タスクステータスを外部ファイルで定数化（congfig/const.php）
+        $statusName_arr = config('const.TASK_STATUS_LIST');
 
         $tasks = Task::where('company_id', $company_user->company_id)
                                 ->where('status', $task_status)

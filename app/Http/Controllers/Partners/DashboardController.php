@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         $partner = Auth::user();
         $tasks = Task::where('partner_id', $partner->id)
-                                ->whereNotIn('status', [17, 18])
+                                ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
                                 ->get();
 
         $projectsAccordingTask;

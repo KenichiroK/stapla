@@ -22,7 +22,7 @@ class InvoiceController extends Controller
     {
         // タスクステータスのアップデート
         $task = Task::findOrFail($task_id)
-                            ->update(['status' => 12]);
+                            ->update(['status' => config('const.INVOICE_DRAFT_CREATE')]);
 
         $task = Task::findOrFail($task_id);
         $partner = Auth::user();
