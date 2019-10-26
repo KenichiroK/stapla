@@ -211,12 +211,12 @@
                         <button type="submit" class="preview-button-wrapper__btn button">プレビュー</button>
                     </div> -->
 
-                    @if($project->status == 0)
+                    @if($project->status == config('const.PROJECT_CREATE'))
                         <div class="btn01-container">
                             <button type="submit">完了</button>
                             <input type="hidden" name="projectStatus" value="{{ $project->status }}">
                         </div>
-                    @elseif($project->status == 1)
+                    @elseif($project->status == config('const.PROJECT_COMPLETE'))
                         <div class="btn01-container">
                             <button type="submit">再オープン</button>
                             <input type="hidden" name="projectStatus" value="{{ $project->status }}">
@@ -225,24 +225,34 @@
                 </div>
             </form>
         @endif
-    </div>    
+
+        <input type="hidden" id="project_create" value="{{ config('const.PROJECT_CREATE') }}">
+        <input type="hidden" id="project_complete" value="{{ config('const.PROJECT_COMPLETE') }}">
+        <input type="hidden" id="complete_staff" value="{{ config('const.COMPLETE_STAFF') }}">
+        <input type="hidden" id="task_canceled" value="{{ config('const.TASK_CANCELED') }}">
+    </div>
 </div>
 
 <script>
+    const project_create = document.getElementById('project_create').value;
+    const project_complete = document.getElementById('project_complete').value;
+    const complete_staff = document.getElementById('complete_staff').value; 
+    const task_canceled = document.getElementById('task_canceled').value;
+
     function checkStatus() {
         const projectStatus = document.getElementsByName('projectStatus');
 
-        if(projectStatus[0].value == 0) {
+        if(projectStatus[0].value == project_create) {
             const taskStatuses = document.getElementsByName('taskStatus[]');
             for (i=0; i<taskStatuses.length; i++) {
                 console.log(taskStatuses[i].value)
-                if(taskStatuses[i].value != 17 && taskStatuses[i].value != 18){
+                if(taskStatuses[i].value != complete_staff && taskStatuses[i].value != task_canceled){
                     alert("「全てのタスクを完了またはキャンセルしてから、プロジェクトを完了してください。」")
                     return false;
                 }
             };
             alert("「プロジェクトを完了してよろしいですか？」")
-        } else if(projectStatus[0].value == 1){
+        } else if(projectStatus[0].value == project_complete){
             alert("「再オープンしてよろしいですか？」")
         }
     };
