@@ -20,7 +20,13 @@ class DashboardController extends Controller
         $companyUser = Auth::user();
         $companyUser_id = $companyUser->id;
         $company_id = $companyUser->company_id;
-        $projects = ProjectCompany::where('user_id', $companyUser_id)->get();
+        // $projects = ProjectCompany::where('user_id', $companyUser_id)->get();
+        $projects = ProjectCompany::where('user_id', $companyUser_id)
+                                ->join('projects', 'project_companies.project_id', '=', 'projects.id')
+                                ->whereNotIn('status', [config('const.PROJECT_COMPLETE'), config('const.PROJECT_CANCELED')])
+                                ->get();
+
+
         $tasks = Task::where('company_user_id', $companyUser_id)
                                 ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
                                 ->orWhere('superior_id', $companyUser_id)
