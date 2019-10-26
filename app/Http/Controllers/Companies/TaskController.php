@@ -88,8 +88,8 @@ class TaskController extends Controller
         $task->superior_id     = $request->superior_id;
         $task->accounting_id   = $request->accounting_id;
         $task->partner_id      = $request->partner_id;
-        $task->name            = $request->task_name;
-        $task->content         = $request->task_content;
+        $task->name            = $request->name;
+        $task->content         = $request->content;
         $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
         $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
         $task->status          = 1;
@@ -121,5 +121,29 @@ class TaskController extends Controller
         $partners = Partner::where('company_id', $company_user->company_id)->get();
 
         return view('/company/task/show', compact('task', 'project_count', 'company_user', 'companyUsers', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids'));
+    }
+
+    public function edit($id)
+    {
+        $company_user = Auth::user();
+        $task = Task::findOrFail($id);
+        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', 1)->get();
+            
+        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
+        $partners = Partner::where('company_id', $company_user->company_id)->get();
+        
+        return view('company/task/edit', compact('task', 'projects','companyUsers', 'partners', 'company_user')); 
+    }
+
+    public function update(CreateTaskRequest $request, $id)
+    {
+        $task = Task::findOrFail($id);
+        if ($task) {
+            $task->update($request->all());
+
+            return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '変更しました。');
+        } else {
+            return redirect()->route('company.task.edit', ['id' => $task->id])->with('comment', '問題が発生しました。時間を置いて再度お試しください');
+        }
     }
 }

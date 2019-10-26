@@ -18,9 +18,9 @@
             <div class="page-title-container">
                 <div class="page-title-container__page-title">タスク詳細</div>
             </div>
-            <!-- <div class="button-wrapper">
-                <button type='submit' class="button-wrapper__btn button">編集</button>
-            </div> -->
+            <div class="button-wrapper">
+                <a href="{{ route('company.task.edit', ['id' => $task->id]) }}" class="button-wrapper__btn button">編集</a>
+            </div>
         </div>
         <div class="detail">
             <dl class="first">
