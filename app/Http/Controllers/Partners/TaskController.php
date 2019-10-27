@@ -7,7 +7,6 @@ use App\Models\Task;
 use App\Models\Partner;
 use App\Models\CompanyUser;
 use App\Models\PurchaseOrder;
-use App\Models\TaskPartner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -30,8 +29,6 @@ class TaskController extends Controller
         $alltasks = Task::where('company_id', $partner->company_id)
                                     ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
                                     ->get();
-
-        $taskPartners = TaskPartner::where('partner_id', $partner->id)->get();
         
         $status_arr = [];
         for ($i = 0; $i < 19; $i++) {

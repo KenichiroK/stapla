@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use App\Models\Project;
-use App\Models\TaskPartner;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 
