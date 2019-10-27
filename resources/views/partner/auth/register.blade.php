@@ -26,7 +26,7 @@
     <main>
         <div class="main_container">
             <div class="title_wrapper">
-                <h1 class="text">フリーランスの方用 新規会員登録</h1>
+                <h1 class="text">パスワードを設定してください</h1>
             </div>
 
             <div class="form_wrapper">
@@ -65,27 +65,27 @@
                         @endif
                     </div>
 
-                    <div class="checkbox_wrapper">
+                    <!-- <div class="checkbox_wrapper">
                         <a href="#">ご利用規約</a>
                         <span>に同意して</span>
-                    </div>
+                    </div> -->
 
                     <div class="button_wrapper">
                         <button type="button" onclick="submit();" class="text">新規会員登録</button>
                     </div>
                 </form>
 
-                <div class="signup_wrapper">
+                <!-- <div class="signup_wrapper">
                     <a href="{{ route('partner.login') }}">ログイン</a>
-                </div>
+                </div> -->
                 
             </div>
         </div>
     </main>
 
-    <footer>
+    <!-- <footer>
         <span class="tos">ご利用規約</span>
         <span class="privacy">プライバシーポリシー</span>
-    </footer>
+    </footer> -->
 </body>
 </html>

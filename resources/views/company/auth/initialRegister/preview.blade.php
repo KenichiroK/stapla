@@ -22,6 +22,7 @@
 			</div>
 
 			<!-- 最初に登録するユーザー($requestにcompany_nameあり)か、招待されて登録するユーザー($requestにcompany_nameなし)かの判定 -->
+			<!-- 最初に登録するユーザー -->
 			@if(isset($request->company_name))
 			<form action="{{ route('company.register.company-preview.store') }}" method="POST" enctype="multipart/form-data">
 				@csrf
@@ -37,7 +38,7 @@
 							</div>
 
 							<div class="section-container">
-								<p>担当</p>
+								<p>所属部署</p>
 								<input type="hidden" name="department" value="{{ old('department', $request->department) }}">
 								<h4>{{ $request->department }}</h4>
 							</div>
@@ -100,7 +101,7 @@
 				</div>
 			</form>
 
-			<!-- 最初に登録するユーザーか、招待されて登録するユーザーかの判定 -->
+			<!-- 招待されて登録するユーザー -->
 			@else
 
 			<form action="{{ route('company.register.preview.store') }}" method="POST" enctype="multipart/form-data">
@@ -117,7 +118,7 @@
 							</div>
 
 							<div class="section-container">
-								<p>担当</p>
+								<p>所属部署</p>
 								<input type="hidden" name="department" value="{{ old('department', $request->department) }}">
 								<h4>{{ $request->department }}</h4>
 							</div>
@@ -135,7 +136,7 @@
 							</div>
 						</div>
 					</div>
-
+					<input type="hidden" name="picture" value="{{ $urlPicture }}">
 					
 				</div>
 				<div class="btn-container">
@@ -144,7 +145,6 @@
 				</div>
 			</form>
 			@endif
-			
         </div>
     </main>
 
