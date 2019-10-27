@@ -27,11 +27,11 @@
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div id="navbarHomeHeader" class="navbar-menu">
                     <div class="navbar-end">
-                        <ul class="icon-wrp">
+                        <!-- <ul class="icon-wrp">
                             <li class="not">
                                 <a><img src="{{ env('AWS_URL') }}/common/icon_notification.png" alt="serch"></a>
                             </li>
-                        </ul>
+                        </ul> -->
                         <div class="header-proflie">
                             <div class="user-imgbox">
                                 <a href="{{ route('partner.setting.profile.create') }}">
