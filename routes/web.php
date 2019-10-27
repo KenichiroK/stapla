@@ -170,17 +170,11 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// document
 		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');
-		Route::get('/document/nda', 'Companies\Document\NdaController@create')->name('company.document.nda.create');
-		Route::post('/document/nda', 'Companies\Document\NdaController@store')->name('company.document.nda.store');
-		Route::get('/document/nda/{nda_id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
+	
 			// purchaseOrder
 		Route::get('/document/purchaseOrder/create/{task_id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.create');
 		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
 		Route::get('/document/purchaseOrder/{purchaseOrder_id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');
-
-		// document	outsourcing_contract
-		Route::get('/document/outsourcingContract', 'Companies\Document\OutsourcingContractController@create')->name('company.document.OutsourcingContract.create');
-		Route::get('/document/outsourcingContract/{id}', 'Companies\Document\OutsourcingContractController@show')->name('company.document.OutsourcingContract.show');
 
 		//document invoice
 		Route::get('/document/invoice/{invoice_id}', 'Companies\Document\InvoiceController@show')->name('company.document.invoice.show');

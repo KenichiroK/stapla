@@ -89,16 +89,6 @@ class CompanyUser extends Authenticatable
         return $this->hasMany('App\Models\PurchaseOrder', 'companyUser_id', 'id');
     }
 
-    public function contracts()
-    {
-        return $this->hasMany('App\Models\Contract', 'companyUser_id', 'id');
-    }
-
-    public function ndas()
-    {
-        return $this->hasMany('App\Models\Nda', 'companyUser_id', 'id');
-    }
-
     public function invoices()
     {
         return $this->hasMany('App\Models\Invoice', 'companyUser_id', 'id');

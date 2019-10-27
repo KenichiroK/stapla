@@ -99,14 +99,6 @@ mix.sass(
         "public/css/company/document"
     )
     .sass(
-        "resources/sass/company/document/nda/create.scss",
-        "public/css/company/document/nda"
-    )
-    .sass(
-        "resources/sass/company/document/nda/show.scss",
-        "public/css/company/document/nda"
-    )
-    .sass(
         "resources/sass/company/document/purchaseOrder/index.scss",
         "public/css/company/document/purchaseOrder"
     )
@@ -117,14 +109,6 @@ mix.sass(
     .sass(
         "resources/sass/company/document/purchaseOrder/show.scss",
         "public/css/company/document/purchaseOrder"
-    )
-    .sass(
-        "resources/sass/company/document/outsourcingContract/create.scss",
-        "public/css/company/document/outsourcingContract"
-    )
-    .sass(
-        "resources/sass/company/document/outsourcingContract/show.scss",
-        "public/css/company/document/outsourcingContract"
     )
     .sass(
         "resources/sass/company/setting/general/index.scss",
