@@ -17,8 +17,7 @@ class InvoiceController extends Controller
         $partner = Auth::user();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
 
-        $completed = '';
-        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed'));
+        return view('partner/setting/invoice/create', compact('partner_invoice'));
     }
 
     public function store(PartnerInvoiceRequest $request)

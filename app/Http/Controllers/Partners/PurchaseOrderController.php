@@ -17,6 +17,6 @@ class PurchaseOrderController extends Controller
         if($purchaseOrder->partner->id !== $partner->id) {
             return 'アカウントをお確かめください';
         }
-        return view('partner/document/purchaseOrder/show', compact('purchaseOrder', 'partner'));
+        return view('partner/document/purchaseOrder/show', compact('purchaseOrder'));
     }
 }
