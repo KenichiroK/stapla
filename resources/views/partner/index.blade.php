@@ -35,12 +35,12 @@
                         <div class="header-proflie">
                             <div class="user-imgbox">
                                 <a href="{{ route('partner.setting.profile.create') }}">
-                                    <img src="{{ $partner->picture }}" alt="プロフィール画像">
+                                    <img src="{{ Auth::user()->picture }}" alt="プロフィール画像">
                                 </a>
                             </div>
                             <div class="option">
                                 <div class="user-name">
-                                    {{ $partner->name }}
+                                    {{ Auth::user()->name }}
                                 </div>
 
                                 <div class="icon-imgbox">

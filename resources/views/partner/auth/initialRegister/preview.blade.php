@@ -73,6 +73,7 @@
                             </div>
 
                             <input type="hidden" name="company_id" value="{{ $request->company_id }}">
+                            <input type="hidden" name="picture" value="{{ $urlPicture }}">
 						</div>
 					</div>
 				</div>

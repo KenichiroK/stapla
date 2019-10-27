@@ -12,10 +12,7 @@ class ProfileController extends Controller
 {
     public function create()
     {
-        $partner = Auth::user();
-        $completed = '';
-
-        return view('partner/profile/create', compact(['partner', 'completed']));
+        return view('partner/profile/create');
     }
 
     public function store(ProfileRequest $request)
@@ -27,7 +24,7 @@ class ProfileController extends Controller
 
             if($request->picture) {
                 $picture          = $request->picture;
-                $pathPicture      = \Storage::disk('s3')->putFileAs("partner-profile", $picture,$time.'_'.$auth_id .'.'. $picture->getClientOriginalExtension(), 'public');
+                $pathPicture      = \Storage::disk('s3')->putFileAs("partner-profile", $picture,$time.'_'.$partner->id .'.'. $picture->getClientOriginalExtension(), 'public');
                 $partner->picture = \Storage::disk('s3')->url($pathPicture);
                 $partner->save();
             }

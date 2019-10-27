@@ -66,6 +66,9 @@ Route::group(['prefix' => 'partner'], function(){
 			// task statusIndex
 		Route::get('task/status/{task_status}', 'Partners\TaskController@statusIndex')->name('partner.task.status');
 		Route::get('/task/{task_id}', 'Partners\TaskController@show')->name('partner.task.show');
+
+		// document
+		Route::get('/document', 'Partners\DocumentController@index')->name('partner.document.index');
 		
 		// task status change
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');

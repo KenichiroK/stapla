@@ -33,7 +33,16 @@ class PersonalController extends Controller
 
     public function store(CompanyUserRequest $request)
     {
-        $auth = Auth::user();
-        return view('company/auth/initialRegister/preview', compact('request'));
+        if($request->picture) {
+            $partner = Auth::user();
+            $time    = date("Y_m_d_H_i_s");
+            $picture = $request->picture;
+            $pathPicture = \Storage::disk('s3')->putFileAs("company-user-profile", $picture,$time.'_'.$partner->id .'.'. $picture->getClientOriginalExtension(), 'public');
+            $urlPicture  = \Storage::disk('s3')->url($pathPicture);
+        }else {
+            $urlPicture  = env('AWS_URL').'/common/dummy_profile_icon.png';
+        }
+
+        return view('company/auth/initialRegister/preview', compact('request','urlPicture'));
     }
 }

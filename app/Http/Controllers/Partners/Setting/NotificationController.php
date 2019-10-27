@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Partners\Setting;
 use Illuminate\Http\Request;
 use App\Http\Requests\Partners\PartnerNotificationRequest;
 use App\Http\Controllers\Controller;
-use App\Models\Partner;
+
 use App\Models\PartnerAccountSetting;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +17,7 @@ class NotificationController extends Controller
         $partner = Auth::user();
         $setting = PartnerAccountSetting::where('partner_id', $partner->id)->get()->first();
 
-        $completed = '';
-        return view('partner/setting/notification/create', compact('partner', 'setting', 'completed'));
+        return view('partner/setting/notification/create', compact('setting'));
     }
 
     public function store(PartnerNotificationRequest $request)

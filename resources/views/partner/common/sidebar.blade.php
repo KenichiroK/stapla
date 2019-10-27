@@ -40,7 +40,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#" class="{{ strpos(request()->route()->getName(), 'document') ? 'isActive' : '' }}">
+					<a href="{{ route('partner.document.index') }}" class="{{ strpos(request()->route()->getName(), 'document') ? 'isActive' : '' }}">
 						<div class="icon-imgbox">
 							<img src="{{ env('AWS_URL') }}/common/icon_invoices.png" alt="">
 						</div>
@@ -49,26 +49,6 @@
 						</div>
 					</a>
 				</li>
-				<!-- <li>
-					<a href="#">
-						<div class="icon-imgbox">
-							<img src="{{ env('AWS_URL') }}/common/icon_calendar.png" alt="">
-						</div>
-						<div class="textbox">
-							カレンダー
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<div class="icon-imgbox">
-							<img src="{{ env('AWS_URL') }}/common/icon_help-center.png" alt="">
-						</div>
-						<div class="textbox">
-							ヘルプセンター
-						</div>
-					</a>
-				</li> -->
 				<li>
 					<a href="{{ route('partner.setting.invoice.create') }}" class="{{ strpos(request()->route()->getName(), 'setting') ? 'isActive' : '' }}">
 						<div class="icon-imgbox">

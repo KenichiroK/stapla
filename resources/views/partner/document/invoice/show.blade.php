@@ -124,8 +124,8 @@
 					</div>
 		
 					<div class="content-container">
-						<p>お振込み先: {{ $partner->partnerInvoice->account_holder }}</p>
-						<p>{{ $partner->partnerInvoice->financial_institution }} {{ $partner->partnerInvoice->branch }} ({{ $partner->partnerInvoice->deposit_type }}) {{ $partner->partnerInvoice->account_number }}</p>
+						<p>お振込み先: {{ Auth::user()->partnerInvoice->account_holder }}</p>
+						<p>{{ Auth::user()->partnerInvoice->financial_institution }} {{ Auth::user()->partnerInvoice->branch }} ({{ Auth::user()->partnerInvoice->deposit_type }}) {{ Auth::user()->partnerInvoice->account_number }}</p>
 					</div>
 				</div>
 			</div>
@@ -240,14 +240,14 @@
 				</div>
 	
 				<div class="content-container">
-					<p>お振込み先: {{ $partner->partnerInvoice->account_holder }}</p>
-					<p>{{ $partner->partnerInvoice->financial_institution }} {{ $partner->partnerInvoice->branch }} ({{ $partner->partnerInvoice->deposit_type }}) {{ $partner->partnerInvoice->account_number }}</p>
+					<p>お振込み先: {{ Auth::user()->partnerInvoice->account_holder }}</p>
+					<p>{{ Auth::user()->partnerInvoice->financial_institution }} {{ Auth::user()->partnerInvoice->branch }} ({{ Auth::user()->partnerInvoice->deposit_type }}) {{ Auth::user()->partnerInvoice->account_number }}</p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	@if($task->status === 12 && $task->partner->id === $partner->id)
+	@if($task->status === 12 && $task->partner->id === Auth::user()->id)
 		<div class="actionButton">
 			<a href="{{ route('partner.document.invoice.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
 			<form action="{{ route('partner.task.status.change') }}" method="POST">
@@ -260,7 +260,7 @@
 				</div>
 			</form>
 		</div>
-	@elseif($task->status > 12 && $task->partner->id === $partner->id)
+	@elseif($task->status > 12 && $task->partner->id === Auth::user()->id)
 		<p class="send-done">この請求書は提出済みです</p>
 	@else
 		<p class="send-done">必要なアクションはありません</p>

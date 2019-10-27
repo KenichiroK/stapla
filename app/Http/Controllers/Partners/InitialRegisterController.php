@@ -14,7 +14,6 @@ class InitialRegisterController extends Controller
     public function doneVerify()
     {
         $partner = Auth::user();
-        
         if(isset($partner->name)){
             return  redirect('partner/dashboard');
         } else{
@@ -35,25 +34,31 @@ class InitialRegisterController extends Controller
 
     public function preview(PartnerRequest $request)
     {
-        return view('partner/auth/initialRegister/preview', compact('request'));
+        if($request->picture) {
+            $partner = Auth::user();
+            $time    = date("Y_m_d_H_i_s");
+            $picture = $request->picture;
+            $pathPicture = \Storage::disk('s3')->putFileAs("partner-profile", $picture,$time.'_'.$partner->id .'.'. $picture->getClientOriginalExtension(), 'public');
+            $urlPicture  = \Storage::disk('s3')->url($pathPicture);
+        } else {
+            $urlPicture  = env('AWS_URL').'/common/dummy_profile_icon.png';
+        }
+        return view('partner/auth/initialRegister/preview', compact('request','urlPicture'));
     }
 
     public function previwShow(Request $request)
     {
         $partner = Auth::user()->first();
-        
         if(isset($partner->name)){
             return  redirect('partner/dashboard');
         } else{
             return view('partner/auth/initialRegister/preview', compact('request'));
         }
-        
     }
 
     public function previewStore(Request $request)
     {
         $partner = Auth::user();
-
         $partner->company_id   = $partner->company_id;
         $partner->name         = $request->name;
         $partner->occupations  = $request->occupations;
@@ -66,7 +71,7 @@ class InitialRegisterController extends Controller
         $partner->tel          = $request->tel;
         $partner->introduction = $request->introduction;
         $time = date("Y_m_d_H_i_s");
-        $partner->picture      = env('AWS_URL').'/common/dummy_profile_icon.png';
+        $partner->picture      = $request->picture;
         $partner->save();
 
         return view('partner/auth/initialRegister/done', compact('partner'));
