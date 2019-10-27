@@ -162,7 +162,11 @@ window.onload = () => {
 				<dl>
 					<dt>件名</dt>
 					<dd>
+						@if(old('title'))
 						<input class="task-name" type="text" name="title" value="{{ old('title') }}">
+						@else
+						<input class="task-name" type="text" name="title" value="{{ $task->name }}  のご請求">
+						@endif
 						@if ($errors->has('title'))
 							<div class="error-msg">
 								<strong>{{ $errors->first('title') }}</strong>
@@ -177,25 +181,16 @@ window.onload = () => {
 						<div class="radio-container">
 							<span id="requested_at_text"></span>
 							<input
-								class="radio-input"
-								type="radio"
+								type="date"
 								name="requested_at"
-								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m'), 0, date('Y'))) }}"
-								id="end_of_last_month"
-								onclick="checkInvoiceDate()"
-								{{ old('requested_at') === date('Y-m-d', mktime(0, 0, 0, date('m'), 0, date('Y'))) ? 'checked' : '' }}
+								value="{{ old('started_at', date('Y-m-d')) }}"
 							>
-							<label for="end_of_last_month">先月末にする</label>
-							<input
-								class="radio-input"
-								type="radio"
-								name="requested_at"
-								value="{{ date('Y-m-t') }}"
-								id="end_of_this_month"
-								onclick="checkInvoiceDate()"
-								{{ old('requested_at') === date('Y-m-t') ? 'checked' : '' }}
-							>
-							<label for="end_of_this_month">今月末にする</label>
+
+							@if($errors->has('requested_at'))
+								<div class="invalid-feedback error-msg" role="alert">
+									<strong>{{ $errors->first('requested_at') }}</strong>
+								</div>
+							@endif
 						</div>
 						@if ($errors->has('requested_at'))
 							<div class="error-msg">
@@ -212,25 +207,10 @@ window.onload = () => {
 						<div class="radio-container">
 							<span id="deadline_at_text"></span>
 							<input
-								class="radio-input"
-								type="radio"
+								type="date"
 								name="deadline_at"
-								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) }}"
-								id="end_of_next_month"
-								onclick="checkDeadline()"
-								{{ old('deadline_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) ? 'checked' : '' }}
+								value="{{ old('deadline_at') }}"
 							>
-							<label for="end_of_next_month">来月末にする</label>
-							<input
-								class="radio-input"
-								type="radio"
-								name="deadline_at"
-								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) }}"
-								id="end_of_month_after_next"
-								onclick="checkDeadline()"
-								{{ old('deadline_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) ? 'checked' : '' }}
-							>
-							<label for="end_of_month_after_next">再来月末にする</label>
 						</div>
 						@if ($errors->has('deadline_at'))
 							<div class="error-msg">
