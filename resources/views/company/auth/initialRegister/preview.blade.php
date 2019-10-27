@@ -38,7 +38,7 @@
 							</div>
 
 							<div class="section-container">
-								<p>担当</p>
+								<p>所属部署</p>
 								<input type="hidden" name="department" value="{{ old('department', $request->department) }}">
 								<h4>{{ $request->department }}</h4>
 							</div>
@@ -118,7 +118,7 @@
 							</div>
 
 							<div class="section-container">
-								<p>担当</p>
+								<p>所属部署</p>
 								<input type="hidden" name="department" value="{{ old('department', $request->department) }}">
 								<h4>{{ $request->department }}</h4>
 							</div>
