@@ -225,19 +225,14 @@
                 </div>
             </form>
         @endif
-
-        <input type="hidden" id="project_create" value="{{ config('const.PROJECT_CREATE') }}">
-        <input type="hidden" id="project_complete" value="{{ config('const.PROJECT_COMPLETE') }}">
-        <input type="hidden" id="complete_staff" value="{{ config('const.COMPLETE_STAFF') }}">
-        <input type="hidden" id="task_canceled" value="{{ config('const.TASK_CANCELED') }}">
     </div>
 </div>
 
 <script>
-    const project_create = document.getElementById('project_create').value;
-    const project_complete = document.getElementById('project_complete').value;
-    const complete_staff = document.getElementById('complete_staff').value; 
-    const task_canceled = document.getElementById('task_canceled').value;
+    const project_create = {{ config('const.PROJECT_CREATE') }};
+    const project_complete = {{ config('const.PROJECT_COMPLETE') }};
+    const complete_staff = {{ config('const.COMPLETE_STAFF') }};
+    const task_canceled = {{ config('const.TASK_CANCELED') }};
 
     function checkStatus() {
         const projectStatus = document.getElementsByName('projectStatus');
