@@ -103,13 +103,13 @@ return [
 
     'passwords' => [
         'companies' => [
-            'provider' => 'company_users',
+            'provider' => 'companies',
             'table' => 'password_resets',
             'expire' => 60,
         ],
         
         'partners' => [
-            'provider' => 'partner_users',
+            'provider' => 'partners',
             'table' => 'password_resets',
             'expire' => 60,
         ],
