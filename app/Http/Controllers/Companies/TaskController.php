@@ -137,13 +137,14 @@ class TaskController extends Controller
 
     public function update(CreateTaskRequest $request, $id)
     {
-        $task = Task::findOrFail($id);
-        if ($task) {
-            $task->update($request->all());
-
-            return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '変更しました。');
-        } else {
-            return redirect()->route('company.task.edit', ['id' => $task->id])->with('comment', '問題が発生しました。時間を置いて再度お試しください');
+        try {
+            $task = Task::findOrFail($id);
+        } catch (Exception $e) {
+            report($e);
+            return false;
         }
+        $task->update($request->all());
+
+        return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '変更しました。');
     }
 }
