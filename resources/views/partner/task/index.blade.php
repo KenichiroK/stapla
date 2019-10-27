@@ -50,8 +50,8 @@
         <!-- Task -->
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
-                <li class="all isActive"><a href="{{ route('partner.task.index') }}">タスク一覧</a></li>
-                <li class="done"><a href="{{ route('partner.task.status', ['task_status' => 17 ]) }}">完了したタスク</a></li>
+                <li id="non_complete_label" class="all"><a href="{{ route('partner.task.index') }}">タスク一覧</a></li>
+                <li id="complete_label" class="done"><a href="{{ route('partner.task.status', ['task_status' => 17 ]) }}">完了したタスク</a></li>
             </ul>
 
             <div class="task-container__wrapper">
