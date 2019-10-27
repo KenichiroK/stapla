@@ -189,10 +189,6 @@ mix.sass(
         "resources/sass/partner/profile/index.scss",
         "public/css/partner/profile"
     )
-    .sass(
-        "resources/sass/partner/setting/notification/index.scss",
-        "public/css/partner/setting/notification"
-    )
 
     // pdf
     .sass("resources/sass/pdf/paper.scss", "public/css/pdf");
