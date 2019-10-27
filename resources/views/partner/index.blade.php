@@ -80,6 +80,31 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script>
+        const project_create = {{ config('const.PROJECT_CREATE') }};
+        const project_complete = {{ config('const.PROJECT_COMPLETE') }};
+        const project_canceled = {{ config('const.PROJECT_CANCELED') }};
+
+        const task_create = {{ config('const.TASK_CREATE') }};
+        const task_submit_superior = {{ config('const.TASK_SUBMIT_SUPERIOR') }};
+        const task_approval_superior = {{ config('const.TASK_APPROVAL_SUPERIOR') }};
+        const task_submit_partner = {{ config('const.TASK_SUBMIT_PARTNER') }};
+        const task_approval_partner = {{ config('const.TASK_APPROVAL_PARTNER') }};
+        const order_submit_superior = {{ config('const.ORDER_SUBMIT_SUPERIOR') }};
+        const order_approval_superior = {{ config('const.ORDER_APPROVAL_SUPERIOR') }};
+        const order_submit_partner = {{ config('const.ORDER_SUBMIT_PARTNER') }};
+        const order_approval_partner = {{ config('const.ORDER_APPROVAL_PARTNER') }};
+        const working = {{ config('const.WORKING') }};
+        const delivery_partner = {{ config('const.DELIVERY_PARTNER') }};
+        const acceptance = {{ config('const.ACCEPTANCE') }};
+        const invoice_draft_create = {{ config('const.INVOICE_DRAFT_CREATE') }};
+        const invoice_create = {{ config('const.INVOICE_CREATE') }};
+        const submit_staff = {{ config('const.SUBMIT_STAFF') }};
+        const submit_accounting = {{ config('const.SUBMIT_ACCOUNTING') }};
+        const approval_accounting = {{ config('const.APPROVAL_ACCOUNTING') }};
+        const complete_staff = {{ config('const.COMPLETE_STAFF') }};
+        const task_canceled = {{ config('const.TASK_CANCELED') }};
+    </script>
     @yield('asset-js')
 </body>
 </html>
