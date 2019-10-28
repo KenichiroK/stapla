@@ -143,7 +143,20 @@ class TaskController extends Controller
             report($e);
             return false;
         }
-        $task->update($request->all());
+
+        $task->project_id      = $request->project_id;
+        $task->company_user_id = $request->company_user_id;
+        $task->superior_id     = $request->superior_id;
+        $task->accounting_id   = $request->accounting_id;
+        $task->partner_id      = $request->partner_id;
+        $task->name            = $request->name;
+        $task->content         = $request->content;
+        $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
+        $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
+        $task->budget          = $request->budget;
+        $task->price           = $request->price;
+        $task->save();
+        
 
         return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '変更しました。');
     }
