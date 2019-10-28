@@ -22,7 +22,7 @@ class PartnerMailController extends Controller
         Mail::to($request->email)->send(new PartnerMail());
 
         $company_id = Auth::user()->company_id;
-        $partners = Partner::where('company_id', $company_id)->with(['projectPartners.project', 'TaskPartners.task'])->get();
+        $partners = Partner::where('company_id', $company_id)->get();
         return view('company/partner/index', compact('partners'));
     }
 }
