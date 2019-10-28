@@ -17,6 +17,14 @@ const setPreview = (input) => {
   }
 }
 
+// 郵便番号入力欄の自動遷移
+function nextField(t, name ,maxlength) {
+	if(t.value.length >= maxlength) {
+		t.form.elements[name].focus();
+	}
+}
+
+
 const setPostal = () => {
   const front = document.getElementById('postal_front').value;
   const back = document.getElementById('postal_back').value;
@@ -164,18 +172,18 @@ $pref = array(
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
 						@if (Auth::user())
-							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr(Auth::user()->zip_code, 0, 3)) }}" onchange="setPostal()">
+							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr(Auth::user()->zip_code, 0, 3)) }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr(Auth::user()->zip_code, 3, 7)) }}" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr(Auth::user()->zip_code, 3, 7)) }}" maxlength="4" onchange="setPostal()">
 							<input id="postal" type="hidden" name="zip_code">
 						@else
-							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
+							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" maxlength="4" onchange="setPostal()">
 							<input id="postal" type="hidden" name="zip_code">
 						@endif
 					</div>
@@ -324,9 +332,9 @@ $pref = array(
 			<div class="accountNumber-container">
 				<p>口座番号</p>
 				@if ($partner_invoice)
-					<input type="text" name="account_number" value="{{ old('account_number', $partner_invoice->account_number) }}">
+					<input type="text" name="account_number" value="{{ old('account_number', $partner_invoice->account_number) }}" maxlength="7">
 				@else
-					<input type="text" name="account_number" value="{{ old('account_number') }}">
+					<input type="text" name="account_number" value="{{ old('account_number') }}" maxlength="7">
 				@endif
 				@if ($errors->has('account_number'))
 					<div class="error-msg">

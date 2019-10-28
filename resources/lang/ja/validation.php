@@ -181,6 +181,10 @@ return [
         'occupations' => '職種',
         'introduction' => 'プロフィールメッセージ',
         'address_building' => '建物名',
+        'financial_institution' => '金融機関',
+        'branch' => '支店',
+        'deposit_type' => '預金種類',
+        'account_number' => '口座番号',
 
         // project
         'project_id'      => 'プロジェクト',
