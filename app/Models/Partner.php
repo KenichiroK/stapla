@@ -61,16 +61,6 @@ class Partner extends Authenticatable
         return $this->hasMany('App\Models\PurchaseOrder', 'partner_id', 'id');
     }
 
-    public function contracts()
-    {
-        return $this->hasMany('App\Models\Contract', 'partner_id', 'id');
-    }
-
-    public function ndas()
-    {
-        return $this->hasMany('App\Models\Nda', 'partner_id', 'id');
-    }
-
     public function invoices()
     {
         return $this->hasMany('App\Models\Invoice', 'partner_id', 'id');

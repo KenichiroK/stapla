@@ -54,9 +54,9 @@ const setPreview = (input) => {
         
             <div class="edit-container">
                 <div class="image-container">
-                    @if ($partner)
+                    @if (Auth::user())
                         <div class="imgbox">
-                            <img id="profile_image_preview" src="{{ $partner->picture }}" alt="プレビュー画像">
+                            <img id="profile_image_preview" src="{{ Auth::user()->picture }}" alt="プレビュー画像">
                         </div>
                     @else
                         <img id="profile_image_preview" src="{{ env('AWS_URL') }}/common/preview.jpeg" alt="プレビュー画像" width="140px" height="140px">
@@ -75,8 +75,8 @@ const setPreview = (input) => {
                 <div class="profile-container">
                     <div class="short-input-container">
                         <p>名前 / ニックネーム</p>
-                        @if ($partner)
-                            <input type="text" name="nickname" value="{{ old('nickname', $partner->nickname) }}">
+                        @if (Auth::user())
+                            <input type="text" name="nickname" value="{{ old('nickname', Auth::user()->nickname) }}">
                         @else
                             <input type="text" name="nickname" value="{{ old('nickname') }}">
                         @endif
@@ -89,8 +89,8 @@ const setPreview = (input) => {
 
                     <div class="short-input-container">
                         <p>職種</p>
-                        @if ($partner)
-                            <input type="text" name="occupations" value="{{ old('occupations', $partner->occupations) }}">
+                        @if (Auth::user())
+                            <input type="text" name="occupations" value="{{ old('occupations', Auth::user()->occupations) }}">
                         @else
                             <input type="text" name="occupations" value="{{ old('occupations') }}">
                         @endif
@@ -103,8 +103,8 @@ const setPreview = (input) => {
 
                     <div class="long-input-container">
                         <p>Twitter</p>
-                        @if ($partner)
-                            <input type="text" name="twitter" value="{{ old('twitter', $partner->twitter) }}">
+                        @if (Auth::user())
+                            <input type="text" name="twitter" value="{{ old('twitter', Auth::user()->twitter) }}">
                         @else
                             <input type="text" name="twitter" value="{{ old('twitter') }}">
                         @endif
@@ -117,8 +117,8 @@ const setPreview = (input) => {
 
                     <div class="long-input-container">
                         <p>Facebook</p>
-                        @if ($partner)
-                            <input type="text" name="facebook" value="{{ old('facebook', $partner->facebook) }}">
+                        @if (Auth::user())
+                            <input type="text" name="facebook" value="{{ old('facebook', Auth::user()->facebook) }}">
                         @else
                             <input type="text" name="facebook" value="{{ old('facebook') }}">
                         @endif
@@ -131,7 +131,7 @@ const setPreview = (input) => {
 
                     <div class="long-input-container">
                         <p>Github</p>
-                        @if ($partner)
+                        @if (Auth::user())
                             <input type="text" name="github" value="{{ old('github') }}">
                         @else
                             <input type="text" name="github" value="{{ old('github') }}">
@@ -145,8 +145,8 @@ const setPreview = (input) => {
 
                     <div class="long-input-container">
                         <p>Instagram</p>
-                        @if ($partner)
-                            <input type="text" name="instagram" value="{{ old('instagram', $partner->instagram) }}">
+                        @if (Auth::user())
+                            <input type="text" name="instagram" value="{{ old('instagram', Auth::user()->instagram) }}">
                         @else
                             <input type="text" name="instagram" value="{{ old('instagram') }}">
                         @endif
@@ -159,8 +159,8 @@ const setPreview = (input) => {
 
                     <div class="long-input-container">
                         <p>Webサイト・ブログ</p>
-                        @if ($partner)
-                            <input type="text" name="relatedlinks" value="{{ old('relatedlinks', $partner->relatedlinks) }}">
+                        @if (Auth::user())
+                            <input type="text" name="relatedlinks" value="{{ old('relatedlinks', Auth::user()->relatedlinks) }}">
                         @else
                             <input type="text" name="relatedlinks" value="{{ old('relatedlinks') }}">
                         @endif
@@ -173,8 +173,8 @@ const setPreview = (input) => {
 
                     <div class="textarea-container">
                         <p>自己紹介</p>
-                        @if ($partner)
-                            <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction', $partner->introduction) }}</textarea>
+                        @if (Auth::user())
+                            <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction', Auth::user()->introduction) }}</textarea>
                         @else
                             <textarea name="introduction" id="" cols="30" rows="10">{{ old('introduction') }}</textarea>
                         @endif

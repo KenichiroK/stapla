@@ -18,7 +18,7 @@ class ProjectController extends Controller
         $projectsAccordingTask;
         $projects = array();
         if ($tasks->count() === 0) {
-            return view('partner/project/index', compact('partner', 'projects'));
+            return view('partner/project/index', compact('projects'));
         }
 
         foreach ($tasks as $task) {
@@ -28,7 +28,7 @@ class ProjectController extends Controller
           array_push($projects, $project);
         }
 
-        return view('partner/project/index', compact('partner', 'projects'));
+        return view('partner/project/index', compact('projects'));
     }
     public function show($project_id)
     {
@@ -36,6 +36,6 @@ class ProjectController extends Controller
         $project = Project::findOrFail($project_id);
         $tasks = Task::where('project_id', $project->id)->where('partner_id', $partner->id)->get();
 
-        return view('partner/project/show', compact('partner', 'project', 'tasks'));
+        return view('partner/project/show', compact('project', 'tasks'));
     }
 }

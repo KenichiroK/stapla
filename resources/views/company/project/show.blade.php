@@ -211,12 +211,12 @@
                         <button type="submit" class="preview-button-wrapper__btn button">プレビュー</button>
                     </div> -->
 
-                    @if($project->status == 0)
+                    @if($project->status == config('const.PROJECT_CREATE'))
                         <div class="btn01-container">
                             <button type="submit">完了</button>
                             <input type="hidden" name="projectStatus" value="{{ $project->status }}">
                         </div>
-                    @elseif($project->status == 1)
+                    @elseif($project->status == config('const.PROJECT_COMPLETE'))
                         <div class="btn01-container">
                             <button type="submit">再オープン</button>
                             <input type="hidden" name="projectStatus" value="{{ $project->status }}">
@@ -225,24 +225,29 @@
                 </div>
             </form>
         @endif
-    </div>    
+    </div>
 </div>
 
 <script>
+    const project_create = {{ config('const.PROJECT_CREATE') }};
+    const project_complete = {{ config('const.PROJECT_COMPLETE') }};
+    const complete_staff = {{ config('const.COMPLETE_STAFF') }};
+    const task_canceled = {{ config('const.TASK_CANCELED') }};
+
     function checkStatus() {
         const projectStatus = document.getElementsByName('projectStatus');
 
-        if(projectStatus[0].value == 0) {
+        if(projectStatus[0].value == project_create) {
             const taskStatuses = document.getElementsByName('taskStatus[]');
             for (i=0; i<taskStatuses.length; i++) {
                 console.log(taskStatuses[i].value)
-                if(taskStatuses[i].value != 17 && taskStatuses[i].value != 18){
+                if(taskStatuses[i].value != complete_staff && taskStatuses[i].value != task_canceled){
                     alert("「全てのタスクを完了またはキャンセルしてから、プロジェクトを完了してください。」")
                     return false;
                 }
             };
             alert("「プロジェクトを完了してよろしいですか？」")
-        } else if(projectStatus[0].value == 1){
+        } else if(projectStatus[0].value == project_complete){
             alert("「再オープンしてよろしいですか？」")
         }
     };

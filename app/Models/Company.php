@@ -30,16 +30,6 @@ class Company extends BaseUuid
         return $this->hasMany('App\Models\PurchaseOrder', 'company_id', 'id');
     }
 
-    public function contracts()
-    {
-        return $this->hasMany('App\Models\Contract', 'company_id', 'id');
-    }
-
-    public function ndas()
-    {
-        return $this->hasMany('App\Models\Nda', 'company_id', 'id');
-    }
-    
     public function invoices()
     {
         return $this->hasMany('App\Models\Invoice', 'company_id', 'id');

@@ -1,4 +1,4 @@
-@extends('company.index')
+@extends('partner.index')
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
@@ -46,7 +46,7 @@
                                 <td>
                                     <div class="create-container">
                                         <div class="btn-a-container">
-                                            <a href="{{ route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}">詳細</a>
+                                            <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}">詳細</a>
                                         </div>
                                     </div>
                                 </td>
@@ -95,7 +95,7 @@
                                 <td>
                                     <div class="create-container">
                                         <div class="btn-a-container">
-                                            <a href="{{ route('company.document.invoice.show', ['invoice_id' => $invoice->id]) }}">詳細</a>
+                                            <a href="{{ route('partner.document.invoice.show', ['invoice_id' => $invoice->id]) }}">詳細</a>
                                         </div>
                                     </div>
                                 </td>

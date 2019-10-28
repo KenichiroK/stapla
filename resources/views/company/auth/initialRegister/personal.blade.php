@@ -102,6 +102,7 @@ $pref = array(
     </header>
 
 	<!-- 最初に登録するユーザー($companyUserにcompany_idなし)か、招待されて登録するユーザー($companyUserにcompany_idあり)かの判定 -->
+	<!-- 最初に登録するユーザー -->
 	@if(isset($companyUser->company_id))
 	<main>
         <div class="main-wrapper">
@@ -139,7 +140,7 @@ $pref = array(
 						</div>
 
 						<div class="input-container">
-							<p>担当</p>
+							<p>所属部署</p>
 							<input type="text" name="department" value="{{ old('department') }}">
 							@if ($errors->has('department'))
 								<div class="error-msg">
@@ -173,6 +174,7 @@ $pref = array(
     </main>
 
 	<!-- 最初に登録するユーザーか、招待されて登録するユーザーかの判定 -->
+	<!-- 招待されて登録するユーザー -->
 	@else
 
     <main>

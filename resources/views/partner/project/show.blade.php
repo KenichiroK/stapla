@@ -73,7 +73,7 @@
 
             <div class="task-container__content">
                 @if ($tasks->count() === 0)
-                    <p class="non-task-text">{{ $partner->name }}様がアサインされているタスクはありません。</p>
+                    <p class="non-task-text">{{ Auth::user()->name }}様がアサインされているタスクはありません。</p>
                 @endif
                 @foreach ($tasks as $task)
                 <a class="task-show-link" href="/partner/task/{{ $task->id }}">

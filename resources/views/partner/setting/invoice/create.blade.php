@@ -117,9 +117,6 @@ $pref = array(
 	<div class="menu-container">
 		<ul>
 			<li><a href="{{ route('partner.setting.invoice.create') }}" class="isActive">請求情報設定</a></li>
-			<!-- <li><a href="#">メールアドレス・パスワード設定</a></li> -->
-			<li><a href="{{ route('partner.setting.notification.create') }}">通知設定</a></li>
-			<!-- <li><a href="#">個人情報の設定</a></li> -->
 		</ul>
 	</div>
 
@@ -132,8 +129,8 @@ $pref = array(
 			<div class="yago-name-container">
 				<div class="yago-container">
 					<p>屋号</p>
-					@if ($partner)
-						<input type="text" name="name" value="{{ old('name', $partner->name) }}">
+					@if (Auth::user())
+						<input type="text" name="name" value="{{ old('name', Auth::user()->name) }}">
 					@else
 						<input type="text" name="name" value="{{ old('name') }}">
 					@endif
@@ -146,8 +143,8 @@ $pref = array(
 
 				<div class="name-container">
 					<p>名前</p>
-					@if ($partner)
-						<input type="text" name="name" value="{{ old('name', $partner->name) }}">
+					@if (Auth::user())
+						<input type="text" name="name" value="{{ old('name', Auth::user()->name) }}">
 					@else
 						<input type="text" name="name" value="{{ old('name') }}">
 					@endif
@@ -163,12 +160,12 @@ $pref = array(
 				<div class="zipcode-container">
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
-						@if ($partner)
-							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($partner->zip_code, 0, 3)) }}" onchange="setPostal()">
+						@if (Auth::user())
+							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr(Auth::user()->zip_code, 0, 3)) }}" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($partner->zip_code, 3, 7)) }}" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr(Auth::user()->zip_code, 3, 7)) }}" onchange="setPostal()">
 							<input id="postal" type="hidden" name="zip_code">
 						@else
 							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
@@ -191,7 +188,7 @@ $pref = array(
 					<div class="select-arrow">
 						<select name="prefecture">
 							@foreach($pref as $_pref)
-							<option value="{{ $_pref }}" {{ ($partner->prefecture === $_pref) ? 'selected' : '' }}>{{ $_pref }}</option>
+							<option value="{{ $_pref }}" {{ (Auth::user()->prefecture === $_pref) ? 'selected' : '' }}>{{ $_pref }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -206,8 +203,8 @@ $pref = array(
 			<div class="below-address-container">
 				<div class="city-container">
 					<p>市区町村・番地</p>
-					@if ($partner)
-						<input type="text" name="city" value="{{ old('city', $partner->city) }}">
+					@if (Auth::user())
+						<input type="text" name="city" value="{{ old('city', Auth::user()->city) }}">
 					@else
 						<input type="text" name="city" value="{{ old('city') }}">
 					@endif
@@ -220,8 +217,8 @@ $pref = array(
 
 				<div class="building-container">
 					<p>番地</p>
-					@if ($partner)
-						<input type="text" name="street" value="{{ old('street', $partner->street) }}">
+					@if (Auth::user())
+						<input type="text" name="street" value="{{ old('street', Auth::user()->street) }}">
 					@else
 						<input type="text" name="street" value="{{ old('street') }}">
 					@endif
@@ -236,8 +233,8 @@ $pref = array(
 			<div class="below-address-container">
 				<div class="building-container">
 					<p>建物名・部屋番号</p>
-					@if ($partner)
-						<input type="text" name="building" value="{{ old('building', $partner->building) }}">
+					@if (Auth::user())
+						<input type="text" name="building" value="{{ old('building', Auth::user()->building) }}">
 					@else
 						<input type="text" name="building" value="{{ old('building') }}">
 					@endif
@@ -251,15 +248,15 @@ $pref = array(
 				<div class="tel-container">
 					<p>電話番号</p>
 					<div class="tel-container__wrapper">
-							<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front', substr($partner->tel, 0, 3)) }}" onchange="setTel()">
+							<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front', substr(Auth::user()->tel, 0, 3)) }}" onchange="setTel()">
 								<span class="hyphen">
 									<hr>
 								</span>
-							<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle', substr($partner->tel, 3, 4)) }}" onchange="setTel()">
+							<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle', substr(Auth::user()->tel, 3, 4)) }}" onchange="setTel()">
 								<span class="hyphen">
 									<hr>
 								</span>
-							<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back', substr($partner->tel, 7)) }}" onchange="setTel()">
+							<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back', substr(Auth::user()->tel, 7)) }}" onchange="setTel()">
 							<input type="hidden" name="tel" id="tel">
 						
 					</div>
