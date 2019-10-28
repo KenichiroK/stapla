@@ -162,11 +162,7 @@ window.onload = () => {
 				<dl>
 					<dt>件名</dt>
 					<dd>
-						@if(old('title'))
-						<input class="task-name" type="text" name="title" value="{{ old('title') }}">
-						@else
-						<input class="task-name" type="text" name="title" value="{{ $task->name }}  のご請求">
-						@endif
+						<input class="task-name" type="text" name="title" value="{{ old('title', $task->name . 'のご請求') }}">
 						@if ($errors->has('title'))
 							<div class="error-msg">
 								<strong>{{ $errors->first('title') }}</strong>
