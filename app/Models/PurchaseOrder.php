@@ -19,7 +19,7 @@ class PurchaseOrder extends BaseUuid
 
     public function companyUser()
     {
-        return $this->belongsTo('App\Models\companyUser', 'companyUser_id', 'id');
+        return $this->belongsTo('App\Models\CompanyUser', 'companyUser_id', 'id');
     }
 
     public function partner()
