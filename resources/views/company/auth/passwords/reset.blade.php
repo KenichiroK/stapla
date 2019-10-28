@@ -18,7 +18,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{ __('Reset Password') }}</div>
+                        <div class="card-header">パスワードリセット</div>
 
                         <div class="card-body">
                             <form method="POST" action="{{ route('company.password.update') }}">
@@ -27,7 +27,7 @@
                                 <input type="hidden" name="token" value="{{ $token }}">
 
                                 <div class="form-group row">
-                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mailアドレス') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
@@ -65,7 +65,7 @@
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="btn btn-primary">
-                                            {{ __('Reset Password') }}
+                                            パスワードリセット
                                         </button>
                                     </div>
                                 </div>
