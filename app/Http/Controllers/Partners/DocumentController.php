@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Partners;
 
-use App\Models\CompanyUser;
 use App\Models\Partner;
 use App\Models\Invoice;
 use App\Models\PurchaseOrder;
