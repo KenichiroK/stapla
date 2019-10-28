@@ -52,6 +52,7 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->task_price           = $task->price;
         $purchaseOrder->task_tax             = $task->tax;
         $purchaseOrder->save();
+        \Log::info('発注書作成', ['user_id(company)' => $companyUser->id, 'purchaseOrder_id' => $purchaseOrder->id, 'task_id' => $purchaseOrder->task_id, 'purchaseOrder_status' => $purchaseOrder->status]);
 
         return redirect()->route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]);
     }

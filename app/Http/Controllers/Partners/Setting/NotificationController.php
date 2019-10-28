@@ -26,8 +26,10 @@ class NotificationController extends Controller
         $setting = PartnerAccountSetting::where('partner_id', $partner->id)->get()->first();
 
         if ($setting) {
+            \Log::info('パートナー通知設定(変更前)', ['user_id(partner)' => $partner->id]);
             $setting->update($request->all());
             $completed = '変更を保存しました。';
+            \Log::info('パートナー通知設定(変更後)', ['user_id(partner)' => $partner->id]);
 
             return redirect()->route('partner.setting.notification.create')->with('completed', $completed);
         }
@@ -38,6 +40,7 @@ class NotificationController extends Controller
         $setting->slack              = $request->slack;
         $setting->save();
         $completed = '変更を保存しました。';
+        \Log::info('パートナーアカウント 新規作成', ['user_id(partner)' => $partner->id, 'partner_account_setting_id' => $setting->id]);
         
         return redirect()->route('partner.setting.notification.create')->with('completed', $completed);
     }

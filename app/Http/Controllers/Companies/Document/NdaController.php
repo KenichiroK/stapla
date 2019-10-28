@@ -72,6 +72,7 @@ class NdaController extends Controller
         $nda->company_name =$company->company_name;
         $nda->partner_name = Partner::findOrFail($request->partner_id)->name;
         $nda->save();
+        \Log::info('NDA新規作成', ['user_id(company)' => $companyUser->id, 'nda_id' => $nda->id, 'task_id' => $nda->task_id, 'nda_status' => $nda->status]);
 
         return redirect()->route('company.document.nda.show', [$nda->id]);
 
