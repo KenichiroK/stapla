@@ -27,6 +27,11 @@ $(function(){
 <div class="main__container">
     <form action="{{ route('company.task.store') }}" method='POST' class="main__container__wrapper">
         @csrf
+        @if(count($errors) > 0)
+            <div class="error-container">
+                <p>入力に問題があります。再入力して下さい。</p>
+            </div>
+        @endif
         <!-- ページタイトル エリア -->
         <div class="page-title-container">
             <div class="page-title-container__page-title">タスク作成</div>
