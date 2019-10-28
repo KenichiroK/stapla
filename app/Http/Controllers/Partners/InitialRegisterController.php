@@ -73,7 +73,7 @@ class InitialRegisterController extends Controller
         $time = date("Y_m_d_H_i_s");
         $partner->picture      = $request->picture;
         $partner->save();
-        \Log::info('create new user', ['user_id(partner)' => $partner->id, 'task_id' => $task->id]);
+        \Log::info('パートナー新規登録', ['user_id(partner)' => $partner->id]);
 
         return view('partner/auth/initialRegister/done', compact('partner'));
     }

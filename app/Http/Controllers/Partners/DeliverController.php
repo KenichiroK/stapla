@@ -23,6 +23,7 @@ class DeliverController extends Controller
     {
         $task = Task::findOrFail($request->task_id);
         $auth = Auth::user();
+        
         $deliverLog = new DeliverLog;
         $deliverLog->task_id = $request->task_id;
         $deliverLog->partner_id = $auth->id;
@@ -31,7 +32,7 @@ class DeliverController extends Controller
         if($task->count()) {
             $task->status = $request->status;
             $task->save();
-            \Log::info('change task status', ['user_id(partner)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
+            \Log::info('納品履歴', ['user_id(partner)' => $auth->id, 'task_id' => $task->id]);
 
             if ($task->status === config('const.APPROVAL_ACCOUNTING')) {
                 return redirect()->route('partner.invoice.show', ['id' => $request->invoice_id]);

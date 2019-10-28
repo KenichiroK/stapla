@@ -77,7 +77,7 @@ class ProjectController extends Controller
         //     $companyUser->save();
         // }
         $project->save();
-        \Log::info('create new project', ['user_id' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
+        \Log::info('プロジェクト新規作成', ['user_id' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
 
         $project_id = $project->id;
         
@@ -85,7 +85,7 @@ class ProjectController extends Controller
         $projectCompany->user_id = $request->company_user_id;
         $projectCompany->project_id = $project_id;
         $projectCompany->save();
-        \Log::info('create new projectCompany', ['user_id(company)' => $auth->id, 'project_company_id' => $projectCompany->id]);
+        \Log::info('プロジェクト_カンパニー新規作成', ['user_id(company)' => $auth->id, 'project_company_id' => $projectCompany->id]);
 
         return redirect()->route('company.project.show', ['id' => $project->id])->with('completed', '「'.$project->name.'」を作成しました。');
     }
@@ -103,17 +103,17 @@ class ProjectController extends Controller
     public function complete($id, $status)
     {
         $auth = Auth::user();
-        if($status == 0) {
-            $project = Project::findOrFail($id);
-            $project->status = config('const.PROJECT_COMPLETE');
-            $project->save();
-        } elseif($status == config('const.PROJECT_COMPLETE')) {
-            $project = Project::findOrFail($id);
-            $project->status = config('const.PROJECT_CREATE');
-            $project->save();
-        }
-        \Log::info('change project status', ['user_id(company)' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
+        $project = Project::findOrFail($id);
+        \Log::info('プロジェクトstatus変更前', ['user_id(company)' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
 
+        if($status == 0) {
+            $project->status = config('const.PROJECT_COMPLETE');
+            \Log::info('プロジェクト完了', ['user_id(company)' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
+        } elseif($status == config('const.PROJECT_COMPLETE')) {
+            $project->status = config('const.PROJECT_CREATE');
+            \Log::info('プロジェクト再オープン', ['user_id(company)' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
+        }
+        $project->save();
         return redirect()->route('company.project.index');
     }
 }

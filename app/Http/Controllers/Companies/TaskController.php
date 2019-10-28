@@ -102,7 +102,7 @@ class TaskController extends Controller
         $task->cases           = 1;
         $task->fee_format      = "固定";
         $task->save();
-        \Log::info('create new task', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
+        \Log::info('タスク新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
 
         return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
     }
