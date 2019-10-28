@@ -52,16 +52,6 @@ class Task extends BaseUuid
         return $this->hasOne('App\Models\PurchaseOrder', 'task_id', 'id');
     }
     
-    public function contract()
-    {
-        return $this->hasOne('App\Models\Contract', 'task_id', 'id');
-    }
-
-    public function nda()
-    {
-        return $this->hasOne('App\Models\Nda', 'task_id', 'id');
-    }
-
     public function invoice()
     {
         return $this->hasOne('App\Models\Invoice', 'task_id', 'id');
