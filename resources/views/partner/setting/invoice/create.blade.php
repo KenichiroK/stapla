@@ -117,9 +117,6 @@ $pref = array(
 	<div class="menu-container">
 		<ul>
 			<li><a href="{{ route('partner.setting.invoice.create') }}" class="isActive">請求情報設定</a></li>
-			<!-- <li><a href="#">メールアドレス・パスワード設定</a></li> -->
-			<li><a href="{{ route('partner.setting.notification.create') }}">通知設定</a></li>
-			<!-- <li><a href="#">個人情報の設定</a></li> -->
 		</ul>
 	</div>
 
