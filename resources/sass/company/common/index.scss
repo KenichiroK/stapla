@@ -1,82 +1,80 @@
-
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import '../../variables';
+@import "../../variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
-@import '../../header/index';
-@import '../../sidebar/index';
+@import "../../header/index";
+@import "../../sidebar/index";
 
 body {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .navbar-laravel {
-	background-color: #fff;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
-a:hover{
-	text-decoration: none;
-	opacity: 0.7;
+a:hover {
+    opacity: 0.7;
 }
-  
+
 main {
-	width: 100%;
-	position: relative;
+    width: 100%;
+    position: relative;
 
-	.sidebar-wrapper {
-		width: 18%;
-		position: fixed;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		background-color: #43425d;
-	}
+    .sidebar-wrapper {
+        width: 18%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #43425d;
+    }
 
-	.content-wrapper {
-		width: 82%;
-		min-height: 100vh;
-		position: absolute;
-		top: 64px;
-		right: 0;
-		background-color: #F0F0F7;
+    .content-wrapper {
+        width: 82%;
+        min-height: 100vh;
+        position: absolute;
+        top: 64px;
+        right: 0;
+        background-color: #f0f0f7;
 
-		// エラーメッセージ
-		.error-msg{
-			margin-top: 5px;
-			display: block;
-			strong{
-			  color: #FF0031;
-			  font-size: 12px;
-			}
-		}
-		.error-container {
-			p {
-				color: #FF0031;
-				font-weight: bold;
-				font-size: 16px;
-			}
-		}
-		// 完了メッセージ
-		.complete-container {
-			p {
-				color: #09c221;
-				font-weight: bold;
-				font-size: 16px;
-			}
-		}
-	}
+        // エラーメッセージ
+        .error-msg {
+            margin-top: 5px;
+            display: block;
+            strong {
+                color: #ff0031;
+                font-size: 12px;
+            }
+        }
+        .error-container {
+            p {
+                color: #ff0031;
+                font-weight: bold;
+                font-size: 16px;
+            }
+        }
+        // 完了メッセージ
+        .complete-container {
+            p {
+                color: #09c221;
+                font-weight: bold;
+                font-size: 16px;
+            }
+        }
+    }
 }
 .btn01-container {
     width: 100%;
     text-align: center;
     button {
-		border-color: #43425d;
+        border-color: #43425d;
         background-color: #43425d;
         font-weight: bold;
         color: #fff;
@@ -88,7 +86,7 @@ main {
         opacity: 1;
         transition: 0.3s;
     }
-    .back_button{
+    .back_button {
         border-color: #43425d;
         background-color: #fff;
         font-weight: bold;
@@ -105,65 +103,65 @@ main {
         opacity: 0.7;
     }
 }
-.btn02-container{
+.btn02-container {
     text-align: center;
-    button{
+    button {
         height: 2.25em;
         width: 140px;
         border-radius: 100px;
         color: #fff;
         font-weight: bold;
         font-size: 18px;
-        background: #43425D; 
+        background: #43425d;
     }
 }
 
 .btn-a-container {
-	a {
-		background-color: #43425d;
-		font-weight: bold;
-		color: #fff;
-		padding: 8px 20px;
-		font-size: 15px;
-		border-radius: 100px;
-		outline: none;
-		text-decoration: none;
-		opacity: 1;
-		transition: 0.3s;
-	}
-	a:hover {
-		opacity: 0.7;
-	}
+    a {
+        background-color: #43425d;
+        font-weight: bold;
+        color: #fff;
+        padding: 8px 20px;
+        font-size: 15px;
+        border-radius: 100px;
+        outline: none;
+        text-decoration: none;
+        opacity: 1;
+        transition: 0.3s;
+    }
+    a:hover {
+        opacity: 0.7;
+    }
 }
 // ダウンロードボタン
 .title_btn-container__wrapper {
-	display: flex;
+    display: flex;
 }
 .download-btn-container {
-	margin-left: auto;
-	.download-button {
-		height: 40px;
-		width: 140px;
-		background-color: #fff;
-		color: #43425D;
-		margin: 24px 0;
-		border-radius: 100px;
-		border: 2px solid #43425D;
-		font-size: 16px;
-		font-weight: bold;
-	}
-	.download-button:hover{
-		text-decoration: none;
-		border: 2px solid #43425D;
-	}
+    margin-left: auto;
+    .download-button {
+        height: 40px;
+        width: 140px;
+        background-color: #fff;
+        color: #43425d;
+        margin: 24px 0;
+        border-radius: 100px;
+        border: 2px solid #43425d;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .download-button:hover {
+        text-decoration: none;
+        border: 2px solid #43425d;
+    }
 }
 // セレクトボックス 矢印アイコン
 .select-arrow {
-	overflow: hidden;
+    overflow: hidden;
     text-align: center;
     position: relative;
-	border: 1px solid #E9E9F0;
-	border-radius: 2px;
+    border: 1px solid #e9e9f0;
+    border-radius: 2px;
     background: #ffffff;
     select {
         width: 100%;
@@ -179,7 +177,7 @@ main {
         -webkit-appearance: none;
         appearance: none;
         padding: 8px 38px 8px 8px;
-	    color: #666666;
+        color: #666666;
     }
     select::-ms-expand {
         display: none;
@@ -193,8 +191,8 @@ main {
         border-top: 0;
         content: " ";
         display: block;
-        height: .625em;
-        margin-top: -.4375em;
+        height: 0.625em;
+        margin-top: -0.4375em;
         pointer-events: none;
         position: absolute;
         top: 50%;
@@ -202,18 +200,18 @@ main {
         transform: rotate(-45deg);
         -webkit-transform-origin: center;
         transform-origin: center;
-        width: .625em;
-        border-color: #A4AFB7;
+        width: 0.625em;
+        border-color: #a4afb7;
     }
 }
 
 // セレクトボックス＋アイコン
 .select-plusicon {
-	overflow: hidden;
+    overflow: hidden;
     text-align: center;
     position: relative;
-	border: 1px solid #E9E9F0;
-	border-radius: 2px;
+    border: 1px solid #e9e9f0;
+    border-radius: 2px;
     background: #ffffff;
     select {
         width: 100%;
@@ -229,7 +227,7 @@ main {
         -webkit-appearance: none;
         appearance: none;
         padding: 8px 38px 8px 8px;
-	    color: #666666;
+        color: #666666;
     }
     select::-ms-expand {
         display: none;
@@ -242,7 +240,7 @@ main {
         height: 5px;
         padding: 0;
         content: "";
-        border-top: 16px solid #A4AFB7;
+        border-top: 16px solid #a4afb7;
         pointer-events: none;
     }
     &::after {
@@ -253,7 +251,7 @@ main {
         height: 2px;
         padding: 0;
         content: "";
-        border-top: 2px solid #A4AFB7;
+        border-top: 2px solid #a4afb7;
         pointer-events: none;
     }
 }
