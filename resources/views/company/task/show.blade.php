@@ -36,7 +36,7 @@
                     タスク作成日
                 </dt>
                 <dd>
-                    {{ date("Y年m月d日H", strtotime($task->created_at)) }}
+                    {{ date("Y年m月d日H時i分", strtotime($task->created_at)) }}
                 </dd>
             </dl>
             <dl>

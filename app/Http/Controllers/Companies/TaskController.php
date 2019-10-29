@@ -13,6 +13,7 @@ use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -131,18 +132,13 @@ class TaskController extends Controller
             
         $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
         $partners = Partner::where('company_id', $company_user->company_id)->get();
-        
+
         return view('company/task/edit', compact('task', 'projects','companyUsers', 'partners', 'company_user')); 
     }
 
     public function update(CreateTaskRequest $request, $id)
     {
-        try {
-            $task = Task::findOrFail($id);
-        } catch (Exception $e) {
-            report($e);
-            return false;
-        }
+        $task = Task::findOrFail($id);
 
         $task->project_id      = $request->project_id;
         $task->company_user_id = $request->company_user_id;
@@ -151,8 +147,8 @@ class TaskController extends Controller
         $task->partner_id      = $request->partner_id;
         $task->name            = $request->name;
         $task->content         = $request->content;
-        $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
-        $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
+        $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
+        $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
         $task->budget          = $request->budget;
         $task->price           = $request->price;
         $task->save();
