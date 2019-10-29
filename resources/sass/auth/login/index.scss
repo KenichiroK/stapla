@@ -1,7 +1,7 @@
 body {
     height: 100vh;
-    font-family: 'Source Sans Pro';
-    color: #43425D;
+    font-family: "Source Sans Pro";
+    color: #43425d;
 }
 
 header {
@@ -9,7 +9,7 @@ header {
     height: 64px;
     box-sizing: border-box;
     padding: 12px 0;
-    background-color: #43425D;
+    background-color: #43425d;
     display: flex;
     align-items: center;
 
@@ -21,9 +21,9 @@ header {
             color: #fff;
             font-size: 32px;
         }
-        .imgbox{
+        .imgbox {
             width: 170px;
-            img{
+            img {
                 width: 100%;
             }
         }
@@ -48,7 +48,7 @@ main {
         }
 
         .form_wrapper {
-            padding: 60px 0  0;
+            padding: 60px 0 0;
             width: 80%;
             margin: auto;
 
@@ -61,14 +61,14 @@ main {
                     font-size: 15px;
                     font-weight: 600;
                 }
-    
+
                 .input_text {
                     width: 100%;
                     padding: 16px 14px;
                     font-size: 16px;
                     height: 56px;
                     outline: 0;
-                    border: 1px solid #E9E9F0;
+                    border: 1px solid #e9e9f0;
                     border-radius: 2px;
                     box-sizing: border-box;
                 }
@@ -76,28 +76,28 @@ main {
                 .input_text:focus {
                     border: 2px solid #ccdcf6;
                 }
-                .input_text::placeholder{
-                    color: #CCCBD8;
+                .input_text::placeholder {
+                    color: #cccbd8;
                 }
-                .pass-input-wrp{
+                .pass-input-wrp {
                     position: relative;
-                    p{
+                    p {
                         position: absolute;
                         top: 21px;
                         right: 15px;
                         font-size: 12px;
-                        margin: 0; 
+                        margin: 0;
                     }
                 }
-                .error-msg{
+                .error-msg {
                     margin-top: 5px;
-                    strong{
-                      color: #FF0031;
-                      font-size: 12px;
+                    strong {
+                        color: #ff0031;
+                        font-size: 12px;
                     }
                 }
             }
-            .input_wrapper.last{
+            .input_wrapper.last {
                 margin-bottom: 60px;
             }
 
@@ -112,22 +112,21 @@ main {
                     border: 1px solid #ccc;
                     background-color: #fff;
                 }
-                label{
+                label {
                     font-size: 15px;
                 }
-                
+
                 a {
-                    color: #43425D;
+                    color: #43425d;
                 }
             }
-            .tos_wrapper{
+            .tos_wrapper {
                 margin-bottom: 22px;
                 text-align: center;
-                a{
-                    color: #43425D;
+                a {
+                    color: #43425d;
                     font-weight: bold;
-                    text-decoration: none;
-                    border-bottom: 1px solid #43425D;
+                    border-bottom: 1px solid #43425d;
                     padding-bottom: 2px;
                 }
             }
@@ -139,13 +138,13 @@ main {
 
                 .text {
                     width: 60%;
-                    background-color: #43425D;
+                    background-color: #43425d;
                     color: #fff;
                     border-radius: 100px;
                     padding: 16px 0;
                 }
             }
-            .button_wrapper.register-btn{
+            .button_wrapper.register-btn {
                 margin-bottom: 40px;
             }
 
@@ -155,18 +154,17 @@ main {
                 text-align: center;
 
                 a {
-                    color: #43425D;
-                    text-decoration: none;
-                    border-bottom: 1px solid #43425D;
+                    color: #43425d;
+                    border-bottom: 1px solid #43425d;
                     padding-bottom: 2px;
                     font-weight: 600;
                 }
             }
-            .login_wrapper{
+            .login_wrapper {
                 text-align: center;
                 margin-bottom: 80px;
-                a{
-                    color: #43425D;
+                a {
+                    color: #43425d;
                     font-size: 14px;
                     font-weight: 600;
                 }
@@ -178,7 +176,7 @@ main {
                 text-align: center;
 
                 a {
-                    color: #43425D;
+                    color: #43425d;
                     font-size: 12px;
                 }
             }
@@ -194,12 +192,11 @@ footer {
     // bottom: 5px;
     // right: 0;
     // left: 0;
-    
+
     span {
         font-size: 11px;
     }
-    span.tos{
+    span.tos {
         padding-right: 10px;
-
     }
 }

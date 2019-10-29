@@ -86,6 +86,7 @@
                         }
                         a {
                             color: #43425d;
+                            text-decoration: underline;
                         }
                     }
 
@@ -196,14 +197,14 @@
     margin: auto;
     padding: 11px 0;
     font-weight: bold;
-    color: #7B7A9A;
-    .color01{
-        color: #7B7A9A;
+    color: #7b7a9a;
+    .color01 {
+        color: #7b7a9a;
     }
-    .color02{
-        color: #00CE47;
+    .color02 {
+        color: #00ce47;
     }
-    .color03{
-        color: #FF0031;
+    .color03 {
+        color: #ff0031;
     }
 }
