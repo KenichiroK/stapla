@@ -26,14 +26,17 @@ class PersonalInfoController extends Controller
         $companyUser = Auth::user();
         
         if($companyUser) {
+            \Log::info('個人情報(変更前)', ['user_id(company)' => $companyUser->id]);
             $companyUser->update($request->all());
-            $time = date("Y_m_d_H_i_s");
+            \Log::info('個人情報(変更後)', ['user_id(company)' => $companyUser->id]);
 
             if($request->picture) {
+                $time = date("Y_m_d_H_i_s");
                 $picture              = $request->picture;
                 $pathPicture          = \Storage::disk('s3')->putFileAs("company-user-profile", $picture,$time.'_'.$companyUser->id .'.'. $picture->getClientOriginalExtension(), 'public');
                 $companyUser->picture = \Storage::disk('s3')->url($pathPicture);
                 $companyUser->save();
+                \Log::info('個人情報 写真(変更後)', ['user_id(company)' => $companyUser->id, 'picture' => $companyUser->picture]);
             }
             $completed = '変更を保存しました。';
 

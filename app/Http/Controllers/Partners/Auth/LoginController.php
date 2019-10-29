@@ -54,9 +54,9 @@ class LoginController extends Controller
         $this->guard('partner')->logout();
         return redirect('/partner/login');
     }
-    
+
     protected function authenticated(Request $request, $user)
     {
-        \Log::info('ログイン', ['user_id' => $user->id, 'company_id' => $user->company_id]);    
+        \Log::info('ログイン(partner)', ['user_id' => $user->id, 'company_id' => $user->company_id]);    
     }
 }

@@ -80,10 +80,11 @@ class TaskController extends Controller
     // 保存
     public function store(CreateTaskRequest $request)
     {
+        $auth = Auth::user();
+
         $task = new Task;
         $task->project_id      = $request->project_id;
-        $company_id = Auth::user()->company_id;
-        $task->company_id      = $company_id;
+        $task->company_id      = $auth->company_id;
         $task->company_user_id = $request->company_user_id;
         $task->superior_id     = $request->superior_id;
         $task->accounting_id   = $request->accounting_id;
@@ -101,6 +102,7 @@ class TaskController extends Controller
         $task->cases           = 1;
         $task->fee_format      = "固定";
         $task->save();
+        \Log::info('タスク新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
 
         return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
     }
