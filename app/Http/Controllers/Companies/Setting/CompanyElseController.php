@@ -24,10 +24,12 @@ class CompanyElseController extends Controller
     {
         $company_user = Auth::user();
         $company = Company::findOrFail($company_user->company_id);
+        \Log::info('企業情報 その他(変更前)', ['user_id(company)' => $company_user->id]);
 
         if($company) {
             $company->update($request->all());
             $completed = '変更を保存しました。';
+            \Log::info('企業情報 その他(変更後)', ['user_id(company)' => $company_user->id]);
 
             return redirect()->route('company.setting.companyElse.create')->with('completed', $completed);
         }

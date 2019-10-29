@@ -27,6 +27,8 @@ class ProfileController extends Controller
                 $pathPicture      = \Storage::disk('s3')->putFileAs("partner-profile", $picture,$time.'_'.$partner->id .'.'. $picture->getClientOriginalExtension(), 'public');
                 $partner->picture = \Storage::disk('s3')->url($pathPicture);
                 $partner->save();
+                
+                \Log::info('アイコン画像登録(partner)', ['user_id(partner)' => $partner->id, 'picture' => $partner->picture]);
             }
             
             $completed = '変更を保存しました。';

@@ -24,6 +24,7 @@ class InvoiceTaskController extends Controller
                 $model->unit_price = $request->item_unit_price[$i];
                 $model->total      = $request->item_total[$i];
                 $model->save();
+                \Log::info('請求書詳細(タスク) 登録', ['request_task_id' => $model->id, 'invoice_id' => $invoice_id]);
                 }
         }
     }

@@ -23,14 +23,17 @@ class InvoiceController extends Controller
     public function store(PartnerInvoiceRequest $request)
     {
         $partner = Auth::user();
+        \Log::info('パートナー情報(変更前)', ['user_id(partner)' => $partner->id]);
         $partner->update($request->all());
+        \Log::info('パートナー情報(変更後)', ['user_id(partner)' => $partner->id]);
 
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
         if ($partner_invoice) {
             $time = date("Y_m_d_H_i_s");
+            \Log::info('パートナー請求書(変更前)', ['user_id(partner)' => $partner->id]);
             $partner_invoice->update($request->all());
-
             $completed = '変更を保存しました。';
+            \Log::info('パートナー請求書(変更後)', ['user_id(partner)' => $partner->id]);
 
             return redirect()->route('partner.setting.invoice.create')->with('completed', $completed);
         }
@@ -44,6 +47,7 @@ class InvoiceController extends Controller
         $new_partner_invoice->account_number        = $request->account_number;
         $new_partner_invoice->account_holder        = $request->account_holder;
         $new_partner_invoice->save();
+        \Log::info('パートナー請求書 新規作成', ['user_id(partner)' => $partner->id, 'partner_invoice_id' => $new_partner_invoice->id]);
 
         $partner_invoice = $new_partner_invoice;
 
