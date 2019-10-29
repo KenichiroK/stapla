@@ -229,11 +229,6 @@
 </div>
 
 <script>
-    const project_create = {{ config('const.PROJECT_CREATE') }};
-    const project_complete = {{ config('const.PROJECT_COMPLETE') }};
-    const complete_staff = {{ config('const.COMPLETE_STAFF') }};
-    const task_canceled = {{ config('const.TASK_CANCELED') }};
-
     function checkStatus() {
         const projectStatus = document.getElementsByName('projectStatus');
 

@@ -20,7 +20,7 @@ class ProjectController extends Controller
     public function index()
     {
         $companyUser = Auth::user();
-        $projects = Project::where('company_id', $companyUser->company_id)->where('status', '!=', config('const.COMPLETE_STAFF'))->get();        
+        $projects = Project::where('company_id', $companyUser->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();        
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){
@@ -33,7 +33,7 @@ class ProjectController extends Controller
     public function doneIndex()
     {
         $companyUser = Auth::user();
-        $projects = Project::where('company_id', $companyUser->company_id)->where('status', config('const.COMPLETE_STAFF'))->get();
+        $projects = Project::where('company_id', $companyUser->company_id)->where('status', config('const.PROJECT_COMPLETE'))->get();
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){

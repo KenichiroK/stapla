@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Partners;
 use App\Models\Partner;
 use App\Models\Invoice;
 use App\Models\PurchaseOrder;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
