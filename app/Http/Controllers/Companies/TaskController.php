@@ -18,8 +18,8 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $company_user = Auth::user();
-        $tasks = Task::where('company_id', $company_user->company_id)
+        $companyUser = Auth::user();
+        $tasks = Task::where('company_id', $companyUser->company_id)
                                 ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
                                 ->with(['project', 'partner', 'taskRoleRelation'])
                                 ->get();
@@ -35,13 +35,13 @@ class TaskController extends Controller
         // タスクステータスを外部ファイルで定数化（congfig/const.php）
         $statusName_arr = config('const.TASK_STATUS_LIST');
 
-        return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'company_user'));
+        return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'companyUser'));
     }
 
     public function statusIndex($task_status)
     {
-        $company_user = Auth::user();
-        $alltasks = Task::where('company_id', $company_user->company_id)
+        $companyUser = Auth::user();
+        $alltasks = Task::where('company_id', $companyUser->company_id)
                                     ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
                                     ->get();
         $status_arr = [];
@@ -55,11 +55,11 @@ class TaskController extends Controller
         // タスクステータスを外部ファイルで定数化（congfig/const.php）
         $statusName_arr = config('const.TASK_STATUS_LIST');
 
-        $tasks = Task::where('company_id', $company_user->company_id)
+        $tasks = Task::where('company_id', $companyUser->company_id)
                                 ->where('status', $task_status)
                                 ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
                                 ->get();
-        return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'company_user'));
+        return view('company/task/index', compact('tasks','statusName_arr', 'status_arr', 'companyUser'));
     }
 
     public function projectTaskIndex($project_uid)
@@ -69,40 +69,104 @@ class TaskController extends Controller
 
     public function create()
     {
-        $company_user = Auth::user();
-        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.COMPLETE_STAFF'))->get();
+        $companyUser = Auth::user();
+        $projects = Project::where('company_id', $companyUser->company_id)->where('status', '!=', config('const.COMPLETE_STAFF'))->get();
         
-        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
-        $partners = Partner::where('company_id', $company_user->company_id)->get();
-        return view('company/task/create', compact('projects','companyUsers', 'partners', 'company_user'));
+        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
+        $partners = Partner::where('company_id', $companyUser->company_id)->get();
+        // プレビューから戻ってくるときに使用する変数
+        $response = '';
+        return view('company/task/create', compact('projects','companyUsers', 'partners', 'companyUser'));
+    }
+
+    // プレビュー
+    public function preview(CreateTaskRequest $request)
+    {
+        $companyUser = Auth::user();
+        $project = Project::findOrFail($request->project_id);
+        // 担当者
+        $companyUser = CompanyUser::findOrFail($request->company_user_id);
+        // 上長
+        if(isset($request->superior_id)){
+            $superiorUser = CompanyUser::findOrFail($request->superior_id);
+        } else{
+            $superiorUser = null;
+        }
+        // 経理
+        if(isset($request->accounting_id)){
+            $accountingUser = CompanyUser::findOrFail($request->accounting_id);
+        } else{
+            $accountingUser = null;
+        }
+        // パートナー
+        $partner = Partner::findORFail($request->partner_id);
+        // タスクステータス
+        $task_status = 0;
+
+        return view('company.task.create', compact('request', 'companyUsers', 'project', 'companyUser', 'superiorUser', 'accountingUser', 'partner', 'task_status'));
     }
 
     // 保存
-    public function store(CreateTaskRequest $request)
+    public function store(Request $request)
     {
-        $task = new Task;
-        $task->project_id      = $request->project_id;
-        $company_id = Auth::user()->company_id;
-        $task->company_id      = $company_id;
-        $task->company_user_id = $request->company_user_id;
-        $task->superior_id     = $request->superior_id;
-        $task->accounting_id   = $request->accounting_id;
-        $task->partner_id      = $request->partner_id;
-        $task->name            = $request->task_name;
-        $task->content         = $request->task_content;
-        $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
-        $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
-        $task->status          = 1;
-        $task->purchaseorder   = false;
-        $task->invoice         = false;
-        $task->budget          = $request->budget;
-        $task->tax             = 0.1;
-        $task->price           = $request->price;
-        $task->cases           = 1;
-        $task->fee_format      = "固定";
-        $task->save();
+        switch ($request->input('action')) {
+            case 'toEdit';
+                // return $request;
+                $companyUser = Auth::user();
+                $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
+                $projects = Project::where('company_id', $companyUser->company_id)->where('status', '!=', config('const.COMPLETE_STAFF'))->get();
+                // 担当者
+                $companyUser = CompanyUser::findOrFail($request->company_user_id);
+                // 上長
+                if(isset($request->superior_id)){
+                    $superiorUser = CompanyUser::findOrFail($request->superior_id);
+                } else{
+                    $superiorUser = null;
+                }
+                // 経理
+                if(isset($request->accounting_id)){
+                    $accountingUser = CompanyUser::findOrFail($request->accounting_id);
+                } else{
+                    $accountingUser = null;
+                }
+                // パートナー
+                $partner = Partner::findORFail($request->partner_id);
+                $partners = Partner::where('company_id', $companyUser->company_id)->get();
+                // タスクステータス
+                $task_status = 0;
 
-        return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
+                $response = $request;
+                // return $response;
+
+                return view('company.task.create', compact('response', 'companyUsers', 'projects', 'companyUser', 'superiorUser', 'accountingUser', 'partner', 'partners', 'task_status'));
+            break;
+
+            case 'toStore';
+                $task = new Task;
+                $task->project_id      = $request->project_id;
+                $company_id = Auth::user()->company_id;
+                $task->company_id      = $company_id;
+                $task->company_user_id = $request->company_user_id;
+                $task->superior_id     = $request->superior_id;
+                $task->accounting_id   = $request->accounting_id;
+                $task->partner_id      = $request->partner_id;
+                $task->name            = $request->task_name;
+                $task->content         = $request->task_content;
+                $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
+                $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
+                $task->status          = 1;
+                $task->purchaseorder   = false;
+                $task->invoice         = false;
+                $task->budget          = $request->budget;
+                $task->tax             = 0.1;
+                $task->price           = $request->price;
+                $task->cases           = 1;
+                $task->fee_format      = "固定";
+                $task->save();
+                
+                return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
+            break;
+        }
     }
 
     public function show($id)
@@ -110,16 +174,16 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $purchaseOrder = PurchaseOrder::where('task_id', $id)->first();
         $invoice = Invoice::where('task_id', $id)->first();
-        $company_user = Auth::user();
-        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
+        $companyUser = Auth::user();
+        $companyUsers = CompanyUser::where('company_id', $companyUser->company_id)->get();
 
         $company_user_ids = array();
         if ($task->companyUser) {
             array_push($company_user_ids, $task->companyUser->id);
         }
 
-        $partners = Partner::where('company_id', $company_user->company_id)->get();
+        $partners = Partner::where('company_id', $companyUser->company_id)->get();
 
-        return view('/company/task/show', compact('task', 'project_count', 'company_user', 'companyUsers', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids'));
+        return view('/company/task/show', compact('task', 'project_count', 'companyUser', 'companyUsers', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids'));
     }
 }
