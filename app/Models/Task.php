@@ -37,11 +37,6 @@ class Task extends BaseUuid
         return $this->belongsTo('App\Models\CompanyUser', 'accounting_id', 'id');
     }
 
-    public function taskPartners()
-    {
-        return $this->hasMany('App\Models\TaskPartner', 'task_id', 'id');
-    }
-
     public function taskRoleRelation()
     {
         return $this->hasOne('App\Models\TaskRoleRelation', 'task_id', 'id');

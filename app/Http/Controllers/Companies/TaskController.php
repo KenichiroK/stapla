@@ -13,6 +13,7 @@ use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -89,8 +90,8 @@ class TaskController extends Controller
         $task->superior_id     = $request->superior_id;
         $task->accounting_id   = $request->accounting_id;
         $task->partner_id      = $request->partner_id;
-        $task->name            = $request->task_name;
-        $task->content         = $request->task_content;
+        $task->name            = $request->name;
+        $task->content         = $request->content;
         $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
         $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
         $task->status          = 1;
@@ -123,5 +124,38 @@ class TaskController extends Controller
         $partners = Partner::where('company_id', $company_user->company_id)->get();
 
         return view('/company/task/show', compact('task', 'project_count', 'company_user', 'companyUsers', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids'));
+    }
+
+    public function edit($id)
+    {
+        $company_user = Auth::user();
+        $task = Task::findOrFail($id);
+        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', 1)->get();
+            
+        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
+        $partners = Partner::where('company_id', $company_user->company_id)->get();
+
+        return view('company/task/edit', compact('task', 'projects','companyUsers', 'partners', 'company_user')); 
+    }
+
+    public function update(CreateTaskRequest $request, $id)
+    {
+        $task = Task::findOrFail($id);
+
+        $task->project_id      = $request->project_id;
+        $task->company_user_id = $request->company_user_id;
+        $task->superior_id     = $request->superior_id;
+        $task->accounting_id   = $request->accounting_id;
+        $task->partner_id      = $request->partner_id;
+        $task->name            = $request->name;
+        $task->content         = $request->content;
+        $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
+        $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
+        $task->budget          = $request->budget;
+        $task->price           = $request->price;
+        $task->save();
+        
+
+        return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '変更しました。');
     }
 }
