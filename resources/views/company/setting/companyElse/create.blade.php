@@ -39,7 +39,7 @@ const setPreview = (input) => {
 	<div class="menu-container">
 		<ul>
 			<li><a href="{{ route('company.setting.general.create') }}">会社基本情報設定</a></li>
-			<li><a href="{{ route('company.setting.companyElse.create') }}" class="isActive">会社その他の設定</a></li>
+			<!-- <li><a href="{{ route('company.setting.companyElse.create') }}" class="isActive">会社その他の設定</a></li> -->
 			<li><a href="{{ route('company.setting.userSetting.create') }}">会社担当者設定</a></li>
 			<!-- <li><a href="{{ route('company.setting.account.create') }}">アカウント設定</a></li> -->
 			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
@@ -157,7 +157,7 @@ const setPreview = (input) => {
                             @endif
                         </div>
                         <div class="imgbox">
-                            <img src="{{ asset('images/uploader.png') }}" alt="">
+                            <img src="{{ env('AWS_URL') }}/common/uploader.png" alt="">
                         </div>
                     </div>
                     <div class="confidential document-item">
@@ -181,14 +181,14 @@ const setPreview = (input) => {
                             @endif
                         </div>
                         <div class="imgbox">
-                            <img src="{{ asset('images/uploader.png') }}" alt="">
+                            <img src="{{ env('AWS_URL') }}/common/uploader.png" alt="">
                         </div>
                     </div>
                 </div>
             </div> -->
 		</div>
 
-		<div class="btn-container">
+		<div class="btn01-container">
 			<button ttype="button" onclick="submit();">設定</button>
 		</div>
 	</form>

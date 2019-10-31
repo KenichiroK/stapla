@@ -56,22 +56,17 @@ const calculateSumPrice = (e) => {
     expencesSum += expencesNum * expencesUnitPrice;
   }
   sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
+  sum_plus_tax.textContent = `￥${Math.floor((taskSum + expencesSum)*1.10).toLocaleString()}`;
 
   // タスク予算額
   let task_taxIncludedPriceValue = document.getElementById('task_taxIncludedPrice').value;
-  console.log(task_taxIncludedPriceValue);
   task_taxIncludedPrice = Number(task_taxIncludedPriceValue);
-  console.log(task_taxIncludedPrice);
-  console.log(typeof task_taxIncludedPrice);
 
   // 請求書合計金額
   let invoiceAmount = document.getElementById('invoiceAmount').value;
   invoiceAmount = taskSum + expencesSum;
-  console.log(invoiceAmount);
-  console.log(typeof invoiceAmount);
 
   const invoiceAmount_alert = document.getElementById('invoiceAmount_alert');
-//   console.log(invoiceAmount_alert.style.color);
 
     if(task_taxIncludedPrice < invoiceAmount){
 		invoiceAmount_alert.style.display = 'block';
@@ -147,8 +142,12 @@ window.onload = () => {
 						<div class="selectbox-container">
 							<select name="company_user_id">
 								<option value="" hidden></option>
-								@foreach ($task->taskCompanies as $companyUser)
-									<option value="{{ $companyUser->companyUser->id }}" {{ old('company_user_id') === $companyUser->companyUser->id ? 'selected' : '' }}>{{ $companyUser->companyUser->name }}</option>
+								@foreach ($companyUsers as $companyUser)
+									@if(old('company_user_id'))
+									<option value="{{ $companyUser->id }}" {{ old('company_user_id') === $companyUser->id ? 'selected' : '' }}>{{ $companyUser->name }}</option>
+								 	@else
+									<option value="{{ $companyUser->id }}" {{ $task->companyUser->id === $companyUser->id ? 'selected' : '' }}>{{ $companyUser->name }}</option>
+									@endif
 								@endforeach
 							</select>
 						</div>
@@ -163,7 +162,7 @@ window.onload = () => {
 				<dl>
 					<dt>件名</dt>
 					<dd>
-						<input class="task-name" type="text" name="title" value="{{ old('title') }}">
+						<input class="task-name" type="text" name="title" value="{{ old('title', $task->name . 'のご請求') }}">
 						@if ($errors->has('title'))
 							<div class="error-msg">
 								<strong>{{ $errors->first('title') }}</strong>
@@ -178,25 +177,16 @@ window.onload = () => {
 						<div class="radio-container">
 							<span id="requested_at_text"></span>
 							<input
-								class="radio-input"
-								type="radio"
+								type="date"
 								name="requested_at"
-								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m'), 0, date('Y'))) }}"
-								id="end_of_last_month"
-								onclick="checkInvoiceDate()"
-								{{ old('requested_at') === date('Y-m-d', mktime(0, 0, 0, date('m'), 0, date('Y'))) ? 'checked' : '' }}
+								value="{{ old('started_at', date('Y-m-d')) }}"
 							>
-							<label for="end_of_last_month">先月末にする</label>
-							<input
-								class="radio-input"
-								type="radio"
-								name="requested_at"
-								value="{{ date('Y-m-t') }}"
-								id="end_of_this_month"
-								onclick="checkInvoiceDate()"
-								{{ old('requested_at') === date('Y-m-t') ? 'checked' : '' }}
-							>
-							<label for="end_of_this_month">今月末にする</label>
+
+							@if($errors->has('requested_at'))
+								<div class="invalid-feedback error-msg" role="alert">
+									<strong>{{ $errors->first('requested_at') }}</strong>
+								</div>
+							@endif
 						</div>
 						@if ($errors->has('requested_at'))
 							<div class="error-msg">
@@ -213,25 +203,10 @@ window.onload = () => {
 						<div class="radio-container">
 							<span id="deadline_at_text"></span>
 							<input
-								class="radio-input"
-								type="radio"
+								type="date"
 								name="deadline_at"
-								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) }}"
-								id="end_of_next_month"
-								onclick="checkDeadline()"
-								{{ old('deadline_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) ? 'checked' : '' }}
+								value="{{ old('deadline_at') }}"
 							>
-							<label for="end_of_next_month">来月末にする</label>
-							<input
-								class="radio-input"
-								type="radio"
-								name="deadline_at"
-								value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) }}"
-								id="end_of_month_after_next"
-								onclick="checkDeadline()"
-								{{ old('deadline_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) ? 'checked' : '' }}
-							>
-							<label for="end_of_month_after_next">再来月末にする</label>
 						</div>
 						@if ($errors->has('deadline_at'))
 							<div class="error-msg">
@@ -253,7 +228,7 @@ window.onload = () => {
 								id="include_tax"
 								{{ old('tax') === "1" ? 'checked' : '' }}
 							>
-							<label for="include_tax">税込表示</label>
+							<label for="include_tax">税込表示(10%)</label>
 							<input
 								class="radio-input"
 								type="radio"
@@ -262,7 +237,7 @@ window.onload = () => {
 								id="not_include_tax"
 								{{ old('tax') === "0" ? 'checked' : '' }}
 							>
-							<label for="not_include_tax">税別表示 (8%)</label>
+							<label for="not_include_tax">税別表示</label>
 						</div>
 						@if ($errors->has('tax'))
 							<div class="error-msg">
@@ -374,7 +349,8 @@ window.onload = () => {
 				</div>					
 				
 				<div class="sum-container">
-					<p>税込<span id="sum">￥0</span></p>
+					<p>税抜<span id="sum">￥0</span></p>
+					<p>税込<span id="sum_plus_tax">￥0</span></p>
 				</div>
 			</div>
 		</div>

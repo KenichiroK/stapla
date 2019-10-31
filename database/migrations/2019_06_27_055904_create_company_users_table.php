@@ -12,16 +12,18 @@ class CreateCompanyUsersTable extends Migration
         Schema::create('company_users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary();
-            $table->uuid('auth_id');
-            $table->uuid('company_id');
-            $table->string('name', 64);
-            $table->string('department',64);
+            $table->string('email', 64)->unique();
+            $table->string('password', 64);
+            $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->uuid('company_id')->nullable();
+            $table->string('name', 64)->nullable();
+            $table->string('department',64)->nullable();
             $table->string('occupation',64)->nullable();
             $table->text('self_introduction')->nullable();
-            $table->string('picture');
+            $table->string('picture')->nullable();
             $table->timestamps();
 
-            $table->foreign('auth_id')->references('id')->on('company_user_auths');
             $table->foreign('company_id')->references('id')->on('companies');
         });
     }

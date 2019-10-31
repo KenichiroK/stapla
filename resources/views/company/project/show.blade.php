@@ -17,7 +17,7 @@
         <div class="notification-wrp">
             <div class="notification-container">
                 <div class="notification-container__img-container">
-                    <img src="{{ asset('images/photoimg.png') }}" alt="">
+                    <img src="{{ env('AWS_URL') }}/common/photoimg.png" alt="">
                 </div>
                 <div class="notification-container__content">
                     <p class="notification-container__content__name">永瀬達也</p>
@@ -29,7 +29,7 @@
         <div class="notification-wrp">
             <div class="notification-container">
                 <div class="notification-container__img-container">
-                    <img src="{{ asset('images/photoimg.png') }}" alt="">
+                    <img src="{{ env('AWS_URL') }}/common/photoimg.png" alt="">
                 </div>
                 <div class="notification-container__content">
                     <p class="notification-container__content__name">永瀬達也</p>
@@ -55,7 +55,7 @@
             <!-- <div class="activity-log-container">
                 <div class="activity-log-container__left">
                     <div class="activity-log-container__left__name-container">
-                        <div class="img-container"><img src="{{ asset('images/photoimg.png') }}" alt=""></div>
+                        <div class="img-container"><img src="{{ env('AWS_URL') }}/common/photoimg.png" alt=""></div>
                         <p class="name">永瀬達也</p>
                     </div>
                     <div class="activity-log-container__left__content">
@@ -78,41 +78,11 @@
                         <div class="detail-container__list__item__content">
                             @foreach($project->projectCompanies as $projectCompany)
                             <div class="staff-item">
-                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectCompany->companyUser->picture) }}" alt=""></div>
+                                <div class="imgbox"><img src="{{ $projectCompany->companyUser->picture }}" alt=""></div>
                                 <p class="name">{{ $projectCompany->companyUser->name }}</p>
                             </div>
                             @endforeach
                         </div> 
-                    </li>
-                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">上長</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->ProjectSuperiors as $projectSuperior)
-                            <div class="staff-item">
-                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectSuperior->companyUser->picture) }}" alt=""></div>
-                                <p class="name">{{ $projectSuperior->companyUser->name }}</p>
-                            </div>
-                            @endforeach
-                        </div> 
-                    </li>
-                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">経理</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->ProjectAccountings as $projectAccounting)
-                            <div class="staff-item">
-                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectAccounting->companyUser->picture) }}" alt=""></div>
-                                <p class="name">{{ $projectAccounting->companyUser->name }}</p>
-                            </div>
-                            @endforeach
-                        </div> 
-                    </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">パートナー</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->projectPartners as $projectPartner)
-                                <div class="staff-item">
-                                    <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectPartner->partner->picture) }}" alt=""></div>
-                                    <p class="name">{{ $projectPartner->partner->name }}</p>
-                                </div>
-                            @endforeach
-                        </div>
                     </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
                         <div class="period__wrapper">
@@ -125,7 +95,7 @@
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->budget) }}円</div></li>
                     <!-- <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
                         <div class="detail-container__list__item__content file-item">
-                            <div class="imgbox"><img src="{{ asset('images/file.png') }}" alt=""></div>
+                            <div class="imgbox"><img src="{{ env('AWS_URL') }}/common/file.png" alt=""></div>
                             <p>ファイル名</p>
                         </div>
                     </li> -->
@@ -152,7 +122,7 @@
                         <li class="task-name">{{ $task->project->name }}</li>
                         <li>{{ $task->name }}</li>
                         <li class="partner-item">
-                            <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt=""></div>
+                            <div class="imgbox"><img src="{{ $task->partner->picture }}" alt=""></div>
                             <p class="name">
                                 {{ $task->partner->name }}</p>
                         </li>
@@ -227,6 +197,54 @@
                 <p id="showmore_task_btn" class="task-container__content__showmore__btn">もっと見る</p>
             </div>
         </div>
-    </div>    
+
+        @if($projectCompany->companyUser->id === Auth::id())
+            <form onsubmit="return checkStatus()" action="{{ route('company.project.complete', ['id' => $project->id, 'status' => $project->status]) }}" name="form1" method='POST' enctype="multipart/form-data">
+                @csrf
+
+                @foreach($tasks as $task)
+                    <input type="hidden" name="taskStatus[]" value="{{ $task->status }}">
+                @endforeach
+
+                <div class="button-container">
+                    <!-- <div class="preview-button-wrapper">
+                        <button type="submit" class="preview-button-wrapper__btn button">プレビュー</button>
+                    </div> -->
+
+                    @if($project->status == config('const.PROJECT_CREATE'))
+                        <div class="btn01-container">
+                            <button type="submit">完了</button>
+                            <input type="hidden" name="projectStatus" value="{{ $project->status }}">
+                        </div>
+                    @elseif($project->status == config('const.PROJECT_COMPLETE'))
+                        <div class="btn01-container">
+                            <button type="submit">再オープン</button>
+                            <input type="hidden" name="projectStatus" value="{{ $project->status }}">
+                        </div>
+                    @endif
+                </div>
+            </form>
+        @endif
+    </div>
 </div>
+
+<script>
+    function checkStatus() {
+        const projectStatus = document.getElementsByName('projectStatus');
+
+        if(projectStatus[0].value == project_create) {
+            const taskStatuses = document.getElementsByName('taskStatus[]');
+            for (i=0; i<taskStatuses.length; i++) {
+                console.log(taskStatuses[i].value)
+                if(taskStatuses[i].value != complete_staff && taskStatuses[i].value != task_canceled){
+                    alert("「全てのタスクを完了またはキャンセルしてから、プロジェクトを完了してください。」")
+                    return false;
+                }
+            };
+            alert("「プロジェクトを完了してよろしいですか？」")
+        } else if(projectStatus[0].value == project_complete){
+            alert("「再オープンしてよろしいですか？」")
+        }
+    };
+</script>
 @endsection

@@ -1,10 +1,10 @@
 .main__container {
-    width:100%;
+    width: 100%;
     margin: auto;
-    background-color: #F0F0F7;
+    background-color: #f0f0f7;
     font-size: 14px;
-    &__wrapper{
-        padding:40px 40px;
+    &__wrapper {
+        padding: 40px 40px;
     }
 }
 
@@ -13,9 +13,9 @@
     &__page-title {
         font-size: 28px;
         font-weight: bold;
-        font-family: 'Source Sans Pro';
-        color: #43425D;
-        margin-bottom:26px;
+        font-family: "Source Sans Pro";
+        color: #43425d;
+        margin-bottom: 26px;
     }
 }
 .item-name-wrapper {
@@ -24,89 +24,37 @@
     height: 48px;
     padding-right: 30px;
     .item-name {
-        margin-bottom:8px;
+        margin-bottom: 8px;
         vertical-align: middle;
         display: table-cell;
-        color: #43425D;
+        color: #43425d;
         font-size: 15px;
         font-weight: bold;
         font-family: "Source Sans Pro";
         text-align: right;
-        span.tax{
+        span.tax {
             font-size: 12px;
             margin-left: -5px;
         }
     }
-    .item-name.document{
+    .item-name.document {
         vertical-align: top;
     }
 }
-.item-name-wrapper.unitname{
+.item-name-wrapper.unitname {
     padding-right: 23px;
 }
 
-
-// セレクトボックス＋アイコン
-.select-plusicon {
-	overflow: hidden;
-    text-align: center;
-    position: relative;
-	border: 1px solid #E9E9F0;
-	border-radius: 2px;
-    background: #ffffff;
-    select {
-        width: 100%;
-        padding-right: 1em;
-        cursor: pointer;
-        text-indent: 0.01px;
-        text-overflow: ellipsis;
-        border: none;
-        outline: none;
-        background: transparent;
-        background-image: none;
-        box-shadow: none;
-        -webkit-appearance: none;
-        appearance: none;
-        padding: 8px 38px 8px 8px;
-	    color: #666666;
-    }
-    select::-ms-expand {
-        display: none;
-    }
-    &::before {
-        position: absolute;
-        top: 15px;
-        right: 22px;
-        width: 2px;
-        height: 5px;
-        padding: 0;
-        content: "";
-        border-top: 16px solid #A4AFB7;
-        pointer-events: none;
-    }
-    &::after {
-        position: absolute;
-        top: 22px;
-        right: 15px;
-        width: 16px;
-        height: 2px;
-        padding: 0;
-        content: "";
-        border-top: 2px solid #A4AFB7;
-        pointer-events: none;
-    }
-}
-
 // タスク内容
-.item-name-wrapper.contentsname{
+.item-name-wrapper.contentsname {
     height: 120px;
 }
 // プロジェクト期間
-.item-name-wrapper.period{
+.item-name-wrapper.period {
     height: 170px;
 }
 
-.item-name-wrapper.numbername{
+.item-name-wrapper.numbername {
     width: 100%;
     margin-left: 74px;
 }
@@ -115,7 +63,7 @@
 .select-container {
     margin-bottom: 24px;
     &__wrapper {
-        padding:22px 40px;
+        padding: 22px 40px;
         background-color: #ffffff;
         border-radius: 4px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
@@ -127,15 +75,15 @@
             .select-text {
                 vertical-align: middle;
                 display: table-cell;
-                color: #43425D;
+                color: #43425d;
                 font-size: 15px;
                 font-weight: bold;
-                font-family: 'Source Sans Pro';
+                font-family: "Source Sans Pro";
             }
         }
     }
 }
-.select-area.staff{
+.select-area.staff {
     width: 66%;
 }
 .select-area {
@@ -144,35 +92,40 @@
         width: 100%;
         height: 48px;
         border-radius: 2px;
-        border-color: #3B86FF;
+        border-color: #3b86ff;
     }
 }
-.select.is-info select{
-    border-color: #E9E9F0;
+.select.is-info select {
+    border-color: #e9e9f0;
 }
-.select:not(.is-multiple){
+.select:not(.is-multiple) {
     height: 48px;
     width: 100%;
 }
 .select.is-info:not(:hover)::after {
-    border-color: #A4AFB7;
+    border-color: #a4afb7;
 }
-.select-error-wrp{
+.select-error-wrp {
     width: 66%;
-    .select-area.control{
-        width: 100%
+    .select-area.control {
+        width: 100%;
     }
 }
-.form-control.is-invalid{
+.form-control.is-invalid {
     border-color: #e9e9f0;
     background-image: none;
 }
+
+#inputPrice {
+    text-align: right;
+}
+
 .main-container {
     width: 100%;
     margin-bottom: 60px;
     &__wrapper {
         background-color: #ffffff;
-        padding:  40px 16px 1px;
+        padding: 40px 16px 1px;
         border-radius: 4px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
         .item-container {
@@ -184,22 +137,22 @@
                 .input-control input {
                     box-shadow: none;
                     border-radius: 2px;
-                    border: 1px solid #E9E9F0;
+                    border: 1px solid #e9e9f0;
                     height: 48px;
                 }
             }
             // タスク作成日
-            .cre-datewrapper{
+            .cre-datewrapper {
                 display: table;
                 height: 48px;
-                .cre-date{
+                .cre-date {
                     vertical-align: middle;
                     display: table-cell;
                     font-size: 18px;
-                    color: #4D4F5C;
-                    font-family: 'Source Sans Pro';
-                    i{
-                        color: #A5A4BF;
+                    color: #4d4f5c;
+                    font-family: "Source Sans Pro";
+                    i {
+                        color: #a5a4bf;
                         padding-left: 16px;
                     }
                 }
@@ -211,102 +164,39 @@
             }
             .textarea-wrp textarea {
                 border-radius: 2px;
-                border: 1px solid #E9E9F0;
+                border: 1px solid #e9e9f0;
                 box-shadow: none;
                 resize: none;
             }
             // タスク期間
-            .calendar-item{
+            .calendar-item {
                 display: block;
-                .calendar-name{
+                .calendar-name {
                     font-size: 18px;
                     margin-bottom: 3px;
-                    i{
-                        color: #A5A4BF;
+                    i {
+                        color: #a5a4bf;
                         padding-left: 26px;
                     }
                 }
-                .calendar-name.start{
-                    padding-right: 180px;  
+                .calendar-name.start {
+                    padding-right: 180px;
                 }
             }
-            .calendar-item.end{
+            .calendar-item.end {
                 margin-top: 12px;
+            }
 
-            }
-            // プロジェクト期間
-            .select-date-wrp{
-                display: flex;
-                align-items: center;
-                // セレクトボックス 矢印アイコン
-                .select-arrow {
-                    overflow: hidden;
-                    text-align: center;
-                    position: relative;
-                    border: 1px solid #e9e9f0;
-                    border-radius: 2px;
-                    background: #ffffff;
-                    width: 53px;
-                    margin-left: 10px;
-                    margin-right: 5px;
-                    select {
-                        width: 100%;
-                        height: 46px;
-                        padding-right: 1em;
-                        cursor: pointer;
-                        text-indent: 0.01px;
-                        text-overflow: ellipsis;
-                        border: none;
-                        outline: none;
-                        background: transparent;
-                        background-image: none;
-                        box-shadow: none;
-                        -webkit-appearance: none;
-                        appearance: none;
-                        padding: 8px 25px 8px 8px;
-                        color: #666666;
-                    }
-                    select::-ms-expand {
-                        display: none;
-                    }
-                    &::after {
-                        right: 10px;
-                        padding: 0;
-                        border: 3px solid #94949400;
-                        border-radius: 2px;
-                        border-right: 0;
-                        border-top: 0;
-                        content: " ";
-                        display: block;
-                        height: 0.625em;
-                        margin-top: -0.4375em;
-                        pointer-events: none;
-                        position: absolute;
-                        top: 50%;
-                        -webkit-transform: rotate(-45deg);
-                        transform: rotate(-45deg);
-                        -webkit-transform-origin: center;
-                        transform-origin: center;
-                        width: 0.625em;
-                        border-color: #a4afb7;
-                    }
-                }
-                .select-arrow.year{
-                    width: 80px;
-                    margin-left: 0;
-                }
-            }
-            
             // 予算
-            .input-control.budget{
+            .input-control.budget {
                 position: relative;
                 width: 40%;
-                input{
+                input {
                     display: inline-block;
                     width: 100%;
                 }
             }
-            .input-yen{
+            .input-yen {
                 display: inline-block;
                 position: absolute;
                 bottom: 0px;
@@ -316,60 +206,60 @@
             .filearea {
                 padding: 20px 30px 30px;
                 background: #fff;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-                .uplaod{
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+                .uplaod {
                     font-size: 18px;
-                    color: #4D4F5C;
-                    font-family: 'Source Sans Pro';
+                    color: #4d4f5c;
+                    font-family: "Source Sans Pro";
                 }
             }
-        }    
+        }
     }
 }
-.partner-container{
+.partner-container {
     width: 100%;
     background-color: #ffffff;
     padding: 30px 20px;
     border-radius: 4px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
-    &__title{
+    &__title {
         font-weight: bold;
         font-size: 18px;
-        color: #4D4F5C;
-        font-family: 'Source Sans Pro';
+        color: #4d4f5c;
+        font-family: "Source Sans Pro";
         margin-bottom: 25px;
     }
-    &__wrpper{
-        .item-container.fee{
+    &__wrpper {
+        .item-container.fee {
             margin-bottom: 20px;
         }
-        .item-container.price{
-            border-top: 1px solid #F1F1F3;
+        .item-container.price {
+            border-top: 1px solid #f1f1f3;
             padding-top: 25px;
-            .item-name-wrapper{
-                padding-right:0;
+            .item-name-wrapper {
+                padding-right: 0;
             }
         }
-        .item-container{
+        .item-container {
             margin-bottom: 30px;
             display: flex;
             // 発注単価・件数
-            .order-wrp{
+            .order-wrp {
                 display: flex;
-                .unit-num{
+                .unit-num {
                     display: flex;
-                    .unit-num_contents{
+                    .unit-num_contents {
                         position: relative;
                         height: 48px;
-                        input{
+                        input {
                             display: inline-block;
                             height: 48px;
                             width: 200px;
                             box-shadow: none;
                             border-radius: 2px;
-                            border: 1px solid #E9E9F0;
+                            border: 1px solid #e9e9f0;
                         }
-                        .aux-text{
+                        .aux-text {
                             display: inline-block;
                             position: absolute;
                             bottom: 0px;
@@ -378,41 +268,41 @@
                     }
                 }
             }
-            .price-item{
+            .price-item {
                 text-align: right;
                 width: 100%;
-                p{
+                p {
                     font-size: 30px;
-                    color: #43425D;
-                    font-family: 'Source Sans Pro';
+                    color: #43425d;
+                    font-family: "Source Sans Pro";
                     margin-bottom: 0;
-                    span.tax{
+                    span.tax {
                         font-size: 14px;
                         font-weight: bold;
                         padding-right: 5px;
                     }
-                    span.yen{
+                    span.yen {
                         font-size: 20px;
                         padding-right: 4px;
                     }
                 }
             }
         }
-        .item-container.order__unit-number{
+        .item-container.order__unit-number {
             display: block;
         }
     }
 }
 // 報酬形式
-.fee-container__control{
+.fee-container__control {
     label {
         margin-right: 20px;
         display: inline-block;
         margin-bottom: 10px;
         margin-top: 15px;
-        .title{
-          font-size: 15px; 
-          font-weight: 400; 
+        .title {
+            font-size: 15px;
+            font-weight: 400;
         }
         .radio01-input {
             display: none;
@@ -434,7 +324,7 @@
             left: 10px;
             width: 32px;
             height: 32px;
-            border: 1px solid #E9E9F0;
+            border: 1px solid #e9e9f0;
             border-radius: 50%;
         }
         .radio01-input:checked + .radio01-parts::after {
@@ -445,31 +335,21 @@
             left: 18px;
             width: 16px;
             height: 16px;
-            background: #00CC47;
+            background: #00cc47;
             border-radius: 50%;
         }
-        .radio01-parts.date::before{
+        .radio01-parts.date::before {
             left: 8px;
         }
-        .radio01-input:checked + .radio01-parts.date::after{
+        .radio01-input:checked + .radio01-parts.date::after {
             left: 16px;
         }
     }
 }
 
-.button-wrapper{
-    text-align: center;
+.btn01-container {
     margin-top: 60px;
-    &__btn{
-        width: 140px;
-        border-radius: 100px;
-        color: #fff;
-        font-weight: bold;
+    button {
         font-size: 18px;
-        background: #43425D;
-    }
-    &__btn:hover{
-        opacity:0.8;
-        color: #fff;
     }
 }

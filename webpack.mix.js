@@ -37,6 +37,14 @@ mix.js(
     "public/js/pdf.js"
 );
 
+mix.js(
+    [
+        //change label of task_index
+        "resources/js/common/task-status.js"
+    ],
+    "public/js/common/task-status.js"
+);
+
 mix.sass(
     "resources/sass/company/common/index.scss",
     "public/css/company/common"
@@ -77,14 +85,12 @@ mix.sass(
     .sass("resources/sass/company/task/index.scss", "public/css/company/task")
     .sass("resources/sass/company/task/create.scss", "public/css/company/task")
     .sass("resources/sass/company/task/show.scss", "public/css/company/task")
+    .sass("resources/sass/company/task/edit.scss", "public/css/company/task")
     .sass(
         "resources/sass/company/partner/index.scss",
         "public/css/company/partner"
     )
-    .sass(
-        "resources/sass/company/partner/show.scss",
-        "public/css/company/partner"
-    )
+
     .sass(
         "resources/sass/company/partnerMail/index.scss",
         "public/css/company/partnerMail"
@@ -92,14 +98,6 @@ mix.sass(
     .sass(
         "resources/sass/company/document/index.scss",
         "public/css/company/document"
-    )
-    .sass(
-        "resources/sass/company/document/nda/create.scss",
-        "public/css/company/document/nda"
-    )
-    .sass(
-        "resources/sass/company/document/nda/show.scss",
-        "public/css/company/document/nda"
     )
     .sass(
         "resources/sass/company/document/purchaseOrder/index.scss",
@@ -112,14 +110,6 @@ mix.sass(
     .sass(
         "resources/sass/company/document/purchaseOrder/show.scss",
         "public/css/company/document/purchaseOrder"
-    )
-    .sass(
-        "resources/sass/company/document/outsourcingContract/create.scss",
-        "public/css/company/document/outsourcingContract"
-    )
-    .sass(
-        "resources/sass/company/document/outsourcingContract/show.scss",
-        "public/css/company/document/outsourcingContract"
     )
     .sass(
         "resources/sass/company/setting/general/index.scss",
@@ -183,10 +173,6 @@ mix.sass(
     .sass(
         "resources/sass/partner/profile/index.scss",
         "public/css/partner/profile"
-    )
-    .sass(
-        "resources/sass/partner/setting/notification/index.scss",
-        "public/css/partner/setting/notification"
     )
 
     // pdf

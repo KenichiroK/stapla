@@ -40,7 +40,7 @@ const setPreview = (input) => {
 	<div class="menu-container">
 		<ul>
             <li><a href="{{ route('company.setting.general.create') }}" >会社基本情報設定</a></li>
-			<li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li>
+			<!-- <li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li> -->
 			<li><a href="{{ route('company.setting.userSetting.create') }}">会社担当者設定</a></li>
 			<!-- <li><a href="{{ route('company.setting.account.create') }}">アカウント設定</a></li> -->
 			<li><a href="{{ route('company.setting.personalInfo.create') }}" class="isActive">個人情報の設定</a></li>
@@ -57,7 +57,7 @@ const setPreview = (input) => {
             <div class="edit-container">
                 <div class="image-container">
                     <div class="imgbox">
-                        <img id="profile_image_preview" src="/{{ str_replace('public/', 'storage/', $company_user->picture) }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
+                        <img id="profile_image_preview" src="{{ $company_user->picture }}" alt="プレビュー画像" id="profile_image_preview" width="140px" height="140px">
                     </div>
                     <label for="picture">
                         画像をアップロード
@@ -83,7 +83,7 @@ const setPreview = (input) => {
 
                     <div class="short-input-container">
                         <p>メールアドレス</p>
-                        <p class="text_content">{{ $company_user->companyUserAuth->email }}</p>
+                        <p class="text_content">{{ $company_user->email }}</p>
                     </div>
 
                     <div class="short-input-container">
@@ -108,7 +108,7 @@ const setPreview = (input) => {
                 </div>
             </div>
         </div>
-        <div class="btn-container">
+        <div class="btn01-container">
             <button type="button" onclick="submit();">保存</button>
         </div>
     </form>

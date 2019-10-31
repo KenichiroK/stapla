@@ -19,21 +19,15 @@ class InvoiceController extends Controller
 {
     public function show($id)
     {
-        $auth_id = Auth::user()->id;
-        $company_user = CompanyUser::where('auth_id', $auth_id)->get()->first();
+        $company_user = Auth::user();
         $invoice = Invoice::findOrFail($id);
         $task = Task::findOrFail($invoice->task_id);
         $total_sum = 0;
         $partner = Partner::findOrFail($invoice->partner_id);
-        // if ($company_user->id !== $invoice->companyUser_id) {
-        //     return 'no data';
-        // }
 
         $company_user_ids = array();
-        if ($task->taskCompanies) {
-            foreach($task->taskCompanies as $companyUser) {
-                array_push($company_user_ids, $companyUser->companyUser->id);
-            }
+        if ($task->companyUser) {
+            array_push($company_user_ids, $task->companyUser->id);
         }
         
         if ($invoice->requestTasks->count() > 0) {

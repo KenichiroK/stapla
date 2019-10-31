@@ -17,6 +17,14 @@ const setPreview = (input) => {
   }
 }
 
+// 郵便番号入力欄の自動遷移
+function nextField(t, name ,maxlength) {
+	if(t.value.length >= maxlength) {
+		t.form.elements[name].focus();
+	}
+}
+
+
 const setPostal = () => {
   const front = document.getElementById('postal_front').value;
   const back = document.getElementById('postal_back').value;
@@ -117,9 +125,6 @@ $pref = array(
 	<div class="menu-container">
 		<ul>
 			<li><a href="{{ route('partner.setting.invoice.create') }}" class="isActive">請求情報設定</a></li>
-			<!-- <li><a href="#">メールアドレス・パスワード設定</a></li> -->
-			<li><a href="{{ route('partner.setting.notification.create') }}">通知設定</a></li>
-			<!-- <li><a href="#">個人情報の設定</a></li> -->
 		</ul>
 	</div>
 
@@ -132,8 +137,8 @@ $pref = array(
 			<div class="yago-name-container">
 				<div class="yago-container">
 					<p>屋号</p>
-					@if ($partner)
-						<input type="text" name="name" value="{{ old('name', $partner->name) }}">
+					@if (Auth::user())
+						<input type="text" name="name" value="{{ old('name', Auth::user()->name) }}">
 					@else
 						<input type="text" name="name" value="{{ old('name') }}">
 					@endif
@@ -146,8 +151,8 @@ $pref = array(
 
 				<div class="name-container">
 					<p>名前</p>
-					@if ($partner)
-						<input type="text" name="name" value="{{ old('name', $partner->name) }}">
+					@if (Auth::user())
+						<input type="text" name="name" value="{{ old('name', Auth::user()->name) }}">
 					@else
 						<input type="text" name="name" value="{{ old('name') }}">
 					@endif
@@ -163,19 +168,19 @@ $pref = array(
 				<div class="zipcode-container">
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
-						@if ($partner)
-							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($partner->zip_code, 0, 3)) }}" onchange="setPostal()">
+						@if (Auth::user())
+							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr(Auth::user()->zip_code, 0, 3)) }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($partner->zip_code, 3, 7)) }}" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr(Auth::user()->zip_code, 3, 7)) }}" maxlength="4" onchange="setPostal()">
 							<input id="postal" type="hidden" name="zip_code">
 						@else
-							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" onchange="setPostal()">
+							<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 							<span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" maxlength="4" onchange="setPostal()">
 							<input id="postal" type="hidden" name="zip_code">
 						@endif
 					</div>
@@ -191,7 +196,7 @@ $pref = array(
 					<div class="select-arrow">
 						<select name="prefecture">
 							@foreach($pref as $_pref)
-							<option value="{{ $_pref }}" {{ ($partner->prefecture === $_pref) ? 'selected' : '' }}>{{ $_pref }}</option>
+							<option value="{{ $_pref }}" {{ (Auth::user()->prefecture === $_pref) ? 'selected' : '' }}>{{ $_pref }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -206,8 +211,8 @@ $pref = array(
 			<div class="below-address-container">
 				<div class="city-container">
 					<p>市区町村・番地</p>
-					@if ($partner)
-						<input type="text" name="city" value="{{ old('city', $partner->city) }}">
+					@if (Auth::user())
+						<input type="text" name="city" value="{{ old('city', Auth::user()->city) }}">
 					@else
 						<input type="text" name="city" value="{{ old('city') }}">
 					@endif
@@ -220,8 +225,8 @@ $pref = array(
 
 				<div class="building-container">
 					<p>番地</p>
-					@if ($partner)
-						<input type="text" name="street" value="{{ old('street', $partner->street) }}">
+					@if (Auth::user())
+						<input type="text" name="street" value="{{ old('street', Auth::user()->street) }}">
 					@else
 						<input type="text" name="street" value="{{ old('street') }}">
 					@endif
@@ -236,8 +241,8 @@ $pref = array(
 			<div class="below-address-container">
 				<div class="building-container">
 					<p>建物名・部屋番号</p>
-					@if ($partner)
-						<input type="text" name="building" value="{{ old('building', $partner->building) }}">
+					@if (Auth::user())
+						<input type="text" name="building" value="{{ old('building', Auth::user()->building) }}">
 					@else
 						<input type="text" name="building" value="{{ old('building') }}">
 					@endif
@@ -251,15 +256,15 @@ $pref = array(
 				<div class="tel-container">
 					<p>電話番号</p>
 					<div class="tel-container__wrapper">
-							<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front', substr($partner->tel, 0, 3)) }}" onchange="setTel()">
+							<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front', substr(Auth::user()->tel, 0, 3)) }}" onchange="setTel()">
 								<span class="hyphen">
 									<hr>
 								</span>
-							<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle', substr($partner->tel, 3, 4)) }}" onchange="setTel()">
+							<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle', substr(Auth::user()->tel, 3, 4)) }}" onchange="setTel()">
 								<span class="hyphen">
 									<hr>
 								</span>
-							<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back', substr($partner->tel, 7)) }}" onchange="setTel()">
+							<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back', substr(Auth::user()->tel, 7)) }}" onchange="setTel()">
 							<input type="hidden" name="tel" id="tel">
 						
 					</div>
@@ -324,9 +329,9 @@ $pref = array(
 			<div class="accountNumber-container">
 				<p>口座番号</p>
 				@if ($partner_invoice)
-					<input type="text" name="account_number" value="{{ old('account_number', $partner_invoice->account_number) }}">
+					<input type="text" name="account_number" value="{{ old('account_number', $partner_invoice->account_number) }}" maxlength="7">
 				@else
-					<input type="text" name="account_number" value="{{ old('account_number') }}">
+					<input type="text" name="account_number" value="{{ old('account_number') }}" maxlength="7">
 				@endif
 				@if ($errors->has('account_number'))
 					<div class="error-msg">
@@ -348,40 +353,9 @@ $pref = array(
 					</div>
 				@endif
 			</div>
-			
-			<div class="mark-container">
-				<p class="title">請求書印</p>
-				<p class="caution">背景が透明な140px以上の正方形のpng画像を用意してください。</p>
-				<div class="image-container">
-					@if ($partner_invoice)
-						<div class="imgbox">
-							<img id="preview" src="/{{ str_replace('public/', 'storage/', $partner_invoice->mark_image) }}" alt="プレビュー画像">
-						</div>	
-					@else
-						<div class="imgbox">
-							<img id="preview" src="{{ asset('images/upload3.png') }}" alt="プレビュー画像">
-						</div>
-					@endif
-					<div>
-					<label for="mark_image">
-						画像をアップロード
-						<input type="file" id="mark_image" name="mark_image" style="display: none;" accept="image/png" onchange="setPreview(this)">
-					</label>
-					@if ($errors->has('mark_image'))
-						<div class="image-error_message error-msg">
-							<strong>{{ $errors->first('mark_image') }}</strong>
-						</div>
-					@endif
-					</div>
-				</div>
-
-				<div class="imprint-container">
-					<button type="button">電子印影を作成</button>
-				</div>
-			</div>
 		</div>
 
-		<div class="btn-container">
+		<div class="btn01-container">
 			<button type="button" onclick="submit();">設定</button>
 		</div>
 	</form>

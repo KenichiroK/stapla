@@ -24,18 +24,17 @@ class PartnerInvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required',
-            'zip_code'              => 'required',
+            'name'                  => 'bail | required | string | max:64',
+            'zip_code'              => 'bail | required | numeric | digits:7',
             'prefecture'            => 'required',
-            'city'                  => 'required',
-            'street'                => 'required',
-            'tel'                   => 'required',
-            'financial_institution' => 'required',
-            'branch'                => 'required',
-            'deposit_type'          => 'required',
-            'account_number'        => 'required',
-            'account_holder'        => 'required',
-            'mark_image'            => 'required',
+            'city'                  => 'bail | required | string | max:64',
+            'street'                => 'bail | required | string | max:64',
+            'tel'                   => 'bail | required | numeric | digits_between:10,11',
+            'financial_institution' => 'bail | required | string | max:64',
+            'branch'                => 'bail | required | string | max:64',
+            'deposit_type'          => 'bail | required | string | max:20',
+            'account_number'        => 'bail | required | numeric | digits:7',
+            'account_holder'        => 'bail | required | string | max:64',
         ];
     }
 
@@ -52,7 +51,6 @@ class PartnerInvoiceRequest extends FormRequest
             'deposit_type.required'          => "預金種類は必須項目です。",
             'account_number.required'        => "口座番号は必須項目です。",
             'account_holder.required'        => "口座名義は必須項目です。",
-            'mark_image.required'            => "請求書印は必須項目です。",
         ];
     }
 }

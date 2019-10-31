@@ -14,12 +14,12 @@
                 <p class="control has-icons-left serch-wrp">
                     <!-- <input class="search-project input" type="text" placeholder="プロジェクトを検索">
                     <span class="">
-                    <img src="{{ asset('images/searchicon.png') }}" alt="serch">
+                    <img src="{{ env('AWS_URL') }}/common/searchicon.png" alt="serch">
                     </span> -->
                 </p>
             </div>
-            <div class="control project_btn-wrp">
-                <a href="project/create"><button class="button">プロジェクト作成</button></a>
+            <div class="control btn-a-container">
+                <a href="project/create">プロジェクト作成</a>
             </div>
         </div>
 
@@ -31,11 +31,8 @@
         <div class="project-container">
             <div class="project-container__item">
                 <ul class="item_list">
-                    <li>プロジェクト
-                        <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
-                    </li>
+                    <li>プロジェクト</li>
                     <li>担当者</li>
-                    <li>パートナー</li>
                     <li>タスク</li>
                     <li>期限</li>
                     <li>予算</li>
@@ -50,7 +47,7 @@
                         <li class="item-list project-name">{{ $project->name }}</li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $project->projectCompanies[0]->companyUser->picture) }}" alt="担当者プロフィール画像">
+                                <img src="{{ $project->projectCompanies[0]->companyUser->picture }}" alt="担当者プロフィール画像">
                             </div>
                             @if ($project->projectCompanies->count() > 1) 
                                 <p>
@@ -62,20 +59,7 @@
                             @endif 
                         </li>
                         <li>
-                            <div class="photoimgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $project->projectPartners[0]->partner->picture) }}" alt="担当者プロフィール画像">
-                            </div>
-                            @if ($project->projectPartners->count() > 1) 
-                                <p>
-                                    {{ $project->projectPartners[0]->partner->name }}
-                                    他{{ $project->projectPartners->count() - 1 }}名
-                                </p>
-                            @else
-                                <p>{{ $project->projectPartners[0]->partner->name }}</p>
-                            @endif 
-                        </li>
-                        <li>
-                            <span class="txt-underline">{{ $task_count_arr[$loop->index] }}</span>件
+                            <span>{{ $task_count_arr[$loop->index] }}</span>件
                         </li>
                         <li>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</li>
                         <li>¥{{ number_format($project->budget) }}</li>
@@ -87,7 +71,7 @@
 
             <div class="showmore-wrp">
                 <p id="showmore_btn" class="showmore__btn"><a>もっと見る</a>
-                    <span><img src="{{ asset('images/arrowdown.png') }}"></span>
+                    <span><img src="{{ env('AWS_URL') }}/common/arrowdown.png"></span>
                 </p>
             </div>
         </div> 

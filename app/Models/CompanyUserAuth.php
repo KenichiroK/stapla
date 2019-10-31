@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Notifications\UserVerifyEmailNotification;
+use App\Notifications\InviteComapanyUserVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,19 +21,14 @@ class CompanyUserAuth extends Authenticatable implements MustVerifyEmail
     protected $table = 'company_user_auths';
     
     protected $fillable = [
-       'email', 'password'
+       'email', 'company_id'
     ];
     protected $hidden = [
-        'password', 'remember_token'
+        'remember_token'
     ];
 
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new UserVerifyEmailNotification);
-    }
-    
-    public function companyUser()
-    {
-        return $this->hasOne('App\Models\CompanyUser', 'auth_id', 'id');
+        $this->notify(new InviteComapanyUserVerifyEmail);
     }
 }

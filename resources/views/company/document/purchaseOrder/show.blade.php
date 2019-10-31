@@ -22,15 +22,16 @@ const setPreview = (input) => {
 <div class="main-wrapper">
     <div class="main-wrapper__wrapper">
         <div class="head-container">
-            <div class="head-container__wrapper">
+            <div class="title_btn-container__wrapper">
                 <div class="page-title-container">
                     <div class="page-title-container__page-title">発注書</div>
                 </div>
-                <!-- printボタン -->
-                <div class="head-container__wrapper__print-btn-container">
-                    <a id="print_btn" class="button head-container__wrapper__print-btn-container__button">プリント</a>
+                <!-- downloadボタン -->
+                <div class="download-btn-container">
+                    <a id="print_btn" class="button download-button">ダウンロード</a>
                 </div>
             </div>
+            
         </div>
     
         <div id="print" class="document-container A4">
@@ -300,27 +301,28 @@ const setPreview = (input) => {
     </div>
 
 
-    @if($purchaseOrder->task->status === 5 && in_array($company_user->id, $company_user_ids))
-    <div class="submit-btn-container">
+    @if($purchaseOrder->task->status === 4 && in_array($company_user->id, $company_user_ids))
+    <div class="actionButton">
+        <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
         <form action="{{ route('company.task.status.change') }}" method="POST">
         @csrf
             <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-            <input type="hidden" name="status" value="6">
-            <button type="submit" class="button submit-btn-container__button">提出</button>
+            <input type="hidden" name="status" value="5">
+            <button type="submit" class="done">上長に確認を依頼</button>
         </form>
     </div>
-    @elseif($purchaseOrder->task->status === 7 && $purchaseOrder->task->superior->id === $company_user->id)
+    @elseif($purchaseOrder->task->status === 5 && $purchaseOrder->task->superior->id === $company_user->id)
     <div class="actionButton">
         <form action="{{ route('company.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                <input type="hidden" name="status" value="6">
+                <input type="hidden" name="status" value="4">
                 <button type="submit" class="undone">発注書を承認しない</button>
             </form>
             <form action="{{ route('company.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                <input type="hidden" name="status" value="8">
+                <input type="hidden" name="status" value="6">
                 <button type="submit" class="done">発注書を承認する</button>
         </form>
     </div>
@@ -347,6 +349,6 @@ const setPreview = (input) => {
 </div>
 @endsection
 
-@section('pdf-js')
+@section('asset-js')
     <script src="{{ asset('js/pdf.js') }}" defer></script>
 @endsection

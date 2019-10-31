@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/project/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/company/project/show.css') }}">
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
             <!-- <div class="activity-log-container">
                 <div class="activity-log-container__left">
                     <div class="activity-log-container__left__name-container">
-                        <div class="img-container"><img src="{{ asset('images/photoimg.png') }}" alt=""></div>
+                        <div class="img-container"><img src=<img src="{{ env('AWS_URL') }}/common/photoimg.png" alt=""></div>
                         <p class="name">永瀬達也</p>
                     </div>
                     <div class="activity-log-container__left__content">
@@ -41,21 +41,11 @@
                         {{ $project->task }}
                             @foreach($project->projectCompanies as $projectCompany)
                             <div class="staff-item">
-                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectCompany->companyUser->picture) }}" alt=""></div>
+                                <div class="imgbox"><img src="{{ $projectCompany->companyUser->picture }}" alt=""></div>
                                 <p class="name">{{ $projectCompany->companyUser->name }}</p>
                             </div>
                             @endforeach
                         </div> 
-                    </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">パートナー</div>
-                        <div class="detail-container__list__item__content">
-                            @foreach($project->projectPartners as $projectPartner)
-                                <div class="staff-item">
-                                    <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $projectPartner->partner->picture) }}" alt=""></div>
-                                    <p class="name">{{ $projectPartner->partner->name }}</p>
-                                </div>
-                            @endforeach
-                        </div>
                     </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
                         <div class="period__wrapper">
@@ -83,7 +73,7 @@
 
             <div class="task-container__content">
                 @if ($tasks->count() === 0)
-                    <p class="non-task-text">{{ $partner->name }}様がアサインされているタスクはありません。</p>
+                    <p class="non-task-text">{{ Auth::user()->name }}様がアサインされているタスクはありません。</p>
                 @endif
                 @foreach ($tasks as $task)
                 <a class="task-show-link" href="/partner/task/{{ $task->id }}">
@@ -91,7 +81,7 @@
                         <li class="task-name">{{ $task->project->name }}</li>
                             <li>{{ $task->name }}</li>
                             <li class="partner-item">
-                                <div class="imgbox"><img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt=""></div>
+                                <div class="imgbox"><img src="{{ $task->partner->picture }}" alt=""></div>
                                 <p class="name">{{ $task->partner->name }}</p>
                             </li>
                             @if($task->status === 0)

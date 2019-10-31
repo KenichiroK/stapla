@@ -10,7 +10,9 @@
 <div class="main-wrapper">
 	<div class="title-container">
 		<h3>請求書プレビュー</h3>
-		<button id="print_btn" type="button">プリント</button>
+        <div class="download-btn-container">
+            <a id="print_btn" class="button download-button">ダウンロード</a>
+        </div>
 	</div>
 	<div id="print" class="document-container A4">
         <!-- 印刷用 -->
@@ -119,23 +121,23 @@
                             @if ($invoice->tax === 0)
                                 <p>{{ number_format($total_sum) }}</p>
                             @else
-                                <p>{{ number_format($total_sum / 1.08) }}</p>
+                                <p>{{ number_format($total_sum / 1.10) }}</p>
                             @endif
                         </div>
         
                         <div class="section-container">
                             <p class="sub-column">消費税</p>
                             @if ($invoice->tax === 0)
-                                <p>{{ number_format($total_sum * 0.08) }}</p>
+                                <p>{{ number_format($total_sum * 0.10) }}</p>
                             @else
-                                <p>{{ number_format($total_sum / 1.08 * 0.08) }}</p>
+                                <p>{{ number_format($total_sum / 1.10 * 0.10) }}</p>
                             @endif
                         </div>
         
                         <div class="section-container">
                             <p class="sub-column">総額</p>
                             @if ($invoice->tax === 0)
-                                <p class="total-text">{{ number_format($total_sum * 1.08) }}</p>
+                                <p class="total-text">{{ number_format($total_sum * 1.10) }}</p>
                             @else
                                 <p class="total-text">{{ number_format($total_sum) }}</p>
                             @endif
@@ -265,23 +267,23 @@
 						@if ($invoice->tax === 0)
 							<p>{{ number_format($total_sum) }}</p>
 						@else
-							<p>{{ number_format($total_sum / 1.08) }}</p>
+							<p>{{ number_format($total_sum / 1.10) }}</p>
 						@endif
 					</div>
 	
 					<div class="section-container">
 						<p class="sub-column">消費税</p>
 						@if ($invoice->tax === 0)
-							<p>{{ number_format($total_sum * 0.08) }}</p>
+							<p>{{ number_format($total_sum * 0.10) }}</p>
 						@else
-							<p>{{ number_format($total_sum / 1.08 * 0.08) }}</p>
+							<p>{{ number_format($total_sum / 1.10 * 0.10) }}</p>
 						@endif
 					</div>
 	
 					<div class="section-container">
 						<p class="sub-column">総額</p>
 						@if ($invoice->tax === 0)
-							<p class="total-text">{{ number_format($total_sum * 1.08) }}</p>
+							<p class="total-text">{{ number_format($total_sum * 1.10) }}</p>
 						@else
 							<p class="total-text">{{ number_format($total_sum) }}</p>
 						@endif
@@ -306,7 +308,7 @@
 		</div>
 	</div>
 ​
-	@if($task->status === 12 && in_array($company_user->id, $company_user_ids))
+	@if($task->status === 13 && in_array($company_user->id, $company_user_ids))
 	<div class="actionButton">
 		<form action="{{ route('company.task.status.change') }}" method="POST">
 		@csrf
@@ -319,13 +321,32 @@
 		<form action="{{ route('company.task.status.change')}}" method="POST">
 		@csrf
 			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+			<input type="hidden" name="status" value="15">
+			<div class="button-container">
+				<button class="done" type="submit">経理に送信</button>
+			</div>
+		</form>
+	</div>
+	@elseif($task->status === 15 && $task->accounting->id === $company_user->id)
+	<div class="actionButton">
+		<form action="{{ route('company.task.status.change') }}" method="POST">
+		@csrf
+			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 			<input type="hidden" name="status" value="13">
+			<div class="button-container">
+				<button class="undone" type="submit">請求書を拒否する</button>
+			</div>
+		</form>
+		<form action="{{ route('company.task.status.change')}}" method="POST">
+		@csrf
+			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+			<input type="hidden" name="status" value="16">
 			<div class="button-container">
 				<button class="done" type="submit">請求書を承認する</button>
 			</div>
 		</form>
 	</div>
-	@elseif($task->status > 12 && in_array($company_user->id, $company_user_ids))
+	@elseif($task->status > 14 && in_array($company_user->id, $company_user_ids))
 	<p class="send-done">この請求書は承認済みです</p>
 	@else
 	<p class="send-done">必要なアクションはありません</p>
@@ -345,6 +366,6 @@
 </div>
 @endsection
 
-@section('pdf-js')
+@section('asset-js')
     <script src="{{ asset('js/pdf.js') }}" defer></script>
 @endsection

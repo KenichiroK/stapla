@@ -109,12 +109,12 @@ $pref = array(
 				<h3>プロフィール設定</h3>
 			</div>
 
-			<form action="{{ route('partner.register.intialRegistrationPost') }}" method="POST">
+			<form action="{{ route('partner.register.intialRegistrationPost') }}" method="POST" enctype="multipart/form-data">
 				@csrf
 				<div class="edit-container top">
 					<div class="image-container">
 						<div class="imgbox">
-							<img id="profile_image_preview" src="{{ asset('images/upload4.png') }}" alt="プレビュー画像">
+							<img id="profile_image_preview" src="{{ env('AWS_URL') }}/common/upload4.png" alt="プレビュー画像">
 						</div> 
 						<label for="picture">
 							画像をアップロード

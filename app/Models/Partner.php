@@ -1,31 +1,46 @@
 <?php
 namespace App\Models;
 
-class Partner extends BaseUuid
+use App\Notifications\PartnerVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\PartnerPasswordResetNotification;
+
+class Partner extends Authenticatable
 {   
+    use Notifiable;
+    public $incrementing = false;
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function($model){
+            $model->id = (string)\Illuminate\Support\Str::uuid();
+        });
+    }
+
     protected $table = 'partners';
     
     protected $fillable = [
-        'company_id', 'partner_id', 'name', 'nickname', 'zip_code', 'prefecture', 'city', 'street', 'building', 'tel', 'age',
+        'company_id', 'email', 'password', 'name', 'nickname', 'zip_code', 'prefecture', 'city', 'street', 'building', 'tel', 'age',
         'sex', 'picture', 'occupations', 'academic', 'slack', 'chatwork', 'twitter', 'facebook', 'github', 'instagram', 'careersummary', 'jobcareer', 
         'portfolio', 'introduction', 'possible', 'skill', 'feature', 'language', 'qualification', 'relatedlinks', 'attachment' 
     ];
+
+    protected $hidden = [
+        'password', 'remember_token'
+    ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PartnerPasswordResetNotification($token));
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new PartnerVerifyEmail);
+    }
     
-    public function taskPartners()
-    {
-        return $this->hasMany('App\Models\TaskPartner', 'user_id', 'id');
-    }
-
-    public function projectPartners()
-    {
-        return $this->hasMany('App\Models\ProjectPartner', 'user_id', 'id');
-    }
-
-    public function partnerAuth()
-    {
-        return $this->belongsTo('App\Models\PartnerAuth', 'partner_id', 'id');
-    }
-
     public function company()
     {
         return $this->belongsTo('App\Models\Company', 'company_id', 'id');
@@ -34,16 +49,6 @@ class Partner extends BaseUuid
     public function purchaseOrders()
     {
         return $this->hasMany('App\Models\PurchaseOrder', 'partner_id', 'id');
-    }
-
-    public function contracts()
-    {
-        return $this->hasMany('App\Models\Contract', 'partner_id', 'id');
-    }
-
-    public function ndas()
-    {
-        return $this->hasMany('App\Models\Nda', 'partner_id', 'id');
     }
 
     public function invoices()

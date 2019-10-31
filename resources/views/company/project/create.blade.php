@@ -43,7 +43,7 @@
                             <div class="select-container select id-normal select-plusicon is-multiple"> 
                                 <select name="company_user_id" class="select-box form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}" id="company-staff-name-list">
                                     <option disabled selected></option>
-                                    @foreach( $company_users as $company_user )
+                                    @foreach( $companyUsers as $company_user )
                                     <option value="{{ $company_user->id }}" {{ (old('company_user_id') === $company_user->id)? 'selected' : '' }}>{{ $company_user->name }}</option>
                                     @endforeach
                                 </select>
@@ -55,62 +55,7 @@
                             @endif
                         </div>
                     </li>
-                    <li class="project-create__container__list__item">
-                        <div class="project-create__container__list__item__name">上長</div>
-                        <div class="select-wrp">
-                            <div class="select-container select id-normal select-plusicon is-multiple">
-                                <select name="superior_id" class="select-box" id="company-staff-name-list">
-                                    <option disabled selected></option>
-                                    @foreach( $company_users as $company_user )
-                                    <option value="{{ $company_user->id }}" {{ (old('superior_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            @if ($errors->has('superior_id'))
-                                <div class="invalid-feedback error-msg" role="alert">
-                                    <strong>{{ $errors->first('superior_id') }}</strong>
-                                </div>
-                            @endif
-                        </div>
-                    </li>
-                    <li class="project-create__container__list__item">
-                        <div class="project-create__container__list__item__name">経理</div>
-                        <div class="select-wrp">
-                            <div class="select-container select id-normal select-plusicon is-multiple">
-                                <select name="accounting_id" class="select-box" id="company-staff-name-list">
-                                    <option disabled selected></option>
-                                    @foreach( $company_users as $company_user )
-                                    <option value="{{ $company_user->id }}" {{ (old('accounting_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                    @endforeach
-                                </select>  
-                            </div>
-                            @if ($errors->has('accounting_id'))
-                                <div class="invalid-feedback error-msg" role="alert">
-                                    <strong>{{ $errors->first('accounting_id') }}</strong>
-                                </div>
-                            @endif
-                        </div>
-                    </li>
-                    <li class="project-create__container__list__item">
-                        <div class="project-create__container__list__item__name">パートナー</div>
-                        <div class="select-wrp">
-                            <div class="select id-normal select-plusicon is-multiple">
-                                <select name="partner_id" class="select-box" id="partner-name-list">
-                                    <option disabled selected></option>
-                                    @foreach( $partner_users as $partner_user )
-                                    <option value="{{ $partner_user->id }}" {{ (old('partner_id') === $partner_user->id) ? 'selected' : '' }}>{{ $partner_user->name }}</option>
-                                    @endforeach
-                                </select>
-                                
-                            </div>  
-                            @if ($errors->has('partner_id'))
-                                <div class="invalid-feedback error-msg" role="alert">
-                                    <strong>{{ $errors->first('partner_id') }}</strong>
-                                </div>
-                            @endif
-                        </div> 
-                    </li>
-                 
+
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">プロジェクト期間</div>
                         <div class="calendars">
@@ -148,7 +93,7 @@
                     <li class="project-create__container__list__item">
                         <div class="project-create__container__list__item__name">予算</div>
                         <div class="budget-container input-container">
-                            <input name="budget" type="text" placeholder="" value="{{ old('budget')}}"><span class="budget-container__yen">円</span>
+                            <input id="inputPrice" name="budget" type="text" placeholder="" value="{{ old('budget')}}"><span class="budget-container__yen">円</span>
                             @if ($errors->has('budget'))
                                 <div class="invalid-feedback error-msg" role="alert">
                                     <strong>{{ $errors->first('budget') }}</strong>
@@ -175,7 +120,7 @@
                                 </span>
                             </label>
                             </div>
-                            <img src="{{ asset('images/dragdrop.png') }}" alt="">
+                            <img src="{{ env('AWS_URL') }}/common/dragdrop.png" alt="">
                         </div>
                     </li> -->
                 </ul>
@@ -184,8 +129,8 @@
                 <!-- <div class="preview-button-wrapper">
                     <button type="submit" class="preview-button-wrapper__btn button">プレビュー</button>
                 </div> -->
-                <div class="button-wrapper">
-                    <button type="button" onclick="submit();" class="button-wrapper__btn button">作成</button>
+                <div class="btn01-container">
+                    <button type="button" onclick="submit();">作成</button>
                 </div>
             </div>
         

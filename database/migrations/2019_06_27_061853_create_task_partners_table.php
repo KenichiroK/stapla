@@ -16,11 +16,11 @@ class CreateTaskPartnersTable extends Migration
         Schema::create('task_partners', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
+            $table->uuid('partner_id');
             $table->uuid('task_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('partners');
+            $table->foreign('partner_id')->references('id')->on('partners');
             $table->foreign('task_id')->references('id')->on('tasks');
         });
     }

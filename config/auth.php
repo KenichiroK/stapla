@@ -77,12 +77,12 @@ return [
     'providers' => [
         'companies' => [
             'driver' => 'eloquent',
-            'model' => App\Models\CompanyUserAuth::class,
+            'model' => App\Models\CompanyUser::class,
         ],
 
         'partners' => [
             'driver' => 'eloquent',
-            'model' => App\Models\PartnerAuth::class,
+            'model' => App\Models\Partner::class,
         ],
     ],
 
@@ -103,13 +103,13 @@ return [
 
     'passwords' => [
         'companies' => [
-            'provider' => 'company_users',
+            'provider' => 'companies',
             'table' => 'password_resets',
             'expire' => 60,
         ],
         
         'partners' => [
-            'provider' => 'partner_users',
+            'provider' => 'partners',
             'table' => 'password_resets',
             'expire' => 60,
         ],

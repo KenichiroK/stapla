@@ -14,30 +14,26 @@ class InvoiceController extends Controller
 {
     public function create()
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
 
-        $completed = '';
-        return view('partner/setting/invoice/create', compact('partner', 'partner_invoice', 'completed'));
+        return view('partner/setting/invoice/create', compact('partner_invoice'));
     }
 
     public function store(PartnerInvoiceRequest $request)
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
+        \Log::info('パートナー情報(変更前)', ['user_id(partner)' => $partner->id]);
         $partner->update($request->all());
+        \Log::info('パートナー情報(変更後)', ['user_id(partner)' => $partner->id]);
 
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
         if ($partner_invoice) {
             $time = date("Y_m_d_H_i_s");
+            \Log::info('パートナー請求書(変更前)', ['user_id(partner)' => $partner->id]);
             $partner_invoice->update($request->all());
-            if ($request->mark_image) {
-                $partner_invoice->mark_image = $request->file('mark_image')->storeAs('public/images/partner/invoice_mark', $time.'_'.Auth::user()->id . '.png'); 
-                $partner_invoice->save();  
-            }
-
             $completed = '変更を保存しました。';
+            \Log::info('パートナー請求書(変更後)', ['user_id(partner)' => $partner->id]);
 
             return redirect()->route('partner.setting.invoice.create')->with('completed', $completed);
         }
@@ -50,8 +46,8 @@ class InvoiceController extends Controller
         $new_partner_invoice->deposit_type          = $request->deposit_type;
         $new_partner_invoice->account_number        = $request->account_number;
         $new_partner_invoice->account_holder        = $request->account_holder;
-        $new_partner_invoice->mark_image            = $request->mark_image->storeAs('public/images/partner/invoice_mark', $time.'_'.Auth::user()->id . '.png');
         $new_partner_invoice->save();
+        \Log::info('パートナー請求書 新規作成', ['user_id(partner)' => $partner->id, 'partner_invoice_id' => $new_partner_invoice->id]);
 
         $partner_invoice = $new_partner_invoice;
 

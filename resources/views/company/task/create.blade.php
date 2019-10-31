@@ -27,6 +27,11 @@ $(function(){
 <div class="main__container">
     <form action="{{ route('company.task.store') }}" method='POST' class="main__container__wrapper">
         @csrf
+        @if(count($errors) > 0)
+            <div class="error-container">
+                <p>入力に問題があります。再入力して下さい。</p>
+            </div>
+        @endif
         <!-- ページタイトル エリア -->
         <div class="page-title-container">
             <div class="page-title-container__page-title">タスク作成</div>
@@ -74,10 +79,10 @@ $(function(){
                             </div>
                             <div class="inputarea">
                                 <div class="input-control">
-                                    <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" value="{{ old('task_name')}}">
-                                    @if ($errors->has('task_name'))
+                                    <input class="input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name='name' type="text" value="{{ old('name')}}">
+                                    @if ($errors->has('name'))
                                         <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('task_name') }}</strong>
+                                            <strong>{{ $errors->first('name') }}</strong>
                                         </div>
                                     @endif
                                 </div>
@@ -104,10 +109,10 @@ $(function(){
                                 </div>
                             </div>
                             <div class="textarea-wrp">
-                                <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'>{{ old('task_content') }}</textarea>
-                                @if ($errors->has('task_content'))
+                                <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name='content'>{{ old('content') }}</textarea>
+                                @if ($errors->has('content'))
                                     <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('task_content') }}</strong>
+                                        <strong>{{ $errors->first('content') }}</strong>
                                     </div>
                                 @endif
                             </div>
@@ -121,7 +126,7 @@ $(function(){
                                 </div>
                                 <div class="select-error-wrp">
                                     <div class="select-area control staff">
-                                        <div class="select-wrp select-plusicon is-info">
+                                        <div class="select-wrp select is-info">
                                             <!-- <select v-model="taskInfo.staff"> -->
                                             <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
                                                 <option disabled selected></option>
@@ -148,7 +153,7 @@ $(function(){
                             </div>
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
-                                    <div class="select-wrp select-plusicon is-info">
+                                    <div class="select-wrp select is-info">
                                         <select name='superior_id'>
                                             <option disabled selected></option>
                                             @foreach($companyUsers as $companyUser)
@@ -175,7 +180,7 @@ $(function(){
                             </div>
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
-                                    <div class="select-wrp select-plusicon is-info">
+                                    <div class="select-wrp select is-info">
                                         <select name='accounting_id'>
                                             <option disabled selected></option>
                                             @foreach($companyUsers as $companyUser)
@@ -209,7 +214,7 @@ $(function(){
                                         type="datetime-local"
                                         name="started_at"
                                         class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
-                                        value="{{ old('started_at') ? str_replace(" ", "T", old('started_at')) : date('Y-m-d\TH:i') }}"
+                                        value="{{ old('started_at') ? str_replace(" ", "T", old('started_at')) : date('Y-m-d\T00:00') }}"
                                     >
 
                                     @if($errors->has('started_at'))
@@ -229,7 +234,7 @@ $(function(){
                                         type="datetime-local"
                                         class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
                                         name='ended_at'
-                                        value="{{ old('ended_at') ? str_replace(" ", "T", old('ended_at')) : date('Y-m-d\TH:i') }}"
+                                        value="{{ old('ended_at') ? str_replace(" ", "T", old('ended_at')) : date('Y-m-d\T23:59') }}"
                                     >
 
                                     @if ($errors->has('ended_at'))
@@ -262,30 +267,6 @@ $(function(){
                                 </div>
                             </div>
                         </div>
-                        <!-- 項目：資料 -->
-                        <!-- <div class="item-container">
-                            <div class="item-name-wrapper">
-                                <div class="item-name document">
-                                    資料
-                                </div>
-                            </div>
-                            <div class="is-boxed filearea">
-                                <p class="uplaod">アップロード</p> -->
-                                <!-- <label class="file-label">
-                                    <input class="file-input file-label" type="file" name="resume" >
-                                    <span class="file-cta">
-                                    <span class="file-icon">
-                                        <i class="fas fa-upload"></i>
-                                    </span>
-                                    <span class="file-label">
-                                        <input type="file" name="">
-                                        Choose a file…
-                                    </span>
-                                    </span>
-                                </label> -->
-                                <!-- <img src="../../../images/dragdrop.png" alt="">
-                            </div>
-                        </div> -->
                     </div>      
                 </div>
 
@@ -301,7 +282,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="select-area control">
-                                <div class="select-wrp select-plusicon is-info">
+                                <div class="select-wrp select is-info">
                                     <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
                                         <option disabled selected></option>
                                         @foreach($partners as $partner)
@@ -317,7 +298,7 @@ $(function(){
                             </div>
                         </div>
                         <!-- 報酬形式 -->
-                        <div class="item-container fee">
+                        <!-- <div class="item-container fee">
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     報酬形式
@@ -341,14 +322,13 @@ $(function(){
                                     <span class="radio01-parts date"></span>
                                 </label>
                             </div>
-                             
-                        </div>
+                        </div> -->
                         
                         <!-- 発注単価・件数 -->
                         <div class="item-container order__unit-number">
                             <div class="order-wrp">
                                 
-                                    <!-- 発注単価　タイトル -->
+                                    <!-- 発注単価 タイトル -->
                                     <div class="item-name-wrapper unitname">
                                         <div class="item-name">
                                             発注単価<span class="tax">（税抜）</span>
@@ -359,7 +339,7 @@ $(function(){
                                 <div class="unit-num">
                                     <!-- 発注単位 input -->
                                     <div class="unit-num_contents">
-                                        <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price')}}">
+                                        <input id="inputPrice" class="input form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price')}}">
                                         @if ($errors->has('price'))
                                             <div class="invalid-feedback error-msg" role="alert">
                                                 <strong>{{ $errors->first('price') }}</strong>
@@ -370,7 +350,7 @@ $(function(){
                                         </div>
                                     </div>  
                                     <!-- 件数 -->
-                                    <div class="item-name-wrapper numbername">
+                                    <!-- <div class="item-name-wrapper numbername">
                                         <div class="item-name">
                                             件数
                                         </div>
@@ -385,7 +365,7 @@ $(function(){
                                         <div class="aux-text">
                                             件
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -405,8 +385,8 @@ $(function(){
                     </div>
                 </div>
 
-                <div class="button-wrapper">
-                    <button type="button" onclick="submit();" class="button-wrapper__btn button">作成</button>
+                <div class="btn01-container">
+                    <button type="button" onclick="submit();" style="width:auto">作成/上長に提出</button>
                 </div>
                 
             </div>

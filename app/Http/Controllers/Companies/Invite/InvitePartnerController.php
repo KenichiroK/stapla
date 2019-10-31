@@ -16,20 +16,18 @@ class InvitePartnerController extends Controller
 {
     public function index()
     {
-        $auth_id = Auth::user()->id;
-        $company_user = CompanyUser::where('auth_id', $auth_id)->get()->first();
+        $company_user = Auth::user();
         return view('company/invite/partner/create', compact('company_user'));
     }
 
     public function send(InvitePartnerRequest $request)
     {
         $email = $request->email;
-        $user = Auth::user();
-        $company_user = CompanyUser::where('auth_id', $user->id)->get()->first();
+        $company_user = Auth::user();
         $company_id = $company_user->company_id;
         Mail::to($request->email)->send(new InvitePartnerMail($company_id, $email));
 
-        $partners = Partner::where('company_id', $company_user->company_id)->with(['projectPartners.project', 'TaskPartners.task'])->paginate(6);;
+        $partners = Partner::where('company_id', $company_user->company_id)->paginate(6);;
         return redirect()->route('company.partner.index')->with('send_success', $email.'に招待メールを送信しました。');
     }
 }

@@ -18,11 +18,10 @@
             <div class="page-title-container">
                 <div class="page-title-container__page-title">タスク詳細</div>
             </div>
-            <!-- <div class="button-wrapper">
-                <button type='submit' class="button-wrapper__btn button">編集</button>
-            </div> -->
+            <div class="button-wrapper">
+                <a href="{{ route('company.task.edit', ['id' => $task->id]) }}" class="button-wrapper__btn button">編集</a>
+            </div>
         </div>
-
         <div class="detail">
             <dl class="first">
                 <dt>
@@ -37,7 +36,7 @@
                     タスク作成日
                 </dt>
                 <dd>
-                    {{ date("Y年m月d日", strtotime($task->created_at)) }}
+                    {{ date("Y年m月d日H時i分", strtotime($task->created_at)) }}
                 </dd>
             </dl>
             <dl>
@@ -61,14 +60,12 @@
                     担当者
                 </dt>
                 <dd class="flex01">
-                    @foreach($task->taskCompanies as $companyUser)
-                        <div class="person-item">
-                            <div class="imgbox">
-                                <img src="/{{ str_replace('public/', 'storage/', $companyUser->companyUser->picture) }}" alt="担当者プロフィール画像">
-                            </div>
-                            <p>{{ $companyUser->companyUser->name }}</p>
+                    <div class="person-item">
+                        <div class="imgbox">
+                            <img src="{{ $task->companyUser->picture }}" alt="担当者プロフィール画像">
                         </div>
-                    @endforeach
+                        <p>{{ $task->companyUser->name }}</p>
+                    </div>
                 </dd>
             </dl>
             <dl>
@@ -78,7 +75,7 @@
                 <dd class="flex01">
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $task->superior->picture) }}" alt="上長プロフィール画像">
+                            <img src="{{ $task->superior->picture }}" alt="上長プロフィール画像">
                         </div>
                         <p>{{ $task->superior->name }}</p>
                     </div>
@@ -91,7 +88,7 @@
                 <dd class="flex01">
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $task->accounting->picture) }}" alt="経理プロフィール画像">
+                            <img src="{{ $task->accounting->picture }}" alt="経理プロフィール画像">
                         </div>
                         <p>{{ $task->accounting->name }}</p>
                     </div>
@@ -135,20 +132,20 @@
                 <dd class="flex01">
                     <div class="person-item">
                         <div class="imgbox">
-                            <img src="/{{ str_replace('public/', 'storage/', $task->partner->picture) }}" alt="パートナープロフィール画像">
+                            <img src="{{ $task->partner->picture }}" alt="パートナープロフィール画像">
                         </div>
                         <p>{{ $task->partner->name }}</p>
                     </div>
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     報酬形式
                 </dt>
                 <dd>
                     固定
                 </dd>
-            </dl>
+            </dl> -->
             <dl>
                 <dt>
                     発注単価<span>(税抜)</span>
@@ -157,14 +154,14 @@
                     {{ number_format($task->price) }}円
                 </dd>
             </dl>
-            <dl>
+            <!-- <dl>
                 <dt>
                     件数
                 </dt>
                 <dd>
                     {{ $task->cases }}件
                 </dd>
-            </dl>
+            </dl> -->
             <dl>
                 <dt>
                     発注額
@@ -181,32 +178,40 @@
                     @if(($task->status) === 0)
                         下書き
                     @elseif(($task->status) === 1)
-                        タスク上長確認前
-                    @elseif(($task->status) === 2)
                         タスク上長確認中
-                    @elseif(($task->status) === 3)
+                    @elseif(($task->status) === 2)
                         タスクパートナー依頼前
+                    @elseif(($task->status) === 3)
+                        タスクパートナー確認中
                     @elseif(($task->status) === 4)
-                        タスクパートナー依頼中
+                        発注書作成前
                     @elseif(($task->status) === 5)
-                        発注書作成中
-                    @elseif(($task->status) === 6)
-                        発注書作成完了
-                    @elseif(($task->status) === 7)
                         発注書上長確認中
-                    @elseif(($task->status) === 8)
+                    @elseif(($task->status) === 6)
                         発注書パートナー依頼前
-                    @elseif(($task->status) === 9)
+                    @elseif(($task->status) === 7)
                         発注書パートナー確認中
-                    @elseif(($task->status) === 10)
+                    @elseif(($task->status) === 8)
+                        作業前
+                    @elseif(($task->status) === 9)
                         作業中
+                    @elseif(($task->status) === 10)
+                        検品中
                     @elseif(($task->status) === 11)
-                        請求書依頼中
+                        請求書作成前
                     @elseif(($task->status) === 12)
-                        請求書確認中
+                        請求書下書き
                     @elseif(($task->status) === 13)
-                        完了
+                        請求書担当者確認前
                     @elseif(($task->status) === 14)
+                        請求書担当者確認中
+                    @elseif(($task->status) === 15)
+                        請求書経理確認中
+                    @elseif(($task->status) === 16)
+                        請求書経理承認済み
+                    @elseif(($task->status) === 17)
+                        完了
+                    @elseif(($task->status) === 18)
                         キャンセル
                     @endif
                 </dd>
@@ -214,62 +219,72 @@
         </div>
         
         <div class="actionButton">
-            @if($task->status === 1 && in_array($company_user->id, $company_user_ids))
-                <form action="{{ route('company.task.status.change') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="2">
-                    <button type="submit" class="done">上長に確認を依頼する</button>
-                </form>
-            @elseif($task->status === 2 && $task->superior->id === $company_user->id)
+            @if($task->status === 0)
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="1">
+                    <button type="submit" class="done">上長に確認を依頼する</button>
+                </form>
+            @elseif($task->status === 1 && $task->superior->id === $company_user->id)
+                <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="0">
                     <button type="submit" class="undone">タスクを承認しない</button>
                 </form>
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="3">
+                    <input type="hidden" name="status" value="2">
                     <button type="submit" class="done">タスクを承認する</button>
                 </form>
-            @elseif($task->status === 3 && in_array($company_user->id, $company_user_ids))
+            @elseif($task->status === 2 && in_array($company_user->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="4">
+                    <input type="hidden" name="status" value="3">
                     <button type="submit" class="done">パートナーに依頼する</button>
                 </form>
-            @elseif($task->status === 5 && in_array($company_user->id, $company_user_ids))
+            @elseif($task->status === 4 && in_array($company_user->id, $company_user_ids))
                 <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="done">発注書を作成する</a>
+            @elseif($task->status === 5 && $task->superior->id === $company_user->id)
+                <a class="done" href="{{ route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}">発注書を確認する</a>
             @elseif($task->status === 6 && in_array($company_user->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="7">
-                    <button type="submit" class="done">発注書の確認を上長に依頼する</button>
-                </form>
-            @elseif($task->status === 7 && $task->superior->id === $company_user->id)
-                <a class="done" href="{{ route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}">発注書を確認する</a>
-            @elseif($task->status === 8 && in_array($company_user->id, $company_user_ids))
-                <form action="{{ route('company.task.status.change') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="9">
                     <button type="submit" class="done">発注書をパートナーに依頼する</button>
                 </form>
             @elseif($task->status === 10 && in_array($company_user->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="11">
-                    <button type="submit" class="done">請求書を依頼する</button>
+                    <input type="hidden" name="status" value="9">
+                    <button type="submit" class="undone">再納品を依頼</button>
                 </form>
-            @elseif($task->status === 12 && in_array($company_user->id, $company_user_ids))
+                <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="11">
+                    <button type="submit" class="done">検収</button>
+                </form>
+            @elseif($task->status === 13 && in_array($company_user->id, $company_user_ids))
                 <a href="{{ route('company.document.invoice.show', ['id' => $invoice->id]) }}" class="done">請求書を確認する</a>
-            @elseif($task->status === 13)
+            @elseif($task->status === 15 && $task->accounting->id === $company_user->id)
+                <a href="{{ route('company.document.invoice.show', ['id' => $invoice->id]) }}" class="done">請求書を確認する</a>
+            @elseif($task->status === 16 && in_array($company_user->id, $company_user_ids))
+                <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="17">
+                    <button type="submit" class="done">タスクを完了にする</button>
+                </form>
+            @elseif($task->status === 17)
                 <p class="non-action-text">このタスクは完了しています</p>
+            @elseif($task->status === 18)
+                <p class="non-action-text">このタスクはキャンセルされています</p>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif

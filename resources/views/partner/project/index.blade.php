@@ -14,12 +14,9 @@
                 <p class="control has-icons-left serch-wrp">
                     <!-- <input class="search-project input" type="text" placeholder="プロジェクトを検索">
                     <span class="">
-                    <img src="{{ asset('images/searchicon.png') }}" alt="serch">
+                    <img src="{{ env('AWS_URL') }}/common/searchicon.png" alt="serch">
                     </span> -->
                 </p>
-            </div>
-            <div class="control project_btn-wrp">
-                <a href="project/create"><button class="button">プロジェクト作成</button></a>
             </div>
         </div>
 
@@ -31,11 +28,8 @@
         <div class="project-container">
             <div class="project-container__item">
                 <ul class="item_list">
-                    <li>プロジェクト
-                        <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
-                    </li>
+                    <li>プロジェクト</li>
                     <li>担当者</li>
-                    <li>パートナー</li>
                     <li>タスク</li>
                     <li>期限</li>
                     <li>予算</li>
@@ -44,36 +38,37 @@
             </div>
 
             <div class="project-container__content">
-                
-                <a class="show-link" href="">
+                @foreach($projects as $project)
+                <a class="show-link" href="{{ route('partner.project.show', ['project_id' => $project->id]) }}">
                     <ul class="item-list content_list" >
-                        <li class="item-list project-name">ライティング</li>
+                        <li class="item-list project-name">{{ $project->name }}</li>
                         <li>
                             <div class="photoimgbox">
-                                <img src="" alt="担当者プロフィール画像">
+                                <img src="{{ $project->projectCompanies[0]->companyUser->picture }}" alt="担当者プロフィール画像">
                             </div>
-                                <p>宇野 裕樹</p>
+                                @if ($project->projectCompanies->count() > 1) 
+                                    <p>
+                                        {{ $project->projectCompanies[0]->companyUser->name }} 
+                                        他{{ $project->projectCompanies->count() - 1 }}名
+                                    </p>
+                                @else
+                                    <p>{{ $project->projectCompanies[0]->companyUser->name }}</p>
+                                @endif
                         </li>
                         <li>
-                            <div class="photoimgbox">
-                                <img src="" alt="担当者プロフィール画像">
-                            </div>
-                                <p>野村さゆり</p> 
+                            <span>{{ $project->tasks->count() }}</span>件
                         </li>
-                        <li>
-                            <span class="txt-underline">3</span>件
-                        </li>
-                        <li>2019年09月30日</li>
-                        <li>¥10,000</li>
-                        <li>¥50,000</li>
+                        <li>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</li>
+                        <li>¥{{ number_format($project->budget) }}</li>
+                        <li>¥{{ number_format($project->price) }}</li>
                     </ul>
                 </a>
-                
+                @endforeach
             </div>
 
             <div class="showmore-wrp">
                 <p id="showmore_btn" class="showmore__btn"><a>もっと見る</a>
-                    <span><img src="{{ asset('images/arrowdown.png') }}"></span>
+                    <span><img src="{{ env('AWS_URL') }}/common/arrowdown.png"></span>
                 </p>
             </div>
         </div> 

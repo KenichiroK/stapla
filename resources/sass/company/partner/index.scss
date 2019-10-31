@@ -40,19 +40,11 @@
                     position: absolute;
                 }
             }
-
-            .btn-container {
-                a{
-                    background-color: #43425d;
-                    border-color: #43425d;
-                    border-radius: 100px;
-                    color: #fff;
-                    font-size: 12px;
-                    padding: 10px 18px;
-                    font-weight: bold;
-                    text-decoration: none;
-                    display: block;
-                }
+            .btn-a-container a {
+                font-size: 12px;
+                padding: 10px 18px;
+                font-weight: bold;
+                display: block;
             }
         }
         .profile-list {
@@ -235,35 +227,6 @@
                 }
                 &__pen:hover {
                     color: #4a4a4a;
-                }
-            }
-        }
-        .icon-list-wrp {
-            border-top: solid 1px #f1f1f3;
-            padding-top: 6px;
-            .icon-list {
-                display: flex;
-                justify-content: space-between;
-                width: 254px;
-                margin: 0 auto 10px;
-                font-size: 22px;
-                a {
-                    display: block;
-                }
-                .github {
-                    width: 20px;
-                }
-                .twitter {
-                    width: 21px;
-                }
-                .facebook {
-                    width: 11px;
-                }
-                .instagram {
-                    width: 21px;
-                }
-                .mail {
-                    width: 21px;
                 }
             }
         }

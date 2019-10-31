@@ -24,26 +24,25 @@ class CreateTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'project_id'      => 'required',
-            'task_name'       => 'required',
-            'task_content'    => 'required',
-            'company_user_id' => 'required',
-            'superior_id'     => 'required',
-            'accounting_id'   => 'required',
-            'started_at' => 'required',
-            'ended_at'   => 'required | after:started_at',
-            'budget'          => 'required',
-            'price'           => 'required',
-            'cases'           => 'required | digits_between:1, 10',
-            'partner_id'      => 'required',
-            'fee_format'      => 'required',
+            'project_id'      => 'required | uuid',
+            'name'            => 'required | string | max:64',
+            'content'         => 'required | string | max:200',
+            'company_user_id' => 'required | uuid',
+            'superior_id'     => 'required | uuid',
+            'accounting_id'   => 'required | uuid',
+            'started_at'      => 'required',
+            'ended_at'        => 'required | after:started_at',
+            'budget'          => 'required | integer | digits_between:1, 12',
+            'price'           => 'required | integer | digits_between:1, 12',
+            'partner_id'      => 'required | uuid',
         ];
     }
 
-    public function messages()
+    public function attributes()
     {
         return [
-            // 
+            'name' => 'タスク名',
+            'content' => 'タスク内容'
         ];
     }
 }

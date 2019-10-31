@@ -10,7 +10,10 @@
 <div class="main-wrapper">
 	<div class="title-container">
 		<h3>請求書プレビュー</h3>
-		<button id="print_btn" type="button">プリント</button>
+		<!-- downloadボタン -->
+		<div class="download-btn-container">
+			<a id="print_btn" class="button download-button">ダウンロード</a>
+		</div>
 	</div>
 	<div id="print" class="document-container A4">
 		<!-- 印刷用 -->
@@ -87,23 +90,23 @@
 							@if ($invoice->tax === 0)
 								<p>{{ number_format($total_sum) }}</p>
 							@else
-								<p>{{ number_format($total_sum / 1.08) }}</p>
+								<p>{{ number_format($total_sum / 1.10) }}</p>
 							@endif
 						</div>
 		
 						<div class="section-container">
 							<p class="sub-column">消費税</p>
 							@if ($invoice->tax === 0)
-								<p>{{ number_format($total_sum * 0.08) }}</p>
+								<p>{{ number_format($total_sum * 0.10) }}</p>
 							@else
-								<p>{{ number_format($total_sum / 1.08 * 0.08) }}</p>
+								<p>{{ number_format($total_sum / 1.10 * 0.10) }}</p>
 							@endif
 						</div>
 		
 						<div class="section-container">
 							<p class="sub-column">総額</p>
 							@if ($invoice->tax === 0)
-								<p class="total-text">{{ number_format($total_sum * 1.08) }}</p>
+								<p class="total-text">{{ number_format($total_sum * 1.10) }}</p>
 							@else
 								<p class="total-text">{{ number_format($total_sum) }}</p>
 							@endif
@@ -121,8 +124,8 @@
 					</div>
 		
 					<div class="content-container">
-						<p>お振込み先: {{ $partner->partnerInvoice->account_holder }}</p>
-						<p>{{ $partner->partnerInvoice->financial_institution }} {{ $partner->partnerInvoice->branch }} ({{ $partner->partnerInvoice->deposit_type }}) {{ $partner->partnerInvoice->account_number }}</p>
+						<p>お振込み先: {{ Auth::user()->partnerInvoice->account_holder }}</p>
+						<p>{{ Auth::user()->partnerInvoice->financial_institution }} {{ Auth::user()->partnerInvoice->branch }} ({{ Auth::user()->partnerInvoice->deposit_type }}) {{ Auth::user()->partnerInvoice->account_number }}</p>
 					</div>
 				</div>
 			</div>
@@ -203,23 +206,23 @@
 						@if ($invoice->tax === 0)
 							<p>{{ number_format($total_sum) }}</p>
 						@else
-							<p>{{ number_format($total_sum / 1.08) }}</p>
+							<p>{{ number_format($total_sum / 1.10) }}</p>
 						@endif
 					</div>
 	
 					<div class="section-container">
 						<p class="sub-column">消費税</p>
 						@if ($invoice->tax === 0)
-							<p>{{ number_format($total_sum * 0.08) }}</p>
+							<p>{{ number_format($total_sum * 0.10) }}</p>
 						@else
-							<p>{{ number_format($total_sum / 1.08 * 0.08) }}</p>
+							<p>{{ number_format($total_sum / 1.10 * 0.10) }}</p>
 						@endif
 					</div>
 	
 					<div class="section-container">
 						<p class="sub-column">総額</p>
 						@if ($invoice->tax === 0)
-							<p class="total-text">{{ number_format($total_sum * 1.08) }}</p>
+							<p class="total-text">{{ number_format($total_sum * 1.10) }}</p>
 						@else
 							<p class="total-text">{{ number_format($total_sum) }}</p>
 						@endif
@@ -237,24 +240,27 @@
 				</div>
 	
 				<div class="content-container">
-					<p>お振込み先: {{ $partner->partnerInvoice->account_holder }}</p>
-					<p>{{ $partner->partnerInvoice->financial_institution }} {{ $partner->partnerInvoice->branch }} ({{ $partner->partnerInvoice->deposit_type }}) {{ $partner->partnerInvoice->account_number }}</p>
+					<p>お振込み先: {{ Auth::user()->partnerInvoice->account_holder }}</p>
+					<p>{{ Auth::user()->partnerInvoice->financial_institution }} {{ Auth::user()->partnerInvoice->branch }} ({{ Auth::user()->partnerInvoice->deposit_type }}) {{ Auth::user()->partnerInvoice->account_number }}</p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	@if($task->status === 11 && $task->partner->id === $partner->id)
-		<form action="{{ route('partner.task.status.change') }}" method="POST">
-		@csrf
-			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-			<input type="hidden" name="status" value="12">
-			<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-			<div class="button-container">
-				<button type="submit">送信</button>
-			</div>
-		</form>
-	@elseif($task->status > 11 && $task->partner->id === $partner->id)
+	@if($task->status === 12 && $task->partner->id === Auth::user()->id)
+		<div class="actionButton">
+			<a href="{{ route('partner.document.invoice.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
+			<form action="{{ route('partner.task.status.change') }}" method="POST">
+			@csrf
+				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+				<input type="hidden" name="status" value="13">
+				<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+				<div class="button-container">
+					<button type="submit">送信</button>
+				</div>
+			</form>
+		</div>
+	@elseif($task->status > 12 && $task->partner->id === Auth::user()->id)
 		<p class="send-done">この請求書は提出済みです</p>
 	@else
 		<p class="send-done">必要なアクションはありません</p>
@@ -275,6 +281,6 @@
 </div>
 @endsection
 
-@section('pdf-js')
+@section('asset-js')
     <script src="{{ asset('js/pdf.js') }}" defer></script>
 @endsection

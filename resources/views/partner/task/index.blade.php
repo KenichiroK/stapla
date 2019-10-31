@@ -50,12 +50,10 @@
         <!-- Task -->
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
-                <li class="all isActive"><a href="">タスク一覧</a></li>
-                <li class="done"><a href="">完了したタスク</a></li>
+                <li id="non_complete_label" class="all"><a href="{{ route('partner.task.index') }}">タスク一覧</a></li>
+                <li id="complete_label" class="done"><a href="{{ route('partner.task.status', ['task_status' => 17 ]) }}">完了したタスク</a></li>
             </ul>
-            <div class="buttonarea control">
-                <button class="c-button button"><a href="">タスク作成</a></button>
-            </div>
+
             <div class="task-container__wrapper">
                 <!-- タイトル -->
                     <div class="item-name-select-wrapper">
@@ -88,31 +86,66 @@
                         <table>
                             <!-- タイトルヘッダー部分 -->
                             <tr class="headerrow">
-                                <th>プロジェクト
-                                    <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
-                                </th>
+                                <th>プロジェクト</th>
                                 <th>タスク</th>
                                 <th>パートナー</th>
-                                <th>ステータス
-                                    <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
-                                </th>
-                                <th>請求額
-                                    <span><i class="arrow fas fa-angle-up"></i><i class="arrow fas fa-angle-down"></i></span>
-                                </th>
+                                <th>ステータス</th>
+                                <th>請求額</th>
                             </tr>
                             <!-- テーブルデータ部分 -->
-                            
+                            @foreach($tasks as $task)
                             <tr class="datarow">
-                                <td class="project">ライティング</td>
-                                <td><a href="">コーディング</a></td>
-                                <td>津田 陽子</td>
+                                <td class="project">{{ $task->project->name }}</td>
+                                <td><a href="{{ route('partner.task.show', ['task_id' => $task->id]) }}">{{ $task->name }}</a></td>
+                                <td>{{ $task->partner->name }}</td>
                                 <td>
                                     <div id ="state" class="status">
-                                        <div class="color02">完了</div>
+                                        <div class="color02">
+                                            @if($task->status == 0)
+                                                <div class="color01">下書き</div>
+                                            @elseif($task->status == 1)
+                                                <div class="color01">タスク上長確認中</div>
+                                            @elseif($task->status == 2)
+                                                <div class="color01">タスクパートナー依頼前</div>
+                                            @elseif($task->status == 3)
+                                                <div class="color01">タスクパートナー確認中</div>
+                                            @elseif($task->status == 4)
+                                                <div class="color01">発注書作成前</div>
+                                            @elseif($task->status == 5)
+                                                <div class="color01">発注書上長確認中</div>
+                                            @elseif($task->status == 6)
+                                                <div class="color01">発注書パートナー依頼前</div>
+                                            @elseif($task->status == 7)
+                                                <div class="color01">発注書パートナー確認中</div>
+                                            @elseif($task->status == 8)
+                                                <div class="color01">作業前</div>
+                                            @elseif($task->status == 9)
+                                                <div class="color01">作業中</div>
+                                            @elseif($task->status == 10)
+                                                <div class="color01">検品中</div>
+                                            @elseif($task->status == 11)
+                                                <div class="color01">請求書作成前</div>
+                                            @elseif($task->status == 12)
+                                                <div class="color01">請求書下書き</div>
+                                            @elseif($task->status == 13)
+                                                <div class="color01">請求書担当者確認前</div>
+                                            @elseif($task->status == 14)
+                                                <div class="color01">請求書担当者確認中</div>
+                                            @elseif($task->status == 15)
+                                                <div class="color01">請求書経理提出</div>
+                                            @elseif($task->status == 16)
+                                                <div class="color01">請求書経理承認済み</div>
+                                            @elseif($task->status == 17)
+                                                <div class="color02">完了</div>
+                                            @elseif($task->status == 18)
+                                                <div class="color03">キャンセル</div>
+                                            @endif
+                                        </div>
                                     </div>
                                 </td>
-                                <td>¥100,000</td>
+                                <td>¥{{ number_format($task->price) }}</td>
                             </tr>
+                            @endforeach
                             
                         </table>
                         <!-- Show More部分 -->
@@ -124,4 +157,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section("asset-js")
+    <script src="{{ asset('js/common/task-status.js') }}" defer></script>
 @endsection

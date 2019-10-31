@@ -22,8 +22,9 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
+        // return $request;
         return view('partner/auth/login');
     }
 
@@ -52,5 +53,10 @@ class LoginController extends Controller
     public function logout(Request $request) {
         $this->guard('partner')->logout();
         return redirect('/partner/login');
-      }
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        \Log::info('ログイン', ['user_id' => $user->id, 'company_id' => $user->company_id]);    
+    }
 }

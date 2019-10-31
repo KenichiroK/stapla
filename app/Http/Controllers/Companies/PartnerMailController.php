@@ -21,9 +21,8 @@ class PartnerMailController extends Controller
     {
         Mail::to($request->email)->send(new PartnerMail());
 
-        $user = Auth::user();
-        $company_id = CompanyUser::where('auth_id', $user->id)->get()->first()->company_id;
-        $partners = Partner::where('company_id', $company_id)->with(['projectPartners.project', 'TaskPartners.task'])->get();
+        $company_id = Auth::user()->company_id;
+        $partners = Partner::where('company_id', $company_id)->get();
         return view('company/partner/index', compact('partners'));
     }
 }

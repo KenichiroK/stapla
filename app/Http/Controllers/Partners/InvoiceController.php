@@ -18,21 +18,23 @@ use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
-    public function create($id)
+    public function create($task_id)
     {
-        $task = Task::findOrFail($id);
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        // タスクステータスのアップデート
+        $task = Task::findOrFail($task_id)
+                            ->update(['status' => config('const.INVOICE_DRAFT_CREATE')]);
+
+        $task = Task::findOrFail($task_id);
+        $partner = Auth::user();
         $company_id = $partner->company_id;
         $company = Company::findOrFail($company_id);
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
-        return view('/partner/document/invoice/create', compact('partner', 'companyUsers', 'company', 'task'));
+        return view('/partner/document/invoice/create', compact('companyUsers', 'company', 'task'));
     }
 
     public function store(CreateInvoiceRequest $request)
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
         if (!$partner_invoice) {
             $completed = '';
@@ -52,6 +54,7 @@ class InvoiceController extends Controller
         $invoice->tax            = $request->tax;
         $invoice->status         = 0;
         $invoice->save();
+        \Log::info('請求書新規登録', ['user_id(partner)' => $partner->id, 'task_id' => $invoice->task_id, 'status' => $invoice->status]);
 
         $invoiceTaskController = new InvoiceTaskController;
         app()->call([$invoiceTaskController, 'store'], ['invoice_id' => $invoice->id]);
@@ -64,10 +67,10 @@ class InvoiceController extends Controller
 
     public function show($id)
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         $invoice = Invoice::findOrFail($id);
         $task = Task::findOrFail($invoice->task_id);
+        $companyUsers = CompanyUser::where('company_id', $partner->company_id)->get();
         $total_sum = 0;
         if ($partner->id !== $invoice->partner_id) {
             return 'no data';
@@ -84,6 +87,6 @@ class InvoiceController extends Controller
             }
         }
 
-        return view('/partner/document/invoice/show', compact('partner', 'invoice', 'task', 'total_sum'));
+        return view('/partner/document/invoice/show', compact('companyUsers', 'invoice', 'task', 'total_sum'));
     }
 }

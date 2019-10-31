@@ -12,25 +12,25 @@ class ProfileController extends Controller
 {
     public function create()
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
-        $completed = '';
-
-        return view('partner/profile/create', compact(['partner', 'completed']));
+        return view('partner/profile/create');
     }
 
     public function store(ProfileRequest $request)
     {
-        $auth_id = Auth::user()->id;
-        $partner = Partner::where('partner_id', $auth_id)->get()->first();
+        $partner = Auth::user();
         if ($partner) {
             $partner->update($request->all());
             $time = date("Y_m_d_H_i_s");
 
-            if ($request->picture) {
-                $partner->picture = $request->picture->storeAs('public/images/partner/profile', $time.'_'.Auth::user()->id . $request->picture->getClientOriginalExtension());
+            if($request->picture) {
+                $picture          = $request->picture;
+                $pathPicture      = \Storage::disk('s3')->putFileAs("partner-profile", $picture,$time.'_'.$partner->id .'.'. $picture->getClientOriginalExtension(), 'public');
+                $partner->picture = \Storage::disk('s3')->url($pathPicture);
                 $partner->save();
+                
+                \Log::info('アイコン画像登録(partner)', ['user_id(partner)' => $partner->id, 'picture' => $partner->picture]);
             }
+            
             $completed = '変更を保存しました。';
 
             return redirect()->route('partner.setting.profile.create')->with('completed', $completed);

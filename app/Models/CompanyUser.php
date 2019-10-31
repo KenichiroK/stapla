@@ -1,17 +1,42 @@
 <?php
 namespace App\Models;
 
-class CompanyUser extends BaseUuid
+use App\Notifications\UserVerifyEmailNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\CompanyPasswordResetNotification;
+
+class CompanyUser extends Authenticatable
 {
+    use Notifiable;
+    public $incrementing = false;
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function($model){
+            $model->id = (string)\Illuminate\Support\Str::uuid();
+        });
+    }
     protected $table = 'company_users';
     
     protected $fillable = [
-        'auth_id', 'company_id', 'name', 'department', 'occupation', 'self_introduction', 'picture'
+        'email', 'password', 'company_id', 'task_id', 'name', 'department', 'occupation', 'self_introduction', 'picture'
     ];
 
-    public function companyUserAuth()
+    protected $hidden = [
+        'password', 'remember_token'
+    ];
+
+    public function sendPasswordResetNotification($token)
     {
-        return $this->belongsTo('App\Models\CompanyUserAuth', 'auth_id', 'id');
+        $this->notify(new CompanyPasswordResetNotification($token));
+    }
+
+    // 登録済みかどうかの判定
+    public function scopeIsRegistered()
+    {
+        return isset($companyUser);
     }
 
     public function company()
@@ -29,11 +54,6 @@ class CompanyUser extends BaseUuid
         return $this->hasMany('App\Models\ProjectCompany', 'user_id', 'id');
     }
 
-    public function taskCompanies()
-    {
-        return $this->hasMany('App\Models\TaskCompany', 'user_id', 'id');
-    }
-
     public function companyUserAccountSetting()
     {
         return $this->hasOne('App\Models\CompanyUserAcountSetting', 'user_id', 'id');
@@ -49,6 +69,11 @@ class CompanyUser extends BaseUuid
         return $this->hasMany('App\Models\ProjectAccounting', 'user_id', 'id');
     }
     
+    public function taskCompanyUser()
+    {
+        return $this->hasone('App\Models\Task', 'company_user_id', 'id');
+    }
+
     public function taskSuperior()
     {
         return $this->hasOne('App\Models\Task', 'superior_id', 'id');
@@ -62,16 +87,6 @@ class CompanyUser extends BaseUuid
     public function purchaseOrders()
     {
         return $this->hasMany('App\Models\PurchaseOrder', 'companyUser_id', 'id');
-    }
-
-    public function contracts()
-    {
-        return $this->hasMany('App\Models\Contract', 'companyUser_id', 'id');
-    }
-
-    public function ndas()
-    {
-        return $this->hasMany('App\Models\Nda', 'companyUser_id', 'id');
     }
 
     public function invoices()

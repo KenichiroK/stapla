@@ -11,16 +11,30 @@
 |
 */
 
+Auth::routes(['verify' => true]);
+
+Route::get('/',        function () { return view('common_pages/home');    });
+Route::get('/privacy', function () { return view('common_pages/privacy'); });
+Route::get('/terms',   function () { return view('common_pages/terms');   });
+
+
 Auth::routes();
 
 Route::group(['prefix' => 'partner'], function(){
+	
 	//login   
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
 	
-	//register
-	Route::get('register/{company_id}/{email}', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
-	Route::post('register/{company_id}', 'Partners\Auth\RegisterController@register')->name('partner.register');
+	// register   
+	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
+	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
+	
+	// password reset
+	Route::get('password/reset', 'Partners\Auth\ForgotPasswordController@showLinkRequestForm')->name('partner.password.request');
+	Route::post('password/email', 'Partners\Auth\ForgotPasswordController@sendResetLinkEmail')->name('partner.password.email');
+	Route::get('password/reset/{token}', 'Partners\Auth\ResetPasswordController@showResetForm')->name('partner.password.reset');
+	Route::post('password/reset', 'Partners\Auth\ResetPasswordController@reset')->name('partner.password.update');
 
 	// preRegister - 仮登録後に表示させるページ
 	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('partner.register.preRegisterd.index');
@@ -29,9 +43,7 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
 
 	// emailverify - Eメール認証
-	Route::middleware('throttle:6,1')->get('email/resend','Partners\Auth\VerificationController@resend')->name('partner.verification.resend');
-	Route::middleware('throttle:6,1')->get('email/verify','Partners\Auth\VerificationController@show')->name('partner.verification.notice');
-	Route::middleware('signed')->get('email/verify/id/{id}/company_id/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
+	Route::get('email/verify/{id}/{email}/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
 	
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 		
@@ -51,10 +63,19 @@ Route::group(['prefix' => 'partner'], function(){
 
 		// task
 		Route::get('/task', 'Partners\TaskController@index')->name('partner.task.index');
+			// task statusIndex
+		Route::get('task/status/{task_status}', 'Partners\TaskController@statusIndex')->name('partner.task.status');
 		Route::get('/task/{task_id}', 'Partners\TaskController@show')->name('partner.task.show');
+
+		// document
+		Route::get('/document', 'Partners\DocumentController@index')->name('partner.document.index');
 		
 		// task status change
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
+
+		// Deliver
+		Route::get('/deliver/{task_id}', 'Partners\DeliverController@create')->name('partner.deliver.create');
+		Route::post('/deliver', 'Partners\DeliverController@store')->name('partner.deliver.store');
 		
 		// profile
 		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.setting.profile.create');
@@ -63,11 +84,7 @@ Route::group(['prefix' => 'partner'], function(){
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
 		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
-		
-		// notification setting
-		Route::get('setting/notification', 'Partners\Setting\NotificationController@create')->name('partner.setting.notification.create');
-		Route::post('setting/notification', 'Partners\Setting\NotificationController@store')->name('partner.setting.notification.store');
-		
+
 		// purchase-order
 		Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.document.purchaseOrder.show');
 		
@@ -89,26 +106,33 @@ Route::group(['prefix' => 'company'], function(){
 	Route::get('login', 'Companies\Auth\LoginController@showLoginForm')->name('company.login');
 	Route::post('login', 'Companies\Auth\LoginController@login')->name('company.login');
 
-	//register
+	// register - 1st企業ユーザー仮登録
+	Route::get('pre-register', 'Companies\Auth\PreRegisterController@showRegisterForm')->name('company.PreRegister');
+	Route::post('pre-register', 'Companies\Auth\PreRegisterController@register')->name('company.PreRegister');
+
+	// password reset
+	Route::get('password/reset', 'Companies\Auth\ForgotPasswordController@showLinkRequestForm')->name('company.password.request');
+	Route::post('password/email', 'Companies\Auth\ForgotPasswordController@sendResetLinkEmail')->name('company.password.email');
+	Route::get('password/reset/{token}', 'Companies\Auth\ResetPasswordController@showResetForm')->name('company.password.reset');
+    Route::post('password/reset', 'Companies\Auth\ResetPasswordController@reset')->name('company.password.update');
+
+	// preRegister - 1st企業ユーザー仮登録完了ページ
+	Route::get('/register/preRegistered', 'Companies\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
+
+	// register - 企業ユーザー本登録
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
 	Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
 	
-	// preRegister
-	Route::get('/register/preRegistered', 'Companies\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
-
-
-	// emailverify
-	Route::middleware('throttle:6,1')->get('email/resend','Companies\Auth\VerificationController@resend')->name('company.verification.resend');
-	Route::middleware('throttle:6,1')->get('email/verify','Companies\Auth\VerificationController@show')->name('company.verification.notice');
-	Route::middleware('signed')->get('email/verify/{id}','Companies\Auth\VerificationController@verify')->name('company.verification.verify');
 	
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
 		
 		// register_flow
 		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerify')->name('company.register.doneVerify');
 		Route::get('/register/personal', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');
+		Route::post('/register/company-and-personal', 'Companies\Registration\PersonalController@companyStore')->name('company.register.company-and-personal.store');
 		Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
 		Route::get('/register/preview', 'Companies\Registration\PreviewController@create')->name('company.register.preview.create');
+		Route::post('/register/company-preview', 'Companies\Registration\PreviewController@companyStore')->name('company.register.company-preview.store');
 		Route::post('/register/preview', 'Companies\Registration\PreviewController@store')->name('company.register.preview.store');
 		
 		// dashboard
@@ -120,34 +144,37 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/project/create', 'Companies\ProjectController@create')->name('company.project.create');
 		Route::post('/project', 'Companies\ProjectController@store')->name('company.project.store');
 		Route::get('/project/{id}', 'Companies\ProjectController@show')->name('company.project.show');
+		Route::post('/project/complete/{id}/{status}', 'Companies\ProjectController@complete')->name('company.project.complete');
 
 		// task
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
-		// task statusIndex
+			// task statusIndex
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
+			// task-create
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-        Route::post('/task', 'Companies\TaskController@store')->name('company.task.store');
+		Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.store');
+			// task-preview
+		Route::post('/task/preview', 'Companies\TaskController@previewStore')->name('company.task.previewStore');
+			// task-show
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
+			// task-edit
+		Route::get('/task/{id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');
+			// task-update
+		Route::patch('/task/{id}', 'Companies\TaskController@update')->name('company.task.update');
 		
 		// task status change
 		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');
 		
 		// partner
 		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
-		Route::get('/partner/{id}', 'Companies\PartnerController@show')->name('company.partner.show');
 		
 		// document
 		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');
-		Route::get('/document/nda', 'Companies\Document\NdaController@create')->name('company.document.nda.create');
-		Route::post('/document/nda', 'Companies\Document\NdaController@store')->name('company.document.nda.store');
-		Route::get('/document/nda/{nda_id}', 'Companies\Document\NdaController@show')->name('company.document.nda.show');
+	
+			// purchaseOrder
 		Route::get('/document/purchaseOrder/create/{task_id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.create');
 		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
 		Route::get('/document/purchaseOrder/{purchaseOrder_id}', 'Companies\Document\PurchaseOrderController@show')->name('company.document.purchaseOrder.show');
-
-		// document	outsourcing_contract
-		Route::get('/document/outsourcingContract', 'Companies\Document\OutsourcingContractController@create')->name('company.document.OutsourcingContract.create');
-		Route::get('/document/outsourcingContract/{id}', 'Companies\Document\OutsourcingContractController@show')->name('company.document.OutsourcingContract.show');
 
 		//document invoice
 		Route::get('/document/invoice/{invoice_id}', 'Companies\Document\InvoiceController@show')->name('company.document.invoice.show');
@@ -162,23 +189,14 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/setting/account', 'Companies\Setting\AccountController@create')->name('company.setting.account.create');
 		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@create')->name('company.setting.personalInfo.create');
 		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@store')->name('company.setting.personalInfo.store');
-        
-		// mail(CompnayUser)
-		Route::get('/mail/company-index', 'Companies\CompanyUserMailController@index')->name('company.mail.company-index');
-		Route::post('/mail/company-send', 'Companies\CompanyUserMailController@send')->name('company.mail.company-send');
 
-        // mail(CompnayUser)
-        Route::get('/companyMail', 'Companies\CompanyUserMailController@index')->name('company.companyMail.index');
-        Route::post('/companyMail/send', 'Companies\CompanyUserMailController@send')->name('company.mail.companyMail.send');
+		// invite companyUser - 招待による企業ユーザー仮登録
+		Route::get('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@showRegisterForm')->name('company.invitePreRegister');
+		Route::post('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@register')->name('company.invitePreRegister');
 
-		// mail(Partner)
-		Route::get('/userMail', 'Companies\PartnerMailController@index')->name('company.userMail.index');
-		Route::post('/mail/partner-send', 'Companies\PartnerMailController@send')->name('company.mail.partner-send');
-
-		// invite
-		Route::get('invite/partner', 'Companies\Invite\InvitePartnerController@index')->name('company.partner.invite.partner.index');
-		Route::post('invite/partner',  'Companies\Invite\InvitePartnerController@send')->name('company.invite.partner.send');
-		Route::get('invite/company', 'Companies\InitialRegisterController@invite')->name('company.invite.company.form');
+		// invite partner - 招待によるパートナー仮登録
+		Route::get('invite/partner', 'Partners\Auth\InvitePreRegisterController@showRegisterForm')->name('company.invite.partner');
+		Route::post('invite/partner', 'Partners\Auth\InvitePreRegisterController@register')->name('company.invite.partner');
 
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');

@@ -45,68 +45,47 @@
 						<div class="date-container__wrapper">
 							<div class="text">納品日</div> 
 							<div class="icon-imgbox">
-								<img src="{{ asset('images/icon_calendar.png') }}" alt="">
+								<img src="{{ env('AWS_URL') }}/common/icon_calendar.png" alt="">
 							</div>
-							<div class="radio-container">
-							<!-- <span id="deadline_at_text"></span> -->
-							<label for="end_of_next_month">
-								<span class="title">来月末にする</span> 
-								<input
-									class="radio-input radio01-input"
-									type="radio" 
-									name="task_ended_at" 
-									value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) }}" 
-									id="end_of_next_month" 
-									onclick="checkDeadline()"
-									{{ old('task_ended_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 2, 0, date('Y'))) ? 'checked' : '' }}
-								>
-								<span class="radio01-parts"></span>
-							</label>
-							<label for="end_of_month_after_next">
-								<span class="title">再来月末にする</span>
-								<input
-									class="radio-input radio01-input" 
-									type="radio" 
-									name="task_ended_at" 
-									value="{{ date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) }}" 
-									id="end_of_month_after_next" 
-									onclick="checkDeadline()"
-									{{ old('task_ended_at') === date('Y-m-d', mktime(0, 0, 0, date('m') + 3, 0, date('Y'))) ? 'checked' : '' }}
-								>
-								<span class="radio01-parts"></span>
-							</label>
 						</div>
-						
-						</div>
-						@if ($errors->has('task_ended_at'))
-							<div class="error-msg">
-								<strong>{{ $errors->first('task_ended_at') }}</strong>
-							</div>					
-						@endif
-						
+						<div class="calendars">
+							<div class="calendars__wrapper">
+								<!-- <div class="calendars__wrapper__title start">開始日<i class="fas fa-calendar-alt"></i></div> -->
+								<input
+									type="date"
+									name="task_ended_at"
+									value="{{ old('task_ended_at', date('Y-m-d')) }}"
+								>
+
+								@if($errors->has('task_ended_at'))
+									<div class="error-mes-wrp">
+										<strong style='color: #e3342f;'>{{ $errors->first('task_ended_at') }}</strong>
+									</div>
+								@endif
+							</div>
+						</div>						
 					</div>
 						
 					</dd>
                 </dl>
                 
-                <dl>
+                <!-- <dl>
 					<dt>納品場所</dt>
 					<dd>
 						<div class="input_link-container">
 							<div class="input-container">
-								<input class="task-name" type="text" name="task_delivery_format" value="{{ old('task_delivery_format') }}">
+								@if(old('task_delivery_format'))
+								<input class="task-name" type="hidden" name="task_delivery_format" value="{{ old('task_delivery_format') }}">
+								@else
+								<input class="task-name" type="hidden" name="task_delivery_format" value="this">
+								@endif
 							</div>
-							<!-- <div class="link-container">
+							<div class="link-container">
 								<a href="">データによる送付</a>
-							</div> -->
+							</div>
 						</div>
-						@if ($errors->has('task_delivery_format'))
-							<div class="error-msg">
-								<strong>{{ $errors->first('task_delivery_format') }}</strong>
-							</div>					
-						@endif
 					</dd>
-				</dl>
+				</dl> -->
 				
 				<!-- <dl>
 					<dt>支払い条件</dt>
@@ -134,8 +113,12 @@
                             <div class="select-container__wrapper select-plusicon">
 								<select name="companyUser_id">
 									<option value="" hidden></option>
-									@foreach($task->taskCompanies as $companyUser)
-										<option value="{{ $companyUser->companyUser->id }}" {{ old('companyUser_id') === $companyUser->companyUser->id ? 'selected' : ''}}>{{ $companyUser->companyUser->name }}</option>
+									@foreach($companyUsers as $companyUser)
+										@if(old('companyUser_id'))
+										<option value="{{ $companyUser->id }}" {{ old('companyUser_id') === $companyUser->id ? 'selected' : ''}}>{{ $companyUser->name }}</option>
+										@else
+										<option value="{{ $companyUser->id }}" {{ $task->companyUser->id === $companyUser->id ? 'selected' : ''}}>{{ $companyUser->name }}</option>
+										@endif
 									@endforeach
 								</select>
 							</div>
@@ -159,7 +142,7 @@
 			</div>
 		</div>
 
-		<div class="button-container">
+		<div class="btn02-container">
 			<button type="button" onclick="submit();">作成</button>
 		</div>
     </form>

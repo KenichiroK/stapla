@@ -6,43 +6,47 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\ProjectCompany;
-use App\Models\TaskCompany;
 use App\Models\Company;
 use App\Models\CompanyUser;
 use App\Models\Task;
-use App\Models\Nda;
-use App\Models\Contract;
-use App\Models\PurchaseOrder;
-use App\Models\Invoice;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $auth_id = Auth::user()->id;
-        $company_user = CompanyUser::where('auth_id', $auth_id)->get()->first();
-        $companyUser_id = $company_user->id;
-        $company_id = $company_user->company_id;
-        $projects = ProjectCompany::where('user_id', $companyUser_id)->get();
-        $tasks = TaskCompany::where('user_id', $companyUser_id)->get();
-        $invoices = Invoice::where('company_id', $company_id)->get();
-        $ndas = Nda::where('company_id', $company_id)->get();
-        $contacts = Contract::where('company_id', $company_id)->get();
-        $purchaseOrders = PurchaseOrder::where('company_id', $company_id)->get();
+        $companyUser = Auth::user();
+        $companyUser_id = $companyUser->id;
+        $company_id = $companyUser->company_id;
+        // $projects = ProjectCompany::where('user_id', $companyUser_id)->get();
+        $projects = ProjectCompany::where('user_id', $companyUser_id)
+                                ->join('projects', 'project_companies.project_id', '=', 'projects.id')
+                                ->whereNotIn('status', [config('const.PROJECT_COMPLETE'), config('const.PROJECT_CANCELED')])
+                                ->get();
+
+
+        $tasks = Task::where('company_user_id', $companyUser_id)
+                                ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
+                                ->orWhere('superior_id', $companyUser_id)
+                                ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
+                                ->orWhere('accounting_id', $companyUser_id)
+                                ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
+                                ->get();
+
         $status_arr = [];
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i <= 18; $i++) {
             $status_arr[strval($i)] = 0;
         }
+
         for ($i = 0; $i < $tasks->count(); $i++) {
-            $status_arr[$tasks[$i]->task->status]++;
+            $status_arr[$tasks[$i]->status]++;
         }
-        $statusName_arr = [
-            '下書き', 'タスク上長確認前', 'タスク上長確認中', 'タスクパートナー依頼前', 'タスクパートナー依頼中','発注書作成中', '発注書作成完了', '発注書上長確認中', 
-            '発注書パートナー依頼前', '発注書パートナー確認中', '作業中', '請求書依頼中', '請求書確認中', '完了', 'キャンセル'
-        ];
         
-        return view('company/dashboard/index', compact('projects', 'tasks', 'status_arr', 'statusName_arr', 'invoices', 'purchaseOrders', 'contacts', 'ndas', 'company_user'));
+        // タスクステータスを外部ファイルで定数化（congfig/const.php）
+        $statusName_arr = Config::get('const.TASK_STATUS_LIST');
+        
+        return view('company/dashboard/index', compact('projects', 'tasks', 'status_arr', 'statusName_arr'));
     }
 }
