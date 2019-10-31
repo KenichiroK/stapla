@@ -33,6 +33,7 @@ class VerificationController extends Controller
     public function verify(Request $request, $id, $email, $access_key)
     {
         if ($request->route('id') != $request->user()->getKey()) {
+            \Log::info('Email認証 例外処理(本人以外)', ['user_id(partner)' => $request->user()->getKey()]);
             throw new AuthorizationException('本人しか更新はできません');
         }
 
