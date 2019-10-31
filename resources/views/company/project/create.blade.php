@@ -43,7 +43,7 @@
                             <div class="select-container select id-normal select-plusicon is-multiple"> 
                                 <select name="company_user_id" class="select-box form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}" id="company-staff-name-list">
                                     <option disabled selected></option>
-                                    @foreach( $companyUsers as $company_user )
+                                    @foreach( $company_users as $company_user )
                                     <option value="{{ $company_user->id }}" {{ (old('company_user_id') === $company_user->id)? 'selected' : '' }}>{{ $company_user->name }}</option>
                                     @endforeach
                                 </select>
@@ -101,34 +101,10 @@
                             @endif
                         </div>
                     </li>
-                    <!-- <li class="project-create__container__list__item document">
-                        <div class="project-create__container__list__item__name">資料</div>
-                        <div class="project-create__container__list__item__wrapper document-item">
-                            <div class="project-create__container__list__item__wrapper__description upload">アップロード</div>
-                            <div class="file has-name is-boxed">
-                            <label class="file-label">
-                                <input id="inputFile" class="file-input" type="file" name="file">
-                                <span id="upload-btn" class="file-cta">
-                                <span class="file-icon">
-                                    <i class="fas fa-upload"></i>
-                                </span>
-                                <span class="file-label">
-                                    Choose a file…
-                                </span>
-                                </span>
-                                <span id="fileName" class="file-name">
-                                </span>
-                            </label>
-                            </div>
-                            <img src="{{ env('AWS_URL') }}/common/dragdrop.png" alt="">
-                        </div>
-                    </li> -->
                 </ul>
             </div>
             <div class="button-container">
-                <!-- <div class="preview-button-wrapper">
-                    <button type="submit" class="preview-button-wrapper__btn button">プレビュー</button>
-                </div> -->
+
                 <div class="btn01-container">
                     <button type="button" onclick="submit();">作成</button>
                 </div>
