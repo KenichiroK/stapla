@@ -48,7 +48,7 @@
                         <div class="item-name">プロジェクト詳細</div>
                     </div>
                     <div class="textarea-wrp">
-                        <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="project_detail">{{ $project->detail }}</textarea>
+                        <textarea class="textarea form-control{{ $errors->has('detail') ? ' is-invalid' : '' }}" name="project_detail">{{ old('project_detail', $project->detail) }}</textarea>
                         @if ($errors->has('project_detail'))
                             <div class="invalid-feedback error-msg" role="alert">
                                 <strong>{{ $errors->first('project_detail') }}</strong>
