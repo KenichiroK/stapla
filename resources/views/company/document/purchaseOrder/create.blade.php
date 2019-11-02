@@ -111,21 +111,36 @@
 					<dd>
 						<div class="select-container">
                             <div class="select-container__wrapper select-plusicon">
-								<select name="companyUser_id">
+								<select name="companyUser_id" id="staff_name" onchange="selectStaff();">
 									<option value="" hidden></option>
 									@foreach($companyUsers as $companyUser)
 										@if(old('companyUser_id'))
-										<option value="{{ $companyUser->id }}" {{ old('companyUser_id') === $companyUser->id ? 'selected' : ''}}>{{ $companyUser->name }}</option>
+										<option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
 										@else
-										<option value="{{ $companyUser->id }}" {{ $task->companyUser->id === $companyUser->id ? 'selected' : ''}}>{{ $companyUser->name }}</option>
+										<option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
 										@endif
 									@endforeach
 								</select>
 							</div>
+							<input type="button" value="未選択に" onclick="setNonSelect('staff_name');">
                         </div>
 						@if ($errors->has('companyUser_id'))
 							<div class="error-msg">
 								<strong>{{ $errors->first('companyUser_id') }}</strong>
+							</div>					
+						@endif
+					</dd>
+                </dl>
+
+				<dl>
+					<dt>担当者 (自由記入欄)</dt>
+					<dd>
+						<div class="select-container">
+							<input type="text" name="billing_to_text" id="free_staff_name" onchange="billingText();">
+                        </div>
+						@if ($errors->has('billing_to_text'))
+							<div class="error-msg">
+								<strong>{{ $errors->first('billing_to_text') }}</strong>
 							</div>					
 						@endif
 					</dd>
@@ -135,7 +150,7 @@
                     <dt>パートナー</dt>
                     <dd>
                         <p>{{ $task->partner->name }}</p>
-                        <input type="hidden" name="partner_id"  value="{{ $task->partner_id }}">
+                        <input type="hidden" name="partner_id" value="{{ $task->partner_id }}">
 					</dd>
                 </dl>
 
@@ -148,4 +163,32 @@
     </form>
     
 </div>
+@endsection
+
+@section('asset-js')
+<script>
+	// 担当者が選択された場合、担当者(自由記入欄)の記入不可へ 
+	function selectStaff() {
+		var free_staff_name = document.getElementById('free_staff_name');
+		free_staff_name.disabled = true;
+	}
+	// 担当者selectbox未選択状態へ
+	function setNonSelect(idname){
+		var selectedStaff = document.getElementById(idname);
+		selectedStaff.selectedIndex = -1;
+		free_staff_name.disabled = false;
+	}
+
+	// 担当者(自由記入欄) input記入不可状態へ
+	function billingText(){
+		var input_staff_name = document.getElementById('free_staff_name').value;
+		if(input_staff_name != "") {
+			staff_name.disabled = true;
+		} else {
+			staff_name.disabled = false;
+		}
+	}
+	
+</script>
+
 @endsection

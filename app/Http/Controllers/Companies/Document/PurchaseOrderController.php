@@ -44,6 +44,13 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->company_city         = $company->address_city;
         $purchaseOrder->company_building     = $company->address_building;
         $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->companyUser_id)->name;
+        if(isset($request->companyUser_id)){
+            $purchaseOrder->companyUser_id       = $request->companyUser_id;
+            $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->companyUser_id)->name;
+        }
+        // if(isset($request->billing_to_text)){
+            $purchaseOrder->billing_to_text      = $request->billing_to_text;
+        // }
         $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
         $purchaseOrder->task_delivery_format = $request->task_delivery_format;
         $task = Task::findOrFail($request->task_id);
