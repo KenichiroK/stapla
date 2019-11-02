@@ -8,7 +8,6 @@ $factory->define(App\Models\Partner::class, function (Faker $faker) {
         'company_id'        => App\Models\Company::all()->random()->id,
         'email'             => $faker->safeEmail,
         'password'          => Hash::make('password'),
-        // 'access_key'        => $faker->shuffle('abcdefghijklmnopqrstuvwxyz'),
         'remember_token'    => str_random(10),
         'email_verified_at' => $faker->dateTimeThisDecade,
         'name'              => $name,
@@ -18,7 +17,7 @@ $factory->define(App\Models\Partner::class, function (Faker $faker) {
         'city'              => $faker->city,
         'street'            => $faker->streetAddress,
         'building'          => $faker->buildingNumber,
-        'tel'               => $faker->phoneNumber,
+        'tel'               => str_replace("-", "", $faker->phoneNumber),
         'age'               => $faker->randomNumber,
         'sex'               => $faker->numberBetween($min = 0, $max = 1),
         'picture'           => 'https://dev-impro.s3-ap-northeast-1.amazonaws.com/test/docker.jpeg',
@@ -28,7 +27,7 @@ $factory->define(App\Models\Partner::class, function (Faker $faker) {
         'jobcareer'         => '株式会社A エンジニア部門',
         'introduction'      => $faker->sentence,
         'feature'           => $faker->sentence,
-        'created_at'        => $faker->dateTimeThisDecade,
-        'updated_at'        => $faker->dateTimeThisYear,
+        'created_at'        => new DateTime(),
+        'updated_at'        => new DateTime(),
     ];
 });

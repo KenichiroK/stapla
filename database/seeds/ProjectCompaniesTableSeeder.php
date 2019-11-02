@@ -12,6 +12,6 @@ class ProjectCompaniesTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create('ja_JP');
-        factory(App\Models\ProjectCompany::class, 100)->create(); 
+        factory(App\Models\ProjectCompany::class, 5)->create(); 
     }
 }
