@@ -3,22 +3,20 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Models\Task::class, function (Faker $faker) {
-    $project = App\Models\Project::all()->random();
-    $staff = App\Models\ProjectCompany::where('project_id', $project->id)->first();
-    $partner = App\Models\ProjectPartner::where('project_id', $project->id)->first();
-    $superior = App\Models\ProjectSuperior::where('project_id', $project->id)->first();
-    $accounting = App\Models\ProjectAccounting::where('project_id', $project->id)->first();
+    $company = factory(App\Models\Company::class)->create();
+    $project = factory(App\Models\Project::class)->create();
     return [
-        'company_id'        => $project->company_id,
+        'company_id'        => $company->id,
+        'company_user_id'   => factory(App\Models\ProjectCompany::class)->create()->user_id,
         'project_id'        => $project->id,
-        'partner_id'        => $partner->user_id,
-        'superior_id'       => $superior->user_id,
-        'accounting_id'     => $accounting->user_id,
+        'partner_id'        => factory(App\Models\Partner::class)->create()->id,
+        'superior_id'       => factory(App\Models\ProjectCompany::class)->create()->user_id,
+        'accounting_id'     => factory(App\Models\ProjectCompany::class)->create()->user_id,
         'name'              => $faker->randomElement(['要件定義', '調査', 'コーディング']),
         'content'           => $faker->sentence,
         'started_at'        => $faker->dateTimeThisDecade,
         'ended_at'          => $faker->dateTimeThisDecade,
-        'status'            => $faker->numberBetween($min = 1, $max = 20),
+        'status'            => 1,
         'purchaseorder'     => true,
         'invoice'           => true,
         'budget'            => $faker->randomElement([10000, 50000, 100000]),
@@ -33,7 +31,7 @@ $factory->define(App\Models\Task::class, function (Faker $faker) {
         'rating'            => $faker->numberBetween($min = 1, $max = 5),
         'rating_comment'    => $faker->sentence,
         'remarks'           => $faker->sentence,
-        'created_at'        => $faker->dateTimeThisDecade,
-        'updated_at'        => $faker->dateTimeThisYear,
+        'created_at'        => new DateTime(),
+        'updated_at'        => new DateTime(),
     ];
 });

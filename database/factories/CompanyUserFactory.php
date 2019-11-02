@@ -14,7 +14,7 @@ $factory->define(App\Models\CompanyUser::class, function (Faker $faker) {
         'occupation'        => $faker->randomElement(['営業', '企画', 'エンジニア', 'アシスタント', 'ディレクター']),
         'self_introduction' => $faker->sentence,
         'picture'           => 'https://dev-impro.s3-ap-northeast-1.amazonaws.com/test/docker.jpeg',
-        'created_at'        => $faker->dateTimeThisDecade,
-        'updated_at'        => $faker->dateTimeThisYear,
+        'created_at'        => new DateTime(),
+        'updated_at'        => new DateTime(),
     ];
 });
