@@ -1,22 +1,14 @@
 .main__container {
-    width: 100%;
-    margin: auto;
     background-color: #f0f0f7;
     font-size: 14px;
     &__wrapper {
-        padding: 40px 40px;
+        padding: 40px;
+        width: 100%;
+        margin: auto;
     }
 }
 
 // 共通部分
-.comment-container {
-    padding: 40px;
-    p {
-        color: #ff0031;
-        font-weight: bold;
-        font-size: 16px;
-    }
-}
 .page-title-container {
     margin-bottom: 28px;
     &__page-title {
