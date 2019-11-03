@@ -14,7 +14,7 @@ class AddBillingToTextToPurchaseOrdersTable extends Migration
     public function up()
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
-            $table->uuid('billing_to_text')->nullable();
+            $table->string('billing_to_text')->nullable();
         });
     }
 

@@ -110,19 +110,15 @@
 					<dt>担当者</dt>
 					<dd>
 						<div class="select-container">
-                            <div class="select-container__wrapper select-plusicon">
+                            <div class="select-container__wrapper select">
 								<select name="companyUser_id" id="staff_name" onchange="selectStaff();">
 									<option value="" hidden></option>
 									@foreach($companyUsers as $companyUser)
-										@if(old('companyUser_id'))
 										<option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
-										@else
-										<option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
-										@endif
 									@endforeach
 								</select>
 							</div>
-							<input type="button" value="未選択に" onclick="setNonSelect('staff_name');">
+							<input type="button" value="×" onclick="setNonSelect('staff_name');">
                         </div>
 						@if ($errors->has('companyUser_id'))
 							<div class="error-msg">
@@ -133,9 +129,9 @@
                 </dl>
 
 				<dl>
-					<dt>担当者 (自由記入欄)</dt>
+					<dt>担当者 (自由記入)</dt>
 					<dd>
-						<div class="select-container">
+						<div class="input-container">
 							<input type="text" name="billing_to_text" id="free_staff_name" onchange="billingText();">
                         </div>
 						@if ($errors->has('billing_to_text'))
@@ -167,7 +163,7 @@
 
 @section('asset-js')
 <script>
-	// 担当者が選択された場合、担当者(自由記入欄)の記入不可へ 
+	// 担当者が選択された場合、担当者(自由記入)の記入不可へ 
 	function selectStaff() {
 		var free_staff_name = document.getElementById('free_staff_name');
 		free_staff_name.disabled = true;
@@ -179,7 +175,7 @@
 		free_staff_name.disabled = false;
 	}
 
-	// 担当者(自由記入欄) input記入不可状態へ
+	// 担当者(自由記入) input記入不可状態へ
 	function billingText(){
 		var input_staff_name = document.getElementById('free_staff_name').value;
 		if(input_staff_name != "") {
