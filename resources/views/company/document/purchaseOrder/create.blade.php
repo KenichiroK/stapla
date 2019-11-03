@@ -114,7 +114,11 @@
 								<select name="companyUser_id" id="staff_name" onchange="selectStaff();">
 									<option value="" hidden></option>
 									@foreach($companyUsers as $companyUser)
-										<option value="{{ $companyUser->id }}">{{ $companyUser->name }}</option>
+										@if(old('companyUser_id'))
+										<option value="{{ $companyUser->id }}" {{ old('companyUser_id') === $companyUser->id ? 'selected' : ''}}>{{ $companyUser->name }}</option>
+										@else
+										<option value="{{ $companyUser->id }}" {{ $task->companyUser->id === $companyUser->id ? 'selected' : ''}}>{{ $companyUser->name }}</option>
+										@endif
 									@endforeach
 								</select>
 							</div>
@@ -132,7 +136,7 @@
 					<dt>担当者 (自由記入)</dt>
 					<dd>
 						<div class="input-container">
-							<input type="text" name="billing_to_text" id="free_staff_name" onchange="billingText();">
+							<input type="text" name="billing_to_text" id="free_staff_name" disabled onchange="billingText();">
                         </div>
 						@if ($errors->has('billing_to_text'))
 							<div class="error-msg">
