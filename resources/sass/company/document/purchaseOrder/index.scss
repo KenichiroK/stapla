@@ -356,3 +356,18 @@
     } 
   }
 }
+
+.select-container {
+  display: flex;
+
+  .select-arrow {
+    width: 95%;
+  }
+
+  input {
+    width: 5%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+}
