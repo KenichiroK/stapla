@@ -1,0 +1,18 @@
+.non-notification {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-top: 40px;
+
+  p {
+    color: #ccc;
+  }
+}
+
+.unreaded {
+  background-color: #fffedb;
+}
+
+.notification-btn {
+  text-decoration: none;
+}

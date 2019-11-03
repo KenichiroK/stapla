@@ -16,7 +16,8 @@ Auth::routes(['verify' => true]);
 Route::get('/',        function () { return view('common_pages/home');    });
 Route::get('/privacy', function () { return view('common_pages/privacy'); });
 Route::get('/terms',   function () { return view('common_pages/terms');   });
-
+// update notification read_at using ajax
+Route::post('notification/mark_as_read', 'Commons\NotificationController@markAsRead');
 
 Auth::routes();
 
@@ -94,7 +95,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
 
 		// logout
-    	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
+			Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
 });
 
