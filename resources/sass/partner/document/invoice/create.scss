@@ -109,6 +109,12 @@
                         border-radius: 4px;
                     }
 
+                    .free-staff-name {
+                        width: 70%;
+                        border: 1px solid #f0f0f7;
+                        border-radius: 4px;
+                    }
+
                     input {
                         border: 1px solid #f0f0f7;
                         border-radius: 4px;
@@ -187,17 +193,25 @@
                             font-size: 12px;
                         }
 
+                        .del-culumn {
+                            width: 2%;
+                        }
+
                         .item {
-                            width: 40%;
+                            width: 38%;
                         }
 
                         .num {
                             width: 10%;
                         }
 
+                        .tax {
+                            width: 10%;
+                        }
+
                         .unit-price,
                         .total {
-                            width: 25%;
+                            width: 20%;
                         }
                     }
                 }
@@ -234,20 +248,27 @@
                             border-radius: 4px;
                         }
 
+
+                        .del-culumn {
+                            width: 2%;
+                        }
+
                         .item {
-                            width: 40%;
+                            width: 38%;
                         }
 
                         .num {
                             width: 10%;
                         }
 
-                        .unit-price,
-                        .total {
-                            width: 25%;
+                        .tax {
+                            width: 10%;
                         }
 
-                        
+                        .unit-price,
+                        .total {
+                            width: 20%;
+                        }
                     }
                 }
             }
@@ -303,17 +324,25 @@
                             font-size: 12px;
                         }
 
+                        .del-culumn {
+                            width: 2%;
+                        }
+
                         .item {
-                            width: 40%;
+                            width: 38%;
                         }
 
                         .num {
                             width: 10%;
                         }
 
+                        .tax {
+                            width: 10%;
+                        }
+
                         .unit-price,
                         .total {
-                            width: 25%;
+                            width: 20%;
                         }
                     }
                 }
@@ -350,17 +379,25 @@
                             border-radius: 4px;
                         }
 
+                        .del-culumn {
+                            width: 2%;
+                        }
+
                         .item {
-                            width: 40%;
+                            width: 38%;
                         }
 
                         .num {
                             width: 10%;
                         }
 
+                        .tax {
+                            width: 10%;
+                        }
+
                         .unit-price,
                         .total {
-                            width: 25%;
+                            width: 20%;
                         }
                     }
                 }
