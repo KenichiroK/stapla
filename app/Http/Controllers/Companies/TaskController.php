@@ -92,8 +92,8 @@ class TaskController extends Controller
         $task->partner_id      = $request->partner_id;
         $task->name            = $request->name;
         $task->content         = $request->content;
-        $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
-        $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
+        $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
+        $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
         $task->status          = 1;
         $task->purchaseorder   = false;
         $task->invoice         = false;
