@@ -45,6 +45,7 @@
 								<th>商品名</th>
 								<th>数量</th>
 								<th>単価</th>
+								<th>税区分</th>
 								<th>合計</th>
 							</tr>
 						</thead>
@@ -55,6 +56,13 @@
 									<td>{{ $requestTask->name }}</td>
 									<td>{{ $requestTask->num }}</td>
 									<td>{{ number_format($requestTask->unit_price) }}</td>
+									@if($requestTask->tax == 1.10)
+									<td>10%</td>
+									@elseif($requestTask->tax == 1.08)
+									<td>軽減8%</td>
+									@else
+									<td>非課税</td>
+									@endif
 									<td>{{ number_format($requestTask->total) }}</td>
 								</tr>
 							@endforeach
@@ -64,6 +72,13 @@
 									<td>{{ $requestExpence->name }}</td>
 									<td>{{ $requestExpence->num }}</td>
 									<td>{{ number_format($requestExpence->unit_price) }}</td>
+									@if($requestExpence->tax == 1.10)
+									<td>10%</td>
+									@elseif($requestExpence->tax == 1.08)
+									<td>軽減8%</td>
+									@else
+									<td>非課税</td>
+									@endif
 									<td>{{ number_format($requestExpence->total) }}</td>
 								</tr>
 							@endforeach
@@ -87,29 +102,17 @@
 		
 						<div class="section-container">
 							<p class="sub-column">税抜</p>
-							@if ($invoice->tax === 0)
-								<p>{{ number_format($total_sum) }}</p>
-							@else
-								<p>{{ number_format($total_sum / 1.10) }}</p>
-							@endif
+							<p>{{ number_format($total_sum_notax) }}</p>
 						</div>
 		
 						<div class="section-container">
 							<p class="sub-column">消費税</p>
-							@if ($invoice->tax === 0)
-								<p>{{ number_format($total_sum * 0.10) }}</p>
-							@else
-								<p>{{ number_format($total_sum / 1.10 * 0.10) }}</p>
-							@endif
+							<p>{{ number_format($total_sum - $total_sum_notax) }}</p>
 						</div>
 		
 						<div class="section-container">
 							<p class="sub-column">総額</p>
-							@if ($invoice->tax === 0)
-								<p class="total-text">{{ number_format($total_sum * 1.10) }}</p>
-							@else
-								<p class="total-text">{{ number_format($total_sum) }}</p>
-							@endif
+							<p class="total-text">{{ number_format($total_sum) }}</p>
 						</div>
 					</div>
 		
@@ -159,6 +162,7 @@
 							<th>商品名</th>
 							<th>数量</th>
 							<th>単価</th>
+							<th>税区分</th>
 							<th>合計</th>
 						</tr>
 					</thead>
@@ -169,6 +173,13 @@
 								<td>{{ $requestTask->name }}</td>
 								<td>{{ $requestTask->num }}</td>
 								<td>{{ number_format($requestTask->unit_price) }}</td>
+								@if($requestTask->tax == 1.10)
+								<td>10%</td>
+								@elseif($requestTask->tax == 1.08)
+								<td>軽減8%</td>
+								@else
+								<td>非課税</td>
+								@endif
 								<td>{{ number_format($requestTask->total) }}</td>
 							</tr>
 						@endforeach
@@ -178,6 +189,13 @@
 								<td>{{ $requestExpence->name }}</td>
 								<td>{{ $requestExpence->num }}</td>
 								<td>{{ number_format($requestExpence->unit_price) }}</td>
+								@if($requestExpence->tax == 1.10)
+								<td>10%</td>
+								@elseif($requestExpence->tax == 1.08)
+								<td>軽減8%</td>
+								@else
+								<td>非課税</td>
+								@endif
 								<td>{{ number_format($requestExpence->total) }}</td>
 							</tr>
 						@endforeach
@@ -203,29 +221,17 @@
 	
 					<div class="section-container">
 						<p class="sub-column">税抜</p>
-						@if ($invoice->tax === 0)
-							<p>{{ number_format($total_sum) }}</p>
-						@else
-							<p>{{ number_format($total_sum / 1.10) }}</p>
-						@endif
+						<p>{{ number_format($total_sum_notax) }}</p>
 					</div>
-	
+					
 					<div class="section-container">
 						<p class="sub-column">消費税</p>
-						@if ($invoice->tax === 0)
-							<p>{{ number_format($total_sum * 0.10) }}</p>
-						@else
-							<p>{{ number_format($total_sum / 1.10 * 0.10) }}</p>
-						@endif
+						<p>{{ number_format($total_sum - $total_sum_notax) }}</p>
 					</div>
 	
 					<div class="section-container">
 						<p class="sub-column">総額</p>
-						@if ($invoice->tax === 0)
-							<p class="total-text">{{ number_format($total_sum * 1.10) }}</p>
-						@else
-							<p class="total-text">{{ number_format($total_sum) }}</p>
-						@endif
+						<p class="total-text">{{ number_format($total_sum) }}</p>
 					</div>
 				</div>
 	

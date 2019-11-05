@@ -55,7 +55,7 @@ class InvoiceController extends Controller
         $invoice->project_name    = $request->title;
         $invoice->requested_at    = $request->requested_at;
         $invoice->deadline_at     = $request->deadline_at;
-        $invoice->tax             = $request->tax;
+        $invoice->tax             = 0;
         $invoice->status          = 0;
         $invoice->save();
         \Log::info('請求書新規登録', ['user_id(partner)' => $partner->id, 'task_id' => $invoice->task_id, 'status' => $invoice->status]);
@@ -76,6 +76,7 @@ class InvoiceController extends Controller
         $task = Task::findOrFail($invoice->task_id);
         $companyUsers = CompanyUser::where('company_id', $partner->company_id)->get();
         $total_sum = 0;
+        $total_sum_notax = 0;
         if ($partner->id !== $invoice->partner_id) {
             return 'no data';
         }
@@ -91,6 +92,17 @@ class InvoiceController extends Controller
             }
         }
 
-        return view('/partner/document/invoice/show', compact('companyUsers', 'invoice', 'task', 'total_sum'));
+        if ($invoice->requestTasks->count() > 0) {
+            foreach($invoice->requestTasks as $requestTask) {
+                $total_sum_notax += $requestTask->unit_price;
+            }
+        }
+        if ($invoice->requestExpences->count() > 0) {
+            foreach($invoice->requestExpences as $requestExpence) {
+                $total_sum_notax += $requestExpence->unit_price;
+            }
+        }
+        
+        return view('/partner/document/invoice/show', compact('companyUsers', 'invoice', 'task', 'total_sum', 'total_sum_notax'));
     }
 }
