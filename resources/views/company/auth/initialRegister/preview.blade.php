@@ -94,6 +94,7 @@
 							<h4>{{ $request->tel }}</h4>
 						</div>
 					</div>
+					<input type="hidden" name="picture" value="{{ $urlPicture }}">
 				</div>
 				<div class="btn-container">
 					<button type="button" onclick="submit();"><a type="button" href="{{ route('company.register.personal.create') }}">戻る</a></button>
