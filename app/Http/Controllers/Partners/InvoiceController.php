@@ -44,15 +44,19 @@ class InvoiceController extends Controller
 
         $company_id = $partner->company_id;
         $invoice = new Invoice;
-        $invoice->company_id     = $company_id;
-        $invoice->companyUser_id = $request->company_user_id;
-        $invoice->task_id        = $request->task_id;
-        $invoice->partner_id     = $partner->id;
-        $invoice->project_name   = $request->title;
-        $invoice->requested_at   = $request->requested_at;
-        $invoice->deadline_at    = $request->deadline_at;
-        $invoice->tax            = $request->tax;
-        $invoice->status         = 0;
+        $invoice->company_id      = $company_id;
+        $invoice->companyUser_id  = $request->company_user_id;
+        if(isset($request->company_user_id)){
+            $invoice->companyUser_id = $request->company_user_id;
+        }
+        $invoice->billing_to_text = $request->billing_to_text;
+        $invoice->task_id         = $request->task_id;
+        $invoice->partner_id      = $partner->id;
+        $invoice->project_name    = $request->title;
+        $invoice->requested_at    = $request->requested_at;
+        $invoice->deadline_at     = $request->deadline_at;
+        $invoice->tax             = $request->tax;
+        $invoice->status          = 0;
         $invoice->save();
         \Log::info('請求書新規登録', ['user_id(partner)' => $partner->id, 'task_id' => $invoice->task_id, 'status' => $invoice->status]);
 

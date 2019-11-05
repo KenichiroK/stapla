@@ -357,7 +357,8 @@ const addExpences = () => {
 					
 					<tbody id="expences">
 						<tr>
-							<td class="del-column" name="del_culumn[]" onclick="delColumn()">×</td>
+							<td class="del-column" onclick="delColumn(e)">×</td>
+							<!-- <td class="del-column" name="del_culumn[]" onclick="delColumn()">×</td> -->
 							<td class="item"><input type="text" name="expences_name[]"></td>
 							<td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice(this.value)"></td>
 							<td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
@@ -447,12 +448,19 @@ const addExpences = () => {
 		}
 	}
 	
+	// function delColumn() {
+	// 	var del_column = document.getElementsByName('del_culumn[]');
+	// 	console.log(del_column);	
 
-	function delColumn() {
-		// confirm()
+		
+	// 	}
+	document.body.addEventListener('click', function (event) {
+		console.log(event.target);
+
 		var del_column = document.getElementsByName('del_culumn[]');
-		console.log(del_column);	
-		}
+		elements = [].slice.call( del_column ) ;
+		console.log(del_column);
+	}, false)
 </script>
 
 

@@ -28,7 +28,7 @@ class CreateInvoiceRequest extends FormRequest
             'title'                 => 'required',
             'requested_at'          => 'bail | required | date',
             'deadline_at'           => 'bail | required | date',
-            'tax'                   => 'bail | required | boolean',
+            // 'tax'                   => 'bail | required | boolean',
             'item_name.*'           => 'bail | required_with:item_num.*,item_unit_price.*,item_total.*',
             'item_num.*'            => 'bail | required_with:item_name.*,item_unit_price.*,item_total.* | digits_between:1, 10',
             'item_unit_price.*'     => 'bail | required_with:item_name.*,item_num.*,item_total.* | digits_between:1, 10',
