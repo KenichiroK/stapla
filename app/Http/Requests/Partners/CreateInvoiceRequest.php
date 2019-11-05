@@ -24,7 +24,7 @@ class CreateInvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_user_id'       => 'bail | required | uuid',
+            // 'company_user_id'       => 'bail | required | uuid',
             'title'                 => 'required',
             'requested_at'          => 'bail | required | date',
             'deadline_at'           => 'bail | required | date',

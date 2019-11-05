@@ -28,7 +28,11 @@
 						<p>〒{{ substr($invoice->company->zip_code, 0, 3) . "-" . substr($invoice->company->zip_code, 3) }}</p>
 						<p>{{ $invoice->company->address_prefecture }}{{ $invoice->company->address_city }}{{ $invoice->company->address_building }}</p>
 						<p>{{ $invoice->company->company_name }}</p>
+						@if($invoice->billing_to_text)
+						<p>{{ $invoice->billing_to_text }}様</p>
+						@else
 						<p>{{ $invoice->companyUser->name }}様</p>
+						@endif  
 					</div>
 		
 					<div class="right">
@@ -145,7 +149,11 @@
 					<p>〒{{ substr($invoice->company->zip_code, 0, 3) . "-" . substr($invoice->company->zip_code, 3) }}</p>
 					<p>{{ $invoice->company->address_prefecture }}{{ $invoice->company->address_city }}{{ $invoice->company->address_building }}</p>
 					<p>{{ $invoice->company->company_name }}</p>
+					@if($invoice->billing_to_text)
+					<p>{{ $invoice->billing_to_text }}様</p>
+					@else
 					<p>{{ $invoice->companyUser->name }}様</p>
+					@endif  
 				</div>
 	
 				<div class="right">

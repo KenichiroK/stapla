@@ -45,9 +45,11 @@ class InvoiceController extends Controller
         $company_id = $partner->company_id;
         $invoice = new Invoice;
         $invoice->company_id      = $company_id;
-        $invoice->companyUser_id  = $request->company_user_id;
         if(isset($request->company_user_id)){
             $invoice->companyUser_id = $request->company_user_id;
+        }
+        if(isset($request->billing_to_text)){
+            $invoice->billing_to_text = $request->billing_to_text;
         }
         $invoice->billing_to_text = $request->billing_to_text;
         $invoice->task_id         = $request->task_id;
