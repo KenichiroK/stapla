@@ -1,5 +1,7 @@
 window.onload = function () {
-  var url_task_status = location.href.split("/")[location.href.split("/").length - 1];
+  var url_task_status = location.href.split("/")[
+    location.href.split("/").length - 1
+  ];
 
   var completeLabel = document.getElementById("complete_label");
   var nonCompleteLabel = document.getElementById("non_complete_label");
@@ -11,5 +13,5 @@ window.onload = function () {
     completeLabel.classList.remove("isActive");
     nonCompleteLabel.classList.add("isActive");
   }
-  url_task_status === 'done' ? setCompleteLabel() : setNonCompleteLabel();
+  url_task_status === "17" ? setCompleteLabel() : setNonCompleteLabel();
 };

@@ -83,7 +83,6 @@ class TaskController extends Controller
     // プレビュー
     public function preview(CreateTaskRequest $request)
     {
-        // 担当者のcompnay_userとかぶるため
         $company_user = Auth::user();
         $project = Project::findOrFail($request->project_id);
         // 担当者
@@ -104,11 +103,8 @@ class TaskController extends Controller
         $partner = Partner::findORFail($request->partner_id);
         // タスクステータス
         $task_status = 0;
-        // return 'a';
-        // プレビューから戻ってくるときに使用する変数
-        $response = ' ';
 
-        return view('company.task.preview', compact('request', 'company_user', 'project', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'task_status', 'response'));
+        return view('company.task.preview', compact('request', 'company_user', 'project', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'task_status'));
     }
 
     // 保存
@@ -116,7 +112,6 @@ class TaskController extends Controller
     {
         switch ($request->input('editOrStore')) {
             case 'toEdit';
-                // return 'test';
                 $company_user = Auth::user();
                 $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
                 $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.COMPLETE_STAFF'))->get();
@@ -141,13 +136,12 @@ class TaskController extends Controller
                 $task_status = 0;
 
                 $response = $request;
-                // return $response;
 
                 return view('company.task.create', compact('response', 'company_users', 'projects', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'partners', 'task_status'));
             break;
 
             case 'toStore';
-
+            $company_user = Auth::user();
             $task = new Task;
             $task->project_id      = $request->project_id;
             $task->company_id      = $company_user->company_id;

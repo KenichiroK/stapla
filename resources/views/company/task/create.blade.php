@@ -39,47 +39,49 @@ $(function(){
         <div class="page-title-container">
             <div class="page-title-container__page-title">タスク作成</div>
         </div>
+
         <!-- プロジェクトを選択する エリア -->
         <div class="select-container">
             <div class="select-container__wrapper">
-                <!-- プロジェクトを選択する -->
                 <div class="select-textarea">
                     <div class="select-text">
                         プロジェクトを選択する
                     </div>
                 </div>
-                <!-- セレクトエリア -->
                 <div class="select-error-wrp">
                     <div class="select-area control">
                         <div class="select-wrp select is-info">
                         
-                                @if($response)
-                                    <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                        <option disabled selected></option>
-                                        @foreach($projects as $project)
-                                        <option value="{{ $project->id }}" {{ ($response->project_id === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
-                                        @endforeach
-                                    </select>
-                                @else
-                                    <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                        <option disabled selected></option>
-                                        @foreach($projects as $project)
-                                        <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
-                                        @endforeach
-                                    </select>
-                                @endif
+                            @if($response)
+                                <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
+                                    <option disabled selected></option>
+                                    @foreach($projects as $project)
+                                    <option value="{{ $project->id }}" {{ ($response->project_id === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                    @endforeach
+                                </select>
+                            @else
+                                <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
+                                    <option disabled selected></option>
+                                    @foreach($projects as $project)
+                                    <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                    @endforeach
+                                </select>
+                            @endif
                             @if ($errors->has('project_id'))
                                 <div class="invalid-feedback error-msg" role="alert">
                                     <strong>{{ $errors->first('project_id') }}</strong>
                                 </div>
                             @endif
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="content-container">
             <div class="content-container__wrapper">
+
                 <!-- main -->
                 <div class="main-container">
                     <div class="main-container__wrapper">
@@ -90,22 +92,22 @@ $(function(){
                                     タスク名
                                 </div>
                             </div>
-                              
-                                    <div class="inputarea">
-                                        <div class="input-control">
-                                            @if($response)
-                                                <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" value="{{ old('task_name', $response->task_name) }}">
-                                            @else
-                                                <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" value="{{ old('task_name') }}">
-                                            @endif
-                                            @if ($errors->has('task_name'))
-                                                <div class="invalid-feedback error-msg" role="alert">
-                                                    <strong>{{ $errors->first('task_name') }}</strong>
-                                                </div>
-                                            @endif
+                            <div class="inputarea">
+                                <div class="input-control">
+
+                                    @if($response)
+                                        <input class="input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name='name' type="text" value="{{ old('name', $response->name) }}">
+                                    @else
+                                        <input class="input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name='name' type="text" value="{{ old('name') }}">
+                                    @endif
+                                    @if ($errors->has('name'))
+                                        <div class="invalid-feedback error-msg" role="alert">
+                                            <strong>{{ $errors->first('name') }}</strong>
                                         </div>
-                                    </div>
-                        
+                                    @endif
+
+                                </div>
+                            </div>
                         </div>
 
                         <!-- 項目：タスク内容 -->
@@ -116,21 +118,18 @@ $(function(){
                                 </div>
                             </div>
                             <div class="textarea-wrp">
-                                @if(isset($request))
-                                    <p>{!! nl2br(e($request->task_content)) !!}</p>
-                                    <input type="hidden" name="task_content" value="{{ $request->task_content }}">
+
+                                @if($response)
+                                    <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name='content'>{{ $response->content }}</textarea>
                                 @else
-                                    @if($response)
-                                        <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'>{{ $response->task_content }}</textarea>
-                                    @else
-                                        <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'>{{ old('task_content') }}</textarea>
-                                    @endif
-                                    @if ($errors->has('task_content'))
-                                        <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('task_content') }}</strong>
-                                        </div>
-                                    @endif
+                                    <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name='content'>{{ old('content') }}</textarea>
                                 @endif
+                                @if ($errors->has('content'))
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('content') }}</strong>
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
 
@@ -144,29 +143,25 @@ $(function(){
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
                                     <div class="select-wrp select is-info">
-                                        @if(isset($request))
-                                            <p class="">{{ $company_user->name }}</p>
-                                            <input type="hidden" name="company_user_id" value="{{ $company_user->id }}">
+
+                                        @if($response)
+                                            <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
+                                                @foreach($company_users as $company_user)
+                                                    <option value="{{ $company_user->id }}" {{ ($response->company_user_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                                @endforeach
+                                            </select>
                                         @else
-                                            @if($response)
-                                                <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                                    @foreach($company_users as $company_user)
-                                                        <option value="{{ $company_user->id }}" {{ ($response->company_user_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            @else
-                                                <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                                    <option disabled selected></option>
-                                                    @foreach($company_users as $company_user)
-                                                        <option value="{{ $company_user->id }}" {{ (old('company_user_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            @endif
-                                            @if ($errors->has('company_user_id'))
-                                                <div class="invalid-feedback error-msg" role="alert">
-                                                    <strong>{{ $errors->first('company_user_id') }}</strong>
-                                                </div>
-                                            @endif
+                                            <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
+                                                <option disabled selected></option>
+                                                @foreach($company_users as $company_user)
+                                                    <option value="{{ $company_user->id }}" {{ (old('company_user_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
+                                        @if ($errors->has('company_user_id'))
+                                            <div class="invalid-feedback error-msg" role="alert">
+                                                <strong>{{ $errors->first('company_user_id') }}</strong>
+                                            </div>
                                         @endif
                                     </div>
                                 </div> 
