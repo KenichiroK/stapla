@@ -90,7 +90,6 @@ $(function(){
                                     タスク名
                                 </div>
                             </div>
-<<<<<<< HEAD
                               
                                     <div class="inputarea">
                                         <div class="input-control">
@@ -104,14 +103,6 @@ $(function(){
                                                     <strong>{{ $errors->first('task_name') }}</strong>
                                                 </div>
                                             @endif
-=======
-                            <div class="inputarea">
-                                <div class="input-control">
-                                    <input class="input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name='name' type="text" value="{{ old('name')}}">
-                                    @if ($errors->has('name'))
-                                        <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
->>>>>>> staging
                                         </div>
                                     </div>
                         
@@ -419,7 +410,6 @@ $(function(){
                                 <div class="unit-num">
                                     <!-- 発注単位 input -->
                                     <div class="unit-num_contents">
-<<<<<<< HEAD
                                     @if(isset($request))
                                         <p>{{ $request->price }}円</p>
                                         <input type="hidden" name="price" value="{{ $request->price }}">
@@ -429,9 +419,6 @@ $(function(){
                                         @else
                                             <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price') }}">
                                         @endif
-=======
-                                        <input id="inputPrice" class="input form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price')}}">
->>>>>>> staging
                                         @if ($errors->has('price'))
                                             <div class="invalid-feedback error-msg" role="alert">
                                                 <strong>{{ $errors->first('price') }}</strong>
