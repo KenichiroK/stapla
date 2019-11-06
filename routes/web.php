@@ -141,6 +141,7 @@ Route::group(['prefix' => 'company'], function(){
 		// project
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
 		Route::get('/project/done', 'Companies\ProjectController@doneIndex')->name('company.project.done.index');
+			// project - create
 		Route::get('/project/create', 'Companies\ProjectController@create')->name('company.project.create');
 		Route::post('/project', 'Companies\ProjectController@store')->name('company.project.store');
 		Route::get('/project/{id}', 'Companies\ProjectController@show')->name('company.project.show');

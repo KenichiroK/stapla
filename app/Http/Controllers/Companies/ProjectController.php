@@ -70,12 +70,6 @@ class ProjectController extends Controller
         $project->budget       = $request->budget;
         $project->price        = 0;
 
-        // if($request->file) {
-        //     $picture              = $request->file;
-        //     $path_picture         = \Storage::disk('s3')->putFileAs($user->id, $picture,$time.'_'.$company_user->id .'.'. $picture->getClientOriginalExtension(), 'public');
-        //     $companyUser->picture = \Storage::disk('s3')->url($path_picture);
-        //     $companyUser->save();
-        // }
         $project->save();
         \Log::info('プロジェクト新規作成', ['user_id' => $company_user->id, 'project_id' => $project->id, 'status' => $project->status]);
 
@@ -107,7 +101,7 @@ class ProjectController extends Controller
         $partner_users = Partner::where('company_id', $company_user->company_id)->get();
         $project = Project::findOrFail($project_id);
         
-        return view('company/project/edit', compact('company_user', 'company_users', 'project'));
+        return view('company/project/create', compact('company_user', 'company_users', 'project'));
     }
 
     public function update(CreateProjectRequest $request, $project_id)
@@ -120,13 +114,12 @@ class ProjectController extends Controller
         $project->detail       = $request->project_detail;
         $project->started_at   = date('Y-m-d', strtotime($request->started_at));
         $project->ended_at     = date('Y-m-d', strtotime($request->ended_at));
-        $project->status       = 0;
         $project->budget       = $request->budget;
-        $project->price        = 0;
         $project->save();
         
         $projectCompany = ProjectCompany::where('project_id', $project->id)->update(['user_id' => $request->company_user_id ]);
 
+        \Log::info('プロジェクト新規作成', ['user_id' => $company_user->id, 'project_id' => $project->id, 'status' => $project->status]);
         return redirect()->route('company.project.show', ['id' => $project->id])->with('completed', '「'.$project->name.'」を編集しました。');
     }
 
