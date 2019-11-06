@@ -146,7 +146,6 @@ class TaskController extends Controller
             break;
 
             case 'toStore';
-                return 'test2';
                 $task = new Task;
                 $task->project_id      = $request->project_id;
                 $company_id = Auth::user()->company_id;
@@ -180,7 +179,7 @@ class TaskController extends Controller
         $purchaseOrder = PurchaseOrder::where('task_id', $id)->first();
         $invoice = Invoice::where('task_id', $id)->first();
         $company_user = Auth::user();
-        $company_users = company_user::where('company_id', $company_user->company_id)->get();
+        $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
 
         $company_user_ids = array();
         if ($task->companyUser) {

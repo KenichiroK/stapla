@@ -177,7 +177,7 @@ $(function(){
                                         終了日<i class="fas fa-calendar-alt"></i>
                                     </div>
                                     <p>{{ date("Y年m月d日H時", strtotime($request->ended_at)) }}</p>
-                                    <input type="hidden" name="started_at" value="{{ $request->started_at }}">
+                                    <input type="hidden" name="ended_at" value="{{ $request->ended_at }}">
                                 </div>
                             </div>
                         </div>

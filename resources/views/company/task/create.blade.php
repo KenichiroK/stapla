@@ -144,7 +144,6 @@ $(function(){
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
                                     <div class="select-wrp select is-info">
-                                        <!-- <select v-model="taskInfo.staff"> -->
                                         @if(isset($request))
                                             <p class="">{{ $company_user->name }}</p>
                                             <input type="hidden" name="company_user_id" value="{{ $company_user->id }}">
@@ -268,13 +267,7 @@ $(function(){
                             <div class="calendar-wrp">
                                 <!-- 開始日カレンダー -->
                                 <div class="calendar-item">                               
-                                    @if(isset($request))
-                                        <div class="calendar-name start">
-                                            開始日
-                                        </div>
-                                        <p>{{ date("Y年m月d日H時", strtotime($request->started_at)) }}</p>
-                                        <input type="hidden" name="started_at" value="{{ $request->started_at }}">
-                                    @else
+                                   
                                         <div class="calendar-name start">
                                             開始日<i class="fas fa-calendar-alt"></i>
                                         </div>
@@ -298,7 +291,6 @@ $(function(){
                                                 <strong>{{ $errors->first('started_at') }}</strong>
                                             </div>
                                         @endif
-                                    @endif
                                 </div>
                                 <!-- 終了日カレンダー -->
                                 <div class="calendar-item end">                               
@@ -311,7 +303,7 @@ $(function(){
                                                 type="datetime-local"
                                                 class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
                                                 name='ended_at'
-                                                value="{{ old('ended_at', explode(' ', $response->ended_at)[0]) }}"
+                                                value="{{ old('ended_at', $response->ended_at) }}"
                                             >
                                         @else
                                             <input
