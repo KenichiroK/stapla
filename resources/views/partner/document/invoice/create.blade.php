@@ -4,29 +4,6 @@
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/partner/document/invoice/create.css') }}">
 <script>
-// const checkInvoiceDate = () => {
-//   const requestedAtRadio = document.getElementsByName('requested_at');
-//   const requestedAtText = document.getElementById('requested_at_text');
-//   if (requestedAtRadio[0].checked) {
-//     const dateArr = requestedAtRadio[0].value.split('-');
-//     requestedAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
-//   } else if (requestedAtRadio[1].checked) {
-//     const dateArr = requestedAtRadio[1].value.split('-');
-//     requestedAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
-//   }
-// }
-
-// const checkDeadline = () => {
-//   const deadlineAtRadio = document.getElementsByName('deadline_at');
-//   const deadlineAtText = document.getElementById('deadline_at_text');
-//   if (deadlineAtRadio[0].checked) {
-//     const dateArr = deadlineAtRadio[0].value.split('-');
-//     deadlineAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
-//   } else if (deadlineAtRadio[1].checked) {
-//     const dateArr = deadlineAtRadio[1].value.split('-');
-//     deadlineAtText.textContent = `${dateArr[0]}年${dateArr[1]}月${dateArr[2]}日`;
-//   }
-// }
 
 const calculateSumPrice = (e) => {
   var sum = document.getElementById('sum');
@@ -87,7 +64,7 @@ const addtaskRequest = () => {
   const taskRequest = document.getElementById('taskRequest');
   const inner = `
     <tr>
-	  <td class="del-task-column" name="task_element" onclick="delTaskColumn(this)">×</td>
+	  <td class="del-task-record" name="task_element" onclick="delTaskRecord(this)">×</td>
 	  <td class="item"><input type="text" name="item_name[]"></td>
 	  <td class="num"><input type="text" name="item_num[]" onchange="calculateSumPrice(this.value)"></td>
 	  <td class="unit-price"><input type="text" name="item_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
@@ -103,7 +80,7 @@ const addtaskRequest = () => {
 	</tr>`;
   taskRequest.insertAdjacentHTML('beforeend', inner);
 
-  var taskElement = document.querySelectorAll('td.del-task-column');
+  var taskElement = document.querySelectorAll('td.del-task-record');
     taskElement.forEach(function(val, i){
     val.setAttribute('value', (i+1));
   });
@@ -113,7 +90,7 @@ const addExpences = () => {
   const expences = document.getElementById('expences');
   const inner = `
 	  <tr>
-	    <td class="del-expences-column" name="expences_element" onclick="delExpenceColumn(this)">×</td>
+	    <td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
 		<td class="item"><input type="text" name="expences_name[]"></td>
 		<td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice(this.value)"></td>
 		<td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
@@ -129,16 +106,11 @@ const addExpences = () => {
 	  </tr>`;
   expences.insertAdjacentHTML('beforeend', inner);
 
-  var expencesElement = document.querySelectorAll('td.del-expences-column');
+  var expencesElement = document.querySelectorAll('td.del-expences-record');
     expencesElement.forEach(function(val, i){
     val.setAttribute('value', (i+1));
   });
 }
-
-// window.onload = () => {
-//   checkInvoiceDate();
-//   checkDeadline();
-// }
 </script>
 @endsection
 
@@ -303,7 +275,7 @@ const addExpences = () => {
 				<table>
 					<thead>
 						<tr>
-							<th class="del-column">削除</th>
+							<th class="del-record">削除</th>
 							<th class="item">品目</th>
 							<th class="num">数</th>
 							<th class="unit-price">単価</th>
@@ -314,7 +286,7 @@ const addExpences = () => {
 					
 					<tbody id="taskRequest">
 						<tr>
-							<td class="del-task-column" name="task_element" onclick="delTaskColumn(this)">×</td>
+							<td class="del-task-record" name="task_element" onclick="delTaskRecord(this)">×</td>
 							<td class="item"><input type="text" name="item_name[]"></td>
 							<td class="num"><input type="text" name="item_num[]" onchange="calculateSumPrice(this.value)"></td>
 							<td class="unit-price"><input type="text" name="item_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
@@ -356,7 +328,7 @@ const addExpences = () => {
 				<table>
 					<thead>
 						<tr>
-							<th class="del-column">削除</th>
+							<th class="del-record">削除</th>
 							<th class="item">品目</th>
 							<th class="num">数</th>
 							<th class="unit-price">単価</th>
@@ -367,7 +339,7 @@ const addExpences = () => {
 					
 					<tbody id="expences">
 						<tr>
-							<td class="del-expences-column" name="expences_element" onclick="delExpenceColumn(this)">×</td>
+							<td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
 							<td class="item"><input type="text" name="expences_name[]"></td>
 							<td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice(this.value)"></td>
 							<td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
@@ -457,13 +429,15 @@ const addExpences = () => {
 		}
 	}
 	
-	function delTaskColumn(button) {
-		var del_column = document.getElementsByName('task_element');
+	function delTaskRecord(button) {
+		var del_record = document.getElementsByName('task_element');
 		var parent = button.parentNode;
 		parent.remove(parent);
+
+
 	}
-	function delExpenceColumn(button) {
-		var del_column = document.getElementsByName('expences_element');
+	function delExpenceRecord(button) {
+		var del_record = document.getElementsByName('expences_element');
 		var parent = button.parentNode;
 		console.log(parent)
 		parent.remove(parent);
