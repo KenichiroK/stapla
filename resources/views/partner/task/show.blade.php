@@ -50,32 +50,6 @@
                     </div>
                 </dd>
             </dl>
-            <dl>
-                <dt>
-                    上長
-                </dt>
-                <dd class="flex01">
-                    <div class="person-item">
-                        <div class="imgbox">
-                            <img src="{{ $task->superior->picture }}" alt="上長プロフィール画像">
-                        </div>
-                        <p>{{ $task->superior->name }}</p>
-                    </div>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    経理
-                </dt>
-                <dd class="flex01">
-                    <div class="person-item">
-                        <div class="imgbox">
-                            <img src="{{ $task->accounting->picture }}" alt="上長プロフィール画像">
-                        </div>
-                        <p>{{ $task->accounting->name }}</p>
-                    </div>
-                </dd>
-            </dl>
             <dl class="term">
                 <dt>
                     プロジェクト期間
