@@ -13,6 +13,7 @@ use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -146,31 +147,33 @@ class TaskController extends Controller
             break;
 
             case 'toStore';
-                $task = new Task;
-                $task->project_id      = $request->project_id;
-                $company_id = Auth::user()->company_id;
-                $task->company_id      = $company_id;
-                $task->company_user_id = $request->company_user_id;
-                $task->superior_id     = $request->superior_id;
-                $task->accounting_id   = $request->accounting_id;
-                $task->partner_id      = $request->partner_id;
-                $task->name            = $request->task_name;
-                $task->content         = $request->task_content;
-                $task->started_at      = date('Y-m-d-H-m-s', strtotime($request->started_at));
-                $task->ended_at        = date('Y-m-d-H-m-s', strtotime($request->ended_at));
-                $task->status          = 1;
-                $task->purchaseorder   = false;
-                $task->invoice         = false;
-                $task->budget          = $request->budget;
-                $task->tax             = 0.1;
-                $task->price           = $request->price;
-                $task->cases           = 1;
-                $task->fee_format      = "固定";
-                $task->save();
-                
-                return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
+
+            $task = new Task;
+            $task->project_id      = $request->project_id;
+            $task->company_id      = $company_user->company_id;
+            $task->company_user_id = $request->company_user_id;
+            $task->superior_id     = $request->superior_id;
+            $task->accounting_id   = $request->accounting_id;
+            $task->partner_id      = $request->partner_id;
+            $task->name            = $request->name;
+            $task->content         = $request->content;
+            $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
+            $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
+            $task->status          = 1;
+            $task->purchaseorder   = false;
+            $task->invoice         = false;
+            $task->budget          = $request->budget;
+            $task->tax             = 0.1;
+            $task->price           = $request->price;
+            $task->cases           = 1;
+            $task->fee_format      = "固定";
+            $task->save();
+            \Log::info('タスク新規作成', ['user_id(company)' => $company_user->id, 'task_id' => $task->id, 'status' => $task->status]);
+    
+            return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
             break;
         }
+        
     }
 
     public function show($id)
@@ -189,5 +192,38 @@ class TaskController extends Controller
         $partners = Partner::where('company_id', $company_user->company_id)->get();
 
         return view('/company/task/show', compact('task', 'project_count', 'company_user', 'company_users', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids'));
+    }
+
+    public function edit($id)
+    {
+        $company_user = Auth::user();
+        $task = Task::findOrFail($id);
+        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', 1)->get();
+            
+        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
+        $partners = Partner::where('company_id', $company_user->company_id)->get();
+
+        return view('company/task/edit', compact('task', 'projects','companyUsers', 'partners', 'company_user')); 
+    }
+
+    public function update(CreateTaskRequest $request, $id)
+    {
+        $task = Task::findOrFail($id);
+
+        $task->project_id      = $request->project_id;
+        $task->company_user_id = $request->company_user_id;
+        $task->superior_id     = $request->superior_id;
+        $task->accounting_id   = $request->accounting_id;
+        $task->partner_id      = $request->partner_id;
+        $task->name            = $request->name;
+        $task->content         = $request->content;
+        $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
+        $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
+        $task->budget          = $request->budget;
+        $task->price           = $request->price;
+        $task->save();
+        
+
+        return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '変更しました。');
     }
 }

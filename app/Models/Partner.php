@@ -41,16 +41,6 @@ class Partner extends Authenticatable
         $this->notify(new PartnerVerifyEmail);
     }
     
-    public function taskPartners()
-    {
-        return $this->hasMany('App\Models\TaskPartner', 'partner_id', 'id');
-    }
-
-    public function projectPartners()
-    {
-        return $this->hasMany('App\Models\ProjectPartner', 'user_id', 'id');
-    }
-
     public function company()
     {
         return $this->belongsTo('App\Models\Company', 'company_id', 'id');

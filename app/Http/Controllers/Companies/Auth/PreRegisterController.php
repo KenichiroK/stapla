@@ -56,4 +56,9 @@ class PreRegisterController extends Controller
     {
         return Auth::guard('company');
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        \Log::info('企業担当者 新規登録', ['user_id' => $user->id, 'company_id' => $user->company_id]);    
+    }
 }

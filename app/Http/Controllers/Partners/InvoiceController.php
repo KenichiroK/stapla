@@ -54,6 +54,7 @@ class InvoiceController extends Controller
         $invoice->tax            = $request->tax;
         $invoice->status         = 0;
         $invoice->save();
+        \Log::info('請求書新規登録', ['user_id(partner)' => $partner->id, 'task_id' => $invoice->task_id, 'status' => $invoice->status]);
 
         $invoiceTaskController = new InvoiceTaskController;
         app()->call([$invoiceTaskController, 'store'], ['invoice_id' => $invoice->id]);

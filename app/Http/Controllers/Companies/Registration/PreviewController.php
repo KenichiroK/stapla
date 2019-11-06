@@ -51,6 +51,7 @@ class PreviewController extends Controller
         $companyUser->self_introduction = $request->self_introduction;
         $companyUser->picture = $request->picture;
         $companyUser->save();
+        \Log::info('企業新規作成', ['user_id(company)' => $companyUser->id, 'company_id' => $company->id]);
 
         return view('company/auth/initialRegister/done');
     }
@@ -65,6 +66,7 @@ class PreviewController extends Controller
         $companyUser->self_introduction = $request->self_introduction;
         $companyUser->picture = $request->picture;        
         $companyUser->save();
+        \Log::info('担当者新規作成(企業)', ['user_id(company)' => $companyUser->id]);
 
         return view('company/auth/initialRegister/done');
     }

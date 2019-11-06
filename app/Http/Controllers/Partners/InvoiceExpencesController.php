@@ -24,6 +24,7 @@ class InvoiceExpencesController extends Controller
                 $model->unit_price = $request->expences_unit_price[$i];
                 $model->total      = $request->expences_total[$i];
                 $model->save();
+                \Log::info('請求書詳細(経費) 登録', ['request_expence_id' => $model->id, 'invoice_id' => $invoice_id]);
             }
             
         }

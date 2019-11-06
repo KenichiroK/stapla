@@ -21,10 +21,6 @@ class DatabaseSeeder extends Seeder
           // TaskRoleRelationsTableSeeder::class,
           // UserRoleRelationsTableSeeder::class,
           // ProjectRoleRelationsTableSeeder::class,
-          // TaskCompaniesTableSeeder::class,
-          // TaskPartnersTableSeeder::class,
-          // ContractsTableSeeder::class,
-          // NdasTableSeeder::class,
           // PurchaseOrdersTableSeeder::class,
           // InvoicesTableSeeder::class,
         ]);
