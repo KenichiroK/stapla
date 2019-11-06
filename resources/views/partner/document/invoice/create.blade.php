@@ -87,7 +87,7 @@ const addtaskRequest = () => {
   const taskRequest = document.getElementById('taskRequest');
   const inner = `
     <tr>
-	  <td class="del-column" name="del_culumn[]" onclick="delColumn()">×</td>
+	  <td class="del-task-column" name="task_element" onclick="delTaskColumn(this)">×</td>
 	  <td class="item"><input type="text" name="item_name[]"></td>
 	  <td class="num"><input type="text" name="item_num[]" onchange="calculateSumPrice(this.value)"></td>
 	  <td class="unit-price"><input type="text" name="item_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
@@ -102,13 +102,18 @@ const addtaskRequest = () => {
 	  <input type="hidden" name="item_total[]">
 	</tr>`;
   taskRequest.insertAdjacentHTML('beforeend', inner);
+
+  var taskElement = document.querySelectorAll('td.del-task-column');
+    taskElement.forEach(function(val, i){
+    val.setAttribute('value', (i+1));
+  });
 }
 
 const addExpences = () => {
   const expences = document.getElementById('expences');
   const inner = `
 	  <tr>
-	    <td class="del-column" name="del_culumn[]" onclick="delColumn()">×</td>
+	    <td class="del-expences-column" name="expences_element" onclick="delExpenceColumn(this)">×</td>
 		<td class="item"><input type="text" name="expences_name[]"></td>
 		<td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice(this.value)"></td>
 		<td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
@@ -123,6 +128,11 @@ const addExpences = () => {
 		<input type="hidden" name="expences_total[]">
 	  </tr>`;
   expences.insertAdjacentHTML('beforeend', inner);
+
+  var expencesElement = document.querySelectorAll('td.del-expences-column');
+    expencesElement.forEach(function(val, i){
+    val.setAttribute('value', (i+1));
+  });
 }
 
 // window.onload = () => {
@@ -304,7 +314,7 @@ const addExpences = () => {
 					
 					<tbody id="taskRequest">
 						<tr>
-							<td class="del-column" name="del_culumn[]" onclick="delColumn()">×</td>
+							<td class="del-task-column" name="task_element" onclick="delTaskColumn(this)">×</td>
 							<td class="item"><input type="text" name="item_name[]"></td>
 							<td class="num"><input type="text" name="item_num[]" onchange="calculateSumPrice(this.value)"></td>
 							<td class="unit-price"><input type="text" name="item_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
@@ -357,8 +367,7 @@ const addExpences = () => {
 					
 					<tbody id="expences">
 						<tr>
-							<td class="del-column" onclick="delColumn(e)">×</td>
-							<!-- <td class="del-column" name="del_culumn[]" onclick="delColumn()">×</td> -->
+							<td class="del-expences-column" name="expences_element" onclick="delExpenceColumn(this)">×</td>
 							<td class="item"><input type="text" name="expences_name[]"></td>
 							<td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice(this.value)"></td>
 							<td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice(this.value)"><span>円</span></td>
@@ -448,19 +457,17 @@ const addExpences = () => {
 		}
 	}
 	
-	// function delColumn() {
-	// 	var del_column = document.getElementsByName('del_culumn[]');
-	// 	console.log(del_column);	
-
-		
-	// 	}
-	document.body.addEventListener('click', function (event) {
-		console.log(event.target);
-
-		var del_column = document.getElementsByName('del_culumn[]');
-		elements = [].slice.call( del_column ) ;
-		console.log(del_column);
-	}, false)
+	function delTaskColumn(button) {
+		var del_column = document.getElementsByName('task_element');
+		var parent = button.parentNode;
+		parent.remove(parent);
+	}
+	function delExpenceColumn(button) {
+		var del_column = document.getElementsByName('expences_element');
+		var parent = button.parentNode;
+		console.log(parent)
+		parent.remove(parent);
+	}
 </script>
 
 
