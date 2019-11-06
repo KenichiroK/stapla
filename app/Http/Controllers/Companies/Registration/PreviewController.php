@@ -64,7 +64,7 @@ class PreviewController extends Controller
         $companyUser->department = $request->department;
         $companyUser->occupation = $request->occupation;
         $companyUser->self_introduction = $request->self_introduction;
-        $companyUser->picture = $request->picture;        
+        $companyUser->picture = $request->urlPicture;        
         $companyUser->save();
         \Log::info('担当者新規作成(企業)', ['user_id(company)' => $companyUser->id]);
 
