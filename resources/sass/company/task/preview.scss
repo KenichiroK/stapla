@@ -1,0 +1,274 @@
+.main__container {
+    width: 100%;
+    margin: auto;
+    background-color: #f0f0f7;
+    font-size: 14px;
+    &__wrapper {
+        padding: 40px 40px;
+    }
+}
+
+// 共通部分
+.page-title-container {
+    &__page-title {
+        font-size: 28px;
+        font-weight: bold;
+        font-family: "Source Sans Pro";
+        color: #43425d;
+        margin-bottom: 26px;
+    }
+}
+.item-name-wrapper {
+    width: 22%;
+    display: table;
+    height: 48px;
+    padding-right: 30px;
+    .item-name {
+        margin-bottom: 8px;
+        vertical-align: middle;
+        display: table-cell;
+        color: #43425d;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: "Source Sans Pro";
+        text-align: right;
+        span.tax {
+            font-size: 12px;
+            margin-left: -5px;
+        }
+    }
+    .item-name.document {
+        vertical-align: top;
+    }
+}
+.item-name-wrapper.unitname {
+    padding-right: 23px;
+}
+
+// プロジェクトを選択する エリア
+.select-container {
+    margin-bottom: 24px;
+    &__wrapper {
+        padding: 22px 40px;
+        background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+        display: flex;
+        .select-textarea {
+            display: table;
+            height: 48px;
+            padding-right: 10px;
+            .select-text {
+                vertical-align: middle;
+                display: table-cell;
+                color: #43425d;
+                font-size: 15px;
+                font-weight: bold;
+                font-family: "Source Sans Pro";
+            }
+        }
+    }
+}
+
+.form-control.is-invalid {
+    border-color: #e9e9f0;
+    background-image: none;
+}
+
+#inputPrice {
+    text-align: right;
+}
+
+.main-container {
+    width: 100%;
+    margin-bottom: 60px;
+    &__wrapper {
+        background-color: #ffffff;
+        padding: 40px 16px 1px;
+        border-radius: 4px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+        .item-container {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+    // margin-bottom: 0rem;
+        //     // タスク名
+        //     .inputarea {
+        //         width: 66%;
+        //         .input-control input {
+        //             box-shadow: none;
+        //             border-radius: 2px;
+        //             border: 1px solid #e9e9f0;
+        //             height: 48px;
+        //         }
+        //     }
+            // // タスク作成日
+            // .cre-datewrapper {
+            //     display: table;
+            //     height: 48px;
+            //     .cre-date {
+            //         vertical-align: middle;
+            //         display: table-cell;
+            //         font-size: 18px;
+            //         color: #4d4f5c;
+            //         font-family: "Source Sans Pro";
+            //         i {
+            //             color: #a5a4bf;
+            //             padding-left: 16px;
+            //         }
+            //     }
+            // }
+        //     // タスク内容
+        //     .textarea-wrp {
+        //         height: 120px;
+        //         width: 66%;
+        //     }
+        //     .textarea-wrp textarea {
+        //         border-radius: 2px;
+        //         border: 1px solid #e9e9f0;
+        //         box-shadow: none;
+        //         resize: none;
+        //     }
+            // タスク期間
+            .calendar-item {
+                display: block;
+                .calendar-name {
+                    font-size: 16px;
+                    margin-bottom: 3px;
+                    i {
+                        color: #a5a4bf;
+                        padding-left: 26px;
+                    }
+                }
+                .calendar-name.start {
+                    padding-right: 180px;
+                }
+            }
+        //     .calendar-item.end {
+        //         margin-top: 12px;
+        //     }
+
+        //     // 予算
+        //     .input-control.budget {
+        //         position: relative;
+        //         width: 40%;
+        //         input {
+        //             display: inline-block;
+        //             width: 100%;
+        //         }
+        //     }
+        //     .input-yen {
+        //         display: inline-block;
+        //         position: absolute;
+        //         bottom: 0px;
+        //         right: -25px;
+        //     }
+        //     // 資料
+        //     .filearea {
+        //         padding: 20px 30px 30px;
+        //         background: #fff;
+        //         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        //         .uplaod {
+        //             font-size: 18px;
+        //             color: #4d4f5c;
+        //             font-family: "Source Sans Pro";
+        //         }
+        //     }
+        }
+    }
+}
+.partner-container {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 30px 20px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+    &__title {
+        font-weight: bold;
+        font-size: 18px;
+        color: #4d4f5c;
+        font-family: "Source Sans Pro";
+        margin-bottom: 25px;
+    }
+    &__wrpper {
+        .item-container.fee {
+            margin-bottom: 20px;
+        }
+        .item-container.price {
+            border-top: 1px solid #f1f1f3;
+            padding-top: 25px;
+            .item-name-wrapper {
+                padding-right: 0;
+            }
+        }
+        .item-container {
+            margin-bottom: 30px;
+            display: flex;
+    
+            // 発注単価・件数
+            .order-wrp {
+                display: flex;
+                .unit-num {
+                    display: flex;
+                    .unit-num_contents {
+                        position: relative;
+                        height: 48px;
+                        input {
+                            display: inline-block;
+                            height: 48px;
+                            width: 200px;
+                            box-shadow: none;
+                            border-radius: 2px;
+                            border: 1px solid #e9e9f0;
+                        }
+                        .aux-text {
+                            display: inline-block;
+                            position: absolute;
+                            bottom: 0px;
+                            right: -25px;
+                        }
+                    }
+                }
+            }
+            .price-item {
+                text-align: right;
+                width: 100%;
+                p {
+                    font-size: 30px;
+                    color: #43425d;
+                    font-family: "Source Sans Pro";
+                    margin-bottom: 0;
+                    span.tax {
+                        font-size: 14px;
+                        font-weight: bold;
+                        padding-right: 5px;
+                    }
+                    span.yen {
+                        font-size: 20px;
+                        padding-right: 4px;
+                    }
+                }
+            }
+        }
+        .item-container.order__unit-number {
+            display: block;
+        }
+    }
+}
+
+// プレビュー時のCSS
+.preview_p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0rem;
+    font-size: 16px;
+}
+
+
+.btn01-container {
+    margin-top: 60px;
+    button {
+        // font-size: 14px;
+        margin: 0 8px;
+    }
+}
