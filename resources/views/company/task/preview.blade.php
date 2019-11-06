@@ -52,27 +52,8 @@ $(function(){
                 <div class="select-error-wrp">
                     <div class="select-area control">
                         <div class="select-wrp select is-info">
-                        
-                                @if($response)
-                                    <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                        <option disabled selected></option>
-                                        @foreach($projects as $project)
-                                        <option value="{{ $project->id }}" {{ ($response->project_id === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
-                                        @endforeach
-                                    </select>
-                                @else
-                                    <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                        <option disabled selected></option>
-                                        @foreach($projects as $project)
-                                        <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
-                                        @endforeach
-                                    </select>
-                                @endif
-                            @if ($errors->has('project_id'))
-                                <div class="invalid-feedback error-msg" role="alert">
-                                    <strong>{{ $errors->first('project_id') }}</strong>
-                                </div>
-                            @endif
+                            <p>{{ $project->name }}</p>
+                            <input type="hidden" name="project_id" value="{{ $project->id }}" >
                         </div>
                     </div>
                 </div>
@@ -90,21 +71,12 @@ $(function(){
                                     タスク名
                                 </div>
                             </div>
-                              
-                                    <div class="inputarea">
-                                        <div class="input-control">
-                                            @if($response)
-                                                <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" value="{{ old('task_name', $response->task_name) }}">
-                                            @else
-                                                <input class="input form-control{{ $errors->has('task_name') ? ' is-invalid' : '' }}" name='task_name' type="text" value="{{ old('task_name') }}">
-                                            @endif
-                                            @if ($errors->has('task_name'))
-                                                <div class="invalid-feedback error-msg" role="alert">
-                                                    <strong>{{ $errors->first('task_name') }}</strong>
-                                                </div>
-                                            @endif
-                                        </div>
+                                <div class="inputarea">
+                                    <div class="input-control">
+                                        <p>{{ $request->task_name }}</p>
+                                            <input type="hidden" name='task_name' value="{{ $request->task_name }}">
                                     </div>
+                                </div>
                         
                         </div>
 
@@ -116,21 +88,8 @@ $(function(){
                                 </div>
                             </div>
                             <div class="textarea-wrp">
-                                @if(isset($request))
-                                    <p>{!! nl2br(e($request->task_content)) !!}</p>
-                                    <input type="hidden" name="task_content" value="{{ $request->task_content }}">
-                                @else
-                                    @if($response)
-                                        <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'>{{ $response->task_content }}</textarea>
-                                    @else
-                                        <textarea class="textarea form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='task_content'>{{ old('task_content') }}</textarea>
-                                    @endif
-                                    @if ($errors->has('task_content'))
-                                        <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('task_content') }}</strong>
-                                        </div>
-                                    @endif
-                                @endif
+                                <p>{!! nl2br(e($request->task_content)) !!}</p>
+                                <input type="hidden" name="task_content" value="{{ $request->task_content }}">
                             </div>
                         </div>
 
@@ -145,30 +104,13 @@ $(function(){
                                 <div class="select-area control staff">
                                     <div class="select-wrp select is-info">
                                         <!-- <select v-model="taskInfo.staff"> -->
-                                        @if(isset($request))
-                                            <p class="">{{ $company_user->name }}</p>
-                                            <input type="hidden" name="company_user_id" value="{{ $company_user->id }}">
-                                        @else
-                                            @if($response)
-                                                <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                                    @foreach($company_users as $company_user)
-                                                        <option value="{{ $company_user->id }}" {{ ($response->company_user_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            @else
-                                                <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                                    <option disabled selected></option>
-                                                    @foreach($company_users as $company_user)
-                                                        <option value="{{ $company_user->id }}" {{ (old('company_user_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            @endif
-                                            @if ($errors->has('company_user_id'))
-                                                <div class="invalid-feedback error-msg" role="alert">
-                                                    <strong>{{ $errors->first('company_user_id') }}</strong>
-                                                </div>
-                                            @endif
-                                        @endif
+                                        <p class="">{{ $company_user->name }}</p>
+                                        <input type="hidden" name="company_user_id" value="{{ $company_user->id }}">
+                                        @if ($errors->has('company_user_id'))
+                                            <div class="invalid-feedback error-msg" role="alert">
+                                                <strong>{{ $errors->first('company_user_id') }}</strong>
+                                            </div>
+                                        @endif                                    
                                     </div>
                                 </div> 
                             </div>
@@ -184,33 +126,10 @@ $(function(){
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
                                     <div class="select-wrp select is-info">
-                                    @if(isset($request))
                                         @if(isset($superior_user))
                                             <p class="">{{ $superior_user->name }}</p>
                                             <input type="hidden" name="superior_id" value="{{ $superior_user->id }}">
                                         @endif
-                                    @else
-                                        @if($response)
-                                            <select name='superior_id'>
-                                                <option selected></option>
-                                                @foreach($company_users as $company_user)
-                                                <option value={{ $company_user->id }} {{ ($superior_user->id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        @else
-                                            <select name='superior_id'>
-                                                <option selected></option>
-                                                @foreach($company_users as $company_user)
-                                                <option value={{ $company_user->id }} {{ (old('superior_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        @endif
-                                        @if ($errors->has('superior_id'))
-                                            <div class="invalid-feedback error-msg" role="alert">
-                                                <strong>{{ $errors->first('superior_id') }}</strong>
-                                            </div>
-                                        @endif
-                                    @endif
                                     </div>
                                 </div>
                             </div>
@@ -226,33 +145,10 @@ $(function(){
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
                                     <div class="select-wrp select is-info">
-                                    @if(isset($request))
                                         @if(isset($accounting_user))
                                             <p class="">{{ $accounting_user->name }}</p>
                                             <input type="hidden" name="accounting_id" value="{{ $accounting_user->id }}">
                                         @endif
-                                    @else
-                                        @if($response)
-                                            <select name='accounting_id'>
-                                                <option selected></option>
-                                                @foreach($company_users as $company_user)
-                                                    <option value={{ $company_user->id }} {{ ($accounting_user->id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        @else
-                                            <select name='accounting_id'>
-                                                <option selected></option>
-                                                @foreach($company_users as $company_user)
-                                                    <option value={{ $company_user->id }} {{ (old('accounting_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        @endif
-                                        @if ($errors->has('accounting_id'))
-                                            <div class="invalid-feedback error-msg" role="alert">
-                                                <strong>{{ $errors->first('accounting_id') }}</strong>
-                                            </div>
-                                        @endif
-                                    @endif
                                     </div>
                                 </div>
 
@@ -268,65 +164,20 @@ $(function(){
                             <div class="calendar-wrp">
                                 <!-- 開始日カレンダー -->
                                 <div class="calendar-item">                               
-                                    @if(isset($request))
-                                        <div class="calendar-name start">
-                                            開始日
-                                        </div>
-                                        <p>{{ date("Y年m月d日H時", strtotime($request->started_at)) }}</p>
-                                        <input type="hidden" name="started_at" value="{{ $request->started_at }}">
-                                    @else
-                                        <div class="calendar-name start">
-                                            開始日<i class="fas fa-calendar-alt"></i>
-                                        </div>
-                                        @if($response)
-                                            <input
-                                                type="datetime-local"
-                                                name="started_at"
-                                                class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
-                                                value="{{ old('started_at', $response->started_at) }}"
-                                            >
-                                        @else
-                                            <input
-                                                type="datetime-local"
-                                                name="started_at"
-                                                class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
-                                                value="{{ old('started_at') ? str_replace(" ", "T", old('started_at')) : date('Y-m-d\T00:00') }}"
-                                            >
-                                        @endif
-                                        @if($errors->has('started_at'))
-                                            <div class="invalid-feedback error-msg" role="alert">
-                                                <strong>{{ $errors->first('started_at') }}</strong>
-                                            </div>
-                                        @endif
-                                    @endif
+                                    <div class="calendar-name start">
+                                        開始日
+                                    </div>
+                                    <p>{{ date("Y年m月d日H時", strtotime($request->started_at)) }}</p>
+                                    <input type="hidden" name="started_at" value="{{ $request->started_at }}">
                                 </div>
                                 <!-- 終了日カレンダー -->
                                 <div class="calendar-item end">                               
                                     
-                                        <div class="calendar-name">
-                                            終了日<i class="fas fa-calendar-alt"></i>
-                                        </div>
-                                        @if($response)
-                                            <input
-                                                type="datetime-local"
-                                                class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
-                                                name='ended_at'
-                                                value="{{ old('ended_at', explode(' ', $response->ended_at)[0]) }}"
-                                            >
-                                        @else
-                                            <input
-                                                type="datetime-local"
-                                                class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
-                                                name='ended_at'
-                                                value="{{ old('ended_at') ? str_replace(" ", "T", old('ended_at')) : date('Y-m-d\T23:59') }}"
-                                            >
-                                        @endif
-                                        @if ($errors->has('ended_at'))
-                                            <div class="invalid-feedback error-msg" role="alert">
-                                                <strong>{{ $errors->first('ended_at') }}</strong>
-                                            </div>
-                                        @endif 
-                                  
+                                    <div class="calendar-name">
+                                        終了日<i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <p>{{ date("Y年m月d日H時", strtotime($request->ended_at)) }}</p>
+                                    <input type="hidden" name="started_at" value="{{ $request->started_at }}">
                                 </div>
                             </div>
                         </div>
@@ -339,24 +190,8 @@ $(function(){
                             </div>
                             <div class="inputarea">
                                 <div class="input-control budget">
-                                @if(isset($request))
                                     <p>{{ $request->budget }}円</p>
                                     <input type="hidden" name="budget" value="{{ $request->budget }}">
-                                @else
-                                    @if($response)
-                                        <input id="inputPrice" class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text" value="{{ $response->budget }}">
-                                    @else
-                                        <input id="inputPrice" class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text" value="{{ old('budget') }}">
-                                    @endif
-                                    @if ($errors->has('budget'))
-                                        <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('budget') }}</strong>
-                                        </div>
-                                    @endif
-                                    <div class="input-yen">
-                                        円
-                                    </div>
-                                @endif
                                 </div>
                             </div>
                         </div>
@@ -376,30 +211,8 @@ $(function(){
                             </div>
                             <div class="select-area control">
                                 <div class="select-wrp select is-info">
-                                @if(isset($request))
                                     <p class="">{{ $partner->name }}</p>
                                     <input type="hidden" name="partner_id" value="{{ $partner->id }}">
-                                @else
-                                    @if($response)
-                                        <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                            @foreach($partners as $partner)
-                                            <option value="{{ $partner->id }}" {{ (old('partner_id') === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    @else
-                                        <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                            <option disabled selected></option>
-                                            @foreach($partners as $partner)
-                                            <option value="{{ $partner->id }}" {{ (old('partner_id') === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    @endif
-                                    @if ($errors->has('partner_id'))
-                                        <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('partner_id') }}</strong>
-                                        </div>
-                                    @endif
-                                @endif
                                 </div>
                             </div>
                         </div>
@@ -418,24 +231,8 @@ $(function(){
                                 <div class="unit-num">
                                     <!-- 発注単位 input -->
                                     <div class="unit-num_contents">
-                                    @if(isset($request))
                                         <p>{{ $request->price }}円</p>
                                         <input type="hidden" name="price" value="{{ $request->price }}">
-                                    @else
-                                        @if($response)
-                                            <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ $response->price }}">    
-                                        @else
-                                            <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price') }}">
-                                        @endif
-                                        @if ($errors->has('price'))
-                                            <div class="invalid-feedback error-msg" role="alert">
-                                                <strong>{{ $errors->first('price') }}</strong>
-                                            </div>
-                                        @endif
-                                        <div class="aux-text">
-                                            円
-                                        </div>
-                                    @endif
                                     </div>  
                                 </div>
                             </div>

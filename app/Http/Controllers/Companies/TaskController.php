@@ -105,9 +105,9 @@ class TaskController extends Controller
         $task_status = 0;
         // return 'a';
         // プレビューから戻ってくるときに使用する変数
-        $response = '';
+        $response = ' ';
 
-        return view('company.task.preview', compact('request', 'company_users', 'project', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'task_status', 'response'));
+        return view('company.task.preview', compact('request', 'company_user', 'project', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'task_status', 'response'));
     }
 
     // 保存
