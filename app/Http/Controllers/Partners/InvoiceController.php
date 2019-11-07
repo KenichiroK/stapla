@@ -29,7 +29,8 @@ class InvoiceController extends Controller
         $company_id = $partner->company_id;
         $company = Company::findOrFail($company_id);
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
-        return view('/partner/document/invoice/create', compact('companyUsers', 'company', 'task'));
+        $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->first();
+        return view('/partner/document/invoice/create', compact('companyUsers', 'company', 'task', 'partner_invoice'));
     }
 
     public function store(CreateInvoiceRequest $request)

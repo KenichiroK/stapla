@@ -18,7 +18,7 @@
     <main>
         <div class="main_container">
             <div class="title_wrapper">
-                <h1 class="text">パスワードを設定してください</h1>
+                <h1 class="text">メールアドレスを入力してください</h1>
             </div>
 
             <div class="form_wrapper">

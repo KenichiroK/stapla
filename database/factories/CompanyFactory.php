@@ -7,11 +7,10 @@ $factory->define(App\Models\Company::class, function (Faker $faker) {
         'company_name'              => $faker->company,
         'representive_name'         => $faker->name,
         'zip_code'                  => $faker->postcode,
-        'tel'                       => $faker->phoneNumber,
+        'tel'                       => str_replace("-", "", $faker->phoneNumber),
         'address_prefecture'        => $faker->prefecture,
         'address_city'              => $faker->city,
         'address_building'          => $faker->streetAddress,
-        'tel'                       => $faker->phoneNumber,
         'expire'                    => true,
         'expire2'                   => $faker->dateTimeThisMonth,
         'approval_setting'          => true,
@@ -20,7 +19,7 @@ $factory->define(App\Models\Company::class, function (Faker $faker) {
         'purchase_order_setting'    => true,
         'confidential_setting'      => true,
         'account_setting'           => true,
-        'created_at'                => $faker->dateTimeThisDecade,
-        'updated_at'                => $faker->dateTimeThisYear,
+        'created_at'                => new DateTime(),
+        'updated_at'                => new DateTime(),
     ];
 });
