@@ -57,7 +57,7 @@
         .select-textarea {
             display: table;
             height: 48px;
-            padding-right: 10px;
+            padding-right: 30px;
             .select-text {
                 vertical-align: middle;
                 display: table-cell;
@@ -91,44 +91,7 @@
             margin-bottom: 30px;
             display: flex;
             align-items: center;
-    // margin-bottom: 0rem;
-        //     // タスク名
-        //     .inputarea {
-        //         width: 66%;
-        //         .input-control input {
-        //             box-shadow: none;
-        //             border-radius: 2px;
-        //             border: 1px solid #e9e9f0;
-        //             height: 48px;
-        //         }
-        //     }
-            // // タスク作成日
-            // .cre-datewrapper {
-            //     display: table;
-            //     height: 48px;
-            //     .cre-date {
-            //         vertical-align: middle;
-            //         display: table-cell;
-            //         font-size: 18px;
-            //         color: #4d4f5c;
-            //         font-family: "Source Sans Pro";
-            //         i {
-            //             color: #a5a4bf;
-            //             padding-left: 16px;
-            //         }
-            //     }
-            // }
-        //     // タスク内容
-        //     .textarea-wrp {
-        //         height: 120px;
-        //         width: 66%;
-        //     }
-        //     .textarea-wrp textarea {
-        //         border-radius: 2px;
-        //         border: 1px solid #e9e9f0;
-        //         box-shadow: none;
-        //         resize: none;
-        //     }
+
             // タスク期間
             .calendar-item {
                 display: block;
@@ -144,36 +107,6 @@
                     padding-right: 180px;
                 }
             }
-        //     .calendar-item.end {
-        //         margin-top: 12px;
-        //     }
-
-        //     // 予算
-        //     .input-control.budget {
-        //         position: relative;
-        //         width: 40%;
-        //         input {
-        //             display: inline-block;
-        //             width: 100%;
-        //         }
-        //     }
-        //     .input-yen {
-        //         display: inline-block;
-        //         position: absolute;
-        //         bottom: 0px;
-        //         right: -25px;
-        //     }
-        //     // 資料
-        //     .filearea {
-        //         padding: 20px 30px 30px;
-        //         background: #fff;
-        //         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-        //         .uplaod {
-        //             font-size: 18px;
-        //             color: #4d4f5c;
-        //             font-family: "Source Sans Pro";
-        //         }
-        //     }
         }
     }
 }
