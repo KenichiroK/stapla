@@ -115,11 +115,14 @@ class ProjectController extends Controller
         $project->started_at   = date('Y-m-d', strtotime($request->started_at));
         $project->ended_at     = date('Y-m-d', strtotime($request->ended_at));
         $project->budget       = $request->budget;
+        \Log::info('プロジェクト更新前', ['user_id' => $company_user->id, 'project_id' => $project->id, 'status' => $project->status]);
+
         $project->save();
+        \Log::info('プロジェクト更新', ['user_id' => $company_user->id, 'project_id' => $project->id, 'status' => $project->status]);
         
         $projectCompany = ProjectCompany::where('project_id', $project->id)->update(['user_id' => $request->company_user_id ]);
 
-        \Log::info('プロジェクト新規作成', ['user_id' => $company_user->id, 'project_id' => $project->id, 'status' => $project->status]);
+       
         return redirect()->route('company.project.show', ['id' => $project->id])->with('completed', '「'.$project->name.'」を編集しました。');
     }
 
