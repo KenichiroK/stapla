@@ -112,32 +112,7 @@ class TaskController extends Controller
     {
         switch ($request->input('editOrStore')) {
             case 'toEdit';
-                $company_user = Auth::user();
-                $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
-                $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.COMPLETE_STAFF'))->get();
-                // 担当者
-                $person_in_charge = CompanyUser::findOrFail($request->company_user_id);
-                // 上長
-                if(isset($request->superior_id)){
-                    $superior_user = CompanyUser::findOrFail($request->superior_id);
-                } else{
-                    $superior_user = null;
-                }
-                // 経理
-                if(isset($request->accounting_id)){
-                    $accounting_user = CompanyUser::findOrFail($request->accounting_id);
-                } else{
-                    $accounting_user = null;
-                }
-                // パートナー
-                $partner = Partner::findORFail($request->partner_id);
-                $partners = Partner::where('company_id', $company_user->company_id)->get();
-                // タスクステータス
-                $task_status = 0;
-
-                $response = $request;
-
-                return view('company.task.create', compact('response', 'company_users', 'projects', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'partners', 'task_status'));
+                return redirect()->action('Companies\TaskController@create')->withInput($request->all());
             break;
 
             case 'toStore';
@@ -167,7 +142,6 @@ class TaskController extends Controller
             return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
             break;
         }
-        
     }
 
     public function show($id)
