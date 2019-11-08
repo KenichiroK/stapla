@@ -123,6 +123,7 @@ $pref = array(
 				<div class="name-container item-container">
 					<p>会社名</p>
                     <p class="text_content">{{ $company->company_name }}</p>
+					<span>※会社名を変更したい場合は<a href="mailto:impro@humo.jp">こちら</a>へお問い合わせください。</span>
 				</div>
 				<div class="name-container item-container">
 					<p>代表者名</p>
