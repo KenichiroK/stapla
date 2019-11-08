@@ -29,7 +29,8 @@ class InvitePreRegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+                        ?: redirect($this->redirectPath())
+                        ->with('completed', '「'.$request->email.'」宛に招待メールを送付しました。');
     }
 
     protected function validator(array $data)
