@@ -26,7 +26,7 @@ class AddNullableToPurchaseOrdersTable extends Migration
     public function down()
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
-            $table->dropColumn('company_building');
+            //
         });
     }
 }
