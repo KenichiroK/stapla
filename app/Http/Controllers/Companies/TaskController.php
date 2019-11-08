@@ -112,7 +112,7 @@ class TaskController extends Controller
     {
         switch ($request->input('editOrStore')) {
             case 'toEdit';
-                return redirect()->action('Companies\TaskController@create')->withInput($request->all());
+                return redirect()->route('company.task.create')->withInput($request->all());
             break;
 
             case 'toStore';
