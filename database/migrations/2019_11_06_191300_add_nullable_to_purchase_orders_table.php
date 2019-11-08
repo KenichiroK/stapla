@@ -27,6 +27,7 @@ class AddNullableToPurchaseOrdersTable extends Migration
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
             //
+            
         });
     }
 }
