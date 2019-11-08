@@ -111,6 +111,141 @@ const addExpences = () => {
     val.setAttribute('value', (i+1));
   });
 }
+
+	// 担当者が選択された場合、担当者(自由記入)の記入不可へ 
+	function selectStaff() {
+		var free_staff_name = document.getElementById('free_staff_name');
+		free_staff_name.disabled = true;
+	}
+	// 担当者selectbox未選択状態へ
+	function setNonSelect(idname){
+		var selectedStaff = document.getElementById(idname);
+		selectedStaff.selectedIndex = -1;
+		free_staff_name.disabled = false;
+	}
+	// 担当者(自由記入) input記入不可状態へ
+	function billingText(){
+		var input_staff_name = document.getElementById('free_staff_name').value;
+		if(input_staff_name != "") {
+			staff_name.disabled = true;
+		} else {
+			staff_name.disabled = false;
+		}
+	}
+	
+	function delTaskRecord(button) {
+		var del_record = document.getElementsByName('task_element');
+		// console.log(del_record);
+
+		var parent = button.parentNode;
+		parent.remove(parent);
+
+		// del_record.forEach(function( value,i ) {
+		// 	del_record.value = i+1
+		// 	console.log( del_record );
+		// });
+		// console.log(button);
+
+		// button.forEach(function( value, i ) {
+		// 	console.log( value );
+		// });
+
+		// var itemNums = document.getElementsByName('item_num[]');
+		// console.log(itemNums);
+		// const taskNum = itemNums[taskCount-1].value
+		// console.log(taskNum);
+		
+		// var bro1 = button.nextElementSibling;
+		// console.log(bro1);
+		// var bro2 = bro1.nextElementSibling;
+		// console.log(bro2);
+		// var bro3 = bro2.nextElementSibling;
+		// console.log(bro3);
+
+		// sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
+		// sum_plus_tax.textContent = `￥${Math.floor(taskSumTax + expencesSumTax).toLocaleString()}`;
+		
+		var sum = document.getElementById('sum');
+		var itemNums = document.getElementsByName('item_num[]');
+		var itemUnitPrices = document.getElementsByName('item_unit_price[]');
+		var itemTaxes = document.getElementsByName('item_tax[]');
+		var itemTotals = document.getElementsByName('item_total[]');
+		var taskRequestTotals = document.querySelectorAll('.task_request_total');
+		var expencesNums = document.getElementsByName('expences_num[]');
+		var expencesUnitPrices = document.getElementsByName('expences_unit_price[]');
+		var expencesTaxes = document.getElementsByName('expences_tax[]');
+		var expencesTotals = document.getElementsByName('expences_total[]');
+		var expenceTotals = document.querySelectorAll('.expence_total');
+		var taskSum = 0;
+		var taskSumTax = 0;
+		var expencesSum = 0;
+		var expencesSumTax = 0;
+		for (i = 0; i < itemNums.length; i++) {
+			const taskNum = itemNums[i].value === undefined ? 0 : Number(itemNums[i].value);
+			const taskUnitPrice = itemUnitPrices[i].value === undefined ? 0 : Number(itemUnitPrices[i].value);
+			const taskTax = itemTaxes[i].value === undefined ? 0 : Number(itemTaxes[i].value);
+			if (taskNum !== 0 && taskUnitPrice !== 0) taskRequestTotals[i].textContent = Math.floor(taskNum * taskUnitPrice * taskTax);
+			if (taskNum !== 0 && taskUnitPrice !== 0) itemTotals[i].value = Math.floor(taskNum * taskUnitPrice * taskTax);
+			taskSum += taskNum * taskUnitPrice;
+			taskSumTax +=  taskNum * taskUnitPrice * taskTax;
+		}
+
+		for (i = 0; i < expencesNums.length; i++) {
+			const expencesNum = expencesNums[i].value === undefined ? 0 : Number(expencesNums[i].value);
+			const expencesUnitPrice = expencesUnitPrices[i].value === undefined ? 0 : Number(expencesUnitPrices[i].value);
+			const expencesTax = expencesTaxes[i].value === undefined ? 0 : Number(expencesTaxes[i].value);
+			if (expencesNum !== 0 && expencesUnitPrice !== 0) expenceTotals[i].textContent = Math.floor(expencesNum * expencesUnitPrice * expencesTax);
+			if (expencesNum !== 0 && expencesUnitPrice !== 0) expencesTotals[i].value = Math.floor(expencesNum * expencesUnitPrice * expencesTax);
+			expencesSum += expencesNum * expencesUnitPrice;
+			expencesSumTax += expencesNum * expencesUnitPrice * expencesTax;
+		}
+		sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
+		sum_plus_tax.textContent = `￥${Math.floor(taskSumTax + expencesSumTax).toLocaleString()}`;
+	}
+
+	function delExpenceRecord(button) {
+		var del_record = document.getElementsByName('expences_element');
+		var parent = button.parentNode;
+		console.log(parent)
+		parent.remove(parent);
+
+		var sum = document.getElementById('sum');
+		var itemNums = document.getElementsByName('item_num[]');
+		var itemUnitPrices = document.getElementsByName('item_unit_price[]');
+		var itemTaxes = document.getElementsByName('item_tax[]');
+		var itemTotals = document.getElementsByName('item_total[]');
+		var taskRequestTotals = document.querySelectorAll('.task_request_total');
+		var expencesNums = document.getElementsByName('expences_num[]');
+		var expencesUnitPrices = document.getElementsByName('expences_unit_price[]');
+		var expencesTaxes = document.getElementsByName('expences_tax[]');
+		var expencesTotals = document.getElementsByName('expences_total[]');
+		var expenceTotals = document.querySelectorAll('.expence_total');
+		var taskSum = 0;
+		var taskSumTax = 0;
+		var expencesSum = 0;
+		var expencesSumTax = 0;
+		for (i = 0; i < itemNums.length; i++) {
+			const taskNum = itemNums[i].value === undefined ? 0 : Number(itemNums[i].value);
+			const taskUnitPrice = itemUnitPrices[i].value === undefined ? 0 : Number(itemUnitPrices[i].value);
+			const taskTax = itemTaxes[i].value === undefined ? 0 : Number(itemTaxes[i].value);
+			if (taskNum !== 0 && taskUnitPrice !== 0) taskRequestTotals[i].textContent = Math.floor(taskNum * taskUnitPrice * taskTax);
+			if (taskNum !== 0 && taskUnitPrice !== 0) itemTotals[i].value = Math.floor(taskNum * taskUnitPrice * taskTax);
+			taskSum += taskNum * taskUnitPrice;
+			taskSumTax +=  taskNum * taskUnitPrice * taskTax;
+		}
+
+		for (i = 0; i < expencesNums.length; i++) {
+			const expencesNum = expencesNums[i].value === undefined ? 0 : Number(expencesNums[i].value);
+			const expencesUnitPrice = expencesUnitPrices[i].value === undefined ? 0 : Number(expencesUnitPrices[i].value);
+			const expencesTax = expencesTaxes[i].value === undefined ? 0 : Number(expencesTaxes[i].value);
+			if (expencesNum !== 0 && expencesUnitPrice !== 0) expenceTotals[i].textContent = Math.floor(expencesNum * expencesUnitPrice * expencesTax);
+			if (expencesNum !== 0 && expencesUnitPrice !== 0) expencesTotals[i].value = Math.floor(expencesNum * expencesUnitPrice * expencesTax);
+			expencesSum += expencesNum * expencesUnitPrice;
+			expencesSumTax += expencesNum * expencesUnitPrice * expencesTax;
+		}
+		sum.textContent = `￥${(taskSum + expencesSum).toLocaleString()}`;
+		sum_plus_tax.textContent = `￥${Math.floor(taskSumTax + expencesSumTax).toLocaleString()}`;
+	}
 </script>
 @endsection
 
@@ -234,37 +369,6 @@ const addExpences = () => {
 						@endif
 					</dd>
 				</dl>
-
-				<!-- <dl>
-					<dt>消費税</dt>
-					<dd>
-						<div class="radio-container">
-							<input
-								class="radio-input"
-								type="radio"
-								name="tax"
-								value="1"
-								id="include_tax"
-								{{ old('tax') === "1" ? 'checked' : '' }}
-							>
-							<label for="include_tax">税込表示(10%)</label>
-							<input
-								class="radio-input"
-								type="radio"
-								name="tax"
-								value="0"
-								id="not_include_tax"
-								{{ old('tax') === "0" ? 'checked' : '' }}
-							>
-							<label for="not_include_tax">税別表示</label>
-						</div>
-						@if ($errors->has('tax'))
-							<div class="error-msg">
-								<strong>{{ $errors->first('tax') }}</strong>
-							</div>					
-						@endif
-					</dd>
-				</dl> -->
 			</div>
 
 			<div class="task-container">
@@ -408,41 +512,6 @@ const addExpences = () => {
 
 @section('asset-js')
 <script>
-	// 担当者が選択された場合、担当者(自由記入)の記入不可へ 
-	function selectStaff() {
-		var free_staff_name = document.getElementById('free_staff_name');
-		free_staff_name.disabled = true;
-	}
-	// 担当者selectbox未選択状態へ
-	function setNonSelect(idname){
-		var selectedStaff = document.getElementById(idname);
-		selectedStaff.selectedIndex = -1;
-		free_staff_name.disabled = false;
-	}
-	// 担当者(自由記入) input記入不可状態へ
-	function billingText(){
-		var input_staff_name = document.getElementById('free_staff_name').value;
-		if(input_staff_name != "") {
-			staff_name.disabled = true;
-		} else {
-			staff_name.disabled = false;
-		}
-	}
-	
-	function delTaskRecord(button) {
-		var del_record = document.getElementsByName('task_element');
-		var parent = button.parentNode;
-		parent.remove(parent);
 
-
-	}
-	function delExpenceRecord(button) {
-		var del_record = document.getElementsByName('expences_element');
-		var parent = button.parentNode;
-		console.log(parent)
-		parent.remove(parent);
-	}
 </script>
-
-
 @endsection
