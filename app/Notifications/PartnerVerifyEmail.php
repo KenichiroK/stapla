@@ -18,14 +18,18 @@ class PartnerVerifyEmail extends VerifyEmailNotification
             return call_user_func(static::$toMailCallback, $notifiable);
         }
 
-         return (new MailMessage)
-            ->subject(Lang::getFromJson('本登録メール'))
-            ->line(Lang::getFromJson('クリックして認証してください. {{ $company_user }}'))
-            ->action(
-                Lang::getFromJson('improを始める'),
-                $this->verificationUrl($notifiable)
-            )
-            ->line(Lang::getFromJson('もしこのメールに覚えが無い場合は破棄してください。'));
+        //  return (new MailMessage)
+        //     ->subject(Lang::getFromJson('本登録メール'))
+        //     ->line(Lang::getFromJson('クリックして認証してください. {{ $company_user }}'))
+        //     ->action(
+        //         Lang::getFromJson('improを始める'),
+        //         $this->verificationUrl($notifiable)
+        //     )
+        //     ->line(Lang::getFromJson('もしこのメールに覚えが無い場合は破棄してください。'));
+        $limit = new Carbon($notifiable->created_at->addHour());
+        return (new MailMessage)
+            ->subject(Lang::getFromJson('[impro] パートナーへ招待されました'))
+            ->view('emails.invite.inviteCompanyUser', ['url' => $this->verificationUrl($notifiable), 'limit' => $limit]);
             
     }
 
