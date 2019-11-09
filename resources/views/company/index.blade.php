@@ -8,8 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Impro</title>
-
-    
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ env('AWS_URL') }}/common/impro_favicon.png">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
