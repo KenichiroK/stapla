@@ -152,9 +152,9 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
 			// task-create
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-		Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.store');
-			// task-preview
-		Route::post('/task/preview', 'Companies\TaskController@previewStore')->name('company.task.previewStore');
+		Route::post('/task/preview', 'Companies\TaskController@preview')->name('company.task.preview');
+			// task-store
+		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// task-show
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
 			// task-edit

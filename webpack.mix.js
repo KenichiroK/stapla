@@ -85,7 +85,7 @@ mix.sass(
     .sass("resources/sass/company/task/index.scss", "public/css/company/task")
     .sass("resources/sass/company/task/create.scss", "public/css/company/task")
     .sass("resources/sass/company/task/show.scss", "public/css/company/task")
-    .sass("resources/sass/company/task/edit.scss", "public/css/company/task")
+    .sass("resources/sass/company/task/preview.scss", "public/css/company/task")
     .sass(
         "resources/sass/company/partner/index.scss",
         "public/css/company/partner"
