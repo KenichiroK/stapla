@@ -85,7 +85,7 @@ class InvoiceController extends Controller
         }
 
         // try {
-        //     Invoice::find($id);
+        //     Invoice::findOrFail($id);
         //     throw new ModelNotFoundException("請求書が存在しません");
         // } catch (ModelNotFoundException $e) {
         //     return redirect('fail');
