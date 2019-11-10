@@ -20,6 +20,11 @@ const setPreview = (input) => {
 
 @section('content')
 <div class="main-wrapper">
+    @if (session('completed'))
+        <div class="complete-container">
+            <p>{{ session('completed') }}</p>
+        </div>
+    @endif
 	<div class="title-container">
 		<h3>設定</h3>
 	</div>
