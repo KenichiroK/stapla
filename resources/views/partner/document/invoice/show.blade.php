@@ -93,6 +93,7 @@
 									<td></td>
 									<td></td>
 									<td></td>
+									<td></td>
 								</tr>
 								@endfor
 							@endif
@@ -215,10 +216,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							@endfor
 						@endif
-
 					</tbody>
 				</table>
 	

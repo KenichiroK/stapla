@@ -23,6 +23,7 @@ class InvoiceController extends Controller
         $invoice = Invoice::findOrFail($id);
         $task = Task::findOrFail($invoice->task_id);
         $total_sum = 0;
+        $total_sum_notax = 0;
         $partner = Partner::findOrFail($invoice->partner_id);
 
         $company_user_ids = array();
@@ -41,6 +42,17 @@ class InvoiceController extends Controller
             }
         }
 
-        return view('/company/document/invoice/show', compact('company_user', 'partner', 'invoice', 'task', 'total_sum', 'company_user_ids'));
+        if ($invoice->requestTasks->count() > 0) {
+            foreach($invoice->requestTasks as $requestTask) {
+                $total_sum_notax += $requestTask->num * $requestTask->unit_price;
+            }
+        }
+        if ($invoice->requestExpences->count() > 0) {
+            foreach($invoice->requestExpences as $requestExpence) {
+                $total_sum_notax += $requestExpence->num * $requestExpence->unit_price;
+            }
+        }
+
+        return view('/company/document/invoice/show', compact('company_user', 'partner', 'invoice', 'task', 'total_sum', 'total_sum_notax', 'company_user_ids'));
     }
 }

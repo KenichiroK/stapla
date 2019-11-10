@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Partners;
 
 use Illuminate\Http\Request;
+// use Exception;
+// use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\Partners\CreateInvoiceRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Partners\InvoiceTaskController;
@@ -74,9 +77,23 @@ class InvoiceController extends Controller
     public function show($id)
     {
         $partner = Auth::user();
-        $invoice = Invoice::findOrFail($id);
-        $task = Task::findOrFail($invoice->task_id);
         $companyUsers = CompanyUser::where('company_id', $partner->company_id)->get();
+
+        $invoice = Invoice::find($id);
+        if (is_null($invoice)) {
+            abort(404);
+        }
+
+        // try {
+        //     Invoice::find($id);
+        //     throw new ModelNotFoundException("請求書が存在しません");
+        // } catch (ModelNotFoundException $e) {
+        //     return redirect('fail');
+        //     return $e->getMessage();
+        // }
+        
+        // $invoice = Invoice::findOrFail($id);
+        $task = Task::findOrFail($invoice->task_id);
         $total_sum = 0;
         $total_sum_notax = 0;
         if ($partner->id !== $invoice->partner_id) {
@@ -96,12 +113,12 @@ class InvoiceController extends Controller
 
         if ($invoice->requestTasks->count() > 0) {
             foreach($invoice->requestTasks as $requestTask) {
-                $total_sum_notax += $requestTask->unit_price;
+                $total_sum_notax += $requestTask->num * $requestTask->unit_price;
             }
         }
         if ($invoice->requestExpences->count() > 0) {
             foreach($invoice->requestExpences as $requestExpence) {
-                $total_sum_notax += $requestExpence->unit_price;
+                $total_sum_notax += $requestExpence->num * $requestExpence->unit_price;
             }
         }
         
