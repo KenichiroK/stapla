@@ -1,4 +1,4 @@
-@extends('company.index')
+@extends('index')
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
