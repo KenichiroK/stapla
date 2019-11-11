@@ -98,7 +98,7 @@ class TaskController extends Controller
     public function preview(CreateTaskRequest $request)
     {
         switch ($request->input('temporarySaveOrPreview')){
-            case 'toTemporarySave';
+            case 'toTemporarySave':
                 $company_user = Auth::user();
                 $task = new Task;
                 $task->company_id      = $company_user->company_id;
@@ -147,7 +147,7 @@ class TaskController extends Controller
 
             break;
 
-            case 'toTemporaryUpdate';
+            case 'toTemporaryUpdate':
                 $task = Task::findOrFail($request->task_id);
 
                 $task->project_id      = $request->project_id;
@@ -189,7 +189,7 @@ class TaskController extends Controller
                                 ->with('completed', '「'.$task->name.'」の下書きを更新しました。');
             break;
 
-            case 'toPreview';
+            case 'toPreview':
                 $company_user = Auth::user();
                 $project = Project::findOrFail($request->project_id);
                 // 担当者
@@ -220,11 +220,11 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         switch ($request->input('editOrStore')) {
-            case 'toEdit';
+            case 'toEdit':
                 return redirect()->route('company.task.create')->withInput($request->all());
             break;
 
-            case 'toStore';
+            case 'toStore':
             $company_user = Auth::user();
             $task = new Task;
             $task->project_id      = $request->project_id;
