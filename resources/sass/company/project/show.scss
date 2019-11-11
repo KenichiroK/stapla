@@ -172,9 +172,9 @@
                 &__wrap{
                     display: flex;
                     justify-content: space-between;
-                    .task-title {
+                    &__title {
                         font-size: 16px;
-                        padding-top: 20px;
+                        padding: 10px 0;
                         margin-bottom: 0;
                         font-weight: bold;
                     }
