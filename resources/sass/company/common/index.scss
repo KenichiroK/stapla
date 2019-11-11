@@ -10,6 +10,8 @@
 @import "../../header/index";
 @import "../../sidebar/index";
 
+@import "../../components/notification_bar";
+
 body {
     padding: 0;
     margin: 0;
@@ -68,6 +70,22 @@ main {
                 font-size: 16px;
             }
         }
+    }
+
+    .notification-wrapper {
+        width: 25%;
+        position: fixed;
+        top: 70px;
+        right: -500px;
+        bottom: 0;
+        background-color: #fff;
+        overflow: scroll;
+        z-index: 1000;
+        transition: 0.5s;
+    }
+
+    .isActive {
+        right: 0;
     }
 }
 .btn01-container {

@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="auth-id" content="{{ Auth::user()->id }}">
 
     <title>Impro</title>
     <!-- favicon -->
@@ -16,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <style id='stylesheet' type='text/css'></style> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
@@ -27,11 +29,21 @@
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div id="navbarHomeHeader" class="navbar-menu">
                     <div class="navbar-end">
-                        <!-- <ul class="icon-wrp">
+                        <ul class="icon-wrp">
                             <li class="not">
-                                <a><img src="{{ env('AWS_URL') }}/common/icon_notification.png" alt="serch"></a>
+                                @if (countReadAtIsNULL() === 0)
+                                    <button type="button" class="notification-icon-badge">
+                                @else
+                                    <button
+                                        class="notification-icon-badge"
+                                        type="button"
+                                        data-badge="{{ countReadAtIsNULL() > 99 ? '99+' : countReadAtIsNULL() }}"
+                                    >
+                                @endif
+                                    <img id="notification_icon" src="{{ env('AWS_URL') }}/common/icon_notification.png" alt="search">
+                                </button>
                             </li>
-                        </ul> -->
+                        </ul>
                         <div class="header-proflie">
                             <div class="user-imgbox">
                                 <img src="{{ Auth::user()->picture }}" alt="プロフィール画像">
@@ -73,10 +85,17 @@
             <div class="content-wrapper">
                 @yield('content')
             </div>
+
+            <div id="notification_bar" class="notification-wrapper">
+                @include('components.notification_bar')
+            </div>
         </main>
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/common/toggle-notification-bar.js') }}" defer></script>
+    <script src="{{ asset('js/common/update-notification-mark-as-read.js') }}" defer></script>
+
     <script>
         const project_create = {{ config('const.PROJECT_CREATE') }};
         const project_complete = {{ config('const.PROJECT_COMPLETE') }};

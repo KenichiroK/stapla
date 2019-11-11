@@ -45,6 +45,22 @@ mix.js(
     "public/js/common/task-status.js"
 );
 
+mix.js(
+    [
+        // toggle notification bar where header
+        "resources/js/common/toggle-notification-bar.js"
+    ],
+    "public/js/common/toggle-notification-bar.js"
+);
+
+mix.js(
+    [
+        // update notification read_at using ajax
+        "resources/js/common/update-notification-mark-as-read.js"
+    ],
+    "public/js/common/update-notification-mark-as-read.js"
+);
+
 mix.sass(
     "resources/sass/company/common/index.scss",
     "public/css/company/common"
