@@ -61,7 +61,12 @@
 
         <div class="task-container">
             <div class="task-container__item">
-                <h2 class="task-container__item__title">タスク</h2>
+                <div class="task-container__item__wrap">
+                    <h2 class="task-title">タスク</h2>
+                    <div class="btn-a-container">
+                        <a href="{{ route('company.task.create') }}">タスク作成</a>
+                    </div>
+                </div>
                 <ul class="task-container__item__list">
                     <li>プロジェクト</li>
                     <li>タスク</li>
