@@ -12,7 +12,6 @@ use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
-
 class DashboardController extends Controller
 {
     public function index()
@@ -43,6 +42,7 @@ class DashboardController extends Controller
         for ($i = 0; $i < $tasks->count(); $i++) {
             $status_arr[$tasks[$i]->status]++;
         }
+
         
         // タスクステータスを外部ファイルで定数化（congfig/const.php）
         $statusName_arr = Config::get('const.TASK_STATUS_LIST');

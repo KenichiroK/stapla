@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Carbon\Carbon;
+use Illuminate\Notifications\DatabaseNotification;
 
 class TaskController extends Controller
 {
@@ -22,7 +23,6 @@ class TaskController extends Controller
         $auth = Auth::user();
         $tasks = Task::where('company_id', $auth->company_id)
                                 ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
-                                ->with(['project', 'partner', 'taskRoleRelation'])
                                 ->get();
 
         $status_arr = [];
@@ -58,7 +58,6 @@ class TaskController extends Controller
 
         $tasks = Task::where('company_id', $auth->company_id)
                                 ->where('status', $task_status)
-                                ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
                                 ->get();
         return view('company/task/index', compact('tasks','statusName_arr', 'status_arr'));
     }
@@ -139,6 +138,8 @@ class TaskController extends Controller
             $task->save();
             \Log::info('タスク新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
     
+            sendNotificationAssignedTask($task);
+
             return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
             break;
         }
