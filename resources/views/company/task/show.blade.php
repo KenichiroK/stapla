@@ -204,7 +204,7 @@
                     <input type="hidden" name="status" value="1">
                     <button type="submit" class="done">上長に確認を依頼する</button>
                 </form>
-            @elseif($task->status === 1 && $task->superior->id === $company_user->id)
+            @elseif($task->status === 1 && $task->superior->id === $auth->id)
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
@@ -217,25 +217,25 @@
                     <input type="hidden" name="status" value="2">
                     <button type="submit" class="done">タスクを承認する</button>
                 </form>
-            @elseif($task->status === 2 && in_array($company_user->id, $company_user_ids))
+            @elseif($task->status === 2 && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="3">
                     <button type="submit" class="done">パートナーに依頼する</button>
                 </form>
-            @elseif($task->status === 4 && in_array($company_user->id, $company_user_ids))
+            @elseif($task->status === 4 && in_array($auth->id, $company_user_ids))
                 <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="done">発注書を作成する</a>
-            @elseif($task->status === 5 && $task->superior->id === $company_user->id)
+            @elseif($task->status === 5 && $task->superior->id === $auth->id)
                 <a class="done" href="{{ route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}">発注書を確認する</a>
-            @elseif($task->status === 6 && in_array($company_user->id, $company_user_ids))
+            @elseif($task->status === 6 && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="7">
                     <button type="submit" class="done">発注書をパートナーに依頼する</button>
                 </form>
-            @elseif($task->status === 10 && in_array($company_user->id, $company_user_ids))
+            @elseif($task->status === 10 && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
@@ -248,11 +248,11 @@
                     <input type="hidden" name="status" value="11">
                     <button type="submit" class="done">検収</button>
                 </form>
-            @elseif($task->status === 13 && in_array($company_user->id, $company_user_ids))
+            @elseif($task->status === 13 && in_array($auth->id, $company_user_ids))
                 <a href="{{ route('company.document.invoice.show', ['id' => $invoice->id]) }}" class="done">請求書を確認する</a>
-            @elseif($task->status === 15 && $task->accounting->id === $company_user->id)
+            @elseif($task->status === 15 && $task->accounting->id === $auth->id)
                 <a href="{{ route('company.document.invoice.show', ['id' => $invoice->id]) }}" class="done">請求書を確認する</a>
-            @elseif($task->status === 16 && in_array($company_user->id, $company_user_ids))
+            @elseif($task->status === 16 && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
