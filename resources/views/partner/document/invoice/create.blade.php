@@ -307,12 +307,14 @@ window.onload = () => {
 							<td class="item"><input type="text" name="item_name[]" value="{{ old('item_name.0') }}"></td>
 							<td class="num"><input type="text" name="item_num[]" value="{{ old('item_num.0') }}" onchange="calculateSumPrice(this.value)"></td>
 							<td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price.0') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
-							<td class="tax selectbox-container">
-								<select name="item_tax[]" onchange="calculateSumPrice(this.value)">	
-									<option name="tax_10" value="1.1" {{ old('item_tax.0') == '1.1' ? 'selected' : '' }}>10%</option>
-									<option name="tax_8" value="1.08" {{ old('item_tax.0') == '1.08' ? 'selected' : '' }}>軽減8%</option>
-									<option name="tax_none" value="1.0" {{ old('item_tax.0') == '1.0' ? 'selected' : '' }}>非課税</option>
-								</select>
+							<td class="tax">
+                                <div class="selectbox-container">
+                                    <select name="item_tax[]" onchange="calculateSumPrice(this.value)">	
+                                        <option name="tax_10" value="1.1" {{ old('item_tax.0') == '1.1' ? 'selected' : '' }}>10%</option>
+                                        <option name="tax_8" value="1.08" {{ old('item_tax.0') == '1.08' ? 'selected' : '' }}>軽減8%</option>
+                                        <option name="tax_none" value="1.0" {{ old('item_tax.0') == '1.0' ? 'selected' : '' }}>非課税</option>
+                                    </select>
+                                </div>
 							</td>
 							<td class="total"><p class="task_request_total"></p><span>円</span></td>
 							<input type="hidden" name="item_total[]">
@@ -362,11 +364,13 @@ window.onload = () => {
 							<td class="num"><input type="text" name="expences_num[]" value="{{ old('expences_num.0') }}" onchange="calculateSumPrice(this.value)"></td>
 							<td class="unit-price"><input type="text" name="expences_unit_price[]" value="{{ old('expences_unit_price.0') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
 							<td class="tax">
-								<select name="expences_tax[]" onchange="calculateSumPrice(this.value)">	
-									<option name="tax_10" value="1.1" {{ old('item_tax.0') == '1.1' ? 'selected' : '' }}>10%</option>
-									<option name="tax_8" value="1.08"  {{ old('item_tax.0') == '1.08' ? 'selected' : '' }}>軽減8%</option>
-									<option name="tax_none" value="1.0"  {{ old('item_tax.0') == '1.0' ? 'selected' : '' }}>非課税</option>
-								</select>
+								<div class="selectbox-container">
+									<select name="expences_tax[]" onchange="calculateSumPrice(this.value)">	
+										<option name="tax_10" value="1.1" {{ old('item_tax.0') == '1.1' ? 'selected' : '' }}>10%</option>
+										<option name="tax_8" value="1.08"  {{ old('item_tax.0') == '1.08' ? 'selected' : '' }}>軽減8%</option>
+										<option name="tax_none" value="1.0"  {{ old('item_tax.0') == '1.0' ? 'selected' : '' }}>非課税</option>
+									</select>
+								</div>
 							</td>
 							<td class="total"><p class="expence_total"></p><span>円</span></td>
 							<input type="hidden" name="expences_total[]">
