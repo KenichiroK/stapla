@@ -78,16 +78,16 @@
         </header>      
 
         <main>
+            <div id="notification_bar" class="notification-wrapper">
+                @include('components.notification_bar')
+            </div>
+            
             <div class="sidebar-wrapper">
                 @include('company.common.sidebar')
             </div>
 
             <div class="content-wrapper">
                 @yield('content')
-            </div>
-
-            <div id="notification_bar" class="notification-wrapper">
-                @include('components.notification_bar')
             </div>
         </main>
     </div>
