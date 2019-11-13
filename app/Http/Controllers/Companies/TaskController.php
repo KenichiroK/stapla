@@ -104,10 +104,10 @@ class TaskController extends Controller
                 $task->company_id      = $company_user->company_id;
                 $task->project_id = $request->project_id;
                 $task->name = $request->name;
-                $task->status          = 0;
+                $task->status          = config('const.TASK_CREATE');
                 $task->purchaseorder   = false;
                 $task->invoice         = false;
-                $task->tax             = 0.1;
+                $task->tax             = config('const.FREE_TAX');
                 $task->cases           = 0;
                 $task->fee_format      = "固定";
                 if(isset($request->company_user_id)){
@@ -240,11 +240,11 @@ class TaskController extends Controller
             $task->content         = $request->content;
             $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
             $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
-            $task->status          = 1;
+            $task->status          = config('const.TASK_SUBMIT_SUPERIOR');
             $task->purchaseorder   = false;
             $task->invoice         = false;
             $task->budget          = $request->budget;
-            $task->tax             = 0.1;
+            $task->tax             = config('const.FREE_TAX');
             $task->price           = $request->price;
             $task->cases           = 1;
             $task->fee_format      = "固定";
