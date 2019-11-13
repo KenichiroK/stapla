@@ -75,7 +75,7 @@ class TaskController extends Controller
         
         $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
         $partners = Partner::where('company_id', $company_user->company_id)->get();
-        $task = '';
+        $task = null;
         // プレビューから戻ってくるときに使用する変数
         $response = '';
         return view('company/task/create', compact('projects', 'company_users', 'partners', 'task', 'response'));
@@ -213,6 +213,9 @@ class TaskController extends Controller
         
                 return view('company.task.preview', compact('request', 'company_user', 'project', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'task_status'));
             break;
+                
+            default:
+                \abort('400', '要求の形式が正しくありません。');
         }
     }
 
