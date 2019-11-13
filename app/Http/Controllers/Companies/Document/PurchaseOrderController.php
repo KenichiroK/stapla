@@ -32,7 +32,6 @@ class PurchaseOrderController extends Controller
         $company = Company::findOrFail($companyUser->company_id);
         $purchaseOrder = new PurchaseOrder;
         $purchaseOrder->company_id = $company->id;
-        $purchaseOrder->companyUser_id       = $request->companyUser_id;
         $purchaseOrder->partner_id           = $request->partner_id;
         $purchaseOrder->task_id              = $request->task_id;
         $purchaseOrder->status               = 0;
@@ -43,7 +42,15 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->company_prefecture   = $company->address_prefecture;
         $purchaseOrder->company_city         = $company->address_city;
         $purchaseOrder->company_building     = $company->address_building;
-        $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->companyUser_id)->name;
+        if(isset($request->companyUser_id)){
+            $purchaseOrder->companyUser_id       = $request->companyUser_id;
+            $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->companyUser_id)->name;
+        }
+        if(isset($request->billing_to_text)){
+            $purchaseOrder->companyUser_id       = $companyUser->id;
+            $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($companyUser->id)->name;
+            $purchaseOrder->billing_to_text      = $request->billing_to_text;
+        }
         $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
         $purchaseOrder->task_delivery_format = $request->task_delivery_format;
         $task = Task::findOrFail($request->task_id);
@@ -53,7 +60,7 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->task_tax             = $task->tax;
         $purchaseOrder->save();
         \Log::info('発注書作成', ['user_id(company)' => $companyUser->id, 'purchaseOrder_id' => $purchaseOrder->id, 'task_id' => $purchaseOrder->task_id, 'purchaseOrder_status' => $purchaseOrder->status]);
-
+        
         return redirect()->route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]);
     }
 

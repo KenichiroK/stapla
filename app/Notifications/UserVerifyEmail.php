@@ -17,16 +17,11 @@ class UserVerifyEmail extends VerifyEmailNotification
             return call_user_func(static::$toMailCallback, $notifiable);
         }
 
+        $limit = new Carbon($notifiable->created_at->addHour());
         return (new MailMessage)
-            ->subject(Lang::getFromJson('本登録メール'))
-            ->line(Lang::getFromJson('クリックして認証してください.'))
-            ->action(
-                Lang::getFromJson('メール認証'),
-                $this->verificationUrl($notifiable)
-            )
-            ->line(Lang::getFromJson('もしこのメールに覚えが無い場合は破棄してください。'));
+            ->subject(Lang::getFromJson('[impro] 仮登録完了のお知らせ'))
+            ->view('emails.invite.inviteCompanyUser', ['url' => $this->verificationUrl($notifiable), 'limit' => $limit]);
     }
-
 
     protected function verificationUrl($notifiable)
     {

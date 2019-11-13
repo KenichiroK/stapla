@@ -84,57 +84,17 @@
 									@endif
                                     <td>{{ number_format($requestExpence->total) }}</td>
                                 </tr>
-                            @endforeach
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+							
+                            @if ((count($invoice->requestTasks) + count($invoice->requestExpences)) < 6) 
+								@for ($i = 0; $i < 6 - (count($invoice->requestTasks) + count($invoice->requestExpences)); $i++)
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								@endfor
+							@endif
                         </tbody>
                     </table>
         
@@ -246,55 +206,18 @@
 								<td>{{ number_format($requestExpence->total) }}</td>
 							</tr>
 						@endforeach
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-                        </tr>
-                        <tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-                        </tr>
-                        <tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-                        </tr>
-                        <tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-                        </tr>
-                        <tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-                        </tr>
-                        <tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+            
+						@if ((count($invoice->requestTasks) + count($invoice->requestExpences)) < 6) 
+							@for ($i = 0; $i < 6 - (count($invoice->requestTasks) + count($invoice->requestExpences)); $i++)
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							@endfor
+						@endif
+            
 					</tbody>
 				</table>
 	

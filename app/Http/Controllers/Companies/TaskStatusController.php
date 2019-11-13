@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Companies;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+
 use App\Models\Task;
 use App\Http\Requests\Companies\TaskStatusRequest;
-use Auth;
 
 class TaskStatusController extends Controller
 {
@@ -17,8 +18,12 @@ class TaskStatusController extends Controller
         
         if($task->count()) {
             \Log::info('タスクstatus変更前', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
-            $task->status = $request->status;
+            $task->status = (int)$request->status;
             $task->save();
+
+            sendNotificationUpdatedTaskStatusFromCompany($task);
+            sendNotificationUpdatedTaskStatusToProjectCompany($task);
+
             \Log::info('タスクstatus変更後', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
             return redirect()->route('company.task.show', ['id' => $task->id]);
         }

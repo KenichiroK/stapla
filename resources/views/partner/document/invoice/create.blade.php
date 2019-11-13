@@ -171,6 +171,15 @@ window.onload = () => {
 		</div>
 	@endif
 
+	@if(!$partner_invoice)
+		<div class="error-container">
+			<p>
+				請求情報が未登録のため、請求情報を登録してください。
+				<a href="{{ route('partner.setting.invoice.create') }}">登録はこちら</a>
+			</p>
+		</div>
+	@endif
+
 	<div class="title-container">
 		<h3>請求書作成</h3>
 	</div>
