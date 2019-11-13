@@ -7,6 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="auth-id" content="{{ Auth::user()->id }}">
+    <meta name="url" content="{{ env('APP_URL') }}">
 
     <title>Impro</title>
     <!-- favicon -->
@@ -78,16 +79,16 @@
         </header>      
 
         <main>
+            <div id="notification_bar" class="notification-wrapper">
+                @include('components.notification_bar')
+            </div>
+            
             <div class="sidebar-wrapper">
                 @include('company.common.sidebar')
             </div>
 
             <div class="content-wrapper">
                 @yield('content')
-            </div>
-
-            <div id="notification_bar" class="notification-wrapper">
-                @include('components.notification_bar')
             </div>
         </main>
     </div>

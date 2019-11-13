@@ -34,8 +34,8 @@ header {
             button[data-badge]:after {
                 content:attr(data-badge);
                 position:absolute;
-                top:-5px;
-                right: 0;
+                top: -3px;
+                right: -6px;
                 font-size:.7em;
                 background: #ed2b00;
                 color:white;

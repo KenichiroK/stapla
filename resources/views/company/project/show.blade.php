@@ -151,8 +151,6 @@
                 @endforeach
 
                 <div class="button-container">
-
-
                     @if($project->status == config('const.PROJECT_CREATE'))
                         <div class="btn01-container">
                             <button type="submit">完了</button>
@@ -169,7 +167,9 @@
         @endif
     </div>
 </div>
+@endsection
 
+@section('asset-js')
 <script>
     function checkStatus() {
         const projectStatus = document.getElementsByName('projectStatus');
