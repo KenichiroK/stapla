@@ -32,6 +32,7 @@ class InvoiceController extends Controller
         $company_id = $partner->company_id;
         $company = Company::findOrFail($company_id);
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
+        $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->first();
         $task_count = "";
         $expences_count = "";
 
@@ -40,7 +41,7 @@ class InvoiceController extends Controller
             $task_count = count($old_input['item_name']);
             $expences_count = count($old_input['expences_name']);
         }
-        return view('/partner/document/invoice/create', compact('companyUsers', 'company', 'task', 'task_count', 'expences_count'));
+        return view('/partner/document/invoice/create', compact('companyUsers', 'company', 'task', 'partner_invoice', 'task_count', 'expences_count'));
     }
 
     public function store(CreateInvoiceRequest $request)
