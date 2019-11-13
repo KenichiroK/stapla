@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
-    public function create($task_id)
+    public function create(Request $request, $task_id)
     {
         // タスクステータスのアップデート
         $task = Task::findOrFail($task_id)
@@ -32,7 +32,15 @@ class InvoiceController extends Controller
         $company_id = $partner->company_id;
         $company = Company::findOrFail($company_id);
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
-        return view('/partner/document/invoice/create', compact('companyUsers', 'company', 'task'));
+        $task_count = "";
+        $expences_count = "";
+
+        if ($request->session()->has('_old_input')) {
+            $old_input = $request->session()->get('_old_input');
+            $task_count = count($old_input['item_name']);
+            $expences_count = count($old_input['expences_name']);
+        }
+        return view('/partner/document/invoice/create', compact('companyUsers', 'company', 'task', 'task_count', 'expences_count'));
     }
 
     public function store(CreateInvoiceRequest $request)
