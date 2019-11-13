@@ -15,6 +15,7 @@ class InvoiceExpencesController extends Controller
                 !!$request->expences_name[$i] &&
                 !!$request->expences_num[$i] &&
                 !!$request->expences_unit_price[$i] &&
+                !!$request->expences_tax[$i] &&
                 !!$request->expences_total[$i]
             ) {
                 $model = new RequestExpence;
@@ -22,6 +23,7 @@ class InvoiceExpencesController extends Controller
                 $model->name       = $request->expences_name[$i];
                 $model->num        = $request->expences_num[$i];
                 $model->unit_price = $request->expences_unit_price[$i];
+                $model->tax        = $request->expences_tax[$i];
                 $model->total      = $request->expences_total[$i];
                 $model->save();
                 \Log::info('請求書詳細(経費) 登録', ['request_expence_id' => $model->id, 'invoice_id' => $invoice_id]);
