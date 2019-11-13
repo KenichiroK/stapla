@@ -195,6 +195,29 @@
                 </dd>
             </dl>
         </div>
+
+        @if($task->status >= 10)
+            <div class="patner">
+                <p class="ptnr-title">納品</p>
+                <dl>
+                    <dt>
+                    自由記述
+                    </dt>
+                    <dd class="flex01">
+                        自由な記述
+                    </dd>
+                </dl>
+
+                <dl>
+                    <dt>
+                    ファイル納品
+                    </dt>
+                    <dd>
+                        ファイルをダウンロード
+                    </dd>
+                </dl>
+            </div>
+        @endif
         
         <div class="actionButton">
             @if($task->status === 0)

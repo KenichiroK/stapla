@@ -78,14 +78,7 @@
                     </div>
                 </dd>
             </dl>
-            <!-- <dl>
-                <dt>
-                    報酬形式
-                </dt>
-                <dd>
-                    固定
-                </dd>
-            </dl> -->
+
             <dl>
                 <dt>
                     発注単価<span>(税抜)</span>
@@ -94,14 +87,7 @@
                     {{ number_format($task->budget) }}円
                 </dd>
             </dl>
-            <!-- <dl>
-                <dt>
-                    件数
-                </dt>
-                <dd>
-                    {{ $task->project->tasks->count() }}件
-                </dd>
-            </dl> -->
+
             <dl>
                 <dt>
                     発注額
@@ -158,60 +144,117 @@
             </dl>
         </div>
         
-        <div class="actionButton">
-            @if($task->status === 3 && $task->partner->id === Auth::user()->id)
-                <form action="{{ route('partner.task.status.change') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="0">
-                    <button type="submit" class="undone">タスク依頼を受けない</button>
-                </form>
-                <form action="{{ route('partner.task.status.change') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="4">
-                    <button type="submit" class="done">タスク依頼を受ける</button>
-                </form>
-            @elseif($task->status === 7 && $task->partner->id === Auth::user()->id)
-                <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
-            @elseif($task->status === 8 && $task->partner->id === Auth::user()->id)
-                <form action="{{ route('partner.task.status.change') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="9">
-                    <button type="submit" class="done">作業に入る</button>
-                </form>
-            @elseif($task->status === 9 && $task->partner->id === Auth::user()->id)
-                <form action="{{ route('partner.deliver.store') }}" method="POST">
-                @csrf
+        @if($task->status === 9 && $task->partner->id === Auth::user()->id)
+            <form action="{{ route('partner.deliver.store') }}" enctype="multipart/form-data">
+                <div class="patner">
+                    <p class="ptnr-title">納品</p>
+                    <dl>
+                        <dt class="textarea-wrp">
+                            自由記述
+                        </dt>
+                        <dd class="flex01 textarea-wrp">
+                            <!-- <div class="textarea-wrp"> -->
+                                
+                                <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="" value="ファイルを選択" id="" cols="30" rows="10"></textarea>
+                            <!-- </div> -->
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            ファイル納品
+                        </dt>
+                        <dd>
+                            <input type="file" name="" id="">
+                        </dd>
+                    </dl>
+                </div>
+                <div class="actionButton">
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="10">
                     <button type="submit" class="done">納品する</button>
-                </form>
-            @elseif($task->status === 11 && $task->partner->id === Auth::user()->id)
-                <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
-            @elseif($task->status === 12 && $task->partner->id === Auth::user()->id)
-                <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
-            @elseif($task->status === 17)
-                <p class="non-action-text">このタスクは完了しています</p>
-            @elseif($task->status === 18)
-                <p class="non-action-text">このタスクはキャンセルされました</p>
-            @else
-                <p class="non-action-text">必要なアクションはありません</p>
-            @endif
-        </div>
-        <div class="error-message-wrapper">
-            @if ($errors->has('task_id'))
-                <div class="error-msg" role="alert">
-                    <strong>{{ $errors->first('task_id') }}</strong>
-                </div>
-            @endif
-            @if ($errors->has('status') && !$errors->has('task_id'))
-                <div class="error-msg" role="alert">
-                    <strong>{{ $errors->first('status') }}</strong>
-                </div>
-            @endif
-        </div>
+                <div>
+            </form>
+        @elseif($task->status >= 10)
+            <div class="patner">
+                <p class="ptnr-title">納品</p>
+                <dl>
+                    <dt class="textarea-wrp">
+                        自由記述
+                    </dt>
+                    <dd class="flex01 textarea-wrp">
+                        <!-- <div class="textarea-wrp"> -->
+                            
+                            <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="" value="ファイルを選択" id="" cols="30" rows="10"></textarea>
+                        <!-- </div> -->
+                    </dd>
+                </dl>
+
+                <dl>
+                    <dt>
+                        ファイル納品
+                    </dt>
+                    <dd>
+                        <input type="file" name="" id="">
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="actionButton">
+                @if($task->status === 3 && $task->partner->id === Auth::user()->id)
+                    <form action="{{ route('partner.task.status.change') }}" method="POST">
+                    @csrf
+                        <input type="hidden" name="task_id" value="{{ $task->id }}">
+                        <input type="hidden" name="status" value="0">
+                        <button type="submit" class="undone">タスク依頼を受けない</button>
+                    </form>
+                    <form action="{{ route('partner.task.status.change') }}" method="POST">
+                    @csrf
+                        <input type="hidden" name="task_id" value="{{ $task->id }}">
+                        <input type="hidden" name="status" value="4">
+                        <button type="submit" class="done">タスク依頼を受ける</button>
+                    </form>
+                @elseif($task->status === 7 && $task->partner->id === Auth::user()->id)
+                    <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
+                @elseif($task->status === 8 && $task->partner->id === Auth::user()->id)
+                    <form action="{{ route('partner.task.status.change') }}" method="POST">
+                    @csrf
+                        <input type="hidden" name="task_id" value="{{ $task->id }}">
+                        <input type="hidden" name="status" value="9">
+                        <button type="submit" class="done">作業に入る</button>
+                    </form>
+                @elseif($task->status === 9 && $task->partner->id === Auth::user()->id)
+                    <form action="{{ route('partner.deliver.store') }}" method="POST">
+                    @csrf
+                        <input type="hidden" name="task_id" value="{{ $task->id }}">
+                        <input type="hidden" name="status" value="10">
+                        <button type="submit" class="done">納品する</button>
+                    </form>
+                @elseif($task->status === 11 && $task->partner->id === Auth::user()->id)
+                    <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
+                @elseif($task->status === 12 && $task->partner->id === Auth::user()->id)
+                    <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
+                @elseif($task->status === 17)
+                    <p class="non-action-text">このタスクは完了しています</p>
+                @elseif($task->status === 18)
+                    <p class="non-action-text">このタスクはキャンセルされました</p>
+                @else
+                    <p class="non-action-text">必要なアクションはありません</p>
+                @endif
+            </div>
+            <div class="error-message-wrapper">
+                @if ($errors->has('task_id'))
+                    <div class="error-msg" role="alert">
+                        <strong>{{ $errors->first('task_id') }}</strong>
+                    </div>
+                @endif
+                @if ($errors->has('status') && !$errors->has('task_id'))
+                    <div class="error-msg" role="alert">
+                        <strong>{{ $errors->first('status') }}</strong>
+                    </div>
+                @endif
+            </div>
+        @endif
     </div>
 </div>
 @endsection
