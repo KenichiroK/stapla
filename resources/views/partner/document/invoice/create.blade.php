@@ -292,7 +292,7 @@ window.onload = () => {
 				<table>
 					<thead>
 						<tr>
-							<th class="del-record">削除</th>
+							<th class="del-record"></th>
 							<th class="item">品目</th>
 							<th class="num">数</th>
 							<th class="unit-price">単価</th>
@@ -307,7 +307,7 @@ window.onload = () => {
 							<td class="item"><input type="text" name="item_name[]" value="{{ old('item_name.0') }}"></td>
 							<td class="num"><input type="text" name="item_num[]" value="{{ old('item_num.0') }}" onchange="calculateSumPrice(this.value)"></td>
 							<td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price.0') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
-							<td class="tax">
+							<td class="tax selectbox-container">
 								<select name="item_tax[]" onchange="calculateSumPrice(this.value)">	
 									<option name="tax_10" value="1.1" {{ old('item_tax.0') == '1.1' ? 'selected' : '' }}>10%</option>
 									<option name="tax_8" value="1.08" {{ old('item_tax.0') == '1.08' ? 'selected' : '' }}>軽減8%</option>
@@ -346,7 +346,7 @@ window.onload = () => {
 				<table>
 					<thead>
 						<tr>
-							<th class="del-record">削除</th>
+							<th class="del-record"></th>
 							<th class="item">品目</th>
 							<th class="num">数</th>
 							<th class="unit-price">単価</th>

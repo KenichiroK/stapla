@@ -116,7 +116,7 @@
                     }
 
                     input {
-                        border: 1px solid #f0f0f7;
+                        border: none;
                         border-radius: 4px;
                         padding: 4px;
                     }
@@ -193,7 +193,7 @@
                             font-size: 12px;
                         }
 
-                        .del-culumn {
+                        .del-task-record {
                             width: 2%;
                         }
 
@@ -224,6 +224,7 @@
                             font-size: 12px;
                             text-align: center;
                             position: relative;
+                            vertical-align: middle;
 
                             span {
                                 position: absolute;
@@ -249,7 +250,7 @@
                         }
 
 
-                        .del-culumn {
+                        .del-task-record {
                             width: 2%;
                         }
 
@@ -324,7 +325,7 @@
                             font-size: 12px;
                         }
 
-                        .del-culumn {
+                        .del-task-record {
                             width: 2%;
                         }
 
@@ -355,6 +356,7 @@
                             font-size: 12px;
                             text-align: center;
                             position: relative;
+                            vertical-align: middle;
 
                             span {
                                 position: absolute;
@@ -379,7 +381,7 @@
                             border-radius: 4px;
                         }
 
-                        .del-culumn {
+                        .del-task-record {
                             width: 2%;
                         }
 
