@@ -84,7 +84,8 @@
 									@endif
                                     <td>{{ number_format($requestExpence->total) }}</td>
                                 </tr>
-							
+							@endforeach
+
                             @if ((count($invoice->requestTasks) + count($invoice->requestExpences)) < 6) 
 								@for ($i = 0; $i < 6 - (count($invoice->requestTasks) + count($invoice->requestExpences)); $i++)
 								<tr>
