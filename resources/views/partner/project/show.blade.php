@@ -61,7 +61,7 @@
 
         <div class="task-container">
             <div class="task-container__item">
-                <h2 class="task-container__item__title">タスク</h2>
+                <h2 class="task-container__item__wrap__title">タスク</h2>
                 <ul class="task-container__item__list">
                     <li>プロジェクト</li>
                     <li>タスク</li>

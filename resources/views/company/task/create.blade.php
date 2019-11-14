@@ -51,22 +51,16 @@ $(function(){
                 <div class="select-error-wrp">
                     <div class="select-area control">
                         <div class="select-wrp select is-info">
-                        
-                            @if($response)
-                                <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
+                            <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >                            
+                                @if(isset($project))
+                                    <option value="{{ $project->id }}" selected>{{ $project->name }}</option>
+                                @else
                                     <option disabled selected></option>
                                     @foreach($projects as $project)
-                                    <option value="{{ $project->id }}" {{ ($response->project_id === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                        <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
                                     @endforeach
-                                </select>
-                            @else
-                                <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                    <option disabled selected></option>
-                                    @foreach($projects as $project)
-                                    <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
-                                    @endforeach
-                                </select>
-                            @endif
+                                @endif
+                            </select>
                             @if ($errors->has('project_id'))
                                 <div class="invalid-feedback error-msg" role="alert">
                                     <strong>{{ $errors->first('project_id') }}</strong>
