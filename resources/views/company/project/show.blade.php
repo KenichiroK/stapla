@@ -8,38 +8,6 @@
 @section('content')
 
 <div class="main__container">
-    <!-- アクティビティログメニュー -->
-    <!-- <div class="activity-log-menu">
-        <div class="activity-log-menu__top">
-            <div class="activity-log-menu__top__title">アクティビティログ</div>
-            <div id="close-btn" class="close-container"><span class="close-container__btn">閉じる</span><i class="fas fa-long-arrow-alt-right"></i></div>
-        </div>
-        <div class="notification-wrp">
-            <div class="notification-container">
-                <div class="notification-container__img-container">
-                    <img src="{{ env('AWS_URL') }}/common/photoimg.png" alt="">
-                </div>
-                <div class="notification-container__content">
-                    <p class="notification-container__content__name">永瀬達也</p>
-                    <p class="notification-container__content__done">@@@@を作成しました。</p>
-                    <p class="notification-container__content__date">2019年1月1日 00:00</p>
-                </div>
-            </div>
-        </div>
-        <div class="notification-wrp">
-            <div class="notification-container">
-                <div class="notification-container__img-container">
-                    <img src="{{ env('AWS_URL') }}/common/photoimg.png" alt="">
-                </div>
-                <div class="notification-container__content">
-                    <p class="notification-container__content__name">永瀬達也</p>
-                    <p class="notification-container__content__done">@@@@を作成しました。</p>
-                    <p class="notification-container__content__date">2019年1月1日 00:00</p>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="main__container__wrapper">
         <div>
             @if (session('completed'))
@@ -49,26 +17,8 @@
             @endif
             <div class="top-container">
                 <h1 class="top-container__title">{{ $project->name }}詳細</h1>
-                <!-- <a class="top-container__edit-btn" href="#"><div>編集</div></a> -->
+                <a class="top-container__edit-btn" href="{{ route('company.project.edit', ['company_id' => $project->id] ) }}"><div>編集</div></a>
             </div>
-
-            <!-- <div class="activity-log-container">
-                <div class="activity-log-container__left">
-                    <div class="activity-log-container__left__name-container">
-                        <div class="img-container"><img src="{{ env('AWS_URL') }}/common/photoimg.png" alt=""></div>
-                        <p class="name">永瀬達也</p>
-                    </div>
-                    <div class="activity-log-container__left__content">
-                        <p>@@@@を作成しました。</p>
-                        <p>2019年1月1日 00:00</p>
-                    </div>
-                </div>
-                <div class="activity-log-container__right">
-                    <div id="activity-display-btn" class="activity-log-container__right__btn-container">
-                        <i class="fa fa-list-ul"></i><span class="activity-log-container__right__btn-container__btn">アクティビティログ</span>
-                    </div>
-                </div>
-            </div> -->
 
             <div class="detail-container">
                 <ul class="detail-container__list">
@@ -93,12 +43,6 @@
                         </div>
                     </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->budget) }}円</div></li>
-                    <!-- <li class="detail-container__list__item border-none al-center"><div class="detail-container__list__item__name">資料</div>
-                        <div class="detail-container__list__item__content file-item">
-                            <div class="imgbox"><img src="{{ env('AWS_URL') }}/common/file.png" alt=""></div>
-                            <p>ファイル名</p>
-                        </div>
-                    </li> -->
                 </ul>
             </div>
         </div>
@@ -212,10 +156,6 @@
                 @endforeach
 
                 <div class="button-container">
-                    <!-- <div class="preview-button-wrapper">
-                        <button type="submit" class="preview-button-wrapper__btn button">プレビュー</button>
-                    </div> -->
-
                     @if($project->status == config('const.PROJECT_CREATE'))
                         <div class="btn01-container">
                             <button type="submit">完了</button>

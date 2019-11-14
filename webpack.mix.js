@@ -45,6 +45,22 @@ mix.js(
     "public/js/common/task-status.js"
 );
 
+mix.js(
+    [
+        // toggle notification bar where header
+        "resources/js/common/toggle-notification-bar.js"
+    ],
+    "public/js/common/toggle-notification-bar.js"
+);
+
+mix.js(
+    [
+        // update notification read_at using ajax
+        "resources/js/common/update-notification-mark-as-read.js"
+    ],
+    "public/js/common/update-notification-mark-as-read.js"
+);
+
 mix.sass(
     "resources/sass/company/common/index.scss",
     "public/css/company/common"
@@ -70,22 +86,17 @@ mix.sass(
         "resources/sass/company/dashboard/index.scss",
         "public/css/company/dashboard"
     )
-    .sass(
-        "resources/sass/company/project/index.scss",
-        "public/css/company/project"
-    )
-    .sass(
-        "resources/sass/company/project/create.scss",
-        "public/css/company/project"
-    )
-    .sass(
-        "resources/sass/company/project/show.scss",
-        "public/css/company/project"
-    )
+
+    .sass("resources/sass/company/project/index.scss", "public/css/company/project")
+    .sass("resources/sass/company/project/create.scss", "public/css/company/project")
+    .sass("resources/sass/company/project/show.scss", "public/css/company/project")
+
     .sass("resources/sass/company/task/index.scss", "public/css/company/task")
     .sass("resources/sass/company/task/create.scss", "public/css/company/task")
+    .sass("resources/sass/company/task/preview.scss", "public/css/company/task")
     .sass("resources/sass/company/task/show.scss", "public/css/company/task")
     .sass("resources/sass/company/task/edit.scss", "public/css/company/task")
+
     .sass(
         "resources/sass/company/partner/index.scss",
         "public/css/company/partner"

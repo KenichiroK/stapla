@@ -347,6 +347,13 @@
     }
 }
 
+// プレビュー時のCSS
+.preview_p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0rem;
+}
+
 .btn01-container {
     margin-top: 60px;
     button {
