@@ -49,11 +49,15 @@ $(function(){
                 <div class="select-error-wrp">
                     <div class="select-area control">
                         <div class="select-wrp select is-info">
-                            <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                <option disabled selected></option>
-                                @foreach($projects as $project)
-                                    <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
-                                @endforeach
+                            <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >                            
+                                @if(isset($project))
+                                    <option value="{{ $project->id }}" selected>{{ $project->name }}</option>
+                                @else
+                                    <option disabled selected></option>
+                                    @foreach($projects as $project)
+                                        <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                    @endforeach
+                                @endif
                             </select>
                             @if ($errors->has('project_id'))
                                 <div class="invalid-feedback error-msg" role="alert">
