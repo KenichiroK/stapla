@@ -205,6 +205,8 @@ return [
         'partner_id'      => 'パートナー',
         'project_name'    => 'プロジェクト名',
         'project_detail'  => 'プロジェクト詳細',
+        'deliver_comment' => '自由記述欄',
+        'deliver_files'   => '添付ファイル',
 
         // doucment 作成
         'task_id'              => 'タスク',

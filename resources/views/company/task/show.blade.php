@@ -204,7 +204,7 @@
                     自由記述
                     </dt>
                     <dd class="flex01">
-                        自由な記述
+                        {!! nl2br(e($deliver->deliver_comment)) !!}
                     </dd>
                 </dl>
 
@@ -213,7 +213,18 @@
                     ファイル納品
                     </dt>
                     <dd>
-                        ファイルをダウンロード
+                        @foreach($deliver->deliver_files as $deliver_file )
+                        <form action="{{ route('company.fileDownload') }}" method="post">
+                        @csrf
+                            <input type="hidden" name="file" value="{{ $deliver_file }}">
+                            <button type='submit'>{{ explode('deliver-file/', $deliver_file)[1] }}</button>
+                            <div>
+                            
+                        </div>
+                        </form>
+                        
+                        
+                        @endforeach
                     </dd>
                 </dl>
             </div>

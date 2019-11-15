@@ -9,6 +9,11 @@
 <div class="main__container">
     <div class="main__container__wrapper">
         <div class="top">
+            @if(count($errors) > 0)
+                <div class="error-container">
+                    <p>入力に問題があります。再入力して下さい。</p>
+                </div>
+            @endif
             <div class="page-title-container">
                 <div class="page-title-container__page-title">{{ $task->name }}詳細</div>
             </div>
@@ -142,10 +147,67 @@
                     @endif
                 </dd>
             </dl>
-        </div>
-        
-        @if($task->status === 9 && $task->partner->id === Auth::user()->id)
-            <form action="{{ route('partner.deliver.store') }}" enctype="multipart/form-data">
+        </div>        
+        @if( $task->status === 9 && $task->partner->id === Auth::user()->id )
+            <form action="{{ route('partner.deliver.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+                <div class="patner">
+                    <p class="ptnr-title">納品</p>
+                    <dl>
+                        <dt class="textarea-wrp">
+                            自由記述
+                        </dt>
+                        <dd class="flex01 textarea-wrp">                                
+                            <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="deliver_comment" value="ファイルを選択" id="" cols="30" rows="10"></textarea>
+                        </dd>
+                        @if ($errors->has('deliver_comment'))
+                            <div class="invalid-feedback error-msg" role="alert">
+                                <strong>{{ $errors->first('deliver_comment') }}</strong>
+                            </div>
+                        @endif
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            ファイル納品
+                        </dt>
+                        <dd class="upload-content">
+                            <div class="upload-item">
+                                <input type="file" id="file" name="deliver_files[]" id="file" multiple>
+                                @if ($errors->has('deliver_files'))
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('deliver_files') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="upload-item">
+                                <input type="file" id="file" name="deliver_files[]" id="file" multiple>
+                                @if ($errors->has('deliver_files'))
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('deliver_files') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="upload-item">
+                                <input type="file" id="file" name="deliver_files[]" id="file" multiple>
+                                @if ($errors->has('deliver_files'))
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('deliver_files') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                            <p>（※ 1ファイル最大100MBまで）</p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="actionButton">
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="10">
+                    <button type="submit" class="done">納品する</button>
+                <div>
+            </form>
+        @elseif( $task->status < 9 || $task->status >= 10 )
+            @if( $task->status >= 10 )
                 <div class="patner">
                     <p class="ptnr-title">納品</p>
                     <dl>
@@ -169,36 +231,7 @@
                         </dd>
                     </dl>
                 </div>
-                <div class="actionButton">
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="10">
-                    <button type="submit" class="done">納品する</button>
-                <div>
-            </form>
-        @elseif($task->status >= 10)
-            <div class="patner">
-                <p class="ptnr-title">納品</p>
-                <dl>
-                    <dt class="textarea-wrp">
-                        自由記述
-                    </dt>
-                    <dd class="flex01 textarea-wrp">
-                        <!-- <div class="textarea-wrp"> -->
-                            
-                            <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="" value="ファイルを選択" id="" cols="30" rows="10"></textarea>
-                        <!-- </div> -->
-                    </dd>
-                </dl>
-
-                <dl>
-                    <dt>
-                        ファイル納品
-                    </dt>
-                    <dd>
-                        <input type="file" name="" id="">
-                    </dd>
-                </dl>
-            </div>
+            @endif
 
             <div class="actionButton">
                 @if($task->status === 3 && $task->partner->id === Auth::user()->id)
@@ -222,13 +255,6 @@
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="9">
                         <button type="submit" class="done">作業に入る</button>
-                    </form>
-                @elseif($task->status === 9 && $task->partner->id === Auth::user()->id)
-                    <form action="{{ route('partner.deliver.store') }}" method="POST">
-                    @csrf
-                        <input type="hidden" name="task_id" value="{{ $task->id }}">
-                        <input type="hidden" name="status" value="10">
-                        <button type="submit" class="done">納品する</button>
                     </form>
                 @elseif($task->status === 11 && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>

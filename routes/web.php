@@ -95,7 +95,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
 
 		// logout
-			Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
+		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
 });
 
@@ -163,9 +163,13 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// task-show
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
+
+				// task-show-file_download
+		Route::post('/file-download', 'Companies\DeliverController@download')->name('company.fileDownload');
 			// task-edit
 		Route::get('/task/{id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');
 			// task-update
+		Route::patch('/task/{id}', 'Companies\TaskController@update')->name('company.task.update');
 		Route::patch('/task/{id}', 'Companies\TaskController@update')->name('company.task.update');
 		
 		// task status change
