@@ -9,7 +9,6 @@ class AddNullableToTasksTable extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->string('company_id')->nullable()->change();
             $table->string('project_id')->nullable()->change();
             $table->string('partner_id')->nullable()->change();
             $table->string('superior_id')->nullable()->change();
@@ -32,23 +31,7 @@ class AddNullableToTasksTable extends Migration
     public function down()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->dropColumn('company_id')->nullable();
-            $table->dropColumn('project_id')->nullable();
-            $table->dropColumn('partner_id')->nullable();
-            $table->dropColumn('superior_id')->nullable();
-            $table->dropColumn('accounting_id')->nullable();
-            $table->dropColumn('name', 64)->nullable();
-            $table->dropColumn('content')->nullable();
-            $table->dropColumn('started_at')->nullable();
-            $table->dropColumn('ended_at')->nullable();
-            $table->dropColumn('status')->nullable();
-            $table->dropColumn('purchaseorder')->nullable();
-            $table->dropColumn('invoice')->nullable();
-            $table->dropColumn('budget')->nullable();
-            $table->dropColumn('price')->nullable();
-            $table->dropColumn('tax', 3, 2)->nullable();
-            $table->dropColumn('cases')->nullable();
-            $table->dropColumn('fee_format')->nullable();
+            // 
         });
     }
 }

@@ -14,15 +14,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Carbon\Carbon;
+use Illuminate\Notifications\DatabaseNotification;
 
 class TaskController extends Controller
 {
     public function index()
     {
-        $company_user = Auth::user();
-        $tasks = Task::where('company_id', $company_user->company_id)
+        $auth = Auth::user();
+        $tasks = Task::where('company_id', $auth->company_id)
                                 ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
-                                ->with(['project', 'partner', 'taskRoleRelation'])
                                 ->get();
 
         $status_arr = [];
@@ -41,8 +41,8 @@ class TaskController extends Controller
 
     public function statusIndex($task_status)
     {
-        $company_user = Auth::user();
-        $alltasks = Task::where('company_id', $company_user->company_id)
+        $auth = Auth::user();
+        $alltasks = Task::where('company_id', $auth->company_id)
                                     ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
                                     ->get();
         $status_arr = [];
@@ -56,9 +56,8 @@ class TaskController extends Controller
         // タスクステータスを外部ファイルで定数化（congfig/const.php）
         $statusName_arr = config('const.TASK_STATUS_LIST');
 
-        $tasks = Task::where('company_id', $company_user->company_id)
+        $tasks = Task::where('company_id', $auth->company_id)
                                 ->where('status', $task_status)
-                                ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
                                 ->get();
         return view('company/task/index', compact('tasks','statusName_arr', 'status_arr'));
     }
@@ -68,13 +67,13 @@ class TaskController extends Controller
         return Task::where('project_id', $project_uid)->get();
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $company_user = Auth::user();
-        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
+        $auth = Auth::user();
+        $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
         
-        $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
-        $partners = Partner::where('company_id', $company_user->company_id)->get();
+        $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
+        $partners = Partner::where('company_id', $auth->company_id)->get();
         $task = null;
         // プレビューから戻ってくるときに使用する変数
         $response = '';
@@ -95,13 +94,13 @@ class TaskController extends Controller
     }
 
     // プレビュー
-    public function preview(CreateTaskRequest $request)
+    public function temporarySaveOrToPrever(CreateTaskRequest $request)
     {
         switch ($request->input('temporarySaveOrPreview')){
             case 'toTemporarySave':
-                $company_user = Auth::user();
+                $auth = Auth::user();
                 $task = new Task;
-                $task->company_id      = $company_user->company_id;
+                $task->company_id      = $auth->company_id;
                 $task->project_id = $request->project_id;
                 $task->name = $request->name;
                 $task->status          = config('const.TASK_CREATE');
@@ -227,11 +226,11 @@ class TaskController extends Controller
                 return redirect()->route('company.task.create')->withInput($request->all());
             break;
 
-            case 'toStore':
-            $company_user = Auth::user();
+            case 'toStore';
+            $auth = Auth::user();
             $task = new Task;
             $task->project_id      = $request->project_id;
-            $task->company_id      = $company_user->company_id;
+            $task->company_id      = $auth->company_id;
             $task->company_user_id = $request->company_user_id;
             $task->superior_id     = $request->superior_id;
             $task->accounting_id   = $request->accounting_id;
@@ -249,8 +248,10 @@ class TaskController extends Controller
             $task->cases           = 1;
             $task->fee_format      = "固定";
             $task->save();
-            \Log::info('タスク新規作成', ['user_id(company)' => $company_user->id, 'task_id' => $task->id, 'status' => $task->status]);
+            \Log::info('タスク新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
     
+            sendNotificationAssignedTask($task);
+
             return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
             break;
         }
@@ -261,29 +262,29 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $purchaseOrder = PurchaseOrder::where('task_id', $id)->first();
         $invoice = Invoice::where('task_id', $id)->first();
-        $company_user = Auth::user();
-        $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
+        $auth = Auth::user();
+        $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
 
         $company_user_ids = array();
         if ($task->companyUser) {
             array_push($company_user_ids, $task->companyUser->id);
         }
 
-        $partners = Partner::where('company_id', $company_user->company_id)->get();
+        $partners = Partner::where('company_id', $auth->company_id)->get();
 
-        return view('/company/task/show', compact('task', 'project_count', 'company_user', 'company_users', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids'));
+        return view('/company/task/show', compact('auth', 'task', 'project_count', 'company_users', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids'));
     }
 
     public function edit($id)
     {
-        $company_user = Auth::user();
+        $auth = Auth::user();
         $task = Task::findOrFail($id);
-        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', 1)->get();
+        $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', 1)->get();
+            
+        $companyUsers = CompanyUser::where('company_id', $auth->company_id)->get();
+        $partners = Partner::where('company_id', $auth->company_id)->get();
 
-        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
-        $partners = Partner::where('company_id', $company_user->company_id)->get();
-
-        return view('company/task/edit', compact('task', 'projects','companyUsers', 'partners', 'company_user')); 
+        return view('company/task/edit', compact('task', 'projects','companyUsers', 'partners')); 
     }
 
     public function update(CreateTaskRequest $request, $id)

@@ -16,7 +16,8 @@ Auth::routes(['verify' => true]);
 Route::get('/',        function () { return view('common_pages/home');    });
 Route::get('/privacy', function () { return view('common_pages/privacy'); });
 Route::get('/terms',   function () { return view('common_pages/terms');   });
-
+// update notification read_at using ajax
+Route::post('notification/mark_as_read', 'Commons\NotificationController@markAsRead');
 
 Auth::routes();
 
@@ -94,7 +95,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
 
 		// logout
-    	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
+			Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
 });
 
@@ -157,7 +158,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
 			// task-create
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-		Route::post('/task/preview', 'Companies\TaskController@preview')->name('company.task.preview');
+		Route::post('/task/preview', 'Companies\TaskController@temporarySaveOrToPrever')->name('company.task.preview');
 				// task-create-temporaryUpdate
 		Route::get('/task/create/{task_id}', 'Companies\TaskController@temporary')->name('company.task.temporary');
 			// task-store
