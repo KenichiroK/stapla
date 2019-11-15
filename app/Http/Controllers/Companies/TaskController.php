@@ -69,17 +69,18 @@ class TaskController extends Controller
 
     public function create(Request $request)
     {
-        $company_user = Auth::user();
-        $companyUsers = CompanyUser::where('company_id', $company_user->company_id)->get();
-        $partners = Partner::where('company_id', $company_user->company_id)->get();
+        $auth = Auth::user();
+        $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
+        $partners = Partner::where('company_id', $auth->company_id)->get();
+        $response = '';
 
         if($request->query('pid')){
             $project_id = $request->query('pid');
             $project = Project::where('id', $project_id)->first();
-            return view('company/task/create', compact('project', 'companyUsers', 'partners', 'company_user'));
+            return view('company/task/create', compact('project', 'company_users', 'partners', 'company_user', 'response'));
         } else {
-            $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
-            return view('company/task/create', compact('projects', 'companyUsers', 'partners', 'company_user'));
+            $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
+            return view('company/task/create', compact('projects', 'company_users', 'partners', 'company_user', 'response'));
         }
     }
 
