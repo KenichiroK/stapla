@@ -41,7 +41,7 @@
                                         data-badge="{{ countReadAtIsNULL() > 99 ? '99+' : countReadAtIsNULL() }}"
                                     >
                                 @endif
-                                    <img id="notification_icon" src="{{ env('AWS_URL') }}/common/icon_notification.png" alt="search">
+                                    <img id="notification_icon" src="{{ env('AWS_URL') }}/common/icon_notification2.png" alt="search">
                                 </button>
                             </li>
                         </ul>
