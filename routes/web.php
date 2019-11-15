@@ -158,7 +158,9 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
 			// task-create
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-		Route::post('/task/preview', 'Companies\TaskController@preview')->name('company.task.preview');
+		Route::post('/task/preview', 'Companies\TaskController@temporarySaveOrToPrever')->name('company.task.preview');
+				// task-create-temporaryUpdate
+		Route::get('/task/create/{task_id}', 'Companies\TaskController@temporary')->name('company.task.temporary');
 			// task-store
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// task-show
