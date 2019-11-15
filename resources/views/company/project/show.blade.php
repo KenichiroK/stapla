@@ -173,3 +173,34 @@
     </div>
 </div>
 @endsection
+
+@section('asset-js')
+<script>
+    function checkStatus() {
+        const projectStatus = document.getElementsByName('projectStatus');
+        if(projectStatus[0].value == project_create) {
+            const taskStatuses = document.getElementsByName('taskStatus[]');
+            for (i=0; i<taskStatuses.length; i++) {
+                console.log(taskStatuses[i].value)
+                if(taskStatuses[i].value != complete_staff && taskStatuses[i].value != task_canceled){
+                    alert("「全てのタスクを完了またはキャンセルしてから、プロジェクトを完了してください。」")
+                    return false;
+                }
+            };
+            var result = confirm("「プロジェクトを完了してよろしいですか？」")
+            if( result ) {
+            }
+            else {
+                return false;
+            }
+        } else if(projectStatus[0].value == project_complete){
+            var result = confirm("「再オープンしてよろしいですか？」")
+            if( result ) {
+            }
+            else {
+                return false;
+            }
+        }
+    };
+</script>
+@endsection
