@@ -68,16 +68,21 @@ class TaskController extends Controller
         return Task::where('project_id', $project_uid)->get();
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $auth = Auth::user();
-        $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
-        
         $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
         $partners = Partner::where('company_id', $auth->company_id)->get();
-        // プレビューから戻ってくるときに使用する変数
         $response = '';
-        return view('company/task/create', compact('projects', 'company_users', 'partners', 'response'));
+
+        if($request->query('pid')){
+            $project_id = $request->query('pid');
+            $project = Project::where('id', $project_id)->first();
+            return view('company/task/create', compact('project', 'company_users', 'partners', 'company_user', 'response'));
+        } else {
+            $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
+            return view('company/task/create', compact('projects', 'company_users', 'partners', 'company_user', 'response'));
+        }
     }
 
     // プレビュー

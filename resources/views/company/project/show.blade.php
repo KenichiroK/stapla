@@ -49,7 +49,12 @@
 
         <div class="task-container">
             <div class="task-container__item">
-                <h2 class="task-container__item__title">タスク</h2>
+                <div class="task-container__item__wrap">
+                    <h2 class="task-container__item__wrap__title">タスク</h2>
+                    <div class="btn-a-container">
+                        <a href="{{ route('company.task.create')}}?pid={{ $project->id }}">タスク作成</a>
+                    </div>
+                </div>
                 <ul class="task-container__item__list">
                     <li>プロジェクト</li>
                     <li>タスク</li>
@@ -151,8 +156,6 @@
                 @endforeach
 
                 <div class="button-container">
-
-
                     @if($project->status == config('const.PROJECT_CREATE'))
                         <div class="btn01-container">
                             <button type="submit">完了</button>
@@ -169,11 +172,12 @@
         @endif
     </div>
 </div>
+@endsection
 
+@section('asset-js')
 <script>
     function checkStatus() {
         const projectStatus = document.getElementsByName('projectStatus');
-
         if(projectStatus[0].value == project_create) {
             const taskStatuses = document.getElementsByName('taskStatus[]');
             for (i=0; i<taskStatuses.length; i++) {
@@ -183,9 +187,19 @@
                     return false;
                 }
             };
-            alert("「プロジェクトを完了してよろしいですか？」")
+            var result = confirm("「プロジェクトを完了してよろしいですか？」")
+            if( result ) {
+            }
+            else {
+                return false;
+            }
         } else if(projectStatus[0].value == project_complete){
-            alert("「再オープンしてよろしいですか？」")
+            var result = confirm("「再オープンしてよろしいですか？」")
+            if( result ) {
+            }
+            else {
+                return false;
+            }
         }
     };
 </script>

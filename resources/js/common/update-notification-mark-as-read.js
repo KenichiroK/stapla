@@ -5,7 +5,7 @@ $(function () {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       type: 'POST',
-      url: 'http://localhost/notification/mark_as_read',
+      url: `${$('meta[name="url"]').attr('content')}/notification/mark_as_read`,
       data: { user_id: $('meta[name="auth-id"]').attr('content') },
       dataType: 'json'
     }).done(function (data) {
