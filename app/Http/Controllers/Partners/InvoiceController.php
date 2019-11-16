@@ -93,15 +93,6 @@ class InvoiceController extends Controller
             abort(404);
         }
 
-        // try {
-        //     Invoice::findOrFail($id);
-        //     throw new ModelNotFoundException("請求書が存在しません");
-        // } catch (ModelNotFoundException $e) {
-        //     return redirect('fail');
-        //     return $e->getMessage();
-        // }
-        
-        // $invoice = Invoice::findOrFail($id);
         $task = Task::findOrFail($invoice->task_id);
         $total_sum = 0;
         $total_sum_notax = 0;
@@ -112,25 +103,44 @@ class InvoiceController extends Controller
         if ($invoice->requestTasks->count() > 0) {
             foreach($invoice->requestTasks as $requestTask) {
                 $total_sum += $requestTask->total;
-            }
-        }
-        if ($invoice->requestExpences->count() > 0) {
-            foreach($invoice->requestExpences as $requestExpence) {
-                $total_sum += $requestExpence->total;
-            }
-        }
-
-        if ($invoice->requestTasks->count() > 0) {
-            foreach($invoice->requestTasks as $requestTask) {
                 $total_sum_notax += $requestTask->num * $requestTask->unit_price;
             }
         }
         if ($invoice->requestExpences->count() > 0) {
             foreach($invoice->requestExpences as $requestExpence) {
+                $total_sum += $requestExpence->total;
                 $total_sum_notax += $requestExpence->num * $requestExpence->unit_price;
             }
         }
-        
+
         return view('/partner/document/invoice/show', compact('companyUsers', 'invoice', 'task', 'total_sum', 'total_sum_notax'));
+    }
+
+    public function edit(Request $request, $invoice_id)
+    {
+        $invoice = Invoice::find($invoice_id);
+        if (is_null($invoice)) {
+            abort(404);
+        }
+        $task = Task::findOrFail($invoice->task_id);
+
+        $partner = Auth::user();
+        $company_id = $partner->company_id;
+        $company = Company::findOrFail($company_id);
+        $companyUsers = CompanyUser::where('company_id', $company_id)->get();
+        $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->first();
+        $task_count = "";
+        $expences_count = "";
+
+        if ($request->session()->has('_old_input')) {
+            $old_input = $request->session()->get('_old_input');
+            $task_count = count($old_input['item_name']);
+            $expences_count = count($old_input['expences_name']);
+        }
+        return view('/partner/document/invoice/edit', compact('companyUsers','invoice', 'company', 'task', 'partner_invoice', 'task_count', 'expences_count'));
+    }
+
+    public function update(Request $request, $invoice_id){
+        return "ここからstart (11/16 11:00)";
     }
 }
