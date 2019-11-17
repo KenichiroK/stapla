@@ -140,7 +140,8 @@ class InvoiceController extends Controller
         return view('/partner/document/invoice/edit', compact('companyUsers','invoice', 'company', 'task', 'partner_invoice', 'task_count', 'expences_count'));
     }
 
-    public function update(Request $request, $invoice_id){
+    public function update(CreateInvoiceRequest $request, $invoice_id){
+    // public function update(CreateInvoiceRequest $request, $invoice_id){
         return "ここからstart (11/16 11:00)";
     }
 }

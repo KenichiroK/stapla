@@ -67,9 +67,9 @@ const addtaskRequest = () => {
   const inner = `
     <tr>
 	  <td class="del-task-record" name="task_element" onclick="delTaskRecord(this)">×</td>
-	  <td class="item"><input type="text" name="item_name[]" value="{{ old("item_name.1") }}"></td>
-	  <td class="num"><input type="text" name="item_num[]" value="{{ old('item_num.1') }}" onchange="calculateSumPrice(this.value)"></td>
-	  <td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price.1') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+	  <td class="item"><input type="text" name="item_name[]" value="{{ old("item_name") }}"></td>
+	  <td class="num"><input type="text" name="item_num[]" value="{{ old('item_num') }}" onchange="calculateSumPrice(this.value)"></td>
+	  <td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
 	  <td class="tax">
 		<div class="selectbox-container">
 		  <select name="item_tax[]" onchange="calculateSumPrice(this.value)">	
@@ -95,9 +95,9 @@ const addExpences = () => {
   const inner = `
 	  <tr>
 	    <td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
-		<td class="item"><input type="text" name="expences_name[]" value="{{ old('expences_name.1') }}"></td>
-		<td class="num"><input type="text" name="expences_num[]" value="{{ old('expences_num.1') }}" onchange="calculateSumPrice(this.value)"></td>
-		<td class="unit-price"><input type="text" name="expences_unit_price[]" value="{{ old('expences_unit_price.1') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
+		<td class="item"><input type="text" name="expences_name[]" value="{{ old('expences_name') }}"></td>
+		<td class="num"><input type="text" name="expences_num[]" value="{{ old('expences_num') }}" onchange="calculateSumPrice(this.value)"></td>
+		<td class="unit-price"><input type="text" name="expences_unit_price[]" value="{{ old('expences_unit_price') }}" onchange="calculateSumPrice(this.value)"><span>円</span></td>
 		<td class="tax">
 		  <div class="selectbox-container">
 			<select name="expences_tax[]" onchange="calculateSumPrice(this.value)">	
@@ -243,7 +243,7 @@ window.onload = () => {
 				<dl>
 					<dt>件名</dt>
 					<dd>
-						<input class="task-name" type="text" name="title" value="{{ old('title', $task->name . 'のご請求') }}">
+						<input class="task-name" type="text" name="title" value="{{ $invoice->project_name }}">
 						@if ($errors->has('title'))
 							<div class="error-msg">
 								<strong>{{ $errors->first('title') }}</strong>
@@ -260,7 +260,7 @@ window.onload = () => {
 							<input
 								type="date"
 								name="requested_at"
-								value="{{ old('started_at', date('Y-m-d')) }}"
+								value="{{ $invoice->requested_at }}"
 							>
 
 							@if($errors->has('requested_at'))
@@ -286,7 +286,7 @@ window.onload = () => {
 							<input
 								type="date"
 								name="deadline_at"
-								value="{{ old('deadline_at') }}"
+								value="{{ $invoice->deadline_at }}"
 							>
 						</div>
 						@if ($errors->has('deadline_at'))
@@ -297,7 +297,7 @@ window.onload = () => {
 					</dd>
 				</dl>
             </div>
-            
+
 			<div class="task-container">
 				<div class="title-container">
 					<h4>タスク</h4>
