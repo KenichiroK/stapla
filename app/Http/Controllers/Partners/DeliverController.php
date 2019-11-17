@@ -32,13 +32,14 @@ class DeliverController extends Controller
         $deliverLog->save();
 
         if($task->count()) {
+            $prev_status = $task->status;
             $task->status = (int)$request->status;
             $task->save();
 
 
             \Log::info('納品履歴', ['user_id(partner)' => $auth->id, 'task_id' => $task->id]);
 
-            sendNotificationUpdatedTaskStatusFromPartner($task);
+            sendNotificationUpdatedTaskStatusFromPartner($task, $prev_status);
             sendNotificationUpdatedTaskStatusToProjectCompany($task);
 
             if ($task->status === config('const.APPROVAL_ACCOUNTING')) {
