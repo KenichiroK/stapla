@@ -214,16 +214,11 @@
                     </dt>
                     <dd>
                         @foreach($deliver->deliver_files as $deliver_file )
-                        <form action="{{ route('company.fileDownload') }}" method="post">
-                        @csrf
-                            <input type="hidden" name="file" value="{{ $deliver_file }}">
-                            <button type='submit'>{{ explode('deliver-file/', $deliver_file)[1] }}</button>
-                            <div>
-                            
-                        </div>
-                        </form>
-                        
-                        
+                            <form action="{{ route('company.fileDownload') }}" method="post">
+                            @csrf
+                                <input type="hidden" name="file" value="{{ $deliver_file }}">
+                                <button type='submit'>{{ explode('deliver-file/', $deliver_file)[1] }}</button>
+                            </form>
                         @endforeach
                     </dd>
                 </dl>

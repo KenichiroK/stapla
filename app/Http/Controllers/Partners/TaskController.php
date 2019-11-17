@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Partners;
 
 use App\Http\Controllers\Controller;
-use App\Models\Task;
-use App\Models\Partner;
 use App\Models\CompanyUser;
+use App\Models\Deliver;
+use App\Models\Partner;
 use App\Models\PurchaseOrder;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -56,6 +57,11 @@ class TaskController extends Controller
 
         $partner = Auth::user();
 
-        return view('/partner/task/show', compact('task', 'purchaseOrder'));
+        if($task->deliver){
+            $deliver = Deliver::where('task_id', $task->id)->first();
+            $deliver->deliver_files = json_decode($deliver->deliver_files);
+        }
+
+        return view('/partner/task/show', compact('task', 'purchaseOrder', 'deliver'));
     }
 }

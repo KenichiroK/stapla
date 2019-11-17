@@ -107,14 +107,14 @@
     }
 }
 .textarea-wrp {
-    height: 120px;
     width: 66%;
-}
-.textarea {
-    border-radius: 2px;
-    border: 1px solid #e9e9f0;
-    box-shadow: none;
-    resize: none;
+    textarea {
+        width: 100%;
+        border-radius: 2px;
+        border: 1px solid #e9e9f0;
+        box-shadow: none;
+        resize: none;
+    }
 }
 
 // patner
@@ -148,6 +148,7 @@
             color: #43425d;
         }
         dd {
+            width: 66%;
             margin-bottom: 0;
             color: #43425d;
             font-size: 15px;

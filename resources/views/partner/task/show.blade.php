@@ -147,7 +147,9 @@
                     @endif
                 </dd>
             </dl>
-        </div>        
+        </div>
+
+        <!-- 納品のアップロードエリアは納品するとき($task->status === 9)の時のみ表示 -->
         @if( $task->status === 9 && $task->partner->id === Auth::user()->id )
             <form action="{{ route('partner.deliver.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -157,14 +159,17 @@
                         <dt class="textarea-wrp">
                             自由記述
                         </dt>
-                        <dd class="flex01 textarea-wrp">                                
-                            <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="deliver_comment" value="ファイルを選択" id="" cols="30" rows="10"></textarea>
-                        </dd>
-                        @if ($errors->has('deliver_comment'))
-                            <div class="invalid-feedback error-msg" role="alert">
-                                <strong>{{ $errors->first('deliver_comment') }}</strong>
+                        <dd>
+                            <div class="textarea-wrp">
+                                <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="deliver_comment" id="">{{ old('deliver_comment') }}</textarea>
+                                @if ($errors->has('deliver_comment'))
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('deliver_comment') }}</strong>
+                                    </div>
+                                @endif     
                             </div>
-                        @endif
+                                                   
+                        </dd>
                     </dl>
 
                     <dl>
@@ -207,6 +212,7 @@
                 <div>
             </form>
         @elseif( $task->status < 9 || $task->status >= 10 )
+            <!-- 納品エリアは納品以降($task->status >= 9)の時に表示 -->
             @if( $task->status >= 10 )
                 <div class="patner">
                     <p class="ptnr-title">納品</p>
@@ -214,11 +220,8 @@
                         <dt class="textarea-wrp">
                             自由記述
                         </dt>
-                        <dd class="flex01 textarea-wrp">
-                            <!-- <div class="textarea-wrp"> -->
-                                
-                                <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="" value="ファイルを選択" id="" cols="30" rows="10"></textarea>
-                            <!-- </div> -->
+                        <dd class="flex01">
+                            {!! nl2br(e($deliver->deliver_comment)) !!}
                         </dd>
                     </dl>
 
@@ -227,7 +230,13 @@
                             ファイル納品
                         </dt>
                         <dd>
-                            <input type="file" name="" id="">
+                            @foreach($deliver->deliver_files as $deliver_file )
+                                <form action="{{ route('partner.fileDownload') }}" method="post">
+                                @csrf
+                                    <input type="hidden" name="file" value="{{ $deliver_file }}">
+                                    <button type='submit'>{{ explode('deliver-file/', $deliver_file)[1] }}</button>
+                                </form>
+                            @endforeach
                         </dd>
                     </dl>
                 </div>

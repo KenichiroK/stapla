@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Storage;
 class DeliverController extends Controller
 {
     public function store(FileUpdateRequest $request)
-    // public function store(Request $request)
     {
-        return $request;
         $task = Task::findOrFail($request->task_id);
         $auth = Auth::user();
 
@@ -78,4 +76,17 @@ class DeliverController extends Controller
             return redirect()->route('partner.task.show', ['id' => $task->id]);
         }
     } 
+
+    public function download(Request $request)
+    {
+        $disk = Storage::disk('s3');
+        $file_path = explode('amazonaws.com/', $request->file)[1];
+        $file_name = explode('deliver-file/', $request->file)[1];
+        $mime_type = \File::extension($file_name);
+        $headers = [
+            'Content-Type' => $mime_type,
+            'Content-Disposition' => ' attachment; filename="'.$file_name.'"',
+        ];
+        return \Response::make($disk->get($file_path), 200, $headers);
+    }
 }
