@@ -213,7 +213,7 @@ window.onload = () => {
 								@foreach ($companyUsers as $companyUser)
 									@if(old('company_user_id'))
 									<option value="{{ $companyUser->id }}" {{ old('company_user_id') === $companyUser->id ? 'selected' : '' }}>{{ $companyUser->name }}</option>
-								 	@else
+                                    @elseif(!old('billing_to_text') && !$invoice->billing_to_text)
 									<option value="{{ $companyUser->id }}" {{ $task->companyUser->id === $companyUser->id ? 'selected' : '' }}>{{ $companyUser->name }}</option>
 									@endif
 								@endforeach
@@ -231,8 +231,13 @@ window.onload = () => {
 				<dl>
 					<dt>担当者 <br>(自由記入)</dt>
 					<dd>
-						<input class="free-staff-name" type="text" name="billing_to_text" id="free_staff_name" disabled onchange="billingText();">
-						@if ($errors->has('billing_to_text'))
+                        @if(old('billing_to_text'))
+						<input class="free-staff-name" type="text" name="billing_to_text" id="free_staff_name" value="{{ old('billing_to_text') }}" disabled onchange="billingText();">
+                        @else
+                        <input class="free-staff-name" type="text" name="billing_to_text" id="free_staff_name" value="{{ $invoice->billing_to_text }}" disabled onchange="billingText();">
+                        @endif
+                        
+                        @if ($errors->has('billing_to_text'))
 							<div class="error-msg">
 								<strong>{{ $errors->first('billing_to_text') }}</strong>
 							</div>					
@@ -316,7 +321,6 @@ window.onload = () => {
 					</thead>
 					
 					<tbody id="taskRequest">
-
                         @foreach($invoice->requestTasks as $requestTask)
 							<tr>
                                 <td class="del-task-record" name="task_element" onclick="delExpenceRecord(this)">×</td>

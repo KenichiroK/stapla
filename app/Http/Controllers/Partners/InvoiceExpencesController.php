@@ -10,6 +10,8 @@ class InvoiceExpencesController extends Controller
 {
     public function store($invoice_id, Request $request)
     {
+        RequestExpence::where('invoice_id', $invoice_id)->delete();
+
         for ($i = 0; $i < count($request->expences_name); $i++) {
             if (
                 !!$request->expences_name[$i] &&

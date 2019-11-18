@@ -10,6 +10,8 @@ class InvoiceTaskController extends Controller
 {
     public function store($invoice_id, Request $request)
     {
+        RequestTask::where('invoice_id', $invoice_id)->delete();
+        
         for ($i = 0; $i < count($request->item_name); $i++) {
             if (
                 !!$request->item_name[$i] &&

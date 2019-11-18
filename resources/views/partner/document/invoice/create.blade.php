@@ -211,9 +211,9 @@ window.onload = () => {
 							<select name="company_user_id" id="staff_name" onchange="selectStaff();">
 								<option value="" hidden></option>
 								@foreach ($companyUsers as $companyUser)
-									@if(old('company_user_id'))
+									@if(old('company_user_id') && !old('billing_to_text'))
 									<option value="{{ $companyUser->id }}" {{ old('company_user_id') === $companyUser->id ? 'selected' : '' }}>{{ $companyUser->name }}</option>
-								 	@else
+									@elseif(!old('billing_to_text'))
 									<option value="{{ $companyUser->id }}" {{ $task->companyUser->id === $companyUser->id ? 'selected' : '' }}>{{ $companyUser->name }}</option>
 									@endif
 								@endforeach
@@ -231,7 +231,7 @@ window.onload = () => {
 				<dl>
 					<dt>担当者 <br>(自由記入)</dt>
 					<dd>
-						<input class="free-staff-name" type="text" name="billing_to_text" id="free_staff_name" disabled onchange="billingText();">
+						<input class="free-staff-name" type="text" name="billing_to_text" id="free_staff_name" value="{{ old('billing_to_text') }}" disabled onchange="billingText();">
 						@if ($errors->has('billing_to_text'))
 							<div class="error-msg">
 								<strong>{{ $errors->first('billing_to_text') }}</strong>
