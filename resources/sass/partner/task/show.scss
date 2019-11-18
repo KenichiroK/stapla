@@ -106,13 +106,23 @@
         border-top: none;
     }
 }
+.textarea-wrp {
+    height: 120px;
+    width: 66%;
+}
+.textarea {
+    border-radius: 2px;
+    border: 1px solid #e9e9f0;
+    box-shadow: none;
+    resize: none;
+}
 
 // patner
 .patner {
     width: 100%;
     background-color: #ffffff;
     padding: 30px 30px 0;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
     border-radius: 4px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
     .ptnr-title {

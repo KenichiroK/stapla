@@ -62,26 +62,6 @@
                         <div class="item-name-wrapper">
                             <div class="item-name-wrapper__item-name">タスク</div>
                         </div>
-                        <!-- <div class="selectWrap">
-                            <select class="select" name="" id="">
-                                <option value="">全てのステータス</option>
-                                <option value="">下書き</option>
-                                <option value="">タスク上長確認前</option>
-                                <option value="">タスク上長確認中</option>
-                                <option value="">タスクパートナー依頼前</option>
-                                <option value="">タスクパートナー依頼中</option>
-                                <option value="">発注書作成中</option>
-                                <option value="">発注書作成完了</option>
-                                <option value="">発注書上長確認中</option>
-                                <option value="">発注書パートナー依頼前</option>
-                                <option value="">発注書パートナー確認中</option>
-                                <option value="">作業中</option>
-                                <option value="">請求書依頼中</option>
-                                <option value="">請求書確認中</option>
-                                <option value="">完了</option>
-                                <option value="">キャンセル</option>
-                            </select>
-                        </div> -->
                     </div>
                 
                     <div class="table-wrapper">
@@ -98,8 +78,19 @@
                             @foreach($tasks as $task)
                             <tr class="datarow">
                                 <td class="project">{{ $task->project->name }}</td>
-                                <td><a href="{{ route('company.task.show', ['id' => $task->id ]) }}">{{ $task->name }}</a></td>
-                                <td>{{ $task->partner->name }}</td>
+                                <td>
+                                    @if($task->status === 0)
+                                        <a href="{{ route('company.task.temporary', ['task_id' => $task->id ]) }}">{{ $task->name }}</a>
+                                    @else
+                                        <a href="{{ route('company.task.show', ['id' => $task->id ]) }}">{{ $task->name }}</a>
+                                    @endif
+                                </td>
+                                <td>
+                                    @empty($task->partner_id)
+                                    @else
+                                        {{ $task->partner->name }}
+                                    @endempty
+                                </td>
                                 <td>
                                     <div id ="state" class="status">
                                         @if($task->status == 0)

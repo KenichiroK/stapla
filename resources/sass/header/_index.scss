@@ -23,6 +23,28 @@ header {
                 width: 19px;
                 margin-top: -7px;
             }
+
+            button {
+                background-color: transparent;
+                border: none;
+                outline: none;
+                position: relative;
+            }
+
+            button[data-badge]:after {
+                content:attr(data-badge);
+                position:absolute;
+                top: -3px;
+                right: -6px;
+                font-size:.7em;
+                background: #ed2b00;
+                color:white;
+                width:18px;height:18px;
+                text-align:center;
+                line-height:18px;
+                border-radius:50%;
+                box-shadow:0 0 1px #333;
+            }
         }
         .header-proflie {
             display: flex;

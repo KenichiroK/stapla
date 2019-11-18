@@ -6,16 +6,19 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="auth-id" content="{{ Auth::user()->id }}">
+    <meta name="url" content="{{ env('APP_URL') }}">
 
     <title>Impro</title>
-
-    
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ env('AWS_URL') }}/common/impro_favicon.png">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <style id='stylesheet' type='text/css'></style> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
@@ -27,11 +30,21 @@
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div id="navbarHomeHeader" class="navbar-menu">
                     <div class="navbar-end">
-                        <!-- <ul class="icon-wrp">
+                        <ul class="icon-wrp">
                             <li class="not">
-                                <a><img src="{{ env('AWS_URL') }}/common/icon_notification.png" alt="serch"></a>
+                                @if (countReadAtIsNULL() === 0)
+                                    <button type="button" class="notification-icon-badge">
+                                @else
+                                    <button
+                                        class="notification-icon-badge"
+                                        type="button"
+                                        data-badge="{{ countReadAtIsNULL() > 99 ? '99+' : countReadAtIsNULL() }}"
+                                    >
+                                @endif
+                                    <img id="notification_icon" src="{{ env('AWS_URL') }}/common/icon_notification2.png" alt="search">
+                                </button>
                             </li>
-                        </ul> -->
+                        </ul>
                         <div class="header-proflie">
                             <div class="user-imgbox">
                                 <a href="{{ route('partner.setting.profile.create') }}">
@@ -51,7 +64,7 @@
                             <div class="optionBox">
                                 <div class="balloon">
                                     <ul>
-                                        <li><a href="">プロフィール設定</a></li>
+                                        <li><a href="{{ route('partner.setting.profile.create') }}">プロフィール設定</a></li>
                                         <li>
                                             <form method="POST" action="{{ route('partner.logout') }}">
                                                 @csrf
@@ -68,6 +81,10 @@
         </header>      
 
         <main>
+            <div id="notification_bar" class="notification-wrapper">
+                @include('components.notification_bar')
+            </div>
+
             <div class="sidebar-wrapper">
                @include('partner.common.sidebar')
             </div>
@@ -80,6 +97,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/common/toggle-notification-bar.js') }}" defer></script>
+    <script src="{{ asset('js/common/update-notification-mark-as-read.js') }}" defer></script>
     <script>
         const project_create = {{ config('const.PROJECT_CREATE') }};
         const project_complete = {{ config('const.PROJECT_COMPLETE') }};
@@ -104,6 +123,11 @@
         const approval_accounting = {{ config('const.APPROVAL_ACCOUNTING') }};
         const complete_staff = {{ config('const.COMPLETE_STAFF') }};
         const task_canceled = {{ config('const.TASK_CANCELED') }};
+    </script>
+    <script>
+       function toggleNotificationBar() {
+            $('#notification_bar').toggleClass('isActive');
+        }
     </script>
     @yield('asset-js')
 </body>

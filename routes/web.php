@@ -16,7 +16,8 @@ Auth::routes(['verify' => true]);
 Route::get('/',        function () { return view('common_pages/home');    });
 Route::get('/privacy', function () { return view('common_pages/privacy'); });
 Route::get('/terms',   function () { return view('common_pages/terms');   });
-
+// update notification read_at using ajax
+Route::post('notification/mark_as_read', 'Commons\NotificationController@markAsRead');
 
 Auth::routes();
 
@@ -94,7 +95,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
 
 		// logout
-    	Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
+			Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
 });
 
@@ -141,9 +142,14 @@ Route::group(['prefix' => 'company'], function(){
 		// project
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
 		Route::get('/project/done', 'Companies\ProjectController@doneIndex')->name('company.project.done.index');
+			// project - create
 		Route::get('/project/create', 'Companies\ProjectController@create')->name('company.project.create');
 		Route::post('/project', 'Companies\ProjectController@store')->name('company.project.store');
 		Route::get('/project/{id}', 'Companies\ProjectController@show')->name('company.project.show');
+			// project - update
+		Route::get('/project/{project_id}/edit', 'Companies\ProjectController@edit')->name('company.project.edit');
+		Route::patch('/project/{project_id}', 'Companies\ProjectController@update')->name('company.project.update');
+
 		Route::post('/project/complete/{id}/{status}', 'Companies\ProjectController@complete')->name('company.project.complete');
 
 		// task
@@ -152,9 +158,11 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
 			// task-create
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-		Route::post('/task/create', 'Companies\TaskController@store')->name('company.task.store');
-			// task-preview
-		Route::post('/task/preview', 'Companies\TaskController@previewStore')->name('company.task.previewStore');
+		Route::post('/task/preview', 'Companies\TaskController@temporarySaveOrToPrever')->name('company.task.preview');
+				// task-create-temporaryUpdate
+		Route::get('/task/create/{task_id}', 'Companies\TaskController@temporary')->name('company.task.temporary');
+			// task-store
+		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// task-show
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
 			// task-edit
