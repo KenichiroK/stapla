@@ -219,7 +219,7 @@ window.onload = () => {
 								@endforeach
 							</select>
 						</div>
-						<input type="button" value="×" onclick="setNonSelect('staff_name');">
+						<input type="button" class="none-select" value="×" onclick="setNonSelect('staff_name');">
 						@if ($errors->has('company_user_id'))
 							<div class="error-msg">
 								<strong>{{ $errors->first('company_user_id') }}</strong>
@@ -255,7 +255,7 @@ window.onload = () => {
 				<dl>
 					<dt>請求日</dt>
 					<dd>
-						<div class="radio-container">
+						<div>
 							<span id="requested_at_text"></span>
 							<input
 								type="date"
@@ -281,7 +281,7 @@ window.onload = () => {
 				<dl>
 					<dt>支払い期限</dt>
 					<dd>
-						<div class="radio-container">
+						<div>
 							<span id="deadline_at_text"></span>
 							<input
 								type="date"
