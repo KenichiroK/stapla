@@ -267,7 +267,7 @@ class TaskController extends Controller
         $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
         if($task->deliver){
             $deliver = Deliver::where('task_id', $task->id)->first();
-            $deliver->deliver_files = json_decode($deliver->deliver_files);
+            $deliver_items = $deliver->deliverItems;
         }
         
 
@@ -278,7 +278,7 @@ class TaskController extends Controller
 
         $partners = Partner::where('company_id', $auth->company_id)->get();
 
-        return view('/company/task/show', compact('auth', 'task', 'project_count', 'company_users', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids', 'deliver'));
+        return view('/company/task/show', compact('auth', 'task', 'project_count', 'company_users', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids', 'deliver', 'deliver_items'));
     }
 
     public function edit($id)

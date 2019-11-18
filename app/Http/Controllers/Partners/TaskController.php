@@ -59,9 +59,9 @@ class TaskController extends Controller
 
         if($task->deliver){
             $deliver = Deliver::where('task_id', $task->id)->first();
-            $deliver->deliver_files = json_decode($deliver->deliver_files);
+            $deliver_items = $deliver->deliverItems;
         }
 
-        return view('/partner/task/show', compact('task', 'purchaseOrder', 'deliver'));
+        return view('/partner/task/show', compact('task', 'purchaseOrder', 'deliver', 'deliver_items'));
     }
 }

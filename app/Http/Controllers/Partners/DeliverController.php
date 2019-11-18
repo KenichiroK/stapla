@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Partners;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Partners\FileUpdateRequest;
 use App\Models\Deliver;
+use App\Models\DeliverItem;
 use App\Models\DeliverLog;
 use App\Models\Partner;
 use App\Models\Task;
@@ -19,41 +20,47 @@ class DeliverController extends Controller
     {
         $task = Task::findOrFail($request->task_id);
         $auth = Auth::user();
-
+        
         if($task->deliver){
             $deliver = Deliver::where('task_id', $request->task_id)->first();
             $deliver->deliver_comment = $request->deliver_comment;
-            $files    = $request->deliver_files;
-            if($request->deliver_files){
-                foreach ($files as $file) {
-                    $file_path = Storage::disk('s3')->putFileAs("deliver-file", $file, $file->getClientOriginalName() , 'public');
-                    $file_url = Storage::disk('s3')->url($file_path);
-                    $deliver_files[] = $file_url;
+            $deliver->save();
+            
+            DeliverItem::where('deliver_id', $deliver->id)->delete();
+            if($request->files){
+                foreach ($request->deliver_files as $file) {
+                    $deliver_item = new DeliverItem;
+                    $deliver_item->deliver_id = $deliver->id;
+                    $path_file = \Storage::disk('s3')->putFileAs("deliver-file", $file, $file->getClientOriginalName() , 'public');
+                    
+                    $deliver_item->file = \Storage::disk('s3')->url($path_file);
+                    $deliver_item->save();
+                    \Log::info('再納品', ['user_id(partner)' => $auth->id, 'task_id' => $task->id]);              
                 }
             }
-            $deliver->deliver_files = json_encode($deliver_files);
-            $deliver->save();
-
-            $deliver->save();
-            \Log::info('再納品', ['user_id(partner)' => $auth->id, 'task_id' => $task->id]);
+                 
             
         } else{
+            
             $deliver = new Deliver;
             $deliver->task_id         = $request->task_id;
             $deliver->deliver_comment = $request->deliver_comment;
-            $files    = $request->deliver_files;
+            $deliver->save();
+
+            $deliver_item = new DeliverItem;
+            $deliver_item->deliver_id = $deliver->id;
             if($request->deliver_files){
-                foreach ($files as $file) {
+                foreach ($request->deliver_files as $file) {
+                    $deliver_item = new DeliverItem;
+                    $deliver_item->deliver_id = $deliver->id;
                     $path_file = \Storage::disk('s3')->putFileAs("deliver-file", $file, $file->getClientOriginalName() , 'public');
-                    $deliver_files[] = \Storage::disk('s3')->url($path_file);
+                    $deliver_item->file       = \Storage::disk('s3')->url($path_file);
+
+                    $deliver_item->save(); 
+                    \Log::info('納品', ['user_id(partner)' => $auth->id, 'task_id' => $task->id]);                  
                 }
             }
-            $deliver->deliver_files = json_encode($deliver_files);
-        
-            $deliver->save();
-            \Log::info('納品', ['user_id(partner)' => $auth->id, 'task_id' => $task->id]);
         }
-        
         
         $deliverLog = new DeliverLog;
         $deliverLog->task_id = $request->task_id;

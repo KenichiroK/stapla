@@ -178,26 +178,16 @@
                         </dt>
                         <dd class="upload-content">
                             <div class="upload-item">
-                                <input type="file" id="file" name="deliver_files[]" id="file" multiple>
-                                @if ($errors->has('deliver_files'))
-                                    <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('deliver_files') }}</strong>
-                                    </div>
-                                @endif
+                                <input type="file" name="deliver_files[]">
                             </div>
                             <div class="upload-item">
-                                <input type="file" id="file" name="deliver_files[]" id="file" multiple>
-                                @if ($errors->has('deliver_files'))
-                                    <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('deliver_files') }}</strong>
-                                    </div>
-                                @endif
+                                <input type="file" name="deliver_files[]">
                             </div>
                             <div class="upload-item">
-                                <input type="file" id="file" name="deliver_files[]" id="file" multiple>
-                                @if ($errors->has('deliver_files'))
+                                <input type="file" name="deliver_files[]">
+                                @if ($errors->has('deliver_files.*'))
                                     <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('deliver_files') }}</strong>
+                                        <strong>{{ $errors->first('deliver_files.*') }}</strong>
                                     </div>
                                 @endif
                             </div>
@@ -230,13 +220,13 @@
                             ファイル納品
                         </dt>
                         <dd>
-                            @foreach($deliver->deliver_files as $deliver_file )
+                            @for( $n=0; $n < count($deliver_items); $n++)
                                 <form action="{{ route('partner.fileDownload') }}" method="post">
-                                @csrf
-                                    <input type="hidden" name="file" value="{{ $deliver_file }}">
-                                    <button type='submit'>{{ explode('deliver-file/', $deliver_file)[1] }}</button>
+                                    @csrf
+                                    <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
+                                    <button>{{ explode('deliver-file/', $deliver_items[$n]->file)[1] }}</button>
                                 </form>
-                            @endforeach
+                            @endfor     
                         </dd>
                     </dl>
                 </div>
