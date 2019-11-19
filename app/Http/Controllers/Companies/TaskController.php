@@ -103,39 +103,38 @@ class TaskController extends Controller
                 $task->company_id      = $auth->company_id;
                 $task->project_id = $request->project_id;
                 $task->name = $request->name;
+                $task->started_at = Carbon::createFromTimestamp(strtotime($request->started_at))
+                                        ->format('Y-m-d-H-i-s');
+                $task->ended_at = Carbon::createFromTimestamp(strtotime($request->ended_at))
+                                        ->format('Y-m-d-H-i-s');
                 $task->status          = config('const.TASK_CREATE');
                 $task->purchaseorder   = false;
                 $task->invoice         = false;
                 $task->tax             = config('const.FREE_TAX');
                 $task->cases           = 0;
                 $task->fee_format      = "固定";
-                if(isset($request->company_user_id)){
+                if($request->company_user_id){
                     $task->company_user_id = $request->company_user_id;
                 }
-                if(isset($request->superior_id)){
+                if($request->superior_id){
                     $task->superior_id = $request->superior_id;
                 }
-                if(isset($request->accounting_id)){
+                if($request->accounting_id){
                     $task->accounting_id = $request->accounting_id;
                 }
-                if(isset($request->projet_id)){
+                if($request->projet_id){
                     $task->partner_id = $request->partner_id;
                 }
-                if(isset($request->content)){
+                if($request->content){
                     $task->content = $request->content;
                 }
-                if(isset($request->started_at)){
-                    $task->started_at = Carbon::createFromTimestamp(strtotime($request->started_at))
-                                        ->format('Y-m-d-H-i-s');
-                }
-                if(isset($request->ended_at)){
-                    $task->ended_at = Carbon::createFromTimestamp(strtotime($request->ended_at))
-                                        ->format('Y-m-d-H-i-s');
-                }
-                if(isset($request->budget)){
+                if($request->budget){
                     $task->budget = $request->budget;
                 }
-                if(isset($request->price)){
+                if($request->partner_id){
+                    $task->partner_id = $request->partner_id;
+                }
+                if($request->price){
                     $task->price = $request->price;
                 }
                 $task->save();
@@ -177,6 +176,9 @@ class TaskController extends Controller
                 }
                 if(isset($request->budget)){
                     $task->budget = $request->budget;
+                }
+                if($request->partner_id){
+                    $task->partner_id = $request->partner_id;
                 }
                 if(isset($request->price)){
                     $task->price = $request->price;
@@ -280,7 +282,7 @@ class TaskController extends Controller
         $auth = Auth::user();
         $task = Task::findOrFail($id);
         $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', 1)->get();
-            
+
         $companyUsers = CompanyUser::where('company_id', $auth->company_id)->get();
         $partners = Partner::where('company_id', $auth->company_id)->get();
 
@@ -303,7 +305,6 @@ class TaskController extends Controller
         $task->budget          = $request->budget;
         $task->price           = $request->price;
         $task->save();
-        
 
         return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '変更しました。');
     }

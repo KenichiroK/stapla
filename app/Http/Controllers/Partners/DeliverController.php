@@ -15,8 +15,7 @@ class DeliverController extends Controller
 {
     public function store(Request $request)
     {
-        return 'test';
-        return $task = Task::findOrFail($request->task_id);
+        $task = Task::findOrFail($request->task_id);
         $auth = Auth::user();
         
         $deliverLog = new DeliverLog;

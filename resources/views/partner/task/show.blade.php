@@ -145,30 +145,8 @@
         </div>
         
         @if($task->status === 9 && $task->partner->id === Auth::user()->id)
-            <form action="{{ route('partner.deliver.store') }}" enctype="multipart/form-data">
-                <div class="patner">
-                    <p class="ptnr-title">納品</p>
-                    <dl>
-                        <dt class="textarea-wrp">
-                            自由記述
-                        </dt>
-                        <dd class="flex01 textarea-wrp">
-                            <!-- <div class="textarea-wrp"> -->
-                                
-                                <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="" value="ファイルを選択" id="" cols="30" rows="10"></textarea>
-                            <!-- </div> -->
-                        </dd>
-                    </dl>
-
-                    <dl>
-                        <dt>
-                            ファイル納品
-                        </dt>
-                        <dd>
-                            <input type="file" name="" id="">
-                        </dd>
-                    </dl>
-                </div>
+            <form action="{{ route('partner.deliver.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
                 <div class="actionButton">
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="10">

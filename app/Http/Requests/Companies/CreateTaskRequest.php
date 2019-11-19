@@ -23,7 +23,6 @@ class CreateTaskRequest extends FormRequest
                     'company_user_id' => 'nullable | uuid',
                     'superior_id'     => 'nullable | uuid',
                     'accounting_id'   => 'nullable | uuid',
-                    'ended_at'        => 'nullable | bail | after:started_at',
                     'budget'          => 'nullable | bail | integer | digits_between:1, 12',
                     'price'           => 'nullable | bail | integer | digits_between:1, 12',
                     'partner_id'      => 'nullable | uuid',
