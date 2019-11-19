@@ -13,10 +13,17 @@ use App\Models\CompanyUser;
 
 class DeliverController extends Controller
 {
+    public function create($task_id)
+    {
+        // task_id;
+        $partner = Auth::user();
+        $task = Task::findOrFail($task_id);
+        return view('partner/deliver/create', compact('partner', 'task'));
+    }
+
     public function store(Request $request)
     {
-        return 'test';
-        return $task = Task::findOrFail($request->task_id);
+        $task = Task::findOrFail($request->task_id);
         $auth = Auth::user();
         
         $deliverLog = new DeliverLog;
@@ -27,6 +34,7 @@ class DeliverController extends Controller
         if($task->count()) {
             $task->status = (int)$request->status;
             $task->save();
+
 
             \Log::info('納品履歴', ['user_id(partner)' => $auth->id, 'task_id' => $task->id]);
 
