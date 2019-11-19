@@ -173,5 +173,30 @@
             min-width: 300px;
         }
     }
-}
 
+    // 電話番号
+    .tel-container{
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        margin-bottom: 30px;
+
+        .hyphen {
+            display: flex;
+            max-height: 36px;
+            margin: 0 10px;
+
+            hr {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                width: 16px;
+                border: 1px solid #43425d;
+            }
+        }
+
+        input {
+            width: 80px;
+            font-size: 16px;
+        }
+    }
+}
