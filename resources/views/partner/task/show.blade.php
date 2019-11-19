@@ -150,7 +150,7 @@
         </div>
 
         <!-- 納品のアップロードエリアは納品するとき($task->status === 9)の時のみ表示 -->
-        @if( $task->status === 9 && $task->partner->id === Auth::user()->id )
+        @if( $task->status === config('const.WORKING') && $task->partner->id === Auth::user()->id )
             <form action="{{ route('partner.deliver.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
                 <div class="patner">
@@ -162,13 +162,12 @@
                         <dd>
                             <div class="textarea-wrp">
                                 <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="deliver_comment" id="">{{ old('deliver_comment') }}</textarea>
-                                @if ($errors->has('deliver_comment'))
+                            </div>
+                            @if ($errors->has('deliver_comment'))
                                     <div class="invalid-feedback error-msg" role="alert">
                                         <strong>{{ $errors->first('deliver_comment') }}</strong>
                                     </div>
-                                @endif     
-                            </div>
-                                                   
+                                @endif
                         </dd>
                     </dl>
 
@@ -185,13 +184,13 @@
                             </div>
                             <div class="upload-item">
                                 <input type="file" name="deliver_files[]">
-                                @if ($errors->has('deliver_files.*'))
-                                    <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('deliver_files.*') }}</strong>
-                                    </div>
-                                @endif
                             </div>
                             <p>（※ 1ファイル最大100MBまで）</p>
+                            @if ($errors->has('deliver_files.*'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('deliver_files.*') }}</strong>
+                                </div>
+                            @endif
                         </dd>
                     </dl>
                 </div>
@@ -201,9 +200,9 @@
                     <button type="submit" class="done">納品する</button>
                 <div>
             </form>
-        @elseif( $task->status < 9 || $task->status >= 10 )
-            <!-- 納品エリアは納品以降($task->status >= 9)の時に表示 -->
-            @if( $task->status >= 10 )
+        @elseif( $task->status !== config('const.DELIVERY_PARTWORKINGNER') )
+            <!-- 納品エリアは納品以降($task->status > 9)の時に表示 -->
+            @if( $task->status > config('const.WORKING') )
                 <div class="patner">
                     <p class="ptnr-title">納品</p>
                     <dl>
@@ -224,7 +223,7 @@
                                 <form action="{{ route('partner.fileDownload') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
-                                    <button>{{ explode('deliver-file/', $deliver_items[$n]->file)[1] }}</button>
+                                    <button>{{ explode('/', $deliver_items[$n]->file)[5] }}</button>
                                 </form>
                             @endfor     
                         </dd>
@@ -233,35 +232,35 @@
             @endif
 
             <div class="actionButton">
-                @if($task->status === 3 && $task->partner->id === Auth::user()->id)
+                @if($task->status === config('const.TASK_SUBMIT_PARTNER') && $task->partner->id === Auth::user()->id)
                     <form action="{{ route('partner.task.status.change') }}" method="POST">
                     @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
-                        <input type="hidden" name="status" value="0">
+                        <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                         <button type="submit" class="undone">タスク依頼を受けない</button>
                     </form>
                     <form action="{{ route('partner.task.status.change') }}" method="POST">
                     @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
-                        <input type="hidden" name="status" value="4">
+                        <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
                         <button type="submit" class="done">タスク依頼を受ける</button>
                     </form>
-                @elseif($task->status === 7 && $task->partner->id === Auth::user()->id)
+                @elseif($task->status === config('const.ORDER_SUBMIT_PARTNER') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
-                @elseif($task->status === 8 && $task->partner->id === Auth::user()->id)
+                @elseif($task->status === config('const.ORDER_APPROVAL_PARTNER') && $task->partner->id === Auth::user()->id)
                     <form action="{{ route('partner.task.status.change') }}" method="POST">
                     @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="9">
                         <button type="submit" class="done">作業に入る</button>
                     </form>
-                @elseif($task->status === 11 && $task->partner->id === Auth::user()->id)
+                @elseif($task->status === config('const.ACCEPTANCE') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
-                @elseif($task->status === 12 && $task->partner->id === Auth::user()->id)
+                @elseif($task->status === config('const.INVOICE_DRAFT_CREATE') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
-                @elseif($task->status === 17)
+                @elseif($task->status === config('const.COMPLETE_STAFF'))
                     <p class="non-action-text">このタスクは完了しています</p>
-                @elseif($task->status === 18)
+                @elseif($task->status === config('const.TASK_CANCELED'))
                     <p class="non-action-text">このタスクはキャンセルされました</p>
                 @else
                     <p class="non-action-text">必要なアクションはありません</p>

@@ -15,7 +15,7 @@ class FileUpdateRequest extends FormRequest
     {
         return [
             'task_id'         => 'required | uuid',
-            'deliver_comment' => 'nullable | string | max:200',
+            'deliver_comment' => 'nullable | string | max:1000',
             'deliver_files.*' => 'nullable | max:100000'
         ];
     }

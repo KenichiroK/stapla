@@ -12,7 +12,7 @@ class DeliverController extends Controller
     {
         $disk = Storage::disk('s3');
         $file_path = explode('amazonaws.com/', $request->file)[1];
-        $file_name = explode('deliver-file/', $request->file)[1];
+        $file_name = explode('/', $request->file)[5];
         $mime_type = \File::extension($file_name);
         $headers = [
             'Content-Type' => $mime_type,

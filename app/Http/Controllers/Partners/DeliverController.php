@@ -18,6 +18,7 @@ class DeliverController extends Controller
 {
     public function store(FileUpdateRequest $request)
     {
+        $auth = Auth::user()->company_id;
         $task = Task::findOrFail($request->task_id);
         $auth = Auth::user();
         
@@ -25,13 +26,17 @@ class DeliverController extends Controller
             $deliver = Deliver::where('task_id', $request->task_id)->first();
             $deliver->deliver_comment = $request->deliver_comment;
             $deliver->save();
-            
+            // 再提出前の提出時にアプリケーションしたファイルをS3とmysqlから削除
+            $delete_items = DeliverItem::where('deliver_id', $deliver->id)->get();
+            foreach($delete_items as $item){
+                \Storage::disk('s3')->delete("deliver-file/" . $auth->company_id . "/" . explode('/', $item->file)[5]);
+            }
             DeliverItem::where('deliver_id', $deliver->id)->delete();
             if($request->files){
                 foreach ($request->deliver_files as $file) {
                     $deliver_item = new DeliverItem;
                     $deliver_item->deliver_id = $deliver->id;
-                    $path_file = \Storage::disk('s3')->putFileAs("deliver-file", $file, $file->getClientOriginalName() , 'public');
+                    $path_file = \Storage::disk('s3')->putFileAs("deliver-file/$auth->company_id", $file, $file->getClientOriginalName());
                     
                     $deliver_item->file = \Storage::disk('s3')->url($path_file);
                     $deliver_item->save();
@@ -53,7 +58,7 @@ class DeliverController extends Controller
                 foreach ($request->deliver_files as $file) {
                     $deliver_item = new DeliverItem;
                     $deliver_item->deliver_id = $deliver->id;
-                    $path_file = \Storage::disk('s3')->putFileAs("deliver-file", $file, $file->getClientOriginalName() , 'public');
+                    $path_file = \Storage::disk('s3')->putFileAs("deliver-file/$auth->company_id", $file, $file->getClientOriginalName());
                     $deliver_item->file       = \Storage::disk('s3')->url($path_file);
 
                     $deliver_item->save(); 

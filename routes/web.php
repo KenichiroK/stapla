@@ -173,7 +173,6 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/task/{id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');
 			// task-update
 		Route::patch('/task/{id}', 'Companies\TaskController@update')->name('company.task.update');
-		Route::patch('/task/{id}', 'Companies\TaskController@update')->name('company.task.update');
 		
 		// task status change
 		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');

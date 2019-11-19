@@ -217,7 +217,7 @@
                             <form action="{{ route('company.fileDownload') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
-                                <button>{{ explode('deliver-file/', $deliver_items[$n]->file)[1] }}</button>
+                                <button>{{ explode('/', $deliver_items[$n]->file)[5] }}</button>
                             </form>
                         @endfor     
                     </dd>
