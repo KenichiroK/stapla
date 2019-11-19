@@ -175,11 +175,13 @@
     }
 
     // 電話番号
-    .tel-container{
+    .tel-container {
+        margin-bottom: 30px;
+    }
+    .tel-input-container {
         display: flex;
         -webkit-box-align: center;
         align-items: center;
-        margin-bottom: 30px;
 
         .hyphen {
             display: flex;

@@ -147,16 +147,21 @@ window.onload = function(){
 				</div>
 			</div>
 
-			<div class="item-container">
+			<div class="item-container tel-container">
                 <p>電話番号</p>
-                <div class="tel-container">
+                <div class="tel-input-container">
                     <input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front', substr($company->tel, 0, 3)) }}" maxlength="4">
                     <span class="hyphen"><hr></span>
                     <input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle', substr($company->tel, 3, 4)) }}" maxlength="4">
                     <span class="hyphen"><hr></span>
                     <input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back', substr($company->tel, 7)) }}" maxlength="4">
-                    <input type="hidden" name="tel" id="tel" value="{{ old('tel') }}">
+                    <input type="hidden" id="tel" name="tel" value="{{ old('tel') }}">
                 </div>
+                @if ($errors->has('tel'))
+                    <div class="error-msg">
+                        <strong>{{ $errors->first('tel') }}</strong>
+                    </div>
+                @endif
 			</div>
 			<div class="btn01-container">
 				<button type="button" onclick="submit();">設定</button>
