@@ -88,10 +88,6 @@ class InvoiceController extends Controller
         $companyUsers = CompanyUser::where('company_id', $partner->company_id)->get();
 
         $invoice = Invoice::find($id);
-        if (is_null($invoice)) {
-            abort(404);
-        }
-
         $task = Task::findOrFail($invoice->task_id);
         $total_sum = 0;
         $total_sum_notax = 0;
@@ -117,10 +113,7 @@ class InvoiceController extends Controller
 
     public function edit(Request $request, $invoice_id)
     {
-        $invoice = Invoice::find($invoice_id);
-        if (is_null($invoice)) {
-            abort(404);
-        }
+        $invoice = Invoice::findOrFail($invoice_id);
         $task = Task::findOrFail($invoice->task_id);
 
         $partner = Auth::user();
@@ -141,6 +134,7 @@ class InvoiceController extends Controller
 
     public function update(CreateInvoiceRequest $request, $invoice_id){
     // public function update(Request $request, $invoice_id){
+        dd(1);
         $partner = Auth::user();
         
         $company_id = $partner->company_id;
