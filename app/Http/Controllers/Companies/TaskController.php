@@ -77,15 +77,30 @@ class TaskController extends Controller
         if($request->query('pid')){
             $project_id = $request->query('pid');
             $project = Project::where('id', $project_id)->first();
+            
             return view('company/task/create', compact('project', 'company_users', 'partners', 'company_user', 'response'));
         } else {
             $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
             return view('company/task/create', compact('projects', 'company_users', 'partners', 'company_user', 'response'));
         }
+        return 'test';
+    }
+
+    public function temporary($task_id)
+    {
+        $task = Task::findOrFail($task_id);
+        $company_user = Auth::user();
+        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
+        
+        $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
+        $partners = Partner::where('company_id', $company_user->company_id)->get();
+        // プレビューから戻ってくるときに使用する変数
+        $response = '';
+        return view('company/task/create', compact('projects', 'company_users', 'partners', 'task', 'response'));
     }
 
     // プレビュー
-    public function preview(CreateTaskRequest $request)
+    public function temporarySaveOrToPreview(CreateTaskRequest $request)
     {
         switch ($request->input('temporarySaveOrPreview')){
             case 'toTemporarySave':

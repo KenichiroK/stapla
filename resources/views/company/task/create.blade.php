@@ -57,7 +57,7 @@ $(function(){
                 <div class="select-error-wrp">
                     <div class="select-area control">
                         <div class="select-wrp select is-info">
-
+                            
                             @if(isset($task->project_id))
                                 <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
                                     <option disabled selected></option>
@@ -66,11 +66,15 @@ $(function(){
                                     @endforeach
                                 </select>
                             @else
-                                <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                    <option disabled selected></option>
-                                    @foreach($projects as $project)
-                                        <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
-                                    @endforeach
+                                <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >                            
+                                    @if(isset($project))
+                                        <option value="{{ $project->id }}" selected>{{ $project->name }}</option>
+                                    @else
+                                        <option disabled selected></option>
+                                        @foreach($projects as $project)
+                                            <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             @endif
                             @if ($errors->has('project_id'))
@@ -424,7 +428,7 @@ $(function(){
                     @if(isset($task->status))
                         <input type="hidden" name='task_id' value="{{ $task->id }}">
                         <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporaryUpdate">下書更新</button>
-                        <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreviewUpdate" style="width:auto">updateプレビュー</button>
+                        <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreviewUpdate" style="width:auto">プレビュー</button>
                     @else
                         <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporarySave">下書保存</button>
                         <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreview" style="width:auto">プレビュー</button>

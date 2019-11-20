@@ -189,7 +189,7 @@ $(function(){
                 @if($task_status === config('const.TASK_CREATE'))
                     <input type="hidden" name='task_id' value="{{ $task->id }}">
                     <button class="undone" type="submit" onclick="submit();" name="editOrStore" value="toEdit">作成ページに戻る</button>
-                    <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStoreUpdate">update保存/上長に提出</button>
+                    <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStoreUpdate">保存/上長に提出</button>
                 @else
                     <button class="undone" type="submit" onclick="submit();" name="editOrStore" value="toEdit">作成ページに戻る</button>
                     <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStore">保存/上長に提出</button>
