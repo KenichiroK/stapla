@@ -23,7 +23,7 @@ class TaskStatusController extends Controller
             $task->save();
 
             sendNotificationUpdatedTaskStatusFromCompany($task, $prev_status);
-            sendNotificationUpdatedTaskStatusToProjectCompany($task);
+            sendNotificationUpdatedTaskStatusToProjectCompany($task, $prev_status);
 
             \Log::info('タスクstatus変更後', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
             return redirect()->route('company.task.show', ['id' => $task->id]);
