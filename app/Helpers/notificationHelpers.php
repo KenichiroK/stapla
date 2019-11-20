@@ -141,9 +141,48 @@ if (!function_exists('sendNotificationUpdatedTaskStatusFromPartner')) {
 
 // project にアサインしている担当者に通知を送信する
 if (!function_exists('sendNotificationUpdatedTaskStatusToProjectCompany')) {
-    function sendNotificationUpdatedTaskStatusToProjectCompany(Task $task)
+    function sendNotificationUpdatedTaskStatusToProjectCompany(Task $task, $prev_status)
     {
         $project_companies = ProjectCompany::where('project_id', $task->project_id)->get();
+
+        $company_user_status_arr = [
+            config('const.TASK_CREATE'), 
+            config('const.TASK_APPROVAL_SUPERIOR'), 
+            config('const.TASK_APPROVAL_PARTNER'), 
+            config('const.ORDER_APPROVAL_SUPERIOR'), 
+            config('const.DELIVERY_PARTNER'),
+            config('const.INVOICE_CREATE'), 
+            config('const.APPROVAL_ACCOUNTING'), 
+        ];
+        $superior_status_arr     = [
+            config('const.TASK_SUBMIT_SUPERIOR'),
+            config('const.ORDER_SUBMIT_SUPERIOR')
+        ];
+        $accounting_status_arr   = [
+            config('const.SUBMIT_ACCOUNTING')
+        ];
+        $partner_status_arr      = [
+            config('const.TASK_SUBMIT_PARTNER'),
+            config('const.ORDER_SUBMIT_PARTNER'),
+            config('const.ORDER_APPROVAL_PARTNER'),
+            config('const.WORKING'),
+            config('const.ACCEPTANCE'),
+        ];
+
+        $nextActionUser = "";
+
+        if (in_array($task->status, $company_user_status_arr)) {
+            $nextActionUser = $task->companyUser->name;
+        } elseif (in_array($task->status, $superior_status_arr)) {
+            $nextActionUser = $task->superior->name;
+        } elseif (in_array($task->status, $accounting_status_arr)) {
+            $nextActionUser = $task->accounting->name;
+        } elseif (in_array($task->status, $partner_status_arr))  {
+            $nextActionUser = $task->partner->name;
+        } else {
+            $nextActionUser = 'なし';
+        }
+
         foreach ($project_companies as $project_company) {
             if (
                 $project_company->user_id    !== $task->company_user_id
@@ -156,7 +195,9 @@ if (!function_exists('sendNotificationUpdatedTaskStatusToProjectCompany')) {
                         $task, 
                         $task->status,
                         false,
-                        false
+                        false,
+                        $prev_status,
+                        $nextActionUser
                     ));
             }
         }

@@ -40,7 +40,7 @@ class DeliverController extends Controller
             \Log::info('納品履歴', ['user_id(partner)' => $auth->id, 'task_id' => $task->id]);
 
             sendNotificationUpdatedTaskStatusFromPartner($task, $prev_status);
-            sendNotificationUpdatedTaskStatusToProjectCompany($task);
+            sendNotificationUpdatedTaskStatusToProjectCompany($task, $prev_status);
 
             if ($task->status === config('const.APPROVAL_ACCOUNTING')) {
                 return redirect()->route('partner.invoice.show', ['id' => $request->invoice_id]);
