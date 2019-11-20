@@ -185,9 +185,10 @@ $(function(){
                     </div>
                 </div>
   
-                <div class="actionButton">
-                    <button class="undone" type="submit" onclick="submit();" name="editOrStore" value="toEdit">作成ページに戻る</button>
-                    <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStore">保存/上長に提出</button>
+                <div class="btn01-container">
+                    <button class="back_button" type="submit" onclick="submit();" name="editOrStore" value="toEdit">戻る</button>
+                    <!-- <a href="javascript:history.back();">戻る</a> -->
+                    <button type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStore">保存/上長</button>
                 </div>
 
             </div>
