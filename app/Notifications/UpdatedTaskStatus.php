@@ -23,12 +23,14 @@ class UpdatedTaskStatus extends Notification
      *
      * @return void
      */
-    public function __construct(Task $task, $status, $sendMail, $receiverIsPartner)
+    public function __construct(Task $task, $status, $receiverIsPartner, $needAction, $prevStatus = null, $nextActionUser = null)
     {
         $this->task              = $task;
         $this->status            = $status;
-        $this->sendMail          = $sendMail;
         $this->receiverIsPartner = $receiverIsPartner;
+        $this->needAction        = $needAction;
+        $this->prevStatus        = $prevStatus;
+        $this->nextActionUser    = $nextActionUser;
     }
 
     /**
@@ -39,7 +41,7 @@ class UpdatedTaskStatus extends Notification
      */
     public function via($notifiable)
     {
-        return $this->sendMail ? ['mail', DatabaseChannel::class] : [DatabaseChannel::class];
+        return ['mail', DatabaseChannel::class];
     }
 
     /**
@@ -50,13 +52,24 @@ class UpdatedTaskStatus extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->subject('[impro] 確認依頼 : '.$this->task->name)
-                    ->markdown('emails.updated_task_status', [
-                        'task'     => $this->task->name,
-                        'receiver' => $this->receiverIsPartner ? Partner::findOrFail($notifiable->id)->name : CompanyUser::findOrFail($notifiable->id)->name,
-                        'url'      => $this->receiverIsPartner ? url()->route('partner.task.show', ['id' => $this->task->id]) : url()->route('company.task.show', ['id' => $this->task->id])
-                    ]);
+        return $this->needAction
+            ? (new MailMessage)
+                ->subject('[impro] 確認依頼 : '.$this->task->name)
+                ->markdown('emails.updated_task_status', [
+                    'task'     => $this->task->name,
+                    'receiver' => $this->receiverIsPartner ? Partner::findOrFail($notifiable->id)->name : CompanyUser::findOrFail($notifiable->id)->name,
+                    'url'      => $this->receiverIsPartner ? url()->route('partner.task.show', ['id' => $this->task->id]) : url()->route('company.task.show', ['id' => $this->task->id])
+                ])
+            : (new MailMessage)
+                ->subject('[impro] '.$this->task->name.'のステータスが変更されました。')
+                ->markdown('emails.updated_task_status_non_action', [
+                    'task'             => $this->task->name,
+                    'next_status'      => $this->status,
+                    'receiver'         => $this->receiverIsPartner ? Partner::findOrFail($notifiable->id)->name : CompanyUser::findOrFail($notifiable->id)->name,
+                    'url'              => $this->receiverIsPartner ? url()->route('partner.task.show', ['id' => $this->task->id]) : url()->route('company.task.show', ['id' => $this->task->id]),
+                    'prev_status'      => $this->prevStatus,
+                    'next_action_user' => $this->nextActionUser,
+                ]);
     }
 
     /**

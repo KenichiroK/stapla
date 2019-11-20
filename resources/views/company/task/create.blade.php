@@ -25,7 +25,9 @@ $(function(){
 
 @section('content')
 <div class="main__container">
+    
     <form action="{{ route('company.task.preview') }}" method='POST' class="main__container__wrapper">
+    
         @csrf
         @if(count($errors) > 0)
             <div class="error-container">
@@ -38,7 +40,7 @@ $(function(){
             </div>
         @endif
 
-        
+
         <!-- ページタイトル エリア -->
         <div class="page-title-container">
             <div class="page-title-container__page-title">タスク作成</div>
@@ -69,8 +71,8 @@ $(function(){
                                     @foreach($projects as $project)
                                         <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
                                     @endforeach
-                                @endif
-                            </select>
+                                </select>
+                            @endif
                             @if ($errors->has('project_id'))
                                 <div class="invalid-feedback error-msg" role="alert">
                                     <strong>{{ $errors->first('project_id') }}</strong>
@@ -167,7 +169,7 @@ $(function(){
                                                 <strong>{{ $errors->first('company_user_id') }}</strong>
                                             </div>
                                         @endif
-
+                                        
                                     </div>
                                 </div> 
                             </div>
@@ -244,9 +246,9 @@ $(function(){
 
                                     </div>
                                 </div>
+
                             </div>
                         </div>
-
                         <!-- 項目：締め切り -->
                         <div class="item-container">
                             <div class="item-name-wrapper period">
@@ -313,7 +315,6 @@ $(function(){
                                 </div>
                             </div>
                         </div>
-
                         <!-- 予算 -->
                         <div class="item-container">
                             <div class="item-name-wrapper">
@@ -334,10 +335,10 @@ $(function(){
                                             <strong>{{ $errors->first('budget') }}</strong>
                                         </div>
                                     @endif
+                                    
                                     <div class="input-yen">
                                         円
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -381,7 +382,7 @@ $(function(){
                                 </div>
                             </div>
                         </div>
-
+                        
                         <!-- 発注単価・件数 -->
                         <div class="item-container order__unit-number">
                             <div class="order-wrp">
@@ -392,7 +393,7 @@ $(function(){
                                         発注単価<span class="tax">（税抜）</span>
                                     </div>
                                 </div>
-
+                                    
                                 <div class="unit-num">
                                     <!-- 発注単位 input -->
                                     <div class="unit-num_contents">
@@ -407,10 +408,10 @@ $(function(){
                                                 <strong>{{ $errors->first('price') }}</strong>
                                             </div>
                                         @endif
+
                                         <div class="aux-text">
                                             円
                                         </div>
-
                                     </div>  
                                 </div>
                             </div>
@@ -419,6 +420,7 @@ $(function(){
                 </div>
 
                 <div class="actionButton">
+
                     @if(isset($task->status))
                         <input type="hidden" name='task_id' value="{{ $task->id }}">
                         <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporaryUpdate">下書更新</button>
@@ -427,8 +429,8 @@ $(function(){
                         <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporarySave">下書保存</button>
                         <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreview" style="width:auto">プレビュー</button>
                     @endif
-                </div>
 
+                </div>  
             </div>
         </div>
     </form>

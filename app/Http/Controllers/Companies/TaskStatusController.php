@@ -18,10 +18,11 @@ class TaskStatusController extends Controller
         
         if($task->count()) {
             \Log::info('タスクstatus変更前', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
+            $prev_status = $task->status;
             $task->status = (int)$request->status;
             $task->save();
 
-            sendNotificationUpdatedTaskStatusFromCompany($task);
+            sendNotificationUpdatedTaskStatusFromCompany($task, $prev_status);
             sendNotificationUpdatedTaskStatusToProjectCompany($task);
 
             \Log::info('タスクstatus変更後', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);

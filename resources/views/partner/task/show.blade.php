@@ -78,7 +78,14 @@
                     </div>
                 </dd>
             </dl>
-
+            <!-- <dl>
+                <dt>
+                    報酬形式
+                </dt>
+                <dd>
+                    固定
+                </dd>
+            </dl> -->
             <dl>
                 <dt>
                     発注単価<span>(税抜)</span>
@@ -87,7 +94,14 @@
                     {{ number_format($task->budget) }}円
                 </dd>
             </dl>
-
+            <!-- <dl>
+                <dt>
+                    件数
+                </dt>
+                <dd>
+                    {{ $task->project->tasks->count() }}件
+                </dd>
+            </dl> -->
             <dl>
                 <dt>
                     発注額

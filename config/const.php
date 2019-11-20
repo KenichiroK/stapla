@@ -46,8 +46,4 @@ return array(
     '完了',
     'キャンセル',
   ],
-
-  'FREE_TAX' => 0,
-  'REDUCED_EIGHT_TAX' => 0.08,
-  'TEN_TAX' => 0.1,
 );
