@@ -38,6 +38,7 @@ $(function(){
             </div>
         @endif
 
+        
         <!-- ページタイトル エリア -->
         <div class="page-title-container">
             <div class="page-title-container__page-title">タスク作成</div>
@@ -421,10 +422,11 @@ $(function(){
                     @if(isset($task->status))
                         <input type="hidden" name='task_id' value="{{ $task->id }}">
                         <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporaryUpdate">下書更新</button>
+                        <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreviewUpdate" style="width:auto">updateプレビュー</button>
                     @else
                         <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporarySave">下書保存</button>
-                    @endempty
-                    <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreview" style="width:auto">プレビュー</button>
+                        <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreview" style="width:auto">プレビュー</button>
+                    @endif
                 </div>
 
             </div>

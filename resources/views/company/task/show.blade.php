@@ -153,115 +153,115 @@
                     ステータス
                 </dt>
                 <dd class="status-desc">
-                    @if(($task->status) === 0)
+                    @if(($task->status) === config('const.TASK_CREATE'))
                         下書き
-                    @elseif(($task->status) === 1)
+                    @elseif(($task->status) === config('const.TASK_SUBMIT_SUPERIOR'))
                         タスク上長確認中
-                    @elseif(($task->status) === 2)
+                    @elseif(($task->status) === config('const.TASK_APPROVAL_SUPERIOR'))
                         タスクパートナー依頼前
-                    @elseif(($task->status) === 3)
+                    @elseif(($task->status) === config('const.TASK_SUBMIT_PARTNER'))
                         タスクパートナー確認中
-                    @elseif(($task->status) === 4)
+                    @elseif(($task->status) === config('const.TASK_APPROVAL_PARTNER'))
                         発注書作成前
-                    @elseif(($task->status) === 5)
+                    @elseif(($task->status) === config('const.ORDER_SUBMIT_SUPERIOR'))
                         発注書上長確認中
-                    @elseif(($task->status) === 6)
+                    @elseif(($task->status) === config('const.ORDER_APPROVAL_SUPERIOR'))
                         発注書パートナー依頼前
-                    @elseif(($task->status) === 7)
+                    @elseif(($task->status) === config('const.ORDER_SUBMIT_PARTNER'))
                         発注書パートナー確認中
-                    @elseif(($task->status) === 8)
+                    @elseif(($task->status) === config('const.ORDER_APPROVAL_PARTNER'))
                         作業前
-                    @elseif(($task->status) === 9)
+                    @elseif(($task->status) === config('const.WORKING'))
                         作業中
-                    @elseif(($task->status) === 10)
+                    @elseif(($task->status) === config('const.DELIVERY_PARTNER'))
                         検品中
-                    @elseif(($task->status) === 11)
+                    @elseif(($task->status) === config('const.ACCEPTANCE'))
                         請求書作成前
-                    @elseif(($task->status) === 12)
+                    @elseif(($task->status) === config('const.INVOICE_DRAFT_CREATE'))
                         請求書下書き
-                    @elseif(($task->status) === 13)
+                    @elseif(($task->status) === config('const.INVOICE_CREATE'))
                         請求書担当者確認前
-                    @elseif(($task->status) === 14)
+                    @elseif(($task->status) === config('const.SUBMIT_STAFF'))
                         請求書担当者確認中
-                    @elseif(($task->status) === 15)
+                    @elseif(($task->status) === config('const.SUBMIT_ACCOUNTING'))
                         請求書経理確認中
-                    @elseif(($task->status) === 16)
+                    @elseif(($task->status) === config('const.APPROVAL_ACCOUNTING'))
                         請求書経理承認済み
-                    @elseif(($task->status) === 17)
+                    @elseif(($task->status) === config('const.COMPLETE_STAFF'))
                         完了
-                    @elseif(($task->status) === 18)
+                    @elseif(($task->status) === config('const.TASK_CANCELED'))
                         キャンセル
                     @endif
                 </dd>
             </dl>
         </div>
-        
+        {{ config('const.') }}
         <div class="actionButton">
-            @if($task->status === 0)
+            @if($task->status === config('const.TASK_CREATE'))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="1">
                     <button type="submit" class="done">上長に確認を依頼する</button>
                 </form>
-            @elseif($task->status === 1 && $task->superior->id === $auth->id)
+            @elseif($task->status === config('const.TASK_SUBMIT_SUPERIOR') && $task->superior->id === $auth->id)
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="0">
+                    <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                     <button type="submit" class="undone">タスクを承認しない</button>
                 </form>
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="2">
+                    <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_SUPERIOR') }}">
                     <button type="submit" class="done">タスクを承認する</button>
                 </form>
-            @elseif($task->status === 2 && in_array($auth->id, $company_user_ids))
+            @elseif($task->status === config('const.TASK_APPROVAL_SUPERIOR') && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="3">
+                    <input type="hidden" name="status" value="{{ config('const.TASK_SUBMIT_PARTNER') }}">
                     <button type="submit" class="done">パートナーに依頼する</button>
                 </form>
-            @elseif($task->status === 4 && in_array($auth->id, $company_user_ids))
+            @elseif($task->status === config('const.TASK_APPROVAL_PARTNER') && in_array($auth->id, $company_user_ids))
                 <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="done">発注書を作成する</a>
-            @elseif($task->status === 5 && $task->superior->id === $auth->id)
+            @elseif($task->status === config('const.ORDER_SUBMIT_SUPERIOR') && $task->superior->id === $auth->id)
                 <a class="done" href="{{ route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}">発注書を確認する</a>
-            @elseif($task->status === 6 && in_array($auth->id, $company_user_ids))
+            @elseif($task->status === config('const.ORDER_APPROVAL_SUPERIOR') && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="7">
+                    <input type="hidden" name="status" value="{{ config('const.ORDER_SUBMIT_PARTNER') }}">
                     <button type="submit" class="done">発注書をパートナーに依頼する</button>
                 </form>
-            @elseif($task->status === 10 && in_array($auth->id, $company_user_ids))
+            @elseif($task->status === config('const.DELIVERY_PARTNER') && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="9">
+                    <input type="hidden" name="status" value="{{ config('const.WORKING') }}">
                     <button type="submit" class="undone">再納品を依頼</button>
                 </form>
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="11">
+                    <input type="hidden" name="status" value="{{ config('const.ACCEPTANCE') }}">
                     <button type="submit" class="done">検収</button>
                 </form>
-            @elseif($task->status === 13 && in_array($auth->id, $company_user_ids))
+            @elseif($task->status === config('const.INVOICE_CREATE') && in_array($auth->id, $company_user_ids))
                 <a href="{{ route('company.document.invoice.show', ['id' => $invoice->id]) }}" class="done">請求書を確認する</a>
-            @elseif($task->status === 15 && $task->accounting->id === $auth->id)
+            @elseif($task->status === config('const.SUBMIT_ACCOUNTING') && $task->accounting->id === $auth->id)
                 <a href="{{ route('company.document.invoice.show', ['id' => $invoice->id]) }}" class="done">請求書を確認する</a>
-            @elseif($task->status === 16 && in_array($auth->id, $company_user_ids))
+            @elseif($task->status === config('const.APPROVAL_ACCOUNTING') && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="17">
+                    <input type="hidden" name="status" value="{{ config('const.COMPLETE_STAFF') }}">
                     <button type="submit" class="done">タスクを完了にする</button>
                 </form>
-            @elseif($task->status === 17)
+            @elseif($task->status === config('const.COMPLETE_STAFF'))
                 <p class="non-action-text">このタスクは完了しています</p>
-            @elseif($task->status === 18)
+            @elseif($task->status === config('const.TASK_CANCELED'))
                 <p class="non-action-text">このタスクはキャンセルされています</p>
             @else
                 <p class="non-action-text">必要なアクションはありません</p>

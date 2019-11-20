@@ -190,7 +190,9 @@ class TaskController extends Controller
                                 ->with('completed', '「'.$task->name.'」の下書きを更新しました。');
             break;
 
-            case 'toPreview':
+            case 'toPreviewUpdate':
+                $task = Task::findOrFail($request->task_id);
+
                 $company_user = Auth::user();
                 $project = Project::findOrFail($request->project_id);
                 // 担当者
@@ -212,6 +214,32 @@ class TaskController extends Controller
                 // タスクステータス
                 $task_status = 0;
         
+                return view('company.task.preview', compact('request', 'task',  'company_user', 'project', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'task_status'));
+
+            break;
+
+            case 'toPreview':
+                $company_user = Auth::user();
+                $project = Project::findOrFail($request->project_id);
+                // 担当者
+                $person_in_charge = CompanyUser::findOrFail($request->company_user_id);
+                // 上長
+                if(isset($request->superior_id)){
+                    $superior_user = CompanyUser::findOrFail($request->superior_id);
+                } else{
+                    $superior_user = null;
+                }
+                // 経理
+                if(isset($request->accounting_id)){
+                    $accounting_user = CompanyUser::findOrFail($request->accounting_id);
+                } else{
+                    $accounting_user = null;
+                }
+                // パートナー
+                $partner = Partner::findORFail($request->partner_id);
+                // タスクステータス
+                $task_status = '';
+        
                 return view('company.task.preview', compact('request', 'company_user', 'project', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'task_status'));
             break;
                 
@@ -226,6 +254,35 @@ class TaskController extends Controller
         switch ($request->input('editOrStore')) {
             case 'toEdit':
                 return redirect()->route('company.task.create')->withInput($request->all());
+            break;
+
+            case 'toStoreUpdate';
+            $task = Task::findOrFail($request->task_id);
+            $auth = Auth::user();
+            $task->project_id      = $request->project_id;
+            $task->company_id      = $auth->company_id;
+            $task->company_user_id = $request->company_user_id;
+            $task->superior_id     = $request->superior_id;
+            $task->accounting_id   = $request->accounting_id;
+            $task->partner_id      = $request->partner_id;
+            $task->name            = $request->name;
+            $task->content         = $request->content;
+            $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
+            $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
+            $task->status          = config('const.TASK_SUBMIT_SUPERIOR');
+            $task->purchaseorder   = false;
+            $task->invoice         = false;
+            $task->budget          = $request->budget;
+            $task->tax             = config('const.FREE_TAX');
+            $task->price           = $request->price;
+            $task->cases           = 1;
+            $task->fee_format      = "固定";
+            $task->save();
+            \Log::info('タスク新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
+
+            sendNotificationAssignedTask($task);
+
+            return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
             break;
 
             case 'toStore';
