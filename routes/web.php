@@ -156,14 +156,24 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
 			// task statusIndex
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
-			// task-create
+		
+			// 作成ページ
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
+			// 下書きがある場合の作成ページ
+		Route::get('/task/create/{task_id}', 'Companies\TaskController@createDraft')->name('company.task.createDraft');
+
 		Route::post('/task/preview', 'Companies\TaskController@temporarySaveOrToPreview')->name('company.task.preview');
-				// task-create-temporaryUpdate
-		Route::get('/task/create/{task_id}', 'Companies\TaskController@temporary')->name('company.task.temporary');
-			// task-store
+
+			// 下書きとして保存
+		Route::post('/task/draft', 'Companies\TaskController@draft')->name('company.task.draft');
+			// 下書きを更新
+		Route::post('/task/update-draft', 'Companies\TaskController@updateDraft')->name('company.task.updateDraft');
+			// プレビュー
+		Route::post('/task/preview', 'Companies\TaskController@preview')->name('company.task.preview');
+
+			// タスク登録
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
-			// task-show
+			// タスク詳細
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
 			// task-edit
 		Route::get('/task/{id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');

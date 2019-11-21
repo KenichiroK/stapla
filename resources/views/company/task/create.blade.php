@@ -424,14 +424,19 @@ $(function(){
                 </div>
 
                 <div class="actionButton">
-
+                    {{ $task }}
                     @if(isset($task->status))
                         <input type="hidden" name='task_id' value="{{ $task->id }}">
-                        <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporaryUpdate">下書更新</button>
-                        <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreviewUpdate" style="width:auto">プレビュー</button>
+                        <!-- <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporaryUpdate">下書更新</button> -->
+                        <!-- 下書きを更新 -->
+                        <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.updateDraft') }}">下書更新</button>
+                        <!-- <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreviewUpdate" style="width:auto">プレビュー</button> -->
+                        <button class="done" type="submit" onclick="submit();" formaction="{{ route('company.task.preview') }}" style="width:auto">更新プレビュー</button>
                     @else
-                        <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporarySave">下書保存</button>
-                        <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreview" style="width:auto">プレビュー</button>
+                    <input type="hidden" name='task_id' value="{{ $task }}">
+                        <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.draft') }}">下書保存</button>
+                        <!-- <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreview" style="width:auto">保存プレビュー</button> -->
+                        <button class="done" type="submit" onclick="submit();" formaction="{{ route('company.task.preview') }}" style="width:auto">保存プレビュー</button>
                     @endif
 
                 </div>  
