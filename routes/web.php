@@ -60,6 +60,7 @@ Route::group(['prefix' => 'partner'], function(){
 		
 		// project
 		Route::get('/project', 'Partners\ProjectController@index')->name('partner.project.index');
+		Route::get('/project/done', 'Partners\ProjectController@doneIndex')->name('partner.project.done.index');
 		Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
 
 		// task
