@@ -45,5 +45,9 @@ return array(
     '請求書経理承認済み',
     '完了',
     'キャンセル',
+
+    'FREE_TAX' => 0,
+    'REDUCED_EIGHT_TAX' => 0.08,
+    'TEN_TAX' => 0.1,
   ],
 );
