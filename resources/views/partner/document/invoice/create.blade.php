@@ -297,7 +297,8 @@ window.onload = () => {
 
 var addTaskCnt = 0;
 const addtaskRequest = () => {
-    addTaskCnt++;
+	addTaskCnt++;
+
     const taskRequest = document.getElementById('taskRequest');
     const inner = `
     <tr>
@@ -319,10 +320,10 @@ const addtaskRequest = () => {
     </tr>`;
     taskRequest.insertAdjacentHTML('beforeend', inner);
 
-    var taskElement = document.querySelectorAll('td.del-task-record');
-    taskElement.forEach(function(val, i){
-    val.setAttribute('value', (i+1));
-    });
+    // var taskElement = document.querySelectorAll('td.del-task-record');
+    // taskElement.forEach(function(val, i){
+    // val.setAttribute('value', (i+1));
+    // });
 }
 
 const addExpences = () => {
