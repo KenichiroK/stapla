@@ -18,7 +18,7 @@ class TaskController extends Controller
     {
         $partner = Auth::user();
         $tasks = Task::where('partner_id', $partner->id)
-                                ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
+                                ->whereNotIn('status', [config('const.TASK_CREATE'), config('const.TASK_SUBMIT_SUPERIOR'), config('const.TASK_APPROVAL_SUPERIOR'), config('const.COMPLETE_STAFF')])
                                 ->get();
         return view('partner/task/index', compact('tasks'));
     }

@@ -5,25 +5,25 @@ return array(
   'PROJECT_COMPLETE' => 1,
   'PROJECT_CANCELED' => 2,
 
-  'TASK_CREATE'             => 0,
-  'TASK_SUBMIT_SUPERIOR'    => 1,
-  'TASK_APPROVAL_SUPERIOR'  => 2,
-  'TASK_SUBMIT_PARTNER'     => 3,
-  'TASK_APPROVAL_PARTNER'   => 4,
-  'ORDER_SUBMIT_SUPERIOR'   => 5,
-  'ORDER_APPROVAL_SUPERIOR' => 6,
-  'ORDER_SUBMIT_PARTNER'    => 7,
-  'ORDER_APPROVAL_PARTNER'  => 8,
-  'WORKING'                 => 9,
-  'DELIVERY_PARTNER'        => 10,
-  'ACCEPTANCE'              => 11,
-  'INVOICE_DRAFT_CREATE'    => 12,
-  'INVOICE_CREATE'          => 13,
-  'SUBMIT_STAFF'            => 14,
-  'SUBMIT_ACCOUNTING'       => 15,
-  'APPROVAL_ACCOUNTING'     => 16,
-  'COMPLETE_STAFF'          => 17,
-  'TASK_CANCELED'           => 18,
+  'TASK_CREATE'             => 0,  // 下書き
+  'TASK_SUBMIT_SUPERIOR'    => 1,  // タスク上長確認中
+  'TASK_APPROVAL_SUPERIOR'  => 2,  // タスクパートナー依頼前
+  'TASK_SUBMIT_PARTNER'     => 3,  // タスクパートナー確認中
+  'TASK_APPROVAL_PARTNER'   => 4,  // 発注書作成前
+  'ORDER_SUBMIT_SUPERIOR'   => 5,  // 発注書上長確認中
+  'ORDER_APPROVAL_SUPERIOR' => 6,  // 発注書パートナー依頼前
+  'ORDER_SUBMIT_PARTNER'    => 7,  // 発注書パートナー確認中
+  'ORDER_APPROVAL_PARTNER'  => 8,  // 作業前
+  'WORKING'                 => 9,  // 作業中
+  'DELIVERY_PARTNER'        => 10, // 検品中
+  'ACCEPTANCE'              => 11, // 請求書作成前
+  'INVOICE_DRAFT_CREATE'    => 12, // 請求書下書き
+  'INVOICE_CREATE'          => 13, // 請求書担当者確認前
+  'SUBMIT_STAFF'            => 14, // 請求書担当者確認中
+  'SUBMIT_ACCOUNTING'       => 15, // 請求書経理提出
+  'APPROVAL_ACCOUNTING'     => 16, // 請求書経理承認済み
+  'COMPLETE_STAFF'          => 17, // 完了
+  'TASK_CANCELED'           => 18, // キャンセル
 
   'TASK_STATUS_LIST' => [
     '下書き',
@@ -46,4 +46,8 @@ return array(
     '完了',
     'キャンセル',
   ],
+
+  'FREE_TAX' => 0,
+  'REDUCED_EIGHT_TAX' => 0.08,
+  'TEN_TAX' => 0.1,
 );
