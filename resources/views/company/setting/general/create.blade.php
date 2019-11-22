@@ -3,25 +3,6 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/setting/general/index.css') }}">
-<script>
-// 郵便番号自動遷移
-function nextField(t, name, maxlength){
-    if(t.value.length >= maxlength){
-        t.form.elements[name].focus();
-    }
-}
-
-function setPostal(){
-  const postal_front = document.getElementById('postal_front').value;
-  const postal_back = document.getElementById('postal_back').value;
-  const postal = document.getElementById('postal');
-  postal.value = postal_front + postal_back;
-}
-
-window.onload = function(){
-  setPostal();
-}
-</script>
 @endsection
 
 @section('content')
@@ -77,18 +58,18 @@ window.onload = function(){
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
 						@if($company)
-							<input id="postal_front" class="input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($company->zip_code, 0, 3)) }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
+							<input id="postal_front" class="input" type="text" name="zip_code_front" value="{{ old('zip_code_front', substr($company->zip_code, 0, 3)) }}" maxlength="3">
 							<span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($company->zip_code, 3, 7)) }}" maxlength="4" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', substr($company->zip_code, 3, 7)) }}" maxlength="4">
                             <input id="postal" type="hidden" name="zip_code">
 						@else
-							<input class="input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
+							<input class="input" type="text" name="zip_code_front" value="{{ old('zip_code_front') }}" maxlength="3">
                             <span class="hyphen">
 								<hr>
 							</span>
-							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" maxlength="4" onchange="setPostal()">
+							<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back') }}" maxlength="4">
                             <input id="postal" type="hidden" name="zip_code">
 						@endif
 						
@@ -172,5 +153,5 @@ window.onload = function(){
 @endsection
 
 @section('asset-js')
-<script src="{{ asset('js/common/set-tel.js') }}" defer></script>
+<script src="{{ asset('js/company/setting/general/index.js') }}" defer></script>
 @endsection

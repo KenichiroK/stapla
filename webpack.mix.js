@@ -68,6 +68,7 @@ mix.js(
     "public/js/common/update-notification-mark-as-read.js"
 );
 
+
 mix.js(
     [
         // update notification read_at using ajax
@@ -78,11 +79,11 @@ mix.js(
 
 mix.js(
     [
-        // setting tel 
-        "resources/js/common/set-tel.js"
+        // setting tel and postal in company setting general
+        "resources/js/company/setting/general/index.js"
     ],
-    "public/js/common/set-tel.js"
-)
+    "public/js/company/setting/general/index.js"
+);
 
 mix.sass(
     "resources/sass/company/common/index.scss",
