@@ -205,24 +205,20 @@ class TaskController extends Controller
             $task = Task::findOrFail($request->task_id);
             $company_user = Auth::user();
             $project = Project::findOrFail($request->project_id);
-            // 担当者
             $person_in_charge = CompanyUser::findOrFail($request->company_user_id);
-            // 上長
             if(isset($request->superior_id)){
                 $superior_user = CompanyUser::findOrFail($request->superior_id);
             } else{
                 $superior_user = null;
             }
-            // 経理
             if(isset($request->accounting_id)){
                 $accounting_user = CompanyUser::findOrFail($request->accounting_id);
             } else{
                 $accounting_user = null;
             }
-            // パートナー
             $partner = Partner::findORFail($request->partner_id);
-            // タスクステータス
-            $task_status = 0;
+            // タスクステータスを下書きに
+            $task_status = config('const.TASK_CREATE');
     
             return view('company.task.preview', compact('request', 'task',  'company_user', 'project', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'task_status'));
 
@@ -230,41 +226,42 @@ class TaskController extends Controller
         } else{
             $company_user = Auth::user();
             $project = Project::findOrFail($request->project_id);
-            // 担当者
             $person_in_charge = CompanyUser::findOrFail($request->company_user_id);
-            // 上長
             if(isset($request->superior_id)){
                 $superior_user = CompanyUser::findOrFail($request->superior_id);
             } else{
                 $superior_user = null;
             }
-            // 経理
             if(isset($request->accounting_id)){
                 $accounting_user = CompanyUser::findOrFail($request->accounting_id);
             } else{
                 $accounting_user = null;
             }
-            // パートナー
             $partner = Partner::findORFail($request->partner_id);
-            // タスクステータス
-            $task_status = '';
 
-            return view('company.task.preview', compact('request', 'company_user', 'project', 'person_in_charge', 'superior_user', 'accounting_user', 'partner', 'task_status'));
+            return view('company.task.preview', compact('request', 'company_user', 'project', 'person_in_charge', 'superior_user', 'accounting_user', 'partner'));
+        }
+    }
+
+    // 再編集
+    public function reCreate(Request $request)
+    {
+        if($request->task_id){
+            $task = Task::findOrFail($request->task_id);
+            return redirect()->route('company.task.createDraft' ,['task_id' => $task->id])
+                                ->withInput($request->all());
+        } else{
+            $task = null;
+            return redirect()->route('company.task.create')
+                                ->withInput($request->all());
         }
     }
 
     // 保存
     public function store(Request $request)
     {
-        switch ($request->input('editOrStore')) {
-            case 'toEdit';
-                $task = Task::findOrFail($request->task_id);
-                return redirect()->route('company.task.create')
-                                    ->with('task')
-                                    ->withInput($request->all());
-            break;
-
-            case 'toStoreUpdate';
+        // 下書き保存済みのタスクは更新
+        if(isset($request->task_id)){
             $task = Task::findOrFail($request->task_id);
             $auth = Auth::user();
             $task->project_id      = $request->project_id;
@@ -291,9 +288,9 @@ class TaskController extends Controller
             sendNotificationAssignedTask($task);
 
             return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
-            break;
 
-            case 'toStore';
+        // 新タスクとして登録
+        } else{
             $auth = Auth::user();
             $task = new Task;
             $task->project_id      = $request->project_id;
@@ -320,7 +317,6 @@ class TaskController extends Controller
             sendNotificationAssignedTask($task);
 
             return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
-            break;
         }
     }
 

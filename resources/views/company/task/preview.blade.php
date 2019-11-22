@@ -184,16 +184,18 @@ $(function(){
                         </div>
                     </div>
                 </div>
-  
+
                 <div class="actionButton">
-                @if($task_status === config('const.TASK_CREATE'))
-                    <input type="hidden" name='task_id' value="{{ $task->id }}">
-                    <button class="undone" type="submit" onclick="submit();" name="editOrStore" value="toEdit">作成ページに戻る</button>
-                    <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStoreUpdate">保存/上長に提出</button>
-                @else
-                    <button class="undone" type="submit" onclick="submit();" name="editOrStore" value="toEdit">作成ページに戻る</button>
-                    <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStore">保存/上長に提出</button>
-                @endif
+                    @if(isset($task))
+                        <!-- 下書き保存されているタスクの場合 -->
+                        <input type="text" name='task_id' value="{{ $task->id }}">
+                        <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">更新作成ページに戻る</button>
+                        <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStoreUpdate">更新保存/上長に提出</button>
+                    @else
+                        <!-- 新規作成のタスクの場合 -->
+                        <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
+                        <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStore">保存/上長に提出</button>
+                    @endif
                 </div>
 
             </div>

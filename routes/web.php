@@ -162,16 +162,14 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
 			// 下書きがある場合の作成ページ
 		Route::get('/task/create/{task_id}', 'Companies\TaskController@createDraft')->name('company.task.createDraft');
-
-		Route::post('/task/preview', 'Companies\TaskController@temporarySaveOrToPreview')->name('company.task.preview');
-
-			// 下書きとして保存
+ 			// 下書きとして保存
 		Route::post('/task/draft', 'Companies\TaskController@draft')->name('company.task.draft');
 			// 下書きを更新
 		Route::post('/task/update-draft', 'Companies\TaskController@updateDraft')->name('company.task.updateDraft');
 			// プレビュー
 		Route::post('/task/preview', 'Companies\TaskController@preview')->name('company.task.preview');
-
+			// タスク再編集
+		Route::post('/task/recreate', 'Companies\TaskController@reCreate')->name('company.task.reCreate');
 			// タスク登録
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// タスク詳細
