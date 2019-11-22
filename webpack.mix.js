@@ -29,6 +29,13 @@ mix.js(
     "public/js/app.js"
 );
 
+mix.babel(
+    [
+        "resources/js/partner/document/invoice/create.js"
+    ],
+    "public/js/partner/document/invoice/create.js"
+)
+
 mix.js(
     [
         //PDF
