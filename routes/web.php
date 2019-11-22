@@ -80,8 +80,8 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('/deliver', 'Partners\DeliverController@store')->name('partner.deliver.store');
 		
 		// profile
-		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.setting.profile.create');
-		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.setting.profile.store');
+		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
+		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
 		
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
