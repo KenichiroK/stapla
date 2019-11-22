@@ -133,8 +133,6 @@ class InvoiceController extends Controller
     }
 
     public function update(CreateInvoiceRequest $request, $invoice_id){
-    // public function update(Request $request, $invoice_id){
-        dd(1);
         $partner = Auth::user();
         
         $company_id = $partner->company_id;
