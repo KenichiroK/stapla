@@ -47,7 +47,7 @@
                         </ul>
                         <div class="header-proflie">
                             <div class="user-imgbox">
-                                <a href="{{ route('partner.setting.profile.create') }}">
+                                <a href="{{ route('partner.profile.create') }}">
                                     <img src="{{ Auth::user()->picture }}" alt="プロフィール画像">
                                 </a>
                             </div>
