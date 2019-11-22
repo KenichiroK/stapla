@@ -94,6 +94,8 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('document/invoice/create/{task_id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
 		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
+		Route::get('document/invoice/{id}/edit', 'Partners\InvoiceController@edit')->name('partner.document.invoice.edit');
+		Route::post('document/invoice/{id}/update', 'Partners\InvoiceController@update')->name('partner.document.invoice.update');
 
 		// logout
 			Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
