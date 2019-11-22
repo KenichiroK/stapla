@@ -76,6 +76,14 @@ mix.js(
     "public/js/common/toggle-header-ballon.js"
 );
 
+mix.js(
+    [
+        // setting tel 
+        "resources/js/common/set-tel.js"
+    ],
+    "public/js/common/set-tel.js"
+)
+
 mix.sass(
     "resources/sass/company/common/index.scss",
     "public/css/company/common"

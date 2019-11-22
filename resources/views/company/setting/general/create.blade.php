@@ -172,5 +172,5 @@ window.onload = function(){
 @endsection
 
 @section('asset-js')
-<script src="{{ asset('js/common/set-tel.js') }}"></script>
+<script src="{{ asset('js/common/set-tel.js') }}" defer></script>
 @endsection
