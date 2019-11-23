@@ -12,7 +12,7 @@ class InvoiceTaskController extends Controller
     {
         RequestTask::where('invoice_id', $invoice_id)->delete();
         
-        if($request->task_name) {  
+        if($request->item_name) {  
             for ($i = 0; $i < count($request->item_name); $i++) {
                 if (
                     !!$request->item_name[$i] &&
