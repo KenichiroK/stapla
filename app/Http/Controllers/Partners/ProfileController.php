@@ -36,4 +36,15 @@ class ProfileController extends Controller
             return redirect()->route('partner.profile.create')->with('completed', $completed);
         }
     }
+
+    public function email(Request $request)
+    {
+        return view('partner/profile/email');
+    }
+    
+    public function update(Request $request)
+    {
+        dd(1);
+        return redirect()->route('partner.profile.email')->with('completed', $completed);
+    }
 }

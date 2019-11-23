@@ -82,6 +82,8 @@ Route::group(['prefix' => 'partner'], function(){
 		// profile
 		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
 		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
+		Route::get('setting/profile/email', 'Partners\ProfileController@email')->name('partner.profile.email');
+		Route::post('setting/profile/email', 'Partners\ProfileController@update')->name('partner.profile.email.update');
 		
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
