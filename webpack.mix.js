@@ -68,6 +68,14 @@ mix.js(
     "public/js/common/update-notification-mark-as-read.js"
 );
 
+mix.js(
+    [
+        // update notification read_at using ajax
+        "resources/js/common/toggle-header-ballon.js"
+    ],
+    "public/js/common/toggle-header-ballon.js"
+);
+
 mix.sass(
     "resources/sass/company/common/index.scss",
     "public/css/company/common"
