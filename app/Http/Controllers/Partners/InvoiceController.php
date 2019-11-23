@@ -124,6 +124,8 @@ class InvoiceController extends Controller
         $task_count = "";
         $expences_count = "";
 
+        // dd($request->session()->get('_old_input'));
+
         if ($request->session()->has('_old_input')) {
             $old_input = $request->session()->get('_old_input');
             $task_count = count($old_input['item_name']);
