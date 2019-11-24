@@ -26,11 +26,11 @@
     <div class="menu-container">
 		<ul>
 			<li><a href="{{ route('partner.profile.create') }}">プロフィール</a></li>
-			<li><a href="{{ route('partner.profile.email') }}" class="isActive">メールアドレス・パスワード設定</a></li>
+			<li><a href="{{ route('partner.profile.email') }}" class="isActive">メールアドレス</a></li>
 		</ul>
 	</div>
 
-    <form action="{{ route('partner.profile.email.update') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('partner.profile.email.sendMail') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body-container">
             <div class="edit-container">
@@ -55,7 +55,7 @@
 
         <div class="btn-container">
             <div class="save-btn">
-                <button type="button" onclick="submit();">保存</button>
+                <button type="button" onclick="submit();">メールを送信する</button>
             </div>
         </div>
     </form>

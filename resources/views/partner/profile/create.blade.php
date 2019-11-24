@@ -40,7 +40,7 @@ const setPreview = (input) => {
     <div class="menu-container">
 		<ul>
 			<li><a href="" class="isActive">プロフィール</a></li>
-			<li><a href="{{ route('partner.profile.email') }}">メールアドレス・パスワード設定</a></li>
+			<li><a href="{{ route('partner.profile.email') }}">メールアドレス</a></li>
 		</ul>
 	</div>
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Partners;
 
 use Illuminate\Http\Request;
+use App\Mail\SendMail;
+use Mail;
 use App\Http\Requests\Partners\ProfileRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
@@ -42,9 +44,18 @@ class ProfileController extends Controller
         return view('partner/profile/email');
     }
     
-    public function update(Request $request)
+    public function sendMail(Request $request)
     {
-        dd(1);
+        $base_url = env('APP_URL');
+        $email = $request->email;
+        Mail::to($email)->send(new SendMail($base_url, $email));
+
+        $completed = '変更したメールアドレス宛にメールを送信しました。';
         return redirect()->route('partner.profile.email')->with('completed', $completed);
     }
+
+    // public function update(Request $request)
+    // {
+    //     return $request->query();
+    // }
 }
