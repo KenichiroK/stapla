@@ -49,7 +49,7 @@
                             <div class="user-imgbox">
                                 <img src="{{ Auth::user()->picture }}" alt="プロフィール画像">
                             </div>
-                            <div class="option">
+                            <div id="user_name" class="option">
                                 <div class="user-name">
                                     {{ Auth::user()->name }}
                                 </div>
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
 
-                            <div class="optionBox">
+                            <div id="header_ballon" class="optionBox">
                                 <div class="balloon">
                                     <ul>
                                         <li><a href="">プロフィール設定</a></li>
@@ -96,6 +96,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/common/toggle-notification-bar.js') }}" defer></script>
     <script src="{{ asset('js/common/update-notification-mark-as-read.js') }}" defer></script>
+    <script src="{{ asset('js/common/toggle-header-ballon.js') }}" defer></script>
 
     <script>
         const project_create = {{ config('const.PROJECT_CREATE') }};
