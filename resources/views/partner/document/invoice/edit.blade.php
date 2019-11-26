@@ -170,8 +170,27 @@
                                 <input type="hidden" id="task_count" value="{{ $task_count }}">
 							</tr>
 						@endforeach
-                        <input type="hidden" id="request_task_count" value="{{ count($invoice->requestTasks) }}">
 
+						@for ($i = count($invoice->requestTasks); $i < $task_count; $i++)
+						<tr>
+							<td class="del-task-record" name="task_element" onclick="delTaskRecord(this)">×</td>
+							<td class="item"><input type="text" name="item_name[]" value="{{ old('item_name.' . $i) }}"></td>
+							<td class="num"><input type="text" name="item_num[]" value="{{ old('item_num.' . $i) }}" onchange="calculateSumPrice()"></td>
+							<td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price.' . $i) }}" onchange="calculateSumPrice()"><span>円</span></td>
+							<td class="tax">
+								<div class="selectbox-container">
+									<select name="item_tax[]" onchange="calculateSumPrice()">
+										<option name="tax_10" value="1.1" {{ old('item_tax.' . $i) == '1.1' ? 'selected' : '' }}>10%</option>
+										<option name="tax_8" value="1.08" {{ old('item_tax.' . $i) == '1.08' ? 'selected' : '' }}>軽減8%</option>
+										<option name="tax_none" value="1.0" {{ old('item_tax.' . $i) == '1.0' ? 'selected' : '' }}>非課税</option>
+									</select>
+								</div>
+							</td>
+							<td class="total"><p class="task_request_total"></p><span>円</span></td>
+							<input type="hidden" name="item_total[]">
+							<input type="hidden" value="{{ $task_count }}">
+						</tr>
+                        @endfor
 					</tbody>
 					@if ($errors->has('item_name.*'))
 						<div class="error-msg">
@@ -212,26 +231,46 @@
 					<tbody id="expences">
 
                         @foreach($invoice->requestExpences as $requestExpence)
-							<tr>
-                                <td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
-                                <td class="item"><input type="text" name="expences_name[]" value="{{ $requestExpence->name }}"></td>
-                                <td class="num"><input type="text" name="expences_num[]" value="{{ $requestExpence->num }}" onchange="calculateSumPrice()"></td>
-                                <td class="unit-price"><input type="text" name="expences_unit_price[]" value="{{ $requestExpence->unit_price }}" onchange="calculateSumPrice()"><span>円</span></td>
-                                <td class="tax">
-                                    <div class="selectbox-container">
-                                        <select name="expences_tax[]" onchange="calculateSumPrice()">	
-                                            <option name="tax_10" value="1.1" {{ $requestExpence->tax == '1.1' ? 'selected' : '' }}>10%</option>
-                                            <option name="tax_8" value="1.08"  {{ $requestExpence->tax == '1.08' ? 'selected' : '' }}>軽減8%</option>
-                                            <option name="tax_none" value="1.0"  {{ $requestExpence->tax == '1.0' ? 'selected' : '' }}>非課税</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td class="total"><p class="expence_total"></p><span>円</span></td>
-                                <input type="hidden" name="expences_total[]">
-                                <input type="hidden" id="expences_count" value="{{ $expences_count }}">
-							</tr>
+						<tr>
+							<td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
+							<td class="item"><input type="text" name="expences_name[]" value="{{ $requestExpence->name }}"></td>
+							<td class="num"><input type="text" name="expences_num[]" value="{{ $requestExpence->num }}" onchange="calculateSumPrice()"></td>
+							<td class="unit-price"><input type="text" name="expences_unit_price[]" value="{{ $requestExpence->unit_price }}" onchange="calculateSumPrice()"><span>円</span></td>
+							<td class="tax">
+								<div class="selectbox-container">
+									<select name="expences_tax[]" onchange="calculateSumPrice()">	
+										<option name="tax_10" value="1.1" {{ $requestExpence->tax == '1.1' ? 'selected' : '' }}>10%</option>
+										<option name="tax_8" value="1.08"  {{ $requestExpence->tax == '1.08' ? 'selected' : '' }}>軽減8%</option>
+										<option name="tax_none" value="1.0"  {{ $requestExpence->tax == '1.0' ? 'selected' : '' }}>非課税</option>
+									</select>
+								</div>
+							</td>
+							<td class="total"><p class="expence_total"></p><span>円</span></td>
+							<input type="hidden" name="expences_total[]">
+							<input type="hidden" id="expences_count" value="{{ $expences_count }}">
+						</tr>
                         @endforeach
-                        <input type="hidden" id="request_expences_count" value="{{ count($invoice->requestExpences) }}">
+
+						@for ($i = count($invoice->requestExpences); $i < $expences_count; $i++)
+						<tr>
+							<td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
+							<td class="item"><input type="text" name="expences_name[]" value="{{ old('expences_name.' . $i) }}"></td>
+							<td class="num"><input type="text" name="expences_num[]" value="{{ old('expences_num.' . $i) }}" onchange="calculateSumPrice()"></td>
+							<td class="unit-price"><input type="text" name="expences_unit_price[]" value="{{ old('expences_unit_price.' . $i) }}" onchange="calculateSumPrice()"><span>円</span></td>
+							<td class="tax">
+								<div class="selectbox-container">
+									<select name="expences_tax[]" onchange="calculateSumPrice()">	
+										<option name="tax_10" value="1.1" {{ old('item_tax.' . $i) == '1.1' ? 'selected' : '' }}>10%</option>
+										<option name="tax_8" value="1.08"  {{ old('item_tax.' . $i) == '1.08' ? 'selected' : '' }}>軽減8%</option>
+										<option name="tax_none" value="1.0"  {{ old('item_tax.' . $i) == '1.0' ? 'selected' : '' }}>非課税</option>
+									</select>
+								</div>
+							</td>
+							<td class="total"><p class="expence_total"></p><span>円</span></td>
+							<input type="hidden" name="expences_total[]">
+							<input type="hidden" value="{{ $expences_count }}">
+						</tr>
+						@endfor
 					</tbody>
 
 					@if ($errors->has('expences_name.*'))
@@ -285,81 +324,5 @@
 @endsection
 
 @section('asset-js')
-<script>
-
-window.onload = () => {
-    var taskCount = document.getElementById('task_count').value;
-    var requestTaskCount = document.getElementById('request_task_count').value;
-    for (i = 0; i < (taskCount - 1 - requestTaskCount); i++) {
-        addtaskRequest();
-    }
-    
-    var expencesCount = document.getElementById('expences_count').value;
-    var requestExpencesCount = document.getElementById('request_task_count').value;
-    for (i = 0; i < (expencesCount - 1 - requestExpencesCount); i++) {
-        addExpences();
-    }
-    
-    calculateSumPrice();
-}
-
-var addTaskCnt = 0;
-const addtaskRequest = () => {
-    addTaskCnt++;
-    const taskRequest = document.getElementById('taskRequest');
-    const inner = `
-    <tr>
-        <td class="del-task-record" name="task_element" onclick="delTaskRecord(this)">×</td>
-        <td class="item"><input type="text" name="item_name[]" value="{{ old('item_name.1') }}"></td>
-        <td class="num"><input type="text" name="item_num[]" value="{{ old('item_num.1') }}" onchange="calculateSumPrice()"></td>
-        <td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price.1') }}" onchange="calculateSumPrice()"><span>円</span></td>
-        <td class="tax">
-        <div class="selectbox-container">
-            <select name="item_tax[]" onchange="calculateSumPrice()">	
-            <option name="tax_10" value="1.1" {{ old('item_tax.1') == '1.1' ? 'selected' : '' }}>10%</option>
-            <option name="tax_8" value="1.08" {{ old('item_tax.1') == '1.08' ? 'selected' : '' }}>軽減8%</option>
-            <option name="tax_none" value="1.0" {{ old('item_tax.1') == '1.0' ? 'selected' : '' }}>非課税</option>
-            </select>
-        </div>
-        </td>
-        <td class="total"><p class="task_request_total"></p><span>円</span></td>
-        <input type="hidden" name="item_total[]">
-    </tr>`;
-    taskRequest.insertAdjacentHTML('beforeend', inner);
-
-    var taskElement = document.querySelectorAll('td.del-task-record');
-    taskElement.forEach(function(val, i){
-    val.setAttribute('value', (i+1));
-    });
-}
-
-const addExpences = () => {
-    const expences = document.getElementById('expences');
-    const inner = `
-        <tr>
-        <td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
-        <td class="item"><input type="text" name="expences_name[]" value="{{ old('expences_name.1') }}"></td>
-        <td class="num"><input type="text" name="expences_num[]" value="{{ old('expences_num.1') }}" onchange="calculateSumPrice()"></td>
-        <td class="unit-price"><input type="text" name="expences_unit_price[]" value="{{ old('expences_unit_price.1') }}" onchange="calculateSumPrice()"><span>円</span></td>
-        <td class="tax">
-            <div class="selectbox-container">
-            <select name="expences_tax[]" onchange="calculateSumPrice()">	
-                <option name="tax_10" value="1.1" {{ old('expences_tax.1') == '1.1' ? 'selected' : '' }}>10%</option>
-                <option name="tax_8" value="1.08" {{ old('expences_tax.1') == '1.08' ? 'selected' : '' }}>軽減8%</option>
-                <option name="tax_none" value="1.0" {{ old('expences_tax.1') == '1.0' ? 'selected' : '' }}>非課税</option>
-            </select>
-            </div>
-        </td>
-        <td class="total"><p class="expence_total"></p><span>円</span></td>
-        <input type="hidden" name="expences_total[]">
-        </tr>`;
-    expences.insertAdjacentHTML('beforeend', inner);
-
-    var expencesElement = document.querySelectorAll('td.del-expences-record');
-    expencesElement.forEach(function(val, i){
-    val.setAttribute('value', (i+1));
-    });
-}
-</script>
 <script src="{{ asset('js/partner/document/invoice/create.js') }}" defer></script>
 @endsection

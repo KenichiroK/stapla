@@ -1,3 +1,52 @@
+window.onload = () => {
+	calculateSumPrice();
+}
+
+const addtaskRequest = () => {
+    const taskRequest = document.getElementById('taskRequest');
+    const inner = `
+    <tr>
+        <td class="del-task-record" name="task_element" onclick="delTaskRecord(this)">×</td>
+        <td class="item"><input type="text" name="item_name[]"></td>
+        <td class="num"><input type="text" name="item_num[]" onchange="calculateSumPrice()"></td>
+        <td class="unit-price"><input type="text" name="item_unit_price[]" onchange="calculateSumPrice()"><span>円</span></td>
+        <td class="tax">
+        <div class="selectbox-container">
+            <select name="item_tax[]" onchange="calculateSumPrice()">	
+            <option name="tax_10" value="1.1">10%</option>
+            <option name="tax_8" value="1.08">軽減8%</option>
+            <option name="tax_none" value="1.0">非課税</option>
+            </select>
+        </div>
+        </td>
+        <td class="total"><p class="task_request_total"></p><span>円</span></td>
+        <input type="hidden" name="item_total[]">
+    </tr>`;
+    taskRequest.insertAdjacentHTML('beforeend', inner);
+}
+
+const addExpences = () => {
+    const expences = document.getElementById('expences');
+    const inner = `
+        <tr>
+        <td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
+        <td class="item"><input type="text" name="expences_name[]"></td>
+        <td class="num"><input type="text" name="expences_num[]" onchange="calculateSumPrice()"></td>
+        <td class="unit-price"><input type="text" name="expences_unit_price[]" onchange="calculateSumPrice()"><span>円</span></td>
+        <td class="tax">
+            <div class="selectbox-container">
+            <select name="expences_tax[]" onchange="calculateSumPrice()">	
+                <option name="tax_10" value="1.1">10%</option>
+                <option name="tax_8" value="1.08">軽減8%</option>
+                <option name="tax_none" value="1.0">非課税</option>
+            </select>
+            </div>
+        </td>
+        <td class="total"><p class="expence_total"></p><span>円</span></td>
+        <input type="hidden" name="expences_total[]">
+        </tr>`;
+    expences.insertAdjacentHTML('beforeend', inner);
+}
 
 const calculateSumPrice = () => {
     var sum = document.getElementById('sum');
