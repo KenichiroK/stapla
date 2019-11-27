@@ -52,6 +52,7 @@ $(function(){
                 <div class="select-textarea">
                     <div class="select-text">
                         プロジェクトを選択する
+                       <span class="required-label">( 必須 )</span>
                     </div>
                 </div>
                 <div class="select-error-wrp">
@@ -100,6 +101,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     タスク名
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="inputarea">
@@ -125,6 +127,7 @@ $(function(){
                             <div class="item-name-wrapper contentsname">
                                 <div class="item-name">
                                     タスク内容
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="textarea-wrp">
@@ -148,6 +151,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     担当者
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="select-error-wrp">
@@ -184,6 +188,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     上長
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="select-error-wrp">
@@ -221,6 +226,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     経理
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="select-error-wrp">
@@ -257,6 +263,7 @@ $(function(){
                             <div class="item-name-wrapper period">
                                 <div class="item-name">
                                     タスク期間
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="calendar-wrp">
@@ -323,6 +330,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     予算
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="inputarea">
@@ -357,6 +365,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     パートナー
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="select-area control">
@@ -393,7 +402,8 @@ $(function(){
                                 <!-- 発注単価 タイトル -->
                                 <div class="item-name-wrapper unitname">
                                     <div class="item-name">
-                                        発注単価<span class="tax">（税抜）</span>
+                                        発注単価<span class="tax">( 税抜 )</span>
+                                        <span class="required-label">( 必須 )</span>
                                     </div>
                                 </div>
                                     

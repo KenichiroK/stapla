@@ -79,7 +79,10 @@
                 </dl>
 
 				<dl>
-					<dt>件名</dt>
+					<dt>
+						件名
+						<span class="required-label">( 必須 )</span>
+					</dt>
 					<dd>
 						<input class="task-name" type="text" name="title" value="{{ old('title', $task->name . 'のご請求') }}">
 						@if ($errors->has('title'))
@@ -91,7 +94,10 @@
 				</dl>
 
 				<dl>
-					<dt>請求日</dt>
+					<dt>
+                        請求日
+                        <span class="required-label">( 必須 )</span>
+                    </dt>
 					<dd>
 						<div>
 							<span id="requested_at_text"></span>
@@ -117,7 +123,10 @@
 				</dl>
 
 				<dl>
-					<dt>支払い期限</dt>
+					<dt>
+                        支払い期限
+                        <span class="required-label">( 必須 )</span>
+                    </dt>
 					<dd>
 						<div>
 							<span id="deadline_at_text"></span>
