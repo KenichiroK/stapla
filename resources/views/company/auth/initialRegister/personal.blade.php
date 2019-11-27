@@ -127,7 +127,10 @@ $pref = array(
 				</div>
 				<div class="profile-container">
 					<div class="input-container">
-						<p>名前</p>
+						<p>
+                            名前
+                            <span class="required-label row-label">( 必須 )</span>
+                        </p>
 						<input type="text" name="name" value="{{ old('name') }}">								
 						@if ($errors->has('name'))
 							<div class="error-msg">
@@ -137,7 +140,10 @@ $pref = array(
 					</div>
 
 					<div class="input-container">
-						<p>所属部署</p>
+						<p>
+                            所属部署
+                            <span class="required-label row-label">( 必須 )</span>
+                        </p>
 						<input type="text" name="department" value="{{ old('department') }}">
 						@if ($errors->has('department'))
 							<div class="error-msg">
@@ -147,12 +153,18 @@ $pref = array(
 					</div>
 
 					<div class="input-container">
-						<p>職種</p>
+						<p>
+                            職種
+                            <span class="optional-label row-label">( 任意 )</span>
+                        </p>
 						<input type="text" name="occupation" value="{{ old('occupation') }}">
 					</div>
 
 					<div class="input-container last">
-						<p>自己紹介</p>
+						<p>
+                            自己紹介
+                            <span class="optional-label row-label">( 任意 )</span>
+                        </p>
 						<textarea type="text" name="self_introduction" cols="30" rows="10">{{ old('self_introduction') }}</textarea>
 						@if ($errors->has('self_introduction'))
 							<div class="error-msg">

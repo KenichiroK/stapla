@@ -17,7 +17,9 @@
 			
 			<div class="form-container">
 				<dl>
-					<dt>タスク</dt>
+					<dt>
+                        タスク
+                    </dt>
 					<dd>
                         <p>{{ $task->name }}</p>
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
@@ -25,7 +27,10 @@
                 </dl>
                 
                 <dl>
-                    <dt>件名</dt>
+                    <dt>
+                        件名
+                        <span class="required-label">( 必須 )</span>
+                    </dt>
                     <dd>
 						<div class="input-container">
 							<input class="task-name" type="text" name="task_name" value="{{ old('task_name', $task->name) }}">
@@ -39,7 +44,10 @@
                 </dl>
 
                 <dl>
-					<dt>納品日</dt>
+					<dt>
+                        納品日
+                        <span class="required-label">( 必須 )</span>
+                    </dt>
 					<dd>
                         <div class="date-container">
                             <div class="calendars">
@@ -62,7 +70,9 @@
 					</dd>
                 </dl>
                 <dl>
-					<dt>担当者</dt>
+					<dt>
+                        担当者
+                    </dt>
 					<dd>
 						<div class="select-container">
                             <div class="select-arrow">
