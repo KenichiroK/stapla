@@ -183,30 +183,3 @@
     text-align: center;
     margin-top: 0;
 }
-
-// モーダル
-.modal {
-    margin: 0 0 0 auto;
-    width: 82%;
-    .modal-dialog {
-        max-width: 716px;
-    }
-    .close {
-        height: 25px;
-        padding-right: 8px;
-        text-transform: uppercase;
-    }
-    .modal-header {
-        text-decoration: noen;
-        margin-top: 20px;
-
-        h5 {
-            font-size: 32px;
-            font-weight: bold;
-            color: #43425d;
-        }
-    }
-    .modal-footer {
-        margin: 24px auto 40px;
-    }
-}

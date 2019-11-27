@@ -312,12 +312,8 @@ $('.confirm').click(function(){
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
-
-
-    @if($purchaseOrder->task->status === 4 && in_array($company_user->id, $company_user_ids))
+@if($purchaseOrder->task->status === 4 && in_array($company_user->id, $company_user_ids))
         <div class="actionButton">
             <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
             <form action="{{ route('company.task.status.change') }}" method="POST">
@@ -348,62 +344,62 @@ $('.confirm').click(function(){
                 </div>
             </form>
         </div>
-    @elseif($purchaseOrder->task->status === 5 && $purchaseOrder->task->superior->id === $company_user->id)
-        <div class="actionButton">
-            <form action="{{ route('company.task.status.change') }}" method="POST">
-            @csrf
-                <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                <input type="hidden" name="status" value="4">
-                <button type="submit" class="undone">発注書を承認しない</button>
-            </form>
-            <form action="{{ route('company.task.status.change') }}" method="POST">
-            @csrf
-                <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                <input type="hidden" name="status" value="6">
-                <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">発注書を承認する</button>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <div class="modal-header border border-0">
-                                <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                            </div>
-                            <div class="modal-body">
-                                <p class="text-center">発注書を承認します。</p>
-                                <p class="text-center">よろしいですか？</p>
-                            </div>
-                            <div class="modal-footer center-block border border-0">
-                                <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >承認</button>
+        @elseif($purchaseOrder->task->status === 5 && $purchaseOrder->task->superior->id === $company_user->id)
+            <div class="actionButton">
+                <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
+                    <input type="hidden" name="status" value="4">
+                    <button type="submit" class="undone">発注書を承認しない</button>
+                </form>
+                <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
+                    <input type="hidden" name="status" value="6">
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">発注書を承認する</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="modal-header border border-0">
+                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-center">発注書を承認します。</p>
+                                    <p class="text-center">よろしいですか？</p>
+                                </div>
+                                <div class="modal-footer center-block border border-0">
+                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
+                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >承認</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
-    @elseif($purchaseOrder->task->status > 7 && $purchaseOrder->task->superior->id === $company_user->id)
-        <p class="send-done">この発注書は承認済みです</p>
-    @elseif($purchaseOrder->task->status > 5 && in_array($company_user->id, $company_user_ids))
-        <p class="send-done">この発注書は提出済みです</p>
-    @else
-        <p class="send-done">必要なアクションはありません</p>
-    @endif
-    
-    <div class="error-message-wrapper">
-        @if ($errors->has('task_id'))
-            <div class="error-msg" role="alert">
-                <strong>{{ $errors->first('task_id') }}</strong>
+                </form>
             </div>
-        @elseif ($errors->has('status'))
-            <div class="error-msg" role="alert">
-                <strong>{{ $errors->first('status') }}</strong>
-            </div>
+        @elseif($purchaseOrder->task->status > 7 && $purchaseOrder->task->superior->id === $company_user->id)
+            <p class="send-done">この発注書は承認済みです</p>
+        @elseif($purchaseOrder->task->status > 5 && in_array($company_user->id, $company_user_ids))
+            <p class="send-done">この発注書は提出済みです</p>
+        @else
+            <p class="send-done">必要なアクションはありません</p>
         @endif
+        
+        <div class="error-message-wrapper">
+            @if ($errors->has('task_id'))
+                <div class="error-msg" role="alert">
+                    <strong>{{ $errors->first('task_id') }}</strong>
+                </div>
+            @elseif ($errors->has('status'))
+                <div class="error-msg" role="alert">
+                    <strong>{{ $errors->first('status') }}</strong>
+                </div>
+            @endif
+        </div>
     </div>
-
 </div>
 @endsection
 
