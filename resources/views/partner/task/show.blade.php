@@ -83,7 +83,14 @@
                     </div>
                 </dd>
             </dl>
-
+            <!-- <dl>
+                <dt>
+                    報酬形式
+                </dt>
+                <dd>
+                    固定
+                </dd>
+            </dl> -->
             <dl>
                 <dt>
                     発注単価<span>(税抜)</span>
@@ -92,7 +99,14 @@
                     {{ number_format($task->budget) }}円
                 </dd>
             </dl>
-
+            <!-- <dl>
+                <dt>
+                    件数
+                </dt>
+                <dd>
+                    {{ $task->project->tasks->count() }}件
+                </dd>
+            </dl> -->
             <dl>
                 <dt>
                     発注額
@@ -106,44 +120,26 @@
                     ステータス
                 </dt>
                 <dd class="status-desc">
-                    @if(($task->status) === 0)
-                        下書き
-                    @elseif(($task->status) === 1)
-                        タスク上長確認中
-                    @elseif(($task->status) === 2)
-                        タスクパートナー依頼前
-                    @elseif(($task->status) === 3)
+                    @if(($task->status) === config('const.TASK_SUBMIT_PARTNER'))
                         タスクパートナー確認中
-                    @elseif(($task->status) === 4)
-                        発注書作成前
-                    @elseif(($task->status) === 5)
-                        発注書上長確認中
-                    @elseif(($task->status) === 6)
-                        発注書パートナー依頼前
-                    @elseif(($task->status) === 7)
+                    @elseif(($task->status) === config('const.ORDER_SUBMIT_PARTNER'))
                         発注書パートナー確認中
-                    @elseif(($task->status) === 8)
+                    @elseif(($task->status) === config('const.ORDER_APPROVAL_PARTNER'))
                         作業前
-                    @elseif(($task->status) === 9)
+                    @elseif(($task->status) === config('const.WORKING'))
                         作業中
-                    @elseif(($task->status) === 10)
+                    @elseif(($task->status) === config('const.DELIVERY_PARTNER'))
                         検品中
-                    @elseif(($task->status) === 11)
+                    @elseif(($task->status) === config('const.ACCEPTANCE'))
                         請求書作成前
-                    @elseif(($task->status) === 12)
+                    @elseif(($task->status) === config('const.INVOICE_DRAFT_CREATE'))
                         請求書下書き
-                    @elseif(($task->status) === 13)
-                        請求書担当者確認前
-                    @elseif(($task->status) === 14)
-                        請求書担当者確認中
-                    @elseif(($task->status) === 15)
-                        請求書経理提出
-                    @elseif(($task->status) === 16)
-                        請求書経理承認済み
-                    @elseif(($task->status) === 17)
+                    @elseif(($task->status) === config('const.COMPLETE_STAFF'))
                         完了
-                    @elseif(($task->status) === 18)
+                    @elseif(($task->status) === config('const.TASK_CANCELED'))
                         キャンセル
+                    @elseif(($task->status) >= config('const.TASK_APPROVAL_PARTNER'))
+                        会社側対応中
                     @endif
                 </dd>
             </dl>
@@ -196,7 +192,7 @@
                 </div>
                 <div class="actionButton">
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="10">
+                    <input type="hidden" name="status" value="{{ config('const.DELIVERY_PARTNER') }}">
                     <button type="submit" class="done">納品する</button>
                 <div>
             </form>
@@ -251,8 +247,15 @@
                     <form action="{{ route('partner.task.status.change') }}" method="POST">
                     @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
-                        <input type="hidden" name="status" value="9">
+                        <input type="hidden" name="status" value="{{ config('const.WORKING') }}">
                         <button type="submit" class="done">作業に入る</button>
+                    </form>
+                @elseif($task->status === config('const.WORKING') && $task->partner->id === Auth::user()->id)
+                    <form action="{{ route('partner.deliver.store') }}" method="POST">
+                    @csrf
+                        <input type="hidden" name="task_id" value="{{ $task->id }}">
+                        <input type="hidden" name="status" value="{{ config('const.DELIVERY_PARTNER') }}">
+                        <button type="submit" class="done">納品する</button>
                     </form>
                 @elseif($task->status === config('const.ACCEPTANCE') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>

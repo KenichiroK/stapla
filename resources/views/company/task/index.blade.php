@@ -51,7 +51,7 @@
         <div class="task-container">
             <ul id="tab-button" class="tab-button">
                 <li id="non_complete_label" class="all"><a href="{{ route('company.task.index') }}">タスク一覧</a></li>
-                <li id="complete_label" class="done"><a href="{{ route('company.task.status.statusIndex', ['task_status' => 17 ]) }}">完了したタスク</a></li>
+                <li id="complete_label" class="done"><a href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.COMPLETE_STAFF') ]) }}">完了したタスク</a></li>
             </ul>
             <div class="btn-a-container">
                 <a href="{{ route('company.task.create') }}">タスク作成</a>
@@ -63,7 +63,7 @@
                             <div class="item-name-wrapper__item-name">タスク</div>
                         </div>
                     </div>
-                
+
                     <div class="table-wrapper">
                         <table>
                             <!-- タイトルヘッダー部分 -->
@@ -79,7 +79,7 @@
                             <tr class="datarow">
                                 <td class="project">{{ $task->project->name }}</td>
                                 <td>
-                                    @if($task->status === 0)
+                                    @if($task->status === config('const.TASK_CREATE'))
                                         <a href="{{ route('company.task.temporary', ['task_id' => $task->id ]) }}">{{ $task->name }}</a>
                                     @else
                                         <a href="{{ route('company.task.show', ['id' => $task->id ]) }}">{{ $task->name }}</a>
@@ -93,43 +93,43 @@
                                 </td>
                                 <td>
                                     <div id ="state" class="status">
-                                        @if($task->status == 0)
+                                        @if($task->status === config('const.TASK_CREATE'))
                                             <div class="color01">下書き</div>
-                                        @elseif($task->status == 1)
+                                        @elseif($task->status === config('const.TASK_SUBMIT_SUPERIOR'))
                                             <div class="color01">タスク上長確認中</div>
-                                        @elseif($task->status == 2)
+                                        @elseif($task->status === config('const.TASK_APPROVAL_SUPERIOR'))
                                             <div class="color01">タスクパートナー依頼前</div>
-                                        @elseif($task->status == 3)
+                                        @elseif($task->status === config('const.TASK_SUBMIT_PARTNER'))
                                             <div class="color01">タスクパートナー確認中</div>
-                                        @elseif($task->status == 4)
+                                        @elseif($task->status === config('const.TASK_APPROVAL_PARTNER'))
                                             <div class="color01">発注書作成前</div>
-                                        @elseif($task->status == 5)
+                                        @elseif($task->status === config('const.ORDER_SUBMIT_SUPERIOR'))
                                             <div class="color01">発注書上長確認中</div>
-                                        @elseif($task->status == 6)
+                                        @elseif($task->status === config('const.ORDER_APPROVAL_SUPERIOR'))
                                             <div class="color01">発注書パートナー依頼前</div>
-                                        @elseif($task->status == 7)
+                                        @elseif($task->status === config('const.ORDER_SUBMIT_PARTNER'))
                                             <div class="color01">発注書パートナー確認中</div>
-                                        @elseif($task->status == 8)
+                                        @elseif($task->status === config('const.ORDER_APPROVAL_PARTNER'))
                                             <div class="color01">作業前</div>
-                                        @elseif($task->status == 9)
+                                        @elseif($task->status === config('const.WORKING'))
                                             <div class="color01">作業中</div>
-                                        @elseif($task->status == 10)
+                                        @elseif($task->status === config('const.DELIVERY_PARTNER'))
                                             <div class="color01">検品中</div>
-                                        @elseif($task->status == 11)
+                                        @elseif($task->status === config('const.ACCEPTANCE'))
                                             <div class="color01">請求書作成前</div>
-                                        @elseif($task->status == 12)
+                                        @elseif($task->status === config('const.INVOICE_DRAFT_CREATE'))
                                             <div class="color01">請求書下書き</div>
-                                        @elseif($task->status == 13)
+                                        @elseif($task->status === config('const.INVOICE_CREATE'))
                                             <div class="color01">請求書担当者確認前</div>
-                                        @elseif($task->status == 14)
+                                        @elseif($task->status === config('const.SUBMIT_STAFF'))
                                             <div class="color01">請求書担当者確認中</div>
-                                        @elseif($task->status == 15)
+                                        @elseif($task->status === config('const.SUBMIT_ACCOUNTING'))
                                             <div class="color01">請求書経理提出</div>
-                                        @elseif($task->status == 16)
+                                        @elseif($task->status === config('const.APPROVAL_ACCOUNTING'))
                                             <div class="color01">請求書経理承認済み</div>
-                                        @elseif($task->status == 17)
+                                        @elseif($task->status === config('const.COMPLETE_STAFF'))
                                             <div class="color02">完了</div>
-                                        @elseif($task->status == 18)
+                                        @elseif($task->status === config('const.TASK_CANCELED'))
                                             <div class="color03">キャンセル</div>
                                         @endif
                                     </div>

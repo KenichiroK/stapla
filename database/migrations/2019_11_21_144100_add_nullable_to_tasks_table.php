@@ -27,7 +27,6 @@ class AddNullableToTasksTable extends Migration
             $table->string('fee_format')->nullable()->change();
         });
     }
-
     public function down()
     {
         Schema::table('tasks', function (Blueprint $table) {

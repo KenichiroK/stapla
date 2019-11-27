@@ -51,7 +51,7 @@ if (!function_exists('sendNotificationAssignedTask'))
 
 // 会社側から通知を送信する
 if (!function_exists('sendNotificationUpdatedTaskStatusFromCompany')) {
-    function sendNotificationUpdatedTaskStatusFromCompany(Task $task)
+    function sendNotificationUpdatedTaskStatusFromCompany(Task $task, $prevStatus)
     {
         $company_user = CompanyUser::findOrFail($task->company_user_id);
         $superior     = CompanyUser::findOrFail($task->superior_id);
@@ -80,17 +80,20 @@ if (!function_exists('sendNotificationUpdatedTaskStatusFromCompany')) {
             config('const.WORKING'),
             config('const.ACCEPTANCE'),
         ];
-        Auth::user()->id !== $company_user->id &&
-            $company_user->notify(new \App\Notifications\UpdatedTaskStatus(
+
+        Auth::user()->id !== $company_user->id && in_array($task->status, $company_user_status_arr)
+        && $company_user->notify(new \App\Notifications\UpdatedTaskStatus(
                 $task, 
                 $task->status, 
-                in_array($task->status, $company_user_status_arr) ? true : false,
-                false
+                false,
+                true
             ));
+        
+            
         Auth::user()->id !== $superior->id && in_array($task->status, $superior_status_arr) &&
-            $superior->notify(new \App\Notifications\UpdatedTaskStatus($task, $task->status, true, false));
+            $superior->notify(new \App\Notifications\UpdatedTaskStatus($task, $task->status, false, true));
         Auth::user()->id !== $accounting->id && in_array($task->status, $accounting_status_arr) &&
-            $accounting->notify(new \App\Notifications\UpdatedTaskStatus($task, $task->status, true, false));
+            $accounting->notify(new \App\Notifications\UpdatedTaskStatus($task, $task->status, false, true));
         Auth::user()->id !== $partner->id && in_array($task->status, $partner_status_arr) &&
             $partner->notify(new \App\Notifications\UpdatedTaskStatus($task, $task->status, true, true));
     }
@@ -98,7 +101,7 @@ if (!function_exists('sendNotificationUpdatedTaskStatusFromCompany')) {
 
 // パートナー側から通知を送信する
 if (!function_exists('sendNotificationUpdatedTaskStatusFromPartner')) {
-    function sendNotificationUpdatedTaskStatusFromPartner(Task $task)
+    function sendNotificationUpdatedTaskStatusFromPartner(Task $task, $prevStatus)
     {
         $company_user = CompanyUser::findOrFail($task->company_user_id);
 
@@ -109,24 +112,80 @@ if (!function_exists('sendNotificationUpdatedTaskStatusFromPartner')) {
             config('const.INVOICE_CREATE')
         ];
 
-        Auth::user()->id !== $company_user->id &&
-            $company_user->notify(new \App\Notifications\UpdatedTaskStatus(
+        $partner_status_arr      = [
+            config('const.TASK_SUBMIT_PARTNER'),
+            config('const.ORDER_SUBMIT_PARTNER'),
+            config('const.WORKING'),
+            config('const.ACCEPTANCE'),
+        ];
+
+        if (Auth::user()->id !== $company_user->id) {
+             in_array($task->status, $company_user_status_arr)
+            ? $company_user->notify(new \App\Notifications\UpdatedTaskStatus(
                 $task, 
                 $task->status, 
-                in_array($task->status, $company_user_status_arr) ? true : false,
-                false
+                false,
+                true
+            )) 
+            : $company_user->notify(new \App\Notifications\UpdatedTaskStatus(
+                $task, 
+                $task->status, 
+                false,
+                false,
+                $prevStatus,
+                $task->partner->name
             ));
+        }
     }
 }
 
 // project にアサインしている担当者に通知を送信する
 if (!function_exists('sendNotificationUpdatedTaskStatusToProjectCompany')) {
-    function sendNotificationUpdatedTaskStatusToProjectCompany(Task $task)
+    function sendNotificationUpdatedTaskStatusToProjectCompany(Task $task, $prev_status)
     {
         $project_companies = ProjectCompany::where('project_id', $task->project_id)->get();
+
+        $company_user_status_arr = [
+            config('const.TASK_CREATE'), 
+            config('const.TASK_APPROVAL_SUPERIOR'), 
+            config('const.TASK_APPROVAL_PARTNER'), 
+            config('const.ORDER_APPROVAL_SUPERIOR'), 
+            config('const.DELIVERY_PARTNER'),
+            config('const.INVOICE_CREATE'), 
+            config('const.APPROVAL_ACCOUNTING'), 
+        ];
+        $superior_status_arr     = [
+            config('const.TASK_SUBMIT_SUPERIOR'),
+            config('const.ORDER_SUBMIT_SUPERIOR')
+        ];
+        $accounting_status_arr   = [
+            config('const.SUBMIT_ACCOUNTING')
+        ];
+        $partner_status_arr      = [
+            config('const.TASK_SUBMIT_PARTNER'),
+            config('const.ORDER_SUBMIT_PARTNER'),
+            config('const.ORDER_APPROVAL_PARTNER'),
+            config('const.WORKING'),
+            config('const.ACCEPTANCE'),
+        ];
+
+        $nextActionUser = "";
+
+        if (in_array($task->status, $company_user_status_arr)) {
+            $nextActionUser = $task->companyUser->name;
+        } elseif (in_array($task->status, $superior_status_arr)) {
+            $nextActionUser = $task->superior->name;
+        } elseif (in_array($task->status, $accounting_status_arr)) {
+            $nextActionUser = $task->accounting->name;
+        } elseif (in_array($task->status, $partner_status_arr))  {
+            $nextActionUser = $task->partner->name;
+        } else {
+            $nextActionUser = 'なし';
+        }
+
         foreach ($project_companies as $project_company) {
             if (
-                $project_company->user_id !== $task->company_user_id
+                $project_company->user_id    !== $task->company_user_id
                 && $project_company->user_id !== $task->superior_id
                 && $project_company->user_id !== $task->accounting_id
                 && $project_company->user_id !== Auth::user()->id
@@ -136,7 +195,9 @@ if (!function_exists('sendNotificationUpdatedTaskStatusToProjectCompany')) {
                         $task, 
                         $task->status,
                         false,
-                        false
+                        false,
+                        $prev_status,
+                        $nextActionUser
                     ));
             }
         }

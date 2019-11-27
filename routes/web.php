@@ -60,6 +60,7 @@ Route::group(['prefix' => 'partner'], function(){
 		
 		// project
 		Route::get('/project', 'Partners\ProjectController@index')->name('partner.project.index');
+		Route::get('/project/done', 'Partners\ProjectController@doneIndex')->name('partner.project.done.index');
 		Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
 
 		// task
@@ -160,7 +161,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
 			// task-create
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-		Route::post('/task/preview', 'Companies\TaskController@temporarySaveOrToPrever')->name('company.task.preview');
+		Route::post('/task/preview', 'Companies\TaskController@temporarySaveOrToPreview')->name('company.task.preview');
 				// task-create-temporaryUpdate
 		Route::get('/task/create/{task_id}', 'Companies\TaskController@temporary')->name('company.task.temporary');
 			// task-store
