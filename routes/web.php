@@ -46,6 +46,9 @@ Route::group(['prefix' => 'partner'], function(){
 	// emailverify - Eメール認証
 	Route::get('email/verify/{id}/{email}/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
 	
+	// Email変更
+	Route::get('setting/profile/email/update', 'Partners\ProfileController@update')->name('partner.profile.email.update');
+
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 		
 		// register_flow - 初期登録関連
@@ -84,7 +87,6 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
 		Route::get('setting/profile/email', 'Partners\ProfileController@email')->name('partner.profile.email');
 		Route::post('setting/profile/email', 'Partners\ProfileController@sendMail')->name('partner.profile.email.sendMail');
-		Route::post('setting/profile/email/update', 'Partners\ProfileController@update')->name('partner.profile.email.update');
 		
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');

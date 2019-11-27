@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Partners;
 
 use Illuminate\Http\Request;
-use App\Mail\SendMail;
+use App\Mail\ChangeEmail;
 use Mail;
 use App\Http\Requests\Partners\ProfileRequest;
 use App\Http\Controllers\Controller;
@@ -46,16 +46,29 @@ class ProfileController extends Controller
     
     public function sendMail(Request $request)
     {
-        $base_url = env('APP_URL');
+        $partner = Auth::user()->id;
+        $token = $request->session()->get('_token');
         $email = $request->email;
-        Mail::to($email)->send(new SendMail($base_url, $email));
+        Mail::to($email)->send(new ChangeEmail($partner, $token, $email));
 
-        $completed = '変更したメールアドレス宛にメールを送信しました。';
+        $completed = '「 '.$email.' 」宛にメールを送信しました。';
         return redirect()->route('partner.profile.email')->with('completed', $completed);
     }
 
-    // public function update(Request $request)
-    // {
-    //     return $request->query();
-    // }
+    public function update(Request $request)
+    {
+        $session = $request->session()->get('_token');
+        $query = $request->query('token');
+
+        if ($session != $query) {
+            \Log::info('Email変更 例外処理(本人以外)', ['user_id(partner)' => $request->session()->get('_token')]);
+            throw new AuthorizationException('本人しか更新はできません');
+        }
+
+        $partner = Partner::findOrFail($request->query('id'));
+        $partner->email =  $request->query('email');
+        $partner->save();
+
+        return "変更しました";
+    }
 }
