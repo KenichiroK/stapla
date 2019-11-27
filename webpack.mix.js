@@ -166,7 +166,7 @@ mix.sass(
     )
     .sass("resources/sass/partner/task/show.scss", "public/css/partner/task")
     .sass(
-        "resources/sass/partner/document/purchaseOrder/index.scss",
+        "resources/sass/partner/document/purchaseOrder/show.scss",
         "public/css/partner/document/purchaseOrder"
     )
     .sass(
