@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="{{ mix('css/pdf/paper.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/document/purchaseOrder/show.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 <script>
 const setPreview = (input) => {
   const preview = document.getElementById('preview');
@@ -14,7 +18,11 @@ const setPreview = (input) => {
     }
     reader.readAsDataURL(input.files[0]);
   }
-}
+};
+
+$('.confirm').click(function(){
+    $('.confirm-btn').val( $(this).val() );
+});
 </script>
 @endsection
 
@@ -310,18 +318,39 @@ const setPreview = (input) => {
 
 
     @if($purchaseOrder->task->status === 4 && in_array($company_user->id, $company_user_ids))
-    <div class="actionButton">
-        <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
-        <form action="{{ route('company.task.status.change') }}" method="POST">
-        @csrf
-            <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-            <input type="hidden" name="status" value="5">
-            <button type="submit" class="done">上長に確認を依頼</button>
-        </form>
-    </div>
+        <div class="actionButton">
+            <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
+            <form action="{{ route('company.task.status.change') }}" method="POST">
+            @csrf
+                <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
+                <input type="hidden" name="status" value="5">
+                <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">上長に確認を依頼</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div class="modal-header border border-0">
+                                <h5 class="center-block" id="exampleModalLabel">確認</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center">発注書を新規作成し、 {{ $task->superior->name }} さんに上長確認を依頼します。</p>
+                                <p class="text-center">よろしいですか？</p>
+                            </div>
+                            <div class="modal-footer center-block border border-0">
+                                <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
+                                <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >依頼</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     @elseif($purchaseOrder->task->status === 5 && $purchaseOrder->task->superior->id === $company_user->id)
-    <div class="actionButton">
-        <form action="{{ route('company.task.status.change') }}" method="POST">
+        <div class="actionButton">
+            <form action="{{ route('company.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
                 <input type="hidden" name="status" value="4">
@@ -331,15 +360,36 @@ const setPreview = (input) => {
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
                 <input type="hidden" name="status" value="6">
-                <button type="submit" class="done">発注書を承認する</button>
-        </form>
-    </div>
+                <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">発注書を承認する</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div class="modal-header border border-0">
+                                <h5 class="center-block" id="exampleModalLabel">確認</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center">発注書を承認します。</p>
+                                <p class="text-center">よろしいですか？</p>
+                            </div>
+                            <div class="modal-footer center-block border border-0">
+                                <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
+                                <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >承認</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     @elseif($purchaseOrder->task->status > 7 && $purchaseOrder->task->superior->id === $company_user->id)
-    <p class="send-done">この発注書は承認済みです</p>
+        <p class="send-done">この発注書は承認済みです</p>
     @elseif($purchaseOrder->task->status > 5 && in_array($company_user->id, $company_user_ids))
-    <p class="send-done">この発注書は提出済みです</p>
+        <p class="send-done">この発注書は提出済みです</p>
     @else
-    <p class="send-done">必要なアクションはありません</p>
+        <p class="send-done">必要なアクションはありません</p>
     @endif
     
     <div class="error-message-wrapper">

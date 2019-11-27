@@ -282,6 +282,9 @@ main {
     justify-content: center;
 
     .done {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 100px;
         background-color: #43425d;
         color: #fff;
@@ -289,9 +292,14 @@ main {
         padding: 8px 30px;
         cursor: pointer;
         font-size: 12px;
+        border: solid 2px #43425d;
+        
     }
 
     .undone {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 100px;
         background-color: #fff;
         color: #43425d;
@@ -300,6 +308,7 @@ main {
         margin-right: 12px;
         cursor: pointer;
         font-size: 12px;
+        border: solid 2px #43425d;
     }
 
     button:hover {
@@ -317,4 +326,53 @@ main {
     width: 100%;
     text-align: center;
     margin-top: 0;
+}
+
+// モーダル
+.modal {
+    .modal-dialog {
+        max-width: 716px;
+    }
+    .close {
+        height: 25px;
+        padding-right: 8px;
+        text-transform: uppercase;
+    }
+    .modal-header {
+        text-decoration: noen;
+        margin-top: 20px;
+
+        h5 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #43425d;
+        }
+        p {
+            // line-height: 1;
+            padding-bottom: 1px;
+        }
+    }
+    .modal-footer {
+        margin: 24px auto 40px;
+    }
+}
+.actionButton {
+    p {
+        font-size: 20px;
+        font-weight: bold;
+        color: #43425d;
+    }
+    .confirm-btn {
+        width:174px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .confirm-done {
+        background-color: #00CE47;
+        border: solid 2px #00CE47;
+    }
+    .confirm-undone {
+        border: solid 2px #43425d;
+
+    }
 }

@@ -178,46 +178,35 @@
     }
 }
 
-// actionButton
-.actionButton {
-    margin: 24px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .done {
-        border-radius: 100px;
-        background-color: #43425d;
-        color: #fff;
-        font-weight: bold;
-        padding: 8px 30px;
-        cursor: pointer;
-        font-size: 12px;
-    }
-
-    .undone {
-        border-radius: 100px;
-        background-color: #fff;
-        color: #43425d;
-        font-weight: bold;
-        padding: 8px 24px;
-        cursor: pointer;
-        font-size: 12px;
-    }
-
-    button:hover {
-        opacity: 0.7;
-        transition: 0.3s;
-    }
-
-    .non-action-text {
-        color: #ccc;
-        margin-bottom: 0;
-    }
-}
-
 .error-message-wrapper {
     width: 100%;
     text-align: center;
     margin-top: 0;
+}
+
+// モーダル
+.modal {
+    margin: 0 0 0 auto;
+    width: 82%;
+    .modal-dialog {
+        max-width: 716px;
+    }
+    .close {
+        height: 25px;
+        padding-right: 8px;
+        text-transform: uppercase;
+    }
+    .modal-header {
+        text-decoration: noen;
+        margin-top: 20px;
+
+        h5 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #43425d;
+        }
+    }
+    .modal-footer {
+        margin: 24px auto 40px;
+    }
 }
