@@ -190,6 +190,29 @@ $(function(){
                     <input type="hidden" name='task_id' value="{{ $task->id }}">
                     <button class="undone" type="submit" onclick="submit();" name="editOrStore" value="toEdit">作成ページに戻る</button>
                     <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStoreUpdate">保存/上長に提出</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">上長に確認を依頼する</button>
+                    <!-- Modal -->
+                    <div></div>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="modal-header border border-0">
+                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-center">タスクを新規作成し 、 {{ $task->superior->name }} さんに上長確認を依頼します。</p>
+                                    <p class="text-center">よろしいですか？</p>
+                                </div>
+                                <div class="modal-footer center-block  border border-0">
+                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
+                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >依頼</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @else
                     <button class="undone" type="submit" onclick="submit();" name="editOrStore" value="toEdit">作成ページに戻る</button>
                     <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStore">保存/上長に提出</button>

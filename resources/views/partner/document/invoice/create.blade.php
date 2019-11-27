@@ -3,6 +3,9 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/partner/document/invoice/create.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <script>
 const calculateSumPrice = (e) => {
@@ -164,6 +167,10 @@ window.onload = () => {
 
   calculateSumPrice();
 }
+
+$('.confirm').click(function(){
+    $('.confirm-btn').val( $(this).val() );
+});
 </script>
 @endsection
 
@@ -434,8 +441,29 @@ window.onload = () => {
 		<input type="hidden" id="invoiceAmount" name="amount" value="">
 		
 
-		<div class="button-container">
-			<button type="button" onclick="submit();">作成</button>
+		<div class="actionButton">
+			<button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">作成</button>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					<div class="modal-content">
+						<button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<div class="modal-header border border-0">
+							<h5 class="center-block" id="exampleModalLabel">確認</h5>
+						</div>
+						<div class="modal-body">
+							<p class="text-center">請求書を新規作成します。</p>
+							<p class="text-center">よろしいですか？</p>
+						</div>
+						<div class="modal-footer center-block  border border-0">
+							<button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
+							<button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >作成</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</form>
 </div>

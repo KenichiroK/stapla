@@ -4,6 +4,15 @@
 <link rel="stylesheet" href="{{ mix('css/pdf/paper.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/document/invoice/show.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+$('.confirm').click(function(){
+    $('.confirm-btn').val( $(this).val() );
+});
+</script>
 @endsection
 
 @section('content')
@@ -261,48 +270,84 @@
 		</div>
 	</div>
 ​
+	<div class="actionButton">
 	@if($task->status === 13 && in_array($company_user->id, $company_user_ids))
-	<div class="actionButton">
-		<form action="{{ route('company.task.status.change') }}" method="POST">
-		@csrf
-			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-			<input type="hidden" name="status" value="11">
-			<div class="button-container">
-				<button class="undone" type="submit">請求書を拒否する</button>
-			</div>
-		</form>
-		<form action="{{ route('company.task.status.change')}}" method="POST">
-		@csrf
-			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-			<input type="hidden" name="status" value="15">
-			<div class="button-container">
-				<button class="done" type="submit">経理に送信</button>
-			</div>
-		</form>
-	</div>
+		<div class="actionButton">
+			<form action="{{ route('company.task.status.change') }}" method="POST">
+			@csrf
+				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+				<input type="hidden" name="status" value="11">
+				<div class="button-container">
+					<button type="submit" class="undone">請求書を拒否する</button>
+				</div>
+			</form>
+			<form action="{{ route('company.task.status.change')}}" method="POST">
+			@csrf
+				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+				<input type="hidden" name="status" value="15">
+				<button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">経理に送信</button>
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<div class="modal-header border border-0">
+								<h5 class="center-block" id="exampleModalLabel">確認</h5>
+							</div>
+							<div class="modal-body">
+								<p class="text-center">請求書を承認し、経理の {{$task->accounting->name }} さんに確認を依頼します。</p>
+								<p class="text-center">よろしいですか？</p>
+							</div>
+							<div class="modal-footer center-block  border border-0">
+								<button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
+								<button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >送信</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
 	@elseif($task->status === 15 && $task->accounting->id === $company_user->id)
-	<div class="actionButton">
 		<form action="{{ route('company.task.status.change') }}" method="POST">
 		@csrf
 			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 			<input type="hidden" name="status" value="13">
-			<div class="button-container">
-				<button class="undone" type="submit">請求書を拒否する</button>
-			</div>
+			<button class="undone" type="submit">請求書を拒否する</button>
 		</form>
 		<form action="{{ route('company.task.status.change')}}" method="POST">
 		@csrf
 			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 			<input type="hidden" name="status" value="16">
-			<div class="button-container">
-				<button class="done" type="submit">請求書を承認する</button>
+			<button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">請求書を承認する</button>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					<div class="modal-content">
+						<button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<div class="modal-header border border-0">
+							<h5 class="center-block" id="exampleModalLabel">確認</h5>
+						</div>
+						<div class="modal-body">
+							<p class="text-center">請求書を承認します。</p>
+							<p class="text-center">よろしいですか？</p>
+						</div>
+						<div class="modal-footer center-block  border border-0">
+							<button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
+							<button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >承認</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</form>
 	</div>
 	@elseif($task->status > 14 && in_array($company_user->id, $company_user_ids))
-	<p class="send-done">この請求書は承認済みです</p>
+		<p class="send-done">この請求書は承認済みです</p>
 	@else
-	<p class="send-done">必要なアクションはありません</p>
+		<p class="send-done">必要なアクションはありません</p>
 	@endif
     <div class="error-message-wrapper">
         @if ($errors->has('task_id'))

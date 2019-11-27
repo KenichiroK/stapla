@@ -247,7 +247,7 @@ $('.confirm').click(function(){
                     <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_SUPERIOR') }}">
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">タスクを承認する</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
                                 <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
@@ -333,9 +333,9 @@ $('.confirm').click(function(){
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.WORKING') }}">
-                    <button type="button" class="undone confirm" data-toggle="modal" data-target="#exampleModalCenter">再納品を依頼</button>
+                    <button type="button" class="undone confirm" data-toggle="modal" data-target="#corrected">再納品を依頼</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="corrected" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
                                 <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
@@ -360,9 +360,9 @@ $('.confirm').click(function(){
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.ACCEPTANCE') }}">
-                    <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">検収</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#accept">検収</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="accept" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
                                 <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
@@ -377,7 +377,7 @@ $('.confirm').click(function(){
                                 </div>
                                 <div class="modal-footer center-block  border border-0">
                                     <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >検品</button>
+                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >完了</button>
                                 </div>
                             </div>
                         </div>
@@ -392,7 +392,28 @@ $('.confirm').click(function(){
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.COMPLETE_STAFF') }}">
-                    <button type="submit" class="done">タスクを完了にする</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">タスクを完了にする</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="modal-header border border-0">
+                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-center">タスクを完了します。</p>
+                                    <p class="text-center">よろしいですか？</p>
+                                </div>
+                                <div class="modal-footer center-block  border border-0">
+                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
+                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >完了</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             @elseif($task->status === config('const.COMPLETE_STAFF'))
                 <p class="non-action-text">このタスクは完了しています</p>
