@@ -33,8 +33,8 @@ class InvoiceController extends Controller
         $company = Company::findOrFail($company_id);
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->first();
-        $task_count = "";
-        $expences_count = "";
+        $task_count = 1;
+        $expences_count = 1;
 
         if ($request->session()->has('_old_input')) {
             $old_input = $request->session()->get('_old_input');
