@@ -31,6 +31,7 @@ $factory->define(App\Models\Task::class, function (Faker $faker) {
         'rating'            => $faker->numberBetween($min = 1, $max = 5),
         'rating_comment'    => $faker->sentence,
         'remarks'           => $faker->sentence,
+        'deliver_id'        => $faker->uuid,
         'created_at'        => new DateTime(),
         'updated_at'        => new DateTime(),
     ];

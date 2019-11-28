@@ -109,6 +109,16 @@
         border-top: none;
     }
 }
+.textarea-wrp {
+    width: 66%;
+    textarea {
+        width: 100%;
+        border-radius: 2px;
+        border: 1px solid #e9e9f0;
+        box-shadow: none;
+        resize: none;
+    }
+}
 
 // patner
 .patner {
@@ -141,6 +151,7 @@
             color: #43425d;
         }
         dd {
+            width: 66%;
             margin-bottom: 0;
             color: #43425d;
             font-size: 15px;
@@ -182,6 +193,14 @@
             font-weight: bold;
         }
     }
+}
+.upload-content{
+    p {
+        margin-bottom: 0;
+    }
+}
+.upload-item {
+    margin: 8px 0;            
 }
 
 // actionButton

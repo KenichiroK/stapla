@@ -7,16 +7,17 @@ use App\Http\Requests\Companies\CreateTaskRequest;
 use App\Http\Requests\Companies\TaskDraftRequest;
 use App\Http\Requests\Companies\TaskUpdateDraftRequest;
 use App\Http\Requests\Companies\TaskPreviewRequest;
-use App\Models\Task;
-use App\Models\Project;
-use App\Models\Partner;
 use App\Models\CompanyUser;
-use App\Models\PurchaseOrder;
+use App\Models\Deliver;
 use App\Models\Invoice;
+use App\Models\Partner;
+use App\Models\Project;
+use App\Models\PurchaseOrder;
+use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Carbon\Carbon;
 use Illuminate\Notifications\DatabaseNotification;
 
 class TaskController extends Controller
@@ -327,6 +328,11 @@ class TaskController extends Controller
         $invoice = Invoice::where('task_id', $id)->first();
         $auth = Auth::user();
         $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
+        if($task->deliver){
+            $deliver = Deliver::where('task_id', $task->id)->first();
+            $deliver_items = $deliver->deliverItems;
+        }
+        
 
         $company_user_ids = array();
         if ($task->companyUser) {
@@ -335,7 +341,7 @@ class TaskController extends Controller
 
         $partners = Partner::where('company_id', $auth->company_id)->get();
 
-        return view('/company/task/show', compact('auth', 'task', 'project_count', 'company_users', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids'));
+        return view('/company/task/show', compact('auth', 'task', 'project_count', 'company_users', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids', 'deliver', 'deliver_items'));
     }
 
     public function edit($id)

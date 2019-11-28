@@ -65,6 +65,8 @@ Route::group(['prefix' => 'partner'], function(){
 
 		// task
 		Route::get('/task', 'Partners\TaskController@index')->name('partner.task.index');
+				// task-show-file_download
+		Route::post('/file-download', 'Partners\DeliverController@download')->name('partner.fileDownload');
 			// task statusIndex
 		Route::get('task/status/{task_status}', 'Partners\TaskController@statusIndex')->name('partner.task.status');
 		Route::get('/task/{task_id}', 'Partners\TaskController@show')->name('partner.task.show');
@@ -98,7 +100,7 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('document/invoice/{id}/update', 'Partners\InvoiceController@update')->name('partner.document.invoice.update');
 
 		// logout
-			Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
+		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
 });
 
@@ -176,6 +178,8 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// タスク詳細
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
+				// task-show-file_download
+		Route::post('/file-download', 'Companies\DeliverController@download')->name('company.fileDownload');
 			// task-edit
 		Route::get('/task/{id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');
 			// task-update
