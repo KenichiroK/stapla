@@ -33,15 +33,16 @@
                         <ul class="icon-wrp">
                             <li class="not">
                                 @if (countReadAtIsNULL() === 0)
-                                    <button type="button" class="notification-icon-badge">
+                                    <button id="notification_icon" type="button" class="notification-icon-badge">
                                 @else
                                     <button
+                                        id="notification_icon" 
                                         class="notification-icon-badge"
                                         type="button"
                                         data-badge="{{ countReadAtIsNULL() > 99 ? '99+' : countReadAtIsNULL() }}"
                                     >
                                 @endif
-                                    <img id="notification_icon" src="{{ env('AWS_URL') }}/common/icon_notification2.png" alt="search">
+                                    <img src="{{ env('AWS_URL') }}/common/icon_notification2.png" alt="search">
                                 </button>
                             </li>
                         </ul>
