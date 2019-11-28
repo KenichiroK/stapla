@@ -19,22 +19,7 @@ postalBack.addEventListener('change', setPostal);
 
 postalFront.addEventListener('keyup', nextField);
 
-// 電話番号
-const telFront = document.getElementById('tel_front');
-const telMiddle = document.getElementById('tel_middle');
-const telBack = document.getElementById('tel_back');
-const tel = document.getElementById('tel');
-
-function setTel() {
-  tel.value = telFront.value + telMiddle.value + telBack.value;
-}
-
-telFront.addEventListener("change", setTel);
-telMiddle.addEventListener('change', setTel);
-telBack.addEventListener('change', setTel);
-
 
 window.onload = function () {
   setPostal();
-  setTel();
 }
