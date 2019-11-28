@@ -83,12 +83,15 @@
         width: 20%;
         text-align: center;
         .imgbox{
-          width: 84px;
+          width: 104px;
           margin: 0 auto;
         }
 
         img {
           border-radius: 50%;
+          width: 104px;
+          height: 104px;
+          object-fit: cover;
           margin-bottom: 12px;
         }
 

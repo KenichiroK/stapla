@@ -82,8 +82,8 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('/deliver', 'Partners\DeliverController@store')->name('partner.deliver.store');
 		
 		// profile
-		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.setting.profile.create');
-		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.setting.profile.store');
+		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
+		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
 		
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
@@ -96,6 +96,8 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::get('document/invoice/create/{task_id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
 		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
+		Route::get('document/invoice/{id}/edit', 'Partners\InvoiceController@edit')->name('partner.document.invoice.edit');
+		Route::post('document/invoice/{id}/update', 'Partners\InvoiceController@update')->name('partner.document.invoice.update');
 
 		// logout
 		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
@@ -159,14 +161,22 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
 			// task statusIndex
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
-			// task-create
+		
+			// 作成ページ
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
-		Route::post('/task/preview', 'Companies\TaskController@temporarySaveOrToPreview')->name('company.task.preview');
-				// task-create-temporaryUpdate
-		Route::get('/task/create/{task_id}', 'Companies\TaskController@temporary')->name('company.task.temporary');
-			// task-store
+			// 下書きがある場合の作成ページ
+		Route::get('/task/create/{task_id}', 'Companies\TaskController@createDraft')->name('company.task.createDraft');
+ 			// 下書きとして保存
+		Route::post('/task/draft', 'Companies\TaskController@draft')->name('company.task.draft');
+			// 下書きを更新
+		Route::post('/task/update-draft', 'Companies\TaskController@updateDraft')->name('company.task.updateDraft');
+			// プレビュー
+		Route::post('/task/preview', 'Companies\TaskController@preview')->name('company.task.preview');
+			// タスク再編集
+		Route::post('/task/recreate', 'Companies\TaskController@reCreate')->name('company.task.reCreate');
+			// タスク登録
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
-			// task-show
+			// タスク詳細
 		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
 				// task-show-file_download
 		Route::post('/file-download', 'Companies\DeliverController@download')->name('company.fileDownload');

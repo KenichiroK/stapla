@@ -88,7 +88,7 @@
                             <tr class="headerrow">
                                 <th>プロジェクト</th>
                                 <th>タスク</th>
-                                <th>パートナー</th>
+                                <th>担当者</th>
                                 <th>ステータス</th>
                                 <th>請求額</th>
                             </tr>
@@ -97,7 +97,13 @@
                             <tr class="datarow">
                                 <td class="project">{{ $task->project->name }}</td>
                                 <td><a href="{{ route('partner.task.show', ['task_id' => $task->id]) }}">{{ $task->name }}</a></td>
-                                <td>{{ $task->partner->name }}</td>
+                                <!-- <td>{{ $task->companyUser->name }}</td> -->
+                                <td class="staff">
+                                    <div class="imgbox">
+                                        <img src="{{ $task->companyUser->picture }}" alt="プロフィール画像">
+                                    </div> 
+                                    <p>{{ $task->companyUser->name }}</p>
+                                </td>
                                 <td>
                                     <div id ="state" class="status">
                                         <div class="color02">
