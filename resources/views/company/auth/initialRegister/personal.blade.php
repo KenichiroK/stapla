@@ -28,14 +28,6 @@ const setPostal = () => {
   const postal = document.getElementById('postal');
   postal.value = postal_front + postal_back;
 }
-
-const setTel = () => {
-  const tel_front = document.getElementById('tel_front').value;
-  const tel_middle = document.getElementById('tel_middle').value;
-  const tel_back = document.getElementById('tel_back').value;
-  const tel = document.getElementById('tel');
-  tel.value = tel_front + tel_middle + tel_back;
-}
 </script>
 @endsection
 
@@ -280,12 +272,7 @@ $pref = array(
 					<div class="tel-container input-container">
 						<p>電話番号</p>
 							<div class="tel-container__wrapper">
-								<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front') }}" maxlength="4" onchange="setTel()">
-								<span class="hyphen"><hr></span>
-								<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle') }}" maxlength="4" onchange="setTel()">
-								<span class="hyphen"><hr></span>
-								<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back') }}" maxlength="4" onchange="setTel()">
-								<input type="hidden" name="tel" id="tel" value="{{ old('tel') }}">
+								<input type="text" name="tel" id="tel" value="{{ old('tel') }}" maxlength="11">
 							</div>
 							@if ($errors->has('tel'))
 								<div class="error-msg">
