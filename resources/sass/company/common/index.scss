@@ -12,6 +12,8 @@
 
 @import "../../components/notification_bar";
 
+@import '../../components/label';
+
 body {
     padding: 0;
     margin: 0;
@@ -45,7 +47,7 @@ main {
         padding-top: 70px;
         background-color: #f0f0f7;
 
-        // エラーメッセージ
+        // 各inputのエラーメッセージ
         .error-msg {
             margin-top: 5px;
             display: block;
@@ -54,6 +56,7 @@ main {
                 font-size: 12px;
             }
         }
+        // ページトップのエラーメッセージ
         .error-container {
             p {
                 color: #ff0031;

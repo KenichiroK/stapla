@@ -90,7 +90,7 @@
                         <div class="imgbox">
                             <img src="{{ $task->partner->picture }}" alt="プロフィール画像">
                         </div> 
-                            <p>{{ $task->partner->name }}</p>
+                        <p>{{ $task->partner->name }}</p>
                     </td>
                     <td>
                         <div id ="state" class="status">

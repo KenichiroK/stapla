@@ -13,20 +13,11 @@
 		</div>
 	@endif
 
-	@if(!$partner_invoice)
-		<div class="error-container">
-			<p>
-				請求情報が未登録のため、請求情報を登録してください。
-				<a href="{{ route('partner.setting.invoice.create') }}">登録はこちら</a>
-			</p>
-		</div>
-	@endif
-
 	<div class="title-container">
 		<h3>請求書作成</h3>
 	</div>
 
-	<form action="{{ route('partner.invoice.store') }}" method="POST">
+	<form action="{{ route('partner.document.invoice.update',[ 'id' => $invoice->id ]) }}" method="POST">
 		@csrf
 		<div class="invoice-container">
 			<div class="invoiceTo-container">
@@ -49,9 +40,9 @@
 							<select name="company_user_id" id="staff_name" onchange="selectStaff();">
 								<option value="" hidden></option>
 								@foreach ($companyUsers as $companyUser)
-									@if(old('company_user_id') && !old('billing_to_text'))
+									@if(old('company_user_id'))
 									<option value="{{ $companyUser->id }}" {{ old('company_user_id') === $companyUser->id ? 'selected' : '' }}>{{ $companyUser->name }}</option>
-									@elseif(!old('billing_to_text'))
+                                    @elseif(!old('billing_to_text') && !$invoice->billing_to_text)
 									<option value="{{ $companyUser->id }}" {{ $task->companyUser->id === $companyUser->id ? 'selected' : '' }}>{{ $companyUser->name }}</option>
 									@endif
 								@endforeach
@@ -69,8 +60,13 @@
 				<dl>
 					<dt>担当者 <br>(自由記入)</dt>
 					<dd>
+                        @if(old('billing_to_text'))
 						<input class="free-staff-name" type="text" name="billing_to_text" id="free_staff_name" value="{{ old('billing_to_text') }}" disabled onchange="billingText();">
-						@if ($errors->has('billing_to_text'))
+                        @else
+                        <input class="free-staff-name" type="text" name="billing_to_text" id="free_staff_name" value="{{ $invoice->billing_to_text }}" disabled onchange="billingText();">
+                        @endif
+
+                        @if ($errors->has('billing_to_text'))
 							<div class="error-msg">
 								<strong>{{ $errors->first('billing_to_text') }}</strong>
 							</div>					
@@ -79,12 +75,9 @@
                 </dl>
 
 				<dl>
-					<dt>
-						件名
-						<span class="required-label">( 必須 )</span>
-					</dt>
+					<dt>件名</dt>
 					<dd>
-						<input class="task-name" type="text" name="title" value="{{ old('title', $task->name . 'のご請求') }}">
+						<input class="task-name" type="text" name="title" value="{{ $invoice->project_name }}">
 						@if ($errors->has('title'))
 							<div class="error-msg">
 								<strong>{{ $errors->first('title') }}</strong>
@@ -94,17 +87,14 @@
 				</dl>
 
 				<dl>
-					<dt>
-                        請求日
-                        <span class="required-label">( 必須 )</span>
-                    </dt>
+					<dt>請求日</dt>
 					<dd>
 						<div>
 							<span id="requested_at_text"></span>
 							<input
 								type="date"
 								name="requested_at"
-								value="{{ old('started_at', date('Y-m-d')) }}"
+								value="{{ $invoice->requested_at }}"
 							>
 
 							@if($errors->has('requested_at'))
@@ -123,17 +113,14 @@
 				</dl>
 
 				<dl>
-					<dt>
-                        支払い期限
-                        <span class="required-label">( 必須 )</span>
-                    </dt>
+					<dt>支払い期限</dt>
 					<dd>
 						<div>
 							<span id="deadline_at_text"></span>
 							<input
 								type="date"
 								name="deadline_at"
-								value="{{ old('deadline_at') }}"
+								value="{{ $invoice->deadline_at }}"
 							>
 						</div>
 						@if ($errors->has('deadline_at'))
@@ -143,11 +130,12 @@
 						@endif
 					</dd>
 				</dl>
-			</div>
+            </div>
+            
 			<div class="task-container">
 				<div class="title-container">
 					<h4>タスク</h4>
-				</div>
+                </div>
 
 				<table>
 					<thead>
@@ -162,24 +150,28 @@
 					</thead>
 					
 					<tbody id="taskRequest">
-						<tr>
-							<td class="del-task-record" name="task_element" onclick="delTaskRecord(this)">×</td>
-							<td class="item"><input type="text" name="item_name[]" value="{{ old('item_name.0') }}"></td>
-							<td class="num"><input type="text" name="item_num[]" value="{{ old('item_num.0') }}" onchange="calculateSumPrice()"></td>
-							<td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price.0') }}" onchange="calculateSumPrice()"><span>円</span></td>
-							<td class="tax">
-                                <div class="selectbox-container">
-                                    <select name="item_tax[]" onchange="calculateSumPrice()">	
-                                        <option name="tax_10" value="1.1" {{ old('item_tax.0') == '1.1' ? 'selected' : '' }}>10%</option>
-                                        <option name="tax_8" value="1.08" {{ old('item_tax.0') == '1.08' ? 'selected' : '' }}>軽減8%</option>
-                                        <option name="tax_none" value="1.0" {{ old('item_tax.0') == '1.0' ? 'selected' : '' }}>非課税</option>
-                                    </select>
-                                </div>
-							</td>
-							<td class="total"><p class="task_request_total"></p><span>円</span></td>
-							<input type="hidden" name="item_total[]">
-							<input type="hidden" id="task_count" value="{{ $task_count }}">
-						</tr>
+                        @foreach($invoice->requestTasks as $requestTask)
+							<tr>
+                                <td class="del-task-record" name="task_element" onclick="delExpenceRecord(this)">×</td>
+                                <td class="item"><input type="text" name="item_name[]" value="{{ $requestTask->name }}"></td>
+                                <td class="num"><input type="text" name="item_num[]" value="{{ $requestTask->num }}" onchange="calculateSumPrice()"></td>
+                                <td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ $requestTask->unit_price }}" onchange="calculateSumPrice()"><span>円</span></td>
+                                <td class="tax">
+                                    <div class="selectbox-container">
+                                        <select name="item_tax[]" onchange="calculateSumPrice()">	
+                                            <option name="tax_10" value="1.1" {{ $requestTask->tax == '1.1' ? 'selected' : '' }}>10%</option>
+                                            <option name="tax_8" value="1.08"  {{ $requestTask->tax == '1.08' ? 'selected' : '' }}>軽減8%</option>
+                                            <option name="tax_none" value="1.0"  {{ $requestTask->tax == '1.0' ? 'selected' : '' }}>非課税</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="total"><p class="task_request_total"></p><span>円</span></td>
+                                <input type="hidden" name="item_total[]">
+                                <input type="hidden" id="task_count" value="{{ $task_count }}">
+							</tr>
+						@endforeach
+                        <input type="hidden" id="request_task_count" value="{{ count($invoice->requestTasks) }}">
+
 					</tbody>
 					@if ($errors->has('item_name.*'))
 						<div class="error-msg">
@@ -218,24 +210,28 @@
 					</thead>
 					
 					<tbody id="expences">
-						<tr>
-							<td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
-							<td class="item"><input type="text" name="expences_name[]" value="{{ old('expences_name.0') }}"></td>
-							<td class="num"><input type="text" name="expences_num[]" value="{{ old('expences_num.0') }}" onchange="calculateSumPrice()"></td>
-							<td class="unit-price"><input type="text" name="expences_unit_price[]" value="{{ old('expences_unit_price.0') }}" onchange="calculateSumPrice()"><span>円</span></td>
-							<td class="tax">
-								<div class="selectbox-container">
-									<select name="expences_tax[]" onchange="calculateSumPrice()">	
-										<option name="tax_10" value="1.1" {{ old('item_tax.0') == '1.1' ? 'selected' : '' }}>10%</option>
-										<option name="tax_8" value="1.08"  {{ old('item_tax.0') == '1.08' ? 'selected' : '' }}>軽減8%</option>
-										<option name="tax_none" value="1.0"  {{ old('item_tax.0') == '1.0' ? 'selected' : '' }}>非課税</option>
-									</select>
-								</div>
-							</td>
-							<td class="total"><p class="expence_total"></p><span>円</span></td>
-							<input type="hidden" name="expences_total[]">
-							<input type="hidden" id="expences_count" value="{{ $expences_count }}">
-						</tr>
+
+                        @foreach($invoice->requestExpences as $requestExpence)
+							<tr>
+                                <td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
+                                <td class="item"><input type="text" name="expences_name[]" value="{{ $requestExpence->name }}"></td>
+                                <td class="num"><input type="text" name="expences_num[]" value="{{ $requestExpence->num }}" onchange="calculateSumPrice()"></td>
+                                <td class="unit-price"><input type="text" name="expences_unit_price[]" value="{{ $requestExpence->unit_price }}" onchange="calculateSumPrice()"><span>円</span></td>
+                                <td class="tax">
+                                    <div class="selectbox-container">
+                                        <select name="expences_tax[]" onchange="calculateSumPrice()">	
+                                            <option name="tax_10" value="1.1" {{ $requestExpence->tax == '1.1' ? 'selected' : '' }}>10%</option>
+                                            <option name="tax_8" value="1.08"  {{ $requestExpence->tax == '1.08' ? 'selected' : '' }}>軽減8%</option>
+                                            <option name="tax_none" value="1.0"  {{ $requestExpence->tax == '1.0' ? 'selected' : '' }}>非課税</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="total"><p class="expence_total"></p><span>円</span></td>
+                                <input type="hidden" name="expences_total[]">
+                                <input type="hidden" id="expences_count" value="{{ $expences_count }}">
+							</tr>
+                        @endforeach
+                        <input type="hidden" id="request_expences_count" value="{{ count($invoice->requestExpences) }}">
 					</tbody>
 
 					@if ($errors->has('expences_name.*'))
@@ -281,29 +277,8 @@
 		<input type="hidden" id="invoiceAmount" name="amount" value="">
 		
 
-		<div class="actionButton">
-			<button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">作成</button>
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-					<div class="modal-content">
-						<button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<div class="modal-header border border-0">
-							<h5 class="center-block" id="exampleModalLabel">確認</h5>
-						</div>
-						<div class="modal-body">
-							<p class="text-center">請求書を新規作成します。</p>
-							<p class="text-center">よろしいですか？</p>
-						</div>
-						<div class="modal-footer center-block  border border-0">
-							<button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-							<button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >作成</button>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="button-container">
+			<button type="button" onclick="submit();">修正</button>
 		</div>
 	</form>
 </div>
@@ -311,14 +286,17 @@
 
 @section('asset-js')
 <script>
+
 window.onload = () => {
     var taskCount = document.getElementById('task_count').value;
-    for (i = 0; i < (taskCount - 1); i++) {
+    var requestTaskCount = document.getElementById('request_task_count').value;
+    for (i = 0; i < (taskCount - 1 - requestTaskCount); i++) {
         addtaskRequest();
     }
     
     var expencesCount = document.getElementById('expences_count').value;
-    for (i = 0; i < (expencesCount - 1); i++) {
+    var requestExpencesCount = document.getElementById('request_task_count').value;
+    for (i = 0; i < (expencesCount - 1 - requestExpencesCount); i++) {
         addExpences();
     }
     
@@ -327,8 +305,7 @@ window.onload = () => {
 
 var addTaskCnt = 0;
 const addtaskRequest = () => {
-	addTaskCnt++;
-
+    addTaskCnt++;
     const taskRequest = document.getElementById('taskRequest');
     const inner = `
     <tr>
@@ -350,10 +327,10 @@ const addtaskRequest = () => {
     </tr>`;
     taskRequest.insertAdjacentHTML('beforeend', inner);
 
-    // var taskElement = document.querySelectorAll('td.del-task-record');
-    // taskElement.forEach(function(val, i){
-    // val.setAttribute('value', (i+1));
-    // });
+    var taskElement = document.querySelectorAll('td.del-task-record');
+    taskElement.forEach(function(val, i){
+    val.setAttribute('value', (i+1));
+    });
 }
 
 const addExpences = () => {

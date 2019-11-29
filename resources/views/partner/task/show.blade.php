@@ -18,6 +18,11 @@ $('.confirm').click(function(){
 <div class="main__container">
     <div class="main__container__wrapper">
         <div class="top">
+            @if(count($errors) > 0)
+                <div class="error-container">
+                    <p>入力に問題があります。再入力して下さい。</p>
+                </div>
+            @endif
             <div class="page-title-container">
                 <div class="page-title-container__page-title">{{ $task->name }}詳細</div>
             </div>
@@ -132,10 +137,52 @@ $('.confirm').click(function(){
                 </dd>
             </dl>
         </div>
-        
-        @if($task->status === config('const.WORKING') && $task->partner->id === Auth::user()->id)
+
+        <!-- 納品のアップロードエリアは納品するとき($task->status === 9)の時のみ表示 -->
+        @if( $task->status === config('const.WORKING') && $task->partner->id === Auth::user()->id )
             <form action="{{ route('partner.deliver.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+                <div class="patner">
+                    <p class="ptnr-title">納品</p>
+                    <dl>
+                        <dt class="textarea-wrp">
+                            自由記述
+                        </dt>
+                        <dd>
+                            <div class="textarea-wrp">
+                                <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="deliver_comment" id="">{{ old('deliver_comment') }}</textarea>
+                            </div>
+                            @if ($errors->has('deliver_comment'))
+                                    <div class="invalid-feedback error-msg" role="alert">
+                                        <strong>{{ $errors->first('deliver_comment') }}</strong>
+                                    </div>
+                                @endif
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            ファイル納品
+                        </dt>
+                        <dd class="upload-content">
+                            <div class="upload-item">
+                                <input type="file" name="deliver_files[]">
+                            </div>
+                            <div class="upload-item">
+                                <input type="file" name="deliver_files[]">
+                            </div>
+                            <div class="upload-item">
+                                <input type="file" name="deliver_files[]">
+                            </div>
+                            <p>（※ 1ファイル最大100MBまで）</p>
+                            @if ($errors->has('deliver_files.*'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('deliver_files.*') }}</strong>
+                                </div>
+                            @endif
+                        </dd>
+                    </dl>
+                </div>
                 <div class="actionButton">
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.DELIVERY_PARTNER') }}">
@@ -162,7 +209,37 @@ $('.confirm').click(function(){
                         </div>
             <div>
             </form>
-        @else
+        @elseif( $task->status !== config('const.DELIVERY_PARTWORKINGNER') )
+            <!-- 納品エリアは納品以降($task->status > 9)の時に表示 -->
+            @if( $task->status > config('const.WORKING') )
+                <div class="patner">
+                    <p class="ptnr-title">納品</p>
+                    <dl>
+                        <dt class="textarea-wrp">
+                            自由記述
+                        </dt>
+                        <dd class="flex01">
+                            {!! nl2br(e($deliver->deliver_comment)) !!}
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            ファイル納品
+                        </dt>
+                        <dd>
+                            @for( $n=0; $n < count($deliver_items); $n++)
+                                <form action="{{ route('partner.fileDownload') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
+                                    <button>{{ explode('/', $deliver_items[$n]->file)[5] }}</button>
+                                </form>
+                            @endfor     
+                        </dd>
+                    </dl>
+                </div>
+            @endif
+
             <div class="actionButton">
                 @if($task->status === config('const.TASK_SUBMIT_PARTNER') && $task->partner->id === Auth::user()->id)
                     <form action="{{ route('partner.task.status.change') }}" method="POST">
