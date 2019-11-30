@@ -9,7 +9,8 @@ class Task extends BaseUuid
         'company_id', 'project_id', 'company_user_id', 'partner_id', 'superior_id',
         'accounting_id', 'name', 'content', 'started_at', 'ended_at','status', 
         'purchaseorder', 'invoice','budget','price', 'task', 'comment', 'inspection_date', 'fee_format', 
-        'delivery_format', 'payment_terms', 'rating', 'rating_comment', 'remarks'
+        'delivery_format', 'payment_terms', 'rating', 'rating_comment', 'remarks',
+        'deliver_id'
     ];
 
     public function project()
@@ -50,5 +51,10 @@ class Task extends BaseUuid
     public function invoice()
     {
         return $this->hasOne('App\Models\Invoice', 'task_id', 'id');
+    }
+
+    public function deliver()
+    {
+        return $this->hasOne('App\Models\Deliver', 'task_id', 'id');
     }
 }

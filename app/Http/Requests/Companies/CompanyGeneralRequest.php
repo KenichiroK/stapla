@@ -30,6 +30,7 @@ class CompanyGeneralRequest extends FormRequest
             'address_prefecture'    => new Prefecture(),
             'address_city'          => 'required | string | max:6',
             'address_building'      => 'max:64',
+            'tel'                   => 'required | numeric | digits_between:10,11',
         ];
     }
 }

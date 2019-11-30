@@ -70,6 +70,7 @@
                             <tr class="headerrow">
                                 <th>プロジェクト</th>
                                 <th>タスク</th>
+                                <th>担当者</th>
                                 <th>パートナー</th>
                                 <th>ステータス</th>
                                 <th>請求額</th>
@@ -80,15 +81,24 @@
                                 <td class="project">{{ $task->project->name }}</td>
                                 <td>
                                     @if($task->status === config('const.TASK_CREATE'))
-                                        <a href="{{ route('company.task.temporary', ['task_id' => $task->id ]) }}">{{ $task->name }}</a>
+                                        <a href="{{ route('company.task.createDraft', ['task_id' => $task->id ]) }}">{{ $task->name }}</a>
                                     @else
                                         <a href="{{ route('company.task.show', ['id' => $task->id ]) }}">{{ $task->name }}</a>
                                     @endif
                                 </td>
+                                <td class="staff">
+                                    <div class="imgbox">
+                                        <img src="{{ $task->companyUser->picture }}" alt="プロフィール画像">
+                                    </div> 
+                                    <p>{{ $task->companyUser->name }}</p>
+                                </td>
                                 <td>
                                     @empty($task->partner_id)
                                     @else
-                                        {{ $task->partner->name }}
+                                        <div class="imgbox">
+                                            <img src="{{ $task->partner->picture }}" alt="プロフィール画像">
+                                        </div> 
+                                        <p>{{ $task->partner->name }}</p>
                                     @endempty
                                 </td>
                                 <td>

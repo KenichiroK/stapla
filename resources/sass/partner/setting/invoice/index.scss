@@ -205,14 +205,13 @@
     }
 
     .tel-container {
-
+      width: 45%;
       p {
         @include p-style;
       }
 
       input {
         @include input-style;
-        width: 45%;
       }
       &__wrapper{
         display: flex;
@@ -220,20 +219,7 @@
         align-items: center;
         input{
           @include input-style;
-          width: 100px;
           box-shadow: none;
-        }
-        .hyphen {
-          display: -webkit-box;
-          display: flex;
-          max-height: 36px;
-          margin: 0 10px;
-          hr {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            width: 16px;
-            border: 1px solid #43425D;
-          }
         }
       }
     }

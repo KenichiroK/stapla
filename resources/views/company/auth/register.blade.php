@@ -2,6 +2,7 @@
 
 @section('assets')
 <link href="{{ mix('css/auth/login/index.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('content')
@@ -31,7 +32,10 @@
                 </div>
 
                 <div class="input_wrapper">
-                    <h4 class="title">パスワード</h4>
+                    <h4 class="title">
+                        パスワード
+                        <span class="required-label row-label">( 必須 )</span>
+                    </h4>
                     <input class="input_text" type="password" name="password">
                     @if ($errors->has('password'))
                         <div class="invalid-feedback error-msg" role="alert">
@@ -41,7 +45,10 @@
                 </div>
 
                 <div class="input_wrapper">
-                    <h4 class="title">パスワード確認</h4>
+                    <h4 class="title">
+                        パスワード確認
+                        <span class="required-label row-label">( 必須 )</span>
+                    </h4>
                     <input class="input_text" type="password" name="password_confirmation">
                 </div>
 

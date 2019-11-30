@@ -43,7 +43,10 @@
             <div class="main-container__wrapper">
                 <div class="item-container">
                     <div class="item-name-wrapper">
-                        <div class="item-name">タスク名</div>
+                        <div class="item-name">
+                            プロジェクト名
+                            <span class="required-label">( 必須 )</span>
+                        </div>
                     </div>
                     <div class="inputarea">
                         <div class="input-control">
@@ -68,7 +71,10 @@
                 
                 <div class="item-container">
                     <div class="item-name-wrapper contentsname">
-                        <div class="item-name">プロジェクト詳細</div>
+                        <div class="item-name">
+                            プロジェクト詳細
+                            <span class="required-label">( 必須 )</span>
+                        </div>
                     </div>
                     <div class="textarea-wrp">
                         @isset($project)
@@ -85,7 +91,10 @@
                 </div>
                 <div class="item-container">
                     <div class="item-name-wrapper">
-                        <div class="item-name">担当者</div>
+                        <div class="item-name">
+                            担当者
+                            <span class="required-label">( 必須 )</span>
+                        </div>
                     </div>
                     <div class="select-error-wrp">
                         <div class="select-area control staff">
@@ -116,7 +125,10 @@
 
                 <div class="item-container">
                     <div class="item-name-wrapper period">
-                        <div class="item-name">プロジェクト期間</div>
+                        <div class="item-name">
+                            プロジェクト期間
+                            <span class="required-label">( 必須 )</span>
+                        </div>
                     </div>
                     <div class="calendar-wrp">
                         <!-- 開始日カレンダー -->
@@ -180,7 +192,10 @@
 
                 <div class="item-container">
                     <div class="item-name-wrapper">
-                        <div class="item-name">予算</div>
+                        <div class="item-name">
+                            予算
+                            <span class="required-label">( 必須 )</span>
+                        </div>
                     </div>
                     <div class="inputarea">
                         <div class="input-control budget">

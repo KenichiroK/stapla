@@ -1,0 +1,20 @@
+// require optional label
+.required-label {
+    display: block;
+    text-align: right;
+    font-weight: normal;
+    color: #ff0031;
+    font-size: 12px;
+}
+
+.optional-label {
+    display: block;
+    text-align: right;
+    font-weight: normal;
+    color: #43425d;
+    font-size: 12px;
+}
+
+.row-label {
+  display: inline-block;
+}
