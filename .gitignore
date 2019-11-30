@@ -6,7 +6,8 @@
 /public/css/*
 # NOTE: webpack.mix.jsでコンパイルされない最初からあるcssファイルたち
 !/public/css/app.css
-!/public/css/normalize.css
+!/public/css
+/normalize.css
 /public/js/*
 
 /storage/*.key
