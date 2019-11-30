@@ -68,7 +68,6 @@ class InvoiceController extends Controller
         $invoice->project_name    = $request->title;
         $invoice->requested_at    = $request->requested_at;
         $invoice->deadline_at     = $request->deadline_at;
-        $invoice->tax             = 0;
         $invoice->status          = 0;
         $invoice->save();
         \Log::info('請求書新規登録', ['user_id(partner)' => $partner->id, 'task_id' => $invoice->task_id, 'status' => $invoice->status]);
@@ -152,7 +151,6 @@ class InvoiceController extends Controller
         $invoice->project_name   = $request->title;
         $invoice->requested_at   = $request->requested_at;
         $invoice->deadline_at    = $request->deadline_at;
-        $invoice->tax            = 0;
         $invoice->status         = 0;
         $invoice->save();
         \Log::info('請求書更新', ['user_id(partner)' => $partner->id, 'task_id' => $invoice->task_id, 'status' => $invoice->status]);
