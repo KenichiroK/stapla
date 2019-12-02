@@ -3,24 +3,6 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/task/preview.css') }}">
-<script
-  src="https://code.jquery.com/jquery-3.4.1.slim.js"
-  integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
-  crossorigin="anonymous">
-</script>
-
-<script>
-$(function(){
-    let $inputPrice = $('#inputPrice');
-    let $outputPrice = $('.outputPrice');
-    let $outputPriceWithTax = $('.outputPriceWithTax');
-    $inputPrice.on('input', function(event){
-        let $value = $inputPrice.val();
-        $outputPrice.text($value);
-        $outputPriceWithTax($value);
-    });
-})
-</script>
 @endsection
 
 @section('content')
@@ -214,9 +196,8 @@ $(function(){
                     </div>
                 @else
                     <button class="undone" type="submit" onclick="submit();" name="editOrStore" value="toEdit">作成ページに戻る</button>
-                    <button class="done" type="button" style="width:155px;" name="editOrStore" value="toStore"  data-toggle="modal" data-target="#exampleModalCenter">保存/上長に提出</button>
+                    <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStore"  data-toggle="modal" data-target="#exampleModalCenter">保存/上長に提出</button>
                     <!-- Modal -->
-                    <div></div>
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
@@ -245,4 +226,28 @@ $(function(){
 
     </form>
 </div>
+@endsection
+
+@section('asset-js')
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.js"
+  integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+  crossorigin="anonymous">
+</script>
+<script>
+$(function(){
+let $inputPrice = $('#inputPrice');
+let $outputPrice = $('.outputPrice');
+let $outputPriceWithTax = $('.outputPriceWithTax');
+$inputPrice.on('input', function(event){
+    let $value = $inputPrice.val();
+    $outputPrice.text($value);
+    $outputPriceWithTax($value);
+});
+
+})
+$('.confirm').click(function(){
+    $('.confirm-btn').val( $(this).val() );
+});
+</script>
 @endsection
