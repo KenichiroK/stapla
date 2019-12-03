@@ -37,7 +37,6 @@
                 <p class="tel">{{ $purchaseOrder->company->tel }}</p>
                 <p classs="address">〒{{ $purchaseOrder->company->zip_code }} {{ $purchaseOrder->company->address_prefecture }}{{ $purchaseOrder->company->address_city }}{{ $purchaseOrder->company->address_streetAddress }}</p>
                 <p class="building">{{ $purchaseOrder->company->address_streetAddress }}</p>
-                <p class="symbol">印</p>
             </div>
         </div>
 
