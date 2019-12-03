@@ -66,14 +66,20 @@
 
             <div class="task-container__content">
                 @foreach ($tasks as $task)
-                    <a class="task-show-link" href="{{ route('company.task.show', ['id' => $task->id]) }}">
+                    @if($task->status === config('const.TASK_CREATE'))
+                        <a class="task-show-link" href="{{ route('company.task.createDraft', ['task_id' => $task->id ]) }}">
+                    @else
+                        <a class="task-show-link" href="{{ route('company.task.show', ['id' => $task->id ]) }}">
+                    @endif
                         <ul class="task-item-list task-container__content__list">
                             <li class="task-name">{{ $task->project->name }}</li>
                             <li>{{ $task->name }}</li>
                             <li class="partner-item">
+                            @empty($task->partner_id)
+                            @else
                                 <div class="imgbox"><img src="{{ $task->partner->picture }}" alt=""></div>
-                                <p class="name">
-                                    {{ $task->partner->name }}</p>
+                                <p class="name">{{ $task->partner->name }}</p>
+                            @endempty
                             </li>
                             @if($task->status === config('const.TASK_CREATE'))
                                 <li class="task-container__content__list__status">
