@@ -214,17 +214,7 @@ $pref = array(
 				<div class="tel-container">
 					<p>電話番号</p>
 					<div class="tel-container__wrapper">
-							<input type="text" name="tel_front" id="tel_front" value="{{ old('tel_front', substr(Auth::user()->tel, 0, 3)) }}" onchange="setTel()">
-								<span class="hyphen">
-									<hr>
-								</span>
-							<input type="text" name="tel_middle" id="tel_middle" value="{{ old('tel_middle', substr(Auth::user()->tel, 3, 4)) }}" onchange="setTel()">
-								<span class="hyphen">
-									<hr>
-								</span>
-							<input type="text" name="tel_back" id="tel_back" value="{{ old('tel_back', substr(Auth::user()->tel, 7)) }}" onchange="setTel()">
-							<input type="hidden" name="tel" id="tel">
-						
+                        <input type="text" name="tel" id="tel" value="{{ old('tel', Auth::user()->tel) }}" maxlength="11">
 					</div>
 					@if ($errors->has('tel'))
 							<div class="error-msg">
@@ -350,17 +340,9 @@ $pref = array(
 	postal.value = front + back;
 	}
 
-	const setTel = () => {
-		const tel_front = document.getElementById('tel_front').value;
-		const tel_middle = document.getElementById('tel_middle').value;
-		const tel_back = document.getElementById('tel_back').value;
-		const tel = document.getElementById('tel');
-		tel.value = tel_front + tel_middle + tel_back;
-	}
-
 	window.onload = () => {
 		setPostal();
-		setTel();
 	}
 </script>
+
 @endsection

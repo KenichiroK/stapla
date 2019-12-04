@@ -33,8 +33,8 @@ class InvoiceController extends Controller
         $company = Company::findOrFail($company_id);
         $companyUsers = CompanyUser::where('company_id', $company_id)->get();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->first();
-        $task_count = "";
-        $expences_count = "";
+        $task_count = 1;
+        $expences_count = 1;
 
         if ($request->session()->has('_old_input')) {
             $old_input = $request->session()->get('_old_input');
@@ -68,7 +68,6 @@ class InvoiceController extends Controller
         $invoice->project_name    = $request->title;
         $invoice->requested_at    = $request->requested_at;
         $invoice->deadline_at     = $request->deadline_at;
-        $invoice->tax             = 0;
         $invoice->status          = 0;
         $invoice->save();
         \Log::info('請求書新規登録', ['user_id(partner)' => $partner->id, 'task_id' => $invoice->task_id, 'status' => $invoice->status]);
@@ -152,7 +151,6 @@ class InvoiceController extends Controller
         $invoice->project_name   = $request->title;
         $invoice->requested_at   = $request->requested_at;
         $invoice->deadline_at    = $request->deadline_at;
-        $invoice->tax            = 0;
         $invoice->status         = 0;
         $invoice->save();
         \Log::info('請求書更新', ['user_id(partner)' => $partner->id, 'task_id' => $invoice->task_id, 'status' => $invoice->status]);
