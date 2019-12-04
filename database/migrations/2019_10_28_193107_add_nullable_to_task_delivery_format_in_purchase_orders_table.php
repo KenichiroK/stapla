@@ -4,30 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddNullableToPurchaseOrdersTable extends Migration
+// HACK: ユニークにするためにクラス名が長め
+class AddNullableToTaskDeliveryFormatInPurchaseOrdersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
-            $table->string('company_building')->nullable()->change();
+            $table->string('task_delivery_format')->nullable()->change();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
-            //
-            
+            $table->string('task_delivery_format')->nullable(false)->change();
         });
     }
 }
