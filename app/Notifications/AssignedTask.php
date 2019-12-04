@@ -53,10 +53,10 @@ class AssignedTask extends Notification
         return (new MailMessage)
                     ->subject($subject)
                     ->markdown('emails.assigned_task', [
-                        'task'     => $this->task->name,
-                        'receiver' => $this->role === config('consts.taskRole.PARTNER') ? Partner::findOrFail($notifiable->id)->name : CompanyUser::findOrFail($notifiable->id)->name,
-                        'role'     => $this->role,
-                        'url'      => $this->role === config('consts.taskRole.PARTNER') ? url()->route('partner.task.show', ['id' => $this->task->id]) : url()->route('company.task.show', ['id' => $this->task->id]),
+                        'task'        => $this->task->name,
+                        'receiver'    => $this->role === config('consts.taskRole.PARTNER') ? Partner::findOrFail($notifiable->id)->name : CompanyUser::findOrFail($notifiable->id)->name,
+                        'role'        => $this->role,
+                        'url'         => $this->role === config('consts.taskRole.PARTNER') ? url()->route('partner.task.show', ['id' => $this->task->id]) : url()->route('company.task.show', ['id' => $this->task->id]),
                         'projectName' => $this->task->project->name
                     ]);
     }
