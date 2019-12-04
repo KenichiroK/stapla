@@ -2,8 +2,8 @@
 <h1>{{ $receiver }}さん</h1>
 
 <p>
-    {{ $task }} に {{ Config::get('consts.taskRole.TASK_ROLE')[$role] }} としてアサインされました。
-    下記よりタスクの詳細をご確認いただけます。
+    {{ $projectName }}_{{ $task }}_に {{ Config::get('consts.taskRole.TASK_ROLE')[$role] }} としてアサインされました。<br>
+    下記よりご確認ください。
 </p>
 
 <a href="{{ $url }}">{{ $url }}</a>

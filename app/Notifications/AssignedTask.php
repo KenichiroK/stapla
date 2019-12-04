@@ -48,13 +48,16 @@ class AssignedTask extends Notification
      */
     public function toMail($notifiable)
     {
+        $subject = '[impro] '. $this->task->project->name. '_'. $this->task->name. '_にアサインされました';
+
         return (new MailMessage)
-                    ->subject('[impro] '.$this->task->name.'にアサインされました')
+                    ->subject($subject)
                     ->markdown('emails.assigned_task', [
                         'task'     => $this->task->name,
                         'receiver' => $this->role === config('consts.taskRole.PARTNER') ? Partner::findOrFail($notifiable->id)->name : CompanyUser::findOrFail($notifiable->id)->name,
                         'role'     => $this->role,
-                        'url'      => $this->role === config('consts.taskRole.PARTNER') ? url()->route('partner.task.show', ['id' => $this->task->id]) : url()->route('company.task.show', ['id' => $this->task->id])
+                        'url'      => $this->role === config('consts.taskRole.PARTNER') ? url()->route('partner.task.show', ['id' => $this->task->id]) : url()->route('company.task.show', ['id' => $this->task->id]),
+                        'projectName' => $this->task->project->name
                     ]);
     }
 
