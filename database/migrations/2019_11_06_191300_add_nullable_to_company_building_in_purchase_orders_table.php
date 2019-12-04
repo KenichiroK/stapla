@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddBillingToTextToPurchaseOrdersTable extends Migration
+// HACK: ユニークにするためにクラス名が長め
+class AddNullableToCompanyBuildingInPurchaseOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +15,7 @@ class AddBillingToTextToPurchaseOrdersTable extends Migration
     public function up()
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
-            // $table->string('billing_to_text')->nullable();
+            $table->string('company_building')->nullable()->change();
         });
     }
 
@@ -26,7 +27,7 @@ class AddBillingToTextToPurchaseOrdersTable extends Migration
     public function down()
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
-            $table->dropColumn('billing_to_text');
+            $table->string('company_building')->nullable(false)->change();
         });
     }
 }
