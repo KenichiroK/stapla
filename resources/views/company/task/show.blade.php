@@ -3,7 +3,6 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/task/show.css') }}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 @endsection
 
 @section('content')

@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="{{ mix('css/pdf/paper.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/document/purchaseOrder/show.css') }}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 @endsection
 
 @section('content')
