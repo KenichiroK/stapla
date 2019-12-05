@@ -203,3 +203,10 @@ if (!function_exists('sendNotificationUpdatedTaskStatusToProjectCompany')) {
         }
     }
 }
+
+// NOTE: 招待を送った担当者が登録を完了した時に通知を送信する
+// if (!function_exists('sendNotificationRegisteredCompanyUser')) {
+//     function sendNotificationAssignedTask(CompanyUser $companyUser)
+//     {
+//     }
+// }
