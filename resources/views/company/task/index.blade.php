@@ -87,19 +87,20 @@
                                     @endif
                                 </td>
                                 <td class="staff">
-                                    <div class="imgbox">
-                                        <img src="{{ $task->companyUser->picture }}" alt="プロフィール画像">
-                                    </div> 
-                                    <p>{{ $task->companyUser->name }}</p>
+                                    @isset($task->company_user_id)
+                                        <div class="imgbox">
+                                            <img src="{{ $task->companyUser->picture }}" alt="プロフィール画像">
+                                        </div> 
+                                        <p>{{ $task->companyUser->name }}</p>
+                                    @endisset
                                 </td>
                                 <td>
-                                    @empty($task->partner_id)
-                                    @else
+                                    @isset($task->partner_id)
                                         <div class="imgbox">
                                             <img src="{{ $task->partner->picture }}" alt="プロフィール画像">
                                         </div> 
                                         <p>{{ $task->partner->name }}</p>
-                                    @endempty
+                                    @endisset
                                 </td>
                                 <td>
                                     <div id ="state" class="status">
