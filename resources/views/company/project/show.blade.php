@@ -75,11 +75,10 @@
                             <li class="task-name">{{ $task->project->name }}</li>
                             <li>{{ $task->name }}</li>
                             <li class="partner-item">
-                            @empty($task->partner_id)
-                            @else
+                            @isset($task->partner_id)
                                 <div class="imgbox"><img src="{{ $task->partner->picture }}" alt=""></div>
                                 <p class="name">{{ $task->partner->name }}</p>
-                            @endempty
+                            @endisset
                             </li>
                             @if($task->status === config('const.TASK_CREATE'))
                                 <li class="task-container__content__list__status">
