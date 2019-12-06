@@ -220,12 +220,31 @@
         border-bottom: 1px solid #f1f1f3;
         .project {
             font-weight: bold;
-        }
+        };
+
         td {
             vertical-align: middle;
             text-align: center !important;
             color: #4d4f5c;
             font-size: 14px;
+            padding: 12px;
+            font-size: 12px;
+            .imgbox {
+                width: 31px;
+                height: 31px;
+                margin: 0 auto;
+            }
+
+            img {
+                border-radius: 50%;
+                width: 31px;
+                height: 31px;
+                object-fit: cover;
+                margin-bottom: 4px;
+            }
+            p {
+                margin: 3px 0 0;
+            }
             a {
                 color: #4d4f5c;
                 text-decoration: underline;

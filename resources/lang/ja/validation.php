@@ -77,7 +77,7 @@ return [
     ],
     'max' => [
         'numeric' => 'The :attribute may not be greater than :max.',
-        'file' => 'The :attribute may not be greater than :max kilobytes.',
+        'file' => ':attributeは:maxKB以内です',
         'string' => ':attributeは:max字以内で入力してください',
         'array' => 'The :attribute may not have more than :max items.',
     ],
@@ -205,6 +205,9 @@ return [
         'partner_id'      => 'パートナー',
         'project_name'    => 'プロジェクト名',
         'project_detail'  => 'プロジェクト詳細',
+        'deliver_comment' => '自由記述欄',
+        'deliver_files'   => '添付ファイル',
+        'deliver_files.*' => 'アップロードできるファイル',
 
         // doucment 作成
         'task_id'              => 'タスク',

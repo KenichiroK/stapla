@@ -1,6 +1,14 @@
 /node_modules
+
 /public/hot
 /public/storage
+/public/mix-manifest.json
+/public/css/*
+# NOTE: webpack.mix.jsでコンパイルされない最初からあるcssファイルたち
+!/public/css/app.css
+!/public/css/normalize.css
+/public/js/*
+
 /storage/*.key
 /vendor
 .env
