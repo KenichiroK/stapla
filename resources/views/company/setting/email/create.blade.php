@@ -29,22 +29,34 @@ const setPreview = (input) => {
 			<li><a href="{{ route('company.setting.general.create') }}">会社基本情報設定</a></li>
 			<!-- <li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li> -->
 			<li><a href="{{ route('company.setting.userSetting.create') }}">会社担当者設定</a></li>
-			<li><a href="{{ route('company.setting.account.create') }}" class="isActive">アカウント設定</a></li>
 			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
+			<li><a href="{{ route('company.setting.email.create') }}" class="isActive">メールアドレスの設定</a></li>
 		</ul>
-    </div>
-    <!-- アカウント設定 -->
+  </div>
+
+  <form action="{{ route('company.setting.email.sendEmail') }}" method="POST" enctype="multipart/form-data">
+  @csrf
     <div id="setting" class="setting-container">
       <div class="plan-wrapper">
-          <div class="title-container">
-            <h3>アカウント設定</h3>
-          </div>
-          <div class="plan">プラン</div>
-          <div class="plan-name">ライトプラン（年払い）</div>
-          <div class="btn-container">
-            <button type="button" onclick="submit();">プラン変更</button>
-          </div>
+        <div class="title-container">
+          <h3>メールアドレスの設定</h3>
+        </div>
+        
+        <div class="short-input-container">
+          <p>メールアドレス</p>
+          <input type="text" name="email" value="{{ old('email', $company_user->email) }}">
+          @if ($errors->has('email'))
+            <div class="error-msg">
+                <strong>{{ $errors->first('email') }}</strong>
+            </div>
+          @endif
       </div>
     </div>
+
+    <div class="btn01-container">
+      <button type="button" onclick="submit();">メールを送信する</button>
+    </div>
+  </form>
+
 </div>
 @endsection

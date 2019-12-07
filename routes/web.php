@@ -202,9 +202,11 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/setting/companyElse', 'Companies\Setting\CompanyElseController@create')->name('company.setting.companyElse.create');
 		Route::post('/setting/companyElse', 'Companies\Setting\CompanyElseController@store')->name('company.setting.companyElse.store');
 		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create')->name('company.setting.userSetting.create');
-		Route::get('/setting/account', 'Companies\Setting\AccountController@create')->name('company.setting.account.create');
 		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@create')->name('company.setting.personalInfo.create');
 		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@store')->name('company.setting.personalInfo.store');
+		Route::get('/setting/email', 'Companies\Setting\AccountController@create')->name('company.setting.email.create');
+		Route::post('/setting/email', 'Companies\Setting\AccountController@sendEmail')->name('company.setting.email.sendEmail');
+		Route::post('/setting/email/update', 'Companies\Setting\AccountController@update')->name('company.setting.email.update');
 
 		// invite companyUser - 招待による企業ユーザー仮登録
 		Route::get('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@showRegisterForm')->name('company.invitePreRegister');
