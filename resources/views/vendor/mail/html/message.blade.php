@@ -2,6 +2,7 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
+            {{-- TODO: 色ありのロゴに差し替える --}}
             <img src="{{ env('AWS_URL') }}/common/logo.png" alt="" style="height: 45px;">
         @endcomponent
     @endslot
