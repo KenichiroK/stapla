@@ -24,7 +24,7 @@ class UpdateEmailRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required | unique:partners,email | email'
+            'email' => 'required | email | unique:partners,email'
         ];
     }
 }

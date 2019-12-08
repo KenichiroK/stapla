@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Companies\Setting;
 
 use Illuminate\Http\Request;
+use App\Mail\UpdateEmailCompany;
+use Mail;
 use App\Http\Requests\Companies\UpdateEmailRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -18,37 +20,31 @@ class AccountController extends Controller
     public function sendEmail(UpdateEmailRequest $request)
     {
         $company = Auth::user()->id;
+        $email = $request->email;
         $token = hash_hmac(
             'sha256',
-            $request->session()->get('_token'),
+            str_random(40).$request->session()->get('_token'),
             env('APP_KEY')
         );
 
-        $email = $request->email;
-        Mail::to($email)->send(new UpdateEmailCompany($company, $token, $email));
+        $companyUser = CompanyUser::findOrFail($company);
+        $companyUser->temp_email = $email;
+        $companyUser->temp_token = $token;
+        $companyUser->save();
+        
+        Mail::to($email)->send(new UpdateEmailCompany($token));
 
         $completed = '「 '.$email.' 」宛にメールを送信しました。';
         return redirect()->route('company.setting.email.create')->with('completed', $completed);
     }
     public function update(Request $request)
     {
-        $session = hash_hmac(
-            'sha256',
-            $request->session()->get('_token'),
-            env('APP_KEY')
-        );
         $query = $request->query('token');
-        
-        if ($session != $query) {
-            \Log::info('Email変更 例外処理(本人以外)', ['token' => $request->session()->get('_token')]);
-            throw new AuthorizationException('本人しか更新はできません');
-        }
+        $companyUser = CompanyUser::where('temp_token', $query)->first();
+        $companyUser->email =  $companyUser->temp_email;
+        $companyUser->save();
 
-        $partner = Partner::findOrFail($request->query('id'));
-        $partner->email =  $request->query('email');
-        $partner->save();
-
-        $completed = '「 メールアドレスを変更しました。」';
-        return redirect()->route('partner.profile.email')->with('completed', $completed);
+        $completed = ' メールアドレスを変更しました。';
+        return redirect()->route('company.setting.email.create')->with('completed', $completed);
     }
 }

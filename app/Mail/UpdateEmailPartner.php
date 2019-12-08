@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ChangeEmail extends Mailable
+class UpdateEmailPartner extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,11 +16,9 @@ class ChangeEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($partner, $token, $email)
+    public function __construct($token)
     {
-        $this->partner  = $partner;
         $this->token    = $token;
-        $this->email    = $email;
     }
 
     /**
@@ -33,7 +31,7 @@ class ChangeEmail extends Mailable
         return $this->view('emails.update_email')
                     ->subject("[impro] メールアドレス変更のお手続き")
                     ->with([
-                    'url' => env('APP_URL')."/partner/setting/profile/email/update?id=$this->partner&token=$this->token&email=$this->email"
+                    'url' => env('APP_URL')."/partner/setting/profile/email/update?token=$this->token"
                 ]);
     }
 }

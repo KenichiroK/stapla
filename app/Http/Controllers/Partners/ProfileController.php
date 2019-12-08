@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Partners;
 
 use Illuminate\Http\Request;
-use App\Mail\ChangeEmail;
+use App\Mail\UpdateEmailPartner;
 use Mail;
 use App\Http\Requests\Partners\ProfileRequest;
 use App\Http\Requests\Partners\UpdateEmailRequest;
@@ -49,14 +49,18 @@ class ProfileController extends Controller
     public function sendMail(UpdateEmailRequest $request)
     {
         $partner = Auth::user()->id;
+        $email = $request->email;
         $token = hash_hmac(
             'sha256',
             $request->session()->get('_token'),
             env('APP_KEY')
         );
-
-        $email = $request->email;
-        Mail::to($email)->send(new ChangeEmail($partner, $token, $email));
+        $partner = Partner::findOrFail($partner);
+        $partner->temp_email = $email;
+        $partner->temp_token = $token;
+        $partner->save();
+        
+        Mail::to($email)->send(new UpdateEmailPartner($token));
 
         $completed = '「 '.$email.' 」宛にメールを送信しました。';
         return redirect()->route('partner.profile.email')->with('completed', $completed);
@@ -64,23 +68,12 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $session = hash_hmac(
-            'sha256',
-            $request->session()->get('_token'),
-            env('APP_KEY')
-        );
         $query = $request->query('token');
-        
-        if ($session != $query) {
-            \Log::info('Email変更 例外処理(本人以外)', ['token' => $request->session()->get('_token')]);
-            throw new AuthorizationException('本人しか更新はできません');
-        }
-
-        $partner = Partner::findOrFail($request->query('id'));
-        $partner->email =  $request->query('email');
+        $partner = Partner::where('temp_token', $query)->first();
+        $partner->email =  $partner->temp_email;
         $partner->save();
 
-        $completed = '「 メールアドレスを変更しました。」';
+        $completed = 'メールアドレスを変更しました。';
         return redirect()->route('partner.profile.email')->with('completed', $completed);
     }
 }

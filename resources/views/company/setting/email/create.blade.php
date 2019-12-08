@@ -21,6 +21,18 @@ const setPreview = (input) => {
 
 @section('content')
 <div class="main-wrapper">
+  @if (session('completed'))
+  <div class="complete-container">
+      <p>{{ session('completed') }}</p>
+  </div>
+  @endif
+
+  @if(count($errors) > 0)
+  <div class="error-container">
+      <p>入力に問題があります。再入力して下さい。</p>
+  </div>
+  @endif
+
 	<div class="title-container">
 		<h3>設定</h3>
 	</div>
@@ -36,25 +48,32 @@ const setPreview = (input) => {
 
   <form action="{{ route('company.setting.email.sendEmail') }}" method="POST" enctype="multipart/form-data">
   @csrf
-    <div id="setting" class="setting-container">
-      <div class="plan-wrapper">
-        <div class="title-container">
-          <h3>メールアドレスの設定</h3>
+
+    <div class="body-container">
+      <div class="edit-container">
+        <div class="profile-container">
+          <div class="short-input-container">
+            <p>メールアドレス</p>
+            @if (Auth::user())
+                <input type="text" name="email" value="{{ old('email', Auth::user()->email) }}">
+            @else
+                <input type="text" name="email" value="{{ old('email') }}">
+            @endif
+
+            @if ($errors->has('email'))
+                <div class="error-msg">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </div>
+            @endif
+          </div>
         </div>
-        
-        <div class="short-input-container">
-          <p>メールアドレス</p>
-          <input type="text" name="email" value="{{ old('email', $company_user->email) }}">
-          @if ($errors->has('email'))
-            <div class="error-msg">
-                <strong>{{ $errors->first('email') }}</strong>
-            </div>
-          @endif
       </div>
     </div>
 
-    <div class="btn01-container">
-      <button type="button" onclick="submit();">メールを送信する</button>
+    <div class="btn-container">
+        <div class="save-btn">
+            <button type="button" onclick="submit();">メールを送信する</button>
+        </div>
     </div>
   </form>
 

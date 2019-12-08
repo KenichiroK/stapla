@@ -16,11 +16,9 @@ class UpdateEmailCompany extends Mailable
      *
      * @return void
      */
-    public function __construct($company, $token, $email)
+    public function __construct($token)
     {
-        $this->company  = $company;
         $this->token    = $token;
-        $this->email    = $email;
     }
 
     /**
@@ -33,7 +31,7 @@ class UpdateEmailCompany extends Mailable
         return $this->view('emails.update_email')
                     ->subject("[impro] メールアドレス変更のお手続き")
                     ->with([
-                    'url' => env('APP_URL')."/company/setting/email/update?id=$this->partner&token=$this->token&email=$this->email"
+                    'url' => env('APP_URL')."/company/setting/email/update?token=$this->token"
                 ]);
     }
 }
