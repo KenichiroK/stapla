@@ -8,6 +8,7 @@ use App\Models\Deliver;
 use App\Models\Partner;
 use App\Models\PurchaseOrder;
 use App\Models\Task;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -53,6 +54,7 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::findOrFail($id);
+        $invoice = Invoice::where('task_id', $id)->first();
         $purchaseOrder = PurchaseOrder::where('task_id', $id)->first();
 
         $partner = Auth::user();
@@ -62,6 +64,6 @@ class TaskController extends Controller
             $deliver_items = $deliver->deliverItems;
         }
 
-        return view('/partner/task/show', compact('task', 'purchaseOrder', 'deliver', 'deliver_items'));
+        return view('/partner/task/show', compact('task', 'invoice', 'purchaseOrder', 'deliver', 'deliver_items'));
     }
 }
