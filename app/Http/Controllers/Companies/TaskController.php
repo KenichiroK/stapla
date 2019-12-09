@@ -204,7 +204,7 @@ class TaskController extends Controller
         // 下書きとして保存されているタスク
         if($request->task_id){
             $task = Task::findOrFail($request->task_id);
-            $company_user = Auth::user();
+            $company_user = CompanyUser::findOrFail($request->company_user_id);
             $project = Project::findOrFail($request->project_id);
             $person_in_charge = CompanyUser::findOrFail($request->company_user_id);
             if(isset($request->superior_id)){
@@ -225,7 +225,7 @@ class TaskController extends Controller
 
         // 新規タスク（下書き保存されていない）
         } else{
-            $company_user = Auth::user();
+            $company_user = CompanyUser::findOrFail($request->company_user_id);
             $project = Project::findOrFail($request->project_id);
             $person_in_charge = CompanyUser::findOrFail($request->company_user_id);
             if(isset($request->superior_id)){
