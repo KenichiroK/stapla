@@ -19,7 +19,7 @@
                 </p>
             </div>
             <div class="control btn-a-container">
-                <a href="project/create">プロジェクト作成</a>
+                <a href="{{ route('company.project.create') }}">プロジェクト作成</a>
             </div>
         </div>
 
