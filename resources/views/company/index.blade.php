@@ -100,7 +100,11 @@
     <script src="{{ asset('js/common/toggle-notification-bar.js') }}" defer></script>
     <script src="{{ asset('js/common/update-notification-mark-as-read.js') }}" defer></script>
     <script src="{{ asset('js/common/toggle-header-ballon.js') }}" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+        crossorigin="anonymous">
+    </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" rel="stylesheet"></script>
 
     <script>
@@ -131,7 +135,18 @@
     <script>
         $('.confirm').click(function(){
             $('.confirm-btn').val( $(this).val() );
-        });
+        })
+
+        $(function(){
+            let $inputPrice = $('#inputPrice');
+            let $outputPrice = $('.outputPrice');
+            let $outputPriceWithTax = $('.outputPriceWithTax');
+            $inputPrice.on('input', function(event){
+                let $value = $inputPrice.val();
+                $outputPrice.text($value);
+                $outputPriceWithTax($value);
+            });
+        })
     </script>
     @yield('asset-js')
 </body>
