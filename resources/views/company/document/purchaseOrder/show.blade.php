@@ -63,8 +63,7 @@ const setPreview = (input) => {
                             <p class="building">{{ $purchaseOrder->billing_to_text }}</p>
                             @else
                             <p class="building">{{ $purchaseOrder->companyUser_name }}</p>
-                            @endif                            
-                            <p class="symbol">印</p>
+                            @endif
                         </div>
                     </div>
         
@@ -198,8 +197,7 @@ const setPreview = (input) => {
                         <p class="building">{{ $purchaseOrder->billing_to_text }}</p>
                         @else
                         <p class="building">{{ $purchaseOrder->companyUser_name }}</p>
-                        @endif                            
-                        <p class="symbol">印</p>
+                        @endif
                     </div>
                 </div>
     
