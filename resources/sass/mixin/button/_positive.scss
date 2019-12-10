@@ -1,0 +1,14 @@
+@import "./button";
+
+@mixin positive-btn($width, $height, $px, $py, $fontSize) {
+  @extend .button;
+  width: $width;
+  height: $height;
+  padding-top: $py;
+  padding-right: $px;
+  padding-bottom: $py;
+  padding-left: $px;
+  font-size: $fontSize;
+  background-color: colors(primary);
+  color: colors(white1);
+}

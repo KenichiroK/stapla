@@ -1,0 +1,5 @@
+@mixin font($fontSize: 16px, $fontWeight: normal) {
+  font-family: "NotoSansCJKjp";
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+}
