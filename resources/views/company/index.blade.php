@@ -63,7 +63,7 @@
                             <div id="header_ballon" class="optionBox">
                                 <div class="balloon">
                                     <ul>
-                                        <li><a href="">プロフィール設定</a></li>
+                                        <li><a href="{{ route('company.setting.personalInfo.create') }}">プロフィール設定</a></li>
                                         <li>
                                             <form method="POST" action="{{ route('company.logout') }}">
                                                 @csrf
