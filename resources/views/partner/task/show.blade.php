@@ -260,7 +260,7 @@
                 @elseif($task->status === config('const.ACCEPTANCE') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
                 @elseif($task->status === config('const.INVOICE_DRAFT_CREATE') && $task->partner->id === Auth::user()->id)
-                    <a href="{{ route('partner.document.invoice.edit', ['id' => $invoice->id]) }}" class="done">請求書作成中</a>
+                    <a href="{{ route('partner.document.invoice.edit', ['id' => $invoice->id]) }}" class="done">請求書を編集する</a>
                 @elseif($task->status === config('const.COMPLETE_STAFF'))
                     <p class="non-action-text">このタスクは完了しています</p>
                 @elseif($task->status === config('const.TASK_CANCELED'))
