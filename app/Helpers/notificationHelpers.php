@@ -204,9 +204,10 @@ if (!function_exists('sendNotificationUpdatedTaskStatusToProjectCompany')) {
     }
 }
 
-// NOTE: 招待を送った担当者が登録を完了した時に通知を送信する
-// if (!function_exists('sendNotificationRegisteredCompanyUser')) {
-//     function sendNotificationAssignedTask(CompanyUser $companyUser)
-//     {
-//     }
-// }
+// NOTE: 招待されたパートナーが登録を完了した際に招待した人に登録完了を通知する
+if (!function_exists('sendNotificationRegisteredPartner')) {
+    function sendNotificationRegisteredPartner(Partner $partner)
+    {
+        $partner->invitationUser->notify(new \App\Notifications\RegisteredPartner($partner));
+    }
+}

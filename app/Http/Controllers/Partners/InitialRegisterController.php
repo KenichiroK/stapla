@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Partners\PartnerRequest;
 use App\Models\Company;
+use App\Models\CompanyUser;
 use App\Models\Partner;
 
 class InitialRegisterController extends Controller
@@ -74,6 +75,10 @@ class InitialRegisterController extends Controller
         $partner->picture      = $request->picture;
         $partner->save();
         \Log::info('パートナー新規登録', ['user_id(partner)' => $partner->id]);
+
+        if (isset($partner->invitationUser)) {
+            sendNotificationRegisteredPartner($partner);
+        }
 
         return view('partner/auth/initialRegister/done', compact('partner'));
     }
