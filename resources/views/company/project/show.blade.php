@@ -71,9 +71,11 @@
                         <li class="task-name">{{ $task->project->name }}</li>
                         <li>{{ $task->name }}</li>
                         <li class="partner-item">
+                        @isset($task->partner_id)
                             <div class="imgbox"><img src="{{ $task->partner->picture }}" alt=""></div>
                             <p class="name">
                                 {{ $task->partner->name }}</p>
+                        @endisset
                         </li>
                         @if($task->status === 0)
                         <li class="task-container__content__list__status">
