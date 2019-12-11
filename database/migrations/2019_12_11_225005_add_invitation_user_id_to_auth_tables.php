@@ -20,9 +20,20 @@ class AddInvitationUserIdToAuthTables extends Migration
             $table->foreign('invitation_user_id')->references('id')->on('company_users');
         });
 
+        Schema::table('partners', function (Blueprint $table) {
+            $table->uuid('invitation_user_id')->after('company_id')->nullable();
+            $table->foreign('invitation_user_id')->references('id')->on('company_users');
+        });
+
         Schema::table('company_user_auths', function (Blueprint $table) {
             $table->uuid('invitation_user_id')->after('company_id')->nullable();
             $table->foreign('invitation_user_id')->references('id')->on('company_users');
+        });
+
+        Schema::table('company_users', function (Blueprint $table) {
+            $table->uuid('invitation_user_id')->after('company_id')->nullable();
+            // HACK: 自己参照ってこんな感じで外部キーを自身にはれましたっけ？
+            // $table->foreign('invitation_user_id')->references('id')->on('company_users');
         });
     }
 
@@ -38,8 +49,17 @@ class AddInvitationUserIdToAuthTables extends Migration
             $table->dropColumn('invitation_user_id');
         });
 
+        Schema::table('partners', function (Blueprint $table) {
+            $table->dropForeign('partners_invitation_user_id_foreign');
+            $table->dropColumn('invitation_user_id');
+        });
+
         Schema::table('company_user_auths', function (Blueprint $table) {
             $table->dropForeign('company_user_auths_invitation_user_id_foreign');
+            $table->dropColumn('invitation_user_id');
+        });
+
+        Schema::table('company_users', function (Blueprint $table) {
             $table->dropColumn('invitation_user_id');
         });
     }
