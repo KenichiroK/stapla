@@ -53,9 +53,9 @@ const setPreview = (input) => {
                         <p classs="address">〒{{ $purchaseOrder->company_zip_code }} {{ $purchaseOrder->company->address_prefecture }}{{ $purchaseOrder->company->address_city }}{{ $purchaseOrder->company->address_streetAddress }}</p>
                         <p class="building">{{ $purchaseOrder->company_streetAddress }}</p>
                         @if($purchaseOrder->billing_to_text)
-                        <p class="building">{{ $purchaseOrder->billing_to_text }}</p>
+                            <p class="building">{{ $purchaseOrder->billing_to_text }}</p>
                         @else
-                        <p class="building">{{ $purchaseOrder->companyUser_name }}</p>
+                         <p class="building">{{ $purchaseOrder->companyUser_name }}</p>
                         @endif                            
                         <p class="symbol">印</p>
                     </div>
@@ -79,60 +79,14 @@ const setPreview = (input) => {
                                 <td>{{ number_format($purchaseOrder->task_price) }}</td>
                                 <td>{{ number_format($purchaseOrder->task_price) }}</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @for($i=1; $i<10; $i++ )
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
     
@@ -165,22 +119,22 @@ const setPreview = (input) => {
 
         </div>
 
-        @if($purchaseOrder->task->status === 7 && $purchaseOrder->partner->id === Auth::user()->id)
+        @if($purchaseOrder->task->status === config('const.ORDER_SUBMIT_PARTNER') && $purchaseOrder->partner->id === Auth::user()->id)
             <div class="actionButton">
                 <form action="{{ route('partner.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                    <input type="hidden" name="status" value="4">
+                    <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
                     <button type="submit" class="undone">断る</button>
                 </form>
                 <form action="{{ route('partner.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                    <input type="hidden" name="status" value="8">
+                    <input type="hidden" name="status" value="{{ config('const.ORDER_APPROVAL_PARTNER') }}">
                     <button type="submit" class="done">この案件を受ける</button>
                 </form>
             </div>
-        @elseif($purchaseOrder->task->status > 9 && $purchaseOrder->partner->id === Auth::user()->id)
+        @elseif($purchaseOrder->task->status > config('const.WORKING') && $purchaseOrder->partner->id === Auth::user()->id)
             <p class="send-done">この発注書は承認済みです</p>
         @else
             <p class="send-done">必要なアククションはありません</p>
