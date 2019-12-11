@@ -33,25 +33,26 @@
                         <ul class="icon-wrp">
                             <li class="not">
                                 @if (countReadAtIsNULL() === 0)
-                                    <button type="button" class="notification-icon-badge">
+                                    <button id="notification_icon" type="button" class="notification-icon-badge">
                                 @else
                                     <button
+                                        id="notification_icon"
                                         class="notification-icon-badge"
                                         type="button"
                                         data-badge="{{ countReadAtIsNULL() > 99 ? '99+' : countReadAtIsNULL() }}"
                                     >
                                 @endif
-                                    <img id="notification_icon" src="{{ env('AWS_URL') }}/common/icon_notification2.png" alt="search">
+                                    <img src="{{ env('AWS_URL') }}/common/icon_notification2.png" alt="search">
                                 </button>
                             </li>
                         </ul>
                         <div class="header-proflie">
                             <div class="user-imgbox">
-                                <a href="{{ route('partner.setting.profile.create') }}">
+                                <a href="{{ route('partner.profile.create') }}">
                                     <img src="{{ Auth::user()->picture }}" alt="プロフィール画像">
                                 </a>
                             </div>
-                            <div class="option">
+                            <div id="user_name" class="option">
                                 <div class="user-name">
                                     {{ Auth::user()->name }}
                                 </div>
@@ -61,7 +62,7 @@
                                 </div>
                             </div>
                             
-                            <div class="optionBox">
+                            <div id="header_ballon" class="optionBox">
                                 <div class="balloon">
                                     <ul>
                                         <li><a href="">プロフィール設定</a></li>
@@ -99,6 +100,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/common/toggle-notification-bar.js') }}" defer></script>
     <script src="{{ asset('js/common/update-notification-mark-as-read.js') }}" defer></script>
+    <script src="{{ asset('js/common/toggle-header-ballon.js') }}" defer></script>
     <script>
         const project_create = {{ config('const.PROJECT_CREATE') }};
         const project_complete = {{ config('const.PROJECT_COMPLETE') }};

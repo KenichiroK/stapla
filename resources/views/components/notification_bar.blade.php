@@ -14,9 +14,10 @@
                 >
                     <div class="card">
                         <div class="card-body  {{ $notification->read_at === NULL ? 'unreaded' : '' }}">
-                            <p class="card-text">
+                            <p class="card-text text">
                                 <span class="font-weight-bold">{{ $notification->data['sender'] }}</span>さんがあなたを<span class="font-weight-bold">{{ Config::get('consts.taskRole.TASK_ROLE')[$notification->data['role']] }}</span>として<span class="font-weight-bold">{{ $notification->data['task'] }}</span>にアサインしました。
                             </p>
+                            <p class="date">{{ $notification->created_at->format('n月j日 G時i分 Y年')  }}</p>
                         </div>
                     </div>
                 </a>
@@ -29,9 +30,10 @@
                 >
                     <div class="card">
                         <div class="card-body  {{ $notification->read_at === NULL ? 'unreaded' : '' }}">
-                            <p class="card-text">
+                            <p class="card-text text">
                                 <span class="font-weight-bold"> {{ $notification->data['task'] }} </span>が<span class="font-weight-bold"> {{ config('const.TASK_STATUS_LIST')[$notification->data['status']] }} </span>に変更されました。
                             </p>
+                            <p class="date">{{ $notification->created_at->format('n月j日 G時i分 Y年') }}</p>
                         </div>
                     </div>
                 </a>

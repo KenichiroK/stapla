@@ -52,6 +52,7 @@ $(function(){
                 <div class="select-textarea">
                     <div class="select-text">
                         プロジェクトを選択する
+                       <span class="required-label">( 必須 )</span>
                     </div>
                 </div>
                 <div class="select-error-wrp">
@@ -100,6 +101,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     タスク名
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="inputarea">
@@ -125,6 +127,7 @@ $(function(){
                             <div class="item-name-wrapper contentsname">
                                 <div class="item-name">
                                     タスク内容
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="textarea-wrp">
@@ -148,6 +151,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     担当者
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="select-error-wrp">
@@ -184,6 +188,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     上長
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="select-error-wrp">
@@ -221,12 +226,12 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     経理
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="select-error-wrp">
                                 <div class="select-area control staff">
                                     <div class="select-wrp select is-info">
-                                    
                                         @if(isset($task->accounting_id))
                                             <select name='accounting_id'>
                                                 <option selected></option>
@@ -258,6 +263,7 @@ $(function(){
                             <div class="item-name-wrapper period">
                                 <div class="item-name">
                                     タスク期間
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="calendar-wrp">
@@ -324,6 +330,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     予算
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="inputarea">
@@ -358,6 +365,7 @@ $(function(){
                             <div class="item-name-wrapper">
                                 <div class="item-name">
                                     パートナー
+                                    <span class="required-label">( 必須 )</span>
                                 </div>
                             </div>
                             <div class="select-area control">
@@ -394,7 +402,8 @@ $(function(){
                                 <!-- 発注単価 タイトル -->
                                 <div class="item-name-wrapper unitname">
                                     <div class="item-name">
-                                        発注単価<span class="tax">（税抜）</span>
+                                        発注単価<span class="tax">( 税抜 )</span>
+                                        <span class="required-label">( 必須 )</span>
                                     </div>
                                 </div>
                                     
@@ -422,16 +431,17 @@ $(function(){
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="actionButton">
-
-                    @if(isset($task->status))
+                    @if(isset($task->id))
+                        <!-- 下書き保存されているタスクの場合 -->
                         <input type="hidden" name='task_id' value="{{ $task->id }}">
-                        <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporaryUpdate">下書更新</button>
-                        <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreviewUpdate" style="width:auto">プレビュー</button>
+                        <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.updateDraft') }}">下書更新</button>
+                        <button class="done" type="submit" onclick="submit();" formaction="{{ route('company.task.preview') }}" style="width:auto">プレビュー</button>
                     @else
-                        <button class="undone" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toTemporarySave">下書保存</button>
-                        <button class="done" type="submit" onclick="submit();" name="temporarySaveOrPreview" value="toPreview" style="width:auto">プレビュー</button>
+                        <!-- 新規作成のタスクの場合 -->
+                        <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.draft') }}">下書保存</button>
+                        <button class="done" type="submit" onclick="submit();" formaction="{{ route('company.task.preview') }}" style="width:auto">プレビュー</button>
                     @endif
 
                 </div>  

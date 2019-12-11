@@ -264,7 +264,7 @@
 
 	@if($task->status === 12 && $task->partner->id === Auth::user()->id)
 		<div class="actionButton">
-			<a href="{{ route('partner.document.invoice.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
+			<a href="{{ route('partner.document.invoice.edit', ['id' => $invoice->id]) }}" class="undone">作り直す</a>
 			<form action="{{ route('partner.task.status.change') }}" method="POST">
 			@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
