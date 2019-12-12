@@ -73,11 +73,15 @@
                         vertical-align: middle;
                         .imgbox {
                             width: 31px;
+                            height: 31px;
                             margin: 0 auto;
                         }
 
                         img {
                             border-radius: 50%;
+                            width: 31px;
+                            height: 31px;
+                            object-fit: cover;
                             margin-bottom: 4px;
                         }
 

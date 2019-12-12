@@ -22,7 +22,7 @@
 
         <ul id="tab-button" class="tab-button">
             <li class="all  isActive"><a href="">プロジェクト</a></li>
-            <li class="done"><a href="">完了したプロジェクト</a></li>
+            <li class="done"><a href="{{ route('partner.project.done.index') }}">完了したプロジェクト</a></li>
         </ul>
 
         <div class="project-container">

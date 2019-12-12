@@ -40,17 +40,16 @@ const setPreview = (input) => {
     <div class="menu-container">
 		<ul>
 			<li><a href="" class="isActive">プロフィール</a></li>
-			<li><a href="">メールアドレス・パスワード設定</a></li>
+			<!-- <li><a href="">メールアドレス・パスワード設定</a></li> -->
 		</ul>
 	</div>
 
-    <form action="{{ route('partner.setting.profile.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('partner.profile.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body-container">
             <div class="title-container">
                 <h4>プロフィール</h4>
             </div>
-
         
             <div class="edit-container">
                 <div class="image-container">
@@ -83,6 +82,20 @@ const setPreview = (input) => {
                         @if ($errors->has('nickname'))
                             <div class="error-msg">
                                 <strong>{{ $errors->first('nickname') }}</strong>
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="short-input-container">
+                        <p>メールアドレス</p>
+                        @if (Auth::user())
+                            <input type="text" name="email" value="{{ old('email', Auth::user()->email) }}">
+                        @else
+                            <input type="text" name="email" value="{{ old('email') }}">
+                        @endif
+                        @if ($errors->has('email'))
+                            <div class="error-msg">
+                                <strong>{{ $errors->first('email') }}</strong>
                             </div>
                         @endif
                     </div>

@@ -10,7 +10,7 @@
 }
 
 .unreaded {
-  background-color: #fffedb;
+  border-left: 4px solid #ff0031;
 }
 
 .notification-btn {
@@ -19,4 +19,13 @@
 
 .notification-icon-badge {
   padding: 0;
+}
+
+.text {
+  margin: 0 0 10px;
+}
+
+.date {
+  margin: 0;
+  color: #a3a6b4;
 }

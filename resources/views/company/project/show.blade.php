@@ -66,81 +66,100 @@
 
             <div class="task-container__content">
                 @foreach ($tasks as $task)
-                <a class="task-show-link" href="{{ route('company.task.show', ['id' => $task->id]) }}">
-                    <ul class="task-item-list task-container__content__list">
-                        <li class="task-name">{{ $task->project->name }}</li>
-                        <li>{{ $task->name }}</li>
-                        <li class="partner-item">
-                        @isset($task->partner_id)
-                            <div class="imgbox"><img src="{{ $task->partner->picture }}" alt=""></div>
-                            <p class="name">
-                                {{ $task->partner->name }}</p>
-                        @endisset
-                        </li>
-                        @if($task->status === 0)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">下書き</div>
-                        </li>
-                        @elseif($task->status === 1)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">タスク上長確認前</div>
-                        </li>
-                        @elseif($task->status === 2)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">タスク上長確認中</div>
-                        </li>
-                        @elseif($task->status === 3)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">タスクパートナー依頼前</div>
-                        </li>
-                        @elseif($task->status === 4)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">タスクパートナー依頼中</div>
-                        </li>
-                        @elseif($task->status === 5)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">発注書作成中</div>
-                        </li>
-                        @elseif($task->status === 6)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">発注書作成完了</div>
-                        </li>
-                        @elseif($task->status === 7)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">発注書上長確認中</div>
-                        </li>
-                        @elseif($task->status === 8)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">発注書パートナー依頼前</div>
-                        </li>
-                        @elseif($task->status === 9)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">発注書パートナー確認中</div>
-                        </li>
-                        @elseif($task->status === 10)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">作業中</div>
-                        </li>
-                        @elseif($task->status === 11)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">請求書依頼中</div>
-                        </li>
-                        @elseif($task->status === 12)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">請求書確認中</div>
-                        </li>
-                        @elseif($task->status === 13)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn done">完了</div>
-                        </li>
-                        @elseif($task->status === 14)
-                        <li class="task-container__content__list__status">
-                            <div class="s-btn">キャンセル</div>
-                        </li>
-                        @endif 
-                        <li>¥{{ number_format($task->price) }}</li>
-                    </ul>
-                </a> 
+                    @if($task->status === config('const.TASK_CREATE'))
+                        <a class="task-show-link" href="{{ route('company.task.createDraft', ['task_id' => $task->id ]) }}">
+                    @else
+                        <a class="task-show-link" href="{{ route('company.task.show', ['id' => $task->id ]) }}">
+                    @endif
+                        <ul class="task-item-list task-container__content__list">
+                            <li class="task-name">{{ $task->project->name }}</li>
+                            <li>{{ $task->name }}</li>
+                            <li class="partner-item">
+                            @isset($task->partner_id)
+                                <div class="imgbox"><img src="{{ $task->partner->picture }}" alt=""></div>
+                                <p class="name">{{ $task->partner->name }}</p>
+                            @endisset
+                            </li>
+                            @if($task->status === config('const.TASK_CREATE'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">下書き</div>
+                                </li>
+                            @elseif($task->status === config('const.TASK_SUBMIT_SUPERIOR'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">タスク上長確認中</div>
+                                </li>
+                            @elseif($task->status === config('const.TASK_APPROVAL_SUPERIOR'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">タスクパートナー依頼前</div>
+                                </li>
+                            @elseif($task->status === config('const.TASK_SUBMIT_PARTNER'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">タスクパートナー確認中</div>
+                                </li>
+                            @elseif($task->status === config('const.TASK_APPROVAL_PARTNER'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">発注書作成前</div>
+                                </li>
+                            @elseif($task->status === config('const.ORDER_SUBMIT_SUPERIOR'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">発注書上長確認中</div>
+                                </li>
+                            @elseif($task->status === config('const.ORDER_APPROVAL_SUPERIOR'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">発注書パートナー確認前</div>
+                                </li>
+                            @elseif($task->status === config('const.ORDER_SUBMIT_PARTNER'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">発注書パートナー確認中</div>
+                                </li>
+                            @elseif($task->status === config('const.ORDER_APPROVAL_PARTNER'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">作業前</div>
+                                </li>
+                            @elseif($task->status === config('const.WORKING'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">作業中</div>
+                                </li>
+                            @elseif($task->status === config('const.DELIVERY_PARTNER'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">検品中</div>
+                                </li>
+                            @elseif($task->status === config('const.ACCEPTANCE'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">請求書作成前</div>
+                                </li>
+                            @elseif($task->status === config('const.INVOICE_DRAFT_CREATE'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">請求書下書き</div>
+                                </li>
+                            @elseif($task->status === config('const.INVOICE_CREATE'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">請求書担当者確認前</div>
+                                </li>
+                            @elseif($task->status === config('const.SUBMIT_STAFF'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">請求書担当者確認中</div>
+                                </li>
+                            @elseif($task->status === config('const.SUBMIT_ACCOUNTING'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">請求書経理提出</div>
+                                </li>
+                            @elseif($task->status === config('const.APPROVAL_ACCOUNTING'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">請求書経理承認済み</div>
+                                </li>
+                            @elseif($task->status === config('const.COMPLETE_STAFF'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn done">完了</div>
+                                </li>
+                            @elseif($task->status === config('const.TASK_CANCELED'))
+                                <li class="task-container__content__list__status">
+                                    <div class="s-btn">キャンセル</div>
+                                </li>
+                            @endif 
+                            <li>¥{{ number_format($task->price) }}</li>
+                        </ul>
+                    </a> 
                 @endforeach
             </div>
 

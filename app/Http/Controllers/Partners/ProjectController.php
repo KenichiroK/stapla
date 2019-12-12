@@ -17,6 +17,7 @@ class ProjectController extends Controller
         $tasks = Task::where('partner_id', $partner->id)->get();
         $projectsAccordingTask;
         $projects = array();
+        
         if ($tasks->count() === 0) {
             return view('partner/project/index', compact('projects'));
         }
@@ -25,10 +26,23 @@ class ProjectController extends Controller
             $projectsAccordingTask[$task->project->id] = $task->project;
         }
         foreach ($projectsAccordingTask as $project) {
-          array_push($projects, $project);
+          if($project->status == 0){
+            array_push($projects, $project);
+          }
         }
-
         return view('partner/project/index', compact('projects'));
+    }
+    public function doneIndex()
+    {
+        $partner = Auth::user();
+        $projects = Project::where('company_id', $partner->company_id)->where('status', config('const.PROJECT_COMPLETE'))->get();
+
+        $task_count_arr = []; 
+        for($i = 0; $i < count($projects); $i++){
+            $taskCount = count($projects[$i]->tasks);
+            array_push($task_count_arr, $taskCount);
+        }
+        return view('partner/project/done-index', compact('projects', 'task_count_arr'));
     }
     public function show($project_id)
     {
