@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Partners;
 use Illuminate\Http\Request;
 use App\Mail\UpdateEmailPartner;
 use Mail;
+use Carbon\Carbon;
 use App\Http\Requests\Partners\ProfileRequest;
 use App\Http\Requests\Partners\UpdateEmailRequest;
 use App\Http\Controllers\Controller;
@@ -56,21 +57,36 @@ class ProfileController extends Controller
             env('APP_KEY')
         );
         $partner = Partner::findOrFail($partner);
-        $partner->temp_email = $email;
-        $partner->temp_token = $token;
+        $partner->temp_email      = $email;
+        $partner->temp_token      = $token;
+        $partner->temp_token_time = Carbon::now();
         $partner->save();
         
-        Mail::to($email)->send(new UpdateEmailPartner($token));
+        $limit = Carbon::now()->addHour();
+        Mail::to($email)->send(new UpdateEmailPartner($token, $limit));
 
         $completed = '「 '.$email.' 」宛にメールを送信しました。';
         return redirect()->route('partner.profile.email')->with('completed', $completed);
     }
 
-    public function update(Request $request)
+    public function updateEmail(Request $request)
     {
         $query = $request->query('token');
         $partner = Partner::where('temp_token', $query)->first();
-        $partner->email =  $partner->temp_email;
+        $hour_ago = Carbon::now()->subHour();
+
+        if(!isset($partner->temp_token_time)){
+            $completed = '変更するメールアドレスが確認できないため、再度変更手続きをお願いします。';
+            return redirect()->route('partner.profile.email')->with('completed', $completed);
+        }elseif($partner->temp_token_time < $hour_ago){
+            $completed = 'メールアドレス変更可能な有効期限が過ぎたため、再度変更手続きをお願いします。';
+            return redirect()->route('partner.profile.email')->with('completed', $completed);
+        }
+
+        $partner->email           =  $partner->temp_email;
+        $partner->temp_email      =  NULL;
+        $partner->temp_token      =  NULL;
+        $partner->temp_token_time =  NULL;
         $partner->save();
 
         $completed = 'メールアドレスを変更しました。';

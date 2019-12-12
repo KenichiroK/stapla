@@ -16,9 +16,10 @@ class UpdateEmailPartner extends Mailable
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($token, $limit)
     {
-        $this->token    = $token;
+        $this->token = $token;
+        $this->limit = $limit;
     }
 
     /**
@@ -31,7 +32,8 @@ class UpdateEmailPartner extends Mailable
         return $this->view('emails.update_email')
                     ->subject("[impro] メールアドレス変更のお手続き")
                     ->with([
-                    'url' => env('APP_URL')."/partner/setting/profile/email/update?token=$this->token"
+                    'url' => env('APP_URL')."/partner/setting/profile/email/update?token=$this->token",
+                    'limit' => $this->limit
                 ]);
     }
 }

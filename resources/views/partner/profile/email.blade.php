@@ -55,7 +55,7 @@
 
         <div class="btn-container">
             <div class="save-btn">
-                <button type="button" onclick="submit();">メールを送信する</button>
+                <button type="button" onclick="submit();">メールアドレスを変更する</button>
             </div>
         </div>
     </form>

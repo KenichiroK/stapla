@@ -16,6 +16,7 @@ class AddTempemailTemptokenToComapnyUsersTable extends Migration
         Schema::table('company_users', function (Blueprint $table) {
             $table->string('temp_email')->nullable();
             $table->string('temp_token')->nullable();
+            $table->string('temp_token_time')->nullable();
         });
     }
 
@@ -29,6 +30,7 @@ class AddTempemailTemptokenToComapnyUsersTable extends Migration
         Schema::table('company_users', function (Blueprint $table) {
             $table->dropColumn('temp_email');
             $table->dropColumn('temp_token');
+            $table->dropColumn('temp_token_time');
         });
     }
 }
