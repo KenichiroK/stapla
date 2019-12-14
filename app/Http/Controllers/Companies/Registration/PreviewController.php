@@ -69,7 +69,6 @@ class PreviewController extends Controller
         $companyUser->save();
         \Log::info('担当者新規作成(企業)', ['user_id(company)' => $companyUser->id]);
 
-        $testUser = CompanyUser::where('name', 'テストはだ')->first();
         if (!isset($companyUser->invitation_user_id)) {
             return view('company/auth/initialRegister/done');
         }

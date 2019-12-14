@@ -77,9 +77,7 @@ class InitialRegisterController extends Controller
         $partner->save();
         \Log::info('パートナー新規登録', ['user_id(partner)' => $partner->id]);
 
-        $testPartner = Partner::where('email', 'test.yota.33@gmail.com')->first();
-
-        if (isset($testPartner->invitationUser)) {
+        if (isset($partner->invitationUser)) {
             $partner->invitationUser->notify(new RegisteredPartner($partner));
         }
 
