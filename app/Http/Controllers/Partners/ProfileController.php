@@ -62,7 +62,8 @@ class ProfileController extends Controller
         $partner->temp_token_time = Carbon::now();
         $partner->save();
         
-        $limit = Carbon::now()->addHour();
+        $limit = Carbon::now()->addHour(config('consts.updateEmail.EXPIRES')); 
+        
         Mail::to($email)->send(new UpdateEmailPartner($token, $limit));
 
         $completed = '「 '.$email.' 」宛にメールを送信しました。';
@@ -73,7 +74,7 @@ class ProfileController extends Controller
     {
         $query = $request->query('token');
         $partner = Partner::where('temp_token', $query)->first();
-        $hour_ago = Carbon::now()->subHour();
+        $hour_ago = Carbon::now()->subHour(config('consts.updateEmail.EXPIRES'));
 
         if(!isset($partner->temp_token_time)){
             $completed = '変更するメールアドレスが確認できないため、再度変更手続きをお願いします。';
