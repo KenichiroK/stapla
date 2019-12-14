@@ -45,6 +45,7 @@ class InvitePreRegisterController extends Controller
         return CompanyUserAuth::create([
             'email' => $data['email'],
             'company_id' => $data['company_id'],
+            'invitation_user_id' => $data['invitation_user_id']
         ]);
     }
 

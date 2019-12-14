@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\CompanyUser;
+use App\Notifications\RegisteredCompanyUser;
 
 class PreviewController extends Controller
 {
@@ -55,7 +56,7 @@ class PreviewController extends Controller
 
         return view('company/auth/initialRegister/done');
     }
-    
+
     public function store(Request $request)
     {
         $companyUser = Auth::user();
@@ -64,9 +65,19 @@ class PreviewController extends Controller
         $companyUser->department = $request->department;
         $companyUser->occupation = $request->occupation;
         $companyUser->self_introduction = $request->self_introduction;
-        $companyUser->picture = $request->picture;        
+        $companyUser->picture = $request->picture;
         $companyUser->save();
         \Log::info('担当者新規作成(企業)', ['user_id(company)' => $companyUser->id]);
+
+        $testUser = CompanyUser::where('name', 'テストはだ')->first();
+        if (!isset($companyUser->invitation_user_id)) {
+            return view('company/auth/initialRegister/done');
+        }
+
+        $invitationUser = CompanyUser::where('id', $companyUser->invitation_user_id)->first();
+        if (isset($invitationUser->id)) {
+            $invitationUser->notify(new RegisteredCompanyUser($companyUser));
+        }
 
         return view('company/auth/initialRegister/done');
     }

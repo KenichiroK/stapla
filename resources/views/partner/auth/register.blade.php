@@ -67,7 +67,7 @@
                     @endif
                 </div>
 
-                {{-- HACK: company_idもバリデーションかけてなかったけどもURLのパラメータ直接編集してくるの考慮しなくてもいいですかね --}}
+                {{-- HACK: company_idもバリデーションかけてなかったけどもユーザがURLのパラメータ直接編集してくるの考慮しなくてもいいですかね --}}
                 <div class="input_wrapper">
                     <input class="input_text" type="hidden" name="invitation_user_id" value="{{ $request->invitation_user_id }}">
                     @if ($errors->has('invitation_user_id'))

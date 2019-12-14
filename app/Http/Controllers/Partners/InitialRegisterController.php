@@ -9,6 +9,7 @@ use App\Http\Requests\Partners\PartnerRequest;
 use App\Models\Company;
 use App\Models\CompanyUser;
 use App\Models\Partner;
+use App\Notifications\RegisteredPartner;
 
 class InitialRegisterController extends Controller
 {
@@ -76,8 +77,10 @@ class InitialRegisterController extends Controller
         $partner->save();
         \Log::info('パートナー新規登録', ['user_id(partner)' => $partner->id]);
 
-        if (isset($partner->invitationUser)) {
-            $partner->invitationUser->notify(new \App\Notifications\RegisteredPartner($partner));
+        $testPartner = Partner::where('email', 'test.yota.33@gmail.com')->first();
+
+        if (isset($testPartner->invitationUser)) {
+            $partner->invitationUser->notify(new RegisteredPartner($partner));
         }
 
         return view('partner/auth/initialRegister/done', compact('partner'));
@@ -85,6 +88,6 @@ class InitialRegisterController extends Controller
 
     public function resetPassword()
     {
-        return view('partner/inviteRegister/reset-password'); 
+        return view('partner/inviteRegister/reset-password');
     }
 }
