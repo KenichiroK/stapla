@@ -47,6 +47,7 @@ class RegisteredPartner extends Notification
             ->replyTo($notifiable->email, $notifiable->name)
             ->subject('[impro] '. $this->partner->name. 'さんがパートナーとして登録完了しました')
             ->markdown('emails.invite.registeredPartner', [
+                'companyUserName' => $notifiable->name,
                 'partner' => $this->partner,
                 'url' => url()->route('company.partner.index')
             ]);

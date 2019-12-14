@@ -77,7 +77,7 @@ class InitialRegisterController extends Controller
         \Log::info('パートナー新規登録', ['user_id(partner)' => $partner->id]);
 
         if (isset($partner->invitationUser)) {
-            sendNotificationRegisteredPartner($partner);
+            $partner->invitationUser->notify(new \App\Notifications\RegisteredPartner($partner));
         }
 
         return view('partner/auth/initialRegister/done', compact('partner'));
