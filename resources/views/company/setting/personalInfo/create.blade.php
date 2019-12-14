@@ -42,8 +42,8 @@ const setPreview = (input) => {
             <li><a href="{{ route('company.setting.general.create') }}" >会社基本情報設定</a></li>
 			<!-- <li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li> -->
 			<li><a href="{{ route('company.setting.userSetting.create') }}">会社担当者設定</a></li>
-			<!-- <li><a href="{{ route('company.setting.account.create') }}">アカウント設定</a></li> -->
 			<li><a href="{{ route('company.setting.personalInfo.create') }}" class="isActive">個人情報の設定</a></li>
+			<li><a href="{{ route('company.setting.email.create') }}">メールアドレスの設定</a></li>
 		</ul>
     </div>
 
@@ -79,11 +79,6 @@ const setPreview = (input) => {
                                 <strong>{{ $errors->first('name') }}</strong>
                             </div>
                         @endif
-                    </div>
-
-                    <div class="short-input-container">
-                        <p>メールアドレス</p>
-                        <p class="text_content">{{ $company_user->email }}</p>
                     </div>
 
                     <div class="short-input-container">
