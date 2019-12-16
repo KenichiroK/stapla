@@ -204,7 +204,9 @@
                     自由記述
                     </dt>
                     <dd class="flex01">
-                        {!! nl2br(e($deliver->deliver_comment)) !!}
+                        @isset($task->deliver_id)
+                            {!! nl2br(e($deliver->deliver_comment)) !!}
+                        @endisset
                     </dd>
                 </dl>
 
@@ -213,13 +215,15 @@
                     ファイル納品
                     </dt>
                     <dd>
-                        @for( $n=0; $n < count($deliver_items); $n++)
-                            <form action="{{ route('company.fileDownload') }}" method="post">
-                                @csrf
-                                <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
-                                <button>{{ explode('/', $deliver_items[$n]->file)[5] }}</button>
-                            </form>
-                        @endfor     
+                        @isset($task->deliver_id)
+                            @for( $n=0; $n < count($deliver_items); $n++)
+                                <form action="{{ route('company.fileDownload') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
+                                    <button>{{ explode('/', $deliver_items[$n]->file)[5] }}</button>
+                                </form>
+                            @endfor
+                        @endisset  
                     </dd>
                 </dl>
             </div>
