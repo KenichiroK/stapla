@@ -202,18 +202,16 @@
 
     .save-btn{
       button {
-        width: 140px;
         background-color: #43425d;
         color: #fff;
         font-weight: bold;
         border-radius: 100px;
-        font-size: 16px;
+        font-size: 14px;
         border: 2px solid #43425D;
-        padding: 3px 25px;
+        padding: 8px;
         cursor: pointer;
         outline: none;
       }
-
     }
 
     button:hover {

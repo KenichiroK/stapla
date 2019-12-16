@@ -33,8 +33,8 @@ const setPreview = (input) => {
 			<li><a href="{{ route('company.setting.general.create') }}">会社基本情報設定</a></li>
 			<!-- <li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li> -->
 			<li><a href="{{ route('company.setting.userSetting.create') }}" class="isActive">会社担当者設定</a></li>
-			<!-- <li><a href="{{ route('company.setting.account.create') }}">アカウント設定</a></li> -->
 			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
+			<li><a href="{{ route('company.setting.email.create') }}">メールアドレスの設定</a></li>
 		</ul>
   </div>
   <div id="charge" class="charge-container white-bg-container">

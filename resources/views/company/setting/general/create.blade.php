@@ -27,6 +27,7 @@
 			<li><a href="{{ route('company.setting.general.create') }}" class="isActive">会社基本情報設定</a></li>
 			<li><a href="{{ route('company.setting.userSetting.create') }}">会社担当者設定</a></li>
 			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
+			<li><a href="{{ route('company.setting.email.create') }}">メールアドレスの設定</a></li>
 		</ul>
 	</div>
 	<div class="profile-container white-bg-container">
