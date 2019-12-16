@@ -119,7 +119,7 @@ const setPreview = (input) => {
 
         </div>
 
-    @if($purchaseOrder->task->status === 7 && $purchaseOrder->partner->id === Auth::user()->id)
+    @if($purchaseOrder->task->status === config('const.ORDER_SUBMIT_PARTNER') && $purchaseOrder->partner->id === Auth::user()->id)
         <div class="actionButton">
             <form action="{{ route('partner.task.status.change') }}" method="POST">
             @csrf
@@ -144,7 +144,7 @@ const setPreview = (input) => {
                 @endcomponent
             </form>
         </div>
-    @elseif($purchaseOrder->task->status > 9 && $purchaseOrder->partner->id === Auth::user()->id)
+    @elseif($purchaseOrder->task->status > config('const.WORKING') && $purchaseOrder->partner->id === Auth::user()->id)
         <p class="send-done">この発注書は承認済みです</p>
     @else
         <p class="send-done">必要なアククションはありません</p>
@@ -159,10 +159,6 @@ const setPreview = (input) => {
             <div class="error-msg" role="alert">
                 <strong>{{ $errors->first('status') }}</strong>
             </div>
-        @elseif($purchaseOrder->task->status > config('const.WORKING') && $purchaseOrder->partner->id === Auth::user()->id)
-            <p class="send-done">この発注書は承認済みです</p>
-        @else
-            <p class="send-done">必要なアククションはありません</p>
         @endif
         <div class="error-message-wrapper">
             @if ($errors->has('task_id'))
