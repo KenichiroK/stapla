@@ -201,7 +201,7 @@
                 <p class="ptnr-title">納品</p>
                 <dl>
                     <dt>
-                    自由記述
+                        自由記述
                     </dt>
                     <dd class="flex01">
                         @isset($task->deliver_id)
@@ -212,7 +212,7 @@
 
                 <dl>
                     <dt>
-                    ファイル納品
+                        ファイル納品
                     </dt>
                     <dd>
                         @isset($task->deliver_id)
