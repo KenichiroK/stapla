@@ -177,28 +177,18 @@
                 <div class="actionButton">
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.DELIVERY_PARTNER') }}">
-                    <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">納品する</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">納品する</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="modal-header border border-0">
-                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="text-center">納品します。</p>
-                                    <p class="text-center">よろしいですか？</p>
-                                </div>
-                                <div class="modal-footer center-block  border border-0">
-                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >納品</button>
-                                </div>
-                            </div>
-                        </div>
-            <div>
+                    @component('components.confirm-modal')
+                        @slot('confirmOrNot')
+                                confirm
+                            @endslot
+                        @slot('confirm')
+                            納品
+                        @endslot
+                        納品します。
+                    @endcomponent
+                <div>
             </form>
         @elseif( $task->status !== config('const.DELIVERY_PARTWORKINGNER') )
             <!-- 納品エリアは納品以降($task->status > 9)の時に表示 -->
@@ -243,28 +233,17 @@
                     @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
-                        <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">タスク依頼を受ける</button>
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスク依頼を受ける</button>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                <div class="modal-content">
-                                    <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <div class="modal-header border border-0">
-                                        <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p class="text-center">タスクを承認します。</p>
-                                        <p class="text-center">よろしいですか？</p>
-                                    </div>
-                                    <div class="modal-footer center-block  border border-0">
-                                        <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                        <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >承認</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @component('components.confirm-modal')
+                            @slot('confirmOrNot')
+                                confirm
+                            @endslot
+                            @slot('confirm')
+                                承認
+                            @endslot
+                            タスクを承認します。
+                        @endcomponent
                     </form>
                 @elseif($task->status === config('const.ORDER_SUBMIT_PARTNER') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
@@ -273,28 +252,17 @@
                     @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="{{ config('const.WORKING') }}">
-                        <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">作業に入る</button>
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">作業に入る</button>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                <div class="modal-content">
-                                    <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <div class="modal-header border border-0">
-                                        <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p class="text-center">作業を開始します。</p>
-                                        <p class="text-center">よろしいですか？</p>
-                                    </div>
-                                    <div class="modal-footer center-block  border border-0">
-                                        <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                        <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >承認</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @component('components.confirm-modal')
+                            @slot('confirmOrNot')
+                                confirm
+                            @endslot
+                            @slot('confirm')
+                                開始
+                            @endslot
+                            作業を開始します。
+                        @endcomponent
                     </form>
                 @elseif($task->status === config('const.ACCEPTANCE') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>

@@ -83,7 +83,7 @@
                                     @if($task->status === config('const.TASK_CREATE'))
                                         <a href="{{ route('company.task.createDraft', ['task_id' => $task->id ]) }}">{{ $task->name }}</a>
                                     @else
-                                        <a href="{{ route('company.task.show', ['id' => $task->id ]) }}">{{ $task->name }}</a>
+                                        <a href="{{ route('company.task.show', ['task_id' => $task->id ]) }}">{{ $task->name }}</a>
                                     @endif
                                 </td>
                                 <td class="staff">

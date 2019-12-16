@@ -195,8 +195,9 @@
                 </dd>
             </dl>
         </div>
+        
 
-        @if($task->status >= 10)
+        @if($task->status >= config('const.DELIVERY_PARTNER'))
             <div class="patner">
                 <p class="ptnr-title">納品</p>
                 <dl>
@@ -224,35 +225,24 @@
                 </dl>
             </div>
         @endif
-        
+
         <div class="actionButton">
             @if($task->status === config('const.TASK_CREATE'))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.TASK_SUBMIT_SUPERIOR') }}">
-                    <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">上長に確認を依頼する</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">上長に確認を依頼する</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="modal-header border border-0">
-                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="text-center">タスクを新規作成し 、 {{ $task->superior->name }} さんに上長確認を依頼します。</p>
-                                    <p class="text-center">よろしいですか？</p>
-                                </div>
-                                <div class="modal-footer center-block  border border-0">
-                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >依頼</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @component('components.confirm-modal')
+                        @slot('confirmOrNot')
+                            confirm
+                        @endslot
+                        @slot('confirm')
+                            依頼
+                        @endslot
+                        タスクを {{ $task->superior->name }} さんに上長確認を依頼します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.TASK_SUBMIT_SUPERIOR') && $task->superior->id === $auth->id)
                 <form action="{{ route('company.task.status.change') }}" method="POST">
@@ -265,56 +255,34 @@
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_SUPERIOR') }}">
-                    <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">タスクを承認する</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスクを承認する</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="modal-header border border-0">
-                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="text-center">タスクを承認します。</p>
-                                    <p class="text-center">よろしいですか？</p>
-                                </div>
-                                <div class="modal-footer center-block  border border-0">
-                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >承認</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @component('components.confirm-modal')
+                        @slot('confirmOrNot')
+                            confirm
+                        @endslot
+                        @slot('confirm')
+                            承認
+                        @endslot
+                        タスクを承認します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.TASK_APPROVAL_SUPERIOR') && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.TASK_SUBMIT_PARTNER') }}">
-                    <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">パートナーに依頼する</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">パートナーに依頼する</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="modal-header border border-0">
-                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="text-center">パートナーの {{ $task->partner->name }} さんに確認依頼します。</p>
-                                    <p class="text-center">よろしいですか？</p>
-                                </div>
-                                <div class="modal-footer center-block  border border-0">
-                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >承認</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @component('components.confirm-modal')
+                        @slot('confirmOrNot')
+                            confirm
+                        @endslot
+                        @slot('confirm')
+                            依頼
+                        @endslot
+                        パートナーの {{ $task->partner->name }} さんに確認依頼します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.TASK_APPROVAL_PARTNER') && in_array($auth->id, $company_user_ids))
                 <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="done">発注書を作成する</a>
@@ -325,83 +293,50 @@
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.ORDER_SUBMIT_PARTNER') }}">
-                    <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">発注書をパートナーに依頼する</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">発注書をパートナーに依頼する</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="modal-header border border-0">
-                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="text-center">パートナーの {{ $task->partner->name }} さんに確認依頼します。</p>
-                                    <p class="text-center">よろしいですか？</p>
-                                </div>
-                                <div class="modal-footer center-block  border border-0">
-                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >承認</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @component('components.confirm-modal')
+                        @slot('confirmOrNot')
+                            confirm
+                        @endslot
+                        @slot('confirm')
+                            依頼
+                        @endslot
+                        パートナーの {{ $task->partner->name }} さんに確認依頼します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.DELIVERY_PARTNER') && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.WORKING') }}">
-                    <button type="button" class="undone confirm" data-toggle="modal" data-target="#corrected">再納品を依頼</button>
+                    <button type="button" class="undone confirm" data-toggle="modal" data-target="#not">再納品を依頼</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="corrected" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="modal-header border border-0">
-                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="text-center">修正を依頼します。</p>
-                                    <p class="text-center">よろしいですか？</p>
-                                </div>
-                                <div class="modal-footer center-block  border border-0">
-                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >依頼</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @component('components.confirm-modal')
+                        @slot('confirmOrNot')
+                            not
+                        @endslot
+                        @slot('confirm')
+                            依頼
+                        @endslot
+                        修正を依頼します。
+                    @endcomponent
                 </form>
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.ACCEPTANCE') }}">
-                    <button type="button" class="done confirm" data-toggle="modal" data-target="#accept">検収</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">検収</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="accept" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="modal-header border border-0">
-                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="text-center">検品完了します。</p>
-                                    <p class="text-center">よろしいですか？</p>
-                                </div>
-                                <div class="modal-footer center-block  border border-0">
-                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >完了</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @component('components.confirm-modal')
+                        @slot('confirmOrNot')
+                            confirm
+                        @endslot
+                        @slot('confirm')
+                            完了
+                        @endslot
+                        検品完了します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.INVOICE_CREATE') && in_array($auth->id, $company_user_ids))
                 <a href="{{ route('company.document.invoice.show', ['id' => $invoice->id]) }}" class="done">請求書を確認する</a>
@@ -412,28 +347,17 @@
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.COMPLETE_STAFF') }}">
-                    <button type="button" class="done confirm" data-toggle="modal" data-target="#exampleModalCenter">タスクを完了にする</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスクを完了にする</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="modal-header border border-0">
-                                    <h5 class="center-block" id="exampleModalLabel">確認</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="text-center">タスクを完了します。</p>
-                                    <p class="text-center">よろしいですか？</p>
-                                </div>
-                                <div class="modal-footer center-block  border border-0">
-                                    <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                                    <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >完了</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @component('components.confirm-modal')
+                        @slot('confirmOrNot')
+                            confirm
+                        @endslot
+                        @slot('confirm')
+                            完了
+                        @endslot
+                        タスクを完了します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.COMPLETE_STAFF'))
                 <p class="non-action-text">このタスクは完了しています</p>

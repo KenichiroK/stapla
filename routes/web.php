@@ -177,7 +177,7 @@ Route::group(['prefix' => 'company'], function(){
 			// タスク登録
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// タスク詳細
-		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
+		Route::get('/task/{task_id}', 'Companies\TaskController@show')->name('company.task.show');
 				// task-show-file_download
 		Route::post('/file-download', 'Companies\DeliverController@download')->name('company.fileDownload');
 			// task-edit

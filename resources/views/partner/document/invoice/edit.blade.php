@@ -316,8 +316,18 @@
 		<input type="hidden" id="invoiceAmount" name="amount" value="">
 		
 
-		<div class="button-container">
-			<button type="button" onclick="submit();">修正</button>
+		<div class="actionButton">
+			<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">修正</button>
+			<!-- Modal -->
+			@component('components.confirm-modal')
+				@slot('confirmOrNot')
+					confirm
+				@endslot
+				@slot('confirm')
+					修正
+				@endslot
+				請求書を修正して作成します。
+			@endcomponent
 		</div>
 	</form>
 </div>
