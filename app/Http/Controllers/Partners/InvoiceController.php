@@ -23,10 +23,6 @@ class InvoiceController extends Controller
 {
     public function create(Request $request, $task_id)
     {
-        // タスクステータスのアップデート
-        $task = Task::findOrFail($task_id)
-                            ->update(['status' => config('const.INVOICE_DRAFT_CREATE')]);
-
         $task = Task::findOrFail($task_id);
         $partner = Auth::user();
         $company_id = $partner->company_id;
@@ -46,6 +42,10 @@ class InvoiceController extends Controller
 
     public function store(CreateInvoiceRequest $request)
     {
+        // タスクステータスのアップデート
+        $task = Task::findOrFail($request->task_id)
+                ->update(['status' => config('const.INVOICE_DRAFT_CREATE')]);
+
         $partner = Auth::user();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
         if (!$partner_invoice) {
