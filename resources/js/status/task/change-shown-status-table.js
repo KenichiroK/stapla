@@ -12,61 +12,45 @@
   const invoiceStatusTable = document.getElementById("invoice-status-table");
   const completeStatusTable = document.getElementById("complete-status-table");
 
-  taskStatusBtn.addEventListener("click", function() {
-    taskStatusTable.style.display = "flex";
-    orderStatusTable.style.display = "none";
-    workingStatusTable.style.display = "none";
-    invoiceStatusTable.style.display = "none";
-    completeStatusTable.style.display = "none";
+  const clickStatusBtn = type => {
+    taskStatusTable.style.display = type === "task" ? "flex" : "none";
+    orderStatusTable.style.display = type === "order" ? "flex" : "none";
+    workingStatusTable.style.display = type === "working" ? "flex" : "none";
+    invoiceStatusTable.style.display = type === "invoice" ? "flex" : "none";
+    completeStatusTable.style.display = type === "complete" ? "flex" : "none";
     navBarBtn.map(n => n.classList.remove("is-active"));
-    taskStatusBtn.classList.add("is-active");
+    type === "task"
+      ? taskStatusBtn.classList.add("is-active")
+      : type === "order"
+      ? orderStatusBtn.classList.add("is-active")
+      : type === "working"
+      ? workingStatusBtn.classList.add("is-active")
+      : type === "invoice"
+      ? invoiceStatusBtn.classList.add("is-active")
+      : completeStatusBtn.classList.add("is-active");
+  };
+
+  taskStatusBtn.addEventListener("click", function() {
+    clickStatusBtn("task");
   });
 
   orderStatusBtn.addEventListener("click", function() {
-    taskStatusTable.style.display = "none";
-    orderStatusTable.style.display = "flex";
-    workingStatusTable.style.display = "none";
-    invoiceStatusTable.style.display = "none";
-    completeStatusTable.style.display = "none";
-    navBarBtn.map(n => n.classList.remove("is-active"));
-    orderStatusBtn.classList.add("is-active");
+    clickStatusBtn("order");
   });
 
   workingStatusBtn.addEventListener("click", function() {
-    taskStatusTable.style.display = "none";
-    orderStatusTable.style.display = "none";
-    workingStatusTable.style.display = "flex";
-    invoiceStatusTable.style.display = "none";
-    completeStatusTable.style.display = "none";
-    navBarBtn.map(n => n.classList.remove("is-active"));
-    workingStatusBtn.classList.add("is-active");
+    clickStatusBtn("working");
   });
 
   invoiceStatusBtn.addEventListener("click", function() {
-    taskStatusTable.style.display = "none";
-    orderStatusTable.style.display = "none";
-    workingStatusTable.style.display = "none";
-    invoiceStatusTable.style.display = "flex";
-    completeStatusTable.style.display = "none";
-    navBarBtn.map(n => n.classList.remove("is-active"));
-    invoiceStatusBtn.classList.add("is-active");
+    clickStatusBtn("invoice");
   });
 
   completeStatusBtn.addEventListener("click", function() {
-    taskStatusTable.style.display = "none";
-    orderStatusTable.style.display = "none";
-    workingStatusTable.style.display = "none";
-    invoiceStatusTable.style.display = "none";
-    completeStatusTable.style.display = "flex";
-    navBarBtn.map(n => n.classList.remove("is-active"));
-    completeStatusBtn.classList.add("is-active");
+    clickStatusBtn("complete");
   });
 
   window.onload = function() {
-    taskStatusTable.style.display = "flex";
-    orderStatusTable.style.display = "none";
-    workingStatusTable.style.display = "none";
-    invoiceStatusTable.style.display = "none";
-    completeStatusTable.style.display = "none";
+    clickStatusBtn("task");
   };
 })();
