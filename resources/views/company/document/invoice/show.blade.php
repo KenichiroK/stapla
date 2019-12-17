@@ -266,7 +266,7 @@
 			<form action="{{ route('company.task.status.change') }}" method="POST">
 			@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-				<input type="hidden" name="status" value="11">
+				<input type="hidden" name="status" value="{{ config('const.ACCEPTANCE') }}">
 				<div class="button-container">
 					<button type="submit" class="undone">請求書を拒否する</button>
 				</div>
@@ -274,7 +274,7 @@
 			<form action="{{ route('company.task.status.change')}}" method="POST">
 			@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-				<input type="hidden" name="status" value="15">
+				<input type="hidden" name="status" value="{{ config('const.SUBMIT_ACCOUNTING') }}">
 				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">経理に送信</button>
 				<!-- Modal -->
 				@component('components.confirm-modal')
@@ -293,13 +293,13 @@
 			<form action="{{ route('company.task.status.change') }}" method="POST">
 			@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-				<input type="hidden" name="status" value="13">
+				<input type="hidden" name="status" value="{{ config('const.APPROVAL_ACCOUNTING') }}">
 				<button class="undone" type="submit">請求書を拒否する</button>
 			</form>
 			<form action="{{ route('company.task.status.change')}}" method="POST">
 			@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-				<input type="hidden" name="status" value="16">
+				<input type="hidden" name="status" value="{{ config('const.INVOICE_CREATE') }}">
 				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">請求書を承認する</button>
 				<!-- Modal -->
 				@component('components.confirm-modal')

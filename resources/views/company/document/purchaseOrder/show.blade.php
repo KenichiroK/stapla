@@ -297,7 +297,7 @@
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                    <input type="hidden" name="status" value="5">
+                    <input type="hidden" name="status" value="{{ config('const.ORDER_SUBMIT_SUPERIOR') }}">
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">上長に確認を依頼</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
@@ -316,13 +316,13 @@
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                    <input type="hidden" name="status" value="4">
+                    <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
                     <button type="submit" class="undone">発注書を承認しない</button>
                 </form>
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                    <input type="hidden" name="status" value="6">
+                    <input type="hidden" name="status" value="{{ config('const.ORDER_APPROVAL_SUPERIOR') }}">
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">発注書を承認する</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
