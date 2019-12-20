@@ -180,7 +180,7 @@
                     <button type="submit" class="done">納品する</button>
                 <div>
             </form>
-        @elseif( $task->status !== config('const.DELIVERY_PARTWORKINGNER') )
+        @elseif( $task->status !== config('const.WORKING') )
             <!-- 納品エリアは納品以降($task->status > 9)の時に表示 -->
             @if( $task->status > config('const.WORKING') )
                 <div class="patner">
@@ -190,7 +190,7 @@
                         自由記述
                         </dt>
                         <dd class="flex01">
-                            @isset($task->deliver_id)
+                            @isset($task->deliver)
                                 {!! nl2br(e($deliver->deliver_comment)) !!}
                             @endisset
                         </dd>
@@ -201,7 +201,7 @@
                         ファイル納品
                         </dt>
                         <dd>
-                            @isset($task->deliver_id)
+                            @isset($task->deliver)
                                 @for( $n=0; $n < count($deliver_items); $n++)
                                     <form action="{{ route('company.fileDownload') }}" method="post">
                                         @csrf

@@ -196,7 +196,7 @@
             </dl>
         </div>
 
-        @if($task->status >= 10)
+        @if($task->status >= config('const.DELIVERY_PARTNER'))
             <div class="patner">
                 <p class="ptnr-title">納品</p>
                 <dl>
