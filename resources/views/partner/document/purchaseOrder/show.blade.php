@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="{{ mix('css/pdf/paper.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/partner/document/purchaseOrder/show.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/document/purchaseOrder/show.css') }}">
 <script>
 const setPreview = (input) => {
   const preview = document.getElementById('preview');
@@ -134,10 +133,10 @@ const setPreview = (input) => {
                 <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">この案件を受ける</button>
                 <!-- Modal -->
                 @component('components.confirm-modal')
-                    @slot('confirmOrNot')
+                    @slot('modalID')
                         confirm
                     @endslot
-                    @slot('confirm')
+                    @slot('confirmBtnLabel')
                         承認
                     @endslot
                     発注書を承認します。

@@ -278,10 +278,10 @@
 				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">経理に送信</button>
 				<!-- Modal -->
 				@component('components.confirm-modal')
-					@slot('confirmOrNot')
+					@slot('modalID')
 						confirm
 					@endslot
-					@slot('confirm')
+					@slot('confirmBtnLabel')
 						依頼
 					@endslot
 					請求書を承認し、経理の {{$task->accounting->name }} さんに確認を依頼します。
@@ -299,14 +299,14 @@
 			<form action="{{ route('company.task.status.change')}}" method="POST">
 			@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-				<input type="hidden" name="status" value="{{ config('const.INVOICE_CREATE') }}">
+				<input type="hidden" name="status" value="{{ config('const.APPROVAL_ACCOUNTING') }}">
 				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">請求書を承認する</button>
 				<!-- Modal -->
 				@component('components.confirm-modal')
-					@slot('confirmOrNot')
+					@slot('modalID')
 						confirm
 					@endslot
-					@slot('confirm')
+					@slot('confirmBtnLabel')
 						承認
 					@endslot
 					請求書を承認します。

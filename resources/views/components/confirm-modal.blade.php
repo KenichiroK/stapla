@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="{{ $confirmOrNot }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="{{ $modalID }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
@@ -14,7 +14,7 @@
             </div>
             <div class="modal-footer center-block  border border-0">
                 <button type="button" class="undone confirm-btn confirm-undone" data-dismiss="modal">キャンセル</button>
-                <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >{{ $confirm }}</button>
+                <button type="submit" class="done confirm-btn confirm-done" name="confirm-btn" >{{ $confirmBtnLabel }}</button>
             </div>
         </div>
     </div>

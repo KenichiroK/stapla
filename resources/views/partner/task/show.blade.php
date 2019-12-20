@@ -144,10 +144,10 @@
                                 <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="deliver_comment" id="">{{ old('deliver_comment') }}</textarea>
                             </div>
                             @if ($errors->has('deliver_comment'))
-                                    <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('deliver_comment') }}</strong>
-                                    </div>
-                                @endif
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('deliver_comment') }}</strong>
+                                </div>
+                            @endif
                         </dd>
                     </dl>
 
@@ -180,10 +180,10 @@
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">納品する</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                                 confirm
                             @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             納品
                         @endslot
                         納品します。
@@ -236,10 +236,10 @@
                         <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスク依頼を受ける</button>
                         <!-- Modal -->
                         @component('components.confirm-modal')
-                            @slot('confirmOrNot')
+                            @slot('modalID')
                                 confirm
                             @endslot
-                            @slot('confirm')
+                            @slot('confirmBtnLabel')
                                 承認
                             @endslot
                             タスクを承認します。
@@ -255,10 +255,10 @@
                         <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">作業に入る</button>
                         <!-- Modal -->
                         @component('components.confirm-modal')
-                            @slot('confirmOrNot')
+                            @slot('modalID')
                                 confirm
                             @endslot
-                            @slot('confirm')
+                            @slot('confirmBtnLabel')
                                 開始
                             @endslot
                             作業を開始します。

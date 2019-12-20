@@ -320,10 +320,10 @@
 			<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">修正</button>
 			<!-- Modal -->
 			@component('components.confirm-modal')
-				@slot('confirmOrNot')
+				@slot('modalID')
 					confirm
 				@endslot
-				@slot('confirm')
+				@slot('confirmBtnLabel')
 					修正
 				@endslot
 				請求書を修正して作成します。

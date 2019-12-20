@@ -174,10 +174,10 @@
                     <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStoreUpdate" data-toggle="modal" data-target="#confirm">保存/上長に提出</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             confirm
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             依頼
                         @endslot
                         タスクを新規作成し 、 {{ $task->superior->name }} さんに上長確認を依頼します。
@@ -187,10 +187,10 @@
                     <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStore"  data-toggle="modal" data-target="#confirm">保存/上長に提出</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             confirm
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             依頼
                         @endslot
                         タスクを新規作成し 、 {{  $superior_user->name }} さんに上長確認を依頼します。

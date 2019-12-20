@@ -273,10 +273,10 @@
 				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">送信</button>
 				<!-- Modal -->
 				@component('components.confirm-modal')
-					@slot('confirmOrNot')
+					@slot('modalID')
 						confirm
 					@endslot
-					@slot('confirm')
+					@slot('confirmBtnLabel')
 						依頼
 					@endslot
 					{{ $task->companyUser->name }} さんに請求書の確認を依頼します。

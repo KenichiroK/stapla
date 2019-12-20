@@ -235,10 +235,10 @@
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">上長に確認を依頼する</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             confirm
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             依頼
                         @endslot
                         タスクを {{ $task->superior->name }} さんに上長確認を依頼します。
@@ -258,10 +258,10 @@
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスクを承認する</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             confirm
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             承認
                         @endslot
                         タスクを承認します。
@@ -275,10 +275,10 @@
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">パートナーに依頼する</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             confirm
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             依頼
                         @endslot
                         パートナーの {{ $task->partner->name }} さんに確認依頼します。
@@ -296,10 +296,10 @@
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">発注書をパートナーに依頼する</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             confirm
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             依頼
                         @endslot
                         パートナーの {{ $task->partner->name }} さんに確認依頼します。
@@ -313,10 +313,10 @@
                     <button type="button" class="undone confirm" data-toggle="modal" data-target="#not">再納品を依頼</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             not
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             依頼
                         @endslot
                         修正を依頼します。
@@ -329,10 +329,10 @@
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">検収</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             confirm
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             完了
                         @endslot
                         検品完了します。
@@ -350,10 +350,10 @@
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスクを完了にする</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             confirm
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             完了
                         @endslot
                         タスクを完了します。

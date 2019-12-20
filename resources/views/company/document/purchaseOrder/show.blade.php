@@ -301,10 +301,10 @@
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">上長に確認を依頼</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             confirm
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             依頼
                         @endslot
                         発注書を新規作成し、 {{ $task->superior->name }} さんに上長確認を依頼します。
@@ -326,10 +326,10 @@
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">発注書を承認する</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
-                        @slot('confirmOrNot')
+                        @slot('modalID')
                             confirm
                         @endslot
-                        @slot('confirm')
+                        @slot('confirmBtnLabel')
                             承認
                         @endslot
                         発注書を承認します。

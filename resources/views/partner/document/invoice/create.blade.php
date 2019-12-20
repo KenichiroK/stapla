@@ -289,10 +289,10 @@
 			<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">作成</button>
 			<!-- Modal -->
 			@component('components.confirm-modal')
-				@slot('confirmOrNot')
+				@slot('modalID')
 					confirm
 				@endslot
-				@slot('confirm')
+				@slot('confirmBtnLabel')
 					作成
 				@endslot
 				請求書を新規作成します。
