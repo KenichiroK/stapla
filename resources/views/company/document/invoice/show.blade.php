@@ -264,7 +264,7 @@
 	@if($task->status === 13 && in_array($company_user->id, $company_user_ids))
 		<div class="actionButton">
 			<form action="{{ route('company.task.status.change') }}" method="POST">
-			@csrf
+				@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 				<input type="hidden" name="status" value="{{ config('const.ACCEPTANCE') }}">
 				<div class="button-container">
@@ -272,7 +272,7 @@
 				</div>
 			</form>
 			<form action="{{ route('company.task.status.change')}}" method="POST">
-			@csrf
+				@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 				<input type="hidden" name="status" value="{{ config('const.SUBMIT_ACCOUNTING') }}">
 				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">経理に送信</button>
@@ -291,13 +291,13 @@
 	@elseif($task->status === 15 && $task->accounting->id === $company_user->id)
 		<div class="actionButton">
 			<form action="{{ route('company.task.status.change') }}" method="POST">
-			@csrf
+				@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 				<input type="hidden" name="status" value="{{ config('const.APPROVAL_ACCOUNTING') }}">
 				<button class="undone" type="submit">請求書を拒否する</button>
 			</form>
 			<form action="{{ route('company.task.status.change')}}" method="POST">
-			@csrf
+				@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 				<input type="hidden" name="status" value="{{ config('const.APPROVAL_ACCOUNTING') }}">
 				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">請求書を承認する</button>
