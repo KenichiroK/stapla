@@ -14,7 +14,7 @@ class AddUpdatingStatusAtToTasksTable extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->dateTime('status_udpated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('status_updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
@@ -26,7 +26,7 @@ class AddUpdatingStatusAtToTasksTable extends Migration
     public function down()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->dropColumn('status_udpated_at');
+            $table->dropColumn('status_updated_at');
         });
     }
 }

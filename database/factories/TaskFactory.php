@@ -34,5 +34,6 @@ $factory->define(App\Models\Task::class, function (Faker $faker) {
         'deliver_id'        => $faker->uuid,
         'created_at'        => new DateTime(),
         'updated_at'        => new DateTime(),
+        'status_updated_at' => new DateTime(),
     ];
 });

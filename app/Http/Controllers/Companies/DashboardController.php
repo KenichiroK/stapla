@@ -71,7 +71,7 @@ class DashboardController extends Controller
 
         if (count($todos) !== 0) {
             foreach($todos as $todo) {
-                if (Carbon::now()->diffInDays(new Carbon($todo->status_udpated_at)) > 3) {
+                if (Carbon::now()->diffInDays(new Carbon($todo->status_updated_at)) > 3) {
                     array_push($after_three_days_todos, $todo);
                 }
             }
