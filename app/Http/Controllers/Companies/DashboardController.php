@@ -24,10 +24,6 @@ class DashboardController extends Controller
                                 ->orderBy('created_at', 'desc')
                                 ->get();
 
-        $company_user_tasks = Task::where('company_user_id', Auth::user()->id)->get();
-        $superior_tasks     = Task::where('superior_id', Auth::user()->id)->get();
-        $accounting_tasks   = Task::where('accounting_id', Auth::user()->id)->get();
-
         $next_action_user_is_company_user_status = [
             config('const.TASK_APPROVAL_SUPERIOR'),
             config('const.TASK_APPROVAL_PARTNER'),
@@ -46,37 +42,14 @@ class DashboardController extends Controller
             config('const.SUBMIT_ACCOUNTING'),
         ];
 
-        $todos = [];
+        $todos = collect([])
+                ->concat($tasks->where('company_user_id', Auth::user()->id)->whereIn('status', $next_action_user_is_company_user_status))
+                ->concat($tasks->where('superior_id', Auth::user()->id)->whereIn('status', $next_action_user_is_superior_status))
+                ->concat($tasks->where('accounting_id', Auth::user()->id)->whereIn('status', $next_action_user_is_accounting_status));
 
-        foreach($company_user_tasks as $company_user_task) {
-            if (in_array($company_user_task->status, $next_action_user_is_company_user_status)) {
-                array_push($todos, $company_user_task);
-            }
-        }
-        
-
-        foreach($superior_tasks as $superior_task) {
-            if (in_array($superior_task->status, $next_action_user_is_superior_status)) {
-                array_push($todos, $superior_task);
-            }
-        }
-
-        foreach($accounting_tasks as $accounting_task) {
-            if (in_array($accounting_task->status, $next_action_user_is_accounting_status)) {
-                array_push($todos, $accounting_task);
-            }
-        }
-
-        $after_three_days_todos = [];
-
-        if (count($todos) !== 0) {
-            foreach($todos as $todo) {
-                if (Carbon::now()->diffInDays(new Carbon($todo->status_updated_at)) > 3) {
-                    array_push($after_three_days_todos, $todo);
-                }
-            }
-        }
-        
+        $after_3_days_todos = $todos->filter(function ($value, $key) {
+            return Carbon::now()->diffInDays(new Carbon($value->status_updated_at)) > 3;
+        });
 
         $status_arr = [];
         for ($i = 0; $i <= 18; $i++) {
@@ -87,6 +60,6 @@ class DashboardController extends Controller
             $status_arr[$tasks[$i]->status]++;
         }
 
-        return view('company/dashboard/index', compact('projects', 'tasks', 'todos', 'after_three_days_todos', 'status_arr'));
+        return view('company/dashboard/index', compact('projects', 'tasks', 'todos', 'after_3_days_todos', 'status_arr'));
     }
 }

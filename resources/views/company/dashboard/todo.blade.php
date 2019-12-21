@@ -4,7 +4,7 @@
         <p class="title-container__alert">
             3日以上未対応
             <button id="toggle_todo_btn" class="title-container__alert--button" type="button">
-                {{ count($after_three_days_todos) }}<span class="title-container__alert--unit">件</span>
+                {{ count($after_3_days_todos) }}<span class="title-container__alert--unit">件</span>
             </button>
         </p>
     </div>
@@ -60,11 +60,11 @@
         </div>
 
         <div id="after_three_days_todos">
-            @if (count($after_three_days_todos) === 0)
+            @if (count($after_3_days_todos) === 0)
                 <p class="no-data">3日以上未対応のtodoはありません</p>
             @endif
 
-            @foreach($after_three_days_todos as $todo)
+            @foreach($after_3_days_todos as $todo)
             <div class="content-container__body after_three_days_todo_item">
                 <a class="content-container__body--link" href="{{ route('company.task.show', ['id' => $todo->id]) }}">
                     <p class="content-container__body--long">{{ $todo->project->name }}</p>
