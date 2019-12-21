@@ -81,10 +81,17 @@ mix.js(
 
 mix.js(
   [
-    // show todo table
-    "resources/js/moreBtn/todo.js",
+    // show all todo table
+    "resources/js/moreBtn/all-todo.js",
   ],
-  "public/js/moreBtn/todo.js",
+  "public/js/moreBtn/all-todo.js",
+);
+mix.js(
+  [
+    // show after 3 days todo table
+    "resources/js/moreBtn/after-three-days-todo.js",
+  ],
+  "public/js/moreBtn/after-three-days-todo.js",
 );
 mix.js(
   [

@@ -20,7 +20,8 @@
 @endsection
 
 @section('asset-js')
-<script src="{{ asset('js/moreBtn/todo.js') }}" defer></script>
+<script src="{{ asset('js/moreBtn/all-todo.js') }}" defer></script>
+<script src="{{ asset('js/moreBtn/after-three-days-todo.js') }}" defer></script>
 <script src="{{ asset('js/moreBtn/project.js') }}" defer></script>
 <script src="{{ asset('js/moreBtn/task.js') }}" defer></script>
 <script src="{{ asset('js/dashboard/toggleTodo.js') }}" defer></script>
