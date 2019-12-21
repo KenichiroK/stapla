@@ -48,7 +48,7 @@ class DashboardController extends Controller
                 ->concat($tasks->where('accounting_id', Auth::user()->id)->whereIn('status', $next_action_user_is_accounting_status))
                 ->sortByDesc('status_updated_at');
 
-        $after_3_days_todos = $todos->filter(function ($value, $key) {
+        $passed_3days_todos = $todos->filter(function ($value, $key) {
             return Carbon::now()->diffInDays(new Carbon($value->status_updated_at)) > 3;
         })->sortByDesc('status_updated_at');
 
@@ -61,6 +61,6 @@ class DashboardController extends Controller
             $status_arr[$tasks[$i]->status]++;
         }
 
-        return view('company/dashboard/index', compact('projects', 'tasks', 'todos', 'after_3_days_todos', 'status_arr'));
+        return view('company/dashboard/index', compact('projects', 'tasks', 'todos', 'passed_3days_todos', 'status_arr'));
     }
 }

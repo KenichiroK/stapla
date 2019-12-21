@@ -88,10 +88,10 @@ mix.js(
 );
 mix.js(
   [
-    // show after 3 days todo table
-    "resources/js/moreBtn/after-three-days-todo.js",
+    // show passed 3 days todo table
+    "resources/js/moreBtn/passed-3days-todo.js",
   ],
-  "public/js/moreBtn/after-three-days-todo.js",
+  "public/js/moreBtn/passed-3days-todo.js",
 );
 mix.js(
   [
@@ -112,9 +112,9 @@ mix.js(
 mix.js(
   [
     // toggle shown todos
-    "resources/js/dashboard/toggleTodo.js",
+    "resources/js/dashboard/toggle-todo.js",
   ],
-  "public/js/dashboard/toggleTodo.js",
+  "public/js/dashboard/toggle-todo.js",
 );
 
 mix.js(

@@ -1,8 +1,6 @@
 (function() {
   const allTodos = document.getElementById("all_todos");
-  const afterThreeDaysTodos = document.getElementById("after_three_days_todos");
-  const allTodoMoreBtnArea = document.getElementById("all_todo_more_btn_area");
-  const afterThreeDaysTodoMoreBtnArea = document.getElementById("after_three_days_todo_more_btn_area");
+  const passed3DaysTodos = document.getElementById("passed_3days_todos");
   const toggleTodoBtn = document.getElementById("toggle_todo_btn");
   let shownAllTodos = true;
 
@@ -10,16 +8,16 @@
     shownAllTodos = !shownAllTodos;
     if (shownAllTodos) {
       allTodos.style.display = "block";
-      afterThreeDaysTodos.style.display = "none";
+      passed3DaysTodos.style.display = "none";
     } else {
       allTodos.style.display = "none";
-      afterThreeDaysTodos.style.display = "block";
+      passed3DaysTodos.style.display = "block";
     }
   });
 
   const setDefault = () => {
     allTodos.style.display = "block";
-    afterThreeDaysTodos.style.display = "none";
+    passed3DaysTodos.style.display = "none";
   };
 
   setDefault();
