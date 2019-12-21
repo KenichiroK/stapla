@@ -13,6 +13,10 @@
             <p class="content-container__head--short">請求額</p>
         </div>
 
+        @if (count($projects) === 0)
+        <p class="no-data">あなたのプロジェクトはありません</p>
+        @endif
+
         @foreach($projects as $project)
         <div class="content-container__body project_item">
             <a class="content-container__body--link" href="{{ route('company.project.show', ['id' => $project->id]) }}">
@@ -28,9 +32,9 @@
             </a>
         </div>
         @endforeach
-    </div>
 
-    <div id="project_more_btn_area" class="morebtn-container is-active">
-        <p id="project_more_btn" class="morebtn-container__text">もっと見る</p>
+         <div id="project_more_btn_area" class="morebtn-container is-active">
+            <p id="project_more_btn" class="morebtn-container__text">もっと見る</p>
+        </div>
     </div>
 </div>

@@ -1,5 +1,7 @@
+@import "../../setting/colors";
 @import "./more-btn";
 @import "./table-title";
+@import "./common.scss";
 @import "../../mixin/font/primary";
 @import "../../mixin/font/table-head";
 @import "../../mixin/button/positive";
@@ -12,7 +14,6 @@
 
   .content-container {
     width: 100%;
-    margin: 0 0 24px;
 
     &__head {
       width: 100%;

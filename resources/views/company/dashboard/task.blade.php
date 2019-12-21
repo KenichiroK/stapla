@@ -15,6 +15,10 @@
                 <p class="content-container__head--long">請求額</p>
         </div>
 
+        @if (count($tasks) === 0)
+        <p class="no-data">あなたのアサインされたタスクはありません</p>
+        @endif
+
         @foreach($tasks as $task)
         <div class="content-container__body task_item">
             <a class="content-container__body--link" href="{{ route('company.task.show', ['id' => $task->id]) }}">
@@ -40,9 +44,9 @@
             </a>
         </div>
         @endforeach
-    </div>
 
-    <div id="task_more_btn_area" class="morebtn-container is-active">
-        <p id="task_more_btn" class="morebtn-container__text">もっと見る</p>
+         <div id="task_more_btn_area" class="morebtn-container is-active">
+            <p id="task_more_btn" class="morebtn-container__text">もっと見る</p>
+        </div>
     </div>
 </div>
