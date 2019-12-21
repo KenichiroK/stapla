@@ -1,11 +1,11 @@
+@import "../setting/colors";
+@import "../mixin/font/primary";
+
 .title-container {
   margin: 0 0 32px;
 
   h3 {
-    font-weight: bold;
-    font-size: 28px;
-    font-family: "Source Sans Pro";
-    color: #43425d;
+    @include primary-text(28px, bold);
     margin-bottom: 0;
   }
 }
