@@ -45,11 +45,12 @@ class DashboardController extends Controller
         $todos = collect([])
                 ->concat($tasks->where('company_user_id', Auth::user()->id)->whereIn('status', $next_action_user_is_company_user_status))
                 ->concat($tasks->where('superior_id', Auth::user()->id)->whereIn('status', $next_action_user_is_superior_status))
-                ->concat($tasks->where('accounting_id', Auth::user()->id)->whereIn('status', $next_action_user_is_accounting_status));
+                ->concat($tasks->where('accounting_id', Auth::user()->id)->whereIn('status', $next_action_user_is_accounting_status))
+                ->sortByDesc('status_updated_at');
 
         $after_3_days_todos = $todos->filter(function ($value, $key) {
             return Carbon::now()->diffInDays(new Carbon($value->status_updated_at)) > 3;
-        });
+        })->sortByDesc('status_updated_at');
 
         $status_arr = [];
         for ($i = 0; $i <= 18; $i++) {
