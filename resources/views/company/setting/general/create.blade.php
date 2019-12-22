@@ -1,4 +1,4 @@
- @extends('company.index')
+@extends('company.index')
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="main-wrapper">
-	@include('company.setting.common.menuTab')
+	@include('company.setting.common.menuTab', ['activeClass' => 'general'])
 
 	<div class="profile-container white-bg-container">
 		<form action="{{ route('company.setting.general.update') }}" method="POST">

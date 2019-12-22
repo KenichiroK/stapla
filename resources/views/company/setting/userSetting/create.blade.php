@@ -20,7 +20,7 @@ const setPreview = (input) => {
 
 @section('content')
 <div class="main-wrapper">
-    @include('company.setting.common.menuTab')
+    @include('company.setting.common.menuTab', ['activeClass' => 'userSetting'])
 
     <div id="charge" class="charge-container white-bg-container">
         <div class="title-container">

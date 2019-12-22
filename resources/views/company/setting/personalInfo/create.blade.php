@@ -22,7 +22,7 @@ const setPreview = (input) => {
 
 @section('content')
 <div class="main-wrapper">    
-	@include('company.setting.common.menuTab')
+	@include('company.setting.common.menuTab', ['activeClass' => 'personalInfo'])
 
     <form action="{{ route('company.setting.personalInfo.store') }}" method="POST" enctype="multipart/form-data">
         @csrf

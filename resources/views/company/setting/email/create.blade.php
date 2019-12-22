@@ -21,7 +21,7 @@ const setPreview = (input) => {
 
 @section('content')
 <div class="main-wrapper">
-  @include('company.setting.common.menuTab')
+  @include('company.setting.common.menuTab', ['activeClass' => 'email'])
 
   <form action="{{ route('company.setting.email.sendEmail') }}" method="POST" enctype="multipart/form-data">
   @csrf
