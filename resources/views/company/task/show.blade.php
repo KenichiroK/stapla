@@ -202,25 +202,29 @@
                 <p class="ptnr-title">納品</p>
                 <dl>
                     <dt>
-                    自由記述
+                        自由記述
                     </dt>
                     <dd class="flex01">
-                        {!! nl2br(e($deliver->deliver_comment)) !!}
+                        @isset($task->deliver)
+                            {!! nl2br(e($deliver->deliver_comment)) !!}
+                        @endisset
                     </dd>
                 </dl>
 
                 <dl>
                     <dt>
-                    ファイル納品
+                        ファイル納品
                     </dt>
                     <dd>
-                        @for( $n=0; $n < count($deliver_items); $n++)
-                            <form action="{{ route('company.fileDownload') }}" method="post">
-                                @csrf
-                                <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
-                                <button>{{ explode('/', $deliver_items[$n]->file)[5] }}</button>
-                            </form>
-                        @endfor     
+                        @isset($task->deliver)
+                            @for( $n=0; $n < count($deliver_items); $n++)
+                                <form action="{{ route('company.fileDownload') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
+                                    <button>{{ explode('/', $deliver_items[$n]->file)[5] }}</button>
+                                </form>
+                            @endfor
+                        @endisset  
                     </dd>
                 </dl>
             </div>
@@ -229,7 +233,7 @@
         <div class="actionButton">
             @if($task->status === config('const.TASK_CREATE'))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
-                @csrf
+                    @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.TASK_SUBMIT_SUPERIOR') }}">
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">上長に確認を依頼する</button>
@@ -246,13 +250,13 @@
                 </form>
             @elseif($task->status === config('const.TASK_SUBMIT_SUPERIOR') && $task->superior->id === $auth->id)
                 <form action="{{ route('company.task.status.change') }}" method="POST">
-                @csrf
+                    @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                     <button type="submit" class="undone">タスクを承認しない</button>
                 </form>
                 <form action="{{ route('company.task.status.change') }}" method="POST">
-                @csrf
+                    @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_SUPERIOR') }}">
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスクを承認する</button>
@@ -269,7 +273,7 @@
                 </form>
             @elseif($task->status === config('const.TASK_APPROVAL_SUPERIOR') && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
-                @csrf
+                    @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.TASK_SUBMIT_PARTNER') }}">
                     <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">パートナーに依頼する</button>

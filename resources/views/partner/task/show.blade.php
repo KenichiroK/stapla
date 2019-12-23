@@ -132,7 +132,7 @@
         <!-- 納品のアップロードエリアは納品するとき($task->status === 9)の時のみ表示 -->
         @if( $task->status === config('const.WORKING') && $task->partner->id === Auth::user()->id )
             <form action="{{ route('partner.deliver.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+                @csrf
                 <div class="patner">
                     <p class="ptnr-title">納品</p>
                     <dl>
@@ -190,32 +190,36 @@
                     @endcomponent
                 <div>
             </form>
-        @elseif( $task->status !== config('const.DELIVERY_PARTWORKINGNER') )
+        @elseif( $task->status !== config('const.WORKING') )
             <!-- 納品エリアは納品以降($task->status > 9)の時に表示 -->
             @if( $task->status > config('const.WORKING') )
                 <div class="patner">
                     <p class="ptnr-title">納品</p>
                     <dl>
-                        <dt class="textarea-wrp">
-                            自由記述
+                        <dt>
+                        自由記述
                         </dt>
                         <dd class="flex01">
-                            {!! nl2br(e($deliver->deliver_comment)) !!}
+                            @isset($task->deliver)
+                                {!! nl2br(e($deliver->deliver_comment)) !!}
+                            @endisset
                         </dd>
                     </dl>
 
                     <dl>
                         <dt>
-                            ファイル納品
+                        ファイル納品
                         </dt>
                         <dd>
-                            @for( $n=0; $n < count($deliver_items); $n++)
-                                <form action="{{ route('partner.fileDownload') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
-                                    <button>{{ explode('/', $deliver_items[$n]->file)[5] }}</button>
-                                </form>
-                            @endfor     
+                            @isset($task->deliver)
+                                @for( $n=0; $n < count($deliver_items); $n++)
+                                    <form action="{{ route('company.fileDownload') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
+                                        <button>{{ explode('/', $deliver_items[$n]->file)[5] }}</button>
+                                    </form>
+                                @endfor
+                            @endisset  
                         </dd>
                     </dl>
                 </div>
@@ -224,13 +228,13 @@
             <div class="actionButton">
                 @if($task->status === config('const.TASK_SUBMIT_PARTNER') && $task->partner->id === Auth::user()->id)
                     <form action="{{ route('partner.task.status.change') }}" method="POST">
-                    @csrf
+                        @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                         <button type="submit" class="undone">タスク依頼を受けない</button>
                     </form>
                     <form action="{{ route('partner.task.status.change') }}" method="POST">
-                    @csrf
+                        @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
                         <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスク依頼を受ける</button>

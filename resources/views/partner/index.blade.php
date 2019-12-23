@@ -11,7 +11,7 @@
 
     <title>Impro</title>
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ env('AWS_URL') }}/common/impro_favicon.png">
+    <link rel="shortcut icon" href="{{ env('AWS_URL') }}/common/favicon.ico">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

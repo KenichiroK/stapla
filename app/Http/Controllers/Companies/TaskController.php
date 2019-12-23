@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Companies;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Companies\CreateTaskRequest;
 use App\Http\Requests\Companies\TaskDraftRequest;
 use App\Http\Requests\Companies\TaskUpdateDraftRequest;
 use App\Http\Requests\Companies\TaskPreviewRequest;
@@ -355,10 +354,9 @@ class TaskController extends Controller
         return view('company/task/edit', compact('task', 'projects','companyUsers', 'partners')); 
     }
 
-    public function update(CreateTaskRequest $request, $id)
+    public function update(TaskPreviewRequest $request, $id)
     {
         $task = Task::findOrFail($id);
-
         $task->project_id      = $request->project_id;
         $task->company_user_id = $request->company_user_id;
         $task->superior_id     = $request->superior_id;
