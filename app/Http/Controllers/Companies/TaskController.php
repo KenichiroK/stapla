@@ -106,19 +106,21 @@ class TaskController extends Controller
     {
         $auth = Auth::user();
         $task = new Task;
-        $task->company_id      = $auth->company_id;
-        $task->project_id = $request->project_id;
-        $task->name = $request->name;
-        $task->started_at = Carbon::createFromTimestamp(strtotime($request->started_at))
-                                ->format('Y-m-d-H-i-s');
-        $task->ended_at = Carbon::createFromTimestamp(strtotime($request->ended_at))
-                                ->format('Y-m-d-H-i-s');
-        $task->status          = config('const.TASK_CREATE');
-        $task->purchaseorder   = false;
-        $task->invoice         = false;
-        $task->tax             = config('const.FREE_TAX');
-        $task->cases           = 0;
-        $task->fee_format      = "固定";
+        $task->company_id        = $auth->company_id;
+        $task->project_id        = $request->project_id;
+        $task->name              = $request->name;
+        $task->started_at        = Carbon::createFromTimestamp(strtotime($request->started_at))
+                                  ->format('Y-m-d-H-i-s');
+        $task->ended_at          = Carbon::createFromTimestamp(strtotime($request->ended_at))
+                                  ->format('Y-m-d-H-i-s');
+        $task->status            = config('const.TASK_CREATE');
+        $task->purchaseorder     = false;
+        $task->invoice           = false;
+        $task->tax               = config('const.FREE_TAX');
+        $task->cases             = 0;
+        $task->fee_format        = "固定";
+        $task->status_updated_at = Carbon::now();
+
         if($request->company_user_id){
             $task->company_user_id = $request->company_user_id;
         }
@@ -190,6 +192,7 @@ class TaskController extends Controller
         if(isset($request->price)){
             $task->price = $request->price;
         }
+        $task->status_updated_at = Carbon::now();
         $task->save();
 
         return redirect()->route('company.task.createDraft', ['task_id' => $task->id])
@@ -264,24 +267,25 @@ class TaskController extends Controller
         if(isset($request->task_id)){
             $task = Task::findOrFail($request->task_id);
             $auth = Auth::user();
-            $task->project_id      = $request->project_id;
-            $task->company_id      = $auth->company_id;
-            $task->company_user_id = $request->company_user_id;
-            $task->superior_id     = $request->superior_id;
-            $task->accounting_id   = $request->accounting_id;
-            $task->partner_id      = $request->partner_id;
-            $task->name            = $request->name;
-            $task->content         = $request->content;
-            $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
-            $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
-            $task->status          = config('const.TASK_SUBMIT_SUPERIOR');
-            $task->purchaseorder   = false;
-            $task->invoice         = false;
-            $task->budget          = $request->budget;
-            $task->tax             = config('const.FREE_TAX');
-            $task->price           = $request->price;
-            $task->cases           = 1;
-            $task->fee_format      = "固定";
+            $task->project_id        = $request->project_id;
+            $task->company_id        = $auth->company_id;
+            $task->company_user_id   = $request->company_user_id;
+            $task->superior_id       = $request->superior_id;
+            $task->accounting_id     = $request->accounting_id;
+            $task->partner_id        = $request->partner_id;
+            $task->name              = $request->name;
+            $task->content           = $request->content;
+            $task->started_at        = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
+            $task->ended_at          = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
+            $task->status            = config('const.TASK_SUBMIT_SUPERIOR');
+            $task->purchaseorder     = false;
+            $task->invoice           = false;
+            $task->budget            = $request->budget;
+            $task->tax               = config('const.FREE_TAX');
+            $task->price             = $request->price;
+            $task->cases             = 1;
+            $task->fee_format        = "固定";
+            $task->status_updated_at = Carbon::now();
             $task->save();
             \Log::info('タスク新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
 
@@ -293,24 +297,25 @@ class TaskController extends Controller
         } else{
             $auth = Auth::user();
             $task = new Task;
-            $task->project_id      = $request->project_id;
-            $task->company_id      = $auth->company_id;
-            $task->company_user_id = $request->company_user_id;
-            $task->superior_id     = $request->superior_id;
-            $task->accounting_id   = $request->accounting_id;
-            $task->partner_id      = $request->partner_id;
-            $task->name            = $request->name;
-            $task->content         = $request->content;
-            $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
-            $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
-            $task->status          = 1;
-            $task->purchaseorder   = false;
-            $task->invoice         = false;
-            $task->budget          = $request->budget;
-            $task->tax             = 0.1;
-            $task->price           = $request->price;
-            $task->cases           = 1;
-            $task->fee_format      = "固定";
+            $task->project_id        = $request->project_id;
+            $task->company_id        = $auth->company_id;
+            $task->company_user_id   = $request->company_user_id;
+            $task->superior_id       = $request->superior_id;
+            $task->accounting_id     = $request->accounting_id;
+            $task->partner_id        = $request->partner_id;
+            $task->name              = $request->name;
+            $task->content           = $request->content;
+            $task->started_at        = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
+            $task->ended_at          = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
+            $task->status            = 1;
+            $task->purchaseorder     = false;
+            $task->invoice           = false;
+            $task->budget            = $request->budget;
+            $task->tax               = 0.1;
+            $task->price             = $request->price;
+            $task->cases             = 1;
+            $task->fee_format        = "固定";
+            $task->status_updated_at = Carbon::now();
             $task->save();
             \Log::info('タスク新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
     

@@ -1,0 +1,11 @@
+@import "../../setting/colors";
+@import "../../mixin/font/font";
+
+.no-data {
+  @include font(14px, bold);
+  width: 100%;
+  padding: 24px 0;
+  margin: 0;
+  text-align: center;
+  color: colors(grayLighten1);
+}

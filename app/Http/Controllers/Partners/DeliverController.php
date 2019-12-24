@@ -13,6 +13,7 @@ use App\Models\CompanyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class DeliverController extends Controller
 {
@@ -80,8 +81,9 @@ class DeliverController extends Controller
         $deliverLog->save();
 
         if($task->count()) {
-            $prev_status = $task->status;
-            $task->status = (int)$request->status;
+            $prev_status             = $task->status;
+            $task->status            = (int)$request->status;
+            $task->status_updated_at = Carbon::now();
             $task->save();
 
 

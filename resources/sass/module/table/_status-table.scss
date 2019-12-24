@@ -1,0 +1,72 @@
+@import "./table-title";
+@import "../../setting/colors";
+
+.status-container {
+  width: 100%;
+  background-color: colors(white1);
+  padding: 24px;
+  margin: 0 0 32px;
+
+  .navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid colors(border-light);
+    margin: 0 0 20px;
+
+    &__text {
+      margin-right: 24px;
+      font-size: 16px;
+      font-family: "NotoSansCJKjp";
+      color: colors(navy1);
+      opacity: 0.5;
+      letter-spacing: 1px;
+      padding: 10px 0;
+      cursor: pointer;
+    }
+
+    &__num {
+      font-size: 12px;
+      margin-left: 6px;
+    }
+
+    .is-active {
+      font-weight: bold;
+      opacity: 1;
+      color: colors(primary);
+      border-bottom: 5px solid colors(primary);
+    }
+  }
+
+  .detail-container {
+    width: 100%;
+    display: none;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__content {
+      width: 20%;
+      padding: 32px 0 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: colors(navy1);
+      font-family: "NotoSansCJKjp";
+      font-weight: bold;
+      border-left: 1px solid colors(border-light);
+
+      &:last-child {
+        border-right: 1px solid colors(border-light);
+      }
+
+      &--text {
+        font-size: 14px;
+      }
+      &--num {
+        font-size: 24px;
+      }
+    }
+  }
+}

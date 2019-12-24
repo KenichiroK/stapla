@@ -1,0 +1,12 @@
+.main-wrapper {
+  width: 100%;
+  margin: auto;
+  padding: 40px;
+
+  @import "../../base/reset";
+  @import "../../module/page-title";
+  @import "../../module/table/status-table";
+  @import "../../module/table/todo";
+  @import "../../module/table/project";
+  @import "../../module/table/task";
+}

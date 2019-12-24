@@ -1,0 +1,38 @@
+.morebtn-container {
+  width: 100%;
+  margin: 24px 0 0;
+  display: none;
+
+  &__text {
+    width: 80px;
+    position: relative;
+    text-align: center;
+    font-family: "NotoSansCJKjp";
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    color: colors(primary);
+    cursor: pointer;
+
+    &:after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border: 0px;
+      border-bottom: solid 2px colors(primary);
+      border-right: solid 2px colors(primary);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      position: absolute;
+      top: 3px;
+      right: -18px;
+    }
+  }
+}
+
+.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
