@@ -270,23 +270,26 @@ $(function(){
                                 <!-- 開始日カレンダー -->
                                 <div class="calendar-item">                               
                                     <div class="calendar-name start">
-                                        開始日<i class="fas fa-calendar-alt"></i>
+                                        開始日<i id="start_calendar_icon" class="fas fa-calendar-alt"></i>
                                     </div>
 
                                     @if(isset($task->started_at))
                                         <input
-                                            type="datetime-local"
+                                            id="start_calendar"
+                                            type="text"
                                             name="started_at"
                                             class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
-                                            value="{{ old('started_at') ? str_replace(" ", "T", old('started_at')) : str_replace(" ", "T", ($task->started_at)) }}"
+                                            value="{{ old('started_at') ? old('started_at') : date('Y/m/d H:i', strtotime($task->started_at)) }}"
                                         >
                                     @else
-                                        <input
-                                            type="datetime-local"
-                                            name="started_at"
-                                            class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
-                                            value="{{ old('started_at') ? str_replace(" ", "T", old('started_at')) : date('Y-m-d\T00:00') }}"
-                                        >
+                                    <input
+                                        class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
+                                        type="text"
+                                        id="start_calendar"
+                                        name="started_at"
+                                        value="{{ old('started_at') ? old('started_at') : date('Y/m/d 00:00') }}"
+
+                                    >
                                     @endif
                                     @if($errors->has('started_at'))
                                         <div class="invalid-feedback error-msg" role="alert">
@@ -298,22 +301,24 @@ $(function(){
                                 <!-- 終了日カレンダー -->
                                 <div class="calendar-item end">
                                     <div class="calendar-name">
-                                        終了日<i class="fas fa-calendar-alt"></i>
+                                        終了日<i id="end_calendar_icon" class="fas fa-calendar-alt"></i>
                                     </div>
 
                                     @if(isset($task->ended_at))
                                         <input
-                                            type="datetime-local"
+                                            id="end_calendar"
+                                            type="text"
                                             class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
                                             name='ended_at'
-                                            value="{{ old('ended_at') ? str_replace(" ", "T", old('ended_at')) : str_replace(" ", "T", ($task->ended_at)) }}"
+                                            value="{{ old('ended_at') ?  old('ended_at') : date('Y/m/d H:i', strtotime($task->ended_at)) }}"
                                         >
                                     @else
                                         <input
-                                            type="datetime-local"
+                                            id="end_calendar"
+                                            type="text"
                                             class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
                                             name='ended_at'
-                                            value="{{ old('ended_at') ? str_replace(" ", "T", old('ended_at')) : date('Y-m-d\T23:59') }}"
+                                            value="{{ old('ended_at') ? old('ended_at') : date('Y/m/d 23:00') }}"
                                         >
                                     @endif
                                     @if ($errors->has('ended_at'))
@@ -449,4 +454,9 @@ $(function(){
         </div>
     </form>
 </div>
+@endsection
+
+@section('asset-js')
+<script src="{{ mix('js/company/task/toggle-calendar.js') }}"></script>
+
 @endsection
