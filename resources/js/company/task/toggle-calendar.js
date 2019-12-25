@@ -1,5 +1,3 @@
-import $ from "jquery";
-window.$ = window.jQuery = $;
 import "jquery-datetimepicker/build/jquery.datetimepicker.full";
 import "jquery-datetimepicker/jquery";
 
