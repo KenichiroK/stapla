@@ -40,7 +40,7 @@
                 <!-- main -->
                 <div class="main-container">
                     <div class="main-container__wrapper">
-                        
+
                         <!-- 項目：タスク名 -->
                         <div class="item-container">
                             <div class="item-name-wrapper">
@@ -72,7 +72,7 @@
                             </div>
                             <p class="preview_p">{{ $company_user->name }}</p>
                             <input type="hidden" name="company_user_id" value="{{ $company_user->id }}">
-                        </div>                        
+                        </div>
 
                         <!-- 上長 -->
                         <div class="item-container">
@@ -180,7 +180,7 @@
                         @slot('confirmBtnLabel')
                             依頼
                         @endslot
-                        タスクを新規作成し 、 {{ $task->superior->name }} さんに上長確認を依頼します。
+                        タスクを新規作成し 、 {{ $superior_user->name }} さんに上長確認を依頼します。
                     @endcomponent
                 @else
                     <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
