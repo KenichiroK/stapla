@@ -1,5 +1,8 @@
 const mix = require("laravel-mix");
 
+mix.autoload({
+  jquery: ["$", "window.jQuery"],
+});
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -124,6 +127,8 @@ mix.js(
   ],
   "public/js/status/task/change-shown-status-table.js",
 );
+
+mix.js(["resources/js/company/task/toggle-calendar.js"], "public/js/company/task/toggle-calendar.js");
 
 mix
   .sass("resources/sass/company/common/index.scss", "public/css/company/common")
