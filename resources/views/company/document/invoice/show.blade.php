@@ -262,47 +262,61 @@
 	</div>
 ​
 	@if($task->status === 13 && in_array($company_user->id, $company_user_ids))
-	<div class="actionButton">
-		<form action="{{ route('company.task.status.change') }}" method="POST">
-		@csrf
-			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-			<input type="hidden" name="status" value="11">
-			<div class="button-container">
-				<button class="undone" type="submit">請求書を拒否する</button>
-			</div>
-		</form>
-		<form action="{{ route('company.task.status.change')}}" method="POST">
-		@csrf
-			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-			<input type="hidden" name="status" value="15">
-			<div class="button-container">
-				<button class="done" type="submit">経理に送信</button>
-			</div>
-		</form>
-	</div>
+		<div class="actionButton">
+			<form action="{{ route('company.task.status.change') }}" method="POST">
+				@csrf
+				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+				<input type="hidden" name="status" value="{{ config('const.ACCEPTANCE') }}">
+				<div class="button-container">
+					<button type="submit" class="undone">請求書を拒否する</button>
+				</div>
+			</form>
+			<form action="{{ route('company.task.status.change')}}" method="POST">
+				@csrf
+				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+				<input type="hidden" name="status" value="{{ config('const.SUBMIT_ACCOUNTING') }}">
+				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">経理に送信</button>
+				<!-- Modal -->
+				@component('components.confirm-modal')
+					@slot('modalID')
+						confirm
+					@endslot
+					@slot('confirmBtnLabel')
+						依頼
+					@endslot
+					請求書を承認し、経理の {{$task->accounting->name }} さんに確認を依頼します。
+				@endcomponent
+			</form>
+		</div>
 	@elseif($task->status === 15 && $task->accounting->id === $company_user->id)
-	<div class="actionButton">
-		<form action="{{ route('company.task.status.change') }}" method="POST">
-		@csrf
-			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-			<input type="hidden" name="status" value="13">
-			<div class="button-container">
+		<div class="actionButton">
+			<form action="{{ route('company.task.status.change') }}" method="POST">
+				@csrf
+				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+				<input type="hidden" name="status" value="{{ config('const.APPROVAL_ACCOUNTING') }}">
 				<button class="undone" type="submit">請求書を拒否する</button>
-			</div>
-		</form>
-		<form action="{{ route('company.task.status.change')}}" method="POST">
-		@csrf
-			<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-			<input type="hidden" name="status" value="16">
-			<div class="button-container">
-				<button class="done" type="submit">請求書を承認する</button>
-			</div>
-		</form>
-	</div>
+			</form>
+			<form action="{{ route('company.task.status.change')}}" method="POST">
+				@csrf
+				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
+				<input type="hidden" name="status" value="{{ config('const.APPROVAL_ACCOUNTING') }}">
+				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">請求書を承認する</button>
+				<!-- Modal -->
+				@component('components.confirm-modal')
+					@slot('modalID')
+						confirm
+					@endslot
+					@slot('confirmBtnLabel')
+						承認
+					@endslot
+					請求書を承認します。
+				@endcomponent
+			</form>
+		</div>
 	@elseif($task->status > 14 && in_array($company_user->id, $company_user_ids))
-	<p class="send-done">この請求書は承認済みです</p>
+		<p class="send-done">この請求書は承認済みです</p>
 	@else
-	<p class="send-done">必要なアクションはありません</p>
+		<p class="send-done">必要なアクションはありません</p>
 	@endif
     <div class="error-message-wrapper">
         @if ($errors->has('task_id'))

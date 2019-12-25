@@ -21,7 +21,7 @@ class CompanyUserAuth extends Authenticatable implements MustVerifyEmail
     protected $table = 'company_user_auths';
     
     protected $fillable = [
-       'email', 'company_id'
+       'email', 'company_id', 'invitation_user_id'
     ];
     protected $hidden = [
         'remember_token'

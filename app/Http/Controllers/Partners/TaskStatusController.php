@@ -8,6 +8,7 @@ use Auth;
 
 use App\Models\Task;
 use App\Http\Requests\Partners\TaskStatusRequest;
+use Carbon\Carbon;
 
 class TaskStatusController extends Controller
 {
@@ -18,8 +19,9 @@ class TaskStatusController extends Controller
 
         if($task->count()) {
             \Log::info('タスクstatus変更前', ['user_id(partner)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
-            $prev_status = $task->status;
-            $task->status = (int)$request->status;
+            $prev_status             = $task->status;
+            $task->status            = (int)$request->status;
+            $task->status_updated_at = Carbon::now();
             $task->save();
 
             sendNotificationUpdatedTaskStatusFromPartner($task, $prev_status);

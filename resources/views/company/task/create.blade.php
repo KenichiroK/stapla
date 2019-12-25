@@ -3,24 +3,6 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/task/create.css') }}">
-<script
-  src="https://code.jquery.com/jquery-3.4.1.slim.js"
-  integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
-  crossorigin="anonymous">
-</script>
-
-<script>
-$(function(){
-    let $inputPrice = $('#inputPrice');
-    let $outputPrice = $('.outputPrice');
-    let $outputPriceWithTax = $('.outputPriceWithTax');
-    $inputPrice.on('input', function(event){
-        let $value = $inputPrice.val();
-        $outputPrice.text($value);
-        $outputPriceWithTax($value);
-    });
-})
-</script>
 @endsection
 
 @section('content')

@@ -270,9 +270,17 @@
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
 				<input type="hidden" name="status" value="{{ config('const.INVOICE_CREATE') }}">
 				<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-				<div class="button-container">
-					<button type="submit">送信</button>
-				</div>
+				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">送信</button>
+				<!-- Modal -->
+				@component('components.confirm-modal')
+					@slot('modalID')
+						confirm
+					@endslot
+					@slot('confirmBtnLabel')
+						依頼
+					@endslot
+					{{ $task->companyUser->name }} さんに請求書の確認を依頼します。
+				@endcomponent
 			</form>
 		</div>
 	@elseif($task->status > config('const.INVOICE_DRAFT_CREATE') && $task->partner->id === Auth::user()->id)

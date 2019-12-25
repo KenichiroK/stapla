@@ -1,0 +1,44 @@
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 24px;
+
+  &__text {
+    font-size: 18px;
+    color: colors(primary);
+    font-weight: bold;
+  }
+
+  &__num {
+    margin: 0 0 0 10px;
+  }
+
+  &__alert {
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.78px;
+    color: colors(navy1);
+
+    &--button {
+      font-size: 14px;
+      font-family: "NotoSansCJKjp";
+      background-color: colors(white1);
+      border-radius: 16px;
+      border: 2px solid colors(red1);
+      color: colors(red1);
+      font-weight: bold;
+    }
+
+    &--unit {
+      font-size: 10px;
+      font-family: "NotoSansCJKjp";
+      color: colors(red1);
+      font-weight: bold;
+      letter-spacing: 0.56px;
+    }
+  }
+}

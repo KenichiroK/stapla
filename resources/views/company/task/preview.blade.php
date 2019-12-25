@@ -3,24 +3,6 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/task/preview.css') }}">
-<script
-  src="https://code.jquery.com/jquery-3.4.1.slim.js"
-  integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
-  crossorigin="anonymous">
-</script>
-
-<script>
-$(function(){
-    let $inputPrice = $('#inputPrice');
-    let $outputPrice = $('.outputPrice');
-    let $outputPriceWithTax = $('.outputPriceWithTax');
-    $inputPrice.on('input', function(event){
-        let $value = $inputPrice.val();
-        $outputPrice.text($value);
-        $outputPriceWithTax($value);
-    });
-})
-</script>
 @endsection
 
 @section('content')
@@ -186,16 +168,34 @@ $(function(){
                 </div>
 
                 <div class="actionButton">
-                    @if(isset($task))
-                        <!-- 下書き保存されているタスクの場合 -->
-                        <input type="hidden" name='task_id' value="{{ $task->id }}">
-                        <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
-                        <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStoreUpdate">保存/上長に提出</button>
-                    @else
-                        <!-- 新規作成のタスクの場合 -->
-                        <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
-                        <button class="done" type="submit" onclick="submit();" style="width:155px;" name="editOrStore" value="toStore">保存/上長に提出</button>
-                    @endif
+                @if(isset($task_status))
+                    <input type="hidden" name='task_id' value="{{ $task->id }}">
+                    <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
+                    <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStoreUpdate" data-toggle="modal" data-target="#confirm">保存/上長に提出</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            confirm
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            依頼
+                        @endslot
+                        タスクを新規作成し 、 {{ $task->superior->name }} さんに上長確認を依頼します。
+                    @endcomponent
+                @else
+                    <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
+                    <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStore"  data-toggle="modal" data-target="#confirm">保存/上長に提出</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            confirm
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            依頼
+                        @endslot
+                        タスクを新規作成し 、 {{  $superior_user->name }} さんに上長確認を依頼します。
+                    @endcomponent
+                @endif
                 </div>
 
             </div>

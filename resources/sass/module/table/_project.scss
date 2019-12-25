@@ -1,0 +1,84 @@
+@import "../../setting/colors";
+@import "./more-btn";
+@import "./table-title";
+@import "./common.scss";
+@import "../../mixin/font/primary";
+@import "../../mixin/font/table-head";
+@import "../../mixin/button/positive";
+
+.project-container {
+  width: 100%;
+  background-color: colors(white1);
+  padding: 24px;
+  margin: 0 0 32px;
+
+  .content-container {
+    width: 100%;
+
+    &__head {
+      width: 100%;
+      background-color: colors(bg-light);
+      display: flex;
+      align-items: center;
+
+      &--long {
+        width: 30%;
+        padding: 12px 0;
+        @include table-head-text;
+      }
+
+      &--short {
+        width: 14%;
+        padding: 12px 0;
+        @include table-head-text;
+      }
+    }
+
+    &__body {
+      width: 100%;
+      border-bottom: 1px solid #f1f1f3;
+
+      &--link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.18s;
+
+        &:hover {
+          background-color: colors(bg-light);
+        }
+      }
+
+      &--long {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 0;
+        word-break: break-all;
+        @include primary-text(14px, bold);
+      }
+
+      &--short {
+        width: 14%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 0;
+        word-break: break-all;
+        @include primary-text(14px, bold);
+
+        > .profile-img {
+          width: 31px;
+          height: 31px;
+          border-radius: 50%;
+          margin-bottom: 6px;
+        }
+      }
+    }
+  }
+}

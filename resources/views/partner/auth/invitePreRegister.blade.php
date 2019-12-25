@@ -26,6 +26,7 @@
 
 				<div class='input-container'>
 					<input class="input_text" type="hidden" name="company_id" value="{{ $company_user->company_id }}">
+					<input class="input_text" type="hidden" name="invitation_user_id" value="{{ $company_user->id }}">
 				</div>
 
 				<div class='button-container'>
