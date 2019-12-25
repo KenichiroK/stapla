@@ -67,6 +67,16 @@
                     @endif
                 </div>
 
+                {{-- HACK: company_idもバリデーションかけてなかったけどもユーザがURLのパラメータ直接編集してくるの考慮しなくてもいいですかね --}}
+                <div class="input_wrapper">
+                    <input class="input_text" type="hidden" name="invitation_user_id" value="{{ $request->invitation_user_id }}">
+                    @if ($errors->has('invitation_user_id'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('invitation_user_id') }}</strong>
+                        </div>
+                    @endif
+                </div>
+
                 <!-- <div class="checkbox_wrapper">
                     <a href="#">ご利用規約</a>
                     <span>に同意して</span>

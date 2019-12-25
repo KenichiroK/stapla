@@ -21,7 +21,7 @@ class CompanyUser extends Authenticatable
     protected $table = 'company_users';
     
     protected $fillable = [
-        'email', 'password', 'company_id', 'task_id', 'name', 'department', 'occupation', 'self_introduction', 'picture'
+        'email', 'password', 'company_id', 'task_id', 'name', 'department', 'occupation', 'self_introduction', 'picture', 'invitation_user_id'
     ];
 
     protected $hidden = [

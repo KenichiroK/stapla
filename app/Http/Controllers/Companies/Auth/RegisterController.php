@@ -36,6 +36,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'company_id' => $data['company_id'],
+            'invitation_user_id' => $data['invitation_user_id'] ?? null,
         ]);
     }
 

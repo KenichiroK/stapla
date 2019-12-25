@@ -27,7 +27,11 @@ class PartnerVerifyEmail extends VerifyEmailNotification
     protected function verificationUrl($notifiable)
     {
         return URL::temporarySignedRoute(
-            'partner.register', Carbon::now()->addMinutes(60), ['email' => $notifiable->email, 'company_id' => $notifiable->company_id]
+            'partner.register', Carbon::now()->addMinutes(60), [
+                'email' => $notifiable->email,
+                'company_id' => $notifiable->company_id,
+                'invitation_user_id' => $notifiable->invitation_user_id
+            ]
         );
     }
 }

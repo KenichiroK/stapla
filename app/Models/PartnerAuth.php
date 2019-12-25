@@ -21,7 +21,7 @@ class PartnerAuth extends Authenticatable implements MustVerifyEmail
     protected $table = 'partner_auths';
     
     protected $fillable = [
-        'company_id', 'email'
+        'company_id', 'email', 'invitation_user_id'
     ];
     protected $hidden = [
         'remember_token'
