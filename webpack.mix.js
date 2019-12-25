@@ -81,6 +81,9 @@ mix.js(
   "public/js/common/toggle-header-ballon.js",
 );
 
+// HACK: どこかでcommonのコンパイル後の出力先は一つにまとめたい
+mix.js(["resources/js/common/toggle-button.js"], "public/js/common/toggle-button.js");
+
 mix.js(
   [
     // setting tel and postal in company setting general
