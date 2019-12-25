@@ -177,7 +177,17 @@
                 <div class="actionButton">
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.DELIVERY_PARTNER') }}">
-                    <button type="submit" class="done">納品する</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">納品する</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                                confirm
+                            @endslot
+                        @slot('confirmBtnLabel')
+                            納品
+                        @endslot
+                        納品します。
+                    @endcomponent
                 <div>
             </form>
         @elseif( $task->status !== config('const.WORKING') )
@@ -227,7 +237,17 @@
                         @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
-                        <button type="submit" class="done">タスク依頼を受ける</button>
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスク依頼を受ける</button>
+                        <!-- Modal -->
+                        @component('components.confirm-modal')
+                            @slot('modalID')
+                                confirm
+                            @endslot
+                            @slot('confirmBtnLabel')
+                                承認
+                            @endslot
+                            タスクを承認します。
+                        @endcomponent
                     </form>
                 @elseif($task->status === config('const.ORDER_SUBMIT_PARTNER') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
@@ -236,14 +256,17 @@
                     @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="{{ config('const.WORKING') }}">
-                        <button type="submit" class="done">作業に入る</button>
-                    </form>
-                @elseif($task->status === config('const.WORKING') && $task->partner->id === Auth::user()->id)
-                    <form action="{{ route('partner.deliver.store') }}" method="POST">
-                    @csrf
-                        <input type="hidden" name="task_id" value="{{ $task->id }}">
-                        <input type="hidden" name="status" value="{{ config('const.DELIVERY_PARTNER') }}">
-                        <button type="submit" class="done">納品する</button>
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">作業に入る</button>
+                        <!-- Modal -->
+                        @component('components.confirm-modal')
+                            @slot('modalID')
+                                confirm
+                            @endslot
+                            @slot('confirmBtnLabel')
+                                開始
+                            @endslot
+                            作業を開始します。
+                        @endcomponent
                     </form>
                 @elseif($task->status === config('const.ACCEPTANCE') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>

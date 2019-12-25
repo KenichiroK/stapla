@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="{{ mix('css/pdf/paper.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/partner/document/purchaseOrder/show.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/document/purchaseOrder/show.css') }}">
 <script>
 const setPreview = (input) => {
   const preview = document.getElementById('preview');
@@ -119,25 +118,46 @@ const setPreview = (input) => {
 
         </div>
 
-        @if($purchaseOrder->task->status === config('const.ORDER_SUBMIT_PARTNER') && $purchaseOrder->partner->id === Auth::user()->id)
-            <div class="actionButton">
-                <form action="{{ route('partner.task.status.change') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                    <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
-                    <button type="submit" class="undone">断る</button>
-                </form>
-                <form action="{{ route('partner.task.status.change') }}" method="POST">
-                @csrf
-                    <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                    <input type="hidden" name="status" value="{{ config('const.ORDER_APPROVAL_PARTNER') }}">
-                    <button type="submit" class="done">この案件を受ける</button>
-                </form>
+    @if($purchaseOrder->task->status === config('const.ORDER_SUBMIT_PARTNER') && $purchaseOrder->partner->id === Auth::user()->id)
+        <div class="actionButton">
+            <form action="{{ route('partner.task.status.change') }}" method="POST">
+            @csrf
+                <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
+                <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
+                <button type="submit" class="undone">断る</button>
+            </form>
+            <form action="{{ route('partner.task.status.change') }}" method="POST">
+            @csrf
+                <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
+                <input type="hidden" name="status" value="{{ config('const.ORDER_APPROVAL_PARTNER') }}">
+                <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">この案件を受ける</button>
+                <!-- Modal -->
+                @component('components.confirm-modal')
+                    @slot('modalID')
+                        confirm
+                    @endslot
+                    @slot('confirmBtnLabel')
+                        承認
+                    @endslot
+                    発注書を承認します。
+                @endcomponent
+            </form>
+        </div>
+    @elseif($purchaseOrder->task->status > config('const.WORKING') && $purchaseOrder->partner->id === Auth::user()->id)
+        <p class="send-done">この発注書は承認済みです</p>
+    @else
+        <p class="send-done">必要なアククションはありません</p>
+    @endif
+    <div class="error-message-wrapper">
+        @if ($errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('task_id') }}</strong>
             </div>
-        @elseif($purchaseOrder->task->status > config('const.WORKING') && $purchaseOrder->partner->id === Auth::user()->id)
-            <p class="send-done">この発注書は承認済みです</p>
-        @else
-            <p class="send-done">必要なアククションはありません</p>
+        @endif
+        @if ($errors->has('status') && !$errors->has('task_id'))
+            <div class="error-msg" role="alert">
+                <strong>{{ $errors->first('status') }}</strong>
+            </div>
         @endif
         <div class="error-message-wrapper">
             @if ($errors->has('task_id'))

@@ -195,6 +195,7 @@
                 </dd>
             </dl>
         </div>
+        
 
         @if($task->status >= config('const.DELIVERY_PARTNER'))
             <div class="patner">
@@ -228,14 +229,24 @@
                 </dl>
             </div>
         @endif
-        
+
         <div class="actionButton">
             @if($task->status === config('const.TASK_CREATE'))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                     @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.TASK_SUBMIT_SUPERIOR') }}">
-                    <button type="submit" class="done">上長に確認を依頼する</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">上長に確認を依頼する</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            confirm
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            依頼
+                        @endslot
+                        タスクを {{ $task->superior->name }} さんに上長確認を依頼します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.TASK_SUBMIT_SUPERIOR') && $task->superior->id === $auth->id)
                 <form action="{{ route('company.task.status.change') }}" method="POST">
@@ -248,14 +259,34 @@
                     @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_SUPERIOR') }}">
-                    <button type="submit" class="done">タスクを承認する</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスクを承認する</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            confirm
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            承認
+                        @endslot
+                        タスクを承認します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.TASK_APPROVAL_SUPERIOR') && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                     @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.TASK_SUBMIT_PARTNER') }}">
-                    <button type="submit" class="done">パートナーに依頼する</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">パートナーに依頼する</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            confirm
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            依頼
+                        @endslot
+                        パートナーの {{ $task->partner->name }} さんに確認依頼します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.TASK_APPROVAL_PARTNER') && in_array($auth->id, $company_user_ids))
                 <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="done">発注書を作成する</a>
@@ -266,20 +297,50 @@
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.ORDER_SUBMIT_PARTNER') }}">
-                    <button type="submit" class="done">発注書をパートナーに依頼する</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">発注書をパートナーに依頼する</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            confirm
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            依頼
+                        @endslot
+                        パートナーの {{ $task->partner->name }} さんに確認依頼します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.DELIVERY_PARTNER') && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.WORKING') }}">
-                    <button type="submit" class="undone">再納品を依頼</button>
+                    <button type="button" class="undone confirm" data-toggle="modal" data-target="#not">再納品を依頼</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            not
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            依頼
+                        @endslot
+                        修正を依頼します。
+                    @endcomponent
                 </form>
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.ACCEPTANCE') }}">
-                    <button type="submit" class="done">検収</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">検収</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            confirm
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            完了
+                        @endslot
+                        検品完了します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.INVOICE_CREATE') && in_array($auth->id, $company_user_ids))
                 <a href="{{ route('company.document.invoice.show', ['id' => $invoice->id]) }}" class="done">請求書を確認する</a>
@@ -290,7 +351,17 @@
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
                     <input type="hidden" name="status" value="{{ config('const.COMPLETE_STAFF') }}">
-                    <button type="submit" class="done">タスクを完了にする</button>
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスクを完了にする</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            confirm
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            完了
+                        @endslot
+                        タスクを完了します。
+                    @endcomponent
                 </form>
             @elseif($task->status === config('const.COMPLETE_STAFF'))
                 <p class="non-action-text">このタスクは完了しています</p>
@@ -300,6 +371,7 @@
                 <p class="non-action-text">必要なアクションはありません</p>
             @endif
         </div>
+        
         <div class="error-message-wrapper">
             @if ($errors->has('task_id'))
                 <div class="error-msg" role="alert">

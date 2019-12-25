@@ -325,18 +325,17 @@ class TaskController extends Controller
         }
     }
 
-    public function show($id)
+    public function show($task_id)
     {
-        $task = Task::findOrFail($id);
-        $purchaseOrder = PurchaseOrder::where('task_id', $id)->first();
-        $invoice = Invoice::where('task_id', $id)->first();
+        $task = Task::findOrFail($task_id);
+        $purchaseOrder = PurchaseOrder::where('task_id', $task_id)->first();
+        $invoice = Invoice::where('task_id', $task_id)->first();
         $auth = Auth::user();
         $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
         if($task->deliver){
             $deliver = Deliver::where('task_id', $task->id)->first();
             $deliver_items = $deliver->deliverItems;
-        }
-        
+        }        
 
         $company_user_ids = array();
         if ($task->companyUser) {

@@ -285,8 +285,18 @@
 		<input type="hidden" id="invoiceAmount" name="amount" value="">
 		
 
-		<div class="button-container">
-			<button type="button" onclick="submit();">作成</button>
+		<div class="actionButton">
+			<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">作成</button>
+			<!-- Modal -->
+			@component('components.confirm-modal')
+				@slot('modalID')
+					confirm
+				@endslot
+				@slot('confirmBtnLabel')
+					作成
+				@endslot
+				請求書を新規作成します。
+			@endcomponent
 		</div>
 	</form>
 </div>
