@@ -106,12 +106,15 @@
                             @endisset
                             </li>
                             <li class="task-container__content__list__status">
-                                @if($task->status === config('const.COMPLETE_STAFF'))
-                                    <div class="s-btn done">
-                                @else
-                                    <div class="s-btn">
-                                @endif
-                                {{ config('const.TASK_STATUS_LIST')[$task->status] }}</div>
+                                <div
+                                    @if($task->status === config('const.COMPLETE_STAFF'))
+                                        class="s-btn done"
+                                    @else
+                                        class="s-btn"
+                                    @endif
+                                >
+                                    {{ config('const.TASK_STATUS_LIST')[$task->status] }}
+                                </div>
                             </li>
                             <li>¥{{ number_format($task->price) }}</li>
                         </ul>
