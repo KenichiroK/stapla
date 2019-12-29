@@ -6,12 +6,16 @@
     tasks.forEach((t, i) => {
       t.style.display = i < shownNum ? "flex" : "none";
     });
-    if (shownNum >= tasks.length) {
-      hideShowMoreBtn();
+    if (shownNum < tasks.length) {
+      showMoreBtn();
     }
   };
 
-  const hideShowMoreBtn = () => {
+  const showMoreBtn = () => {
+    document.getElementById("task_more_btn_area").classList.add("is-active");
+  };
+
+  const hideMoreBtn = () => {
     document.getElementById("task_more_btn_area").classList.remove("is-active");
   };
 
@@ -23,8 +27,9 @@
         t.style.display = "flex";
       }
     });
+
     if (shownNum >= tasks.length) {
-      hideShowMoreBtn();
+      hideMoreBtn();
     }
   });
 

@@ -7,12 +7,16 @@
       p.style.display = i < shownNum ? "block" : "none";
     });
 
-    if (shownNum >= projects.length) {
-      hideShowMoreBtn();
+    if (shownNum < projects.length) {
+      showMoreBtn();
     }
   };
 
-  const hideShowMoreBtn = () => {
+  const showMoreBtn = () => {
+    document.getElementById("project_more_btn_area").classList.add("is-active");
+  };
+
+  const hideMoreBtn = () => {
     document.getElementById("project_more_btn_area").classList.remove("is-active");
   };
 
@@ -24,8 +28,9 @@
         p.style.display = "block";
       }
     });
+
     if (shownNum >= projects.length) {
-      hideShowMoreBtn();
+      hideMoreBtn();
     }
   });
 

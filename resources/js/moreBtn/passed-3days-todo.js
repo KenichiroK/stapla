@@ -6,12 +6,16 @@
     passed3DaysTodos.forEach((t, i) => {
       t.style.display = i < shownPassed3DaysTodosNum ? "flex" : "none";
     });
-    if (shownPassed3DaysTodosNum >= passed3DaysTodos.length) {
-      hideShowMoreBtn();
+    if (shownPassed3DaysTodosNum < passed3DaysTodos.length) {
+      showMoreBtn();
     }
   };
 
-  const hideShowMoreBtn = () => {
+  const showMoreBtn = () => {
+    document.getElementById("passed_3days_todo_more_btn_area").classList.add("is-active");
+  };
+
+  const hideMoreBtn = () => {
     document.getElementById("passed_3days_todo_more_btn_area").classList.remove("is-active");
   };
 
@@ -23,8 +27,9 @@
         t.style.display = "flex";
       }
     });
+
     if (shownPassed3DaysTodosNum >= passed3DaysTodos.length) {
-      hideShowMoreBtn();
+      hideMoreBtn();
     }
   });
 

@@ -6,12 +6,16 @@
     allTodos.forEach((t, i) => {
       t.style.display = i < shownAllTodoNum ? "flex" : "none";
     });
-    if (shownAllTodoNum >= allTodos.length) {
-      hideShowMoreBtn();
+    if (shownAllTodoNum < allTodos.length) {
+      showMoreBtn();
     }
   };
 
-  const hideShowMoreBtn = () => {
+  const showMoreBtn = () => {
+    document.getElementById("all_todo_more_btn_area").classList.add("is-active");
+  };
+
+  const hideMoreBtn = () => {
     document.getElementById("all_todo_more_btn_area").classList.remove("is-active");
   };
 
@@ -23,8 +27,9 @@
         t.style.display = "flex";
       }
     });
+
     if (shownAllTodoNum >= allTodos.length) {
-      hideShowMoreBtn();
+      hideMoreBtn();
     }
   });
 

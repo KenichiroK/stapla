@@ -131,6 +131,7 @@ mix.js(
 mix.js(["resources/js/company/task/toggle-calendar.js"], "public/js/company/task/toggle-calendar.js");
 
 mix
+  .sass("resources/sass/style.scss", "public/css")
   .sass("resources/sass/company/common/index.scss", "public/css/company/common")
   .sass("resources/sass/auth/login/index.scss", "public/css/auth/login")
   .sass("resources/sass/auth/initialRegister/personal.scss", "public/css/auth/initialRegister")

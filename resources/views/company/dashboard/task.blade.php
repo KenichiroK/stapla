@@ -8,11 +8,11 @@
                 <p class="content-container__head--short">
                     <img src="{{ Auth::user()->picture }}" alt="profile icon">
                 </p>
-                <p class="content-container__head--long">プロジェクト</p>
-                <p class="content-container__head--long">タスク</p>
-                <p class="content-container__head--long">パートナー</p>
-                <p class="content-container__head--long">ステータス</p>
-                <p class="content-container__head--long">請求額</p>
+                <p class="content-container__head--middle">プロジェクト</p>
+                <p class="content-container__head--middle">タスク</p>
+                <p class="content-container__head--middle">パートナー</p>
+                <p class="content-container__head--middle">ステータス</p>
+                <p class="content-container__head--middle">請求額</p>
         </div>
 
         @if (count($tasks) === 0)
@@ -33,19 +33,19 @@
                         経理
                     @endif
                 </p>
-                <p class="content-container__body--long">{{ $task->project->name }}</p>
-                <p class="content-container__body--long">{{ $task->name }}</p>
-                <p class="content-container__body--long">
+                <p class="content-container__body--middle">{{ $task->project->name }}</p>
+                <p class="content-container__body--middle">{{ $task->name }}</p>
+                <p class="content-container__body--middle">
                     <img class="profile-img" src="{{ $task->partner->picture }}" alt="">
                     <span>{{ $task->partner->name }}</span>
                 </p>
-                <p class="content-container__body--long">{{ config('const.TASK_STATUS_LIST')[$task->status] }}</p>
-                <p class="content-container__body--long">¥{{ number_format($task->price) }}</p>
+                <p class="content-container__body--middle">{{ config('const.TASK_STATUS_LIST')[$task->status] }}</p>
+                <p class="content-container__body--middle">¥{{ number_format($task->price) }}</p>
             </a>
         </div>
         @endforeach
 
-         <div id="task_more_btn_area" class="morebtn-container is-active">
+         <div id="task_more_btn_area" class="morebtn-container">
             <p id="task_more_btn" class="morebtn-container__text">もっと見る</p>
         </div>
     </div>

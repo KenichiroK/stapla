@@ -37,6 +37,9 @@
     &__body {
       width: 100%;
       border-bottom: 1px solid #f1f1f3;
+      &:nth-child(2n) {
+        background-color: colors(bgTableRow);
+      }
 
       &--link {
         width: 100%;
