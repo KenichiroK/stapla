@@ -1,6 +1,17 @@
-@import "./input";
-
 .date {
-  @extend .input;
-  position: relative;
+  width: 100%;
+  height: 52px;
+  padding: 16px 16px;
+  box-sizing: border-box;
+  box-shadow: none;
+  border-radius: 0;
+  font-size: 16px;
+  border: 2px solid colors(borderLight);
+  color: colors(primary);
+  background-image: url("../../../images/calendar.svg");
+  background-repeat: no-repeat;
+  background-position: 95%;
+  background-size: 20px 20px;
+  cursor: pointer;
+  outline: none;
 }
