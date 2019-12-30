@@ -1,0 +1,6 @@
+@import "./input";
+
+.date {
+  @extend .input;
+  position: relative;
+}

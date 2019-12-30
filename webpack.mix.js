@@ -179,7 +179,10 @@ mix
   .sass("resources/sass/pdf/paper.scss", "public/css/pdf")
 
   // renewal dashboard
-  .sass("resources/sass/page/dashboard/index.scss", "public/css/page/dashboard");
+  .sass("resources/sass/page/dashboard/index.scss", "public/css/page/dashboard")
+
+  // renewal task create
+  .sass("resources/sass/page/task/create/style.scss", "public/css/page/task/create");
 
 mix.options({
   publicPath: "public",

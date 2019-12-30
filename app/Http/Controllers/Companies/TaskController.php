@@ -81,10 +81,10 @@ class TaskController extends Controller
             $project_id = $request->query('pid');
             $project = Project::where('id', $project_id)->first();
             
-            return view('company/task/create', compact('project', 'company_users', 'partners', 'company_user', 'task'));
+            return view('company/task/create/index', compact('project', 'company_users', 'partners', 'company_user', 'task'));
         } else {
             $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
-            return view('company/task/create', compact('projects', 'company_users', 'partners', 'company_user', 'task'));
+            return view('company/task/create/index', compact('projects', 'company_users', 'partners', 'company_user', 'task'));
         }
     }
 
