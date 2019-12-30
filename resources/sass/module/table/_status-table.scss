@@ -12,7 +12,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid colors(border-light);
+    border-bottom: 1px solid colors(borderLight);
     margin: 0 0 20px;
 
     &__text {
@@ -55,10 +55,10 @@
       color: colors(navy1);
       font-family: "NotoSansCJKjp";
       font-weight: bold;
-      border-left: 1px solid colors(border-light);
+      border-left: 1px solid colors(borderLight);
 
       &:last-child {
-        border-right: 1px solid colors(border-light);
+        border-right: 1px solid colors(borderLight);
       }
 
       &--text {

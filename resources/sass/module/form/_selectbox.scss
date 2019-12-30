@@ -1,0 +1,51 @@
+@import "../../setting/colors";
+
+.select-arrow {
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  border: 2px solid colors(borderLight);
+  background: colors(white1);
+
+  select {
+    width: 100%;
+    padding-right: 1em;
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: colors(primary);
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 16px 38px 16px 16px;
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+
+  &::after {
+    right: 18px;
+    padding: 0;
+    border: 3px solid #94949400;
+    border-right: 0;
+    border-top: 0;
+    content: "";
+    display: block;
+    height: 0.625em;
+    margin-top: -0.4375em;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    width: 0.625em;
+    border-color: #a4afb7;
+  }
+}
