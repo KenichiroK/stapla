@@ -7,8 +7,7 @@
 
 @section('content')
 <div class="main-wrapper">
-    
-    <form action="{{ route('company.task.preview') }}" method='POST' class="main__container__wrapper">
+    <form action="" method='POST'>
         @csrf
         @if(count($errors) > 0)
         <div class="error-container">
@@ -34,7 +33,7 @@
 
                 <div class="form-container__body">
                     <div class="select-arrow">
-                        <select name="" id="">
+                        <select name="">
                             <option value="">a</option>
                             <option value="">b</option>
                             <option value="">c</option>
@@ -63,7 +62,7 @@
                 </div>
 
                 <div class="form-container__body">
-                    <textarea class="textarea" name="" id="" cols="30" rows="5"></textarea>
+                    <textarea class="textarea" name="" cols="30" rows="5"></textarea>
                 </div>
             </div>
 
@@ -75,7 +74,7 @@
 
                 <div class="form-container__body">
                     <div class="select-arrow">
-                        <select name="" id="">
+                        <select name="">
                             <option value="">a</option>
                             <option value="">b</option>
                             <option value="">c</option>
@@ -92,7 +91,7 @@
 
                 <div class="form-container__body">
                     <div class="select-arrow">
-                        <select name="" id="">
+                        <select name="">
                             <option value="">a</option>
                             <option value="">b</option>
                             <option value="">c</option>
@@ -109,7 +108,7 @@
 
                 <div class="form-container__body">
                     <div class="select-arrow">
-                        <select name="" id="">
+                        <select name="">
                             <option value="">a</option>
                             <option value="">b</option>
                             <option value="">c</option>
@@ -190,7 +189,7 @@
 
                 <div class="form-container__body">
                     <div class="select-arrow">
-                        <select name="" id="">
+                        <select name="">
                             <option value="">a</option>
                             <option value="">b</option>
                             <option value="">c</option>
@@ -247,5 +246,4 @@
 
 @section('asset-js')
 <script src="{{ mix('js/company/task/toggle-calendar.js') }}"></script>
-
 @endsection
