@@ -16,7 +16,7 @@
                 </div>
                 <!-- downloadボタン -->
                 <div class="download-btn-container">
-                    <a id="print_btn" class="button download-button">ダウンロード</a>
+                    <a id="order_print_btn" class="button download-button">ダウンロード</a>
                 </div>
             </div>
             
@@ -360,7 +360,7 @@
 @endsection
 
 @section('asset-js')
-    <script src="{{ asset('js/pdf.js') }}" defer></script>
+    <script src="{{ asset('js/order.js') }}" defer></script>
     <script>
         const setPreview = (input) => {
             const preview = document.getElementById('preview');

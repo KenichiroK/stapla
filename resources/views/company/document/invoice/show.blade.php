@@ -11,7 +11,7 @@
 	<div class="title-container">
 		<h3>請求書プレビュー</h3>
         <div class="download-btn-container">
-            <a id="print_btn" class="button download-button">ダウンロード</a>
+            <a id="invoice_print_btn" class="button download-button">ダウンロード</a>
         </div>
 	</div>
 	<div id="print" class="document-container A4">
@@ -334,5 +334,5 @@
 @endsection
 
 @section('asset-js')
-    <script src="{{ asset('js/pdf.js') }}" defer></script>
+    <script src="{{ asset('js/invoice.js') }}" defer></script>
 @endsection
