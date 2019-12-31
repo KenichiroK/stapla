@@ -34,6 +34,7 @@
                 <div class="form-container__body">
                     <div class="select-arrow">
                         <select name="">
+                            <option disabled selected></option>
                             <option value="">a</option>
                             <option value="">b</option>
                             <option value="">c</option>
@@ -75,6 +76,7 @@
                 <div class="form-container__body">
                     <div class="select-arrow">
                         <select name="">
+                            <option disabled selected></option>
                             <option value="">a</option>
                             <option value="">b</option>
                             <option value="">c</option>
@@ -92,6 +94,7 @@
                 <div class="form-container__body">
                     <div class="select-arrow">
                         <select name="">
+                            <option disabled selected></option>
                             <option value="">a</option>
                             <option value="">b</option>
                             <option value="">c</option>
@@ -109,6 +112,7 @@
                 <div class="form-container__body">
                     <div class="select-arrow">
                         <select name="">
+                            <option disabled selected></option>
                             <option value="">a</option>
                             <option value="">b</option>
                             <option value="">c</option>
@@ -190,6 +194,7 @@
                 <div class="form-container__body">
                     <div class="select-arrow">
                         <select name="">
+                            <option disabled selected></option>
                             <option value="">a</option>
                             <option value="">b</option>
                             <option value="">c</option>
