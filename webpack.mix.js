@@ -37,14 +37,14 @@ mix.babel(["resources/js/partner/document/invoice/create.js"], "public/js/partne
 mix.js(
   [
     //download order pdf
-    "resources/js//pdf/order.js",
+    "resources/js/pdf/order.js",
   ],
   "public/js/order.js",
 );
 mix.js(
   [
     //download invoice pdf
-    "resources/js//pdf/invoice.js",
+    "resources/js/pdf/invoice.js",
   ],
   "public/js/invoice.js",
 );
