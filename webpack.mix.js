@@ -34,20 +34,11 @@ mix.js(
 
 mix.babel(["resources/js/partner/document/invoice/create.js"], "public/js/partner/document/invoice/create.js");
 
-mix.js(
-  [
-    //download order pdf
-    "resources/js/pdf/order.js",
-  ],
-  "public/js/order.js",
-);
-mix.js(
-  [
-    //download invoice pdf
-    "resources/js/pdf/invoice.js",
-  ],
-  "public/js/invoice.js",
-);
+// order
+mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/index.js");
+
+// invoice
+mix.js(["resources/js/pages/invoice/show/index.js"], "public/js/pages/invoice/show/index.js");
 
 mix.js(
   [

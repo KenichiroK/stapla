@@ -305,5 +305,5 @@
 @endsection
 
 @section('asset-js')
-    <script src="{{ asset('js/invoice.js') }}" defer></script>
+    <script src="{{ asset('js/pages/invoice/show/index.js') }}" defer></script>
 @endsection
