@@ -1,23 +1,14 @@
 (function() {
   let shownNum = 5;
   const tasks = document.querySelectorAll(".task_item");
+  const moreBtnElement = document.getElementById("task_more_btn_area");
 
-  const defaultShowList = () => {
-    tasks.forEach((t, i) => {
-      t.style.display = i < shownNum ? "flex" : "none";
-    });
-    if (shownNum < tasks.length) {
-      showMoreBtn();
-    }
-  };
-
-  const showMoreBtn = () => {
-    document.getElementById("task_more_btn_area").classList.add("is-active");
-  };
-
-  const hideMoreBtn = () => {
-    document.getElementById("task_more_btn_area").classList.remove("is-active");
-  };
+  tasks.forEach((t, i) => {
+    t.style.display = i < shownNum ? "flex" : "none";
+  });
+  if (shownNum < tasks.length) {
+    moreBtnElement.classList.add("is-active");
+  }
 
   // click more btn
   document.getElementById("task_more_btn").addEventListener("click", function() {
@@ -29,9 +20,7 @@
     });
 
     if (shownNum >= tasks.length) {
-      hideMoreBtn();
+      moreBtnElement.classList.remove("is-active");
     }
   });
-
-  defaultShowList();
 })();
