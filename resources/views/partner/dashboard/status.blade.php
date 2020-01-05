@@ -5,7 +5,7 @@
 
     <ul class="navbar-container">
         <li id="task-status-btn" class="navbar-container__text navbar-btn is-active">タスク
-            <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.TASK_CREATE'), config('const.TASK_APPROVAL_PARTNER')) }})</span>
+            <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.TASK_SUBMIT_SUPERIOR'), config('const.TASK_APPROVAL_PARTNER')) }})</span>
         </li>
         <li id="order-status-btn" class="navbar-container__text navbar-btn">発注書
             <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.ORDER_SUBMIT_SUPERIOR'), config('const.ORDER_APPROVAL_PARTNER')) }})</span>
