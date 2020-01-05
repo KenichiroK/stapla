@@ -3,6 +3,15 @@ const mix = require("laravel-mix");
 mix.autoload({
   jquery: ["$", "window.jQuery"],
 });
+
+mix.webpackConfig({
+  resolve: {
+    extensions: [".js"],
+    alias: {
+      "@": __dirname + "/resources/js",
+    },
+  },
+});
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
