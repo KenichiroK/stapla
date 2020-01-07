@@ -75,7 +75,7 @@
             </div>
             <div class="btn-container">
             <button type="button"><a type="button" href="{{ route('partner.register.intialRegistration.createPartner') }}">戻る</a></button>
-            <button type="submit">登録</button>
+            <button data-impro-button="once" type="button" onclick="submit()">登録</button>
         </div>
         </form>
 

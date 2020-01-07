@@ -31,7 +31,7 @@
                 </div>
                 
                 <div class="button_wrapper">
-                    <button class="text" type="submit">変更する</button>
+                    <button class="text" data-impro-button="once" type="button" onclick="submit()">変更する</button>
                 </div>
             </form>
         </div>
