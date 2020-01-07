@@ -264,7 +264,7 @@
 		
 
 		<div class="button-container">
-			<button type="button" onclick="submit();">納品</button>
+			<button type="submit">納品</button>
 		</div>
 	</form>
 </div>

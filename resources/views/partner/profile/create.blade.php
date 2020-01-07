@@ -205,7 +205,7 @@ const setPreview = (input) => {
                 <button type="submit">プレビュー</button>
             </div> -->
             <div class="save-btn">
-                <button type="button" onclick="submit();">保存</button>
+                <button type="submit">保存</button>
             </div>
         </div>
     </form>

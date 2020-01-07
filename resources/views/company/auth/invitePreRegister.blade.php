@@ -33,7 +33,7 @@
 				</div>
 
 				<div class='button-container'>
-					<button type="button" onclick="submit();">メールを送信する</button>
+					<button type="submit">メールを送信する</button>
 				</div>
 			</form>
 			

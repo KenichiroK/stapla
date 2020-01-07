@@ -123,7 +123,7 @@
 		</div>
 
 		<div class="btn02-container">
-			<button type="button" onclick="submit();">作成</button>
+			<button type="submit">作成</button>
 		</div>
     </form>
     

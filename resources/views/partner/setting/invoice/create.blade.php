@@ -304,7 +304,7 @@ $pref = array(
 		</div>
 
 		<div class="btn01-container">
-			<button type="button" onclick="submit();">設定</button>
+			<button type="submit">設定</button>
 		</div>
 	</form>
 </div>

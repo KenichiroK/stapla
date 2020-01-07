@@ -49,7 +49,7 @@ const setPreview = (input) => {
 
     <div class="btn-container">
         <div class="save-btn">
-            <button type="button" onclick="submit();">メールアドレスを変更する</button>
+            <button type="submit">メールアドレスを変更する</button>
         </div>
     </div>
   </form>

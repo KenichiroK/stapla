@@ -83,7 +83,7 @@
                 </div> -->
 
                 <div class="button_wrapper">
-                    <button type="button" onclick="submit();" class="text">新規会員登録</button>
+                    <button type="submit" class="text">新規会員登録</button>
                 </div>
             </form>
 
