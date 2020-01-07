@@ -1,4 +1,4 @@
- @extends('company.index')
+@extends('company.index')
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
@@ -7,29 +7,8 @@
 
 @section('content')
 <div class="main-wrapper">
-    @if (session('completed'))
-    <div class="complete-container">
-        <p>{{ session('completed') }}</p>
-    </div>
-    @endif
+	@include('company.setting.common.menuTab', ['activeClass' => 'general'])
 
-    @if(count($errors) > 0)
-    <div class="error-container">
-        <p>入力に問題があります。再入力して下さい。</p>
-    </div>
-    @endif
-    
-	<div class="title-container">
-		<h3>設定</h3>
-	</div>
-	<div class="menu-container">
-		<ul>
-			<li><a href="{{ route('company.setting.general.create') }}" class="isActive">会社基本情報設定</a></li>
-			<li><a href="{{ route('company.setting.userSetting.create') }}">会社担当者設定</a></li>
-			<li><a href="{{ route('company.setting.personalInfo.create') }}">個人情報の設定</a></li>
-			<li><a href="{{ route('company.setting.email.create') }}">メールアドレスの設定</a></li>
-		</ul>
-	</div>
 	<div class="profile-container white-bg-container">
 		<form action="{{ route('company.setting.general.update') }}" method="POST">
 		@csrf
