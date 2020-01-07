@@ -33,7 +33,7 @@
         </div>
         @endforeach
 
-         <div id="project_more_btn_area" class="morebtn-container is-active">
+         <div id="project_more_btn_area" class="morebtn-container">
             <p id="project_more_btn" class="morebtn-container__text">もっと見る</p>
         </div>
     </div>

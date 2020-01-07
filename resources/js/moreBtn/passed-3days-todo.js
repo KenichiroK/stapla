@@ -1,19 +1,14 @@
 (function() {
   let shownPassed3DaysTodosNum = 4;
   const passed3DaysTodos = document.querySelectorAll(".passed_3days_todo_item");
+  const moreBtnElement = document.getElementById("passed_3days_todo_more_btn_area");
 
-  const defaultShowList = () => {
-    passed3DaysTodos.forEach((t, i) => {
-      t.style.display = i < shownPassed3DaysTodosNum ? "flex" : "none";
-    });
-    if (shownPassed3DaysTodosNum >= passed3DaysTodos.length) {
-      hideShowMoreBtn();
-    }
-  };
-
-  const hideShowMoreBtn = () => {
-    document.getElementById("passed_3days_todo_more_btn_area").classList.remove("is-active");
-  };
+  passed3DaysTodos.forEach((t, i) => {
+    t.style.display = i < shownPassed3DaysTodosNum ? "flex" : "none";
+  });
+  if (shownPassed3DaysTodosNum < passed3DaysTodos.length) {
+    moreBtnElement.classList.add("is-active");
+  }
 
   // click more btn
   document.getElementById("passed_3days_todo_more_btn").addEventListener("click", function() {
@@ -23,10 +18,9 @@
         t.style.display = "flex";
       }
     });
+
     if (shownPassed3DaysTodosNum >= passed3DaysTodos.length) {
-      hideShowMoreBtn();
+      moreBtnElement.classList.remove("is-active");
     }
   });
-
-  defaultShowList();
 })();

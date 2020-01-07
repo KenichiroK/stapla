@@ -1,20 +1,15 @@
 (function() {
   let shownNum = 5;
   const projects = document.querySelectorAll(".project_item");
+  const moreBtnElement = document.getElementById("project_more_btn_area");
 
-  const defaultShowList = () => {
-    projects.forEach((p, i) => {
-      p.style.display = i < shownNum ? "block" : "none";
-    });
+  projects.forEach((p, i) => {
+    p.style.display = i < shownNum ? "block" : "none";
+  });
 
-    if (shownNum >= projects.length) {
-      hideShowMoreBtn();
-    }
-  };
-
-  const hideShowMoreBtn = () => {
-    document.getElementById("project_more_btn_area").classList.remove("is-active");
-  };
+  if (shownNum < projects.length) {
+    moreBtnElement.classList.add("is-active");
+  }
 
   // click more btn
   document.getElementById("project_more_btn").addEventListener("click", function() {
@@ -24,10 +19,9 @@
         p.style.display = "block";
       }
     });
+
     if (shownNum >= projects.length) {
-      hideShowMoreBtn();
+      moreBtnElement.classList.remove("is-active");
     }
   });
-
-  defaultShowList();
 })();

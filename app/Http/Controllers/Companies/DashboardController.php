@@ -53,12 +53,9 @@ class DashboardController extends Controller
         })->sortByDesc('status_updated_at');
 
         $status_arr = [];
-        for ($i = 0; $i <= 18; $i++) {
-            $status_arr[strval($i)] = 0;
-        }
 
-        for ($i = 0; $i < $tasks->count(); $i++) {
-            $status_arr[$tasks[$i]->status]++;
+        foreach (config('const.TASK_STATUS_ARR') as $key => $TASK_STATUS) {
+            $status_arr[$key] = $tasks->where('status', config('const')[$TASK_STATUS])->count();
         }
 
         return view('company/dashboard/index', compact('projects', 'tasks', 'todos', 'passed_3days_todos', 'status_arr'));

@@ -131,6 +131,7 @@ mix.js(
 mix.js(["resources/js/company/task/toggle-calendar.js"], "public/js/company/task/toggle-calendar.js");
 
 mix
+  .sass("resources/sass/style.scss", "public/css")
   .sass("resources/sass/company/common/index.scss", "public/css/company/common")
   .sass("resources/sass/auth/login/index.scss", "public/css/auth/login")
   .sass("resources/sass/auth/initialRegister/personal.scss", "public/css/auth/initialRegister")
@@ -179,7 +180,7 @@ mix
   .sass("resources/sass/pdf/paper.scss", "public/css/pdf")
 
   // renewal dashboard
-  .sass("resources/sass/page/dashboard/index.scss", "public/css/page/dashboard");
+  .sass("resources/sass/page/dashboard/style.scss", "public/css/page/dashboard");
 
 mix.options({
   publicPath: "public",
