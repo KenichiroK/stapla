@@ -20,24 +20,31 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = ProjectCompany::where('user_id', Auth::user()->id)
-                                ->join('projects', 'project_companies.project_id', '=', 'projects.id')
+                                ->join('projects', function ($join) {
+                                    $join->on('project_companies.project_id', '=', 'projects.id')
+                                        ->where('status', '!=', config('const.PROJECT_COMPLETE'));
+                                })
                                 ->orderBy('projects.created_at', 'desc')
-                                ->get(); 
+                                ->get();
+        
+        $is_done_project = false;
 
-        return view('company/project/index', compact('projects'));
+        return view('company/project/index', compact('projects', 'is_done_project'));
     }
 
     public function doneIndex()
     {
-        $company_user = Auth::user();
-        $projects = Project::where('company_id', $company_user->company_id)->where('status', config('const.PROJECT_COMPLETE'))->get();
+        $projects = ProjectCompany::where('user_id', Auth::user()->id)
+                                ->join('projects', function ($join) {
+                                    $join->on('project_companies.project_id', '=', 'projects.id')
+                                        ->where('status', config('const.PROJECT_COMPLETE'));
+                                })
+                                ->orderBy('projects.created_at', 'desc')
+                                ->get();
 
-        $task_count_arr = []; 
-        for($i = 0; $i < count($projects); $i++){
-            $taskCount = count($projects[$i]->tasks);
-            array_push($task_count_arr, $taskCount);
-        }
-        return view('company/project/done-index', compact('projects', 'task_count_arr'));
+        $is_done_project = true;
+
+        return view('company/project/index', compact('projects', 'is_done_project'));
     }
 
     public function create()

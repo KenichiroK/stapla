@@ -1,8 +1,7 @@
 @extends('company.index')
 
 @section('assets')
-<link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/project/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/style.css') }}">
 <link rel="stylesheet" href="{{ mix('css/page/project/index/style.css') }}">
 @endsection
 
@@ -19,8 +18,8 @@
     </div>
 
     <div class="tab-container">
-        <a class="tab-container__btn is-active" href="{{ route('company.project.index') }}">プロジェクト</a>
-        <a class="tab-container__btn" href="{{ route('company.project.done.index') }}">完了したプロジェクト</a>
+        <a class="{{ $is_done_project ? 'tab-container__btn' : 'tab-container__btn is-active' }}" href="{{ route('company.project.index') }}">プロジェクト</a>
+        <a class="{{ $is_done_project ? 'tab-container__btn is-active' : 'tab-container__btn' }}" href="{{ route('company.project.done.index') }}">完了したプロジェクト</a>
     </div>
 
     @include('company.project.components.table')

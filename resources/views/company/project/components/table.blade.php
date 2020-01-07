@@ -1,6 +1,12 @@
 <div class="project-container">
     <div class="title-container">
-        <h4 class="title-container__text">あなたのプロジェクト<span class="title-container__num">{{ $projects->count() }}件</span></h4>
+        <h4 class="title-container__text">
+            @if ($is_done_project)
+            あなたの完了したプロジェクト<span class="title-container__num">{{ $projects->count() }}件</span>
+            @else
+            あなたのプロジェクト<span class="title-container__num">{{ $projects->count() }}件</span>
+            @endif
+        </h4>
     </div>
 
     <div class="content-container">
@@ -14,7 +20,11 @@
         </div>
 
         @if (count($projects) === 0)
+        @if ($is_done_project)
+        <p class="no-data">あなたの完了したプロジェクトはありません</p>
+        @else
         <p class="no-data">あなたのプロジェクトはありません</p>
+        @endif
         @endif
 
         @foreach($projects as $project)
@@ -33,7 +43,7 @@
         </div>
         @endforeach
 
-         <div id="project_more_btn_area" class="morebtn-container is-active">
+         <div id="project_more_btn_area" class="morebtn-container">
             <p id="project_more_btn" class="morebtn-container__text">もっと見る</p>
         </div>
     </div>
