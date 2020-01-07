@@ -22,7 +22,7 @@
                     <div class="page-title-container__page-title">「{{ $task->name }}」編集中</div>
                 </div>
                 <div class="button-wrapper">
-                    <button type="submit" onclick="submit();" class="button-wrapper__btn button" name="temporarySaveOrPreview" value="toTemporaryUpdate">保存</button>
+                    <button type="submit" class="button-wrapper__btn button" name="temporarySaveOrPreview" value="toTemporaryUpdate">保存</button>
                 </div>
             </div>
             <!-- プロジェクトを選択する エリア -->
