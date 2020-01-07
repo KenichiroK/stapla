@@ -16,9 +16,9 @@
 
 <div class="menu-container">
     <ul>
-        <li><a href="{{ route('company.setting.general.create') }}" {!! $activeClass == "general" ? 'class="isActive"' : '' !!}>会社基本情報設定</a></li>
-        <li><a href="{{ route('company.setting.userSetting.create') }}" {!! $activeClass == "userSetting" ? 'class="isActive"' : '' !!}>会社担当者設定</a></li>
-        <li><a href="{{ route('company.setting.personalInfo.create') }}" {!! $activeClass == "personalInfo" ? 'class="isActive"' : '' !!}>個人情報の設定</a></li>
-        <li><a href="{{ route('company.setting.email.create') }}" {!! $activeClass == "email" ? 'class="isActive"' : '' !!}>メールアドレスの設定</a></li>
+        <li><a href="{{ route('company.setting.general.create') }}" @if($activeClass == "general") class="isActive" @endif>会社基本情報設定</a></li>
+        <li><a href="{{ route('company.setting.userSetting.create') }}" @if($activeClass == "userSetting") class="isActive" @endif>会社担当者設定</a></li>
+        <li><a href="{{ route('company.setting.personalInfo.create') }}" @if($activeClass == "personalInfo") class="isActive" @endif>個人情報の設定</a></li>
+        <li><a href="{{ route('company.setting.email.create') }}" @if($activeClass == "email") class="isActive" @endif>メールアドレスの設定</a></li>
     </ul>
 </div>
