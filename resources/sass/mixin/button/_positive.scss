@@ -9,6 +9,7 @@
   padding-bottom: $py;
   padding-left: $px;
   font-size: $fontSize;
+  line-height: $height - $py * 2;
   background-color: colors(primary);
   color: colors(white1);
 }

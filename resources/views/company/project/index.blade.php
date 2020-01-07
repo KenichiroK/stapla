@@ -3,78 +3,31 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/project/index.css') }}">
+<link rel="stylesheet" href="{{ mix('css/page/project/index/style.css') }}">
 @endsection
 
 @section('content')
-<div class="main__container">
-    <div class="main__container__wrapper">
-        <div class="top-container">
-            <h1 class="top-container__title">プロジェクト</h1>
-            <div>
-                <p class="control has-icons-left serch-wrp">
-                    <!-- <input class="search-project input" type="text" placeholder="プロジェクトを検索">
-                    <span class="">
-                    <img src="{{ env('AWS_URL') }}/common/searchicon.png" alt="serch">
-                    </span> -->
-                </p>
-            </div>
-            <div class="control btn-a-container">
-                <a href="{{ route('company.project.create') }}">プロジェクト作成</a>
-            </div>
+<div class="main-wrapper">
+    <div class="top-container">
+        <div class="title-container">
+            <h3 class="title-container__text">プロジェクト</h3>
         </div>
 
-        <ul id="tab-button" class="tab-button">
-            <li class="all  isActive"><a href="{{ route('company.project.index') }}">プロジェクト</a></li>
-            <li class="done"><a href="{{ route('company.project.done.index') }}">完了したプロジェクト</a></li>
-        </ul>
-
-        <div class="project-container">
-            <div class="project-container__item">
-                <ul class="item_list">
-                    <li>プロジェクト</li>
-                    <li>担当者</li>
-                    <li>タスク</li>
-                    <li>期限</li>
-                    <li>予算</li>
-                    <li>請求額</li>
-                </ul>
-            </div>
-
-            <div class="project-container__content">
-                @foreach( $projects as $project )
-                <a class="show-link" href="{{ route('company.project.show', ['id' => $project->id]) }}">
-                    <ul class="item-list content_list" >
-                        <li class="item-list project-name">{{ $project->name }}</li>
-                        <li>
-                            <div class="photoimgbox">
-                                <img src="{{ $project->projectCompanies[0]->companyUser->picture }}" alt="担当者プロフィール画像">
-                            </div>
-                            @if ($project->projectCompanies->count() > 1) 
-                                <p>
-                                    {{ $project->projectCompanies[0]->companyUser->name }}
-                                    他{{ $project->projectCompanies->count() - 1 }}名
-                                </p>
-                            @else
-                                <p>{{ $project->projectCompanies[0]->companyUser->name }}</p>
-                            @endif 
-                        </li>
-                        <li>
-                            <span>{{ $task_count_arr[$loop->index] }}</span>件
-                        </li>
-                        <li>{{ date("Y年m月d日", strtotime($project->ended_at)) }}</li>
-                        <li>¥{{ number_format($project->budget) }}</li>
-                        <li>¥{{ number_format($project->price) }}</li>
-                    </ul>
-                </a>
-                @endforeach
-            </div>
-
-            <div class="showmore-wrp">
-                <p id="showmore_btn" class="showmore__btn"><a>もっと見る</a>
-                    <span><img src="{{ env('AWS_URL') }}/common/arrowdown.png"></span>
-                </p>
-            </div>
-        </div> 
+        <div class="btn-container">
+            <a class="btn-container__text" href="{{ route('company.project.create') }}">プロジェクト作成</a>
+        </div>
     </div>
+
+    <div class="tab-container">
+        <a class="tab-container__btn is-active" href="{{ route('company.project.index') }}">プロジェクト</a>
+        <a class="tab-container__btn" href="{{ route('company.project.done.index') }}">完了したプロジェクト</a>
+    </div>
+
+    @include('company.project.components.table')
+
 </div>
+@endsection
+
+@section('asset-js')
+<script src="{{ asset('js/moreBtn/project.js') }}" defer></script>
 @endsection

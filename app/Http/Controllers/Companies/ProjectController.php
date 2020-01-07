@@ -19,15 +19,12 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $company_user = Auth::user();
-        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();        
+        $projects = ProjectCompany::where('user_id', Auth::user()->id)
+                                ->join('projects', 'project_companies.project_id', '=', 'projects.id')
+                                ->orderBy('projects.created_at', 'desc')
+                                ->get(); 
 
-        $task_count_arr = []; 
-        for($i = 0; $i < count($projects); $i++){
-            $taskCount = count($projects[$i]->tasks);
-            array_push($task_count_arr, $taskCount);
-        }
-        return view('company/project/index', compact('projects', 'task_count_arr'));
+        return view('company/project/index', compact('projects'));
     }
 
     public function doneIndex()
