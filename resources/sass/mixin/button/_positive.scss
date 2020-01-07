@@ -1,6 +1,6 @@
 @import "./button";
 
-@mixin positive-btn($width, $height, $px, $py, $fontSize) {
+@mixin positive-btn($width: 64px, $height: 32px, $px: 16px, $py: 8px, $fontSize: 16px) {
   @extend .button;
   width: $width;
   height: $height;
