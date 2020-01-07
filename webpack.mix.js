@@ -43,6 +43,9 @@ mix.js(
 
 mix.babel(["resources/js/partner/document/invoice/create.js"], "public/js/partner/document/invoice/create.js");
 
+// project
+mix.js(["resources/js/pages/project/index/index.js"], "public/js/pages/project/index/index.js");
+
 // order
 mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/index.js");
 
@@ -90,36 +93,6 @@ mix.js(
     "resources/js/company/setting/general/index.js",
   ],
   "public/js/company/setting/general/index.js",
-);
-
-mix.js(
-  [
-    // show all todo table
-    "resources/js/moreBtn/all-todo.js",
-  ],
-  "public/js/moreBtn/all-todo.js",
-);
-mix.js(
-  [
-    // show passed 3 days todo table
-    "resources/js/moreBtn/passed-3days-todo.js",
-  ],
-  "public/js/moreBtn/passed-3days-todo.js",
-);
-mix.js(
-  [
-    // show project table
-    "resources/js/moreBtn/project.js",
-  ],
-  "public/js/moreBtn/project.js",
-);
-
-mix.js(
-  [
-    // show task table
-    "resources/js/moreBtn/task.js",
-  ],
-  "public/js/moreBtn/task.js",
 );
 
 mix.js(
