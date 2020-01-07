@@ -1,11 +1,12 @@
 import html2canvas from "html2canvas";
 import pdfMake from "pdfmake/build/pdfmake";
+import dayjs from "dayjs";
 
 // 72dpi 時の mm => px 換算比
 // 計算式は 1/(25.4mm / 72dpi)
 const RATE = 2.83464566929;
 
-// A4 297mm × 419mm 
+// A4 297mm × 419mm
 const PAGE_WIDTH = 297 * RATE;
 const PAGE_HEIGHT = 419 * RATE;
 
@@ -18,9 +19,9 @@ const PAGE_MARGINS = [0 * RATE, 0 * RATE];
  * HTMLからPDFを生成
  * @param {HTMLElement} element
  */
-export async function createPdfFromHtml(element) {
+export async function createPdfFromHtml(element, documentType) {
   const pdfProps = await createPdfProps(element);
-  createPdf(pdfProps);
+  createPdf(pdfProps, documentType);
 }
 
 /**
@@ -33,7 +34,7 @@ async function createPdfProps(element) {
   // html2canvas実行
   const options = {
     // HACK: ブラウザ依存でcanvasサイズが変わらないように、scaleは固定値。IEでのぼやけ対策で十分大きめの2にした
-    scale: 2
+    scale: 2,
   };
   const canvas = await html2canvas(element, options);
 
@@ -43,14 +44,14 @@ async function createPdfProps(element) {
     dataUrl,
     pageSize: {
       width: PAGE_WIDTH,
-      height: PAGE_HEIGHT
+      height: PAGE_HEIGHT,
     },
     pageOrientation: "PORTRAIT",
     contentSize: {
       width: CONTENT_WIDTH,
-      height: CONTENT_HEIGHT
+      height: CONTENT_HEIGHT,
     },
-    pageMargins: PAGE_MARGINS
+    pageMargins: PAGE_MARGINS,
   };
 
   return pdfProps;
@@ -60,7 +61,7 @@ async function createPdfProps(element) {
  * エンコードされた画像URLを貼り付けたPDFを出力する
  * @param {PdfProps} pdfProps
  */
-function createPdf(pdfProps) {
+function createPdf(pdfProps, documentType) {
   const { dataUrl, contentSize, pageMargins } = pdfProps;
   // tsエラー回避のため一時的にany
   const pageSize = pdfProps.pageSize;
@@ -73,17 +74,8 @@ function createPdf(pdfProps) {
       image: dataUrl,
       ...contentSize,
     },
-    pageMargins
+    pageMargins,
   };
 
-  pdfMake.createPdf(documentDefinitions).download();
+  pdfMake.createPdf(documentDefinitions).download(`${documentType}-${dayjs(new Date()).format("YYYYMMDDHHmm")}`);
 }
-
-// 印刷ボタンクリック時の処理
-const print_btn = document.querySelector('#print_btn');
-const pdf_content = document.querySelector('#pdf_content');
-
-
-print_btn.onclick = () => {
-  createPdfFromHtml(pdf_content);
-};

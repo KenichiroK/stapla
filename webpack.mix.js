@@ -3,6 +3,15 @@ const mix = require("laravel-mix");
 mix.autoload({
   jquery: ["$", "window.jQuery"],
 });
+
+mix.webpackConfig({
+  resolve: {
+    extensions: [".js"],
+    alias: {
+      "@": __dirname + "/resources/js",
+    },
+  },
+});
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -34,13 +43,11 @@ mix.js(
 
 mix.babel(["resources/js/partner/document/invoice/create.js"], "public/js/partner/document/invoice/create.js");
 
-mix.js(
-  [
-    //PDF
-    "resources/js//pdf/logic.js",
-  ],
-  "public/js/pdf.js",
-);
+// order
+mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/index.js");
+
+// invoice
+mix.js(["resources/js/pages/invoice/show/index.js"], "public/js/pages/invoice/show/index.js");
 
 mix.js(
   [
