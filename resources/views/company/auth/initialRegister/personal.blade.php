@@ -168,7 +168,7 @@ $pref = array(
 			</div>
 			
 			<div class="btn-container">
-				<button data-impro-button="once" type="button" onclick="submit()">確認</button>
+				<button data-impro-button="once" type="button" onclick="submit();">確認</button>
 			</div>
 		</form>
 	</div>
@@ -332,7 +332,7 @@ $pref = array(
 			</div>
 			
 			<div class="btn-container">
-				<button data-impro-button="once" type="button" onclick="submit()">確認</button>
+				<button data-impro-button="once" type="button" onclick="submit();">確認</button>
 			</div>
 		</form>
 	</div>

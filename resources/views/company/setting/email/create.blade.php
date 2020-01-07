@@ -49,7 +49,7 @@ const setPreview = (input) => {
 
     <div class="btn-container">
         <div class="save-btn">
-            <button data-impro-button="once" type="button" onclick="submit()">メールアドレスを変更する</button>
+            <button data-impro-button="once" type="button" onclick="submit();">メールアドレスを変更する</button>
         </div>
     </div>
   </form>

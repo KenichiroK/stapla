@@ -123,7 +123,7 @@
 		</div>
 
 		<div class="btn02-container">
-			<button data-impro-button="once" type="button" onclick="submit()">作成</button>
+			<button data-impro-button="once" type="button" onclick="submit();">作成</button>
 		</div>
     </form>
     

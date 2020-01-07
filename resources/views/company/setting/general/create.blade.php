@@ -120,7 +120,7 @@
                 @endif
 			</div>
 			<div class="btn01-container">
-				<button data-impro-button="once" type="button" onclick="submit()">設定</button>
+				<button data-impro-button="once" type="button" onclick="submit();">設定</button>
 			</div>
 		</form>
 	</div>

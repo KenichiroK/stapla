@@ -205,7 +205,7 @@ const setPreview = (input) => {
                 <button type="submit">プレビュー</button>
             </div> -->
             <div class="save-btn">
-                <button data-impro-button="once" type="button" onclick="submit()">保存</button>
+                <button data-impro-button="once" type="button" onclick="submit();">保存</button>
             </div>
         </div>
     </form>

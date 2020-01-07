@@ -51,7 +51,7 @@
 				</div>
 
 				<div class='button-container'>
-					<button data-impro-button="once" type="button" onclick="submit()">メールを送信する</button>
+					<button data-impro-button="once" type="button" onclick="submit();">メールを送信する</button>
 				</div>
 			</form>
 			

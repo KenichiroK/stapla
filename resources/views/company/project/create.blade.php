@@ -33,7 +33,7 @@
             </div>
             @isset($project)
             <div class="button-wrapper">
-                <button data-impro-button="once" type="button" onclick="submit()" class="button-wrapper__btn button">保存</button>
+                <button data-impro-button="once" type="button" onclick="submit();" class="button-wrapper__btn button">保存</button>
             </div>
             @endisset
             
@@ -223,7 +223,7 @@
         @isset($project)
         @else
             <div class="btn01-container">
-                <button data-impro-button="once" type="button" onclick="submit()">作成</button>
+                <button data-impro-button="once" type="button" onclick="submit();">作成</button>
             </div>
         @endisset
              
