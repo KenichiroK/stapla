@@ -170,7 +170,7 @@
                 <div class="actionButton">
                 @if(isset($task_status))
                     <input type="hidden" name='task_id' value="{{ $task->id }}">
-                    <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
+                    <button class="undone" type="submit" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
                     <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStoreUpdate" data-toggle="modal" data-target="#confirm">保存/上長に提出</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
@@ -183,7 +183,7 @@
                         タスクを新規作成し 、 {{ $superior_user->name }} さんに上長確認を依頼します。
                     @endcomponent
                 @else
-                    <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
+                    <button class="undone" type="submit" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
                     <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStore"  data-toggle="modal" data-target="#confirm">保存/上長に提出</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')

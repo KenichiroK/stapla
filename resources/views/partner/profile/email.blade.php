@@ -55,7 +55,7 @@
 
         <div class="btn-container">
             <div class="save-btn">
-                <button type="button" onclick="submit();">メールアドレスを変更する</button>
+                <button data-impro-button="once" type="button" onclick="submit();">メールアドレスを変更する</button>
             </div>
         </div>
     </form>

@@ -420,12 +420,12 @@
                     @if(isset($task->id))
                     <!-- 下書き保存されているタスクの場合 -->
                     <input type="hidden" name='task_id' value="{{ $task->id }}">
-                    <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.updateDraft') }}">下書更新</button>
-                    <button class="done" type="submit" onclick="submit();" formaction="{{ route('company.task.preview') }}" style="width:auto">プレビュー</button>
+                    <button class="undone" type="submit" formaction="{{ route('company.task.updateDraft') }}">下書更新</button>
+                    <button class="done" type="submit" formaction="{{ route('company.task.preview') }}" style="width:auto">プレビュー</button>
                     @else
                     <!-- 新規作成のタスクの場合 -->
-                    <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.draft') }}">下書保存</button>
-                    <button class="done" type="submit" onclick="submit();" formaction="{{ route('company.task.preview') }}" style="width:auto">プレビュー</button>
+                    <button class="undone" type="submit" formaction="{{ route('company.task.draft') }}">下書保存</button>
+                    <button class="done" type="submit" formaction="{{ route('company.task.preview') }}" style="width:auto">プレビュー</button>
                     @endif
 
                 </div>  
