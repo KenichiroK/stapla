@@ -36,6 +36,12 @@ https://cacoo.com/diagrams/gwBCX5nPPOZJ6prG/01DD1
 
 ### front
 
+デザインツール zeplin
+
+https://app.zeplin.io/project/5df9714c2ab8ae1a4f33d9e7/dashboard
+
+https://app.zeplin.io/project/5db8f7e1d517762c27bade3c/dashboard
+
 以下を参考にしています
 
 http://tsudoi.org/guide/detail/8.html
@@ -83,3 +89,7 @@ code 確認 -> 羽田さん
 小松さんと羽田さんの approve で staging branch と develop branch に作業者が自分でそれぞれ merge ( 1-5 リリース以降 )
 
 ## Tips
+
+### 各種ドキュメント
+
+https://drive.google.com/drive/folders/1hoYfAcooBmH1jsyDUFojCOJO8yKzlxzF
