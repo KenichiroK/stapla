@@ -43,6 +43,10 @@ mix.js(
 
 mix.babel(["resources/js/partner/document/invoice/create.js"], "public/js/partner/document/invoice/create.js");
 
+//dashboard
+mix.js(["resources/js/pages/company/dashboard/index/index.js"], "public/js/pages/company/dashboard/index/index.js");
+mix.js(["resources/js/pages/partner/dashboard/index/index.js"], "public/js/pages/partner/dashboard/index/index.js");
+
 // project
 mix.js(["resources/js/pages/project/index/index.js"], "public/js/pages/project/index/index.js");
 
@@ -93,22 +97,6 @@ mix.js(
     "resources/js/company/setting/general/index.js",
   ],
   "public/js/company/setting/general/index.js",
-);
-
-mix.js(
-  [
-    // toggle shown todos
-    "resources/js/dashboard/toggle-todo.js",
-  ],
-  "public/js/dashboard/toggle-todo.js",
-);
-
-mix.js(
-  [
-    // toggle shown todos
-    "resources/js/status/task/change-shown-status-table.js",
-  ],
-  "public/js/status/task/change-shown-status-table.js",
 );
 
 mix.js(["resources/js/company/task/toggle-calendar.js"], "public/js/company/task/toggle-calendar.js");

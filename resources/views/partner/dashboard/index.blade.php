@@ -19,9 +19,5 @@
 @endsection
 
 @section('asset-js')
-<script src="{{ asset('js/moreBtn/all-todo.js') }}" defer></script>
-<script src="{{ asset('js/moreBtn/passed-3days-todo.js') }}" defer></script>
-<script src="{{ asset('js/moreBtn/task.js') }}" defer></script>
-<script src="{{ asset('js/dashboard/toggle-todo.js') }}" defer></script>
-<script src="{{ asset('js/status/task/change-shown-status-table.js') }}" defer></script>
+<script src="{{ asset('js/pages/partner/dashboard/index/index.js') }}" defer></script>
 @endsection

@@ -4,24 +4,24 @@
     </div>
 
     <ul class="navbar-container">
-        <li id="task-status-btn" class="navbar-container__text navbar-btn is-active">タスク
+        <li id="task_status_btn" class="navbar-container__text">タスク
             <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.TASK_CREATE'), config('const.TASK_APPROVAL_PARTNER')) }})</span>
         </li>
-        <li id="order-status-btn" class="navbar-container__text navbar-btn">発注書
+        <li id="order_status_btn" class="navbar-container__text">発注書
             <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.ORDER_SUBMIT_SUPERIOR'), config('const.ORDER_APPROVAL_PARTNER')) }})</span>
         </li>
-        <li id="working-status-btn" class="navbar-container__text navbar-btn">作業中
+        <li id="working_status_btn" class="navbar-container__text">作業中
             <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.WORKING'), config('const.ACCEPTANCE')) }})</span>
         </li>
-        <li id="invoice-status-btn" class="navbar-container__text navbar-btn">請求書
+        <li id="invoice_status_btn" class="navbar-container__text">請求書
             <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.INVOICE_DRAFT_CREATE'), config('const.APPROVAL_ACCOUNTING')) }})</span>
         </li>
-        <li id="complete-status-btn" class="navbar-container__text navbar-btn">完了
+        <li id="complete_status_btn" class="navbar-container__text">完了
             <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')) }})</span>
         </li>
     </ul>
 
-    <ul id="task-status-table" class="detail-container">
+    <ul id="task_status_table" class="detail-container">
         <li class="detail-container__content">
             <span class="detail-container__content--title">下書き</span>
             <span class="detail-container__content--num">{{ $status_arr[config('const.TASK_CREATE')] }}</span>
@@ -43,7 +43,7 @@
             <span class="detail-container__content--num">{{ $status_arr[config('const.TASK_APPROVAL_PARTNER')] }}</span>
         </li>
     </ul>
-    <ul id="order-status-table" class="detail-container">
+    <ul id="order_status_table" class="detail-container">
         <li class="detail-container__content">
             <span class="detail-container__content--title">上長確認中</span>
             <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_SUBMIT_SUPERIOR')] }}</span>
@@ -61,7 +61,7 @@
             <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_APPROVAL_PARTNER')] }}</span>
         </li>
     </ul>
-    <ul id="working-status-table" class="detail-container">
+    <ul id="working_status_table" class="detail-container">
         <li class="detail-container__content">
             <span class="detail-container__content--title">作業中</span>
             <span class="detail-container__content--num">{{ $status_arr[config('const.WORKING')] }}</span>
@@ -75,7 +75,7 @@
             <span class="detail-container__content--num">{{ $status_arr[config('const.ACCEPTANCE')] }}</span>
         </li>
     </ul>
-    <ul id="invoice-status-table" class="detail-container">
+    <ul id="invoice_status_table" class="detail-container">
         <li class="detail-container__content">
             <span class="detail-container__content--title">下書き</span>
             <span class="detail-container__content--num">{{ $status_arr[config('const.INVOICE_DRAFT_CREATE')] }}</span>
@@ -97,7 +97,7 @@
             <span class="detail-container__content--num">{{ $status_arr[config('const.APPROVAL_ACCOUNTING')] }}</span>
         </li>
     </ul>
-    <ul id="complete-status-table" class="detail-container">
+    <ul id="complete_status_table" class="detail-container">
         <li class="detail-container__content">
             <span class="detail-container__content--title">完了</span>
             <span class="detail-container__content--num">{{ $status_arr[config('const.COMPLETE_STAFF')] }}</span>
