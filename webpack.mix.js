@@ -48,7 +48,7 @@ mix.js(["resources/js/pages/company/dashboard/index/index.js"], "public/js/pages
 mix.js(["resources/js/pages/partner/dashboard/index/index.js"], "public/js/pages/partner/dashboard/index/index.js");
 
 // project
-mix.js(["resources/js/pages/project/index/index.js"], "public/js/pages/project/index/index.js");
+mix.js(["resources/js/pages/company/project/index/index.js"], "public/js/pages/company/project/index/index.js");
 
 // order
 mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/index.js");

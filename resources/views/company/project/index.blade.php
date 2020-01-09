@@ -28,5 +28,5 @@
 @endsection
 
 @section('asset-js')
-<script src="{{ asset('js/pages/project/index/index.js') }}" defer></script>
+<script src="{{ asset('js/pages/company/project/index/index.js') }}" defer></script>
 @endsection
