@@ -7,8 +7,8 @@
 
 @section('content')
 <div class="main-wrapper">
-    <div class="title-container">
-        <h3 class="title-container__text">ダッシュボード</h3>
+    <div class="page-title-container">
+        <h3 class="page-title-container__text">ダッシュボード</h3>
     </div>
 
     @include('partner.dashboard.components.status')

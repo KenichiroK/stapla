@@ -8,8 +8,8 @@
 @section('content')
 <div class="main-wrapper">
     <div class="top-container">
-        <div class="title-container">
-            <h3 class="title-container__text">プロジェクト</h3>
+        <div class="page-title-container">
+            <h3 class="page-title-container__text">プロジェクト</h3>
         </div>
 
         <div class="btn-container">
