@@ -113,12 +113,12 @@ const setPreview = (input) => {
                     <div class="sub-container">
                         <span>備考</span>
                     </div>
+
                 </div>
             </div>
-
         </div>
 
-    @if($purchaseOrder->task->status === config('const.ORDER_SUBMIT_PARTNER') && $purchaseOrder->partner->id === Auth::user()->id)
+    @if($purchaseOrder->task->status === config('const.TASK_SUBMIT_PARTNER') && $purchaseOrder->partner->id === Auth::user()->id)
         <div class="actionButton">
             <form action="{{ route('partner.task.status.change') }}" method="POST">
             @csrf
@@ -126,6 +126,7 @@ const setPreview = (input) => {
                 <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
                 <button type="submit" class="undone">断る</button>
             </form>
+            <a class="undone" href="{{ route('partner.task.show', ['task_id' => $task->id]) }}">タスクに戻る</a>
             <form action="{{ route('partner.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
@@ -139,7 +140,7 @@ const setPreview = (input) => {
                     @slot('confirmBtnLabel')
                         承認
                     @endslot
-                    発注書を承認します。
+                    こちらの案件を承認します。
                 @endcomponent
             </form>
         </div>

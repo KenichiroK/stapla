@@ -169,8 +169,8 @@
                 </div>
 
                 <!-- 発注書 -->
-                <input type="text" name="order_name" value="{{ $request->order_name }}">
-                <input type="text" name="order_company_user_id" value="{{ $request->order_company_user_id }}">
+                <input type="hidden" name="order_name" value="{{ $request->order_name }}">
+                <input type="hidden" name="order_company_user_id" value="{{ $request->order_company_user_id }}">
 
                 <div class="actionButton">
                 @if(isset($task_status))
@@ -179,17 +179,7 @@
                     <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStoreUpdate" data-toggle="modal" data-target="#confirm">発注書確認</button>
                 @else
                     <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
-                    <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStore"  data-toggle="modal" data-target="#confirm">発注書確認</button>
-                    <!-- Modal -->
-                    @component('components.confirm-modal')
-                        @slot('modalID')
-                            confirm
-                        @endslot
-                        @slot('confirmBtnLabel')
-                            依頼
-                        @endslot
-                        タスクを新規作成し 、 {{  $superior_user->name }} さんに上長確認を依頼します。
-                    @endcomponent
+                    <button class="done confirm" type="submit" style="width:155px;" name="editOrStore" value="toStore"  data-toggle="modal" data-target="#confirm">発注書確認</button>
                 @endif
                 </div>
 

@@ -233,22 +233,7 @@
                         <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                         <button type="submit" class="undone">タスク依頼を受けない</button>
                     </form>
-                    <form action="{{ route('partner.task.status.change') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="task_id" value="{{ $task->id }}">
-                        <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
-                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスク依頼を受ける</button>
-                        <!-- Modal -->
-                        @component('components.confirm-modal')
-                            @slot('modalID')
-                                confirm
-                            @endslot
-                            @slot('confirmBtnLabel')
-                                承認
-                            @endslot
-                            タスクを承認します。
-                        @endcomponent
-                    </form>
+                    <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
                 @elseif($task->status === config('const.ORDER_SUBMIT_PARTNER') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
                 @elseif($task->status === config('const.ORDER_APPROVAL_PARTNER') && $task->partner->id === Auth::user()->id)
