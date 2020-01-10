@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="main-wrapper">
-    <div class="top-container">
+    <div class="title-container">
         <div class="page-title-container">
             <h3 class="page-title-container__text">プロジェクト</h3>
         </div>
