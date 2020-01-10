@@ -1,6 +1,6 @@
 <div class="status-container">
-    <div class="title-container">
-        <h4 class="title-container__text">ステータス</h4>
+    <div class="table-title-container">
+        <h4 class="table-title-container__text">ステータス</h4>
     </div>
 
     <ul class="navbar-container">

@@ -1,10 +1,10 @@
 <div class="project-container">
-    <div class="title-container">
-        <h4 class="title-container__text">
+    <div class="table-title-container">
+        <h4 class="table-title-container__text">
             @if ($is_done_project)
-            あなたの完了したプロジェクト<span class="title-container__num">{{ $projects->count() }}件</span>
+            あなたの完了したプロジェクト<span class="table-title-container__num">{{ $projects->count() }}件</span>
             @else
-            あなたのプロジェクト<span class="title-container__num">{{ $projects->count() }}件</span>
+            あなたのプロジェクト<span class="table-title-container__num">{{ $projects->count() }}件</span>
             @endif
         </h4>
     </div>

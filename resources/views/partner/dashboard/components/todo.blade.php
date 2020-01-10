@@ -1,6 +1,6 @@
 <div class="todo-container">
     <div class="title-container">
-        <h4 class="title-container__text">あなたのTODO<span class="title-container__num">{{ count($todos) }}件</span></h4>
+        <h4 class="title-container__text">あなたのTODO<span class="table-title-container__num">{{ count($todos) }}件</span></h4>
         <p class="title-container__alert">
             3日以上未対応
             <button id="toggle_todo_btn" class="title-container__alert--button" type="button">
