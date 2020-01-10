@@ -11,10 +11,10 @@
         <h3 class="title-container__text">ダッシュボード</h3>
     </div>
 
-    @include('company.dashboard.status')
-    @include('company.dashboard.todo')
-    @include('company.dashboard.project')
-    @include('company.dashboard.task')
+    @include('company.dashboard.components.status')
+    @include('company.dashboard.components.todo')
+    @include('company.dashboard.components.project')
+    @include('company.dashboard.components.task')
 
 </div>
 @endsection

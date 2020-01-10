@@ -11,9 +11,9 @@
         <h3 class="title-container__text">ダッシュボード</h3>
     </div>
 
-    @include('partner.dashboard.status')
-    @include('partner.dashboard.todo')
-    @include('partner.dashboard.task')
+    @include('partner.dashboard.components.status')
+    @include('partner.dashboard.components.todo')
+    @include('partner.dashboard.components.task')
 
 </div>
 @endsection
