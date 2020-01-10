@@ -8,7 +8,7 @@
 @section('content')
 <div class="main__container">
     
-    <form action="{{ route('company.task.preview') }}" method='POST' class="main__container__wrapper">
+    <form action="{{ route('company.task.index') }}" method='POST' class="main__container__wrapper">
         @csrf
         @if(count($errors) > 0)
         <div class="error-container">
@@ -39,7 +39,7 @@
                 <div class="select-error-wrp">
                     <div class="select-area control">
                         <div class="select-wrp select is-info">
-                            
+                            {{ projects }}
                             @if(isset($task->project_id))
                             <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
                                 <option disabled selected></option>

@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="main-wrapper">
-    <form action="" method='POST'>
+    <form action="{{ route('company.task.taskPreview') }}" method='POST'>
         @csrf
         @if(count($errors) > 0)
         <div class="error-container">
@@ -33,11 +33,11 @@
 
                 <div class="form-container__body">
                     <div class="select-arrow">
-                        <select name="">
+                        <select name="project_id">
                             <option disabled selected></option>
-                            <option value="">a</option>
-                            <option value="">b</option>
-                            <option value="">c</option>
+                                @foreach($projects as $project)
+                                    <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                @endforeach
                         </select>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="form-container__body">
-                    <input class="input" type="text" name="">
+                    <input class="input" type="text" name="task_name" value="{{ old('task_name') }}">
                 </div>
             </div>
 
@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="form-container__body">
-                    <textarea class="textarea" name="" cols="30" rows="5"></textarea>
+                    <textarea class="textarea" name="content" cols="30" rows="5">{{ old('content') }}</textarea>
                 </div>
             </div>
 
@@ -75,11 +75,11 @@
 
                 <div class="form-container__body">
                     <div class="select-arrow">
-                        <select name="">
+                        <select name="task_company_user_id">
                             <option disabled selected></option>
-                            <option value="">a</option>
-                            <option value="">b</option>
-                            <option value="">c</option>
+                            @foreach($company_users as $company_user)
+                                <option value={{ $company_user->id }} {{ (old('task_company_user_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -93,11 +93,11 @@
 
                 <div class="form-container__body">
                     <div class="select-arrow">
-                        <select name="">
-                            <option disabled selected></option>
-                            <option value="">a</option>
-                            <option value="">b</option>
-                            <option value="">c</option>
+                        <select name="superior_id">
+                            <option selected></option>
+                                @foreach($company_users as $company_user)
+                                <option value={{ $company_user->id }} {{ (old('superior_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                @endforeach
                         </select>
                     </div>
                 </div>
@@ -111,11 +111,11 @@
 
                 <div class="form-container__body">
                     <div class="select-arrow">
-                        <select name="">
-                            <option disabled selected></option>
-                            <option value="">a</option>
-                            <option value="">b</option>
-                            <option value="">c</option>
+                        <select name="accounting_id">
+                            <option selected></option>
+                                @foreach($company_users as $company_user)
+                                    <option value={{ $company_user->id }} {{ (old('accounting_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                @endforeach
                         </select>
                     </div>
                 </div>
@@ -134,8 +134,8 @@
                                 id="start_calendar"
                                 class="date"
                                 type="text"
-                                name=""
-                                value="{{date('Y/m/d 00:00') }}"
+                                name="started_at"
+                                value="{{ old('started_at') ? old('started_at') : date('Y/m/d 00:00') }}"
                             >
                         </div>
 
@@ -146,8 +146,8 @@
                                 id="end_calendar"
                                 class="date"
                                 type="text"
-                                name=""
-                                value="{{ date('Y/m/d 23:00') }}"
+                                name="ended_at"
+                                value="{{ old('ended_at') ? old('ended_at') : date('Y/m/d 23:00') }}"
                             >
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                 </div>
 
                 <div class="form-container__body">
-                    <input class="input" type="text" name="">
+                    <input class="input" type="text" name="order_name" value="{{ old('order_name') }}">
                 </div>
             </div>
 
@@ -177,8 +177,9 @@
                     <input
                         class="input"
                         type="text"
-                        name=""
+                        name="order_company_user_id"
                         placeholder="発注書に記載する担当者名を変更したい場合"
+                        value="{{ old('order_company_user_id') }}"
                     >
                 </div>
             </div>
@@ -193,11 +194,11 @@
 
                 <div class="form-container__body">
                     <div class="select-arrow">
-                        <select name="">
+                        <select name="partner_id">
                             <option disabled selected></option>
-                            <option value="">a</option>
-                            <option value="">b</option>
-                            <option value="">c</option>
+                                @foreach($partners as $partner)
+                                <option value="{{ $partner->id }}" {{ (old('partner_id') === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
+                                @endforeach
                         </select>
                     </div>
                 </div>
@@ -212,7 +213,7 @@
                 <div class="form-container__body">
                     <div class="price-container">
                         <div class="price-container__input">
-                            <input class="input" type="text" name="">
+                            <input class="input" type="text" name="order_price" value="{{ old('order_price') }}">
                         </div>
                         <span class="unit">円</span>
                     </div>
@@ -232,8 +233,8 @@
                                 id="deliver_calendar"
                                 class="date"
                                 type="text"
-                                name=""
-                                value="{{ date('Y/m/d 23:00') }}"
+                                name="delivery_date"
+                                value="{{ old('delivery_date') ? old('delivery_date') : date('Y/m/d 23:00') }}"
                             >
                         </div>
                     </div>

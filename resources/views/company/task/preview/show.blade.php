@@ -8,7 +8,7 @@
 @section('content')
 <div class="main__container">
     
-    <form action="{{ route('company.task.store') }}" method='POST' class="main__container__wrapper">
+    <form action="{{ route('company.task.purchaseOrderPreview') }}" method='POST' class="main__container__wrapper">
         @csrf
         @if(count($errors) > 0)
             <div class="error-container">
@@ -18,7 +18,7 @@
        
         <!-- ページタイトル エリア -->
         <div class="page-title-container">
-            <div class="page-title-container__page-title">{{ $request->name }} プレビュー</div>
+            <div class="page-title-container__page-title">{{ $request->task_name }} プレビュー</div>
         </div>
 
         <!-- プロジェクトを選択する エリア -->
@@ -48,8 +48,8 @@
                                     タスク名
                                 </div>
                             </div>
-                            <p class="preview_p">{{ $request->name }}</p>
-                            <input type="hidden" name='name' value="{{ $request->name }}">
+                            <p class="preview_p">{{ $request->task_name }}</p>
+                            <input type="hidden" name='task_name' value="{{ $request->task_name }}">
                         </div>
 
                         <!-- 項目：タスク内容 -->
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <p class="preview_p">{{ $company_user->name }}</p>
-                            <input type="hidden" name="company_user_id" value="{{ $company_user->id }}">
+                            <input type="hidden" name="task_company_user_id" value="{{ $company_user->id }}">
                         </div>
 
                         <!-- 上長 -->
@@ -113,7 +113,7 @@
                                 </div>
                                 <!-- 終了日カレンダー -->
                                 <div class="calendar-item end">                               
-                                    
+
                                     <div class="calendar-name">
                                         終了日<i class="fas fa-calendar-alt"></i>
                                     </div>
@@ -121,16 +121,6 @@
                                     <input type="hidden" name="ended_at" value="{{ $request->ended_at }}">
                                 </div>
                             </div>
-                        </div>
-                        <!-- 予算 -->
-                        <div class="item-container">
-                            <div class="item-name-wrapper">
-                                <div class="item-name">
-                                    予算
-                                </div>
-                            </div>
-                            <p class="preview_p">{{ $request->budget }}円</p>
-                            <input type="hidden" name="budget" value="{{ $request->budget }}">
                         </div>
                     </div>      
                 </div>
@@ -160,31 +150,36 @@
                                         発注単価<span class="tax">（税抜）</span>
                                     </div>
                                 </div>
-                                <p class="preview_p">{{ $request->price }}円</p>
-                                <input type="hidden" name="price" value="{{ $request->price }}">
+                                <p class="preview_p">{{ $request->order_price }}円</p>
+                                <input type="hidden" name="order_price" value="{{ $request->order_price }}">
                             </div>
+                        </div>
+
+                        <!-- 納期 -->
+                        <div class="item-container">
+                            <div class="item-name-wrapper">
+                                <div class="item-name">
+                                    納期
+                                </div>
+                            </div>
+                            <p class="preview_p">{{ date("Y年m月d日H時", strtotime($request->delivery_date)) }}</p>
+                            <input type="hidden" name="delivery_date" value="{{ $request->delivery_date }}">
                         </div>
                     </div>
                 </div>
+
+                <!-- 発注書 -->
+                <input type="text" name="order_name" value="{{ $request->order_name }}">
+                <input type="text" name="order_company_user_id" value="{{ $request->order_company_user_id }}">
 
                 <div class="actionButton">
                 @if(isset($task_status))
                     <input type="hidden" name='task_id' value="{{ $task->id }}">
                     <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
-                    <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStoreUpdate" data-toggle="modal" data-target="#confirm">保存/上長に提出</button>
-                    <!-- Modal -->
-                    @component('components.confirm-modal')
-                        @slot('modalID')
-                            confirm
-                        @endslot
-                        @slot('confirmBtnLabel')
-                            依頼
-                        @endslot
-                        タスクを新規作成し 、 {{ $superior_user->name }} さんに上長確認を依頼します。
-                    @endcomponent
+                    <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStoreUpdate" data-toggle="modal" data-target="#confirm">発注書確認</button>
                 @else
                     <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
-                    <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStore"  data-toggle="modal" data-target="#confirm">保存/上長に提出</button>
+                    <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStore"  data-toggle="modal" data-target="#confirm">発注書確認</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
                         @slot('modalID')
