@@ -1,77 +1,75 @@
 import { clickMoreBtn, showDefaultElement } from "@/modules/more-btn/logic";
 import { switchShownItem, switchIsActiveBtn } from "@/modules/switch-btn/logic";
 import { displayType } from "@/modules/switch-btn/type";
-import {
-  tasks,
-  taskMoreBtnElement,
-  taskMoreBtn,
-  taskStatusTable,
-  orderStatusTable,
-  workingStatusTable,
-  invoiceStatusTable,
-  completeStatusTable,
-  taskStatusBtn,
-  orderStatusBtn,
-  workingStatusBtn,
-  invoiceStatusBtn,
-  completeStatusBtn,
-} from "./elements";
+import elementObject from "./elements";
 
 // task morebtn
 let defaultShowNum = 5;
 const moreShowNum = 5;
 
-taskMoreBtn.addEventListener("click", () => {
-  defaultShowNum = clickMoreBtn(defaultShowNum, moreShowNum, tasks, taskMoreBtnElement);
+elementObject.taskMoreBtn.addEventListener("click", () => {
+  defaultShowNum = clickMoreBtn(defaultShowNum, moreShowNum, elementObject.tasks, elementObject.taskMoreBtnElement);
 });
 
 // toggle status table
-const tableItems = [taskStatusTable, orderStatusTable, workingStatusTable, invoiceStatusTable, completeStatusTable];
-const tabBtns = [taskStatusBtn, orderStatusBtn, workingStatusBtn, invoiceStatusBtn, completeStatusBtn];
+const tableItems = [
+  elementObject.taskStatusTable,
+  elementObject.orderStatusTable,
+  elementObject.workingStatusTable,
+  elementObject.invoiceStatusTable,
+  elementObject.completeStatusTable,
+];
+const tabBtns = [
+  elementObject.taskStatusBtn,
+  elementObject.orderStatusBtn,
+  elementObject.workingStatusBtn,
+  elementObject.invoiceStatusBtn,
+  elementObject.completeStatusBtn,
+];
 
-taskStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, taskStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, taskStatusBtn);
+elementObject.taskStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, elementObject.taskStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.taskStatusBtn);
 });
-orderStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, orderStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, orderStatusBtn);
+elementObject.orderStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, elementObject.orderStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.orderStatusBtn);
 });
-workingStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, workingStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, workingStatusBtn);
+elementObject.workingStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, elementObject.workingStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.workingStatusBtn);
 });
-invoiceStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, invoiceStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, invoiceStatusBtn);
+elementObject.invoiceStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, elementObject.invoiceStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.invoiceStatusBtn);
 });
-completeStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, completeStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, completeStatusBtn);
+elementObject.completeStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, elementObject.completeStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.completeStatusBtn);
 });
 
 window.onload = () => {
-  showDefaultElement(defaultShowNum, tasks, taskMoreBtnElement);
+  showDefaultElement(defaultShowNum, elementObject.tasks, elementObject.taskMoreBtnElement);
 
   //表示している task の status で status テーブルの表示を切り替える
   const task_status = location.href.split("/")[location.href.split("/").length - 1];
   if (task_status <= task_approval_partner) {
-    switchShownItem(tableItems, taskStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, taskStatusBtn);
+    switchShownItem(tableItems, elementObject.taskStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, elementObject.taskStatusBtn);
   } else if (task_status <= order_approval_partner) {
-    switchShownItem(tableItems, orderStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, orderStatusBtn);
+    switchShownItem(tableItems, elementObject.orderStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, elementObject.orderStatusBtn);
   } else if (task_status <= acceptance) {
-    switchShownItem(tableItems, workingStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, workingStatusBtn);
+    switchShownItem(tableItems, elementObject.workingStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, elementObject.workingStatusBtn);
   } else if (task_status <= approval_accounting) {
-    switchShownItem(tableItems, invoiceStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, invoiceStatusBtn);
+    switchShownItem(tableItems, elementObject.invoiceStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, elementObject.invoiceStatusBtn);
   } else if (task_status <= task_canceled) {
-    switchShownItem(tableItems, completeStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, completeStatusBtn);
+    switchShownItem(tableItems, elementObject.completeStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, elementObject.completeStatusBtn);
   } else {
-    switchShownItem(tableItems, taskStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, taskStatusBtn);
+    switchShownItem(tableItems, elementObject.taskStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, elementObject.taskStatusBtn);
   }
 };

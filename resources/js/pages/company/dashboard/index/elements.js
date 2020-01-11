@@ -1,32 +1,35 @@
-export const allTodosItems = document.querySelectorAll(".all_todo_item");
-export const todoMoreBtnElement = document.getElementById("all_todo_more_btn_area");
-export const allTodoBtn = document.getElementById("all_todo_more_btn");
+const elementObject = {
+  allTodosItems: document.querySelectorAll(".all_todo_item"),
+  todoMoreBtnElement: document.getElementById("all_todo_more_btn_area"),
+  allTodoBtn: document.getElementById("all_todo_more_btn"),
 
-export const passed3DaysTodoItems = document.querySelectorAll(".passed_3days_todo_item");
-export const passed3DaysMoreBtnElement = document.getElementById("passed_3days_todo_more_btn_area");
-export const passed3DaysMoreBtn = document.getElementById("passed_3days_todo_more_btn");
+  passed3DaysTodoItems: document.querySelectorAll(".passed_3days_todo_item"),
+  passed3DaysMoreBtnElement: document.getElementById("passed_3days_todo_more_btn_area"),
+  passed3DaysMoreBtn: document.getElementById("passed_3days_todo_more_btn"),
 
-export const projects = document.querySelectorAll(".project_item");
-export const projectMoreBtnElement = document.getElementById("project_more_btn_area");
-export const projectMoreBtn = document.getElementById("project_more_btn");
+  projects: document.querySelectorAll(".project_item"),
+  projectMoreBtnElement: document.getElementById("project_more_btn_area"),
+  projectMoreBtn: document.getElementById("project_more_btn"),
 
-export const tasks = document.querySelectorAll(".task_item");
-export const taskMoreBtnElement = document.getElementById("task_more_btn_area");
-export const taskMoreBtn = document.getElementById("task_more_btn");
+  tasks: document.querySelectorAll(".task_item"),
+  taskMoreBtnElement: document.getElementById("task_more_btn_area"),
+  taskMoreBtn: document.getElementById("task_more_btn"),
 
-export const allTodos = document.getElementById("all_todos");
-export const passed3DaysTodos = document.getElementById("passed_3days_todos");
-export const todoTables = [allTodos, passed3DaysTodos];
-export const toggleTodoBtn = document.getElementById("toggle_todo_btn");
+  allTodos: document.getElementById("all_todos"),
+  passed3DaysTodos: document.getElementById("passed_3days_todos"),
+  toggleTodoBtn: document.getElementById("toggle_todo_btn"),
 
-export const taskStatusTable = document.getElementById("task_status_table");
-export const orderStatusTable = document.getElementById("order_status_table");
-export const workingStatusTable = document.getElementById("working_status_table");
-export const invoiceStatusTable = document.getElementById("invoice_status_table");
-export const completeStatusTable = document.getElementById("complete_status_table");
+  taskStatusTable: document.getElementById("task_status_table"),
+  orderStatusTable: document.getElementById("order_status_table"),
+  workingStatusTable: document.getElementById("working_status_table"),
+  invoiceStatusTable: document.getElementById("invoice_status_table"),
+  completeStatusTable: document.getElementById("complete_status_table"),
 
-export const taskStatusBtn = document.getElementById("task_status_btn");
-export const orderStatusBtn = document.getElementById("order_status_btn");
-export const workingStatusBtn = document.getElementById("working_status_btn");
-export const invoiceStatusBtn = document.getElementById("invoice_status_btn");
-export const completeStatusBtn = document.getElementById("complete_status_btn");
+  taskStatusBtn: document.getElementById("task_status_btn"),
+  orderStatusBtn: document.getElementById("order_status_btn"),
+  workingStatusBtn: document.getElementById("working_status_btn"),
+  invoiceStatusBtn: document.getElementById("invoice_status_btn"),
+  completeStatusBtn: document.getElementById("complete_status_btn"),
+};
+
+export default elementObject;

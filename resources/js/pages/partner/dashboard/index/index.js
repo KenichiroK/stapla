@@ -1,50 +1,26 @@
 import { clickMoreBtn, showDefaultElement } from "@/modules/more-btn/logic";
 import { switchShownItem, switchIsActiveBtn } from "@/modules/switch-btn/logic";
 import { displayType } from "@/modules/switch-btn/type";
-import {
-  allTodosItems,
-  todoMoreBtnElement,
-  allTodoBtn,
-  passed3DaysTodoItems,
-  passed3DaysMoreBtnElement,
-  passed3DaysMoreBtn,
-  tasks,
-  taskMoreBtnElement,
-  taskMoreBtn,
-  allTodos,
-  passed3DaysTodos,
-  todoTables,
-  toggleTodoBtn,
-  taskStatusTable,
-  orderStatusTable,
-  workingStatusTable,
-  invoiceStatusTable,
-  completeStatusTable,
-  taskStatusBtn,
-  orderStatusBtn,
-  workingStatusBtn,
-  invoiceStatusBtn,
-  completeStatusBtn,
-} from "./elements";
+import elementObject from "./elements";
 
 // todo morebtn
 let todoDefaultShowNum = 4;
 const todoMoreShowNum = 4;
 
-allTodoBtn.addEventListener("click", () => {
-  clickMoreBtn(todoDefaultShowNum, todoMoreShowNum, allTodosItems, todoMoreBtnElement);
+elementObject.allTodoBtn.addEventListener("click", () => {
+  clickMoreBtn(todoDefaultShowNum, todoMoreShowNum, elementObject.allTodosItems, elementObject.todoMoreBtnElement);
 });
 
 //pass 3 days todos morebtn
 let pass3DaysTodoDefaultShowNum = 4;
 const pass3DaysTodoMoreShowNum = 4;
 
-passed3DaysMoreBtn.addEventListener("click", () => {
+elementObject.passed3DaysMoreBtn.addEventListener("click", () => {
   pass3DaysTodoDefaultShowNum = clickMoreBtn(
     pass3DaysTodoDefaultShowNum,
     pass3DaysTodoMoreShowNum,
-    passed3DaysTodoItems,
-    passed3DaysMoreBtnElement,
+    elementObject.passed3DaysTodoItems,
+    elementObject.passed3DaysMoreBtnElement,
   );
 });
 
@@ -52,48 +28,74 @@ passed3DaysMoreBtn.addEventListener("click", () => {
 let taskDefaultShowNum = 5;
 const taskMoreShowNum = 5;
 
-taskMoreBtn.addEventListener("click", () => {
-  taskDefaultShowNum = clickMoreBtn(taskDefaultShowNum, taskMoreShowNum, tasks, taskMoreBtnElement);
+elementObject.taskMoreBtn.addEventListener("click", () => {
+  taskDefaultShowNum = clickMoreBtn(
+    taskDefaultShowNum,
+    taskMoreShowNum,
+    elementObject.tasks,
+    elementObject.taskMoreBtnElement,
+  );
 });
 
 // toggle todo
 let shownAllTodos = true;
+const todoTables = [elementObject.allTodos, elementObject.passed3DaysTodos];
 
-toggleTodoBtn.addEventListener("click", () => {
+elementObject.toggleTodoBtn.addEventListener("click", () => {
   shownAllTodos = !shownAllTodos;
-  switchShownItem(todoTables, shownAllTodos ? allTodos : passed3DaysTodos, displayType.block);
+  switchShownItem(
+    todoTables,
+    shownAllTodos ? elementObject.allTodos : elementObject.passed3DaysTodos,
+    displayType.block,
+  );
 });
 
 // toggle status table
-const tableItems = [taskStatusTable, orderStatusTable, workingStatusTable, invoiceStatusTable, completeStatusTable];
-const tabBtns = [taskStatusBtn, orderStatusBtn, workingStatusBtn, invoiceStatusBtn, completeStatusBtn];
+const tableItems = [
+  elementObject.taskStatusTable,
+  elementObject.orderStatusTable,
+  elementObject.workingStatusTable,
+  elementObject.invoiceStatusTable,
+  elementObject.completeStatusTable,
+];
+const tabBtns = [
+  elementObject.taskStatusBtn,
+  elementObject.orderStatusBtn,
+  elementObject.workingStatusBtn,
+  elementObject.invoiceStatusBtn,
+  elementObject.completeStatusBtn,
+];
 
-taskStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, taskStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, taskStatusBtn);
+elementObject.taskStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, elementObject.taskStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.taskStatusBtn);
 });
-orderStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, orderStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, orderStatusBtn);
+elementObject.orderStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, elementObject.orderStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.orderStatusBtn);
 });
-workingStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, workingStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, workingStatusBtn);
+elementObject.workingStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, elementObject.workingStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.workingStatusBtn);
 });
-invoiceStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, invoiceStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, invoiceStatusBtn);
+elementObject.invoiceStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, elementObject.invoiceStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.invoiceStatusBtn);
 });
-completeStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, completeStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, completeStatusBtn);
+elementObject.completeStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, elementObject.completeStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.completeStatusBtn);
 });
 
 window.onload = () => {
-  showDefaultElement(todoDefaultShowNum, allTodosItems, todoMoreBtnElement);
-  showDefaultElement(pass3DaysTodoDefaultShowNum, passed3DaysTodoItems, passed3DaysMoreBtnElement);
-  showDefaultElement(taskDefaultShowNum, tasks, taskMoreBtnElement);
-  switchShownItem(todoTables, allTodos, displayType.block);
-  switchShownItem(tableItems, taskStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, taskStatusBtn);
+  showDefaultElement(todoDefaultShowNum, elementObject.allTodosItems, elementObject.todoMoreBtnElement);
+  showDefaultElement(
+    pass3DaysTodoDefaultShowNum,
+    elementObject.passed3DaysTodoItems,
+    elementObject.passed3DaysMoreBtnElement,
+  );
+  showDefaultElement(taskDefaultShowNum, elementObject.tasks, elementObject.taskMoreBtnElement);
+  switchShownItem(todoTables, elementObject.allTodos, displayType.block);
+  switchShownItem(tableItems, elementObject.taskStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, elementObject.taskStatusBtn);
 };
