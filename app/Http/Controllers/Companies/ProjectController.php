@@ -19,13 +19,10 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = ProjectCompany::where('user_id', Auth::user()->id)
-                                ->join('projects', function ($join) {
-                                    $join->on('project_companies.project_id', '=', 'projects.id')
-                                        ->where('status', '!=', config('const.PROJECT_COMPLETE'));
-                                })
-                                ->orderBy('projects.created_at', 'desc')
-                                ->get();
+        $projects = Project::where('company_id', Auth::user()->company_id)
+                        ->where('status', '!=', config('const.PROJECT_COMPLETE'))
+                        ->orderBy('created_at', 'desc')
+                        ->get();
         
         $is_done_project = false;
 
@@ -34,13 +31,10 @@ class ProjectController extends Controller
 
     public function doneIndex()
     {
-        $projects = ProjectCompany::where('user_id', Auth::user()->id)
-                                ->join('projects', function ($join) {
-                                    $join->on('project_companies.project_id', '=', 'projects.id')
-                                        ->where('status', config('const.PROJECT_COMPLETE'));
-                                })
-                                ->orderBy('projects.created_at', 'desc')
-                                ->get();
+        $projects = Project::where('company_id', Auth::user()->company_id)
+                        ->where('status', config('const.PROJECT_COMPLETE'))
+                        ->orderBy('created_at', 'desc')
+                        ->get();
 
         $is_done_project = true;
 

@@ -32,10 +32,17 @@
             <a class="content-container__body--link" href="{{ route('company.project.show', ['id' => $project->id]) }}">
                 <p class="content-container__body--long">{{ $project->name }}</p>
                 <p class="content-container__body--short">
-                    <img class="profile-img" src="{{ $project->companyUser->picture }}" alt="">
-                    <span>{{ $project->companyUser->name }}</span>
+                    <img class="profile-img" src="{{ $project->projectCompanies[0]->companyUser->picture }}" alt="">
+                     @if ($project->projectCompanies->count() > 1) 
+                    <span>
+                        {{ $project->projectCompanies[0]->companyUser->name }}
+                        他{{ $project->projectCompanies->count() - 1 }}名
+                    </span>
+                    @else
+                    <span>{{ $project->projectCompanies[0]->companyUser->name }}</span>
+                    @endif
                 </p>
-                <p class="content-container__body--short">{{ $project->project->tasks->count() }}件</p>
+                <p class="content-container__body--short">{{ $project->tasks->count() }}件</p>
                 <p class="content-container__body--short">{{ date('n月j日', strtotime($project->ended_at)) }}</p>
                 <p class="content-container__body--short">¥{{ number_format($project->budget) }}</p>
                 <p class="content-container__body--short">¥{{ number_format($project->price) }}</p>
