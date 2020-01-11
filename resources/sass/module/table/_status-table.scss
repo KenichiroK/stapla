@@ -59,6 +59,7 @@
       font-family: "NotoSansCJKjp";
       font-weight: bold;
       border-left: 1px solid colors(border-light);
+      text-decoration: none;
 
       &:last-child {
         border-right: 1px solid colors(border-light);
@@ -69,6 +70,16 @@
       }
       &--num {
         font-size: 24px;
+        color: colors(navy1);
+        text-decoration: none;
+      }
+    }
+
+    .is-active {
+      background-color: colors(bg-light);
+      cursor: default;
+      &:hover {
+        opacity: 1;
       }
     }
   }

@@ -50,6 +50,9 @@ mix.js(["resources/js/pages/partner/dashboard/index/index.js"], "public/js/pages
 // project
 mix.js(["resources/js/pages/company/project/index/index.js"], "public/js/pages/company/project/index/index.js");
 
+// task
+mix.js(["resources/js/pages/company/task/index/index.js"], "public/js/pages/company/task/index/index.js");
+
 // order
 mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/index.js");
 
@@ -153,7 +156,9 @@ mix
   // renewal dashboard
   .sass("resources/sass/page/dashboard/style.scss", "public/css/page/dashboard")
   // renewal project
-  .sass("resources/sass/page/project/index/style.scss", "public/css/page/project/index");
+  .sass("resources/sass/page/project/index/style.scss", "public/css/page/project/index")
+  // renewal task
+  .sass("resources/sass/page/task/index/style.scss", "public/css/page/task/index");
 
 mix.options({
   publicPath: "public",

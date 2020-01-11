@@ -23,46 +23,37 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $auth = Auth::user();
-        $tasks = Task::where('company_id', $auth->company_id)
-                                ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
-                                ->get();
+        $tasks = Task::where('company_id', Auth::user()->company_id)
+                        ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
+                        ->orderBy('created_at', 'desc')
+                        ->get();
 
         $status_arr = [];
-        for ($i = 0; $i <= config('const.TASK_CANCELED'); $i++) {
-            $status_arr[strval($i)] = 0;
-        }
-        for ($i = 0; $i < $tasks->count(); $i++) {
-            $status_arr[$tasks[$i]->status]++;
+        foreach (config('const.TASK_STATUS_ARR') as $key => $TASK_STATUS) {
+            $status_arr[$key] = $tasks->where('status', config('const')[$TASK_STATUS])->count();
         }
 
-        // タスクステータスを外部ファイルで定数化（congfig/const.php）
-        $statusName_arr = config('const.TASK_STATUS_LIST');
+        $shown_task_status = null;
 
-        return view('company/task/index', compact('tasks','statusName_arr', 'status_arr'));
+        return view('company/task/index', compact('tasks', 'status_arr', 'shown_task_status'));
     }
 
     public function statusIndex($task_status)
     {
-        $auth = Auth::user();
-        $alltasks = Task::where('company_id', $auth->company_id)
-                                    ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
-                                    ->get();
+        $tasks = Task::where('company_id', Auth::user()->company_id)
+                        ->where('status', $task_status)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+
         $status_arr = [];
-        for ($i = 0; $i <= config('const.TASK_CANCELED'); $i++) {
-            $status_arr[strval($i)] = 0;
-        }
-        for ($i = 0; $i < $alltasks->count(); $i++) {
-            $status_arr[$alltasks[$i]->status]++;
+        $alltasks = Task::where('company_id', Auth::user()->company_id)->get();
+        foreach (config('const.TASK_STATUS_ARR') as $key => $TASK_STATUS) {
+            $status_arr[$key] = $alltasks->where('status', config('const')[$TASK_STATUS])->count();
         }
 
-        // タスクステータスを外部ファイルで定数化（congfig/const.php）
-        $statusName_arr = config('const.TASK_STATUS_LIST');
+        $shown_task_status = (integer)$task_status;
 
-        $tasks = Task::where('company_id', $auth->company_id)
-                                ->where('status', $task_status)
-                                ->get();
-        return view('company/task/index', compact('tasks','statusName_arr', 'status_arr'));
+        return view('company/task/index', compact('tasks', 'status_arr', 'shown_task_status'));
     }
 
     public function projectTaskIndex($project_uid)
