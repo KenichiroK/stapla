@@ -1,11 +1,7 @@
 <div class="project-container">
     <div class="table-title-container">
         <h4 class="table-title-container__text">
-            @if ($is_done_project)
-            あなたの完了したプロジェクト<span class="table-title-container__num">{{ $projects->count() }}件</span>
-            @else
-            あなたのプロジェクト<span class="table-title-container__num">{{ $projects->count() }}件</span>
-            @endif
+            {{ config('const.PROJECT_STATUS_NAME')[$project_status] }}のプロジェクト<span class="table-title-container__num">{{ $projects->count() }}件</span>
         </h4>
     </div>
 
@@ -20,11 +16,9 @@
         </div>
 
         @if (count($projects) === 0)
-        @if ($is_done_project)
-        <p class="no-data">あなたの完了したプロジェクトはありません</p>
-        @else
-        <p class="no-data">あなたのプロジェクトはありません</p>
-        @endif
+        <p class="no-data">
+            {{ config('const.PROJECT_STATUS_NAME')[$project_status] }}のプロジェクトはありません
+        </p>
         @endif
 
         @foreach($projects as $project)

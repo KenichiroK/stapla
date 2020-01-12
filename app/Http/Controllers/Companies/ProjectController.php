@@ -24,9 +24,9 @@ class ProjectController extends Controller
                         ->orderBy('created_at', 'desc')
                         ->get();
         
-        $is_done_project = false;
+        $project_status = config('const.PROJECT_ALL');
 
-        return view('company/project/index', compact('projects', 'is_done_project'));
+        return view('company/project/index', compact('projects', 'project_status'));
     }
 
     public function doneIndex()
@@ -36,9 +36,9 @@ class ProjectController extends Controller
                         ->orderBy('created_at', 'desc')
                         ->get();
 
-        $is_done_project = true;
+        $project_status = config('const.PROJECT_COMPLETE');
 
-        return view('company/project/index', compact('projects', 'is_done_project'));
+        return view('company/project/index', compact('projects', 'project_status'));
     }
 
     public function create()
