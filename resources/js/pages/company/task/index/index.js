@@ -1,9 +1,9 @@
-import { clickMoreBtn, showDefaultElement } from "@/modules/more-btn/logic";
+import { showElements } from "@/modules/more-btn/logic";
 import { switchShownItem, switchIsActiveBtn } from "@/modules/switch-btn/logic";
 import { displayType } from "@/modules/switch-btn/type";
 
 window.onload = () => {
-  showDefaultElement(defaultShowNum, tasks, taskMoreBtnElement);
+  showElements(defaultShowNum, tasks, taskMoreBtnElement);
 
   //表示している task の status で status テーブルの表示を切り替える
   const task_status = location.href.split("/")[location.href.split("/").length - 1];
@@ -37,7 +37,8 @@ const taskMoreBtnElement = document.getElementById("task_more_btn_area");
 const taskMoreBtn = document.getElementById("task_more_btn");
 
 taskMoreBtn.addEventListener("click", () => {
-  defaultShowNum = clickMoreBtn(defaultShowNum, moreShowNum, tasks, taskMoreBtnElement);
+  defaultShowNum += moreShowNum;
+  showElements(defaultShowNum, tasks, taskMoreBtnElement);
 });
 
 // toggle status table

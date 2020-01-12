@@ -1,12 +1,12 @@
-import { clickMoreBtn, showDefaultElement } from "@/modules/more-btn/logic";
+import { showElements } from "@/modules/more-btn/logic";
 import { switchShownItem, switchIsActiveBtn } from "@/modules/switch-btn/logic";
 import { displayType } from "@/modules/switch-btn/type";
 
 window.onload = () => {
-  showDefaultElement(todoDefaultShowNum, allTodosItems, todoMoreBtnElement);
-  showDefaultElement(pass3DaysTodoDefaultShowNum, passed3DaysTodoItems, passed3DaysMoreBtnElement);
-  showDefaultElement(projectDefaultShowNum, projects, projectMoreBtnElement);
-  showDefaultElement(taskDefaultShowNum, tasks, taskMoreBtnElement);
+  showElements(todoDefaultShowNum, allTodosItems, todoMoreBtnElement);
+  showElements(pass3DaysTodoDefaultShowNum, passed3DaysTodoItems, passed3DaysMoreBtnElement);
+  showElements(projectDefaultShowNum, projects, projectMoreBtnElement);
+  showElements(taskDefaultShowNum, tasks, taskMoreBtnElement);
   switchShownItem(todoTables, allTodos, displayType.block);
   switchShownItem(tableItems, taskStatusTable, displayType.flex);
   switchIsActiveBtn(tabBtns, taskStatusBtn);
@@ -21,7 +21,8 @@ const todoMoreBtnElement = document.getElementById("all_todo_more_btn_area");
 const allTodoBtn = document.getElementById("all_todo_more_btn");
 
 allTodoBtn.addEventListener("click", () => {
-  clickMoreBtn(todoDefaultShowNum, todoMoreShowNum, allTodosItems, todoMoreBtnElement);
+  todoDefaultShowNum += todoMoreShowNum;
+  showElements(todoDefaultShowNum, allTodosItems, todoMoreBtnElement);
 });
 
 //pass 3 days todos morebtn
@@ -33,12 +34,8 @@ const passed3DaysMoreBtnElement = document.getElementById("passed_3days_todo_mor
 const passed3DaysMoreBtn = document.getElementById("passed_3days_todo_more_btn");
 
 passed3DaysMoreBtn.addEventListener("click", () => {
-  pass3DaysTodoDefaultShowNum = clickMoreBtn(
-    pass3DaysTodoDefaultShowNum,
-    pass3DaysTodoMoreShowNum,
-    passed3DaysTodoItems,
-    passed3DaysMoreBtnElement,
-  );
+  pass3DaysTodoDefaultShowNum += pass3DaysTodoMoreShowNum;
+  showElements(pass3DaysTodoDefaultShowNum, passed3DaysTodoItems, passed3DaysMoreBtnElement);
 });
 
 // project morebtn
@@ -50,7 +47,8 @@ const projectMoreBtnElement = document.getElementById("project_more_btn_area");
 const projectMoreBtn = document.getElementById("project_more_btn");
 
 projectMoreBtn.addEventListener("click", () => {
-  projectDefaultShowNum = clickMoreBtn(projectDefaultShowNum, projectMoreShowNum, projects, projectMoreBtnElement);
+  projectDefaultShowNum += projectMoreShowNum;
+  showElements(projectDefaultShowNum, projects, projectMoreBtnElement);
 });
 
 // task morebtn
@@ -62,7 +60,8 @@ const taskMoreBtnElement = document.getElementById("task_more_btn_area");
 const taskMoreBtn = document.getElementById("task_more_btn");
 
 taskMoreBtn.addEventListener("click", () => {
-  taskDefaultShowNum = clickMoreBtn(taskDefaultShowNum, taskMoreShowNum, tasks, taskMoreBtnElement);
+  taskDefaultShowNum += taskMoreShowNum;
+  showElements(taskDefaultShowNum, tasks, taskMoreBtnElement);
 });
 
 // toggle todo
