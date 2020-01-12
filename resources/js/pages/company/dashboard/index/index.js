@@ -2,6 +2,16 @@ import { clickMoreBtn, showDefaultElement } from "@/modules/more-btn/logic";
 import { switchShownItem, switchIsActiveBtn } from "@/modules/switch-btn/logic";
 import { displayType } from "@/modules/switch-btn/type";
 
+window.onload = () => {
+  showDefaultElement(todoDefaultShowNum, allTodosItems, todoMoreBtnElement);
+  showDefaultElement(pass3DaysTodoDefaultShowNum, passed3DaysTodoItems, passed3DaysMoreBtnElement);
+  showDefaultElement(projectDefaultShowNum, projects, projectMoreBtnElement);
+  showDefaultElement(taskDefaultShowNum, tasks, taskMoreBtnElement);
+  switchShownItem(todoTables, allTodos, displayType.block);
+  switchShownItem(tableItems, taskStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, taskStatusBtn);
+};
+
 // todo morebtn
 let todoDefaultShowNum = 4;
 const todoMoreShowNum = 4;
@@ -103,13 +113,3 @@ completeStatusBtn.addEventListener("click", () => {
   switchShownItem(tableItems, completeStatusTable, displayType.flex);
   switchIsActiveBtn(tabBtns, completeStatusBtn);
 });
-
-window.onload = () => {
-  showDefaultElement(todoDefaultShowNum, allTodosItems, todoMoreBtnElement);
-  showDefaultElement(pass3DaysTodoDefaultShowNum, passed3DaysTodoItems, passed3DaysMoreBtnElement);
-  showDefaultElement(projectDefaultShowNum, projects, projectMoreBtnElement);
-  showDefaultElement(taskDefaultShowNum, tasks, taskMoreBtnElement);
-  switchShownItem(todoTables, allTodos, displayType.block);
-  switchShownItem(tableItems, taskStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, taskStatusBtn);
-};
