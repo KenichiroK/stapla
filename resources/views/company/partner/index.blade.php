@@ -15,7 +15,7 @@
         @endif
 
         <div class="top-container">
-            <h1 class="top-container__title">パートナ</h1>
+            <h1 class="top-container__title">パートナ一覧</h1>
             <div class="btn-a-container">
                 <a href="{{ route('company.invite.partner') }}">パートナー追加</a>
             </div>
@@ -60,8 +60,13 @@
 
                 <div class="card">
                     <div class="card__content">
-                        <div class="image"></div>
-
+                        <div class="image-wrapper">
+                            <img class="profile-image" src="https://avatars2.githubusercontent.com/u/30946750?s=460&v=4" alt="logo">
+                        </div>
+                        <div class="name-wrapper">
+                            <p class="name">羽田 陽太</p>
+                            <p class="occupations">エンジニア</p>
+                        </div>
                     </div>
                     <div class="card__footer">
                         <div class="circle uncontracted-color"></div>
@@ -70,8 +75,13 @@
                 </div>
                 <div class="card">
                     <div class="card__content">
-                        <div class="image"></div>
-
+                        <div class="image-wrapper">
+                            <img class="profile-image" src="https://avatars2.githubusercontent.com/u/30946750?s=460&v=4" alt="logo">
+                        </div>
+                        <div class="name-wrapper">
+                            <p class="name">羽田 陽太</p>
+                            <p class="occupations">エンジニア</p>
+                        </div>
                     </div>
                     <div class="card__footer">
                         <div class="circle progress-color"></div>
