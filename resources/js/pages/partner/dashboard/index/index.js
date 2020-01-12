@@ -1,26 +1,33 @@
 import { clickMoreBtn, showDefaultElement } from "@/modules/more-btn/logic";
 import { switchShownItem, switchIsActiveBtn } from "@/modules/switch-btn/logic";
 import { displayType } from "@/modules/switch-btn/type";
-import elementObject from "./elements";
 
 // todo morebtn
 let todoDefaultShowNum = 4;
 const todoMoreShowNum = 4;
 
-elementObject.allTodoBtn.addEventListener("click", () => {
-  clickMoreBtn(todoDefaultShowNum, todoMoreShowNum, elementObject.allTodosItems, elementObject.todoMoreBtnElement);
+const allTodosItems = document.querySelectorAll(".all_todo_item");
+const todoMoreBtnElement = document.getElementById("all_todo_more_btn_area");
+const allTodoBtn = document.getElementById("all_todo_more_btn");
+
+allTodoBtn.addEventListener("click", () => {
+  clickMoreBtn(todoDefaultShowNum, todoMoreShowNum, allTodosItems, todoMoreBtnElement);
 });
 
 //pass 3 days todos morebtn
 let pass3DaysTodoDefaultShowNum = 4;
 const pass3DaysTodoMoreShowNum = 4;
 
-elementObject.passed3DaysMoreBtn.addEventListener("click", () => {
+const passed3DaysTodoItems = document.querySelectorAll(".passed_3days_todo_item");
+const passed3DaysMoreBtnElement = document.getElementById("passed_3days_todo_more_btn_area");
+const passed3DaysMoreBtn = document.getElementById("passed_3days_todo_more_btn");
+
+passed3DaysMoreBtn.addEventListener("click", () => {
   pass3DaysTodoDefaultShowNum = clickMoreBtn(
     pass3DaysTodoDefaultShowNum,
     pass3DaysTodoMoreShowNum,
-    elementObject.passed3DaysTodoItems,
-    elementObject.passed3DaysMoreBtnElement,
+    passed3DaysTodoItems,
+    passed3DaysMoreBtnElement,
   );
 });
 
@@ -28,74 +35,68 @@ elementObject.passed3DaysMoreBtn.addEventListener("click", () => {
 let taskDefaultShowNum = 5;
 const taskMoreShowNum = 5;
 
-elementObject.taskMoreBtn.addEventListener("click", () => {
-  taskDefaultShowNum = clickMoreBtn(
-    taskDefaultShowNum,
-    taskMoreShowNum,
-    elementObject.tasks,
-    elementObject.taskMoreBtnElement,
-  );
+const tasks = document.querySelectorAll(".task_item");
+const taskMoreBtnElement = document.getElementById("task_more_btn_area");
+const taskMoreBtn = document.getElementById("task_more_btn");
+
+taskMoreBtn.addEventListener("click", () => {
+  taskDefaultShowNum = clickMoreBtn(taskDefaultShowNum, taskMoreShowNum, tasks, taskMoreBtnElement);
 });
 
 // toggle todo
 let shownAllTodos = true;
-const todoTables = [elementObject.allTodos, elementObject.passed3DaysTodos];
+const allTodos = document.getElementById("all_todos");
+const passed3DaysTodos = document.getElementById("passed_3days_todos");
+const todoTables = [allTodos, passed3DaysTodos];
 
-elementObject.toggleTodoBtn.addEventListener("click", () => {
+const toggleTodoBtn = document.getElementById("toggle_todo_btn");
+
+toggleTodoBtn.addEventListener("click", () => {
   shownAllTodos = !shownAllTodos;
-  switchShownItem(
-    todoTables,
-    shownAllTodos ? elementObject.allTodos : elementObject.passed3DaysTodos,
-    displayType.block,
-  );
+  switchShownItem(todoTables, shownAllTodos ? allTodos : passed3DaysTodos, displayType.block);
 });
 
 // toggle status table
-const tableItems = [
-  elementObject.taskStatusTable,
-  elementObject.orderStatusTable,
-  elementObject.workingStatusTable,
-  elementObject.invoiceStatusTable,
-  elementObject.completeStatusTable,
-];
-const tabBtns = [
-  elementObject.taskStatusBtn,
-  elementObject.orderStatusBtn,
-  elementObject.workingStatusBtn,
-  elementObject.invoiceStatusBtn,
-  elementObject.completeStatusBtn,
-];
+const taskStatusTable = document.getElementById("task_status_table");
+const orderStatusTable = document.getElementById("order_status_table");
+const workingStatusTable = document.getElementById("working_status_table");
+const invoiceStatusTable = document.getElementById("invoice_status_table");
+const completeStatusTable = document.getElementById("complete_status_table");
+const tableItems = [taskStatusTable, orderStatusTable, workingStatusTable, invoiceStatusTable, completeStatusTable];
 
-elementObject.taskStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, elementObject.taskStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.taskStatusBtn);
+const taskStatusBtn = document.getElementById("task_status_btn");
+const orderStatusBtn = document.getElementById("order_status_btn");
+const workingStatusBtn = document.getElementById("working_status_btn");
+const invoiceStatusBtn = document.getElementById("invoice_status_btn");
+const completeStatusBtn = document.getElementById("complete_status_btn");
+const tabBtns = [taskStatusBtn, orderStatusBtn, workingStatusBtn, invoiceStatusBtn, completeStatusBtn];
+
+taskStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, taskStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, taskStatusBtn);
 });
-elementObject.orderStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, elementObject.orderStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.orderStatusBtn);
+orderStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, orderStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, orderStatusBtn);
 });
-elementObject.workingStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, elementObject.workingStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.workingStatusBtn);
+workingStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, workingStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, workingStatusBtn);
 });
-elementObject.invoiceStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, elementObject.invoiceStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.invoiceStatusBtn);
+invoiceStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, invoiceStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, invoiceStatusBtn);
 });
-elementObject.completeStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, elementObject.completeStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.completeStatusBtn);
+completeStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, completeStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, completeStatusBtn);
 });
 
 window.onload = () => {
-  showDefaultElement(todoDefaultShowNum, elementObject.allTodosItems, elementObject.todoMoreBtnElement);
-  showDefaultElement(
-    pass3DaysTodoDefaultShowNum,
-    elementObject.passed3DaysTodoItems,
-    elementObject.passed3DaysMoreBtnElement,
-  );
-  showDefaultElement(taskDefaultShowNum, elementObject.tasks, elementObject.taskMoreBtnElement);
-  switchShownItem(todoTables, elementObject.allTodos, displayType.block);
-  switchShownItem(tableItems, elementObject.taskStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.taskStatusBtn);
+  showDefaultElement(todoDefaultShowNum, allTodosItems, todoMoreBtnElement);
+  showDefaultElement(pass3DaysTodoDefaultShowNum, passed3DaysTodoItems, passed3DaysMoreBtnElement);
+  showDefaultElement(taskDefaultShowNum, tasks, taskMoreBtnElement);
+  switchShownItem(todoTables, allTodos, displayType.block);
+  switchShownItem(tableItems, taskStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, taskStatusBtn);
 };

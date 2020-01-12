@@ -1,75 +1,77 @@
 import { clickMoreBtn, showDefaultElement } from "@/modules/more-btn/logic";
 import { switchShownItem, switchIsActiveBtn } from "@/modules/switch-btn/logic";
 import { displayType } from "@/modules/switch-btn/type";
-import elementObject from "./elements";
 
 // task morebtn
 let defaultShowNum = 5;
 const moreShowNum = 5;
 
-elementObject.taskMoreBtn.addEventListener("click", () => {
-  defaultShowNum = clickMoreBtn(defaultShowNum, moreShowNum, elementObject.tasks, elementObject.taskMoreBtnElement);
+const tasks = document.querySelectorAll(".task_item");
+const taskMoreBtnElement = document.getElementById("task_more_btn_area");
+const taskMoreBtn = document.getElementById("task_more_btn");
+
+taskMoreBtn.addEventListener("click", () => {
+  defaultShowNum = clickMoreBtn(defaultShowNum, moreShowNum, tasks, taskMoreBtnElement);
 });
 
 // toggle status table
-const tableItems = [
-  elementObject.taskStatusTable,
-  elementObject.orderStatusTable,
-  elementObject.workingStatusTable,
-  elementObject.invoiceStatusTable,
-  elementObject.completeStatusTable,
-];
-const tabBtns = [
-  elementObject.taskStatusBtn,
-  elementObject.orderStatusBtn,
-  elementObject.workingStatusBtn,
-  elementObject.invoiceStatusBtn,
-  elementObject.completeStatusBtn,
-];
+const taskStatusTable = document.getElementById("task_status_table");
+const orderStatusTable = document.getElementById("order_status_table");
+const workingStatusTable = document.getElementById("working_status_table");
+const invoiceStatusTable = document.getElementById("invoice_status_table");
+const completeStatusTable = document.getElementById("complete_status_table");
+const tableItems = [taskStatusTable, orderStatusTable, workingStatusTable, invoiceStatusTable, completeStatusTable];
 
-elementObject.taskStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, elementObject.taskStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.taskStatusBtn);
+const taskStatusBtn = document.getElementById("task_status_btn");
+const orderStatusBtn = document.getElementById("order_status_btn");
+const workingStatusBtn = document.getElementById("working_status_btn");
+const invoiceStatusBtn = document.getElementById("invoice_status_btn");
+const completeStatusBtn = document.getElementById("complete_status_btn");
+const tabBtns = [taskStatusBtn, orderStatusBtn, workingStatusBtn, invoiceStatusBtn, completeStatusBtn];
+
+taskStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, taskStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, taskStatusBtn);
 });
-elementObject.orderStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, elementObject.orderStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.orderStatusBtn);
+orderStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, orderStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, orderStatusBtn);
 });
-elementObject.workingStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, elementObject.workingStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.workingStatusBtn);
+workingStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, workingStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, workingStatusBtn);
 });
-elementObject.invoiceStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, elementObject.invoiceStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.invoiceStatusBtn);
+invoiceStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, invoiceStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, invoiceStatusBtn);
 });
-elementObject.completeStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, elementObject.completeStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, elementObject.completeStatusBtn);
+completeStatusBtn.addEventListener("click", () => {
+  switchShownItem(tableItems, completeStatusTable, displayType.flex);
+  switchIsActiveBtn(tabBtns, completeStatusBtn);
 });
 
 window.onload = () => {
-  showDefaultElement(defaultShowNum, elementObject.tasks, elementObject.taskMoreBtnElement);
+  showDefaultElement(defaultShowNum, tasks, taskMoreBtnElement);
 
   //表示している task の status で status テーブルの表示を切り替える
   const task_status = location.href.split("/")[location.href.split("/").length - 1];
   if (task_status <= task_approval_partner) {
-    switchShownItem(tableItems, elementObject.taskStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, elementObject.taskStatusBtn);
+    switchShownItem(tableItems, taskStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, taskStatusBtn);
   } else if (task_status <= order_approval_partner) {
-    switchShownItem(tableItems, elementObject.orderStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, elementObject.orderStatusBtn);
+    switchShownItem(tableItems, orderStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, orderStatusBtn);
   } else if (task_status <= acceptance) {
-    switchShownItem(tableItems, elementObject.workingStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, elementObject.workingStatusBtn);
+    switchShownItem(tableItems, workingStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, workingStatusBtn);
   } else if (task_status <= approval_accounting) {
-    switchShownItem(tableItems, elementObject.invoiceStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, elementObject.invoiceStatusBtn);
+    switchShownItem(tableItems, invoiceStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, invoiceStatusBtn);
   } else if (task_status <= task_canceled) {
-    switchShownItem(tableItems, elementObject.completeStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, elementObject.completeStatusBtn);
+    switchShownItem(tableItems, completeStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, completeStatusBtn);
   } else {
-    switchShownItem(tableItems, elementObject.taskStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, elementObject.taskStatusBtn);
+    switchShownItem(tableItems, taskStatusTable, displayType.flex);
+    switchIsActiveBtn(tabBtns, taskStatusBtn);
   }
 };
