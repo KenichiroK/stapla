@@ -21,6 +21,36 @@
             </div>
         </div>
 
+        <div class="partner-content">
+            <h3 class="partner-content__title">ステータス</h3>
+
+            {{-- TODO:　resources/views/partner/project/index.blade.phpのidがtab-buttonのやつをパクる --}}
+            <ul class="partner-content__tab">
+                <li class="is-active">
+                    <a class="tab-btn" href="">全て<span class="counter">(20)</span></a>
+                </li>
+                <li>
+                    <a class="tab-btn" href="">契約締結済<span class="counter">(5)</span></a>
+                </li>
+                <li>
+                    <a class="tab-btn" href="">契約作業中<span class="counter">(10)</span></a>
+                </li>
+                <li>
+                    <a class="tab-btn" href="">未契約<span class="counter">(5)</span></a>
+                </li>
+            </ul>
+
+            <div class="partner-content__card-wrapper">
+                <div class="card">
+                    <div class="card__content"></div>
+                    <div class="card__footer"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="temp" style="margin-bottom:100px;"></div>
+
+
         <div class="profile-list">
 
             @foreach( $partners as $partner )
