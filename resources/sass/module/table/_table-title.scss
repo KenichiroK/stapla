@@ -1,10 +1,11 @@
-.title-container {
+.table-title-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 0 24px;
 
   &__text {
+    margin: 0;
     font-size: 18px;
     color: colors(primary);
     font-weight: bold;

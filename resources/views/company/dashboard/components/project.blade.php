@@ -1,6 +1,6 @@
 <div class="project-container">
-    <div class="title-container">
-        <h4 class="title-container__text">あなたのプロジェクト<span class="title-container__num">{{ $projects->count() }}件</span></h4>
+    <div class="table-title-container">
+        <h4 class="table-title-container__text">あなたのプロジェクト<span class="table-title-container__num">{{ $projects->count() }}件</span></h4>
     </div>
 
     <div class="content-container">

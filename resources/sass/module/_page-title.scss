@@ -1,10 +1,10 @@
 @import "../setting/colors";
 @import "../mixin/font/primary";
 
-.title-container {
+.page-title-container {
   margin: 0 0 32px;
 
-  h3 {
+  &__text {
     @include primary-text(28px, bold);
     margin-bottom: 0;
   }

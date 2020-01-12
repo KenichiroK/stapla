@@ -50,6 +50,16 @@ eslint ( 予定 ) https://github.com/tatsuya-nagase/impro/issues/459
 
 Prettier を使ってオートフォーマット
 
+#### js
+
+ディレクトリ構成
+
+resources/js/pages 各ページの js ファイル。 1 ページ 1 js ファイル
+
+resources/js/modules/module 名/logic.js 各関数を定義
+
+resources/js/modules/module 名/type.js module 名/logic.js で使う定数などを定義
+
 ### server
 
 ## 開発の仕方
