@@ -23,7 +23,7 @@
                 <p class="content-container__body--task-index">{{ $task->project->name }}</p>
                 <p class="content-container__body--task-index">{{ $task->name }}</p>
                 <p class="content-container__body--task-index">
-                    <img class="profile-img" src="{{ $task->partner->picture }}" alt="">
+                    <img class="profile-img" src="{{ $task->companyUser->picture }}" alt="">
                     <span>{{ $task->companyUser->name }}</span>
                 </p>
                 <p class="content-container__body--task-index">
