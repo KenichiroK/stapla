@@ -17,6 +17,7 @@
 
     &__text {
       width: 10%;
+      text-align: center;
       margin-right: 24px;
       font-size: 16px;
       font-family: "NotoSansCJKjp";
@@ -57,7 +58,8 @@
       color: colors(navy1);
       font-family: "NotoSansCJKjp";
       font-weight: bold;
-      border-left: 1px solid colors(borderLight);
+      border-left: 1px solid colors(border-light);
+      text-decoration: none;
 
       &:last-child {
         border-right: 1px solid colors(borderLight);
@@ -68,6 +70,16 @@
       }
       &--num {
         font-size: 24px;
+        color: colors(navy1);
+        text-decoration: none;
+      }
+    }
+
+    .is-active {
+      background-color: colors(bg-light);
+      cursor: default;
+      &:hover {
+        opacity: 1;
       }
     }
   }

@@ -43,6 +43,16 @@ mix.js(
 
 mix.babel(["resources/js/partner/document/invoice/create.js"], "public/js/partner/document/invoice/create.js");
 
+//dashboard
+mix.js(["resources/js/pages/company/dashboard/index/index.js"], "public/js/pages/company/dashboard/index/index.js");
+mix.js(["resources/js/pages/partner/dashboard/index/index.js"], "public/js/pages/partner/dashboard/index/index.js");
+
+// project
+mix.js(["resources/js/pages/company/project/index/index.js"], "public/js/pages/company/project/index/index.js");
+
+// task
+mix.js(["resources/js/pages/company/task/index/index.js"], "public/js/pages/company/task/index/index.js");
+
 // order
 mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/index.js");
 
@@ -90,52 +100,6 @@ mix.js(
     "resources/js/company/setting/general/index.js",
   ],
   "public/js/company/setting/general/index.js",
-);
-
-mix.js(
-  [
-    // show all todo table
-    "resources/js/moreBtn/all-todo.js",
-  ],
-  "public/js/moreBtn/all-todo.js",
-);
-mix.js(
-  [
-    // show passed 3 days todo table
-    "resources/js/moreBtn/passed-3days-todo.js",
-  ],
-  "public/js/moreBtn/passed-3days-todo.js",
-);
-mix.js(
-  [
-    // show project table
-    "resources/js/moreBtn/project.js",
-  ],
-  "public/js/moreBtn/project.js",
-);
-
-mix.js(
-  [
-    // show task table
-    "resources/js/moreBtn/task.js",
-  ],
-  "public/js/moreBtn/task.js",
-);
-
-mix.js(
-  [
-    // toggle shown todos
-    "resources/js/dashboard/toggle-todo.js",
-  ],
-  "public/js/dashboard/toggle-todo.js",
-);
-
-mix.js(
-  [
-    // toggle shown todos
-    "resources/js/status/task/change-shown-status-table.js",
-  ],
-  "public/js/status/task/change-shown-status-table.js",
 );
 
 mix.js(["resources/js/company/task/toggle-calendar.js"], "public/js/company/task/toggle-calendar.js");
@@ -190,11 +154,11 @@ mix
   .sass("resources/sass/pdf/paper.scss", "public/css/pdf")
 
   // renewal dashboard
-  // .sass("resources/sass/page/dashboard/index.scss", "public/css/page/dashboard")
-
-  // renewal task create
-  .sass("resources/sass/page/task/create/style.scss", "public/css/page/task/create")
-  .sass("resources/sass/page/dashboard/style.scss", "public/css/page/dashboard");
+  .sass("resources/sass/page/dashboard/style.scss", "public/css/page/dashboard")
+  // renewal project
+  .sass("resources/sass/page/project/index/style.scss", "public/css/page/project/index")
+  // renewal task
+  .sass("resources/sass/page/task/index/style.scss", "public/css/page/task/index");
 
 mix.options({
   publicPath: "public",

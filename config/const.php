@@ -4,6 +4,14 @@ return array(
   'PROJECT_CREATE'   => 0,
   'PROJECT_COMPLETE' => 1,
   'PROJECT_CANCELED' => 2,
+  'PROJECT_ALL'      => 3,
+
+  'PROJECT_STATUS_NAME' => [
+    '作成',
+    '完了',
+    'キャンセル',
+    'すべて'
+  ],
 
   'TASK_CREATE'             => 0,  // 下書き
   'TASK_SUBMIT_SUPERIOR'    => 1,  // タスク上長確認中

@@ -1,0 +1,60 @@
+@import "../../../base/reset";
+@import "../../../module/page-title";
+@import "../../../module/table/project";
+@import "../../../mixin/button/positive";
+@import "../../../setting/colors";
+@import "../../../mixin/font/primary";
+@import "../../../mixin/font/font";
+
+.main-wrapper {
+  width: 100%;
+  margin: auto;
+  padding: 40px;
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 40px;
+
+    > .page-title-container {
+      margin: 0;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__text {
+      @include positive-btn(160px, 40px, 16px, 8px, 14px);
+    }
+  }
+
+  .tab-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 0 36px;
+    border-bottom: 1px solid colors(primary);
+
+    &__btn {
+      min-width: 160px;
+      padding: 0 12px 12px;
+      text-align: center;
+      @include font;
+      color: colors(grayLighten1);
+      text-decoration: none;
+    }
+
+    .is-active {
+      @include primary-text(16px, bold);
+      border-bottom: 4px solid colors(primary);
+      cursor: default;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

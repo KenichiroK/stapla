@@ -44,6 +44,12 @@
           border-radius: 50%;
         }
       }
+
+      &--task-index {
+        width: calc(100% / 6);
+        padding: 12px 0;
+        @include table-head-text;
+      }
     }
 
     &__body {
@@ -117,6 +123,26 @@
         word-break: break-all;
         @include primary-text(14px, bold);
         background-color: colors(bgLight);
+      }
+
+      &--task-index {
+        width: (100% / 6);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 14px 0;
+        word-break: break-all;
+        @include primary-text(14px, bold);
+
+        > .profile-img {
+          width: 31px;
+          height: 31px;
+          border-radius: 50%;
+          margin-bottom: 6px;
+        }
       }
     }
   }

@@ -1,0 +1,67 @@
+@import "../../../base/reset";
+@import "../../../module/page-title";
+@import "../../../module/table/status-table";
+@import "../../../module/table/task";
+@import "../../../mixin/button/positive";
+
+.main-wrapper {
+  width: 100%;
+  margin: auto;
+  padding: 40px;
+
+  .detail-container__content {
+    transition: 0.18s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 24px;
+  }
+
+  .page-title-container {
+    margin: 0;
+  }
+
+  .btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__text {
+      @include positive-btn(130px, 40px, 16px, 8px, 14px);
+    }
+  }
+
+  .tab-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 0 36px;
+    border-bottom: 1px solid colors(primary);
+
+    &__btn {
+      min-width: 160px;
+      padding: 0 12px 12px;
+      text-align: center;
+      @include font;
+      color: colors(grayLighten1);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .is-active {
+      @include primary-text(16px, bold);
+      border-bottom: 4px solid colors(primary);
+      cursor: default;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
