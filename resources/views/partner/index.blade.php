@@ -103,6 +103,7 @@
     <script src="{{ asset('js/common/toggle-notification-bar.js') }}" defer></script>
     <script src="{{ asset('js/common/update-notification-mark-as-read.js') }}" defer></script>
     <script src="{{ asset('js/common/toggle-header-ballon.js') }}" defer></script>
+    <script src="{{ asset('js/common/toggle-button.js') }}" defer></script>
     <script
         src="https://code.jquery.com/jquery-3.4.1.slim.js"
         integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="

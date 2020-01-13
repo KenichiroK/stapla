@@ -3,6 +3,15 @@ const mix = require("laravel-mix");
 mix.autoload({
   jquery: ["$", "window.jQuery"],
 });
+
+mix.webpackConfig({
+  resolve: {
+    extensions: [".js"],
+    alias: {
+      "@": __dirname + "/resources/js",
+    },
+  },
+});
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -34,13 +43,11 @@ mix.js(
 
 mix.babel(["resources/js/partner/document/invoice/create.js"], "public/js/partner/document/invoice/create.js");
 
-mix.js(
-  [
-    //PDF
-    "resources/js//pdf/logic.js",
-  ],
-  "public/js/pdf.js",
-);
+// order
+mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/index.js");
+
+// invoice
+mix.js(["resources/js/pages/invoice/show/index.js"], "public/js/pages/invoice/show/index.js");
 
 mix.js(
   [
@@ -73,6 +80,9 @@ mix.js(
   ],
   "public/js/common/toggle-header-ballon.js",
 );
+
+// HACK: どこかでcommonのコンパイル後の出力先は一つにまとめたい
+mix.js(["resources/js/common/toggle-button.js"], "public/js/common/toggle-button.js");
 
 mix.js(
   [
@@ -131,6 +141,7 @@ mix.js(
 mix.js(["resources/js/company/task/toggle-calendar.js"], "public/js/company/task/toggle-calendar.js");
 
 mix
+  .sass("resources/sass/style.scss", "public/css")
   .sass("resources/sass/company/common/index.scss", "public/css/company/common")
   .sass("resources/sass/auth/login/index.scss", "public/css/auth/login")
   .sass("resources/sass/auth/initialRegister/personal.scss", "public/css/auth/initialRegister")
@@ -179,10 +190,11 @@ mix
   .sass("resources/sass/pdf/paper.scss", "public/css/pdf")
 
   // renewal dashboard
-  .sass("resources/sass/page/dashboard/index.scss", "public/css/page/dashboard")
+  // .sass("resources/sass/page/dashboard/index.scss", "public/css/page/dashboard")
 
   // renewal task create
-  .sass("resources/sass/page/task/create/style.scss", "public/css/page/task/create");
+  .sass("resources/sass/page/task/create/style.scss", "public/css/page/task/create")
+  .sass("resources/sass/page/dashboard/style.scss", "public/css/page/dashboard");
 
 mix.options({
   publicPath: "public",

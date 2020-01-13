@@ -21,31 +21,8 @@ const setPreview = (input) => {
 @endsection
 
 @section('content')
-<div class="main-wrapper">
-    @if (session('completed'))
-    <div class="complete-container">
-        <p>{{ session('completed') }}</p>
-    </div>
-    @endif
-
-    @if(count($errors) > 0)
-    <div class="error-container">
-        <p>入力に問題があります。再入力して下さい。</p>
-    </div>
-    @endif
-    
-	<div class="title-container">
-		<h3>設定</h3>
-	</div>
-	<div class="menu-container">
-		<ul>
-            <li><a href="{{ route('company.setting.general.create') }}" >会社基本情報設定</a></li>
-			<!-- <li><a href="{{ route('company.setting.companyElse.create') }}">会社その他の設定</a></li> -->
-			<li><a href="{{ route('company.setting.userSetting.create') }}">会社担当者設定</a></li>
-			<li><a href="{{ route('company.setting.personalInfo.create') }}" class="isActive">個人情報の設定</a></li>
-			<li><a href="{{ route('company.setting.email.create') }}">メールアドレスの設定</a></li>
-		</ul>
-    </div>
+<div class="main-wrapper">    
+	@include('company.setting.common.menuTab', ['activeClass' => 'personalInfo'])
 
     <form action="{{ route('company.setting.personalInfo.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -104,7 +81,7 @@ const setPreview = (input) => {
             </div>
         </div>
         <div class="btn01-container">
-            <button type="button" onclick="submit();">保存</button>
+            <button data-impro-button="once" type="button" onclick="submit();">保存</button>
         </div>
     </form>
 </div>

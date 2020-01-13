@@ -13,31 +13,30 @@
         <div class="content-container__head">
             <p class="content-container__head--long">プロジェクト</p>
             <p class="content-container__head--long">タスク</p>
-            <p class="content-container__head--long">パートナー</p>
+            <p class="content-container__head--long">担当者</p>
             <p class="content-container__head--long">以来日時</p>
             <p class="content-container__head--short"></p>
         </div>
 
-        <div id="all_todos">
-
+        <div id="all_todos" class="none">
             @if (count($todos) === 0)
             <p class="no-data">あなたのtodoはありません</p>
             @endif
 
             @foreach($todos as $todo)
             <div class="content-container__body all_todo_item">
-                <a class="content-container__body--link" href="{{ route('company.task.show', ['id' => $todo->id]) }}">
+                <a class="content-container__body--link" href="{{ route('partner.task.show', ['id' => $todo->id]) }}">
                     <p class="content-container__body--long">{{ $todo->project->name }}</p>
                     <p class="content-container__body--long">{{ $todo->name }}</p>
                     <p class="content-container__body--long">
-                            <img class="profile-img" src="{{ $todo->partner->picture }}" alt="">
-                            <span>{{ $todo->partner->name }}</span>
+                        <img class="profile-img" src="{{ $todo->companyUser->picture }}" alt="">
+                        <span>{{ $todo->companyUser->name }}</span>
                     </p>
                     <p class="content-container__body--long">
                         {{ date('n月j日', strtotime($todo->status_updated_at)) }}
                         @if (\Carbon\Carbon::now()->diffInDays(new \Carbon\Carbon($todo->status_updated_at)) > 3)
-                            <br>
-                            <span class="date-alert">依頼から{{ \Carbon\Carbon::now()->diffInDays(new \Carbon\Carbon($todo->status_updated_at)) }}日経っています</span>
+                        <br>
+                        <span class="date-alert">依頼から{{ \Carbon\Carbon::now()->diffInDays(new \Carbon\Carbon($todo->status_updated_at)) }}日経っています</span>
                         @endif
                     </p>
                     <p class="content-container__body--short">
@@ -51,25 +50,25 @@
             </div>
         </div>
 
-        <div id="passed_3days_todos">
+        <div id="passed_3days_todos" class="none">
             @if (count($passed_3days_todos) === 0)
-                <p class="no-data">3日以上未対応のtodoはありません</p>
+            <p class="no-data">3日以上未対応のtodoはありません</p>
             @endif
 
             @foreach($passed_3days_todos as $todo)
             <div class="content-container__body passed_3days_todo_item">
-                <a class="content-container__body--link" href="{{ route('company.task.show', ['id' => $todo->id]) }}">
+                <a class="content-container__body--link" href="{{ route('partner.task.show', ['id' => $todo->id]) }}">
                     <p class="content-container__body--long">{{ $todo->project->name }}</p>
                     <p class="content-container__body--long">{{ $todo->name }}</p>
                     <p class="content-container__body--long">
-                            <img class="profile-img" src="{{ $todo->partner->picture }}" alt="">
-                            <span>{{ $todo->partner->name }}</span>
+                        <img class="profile-img" src="{{ $todo->companyUser->picture }}" alt="">
+                        <span>{{ $todo->companyUser->name }}</span>
                     </p>
                     <p class="content-container__body--long">
                         {{ date('n月j日', strtotime($todo->status_updated_at)) }}
                         @if (\Carbon\Carbon::now()->diffInDays(new \Carbon\Carbon($todo->status_updated_at)) > 3)
-                            <br>
-                            <span class="date-alert">依頼から{{ \Carbon\Carbon::now()->diffInDays(new \Carbon\Carbon($todo->status_updated_at)) }}日経っています</span>
+                        <br>
+                        <span class="date-alert">依頼から{{ \Carbon\Carbon::now()->diffInDays(new \Carbon\Carbon($todo->status_updated_at)) }}日経っています</span>
                         @endif
                     </p>
                     <p class="content-container__body--short">

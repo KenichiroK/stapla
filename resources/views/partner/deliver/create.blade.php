@@ -264,7 +264,7 @@
 		
 
 		<div class="button-container">
-			<button type="button" onclick="submit();">納品</button>
+			<button data-impro-button="once" type="button" onclick="submit();">納品</button>
 		</div>
 	</form>
 </div>

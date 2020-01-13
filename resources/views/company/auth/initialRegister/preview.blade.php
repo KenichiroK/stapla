@@ -93,7 +93,7 @@
 				<input type="hidden" name="picture" value="{{ $urlPicture }}">
 			</div>
 			<div class="btn-container">
-				<button type="button" onclick="submit();"><a type="button" href="{{ route('company.register.personal.create') }}">戻る</a></button>
+				<button data-impro-button="once" type="button" onclick="submit();"><a type="button" href="{{ route('company.register.personal.create') }}">戻る</a></button>
 				<button type="submit">登録</button>
 			</div>
 		</form>
@@ -137,7 +137,7 @@
 				
 			</div>
 			<div class="btn-container">
-				<button type="button" onclick="submit();"><a type="button" href="{{ route('company.register.personal.create') }}">戻る</a></button>
+				<button data-impro-button="once" type="button" onclick="submit();"><a type="button" href="{{ route('company.register.personal.create') }}">戻る</a></button>
 				<button type="submit">登録</button>
 			</div>
 		</form>
