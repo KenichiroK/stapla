@@ -68,7 +68,7 @@
         
                             <tbody>
                                 <tr>
-                                    <td>{{ $purchaseOrder->task_name }}</td>
+                                    <td>{{ $task->name }}</td>
                                     <td>1</td>
                                     <td>{{ number_format($purchaseOrder->task_price) }}</td>
                                     <td>{{ number_format($purchaseOrder->task_price) }}</td>
@@ -156,7 +156,7 @@
     
                         <tbody>
                             <tr>
-                                <td>{{ $purchaseOrder->task_name }}</td>
+                                <td>{{ $task->name }}</td>
                                 <td>1</td>
                                 <td>{{ number_format($purchaseOrder->task_price) }}</td>
                                 <td>{{ number_format($purchaseOrder->task_price) }}</td>

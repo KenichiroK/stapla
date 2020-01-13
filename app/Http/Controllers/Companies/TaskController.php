@@ -86,7 +86,6 @@ class TaskController extends Controller
         } else {
             $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
 
-            // return $projects;
             return view('company/task/create/index', compact('projects', 'company_users', 'partners', 'company_user', 'task'));
         }
     }
@@ -94,24 +93,35 @@ class TaskController extends Controller
     // 下書き状態タスクの作成ページ
     public function createDraft($task_id)
     {
+        // タスク
         $task = Task::findOrFail($task_id);
         $company_user = Auth::user();
         $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
-
         $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
         $partners = Partner::where('company_id', $company_user->company_id)->get();
+        // 発注書
+        $purchaseOrder = PurchaseOrder::where('task_id', $task->id)->first();
 
-        return view('company/task/create', compact('projects', 'company_users', 'partners', 'task', 'response'));
+        return view('company/task/create/index', compact('projects', 'company_users', 'partners', 'task', 'response', 'purchaseOrder'));
     }
     
     // 下書きとして保存
     public function draft(TaskDraftRequest $request)
     {
         $auth = Auth::user();
-        $task = new Task;
+        if(isset($request->task_id)){
+            // NOTE: タスク・発注書が下書きとしてすでに保存してある場合
+            $task = Task::findOrFail($request->task_id);
+            $purchaseOrder = PurchaseOrder::where('task_id', $task->id)->first();
+        } else{
+            // NOTE: タスク・発注書を新規作成する場合
+            $task = new Task;
+            $purchaseOrder = new PurchaseOrder;
+        }
+        // タスク下書き
         $task->company_id        = $auth->company_id;
         $task->project_id        = $request->project_id;
-        $task->name              = $request->name;
+        $task->name              = $request->task_name;
         $task->started_at        = Carbon::createFromTimestamp(strtotime($request->started_at))
                                   ->format('Y-m-d-H-i-s');
         $task->ended_at          = Carbon::createFromTimestamp(strtotime($request->ended_at))
@@ -123,9 +133,9 @@ class TaskController extends Controller
         $task->cases             = 0;
         $task->fee_format        = "固定";
         $task->status_updated_at = Carbon::now();
-
-        if($request->company_user_id){
-            $task->company_user_id = $request->company_user_id;
+        // nullable()の可能性がある項目
+        if($request->task_company_user_id){
+            $task->company_user_id = $request->task_company_user_id;
         }
         if($request->superior_id){
             $task->superior_id = $request->superior_id;
@@ -139,16 +149,55 @@ class TaskController extends Controller
         if($request->content){
             $task->content = $request->content;
         }
-        if($request->budget){
-            $task->budget = $request->budget;
-        }
         if($request->partner_id){
             $task->partner_id = $request->partner_id;
         }
-        if($request->price){
-            $task->price = $request->price;
+        if($request->order_price){
+            $task->price = $request->order_price;
+        }
+        if($request->delivery_date){
+            $task->delivery_date = Carbon::createFromTimestamp(strtotime($request->delivery_date))
+                                    ->format('Y-m-d-H-i-s');
         }
         $task->save();
+
+        // 発注書下書き
+        $purchaseOrder->company_id         = $auth->company_id;
+        $purchaseOrder->task_id            = $task->id;
+        $purchaseOrder->status             = 0;
+        $purchaseOrder->ordered_at         = $request->order_at;
+        $purchaseOrder->company_name       = $auth->company->company_name;
+        $purchaseOrder->company_tel        = $auth->company->tel;
+        $purchaseOrder->company_zip_code   = $auth->company->zip_code;
+        $purchaseOrder->company_prefecture = $auth->company->address_prefecture;
+        $purchaseOrder->company_city       = $auth->company->address_city;
+        $purchaseOrder->company_building   = $auth->company->address_building;
+        $purchaseOrder->task_ended_at      = $request->ended_at;
+        $purchaseOrder->task_tax           = $task->tax;
+        // nullable()の可能性がある項目
+        if(isset($request->partner_id)){
+            $purchaseOrder->partner_id        = $request->partner_id;
+            $purchaseOrder->partner_name      = Partner::findOrFail($request->partner_id)->name;
+        }
+        if(isset($request->task_company_user_id)){
+            $purchaseOrder->companyUser_id    = $request->task_company_user_id;
+            $purchaseOrder->companyUser_name  = CompanyUser::findOrFail($request->task_company_user_id)->name;
+        }
+        if(isset($request->billing_to_text)){
+            $purchaseOrder->companyUser_id    = $request->task_company_user_id;
+            $purchaseOrder->companyUser_name  = CompanyUser::findOrFail($request->task_company_user_id)->name;
+            $purchaseOrder->billing_to_text   = $request->billing_to_text;
+        }
+        $task = Task::findOrFail($task->id);
+        if(isset($request->order_name)){
+            $purchaseOrder->task_name= $request->order_name;
+        } else{
+            $purchaseOrder->task_name         = $task->name;
+        }
+        if(isset($request->order_price)){
+            $purchaseOrder->task_price        = $request->order_price;
+        }
+        $purchaseOrder->save();
 
         return redirect()->route('company.task.createDraft' ,['task_id' => $task->id])
                                 ->withInput($request->all())
@@ -156,81 +205,24 @@ class TaskController extends Controller
         
     }
 
-    // 下書きを更新
-    public function updateDraft(TaskUpdateDraftRequest $request)
-    {
-        $task = Task::findOrFail($request->task_id);
-
-        $task->project_id      = $request->project_id;
-        $task->name = $request->name;
-        if(isset($request->company_user_id)){
-            $task->company_user_id = $request->company_user_id;
-        }
-        if(isset($request->superior_id)){
-            $task->superior_id = $request->superior_id;
-        }
-        if(isset($request->accounting_id)){
-            $task->accounting_id = $request->accounting_id;
-        }
-        if(isset($request->partner_id)){
-            $task->partner_id      = $request->partner_id;
-        }
-        if(isset($request->content)){
-            $task->content = $request->content;
-        }
-        if(isset($request->started_at)){
-            $task->started_at = Carbon::createFromTimestamp(strtotime($request->started_at))
-                                ->format('Y-m-d-H-i-s');
-        }
-        if(isset($request->ended_at)){
-            $task->ended_at = Carbon::createFromTimestamp(strtotime($request->ended_at))
-                                ->format('Y-m-d-H-i-s');
-        }
-        if(isset($request->budget)){
-            $task->budget = $request->budget;
-        }
-        if($request->partner_id){
-            $task->partner_id = $request->partner_id;
-        }
-        if(isset($request->price)){
-            $task->price = $request->price;
-        }
-        $task->status_updated_at = Carbon::now();
-        $task->save();
-
-        return redirect()->route('company.task.createDraft', ['task_id' => $task->id])
-                        ->withInput($request->all())
-                        ->with('completed', '「'.$task->name.'」の下書きを更新しました。');
-    }
-
     // タスクプレビュー
-    // public function taskPreview(TaskPreviewRequest $request)
-    public function taskPreview(Request $request)
+    public function taskPreview(TaskPreviewRequest $request)
     {
         // 下書きとして保存されているタスク
-        if($request->task_id){
+        if(isset($request->task_id)){
             $task = Task::findOrFail($request->task_id);
-            $project = Project::findOrFail($request->project_id);
-            $company_user = CompanyUser::findOrFail($request->task_company_user_id);
-            $superior_user = CompanyUser::findOrFail($request->superior_id);
-            $accounting_user = CompanyUser::findOrFail($request->accounting_id);
-
-            $partner = Partner::findORFail($request->partner_id);
-            // タスクステータスを下書きに
             $task_status = config('const.TASK_CREATE');
+        }
+        $project = Project::findOrFail($request->project_id);
+        $company_user = CompanyUser::findOrFail($request->task_company_user_id);
+        $superior_user = CompanyUser::findOrFail($request->superior_id);
+        $accounting_user = CompanyUser::findOrFail($request->accounting_id);
 
-            return view('company.task.preview.show', compact('request', 'task',  'company_user', 'project', 'superior_user', 'accounting_user', 'partner', 'task_status'));
-
-        // 新規タスク（下書き保存されていない）
+        $partner = Partner::findORFail($request->partner_id);
+        
+        if(isset($request->task_id)){
+            return view('company.task.preview.show', compact('request', 'company_user', 'project', 'superior_user', 'accounting_user', 'partner', 'task', 'task_status'));
         } else{
-            $project = Project::findOrFail($request->project_id);
-
-            $company_user = CompanyUser::findOrFail($request->task_company_user_id);
-            $superior_user = CompanyUser::findOrFail($request->superior_id);
-            $accounting_user = CompanyUser::findOrFail($request->accounting_id);
-
-            $partner = Partner::findORFail($request->partner_id);
-
             return view('company.task.preview.show', compact('request', 'company_user', 'project', 'superior_user', 'accounting_user', 'partner'));
         }
     }
@@ -238,18 +230,16 @@ class TaskController extends Controller
     // 発注書プレビュー
     public function purchaseOrderPreview(Request $request)
     {
-        if(isset($request->order_company_user_id)){
-            $order_company_user = CompanyUser::findOrFail($request->order_company_user_id);
-        } else{
-            $order_company_user = CompanyUser::findOrFail($request->task_company_user_id);
-        }
-        $superior_user = CompanyUser::findOrFail($request->superior_id);
-        $ordered_at = date("Y-m-d");
-        $partner = Partner::findORFail($request->partner_id);
+        $order_company_user    = CompanyUser::findOrFail($request->task_company_user_id);
+        $superior_user         = CompanyUser::findOrFail($request->superior_id);
+        $ordered_at            = date("Y-m-d");
+        $partner               = Partner::findORFail($request->partner_id);
+        $order_name            = $request->order_name;
+        $delivery_date         = Carbon::createFromTimestamp(strtotime($request->delivery_date))
+                                ->format('Y-m-d-H-i-s');
+        $order_company_user_id = $request->order_company_user_id;
 
-        $requestAll = $request->all();
-
-        return view('company.document.purchaseOrder.preview.show', compact('request','requestAll' , 'order_company_user', 'superior_user', 'ordered_at', 'partner'));
+        return view('company.document.purchaseOrder.preview.show', compact('request', 'order_company_user', 'superior_user', 'ordered_at', 'partner', 'order_name', 'delivery_date', 'order_company_user_id'));
     }
 
     // 再編集
@@ -260,7 +250,6 @@ class TaskController extends Controller
             return redirect()->route('company.task.createDraft' ,['task_id' => $task->id])
                                 ->withInput($request->all());
         } else{
-            $task = null;
             return redirect()->route('company.task.create')
                                 ->withInput($request->all());
         }
@@ -269,96 +258,74 @@ class TaskController extends Controller
     // 保存
     public function store(Request $request)
     {
-        // 下書き保存済みのタスクは更新
+        $auth = Auth::user();
         if(isset($request->task_id)){
+            // NOTE: タスク・発注書が下書きとしてすでに保存してある場合
             $task = Task::findOrFail($request->task_id);
-            $auth = Auth::user();
-            $task->project_id        = $request->project_id;
-            $task->company_id        = $auth->company_id;
-            $task->company_user_id   = $request->company_user_id;
-            $task->superior_id       = $request->superior_id;
-            $task->accounting_id     = $request->accounting_id;
-            $task->partner_id        = $request->partner_id;
-            $task->name              = $request->name;
-            $task->content           = $request->content;
-            $task->started_at        = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
-            $task->ended_at          = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
-            $task->status            = config('const.TASK_SUBMIT_SUPERIOR');
-            $task->purchaseorder     = false;
-            $task->invoice           = false;
-            $task->budget            = $request->budget;
-            $task->tax               = config('const.FREE_TAX');
-            $task->price             = $request->price;
-            $task->cases             = 1;
-            $task->fee_format        = "固定";
-            $task->status_updated_at = Carbon::now();
-            $task->save();
-            \Log::info('タスク新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status]);
-
-            sendNotificationAssignedTask($task);
-
-            return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
-
-        // 新タスクとして登録
+            $purchaseOrder = PurchaseOrder::where('task_id', $request->task_id);
         } else{
-            $auth = Auth::user();
-
-            // タスク
+            // NOTE: タスク・発注書を新規作成する場合
             $task = new Task;
-            $task->project_id        = $request->project_id;
-            $task->company_id        = $auth->company_id;
-            $task->company_user_id   = $request->task_company_user_id;
-            $task->superior_id       = $request->superior_id;
-            $task->accounting_id     = $request->accounting_id;
-            $task->partner_id        = $request->partner_id;
-            $task->name              = $request->task_name;
-            $task->content           = $request->content;
-            $task->started_at        = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
-            $task->ended_at          = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
-            $task->status            = config('const.TASK_SUBMIT_SUPERIOR');
-            $task->purchaseorder     = false;
-            $task->invoice           = false;
-            $task->tax               = config('const.TEN_TAX');
-            $task->price             = $request->order_price;
-            $task->status_updated_at = Carbon::now();
-            $task->save();
-
-            // 発注書登録
             $purchaseOrder = new PurchaseOrder;
-            $purchaseOrder->company_id           = $auth->company_id;;
-            $purchaseOrder->partner_id           = $request->partner_id;
-            $purchaseOrder->task_id              = $task->id;
-            $purchaseOrder->status               = 0;
-            $purchaseOrder->ordered_at           = $request->order_at;
-            $purchaseOrder->company_name         = $auth->company->company_name;
-            $purchaseOrder->company_tel          = $auth->company->tel;
-            $purchaseOrder->company_zip_code     = $auth->company->zip_code;
-            $purchaseOrder->company_prefecture   = $auth->company->address_prefecture;
-            $purchaseOrder->company_city         = $auth->company->address_city;
-            $purchaseOrder->company_building     = $auth->company->address_building;
-            if(isset($request->task_company_user_id)){
-                $purchaseOrder->companyUser_id       = $request->task_company_user_id;
-                $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->task_company_user_id)->name;
-            }
-            if(isset($request->billing_to_text)){
-                $purchaseOrder->companyUser_id       = $request->task_company_user_id;
-                $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->task_company_user_id)->name;
-                $purchaseOrder->billing_to_text      = $request->billing_to_text;
-            }
-            $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
-            $task = Task::findOrFail($task->id);
-            
-            $purchaseOrder->task_name            = $task->name;
-            $purchaseOrder->task_ended_at        = $request->ended_at;
-            $purchaseOrder->task_price           = $request->order_price;
-            $purchaseOrder->task_tax             = $task->tax;
-            $purchaseOrder->save();
-            
-            \Log::info('タスク・発注書 新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status, 'purchase_order_id' => $purchaseOrder->id]);
-            sendNotificationAssignedTask($task);
-
-            return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
         }
+        // タスク
+        $task->company_id        = $auth->company_id;
+        $task->project_id        = $request->project_id;
+        $task->company_user_id   = $request->task_company_user_id;
+        $task->superior_id       = $request->superior_id;
+        $task->accounting_id     = $request->accounting_id;
+        $task->partner_id        = $request->partner_id;
+        $task->name              = $request->task_name;
+        $task->content           = $request->content;
+        $task->started_at        = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
+        $task->ended_at          = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
+        $task->status            = config('const.TASK_SUBMIT_SUPERIOR');
+        $task->purchaseorder     = false;
+        $task->invoice           = false;
+        $task->tax               = config('const.TEN_TAX');
+        $task->price             = $request->order_price;
+        $task->delivery_date = Carbon::createFromTimestamp(strtotime($request->delivery_date))
+                                ->format('Y-m-d-H-i-s');  
+        $task->status_updated_at = Carbon::now();
+        $task->save();
+
+        // 発注書登録
+        $purchaseOrder->company_id           = $auth->company_id;
+        $purchaseOrder->partner_id           = $request->partner_id;
+        $purchaseOrder->task_id              = $task->id;
+        $purchaseOrder->status               = 0;
+        $purchaseOrder->ordered_at           = $request->order_at;
+        $purchaseOrder->company_name         = $auth->company->company_name;
+        $purchaseOrder->company_tel          = $auth->company->tel;
+        $purchaseOrder->company_zip_code     = $auth->company->zip_code;
+        $purchaseOrder->company_prefecture   = $auth->company->address_prefecture;
+        $purchaseOrder->company_city         = $auth->company->address_city;
+        $purchaseOrder->company_building     = $auth->company->address_building;
+        if(isset($request->task_company_user_id)){
+            $purchaseOrder->companyUser_id       = $request->task_company_user_id;
+            $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->task_company_user_id)->name;
+        }
+        if(isset($request->billing_to_text)){
+            $purchaseOrder->companyUser_id       = $request->task_company_user_id;
+            $purchaseOrder->companyUser_name     = CompanyUser::findOrFail($request->task_company_user_id)->name;
+            $purchaseOrder->billing_to_text      = $request->billing_to_text;
+        }
+        $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
+        $task = Task::findOrFail($task->id);
+        if(isset($request->order_name)){
+            $purchaseOrder->task_name = $request->order_name;
+        } else{
+            $purchaseOrder->task_name         = $task->name;
+        }
+        $purchaseOrder->task_ended_at        = $request->ended_at;
+        $purchaseOrder->task_price           = $request->order_price;
+        $purchaseOrder->task_tax             = $task->tax;
+        $purchaseOrder->save();
+        
+        \Log::info('タスク・発注書 新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status, 'purchase_order_id' => $purchaseOrder->id]);
+        sendNotificationAssignedTask($task);
+
+        return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '「'.$task->name.'」を作成しました。');
     }
 
     public function show($task_id)

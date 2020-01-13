@@ -39,7 +39,6 @@
                 <div class="select-error-wrp">
                     <div class="select-area control">
                         <div class="select-wrp select is-info">
-                            {{ projects }}
                             @if(isset($task->project_id))
                             <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
                                 <option disabled selected></option>

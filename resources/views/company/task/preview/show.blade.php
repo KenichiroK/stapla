@@ -173,14 +173,11 @@
                 <input type="hidden" name="order_company_user_id" value="{{ $request->order_company_user_id }}">
 
                 <div class="actionButton">
-                @if(isset($task_status))
-                    <input type="hidden" name='task_id' value="{{ $task->id }}">
+                    @if(isset($task_status))
+                        <input type="hidden" name='task_id' value="{{ $task->id }}">
+                    @endif
                     <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
-                    <button class="done confirm" type="button" style="width:155px;" name="editOrStore" value="toStoreUpdate" data-toggle="modal" data-target="#confirm">発注書確認</button>
-                @else
-                    <button class="undone" type="submit" onclick="submit();" formaction="{{ route('company.task.reCreate') }}">作成ページに戻る</button>
-                    <button class="done confirm" type="submit" style="width:155px;" name="editOrStore" value="toStore"  data-toggle="modal" data-target="#confirm">発注書確認</button>
-                @endif
+                    <button class="done confirm" type="submit" style="width:155px;">発注書確認</button>
                 </div>
 
             </div>

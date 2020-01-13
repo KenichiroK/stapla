@@ -123,8 +123,14 @@
                 <div class="company-container">
                     <div class="right">
                         <p class="text">下記の通り、発注します。</p>
-                        <p class="name">件名: {{ $request->order_name }}</p>
-                        <input type="hidden" name="order_name" value="{{ $request->order_name }}">
+                        <p class="name">件名: 
+                            @if(isset($request->order_name))
+                                {{ $request->order_name }}
+                                <input type="hidden" name="order_name" value="{{ $request->order_name }}">
+                            @else
+                                {{ $request->task_name }}
+                            @endif
+                        </p>
                         <p class="date">納期: {{ date("Y年m月d日", strtotime($request->delivery_date)) }}</p>
                         <input type="hidden" name="delivery_date" value="{{ $request->delivery_date }}">
 
@@ -208,6 +214,7 @@
         <input type="hidden" name="accounting_id" value="{{ $request->accounting_id }}">
         <input type="hidden" name="started_at" value="{{ $request->started_at }}">
         <input type="hidden" name="ended_at" value="{{ $request->ended_at }}">
+        <input type="hidden" name="order_company_user_id" value="{{ $request->order_company_user_id }}">
         @if(isset($request->billing_to_text))
             <input type="hidden" name="billing_to_text" value="{{ $request->billing_to_text }}">
         @endif
