@@ -14,6 +14,7 @@ class TaskPreviewRequest extends FormRequest
     public function rules()
     {
         return [
+            // タスク
             'project_id'           => 'bail | required | uuid',
             'task_name'            => 'bail | required | string | max:64',
             'content'              => 'bail | required | string | max:200',
@@ -22,11 +23,12 @@ class TaskPreviewRequest extends FormRequest
             'accounting_id'        => 'bail | required | uuid',
             'started_at'           => 'required',
             'ended_at'             => 'bail | required | after:started_at',
-            'budget'               => 'bail | required | integer | digits_between:1, 12',
-            'order_price'          => 'bail | required | integer | digits_between:1, 12',
             'partner_id'           => 'bail | required | uuid',
-            'task_name'            => 'bail | required | string | max:64',
+            'order_price'          => 'bail | required | integer | digits_between:1, 12',
             'delivery_date'        => 'required',
+            // 発注書
+            'order_name'           => 'max:64',
+            'order_company_user'   => 'max:64',
         ];
     }
 }

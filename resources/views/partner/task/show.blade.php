@@ -213,7 +213,7 @@
                         <dd>
                             @isset($task->deliver)
                                 @for( $n=0; $n < count($deliver_items); $n++)
-                                    <form action="{{ route('company.fileDownload') }}" method="post">
+                                    <form action="{{ route('partner.fileDownload') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="file" value="{{ $deliver_items[$n]->file }}"><br />
                                         <button>{{ explode('/', $deliver_items[$n]->file)[5] }}</button>
