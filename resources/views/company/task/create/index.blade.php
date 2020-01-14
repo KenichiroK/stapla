@@ -39,7 +39,14 @@
                                 @if(isset($task->project_id))
                                     <option value="{{ $project->id }}" {{ ($task->project_id === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
                                 @else
-                                    <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                    @if(isset($project))
+                                    <option value="{{ $project->id }}" selected>{{ $project->name }}</option>
+                                    @else
+                                    <option disabled selected></option>
+                                        @foreach($projects as $project)
+                                        <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                        @endforeach
+                                    @endif
                                 @endif
                             @endforeach
                         </select>
