@@ -67,7 +67,6 @@ class TaskController extends Controller
         $auth = Auth::user();
         $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
         $partners = Partner::where('company_id', $auth->company_id)->get();
-        // $task = '';
         $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
 
         if($request->query('pid')){
@@ -76,8 +75,6 @@ class TaskController extends Controller
             
             return view('company/task/create/index', compact('projects', 'project', 'company_users', 'partners', 'company_user', 'task'));
         } else {
-            // $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
-
             return view('company/task/create/index', compact('projects', 'company_users', 'partners', 'company_user', 'task'));
         }
     }
@@ -94,7 +91,7 @@ class TaskController extends Controller
         // 発注書
         $purchaseOrder = PurchaseOrder::where('task_id', $task->id)->first();
 
-        return view('company/task/create/index', compact('projects', 'company_users', 'partners', 'task', 'response', 'purchaseOrder'));
+        return view('company/task/create/index', compact('projects', 'company_users', 'partners', 'task', 'purchaseOrder'));
     }
     
     // 下書きとして保存

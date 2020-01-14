@@ -120,11 +120,11 @@
                             @endforeach
                         </select>
                     </div>
-                    @if($errors->has('company_user_id'))
-                            <div class="invalid-feedback error-msg" role="alert">
-                                <strong>{{ $errors->first('company_user_id') }}</strong>
-                            </div>
-                        @endif
+                    @if($errors->has('task_company_user_id'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('task_company_user_id') }}</strong>
+                        </div>
+                    @endif
                 </div>
             </div>
 
