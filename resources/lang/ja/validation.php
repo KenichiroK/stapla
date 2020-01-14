@@ -193,15 +193,11 @@ return [
 
         // task
         'task_name'       => 'タスク名',
-        'task_content'    => 'タスク内容',
+        'content'    => 'タスク内容',
         'started_at'      => '開始日',
         'ended_at'        => '終了日',
         'status'          => 'ステータス',
-        'budget'          => '予算',
-        'price'           => '金額',
-        'cases'           => '件数',
-        'fee_format'      => '報酬形式',
-        'payment_terms'   => '支払い条件',
+        'order_price'     => '発注金額',
         'partner_id'      => 'パートナー',
         'project_name'    => 'プロジェクト名',
         'project_detail'  => 'プロジェクト詳細',
