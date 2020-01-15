@@ -16,11 +16,14 @@ class DashboardController extends Controller
         $projects = ProjectCompany::where('user_id', Auth::user()->id)
                                 ->join('projects', 'project_companies.project_id', '=', 'projects.id')
                                 ->orderBy('projects.created_at', 'desc')
-                                ->get();        
+                                ->get();
 
-        $tasks = Task::where('company_user_id', Auth::user()->id)
-                                ->orWhere('superior_id', Auth::user()->id)
-                                ->orWhere('accounting_id', Auth::user()->id)
+        $tasks = Task::whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
+                                ->where(function($assign){
+                                    $assign->where('company_user_id', Auth::user()->id)
+                                            ->orWhere('superior_id', Auth::user()->id)
+                                            ->orWhere('accounting_id', Auth::user()->id);
+                                })
                                 ->orderBy('created_at', 'desc')
                                 ->get();
 

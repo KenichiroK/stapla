@@ -23,12 +23,16 @@
                 <p class="content-container__body--task-index">{{ $task->project->name }}</p>
                 <p class="content-container__body--task-index">{{ $task->name }}</p>
                 <p class="content-container__body--task-index">
-                    <img class="profile-img" src="{{ $task->companyUser->picture }}" alt="">
-                    <span>{{ $task->companyUser->name }}</span>
+                    @isset($task->company_user_id)
+                        <img class="profile-img" src="{{ $task->companyUser->picture }}" alt="">
+                        <span>{{ $task->companyUser->name }}</span>
+                    @endisset
                 </p>
                 <p class="content-container__body--task-index">
-                    <img class="profile-img" src="{{ $task->partner->picture }}" alt="">
-                    <span>{{ $task->partner->name }}</span>
+                    @isset($task->partner_id)
+                        <img class="profile-img" src="{{ $task->partner->picture }}" alt="">
+                        <span>{{ $task->partner->name }}</span>
+                    @endisset
                 </p>
                 <p class="content-container__body--task-index">{{ config('const.TASK_STATUS_LIST')[$task->status] }}</p>
                 <p class="content-container__body--task-index">¥{{ number_format($task->price) }}</p>
