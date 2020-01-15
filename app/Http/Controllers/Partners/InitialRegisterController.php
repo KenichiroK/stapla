@@ -10,58 +10,20 @@ use App\Models\Company;
 use App\Models\CompanyUser;
 use App\Models\Partner;
 use App\Notifications\RegisteredPartner;
+use App\Notifications\doneRegisteredPartner;
 
 class InitialRegisterController extends Controller
 {
-    public function doneVerify()
+
+    public function createPartner($partner_id)
     {
-        $partner = Auth::user();
-        if(isset($partner->name)){
-            return  redirect('partner/dashboard');
-        } else{
-            return view('partner/auth/initialRegister/doneVerify', compact('company_id'));
-        }
+        $partner = Partner::findOrFail($partner_id);
+        return view('partner/auth/initialRegister/personal', compact('partner'));
     }
 
-    public function createPartner()
+    public function terms(PartnerRequest $request)
     {
-        $partner = Auth::user();
-        
-        if(isset($partner->name)){
-            return  redirect('partner/dashboard');
-        } else{
-            return view('partner/auth/initialRegister/personal');
-        }
-    }
-
-    public function preview(PartnerRequest $request)
-    {
-        if($request->picture) {
-            $partner = Auth::user();
-            $time    = date("Y_m_d_H_i_s");
-            $picture = $request->picture;
-            $pathPicture = \Storage::disk('s3')->putFileAs("partner-profile", $picture,$time.'_'.$partner->id .'.'. $picture->getClientOriginalExtension(), 'public');
-            $urlPicture  = \Storage::disk('s3')->url($pathPicture);
-        } else {
-            $urlPicture  = env('AWS_URL').'/common/dummy_profile_icon.png';
-        }
-        return view('partner/auth/initialRegister/preview', compact('request','urlPicture'));
-    }
-
-    public function previwShow(Request $request)
-    {
-        $partner = Auth::user()->first();
-        if(isset($partner->name)){
-            return  redirect('partner/dashboard');
-        } else{
-            return view('partner/auth/initialRegister/preview', compact('request'));
-        }
-    }
-
-    public function previewStore(Request $request)
-    {
-        $partner = Auth::user();
-        $partner->company_id   = $partner->company_id;
+        $partner = Partner::findOrFail($request->partner_id);
         $partner->name         = $request->name;
         $partner->occupations  = $request->occupations;
         $partner->introduction = $request->introduction;
@@ -72,16 +34,43 @@ class InitialRegisterController extends Controller
         $partner->building     = $request->building;
         $partner->tel          = $request->tel;
         $partner->introduction = $request->introduction;
-        $time = date("Y_m_d_H_i_s");
-        $partner->picture      = $request->picture;
+
+        if($request->picture) {
+            $time    = date("Y_m_d_H_i_s");
+            $picture = $request->picture;
+            $pathPicture = \Storage::disk('s3')->putFileAs("partner-profile", $picture, $time.'_'.$partner->id.'.'. $picture->getClientOriginalExtension(), 'public');
+            $urlPicture  = \Storage::disk('s3')->url($pathPicture);
+        } elseif(!$request->picture) {
+            $urlPicture  = env('AWS_URL').'/common/dummy_profile_icon.png';
+        }
+        $partner->picture = $urlPicture;
         $partner->save();
+
+        return view('partner/auth/initialRegister/terms', compact('partner'));
+    }
+
+    public function previewShow(Request $request)
+    {
+        $partner = Partner::findOrFail($request->partner_id);
+        return view('partner/auth/initialRegister/preview', compact('partner'));
+    }
+
+    public function previewStore(Request $request)
+    {
+        $partner = Partner::findOrFail($request->partner_id);
+        $partner->agree_status = 1;
+        $partner->save();
+
         \Log::info('パートナー新規登録', ['user_id(partner)' => $partner->id]);
 
         if (isset($partner->invitationUser)) {
             $partner->invitationUser->notify(new RegisteredPartner($partner));
         }
 
-        return view('partner/auth/initialRegister/done', compact('partner'));
+        // Mail::to($partner->email)->send(new doneRegisteredPartner());
+        $partner->notify(new doneRegisteredPartner($partner));
+        // HACK:: ログイン操作なしでDashboardへ
+        return redirect()->route('partner.dashboard', compact('partner'));
     }
 
     public function resetPassword()

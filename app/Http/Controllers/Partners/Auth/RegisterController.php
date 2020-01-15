@@ -14,38 +14,51 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers;
+    // use RegistersUsers;
+
     public function showRegisterForm(Request $request)
     {
-        return view('partner.auth.register', compact('request'));
+        $partner = Partner::where('email', $request->email)->first();
+        if(is_null($partner)) {
+            abort(404);
+        }
+
+        if(!$partner->password){
+            return view('partner.auth.register', compact('request'));
+        } elseif($partner->agree_status == 0){
+            return redirect()->route('partner.register.intialRegistration.createPartner', [ "partner_id" => $partner->id ]);
+        } else{
+            return redirect()->route('partner.dashboard', compact('partner'));
+        }
+
     }
 
     protected $redirectTo = '/partner/register/doneVerify';
 
-    public function __construct()
-    {
-        $this->middleware('guest:partner');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('guest:partner');
+    // }
 
-    protected function validator(array $data)
+    protected function pwRegister(Request $request)
     {
-        return Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:partners'],
+        $request->validate([
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
-    }
+        $partner = Partner::where('email', $request->email)->first();
+        if (is_null($partner)) {
+            abort(404);
+        }
+        $partner->password           = Hash::make($request->password);
+        $partner->company_id         = $request->company_id;
+        $partner->invitation_user_id = $request->invitation_user_id;
+        $partner->save();
 
-    protected function create(array $data)
-    {
-        return Partner::create([
-            'email'              => $data['email'],
-            'password'           => Hash::make($data['password']),
-            'company_id'         => $data['company_id'],
-            'invitation_user_id' => $data['invitation_user_id'],
-        ]);
+        return redirect()->route('partner.register.intialRegistration.createPartner', [ 'partner_id' => $partner->id ]);
     }
-    protected function guard()
-    {
-        return Auth::guard('partner');
-    }
+    
+    // protected function guard()
+    // {
+    //     return Auth::guard('partner');
+    // }
 }

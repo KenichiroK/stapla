@@ -9,23 +9,20 @@ use Illuminate\Support\Facades\Redirect;
 
 class PartnerEnsureEmailIsVerified
 {
-    public function handle($request, Closure $next)
-    {
-        $guards = array_keys(config('auth.guards'));
-
-        foreach($guards as $guard) {
-            if($guard == 'partner') {
-                if (Auth::guard($guard)->check()) {
-                    if (! Auth::guard($guard)->user() ||
-                        (Auth::guard($guard)->user() instanceof MustVerifyEmail &&
-                        ! Auth::guard($guard)->user()->hasVerifiedEmail())) {
-                        return $request->expectsJson()
-                                ? abort(403, 'Your email address is not verified.')
-                                : Redirect::route('partner.verification.notice');
-                    }  
-                }
+    public function handle($request, Closure $next, $guard = null)
+    {        
+        if($guard == "partner" && Auth::guard($guard)->check() && auth()->user()->agree_status == 1) {
+            return $next($request);
+        } elseif($guard == 'partner' && Auth::guard($guard)->check()) {
+            if (! Auth::guard($guard)->user() ||
+                 (Auth::guard($guard)->user() instanceof MustVerifyEmail && ! Auth::guard($guard)->user()->hasVerifiedEmail())) {
+                
+                    return $request->expectsJson()
+                        ? abort(403, 'Your email address is not verified.')
+                        : Redirect::route('partner.verification.notice');
             }
+        } else{
+            return redirect('/');
         }
-        return $next($request);
     }
 }

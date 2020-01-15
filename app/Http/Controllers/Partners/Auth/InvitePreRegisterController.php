@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Partners\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use App\Models\PartnerAuth;
+// use App\Models\PartnerAuth;
+use App\Models\Partner;
 use App\Models\CompanyUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -45,7 +46,7 @@ class InvitePreRegisterController extends Controller
 
     protected function create(array $data)
     {
-        return PartnerAuth::create([
+        return Partner::create([
             'email' => $data['email'],
             'company_id' => $data['company_id'],
             'invitation_user_id' => $data['invitation_user_id']

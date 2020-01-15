@@ -129,6 +129,25 @@ main {
     align-items: center;
     justify-content: center;
 
+    a {
+      background-color: #fff;
+      color: #43425d;
+      font-weight: bold;
+      padding: 8px 40px;
+      border: 1px solid #43425D;
+      border-radius: 48px;
+      font-size: 16px;
+      cursor: pointer;
+      outline: none;
+      text-decoration: none;
+      margin-right: 24px;
+    }
+
+    a:hover {
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+
     button[type="button"] {
       background-color: #fff;
       color: #43425d;
