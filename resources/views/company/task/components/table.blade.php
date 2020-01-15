@@ -20,7 +20,7 @@
         @foreach($tasks as $task)
         <div class="content-container__body task_item">
             @if($task->status === config('const.TASK_CREATE'))
-            <a class="content-container__body--link" href="{{ route('company.task.createDraft', ['id' => $task->id]) }}">
+                <a class="content-container__body--link" href="{{ route('company.task.createDraft', ['id' => $task->id]) }}">
             @else
                 <a class="content-container__body--link" href="{{ route('company.task.show', ['id' => $task->id]) }}">
             @endif
