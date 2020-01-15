@@ -365,7 +365,7 @@
 
         <div class="btn-container">
             @if(isset($task->id))
-                <input type="text" name='task_id' value="{{ $task->id }}">
+                <input type="hidden" name='task_id' value="{{ $task->id }}">
             @endif
             <button class="negative-btn" formaction="{{ route('company.task.draft') }}">一時保存</button>
             <button class="positive-btn">プレビュー</button>
