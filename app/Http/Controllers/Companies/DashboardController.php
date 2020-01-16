@@ -19,8 +19,8 @@ class DashboardController extends Controller
                                 ->get();
 
         $tasks = Task::whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
-                                ->where(function($assign){
-                                    $assign->where('company_user_id', Auth::user()->id)
+                                ->where(function($query){
+                                    $query->where('company_user_id', Auth::user()->id)
                                             ->orWhere('superior_id', Auth::user()->id)
                                             ->orWhere('accounting_id', Auth::user()->id);
                                 })
