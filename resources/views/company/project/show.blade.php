@@ -128,57 +128,50 @@
         </div>
 
         @if($projectCompany->companyUser->id === Auth::id())
-            <form onsubmit="return checkStatus()" action="{{ route('company.project.complete', ['id' => $project->id, 'status' => $project->status]) }}" name="form1" method='POST' enctype="multipart/form-data">
-                @csrf
-                @foreach($tasks as $task)
-                    <input type="hidden" name="taskStatus[]" value="{{ $task->status }}">
-                @endforeach
-                <div class="button-container">
-                    @if($project->status == config('const.PROJECT_CREATE'))
-                        <div class="btn01-container">
-                            <button type="submit">完了</button>
-                            <input type="hidden" name="projectStatus" value="{{ $project->status }}">
-                        </div>
+            <div class="actionButton">
+                <form action="{{ route('company.project.complete', ['id' => $project->id, 'status' => $project->status]) }}" name="form1" method='POST' enctype="multipart/form-data">
+                    @csrf
+
+                    @if($finTasks === 0)
+                        <p class="non-action-text">未完了タスクがあります。</p>
+                    @elseif($project->status == config('const.PROJECT_CREATE'))
+
+                        @foreach($tasks as $task)
+                            
+                            <input type="hidden" name="taskStatus[]" value="{{ $task->status }}">
+                        @endforeach
+                            <input type="hidden" class="undone"  name="projectStatus" value="{{ $project->status }}">
+                            <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">完了</button>
+                            <!-- Modal -->
+                            @component('components.confirm-modal')
+                                @slot('modalID')
+                                    confirm
+                                @endslot
+                                @slot('confirmBtnLabel')
+                                    完了
+                                @endslot
+                                プロジェクトを完了します。
+                            @endcomponent
                     @elseif($project->status == config('const.PROJECT_COMPLETE'))
-                        <div class="btn01-container">
-                            <button type="submit">再オープン</button>
-                            <input type="hidden" name="projectStatus" value="{{ $project->status }}">
-                        </div>
+                        <input type="hidden" name="projectStatus" value="{{ $project->status }}">
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">再オープン</button>
+                        <!-- Modal -->
+                        @component('components.confirm-modal')
+                            @slot('modalID')
+                                confirm
+                            @endslot
+                            @slot('confirmBtnLabel')
+                                再オープン
+                            @endslot
+                            プロジェクトを再オープンします。
+                        @endcomponent
                     @endif
-                </div>
-            </form>
+                </form>
+            
+            </div>
         @endif
+
+ 
     </div>
 </div>
-@endsection
-
-@section('asset-js')
-<script>
-    function checkStatus() {
-        const projectStatus = document.getElementsByName('projectStatus');
-        if(projectStatus[0].value == project_create) {
-            const taskStatuses = document.getElementsByName('taskStatus[]');
-            for (i=0; i<taskStatuses.length; i++) {
-                console.log(taskStatuses[i].value)
-                if(taskStatuses[i].value != complete_staff && taskStatuses[i].value != task_canceled){
-                    alert("「全てのタスクを完了またはキャンセルしてから、プロジェクトを完了してください。」")
-                    return false;
-                }
-            };
-            var result = confirm("「プロジェクトを完了してよろしいですか？」")
-            if( result ) {
-            }
-            else {
-                return false;
-            }
-        } else if(projectStatus[0].value == project_complete){
-            var result = confirm("「再オープンしてよろしいですか？」")
-            if( result ) {
-            }
-            else {
-                return false;
-            }
-        }
-    };
-</script>
 @endsection

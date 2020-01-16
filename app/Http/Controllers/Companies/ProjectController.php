@@ -88,8 +88,14 @@ class ProjectController extends Controller
 
         $project = Project::where('company_id', $company_user->company_id)->findOrFail($id);
         $tasks = Task::where('project_id',$project->id)->get();
-        
-        return view('/company/project/show', compact('project','tasks', 'company_user'));
+
+        $completeStaff = $tasks->where("status", config("const.COMPLETE_STAFF"))
+                                ->count();
+        $taskCancel = $tasks->where("status", config("const.TASK_CANCELED"))
+                                ->count();
+        $finTasks = $completeStaff + $taskCancel;
+
+        return view('/company/project/show', compact('project','tasks', 'company_user', 'finTasks'));
     }
 
     public function edit($project_id)
