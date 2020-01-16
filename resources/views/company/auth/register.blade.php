@@ -2,7 +2,6 @@
 
 @section('assets')
 <link href="{{ mix('css/auth/login/index.css') }}" rel="stylesheet">
-
 @endsection
 
 @section('content')
@@ -19,15 +18,15 @@
         </div>
 
         <div class="form_wrapper">
-            <form method="POST" action="{{ route('company.register') }}">
-                @csrf
+            <form method="POST" action="{{ route('company.pwRegister') }}">
+            @csrf
 
                 <div class="input_wrapper">
                     <input class="input_text" type="hidden" name="email" value="{{ $request->email }}">
                     @if ($errors->has('email'))
-                        <div class="invalid-feedback error-msg" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </div>
+                    <div class="invalid-feedback error-msg" role="alert">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </div>
                     @endif
                 </div>
 
@@ -38,9 +37,9 @@
                     </h4>
                     <input class="input_text" type="password" name="password">
                     @if ($errors->has('password'))
-                        <div class="invalid-feedback error-msg" role="alert">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </div>
+                    <div class="invalid-feedback error-msg" role="alert">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </div>
                     @endif
                 </div>
 
@@ -55,9 +54,9 @@
                 <div class="input_wrapper">
                     <input class="input_text" type="hidden" name="company_id" value="{{ $request->company_id }}">
                     @if ($errors->has('company_id'))
-                        <div class="invalid-feedback error-msg" role="alert">
-                            <strong>{{ $errors->first('company_id') }}</strong>
-                        </div>
+                    <div class="invalid-feedback error-msg" role="alert">
+                        <strong>{{ $errors->first('company_id') }}</strong>
+                    </div>
                     @endif
                 </div>
 
@@ -66,33 +65,18 @@
                     <div class="input_wrapper">
                         <input class="input_text" type="hidden" name="invitation_user_id" value="{{ $request->invitation_user_id }}">
                         @if ($errors->has('invitation_user_id'))
-                            <div class="invalid-feedback error-msg" role="alert">
-                                <strong>{{ $errors->first('invitation_user_id') }}</strong>
-                            </div>
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('invitation_user_id') }}</strong>
+                        </div>
                         @endif
                     </div>
                 @endisset
-
-                <!-- <div class="checkbox_wrapper">
-                    <a href="#">ご利用規約</a>
-                    <span>に同意して</span>
-                </div> -->
 
                 <div class="button_wrapper">
                     <button data-impro-button="once" type="button" onclick="submit();" class="text">新規会員登録</button>
                 </div>
             </form>
-
-            <!-- <div class="signup_wrapper">
-                <a href="{{ route('company.login') }}">ログイン</a>
-            </div> -->
-            
         </div>
     </div>
 </main>
-
-<!-- <footer>
-    <span>ご利用規約</span>
-    <span>プライバシーポリシー</span>
-</footer> -->
 @endsection

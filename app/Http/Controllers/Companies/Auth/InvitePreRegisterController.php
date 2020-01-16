@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Companies\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\CompanyUserAuth;
+use App\Models\CompanyUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,7 @@ class InvitePreRegisterController extends Controller
 
     protected function create(array $data)
     {
-        return CompanyUserAuth::create([
+        return CompanyUser::create([
             'email' => $data['email'],
             'company_id' => $data['company_id'],
             'invitation_user_id' => $data['invitation_user_id']

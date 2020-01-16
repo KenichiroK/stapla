@@ -1,13 +1,15 @@
 <?php
+
 namespace App\Models;
 
 use App\Notifications\UserVerifyEmailNotification;
+use App\Notifications\UserVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\CompanyPasswordResetNotification;
 
-class CompanyUser extends Authenticatable
+class CompanyUser extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     public $incrementing = false;
@@ -31,6 +33,11 @@ class CompanyUser extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new CompanyPasswordResetNotification($token));
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new UserVerifyEmail);
     }
 
     // 登録済みかどうかの判定

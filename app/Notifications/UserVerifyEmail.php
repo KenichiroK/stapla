@@ -18,15 +18,32 @@ class UserVerifyEmail extends VerifyEmailNotification
         }
 
         $limit = new Carbon($notifiable->created_at->addHour());
-        return (new MailMessage)
-            ->subject(Lang::getFromJson('[impro] 仮登録完了のお知らせ'))
-            ->view('emails.invite.inviteCompanyUser', ['url' => $this->verificationUrl($notifiable), 'limit' => $limit]);
+
+            if(isset($notifiable->invitation_user_id)){
+                return (new MailMessage)
+                    ->subject(Lang::getFromJson('[impro] 企業担当者へ招待されました'))
+                    ->view('emails.invite.inviteCompanyUser', ['url' => $this->verificationUrl($notifiable), 'limit' => $limit]);
+            }else{
+                return (new MailMessage)
+                    ->subject(Lang::getFromJson('[impro] 仮登録完了のお知らせ'))
+                    ->view('emails.invite.inviteCompanyUser', ['url' => $this->verificationUrl($notifiable), 'limit' => $limit]);
+            }
     }
 
     protected function verificationUrl($notifiable)
     {
-        return URL::temporarySignedRoute(
-            'company.register', Carbon::now()->addMinutes(60), ['email' => $notifiable->email]
-        );
+        if(isset($notifiable->invitation_user_id)){
+            return URL::temporarySignedRoute(
+                'company.register', Carbon::now()->addMinutes(60), [
+                    'email' => $notifiable->email,
+                    'company_id' => $notifiable->company_id,
+                    'invitation_user_id' => $notifiable->invitation_user_id
+                ]
+            );
+        } else{
+            return URL::temporarySignedRoute(
+                'company.register', Carbon::now()->addMinutes(60), ['email' => $notifiable->email]
+            );
+        }
     }
 }

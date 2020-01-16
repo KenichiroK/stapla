@@ -67,7 +67,6 @@ class InitialRegisterController extends Controller
             $partner->invitationUser->notify(new RegisteredPartner($partner));
         }
 
-        // Mail::to($partner->email)->send(new doneRegisteredPartner());
         $partner->notify(new doneRegisteredPartner($partner));
         // HACK:: ログイン操作なしでDashboardへ
         return redirect()->route('partner.dashboard', compact('partner'));
