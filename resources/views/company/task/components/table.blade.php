@@ -19,19 +19,30 @@
 
         @foreach($tasks as $task)
         <div class="content-container__body task_item">
-            <a class="content-container__body--link" href="{{ route('company.task.show', ['id' => $task->id]) }}">
+            <a 
+                class="content-container__body--link"
+                @if(isset($task->company_user_id))
+                    href="{{ route('company.task.show', ['id' => $task->id]) }}"
+                @else
+                    href="{{ route('company.task.createDraft', ['id' => $task->id]) }}"
+                @endif
+            >
                 <p class="content-container__body--task-index">{{ $task->project->name }}</p>
                 <p class="content-container__body--task-index">{{ $task->name }}</p>
                 <p class="content-container__body--task-index">
-                    <img class="profile-img" src="{{ $task->companyUser->picture }}" alt="">
-                    <span>{{ $task->companyUser->name }}</span>
+                    @isset($task->company_user_id)
+                        <img class="profile-img" src="{{ $task->companyUser->picture }}" alt="">
+                        <span>{{ $task->companyUser->name }}</span>
+                    @endisset
                 </p>
                 <p class="content-container__body--task-index">
-                    <img class="profile-img" src="{{ $task->partner->picture }}" alt="">
-                    <span>{{ $task->partner->name }}</span>
+                    @isset($task->partner_id)
+                        <img class="profile-img" src="{{ $task->partner->picture }}" alt="">
+                        <span>{{ $task->partner->name }}</span>
+                    @endisset
                 </p>
                 <p class="content-container__body--task-index">{{ config('const.TASK_STATUS_LIST')[$task->status] }}</p>
-                <p class="content-container__body--task-index">¥{{ number_format($task->price) }}</p>
+                <p class="content-container__body--task-index">¥ {{ number_format($task->price) }}</p>
             </a>
         </div>
         @endforeach

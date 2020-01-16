@@ -38,8 +38,8 @@
                 </p>
                 <p class="content-container__body--short">{{ $project->tasks->count() }}件</p>
                 <p class="content-container__body--short">{{ date('n月j日', strtotime($project->ended_at)) }}</p>
-                <p class="content-container__body--short">¥{{ number_format($project->budget) }}</p>
-                <p class="content-container__body--short">¥{{ number_format($project->price) }}</p>
+                <p class="content-container__body--short">¥ {{ number_format($project->budget) }}</p>
+                <p class="content-container__body--short">¥ {{ number_format($project->price) }}</p>
             </a>
         </div>
         @endforeach
