@@ -73,9 +73,9 @@ class TaskController extends Controller
             $project_id = $request->query('pid');
             $project = Project::where('id', $project_id)->first();
             
-            return view('company/task/create/index', compact('projects', 'project', 'company_users', 'partners', 'company_user', 'task'));
+            return view('company/task/create', compact('projects', 'project', 'company_users', 'partners', 'company_user', 'task'));
         } else {
-            return view('company/task/create/index', compact('projects', 'company_users', 'partners', 'company_user', 'task'));
+            return view('company/task/create', compact('projects', 'company_users', 'partners', 'company_user', 'task'));
         }
     }
 
@@ -91,7 +91,7 @@ class TaskController extends Controller
         // 発注書
         $purchaseOrder = PurchaseOrder::where('task_id', $task->id)->first();
 
-        return view('company/task/create/index', compact('projects', 'company_users', 'partners', 'task', 'purchaseOrder'));
+        return view('company/task/create', compact('projects', 'company_users', 'partners', 'task', 'purchaseOrder'));
     }
     
     // 下書きとして保存
