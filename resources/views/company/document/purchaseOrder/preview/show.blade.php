@@ -208,6 +208,9 @@
             </div>
         </div>
         <!-- 展開できていないパラメータ -->
+        @isset($request->task_id)
+            <input type="hidden" name="task_id" value="{{ $request->task_id }}">
+        @endisset
         <input type="hidden" name="project_id" value="{{ $request->project_id }}">
         <input type="hidden" name="task_company_user_id" value="{{ $request->task_company_user_id }}">
         <input type="hidden" name="superior_id" value="{{ $request->superior_id }}">

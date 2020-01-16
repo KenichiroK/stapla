@@ -227,6 +227,10 @@ class TaskController extends Controller
         $delivery_date         = Carbon::createFromTimestamp(strtotime($request->delivery_date))
                                 ->format('Y-m-d-H-i-s');
         $order_company_user_id = $request->order_company_user_id;
+        if(isset($request->task_id)){
+            $task_id = $request->task_id;
+            return view('company.document.purchaseOrder.preview.show', compact('request', 'order_company_user', 'superior_user', 'ordered_at', 'partner', 'order_name', 'delivery_date', 'order_company_user_id', 'task_id'));
+        }
 
         return view('company.document.purchaseOrder.preview.show', compact('request', 'order_company_user', 'superior_user', 'ordered_at', 'partner', 'order_name', 'delivery_date', 'order_company_user_id'));
     }
@@ -251,7 +255,7 @@ class TaskController extends Controller
         if(isset($request->task_id)){
             // NOTE: タスク・発注書が下書きとしてすでに保存してある場合
             $task = Task::findOrFail($request->task_id);
-            $purchaseOrder = PurchaseOrder::where('task_id', $request->task_id);
+            $purchaseOrder = PurchaseOrder::where('task_id', $request->task_id)->first();
         } else{
             // NOTE: タスク・発注書を新規作成する場合
             $task = new Task;
