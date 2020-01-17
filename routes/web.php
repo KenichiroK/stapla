@@ -138,16 +138,11 @@ Route::group(['prefix' => 'company'], function(){
 	// register_flow
 	// Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerify')->name('company.register.doneVerify');
 	Route::get('/register/personal/{companyUser_id}', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');
-	Route::post('/register/company-and-personal', 'Companies\Registration\PersonalController@companyStore')->name('company.register.company-and-personal.store');
 	Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
-	
 	Route::get('register/terms/{companyUser_id}', 'Companies\Registration\PersonalController@terms')->name('company.register.terms');
 	Route::post('register/terms', 'Companies\Registration\PersonalController@agreeTerms')->name('company.register.terms.store');
-	
-	
-	Route::get('/register/preview', 'Companies\Registration\PreviewController@create')->name('company.register.preview.create');
-	Route::post('/register/company-preview', 'Companies\Registration\PreviewController@companyStore')->name('company.register.company-preview.store');
-	Route::post('/register/preview', 'Companies\Registration\PreviewController@store')->name('company.register.preview.store');
+	// Route::get('/register/preview', 'Companies\Registration\PersonalController@create')->name('company.register.preview.create');
+	Route::post('/register/preview', 'Companies\Registration\PersonalController@register')->name('company.register.preview.register');
 	
 
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {

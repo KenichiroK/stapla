@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Notifications\UserVerifyEmailNotification;
 use App\Notifications\UserVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;

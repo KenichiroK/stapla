@@ -38,93 +38,6 @@ const setPostal = () => {
 	</div>
 </header>
 
-<!-- 最初に登録するユーザー($companyUserにcompany_idなし)か、招待されて登録するユーザー($companyUserにcompany_idあり)かの判定 -->
-<!-- 招待されて登録するユーザー -->
-@if(isset($companyUser->invitation_user_id))
-<main>
-	<div class="main-wrapper">
-		@if(count($errors) > 0)
-		<div class="error-container">
-			<p>入力に問題があります。再入力して下さい。</p>
-		</div>
-		@endif
-
-		<div class="title-container">
-			<h3>個人情報登録</h3>
-		</div>
-
-		<form action="{{ route('company.register.personal.store') }}" method="POST" enctype="multipart/form-data">
-		@csrf
-			<div class="edit-container-personal edit-container">
-				<div class="image-container">
-					<div class="imgbox">
-						<img id="profile_image_preview" src="{{ asset('images/upload4.png') }}" alt="プレビュー画像">
-					</div> 
-					<label for="picture">
-						画像をアップロード
-						<input type="file" id="picture" name="picture" accept="image/png, image/jpeg, image/jpg" onchange="setPreview(this)" style="display: none;">
-					</label>
-				</div>
-				<div class="profile-container">
-					<div class="input-container">
-						<p>
-                            名前
-                            <span class="required-label row-label">( 必須 )</span>
-                        </p>
-						<input type="text" name="name" value="{{ old('name') }}">								
-						@if ($errors->has('name'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('name') }}</strong>
-						</div>
-						@endif
-					</div>
-
-					<div class="input-container">
-						<p>
-                            所属部署
-                            <span class="required-label row-label">( 必須 )</span>
-                        </p>
-						<input type="text" name="department" value="{{ old('department') }}">
-						@if ($errors->has('department'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('department') }}</strong>
-						</div>
-						@endif
-					</div>
-
-					<div class="input-container">
-						<p>
-                            職種
-                            <span class="optional-label row-label">( 任意 )</span>
-                        </p>
-						<input type="text" name="occupation" value="{{ old('occupation') }}">
-					</div>
-
-					<div class="input-container last">
-						<p>
-                            自己紹介
-                            <span class="optional-label row-label">( 任意 )</span>
-                        </p>
-						<textarea type="text" name="self_introduction" cols="30" rows="10">{{ old('self_introduction') }}</textarea>
-						@if ($errors->has('self_introduction'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('self_introduction') }}</strong>
-						</div>
-						@endif
-					</div>
-				</div>
-			</div>
-			
-			<div class="btn-container">
-				<button data-impro-button="once" type="button" onclick="submit();">確認</button>
-			</div>
-		</form>
-	</div>
-</main>
-
-<!-- 最初に登録するユーザー -->
-@else
-
 <main>
 	<div class="main-wrapper">
 		@if(count($errors) > 0)
@@ -137,9 +50,9 @@ const setPostal = () => {
 			<h3>企業情報登録</h3>
 		</div>
 
-		<form action="{{ route('company.register.company-and-personal.store') }}" method="POST" enctype="multipart/form-data">
+		<form action="{{ route('company.register.personal.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
-
+			@if(!isset($companyUser->invitation_user_id))
 			<div class="edit-container-company">
 				<div class="top-container">
 					<div class="input-container linefirst-input">
@@ -228,11 +141,12 @@ const setPostal = () => {
 					</div>
 				</div>
 			</div>
+			@endif
 
 			<div class="edit-container-personal edit-container">
 				<div class="image-container">
 					<div class="imgbox">
-						<img id="profile_image_preview" src="{{ $companyUser->picture, env('AWS_URL').'/common/upload4.png' }}" alt="プレビュー画像">
+						<img id="profile_image_preview" src="{{ isset($companyUser->picture) ? $companyUser->picture : env('AWS_URL').'/common/upload4.png' }}" alt="プレビュー画像">
 					</div> 
 					<label for="picture">
 						画像をアップロード
@@ -284,5 +198,4 @@ const setPostal = () => {
 		</form>
 	</div>
 </main>
-@endif
 @endsection

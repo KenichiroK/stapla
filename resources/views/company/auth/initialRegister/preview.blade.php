@@ -17,11 +17,8 @@
 			<h3>入力内容確認</h3>
 		</div>
 
-		<!-- 招待されて登録するユーザー -->
-		@if(isset($companyUser->invitation_user_id))
-		<form action="{{ route('company.register.preview.store') }}" method="POST" enctype="multipart/form-data">
+		<form action="{{ route('company.register.preview.register') }}" method="POST" enctype="multipart/form-data">
 		@csrf
-			<input type="hidden" name="">
 			<div class="edit-container">
 				<div class="company-container">
 					<div class="profile-container">
@@ -50,55 +47,12 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<input type="hidden" name="companyUser_id" value="{{ $companyUser->id }}">
-			<input type="hidden" name="agree_status" value="{{ $request->agree_status }}">
 
-			<div class="btn-container">
-				<a type="button" href="{{ route('company.register.personal.create', [ 'companyUser_id' => $companyUser->id ]) }}">戻る</a>
-				<button type="submit">登録</button>
-			</div>
-		</form>
-
-		<!-- 最初に登録するユーザー -->
-		@else
-		<form action="{{ route('company.register.company-preview.store') }}" method="POST" enctype="multipart/form-data">
-		@csrf
-			<input type="hidden" name="">
-			<div class="edit-container">
-
-				<div class="company-container">
-					<div class="profile-container">
-						<div class="section-container">
-							<p>名前</p>
-							<input type="hidden" name="name" value="{{ old('name', $companyUser->name) }}">
-							<h4>{{ $companyUser->name }}</h4>
-						</div>
-
-						<div class="section-container">
-							<p>所属部署</p>
-							<input type="hidden" name="department" value="{{ old('department', $companyUser->department) }}">
-							<h4>{{ $companyUser->department }}</h4>
-						</div>
-
-						<div class="section-container">
-							<p>職種</p>
-							<input type="hidden" name="occupation" value="{{ old('occupation', $companyUser->occupation) }}">
-							<h4>{{ $companyUser->occupation }}</h4>
-						</div>
-
-						<div class="section-container">
-							<p>自己紹介</p>
-							<input type="hidden" name="self_introduction" value="{{ old('self_introduction', $companyUser->self_introduction) }}">
-							<h4>{!! nl2br(e($companyUser->self_introduction)) !!}</h4>
-						</div>
-					</div>
-				</div>
-
+				@if(!isset($companyUser->invitation_user_id))
 				<div class="company-container">
 					<div class="section-container">
 						<p>会社名</p>
-						<input type="hidden" name="company_name" value="{{ old('company_name', $companyUser->Company->company_name) }}">
+						<input type="hidden" name="company_name" value="{{ old('company_name', $companyUser->company->company_name) }}">
 						<h4>{{ $companyUser->Company->company_name }}</h4>
 					</div>
 
@@ -132,16 +86,16 @@
 						<h4>{{ $companyUser->Company->tel }}</h4>
 					</div>
 				</div>
+				<input type="hidden" name="is_agree" value="{{ $request->is_agree }}">
+				@endif
 			</div>
 			<input type="hidden" name="companyUser_id" value="{{ $companyUser->id }}">
-			<input type="hidden" name="agree_status" value="{{ $request->agree_status }}">
 
 			<div class="btn-container">
-				<a type="button" href="{{ route('company.register.personal.create', [ 'companyUser_id' => $companyUser->id ]) }}">戻る</a>
+				<a href="{{ route('company.register.personal.create', [ 'companyUser_id' => $companyUser->id ]) }}">入力し直す</a>
 				<button type="submit">登録</button>
 			</div>
 		</form>
-		@endif
 	</div>
 </main>
 @endsection

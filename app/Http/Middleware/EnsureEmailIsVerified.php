@@ -18,7 +18,7 @@ class EnsureEmailIsVerified
      */
     public function handle($request, Closure $next, $guard = null)
     {        
-        if($guard == "company" && Auth::guard($guard)->check() && auth()->user()->agree_status == 1) {
+        if($guard == "company" && Auth::guard($guard)->check() && auth()->user()->is_agree == 1) {
             return $next($request);
         } elseif($guard == 'company' && Auth::guard($guard)->check()) {
             if (! Auth::guard($guard)->user() ||

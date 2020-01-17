@@ -26,7 +26,7 @@ class AddNullablePasswordsToCompanyUsersTable extends Migration
     public function down()
     {
         Schema::table('company_users', function (Blueprint $table) {
-            $table->dropColumn('password');
+            $table->string('password', 64)->nullable(false)->change();
         });
     }
 }
