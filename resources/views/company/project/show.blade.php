@@ -135,23 +135,21 @@
                     @if($finTasks === 0)
                         <p class="non-action-text">未完了タスクがあります。</p>
                     @elseif($project->status == config('const.PROJECT_CREATE'))
-
                         @foreach($tasks as $task)
-                            
                             <input type="hidden" name="taskStatus[]" value="{{ $task->status }}">
                         @endforeach
-                            <input type="hidden" class="undone"  name="projectStatus" value="{{ $project->status }}">
-                            <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">完了</button>
-                            <!-- Modal -->
-                            @component('components.confirm-modal')
-                                @slot('modalID')
-                                    confirm
-                                @endslot
-                                @slot('confirmBtnLabel')
-                                    完了
-                                @endslot
-                                プロジェクトを完了します。
-                            @endcomponent
+                        <input type="hidden" class="undone"  name="projectStatus" value="{{ $project->status }}">
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">完了</button>
+                        <!-- Modal -->
+                        @component('components.confirm-modal')
+                            @slot('modalID')
+                                confirm
+                            @endslot
+                            @slot('confirmBtnLabel')
+                                完了
+                            @endslot
+                            プロジェクトを完了します。
+                        @endcomponent
                     @elseif($project->status == config('const.PROJECT_COMPLETE'))
                         <input type="hidden" name="projectStatus" value="{{ $project->status }}">
                         <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">再オープン</button>
