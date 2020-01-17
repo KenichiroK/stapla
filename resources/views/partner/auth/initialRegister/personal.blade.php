@@ -48,7 +48,7 @@ function setPostal(){
 			<h3>プロフィール設定</h3>
 		</div>
 
-		<form action="{{ route('partner.register.terms') }}" method="POST" enctype="multipart/form-data">
+		<form action="{{ route('partner.register.personal.store') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 			<div class="edit-container top">
 				<div class="image-container">

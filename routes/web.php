@@ -13,7 +13,6 @@
 Route::namespace('Partners')->as('partner.')->group(function() {
 	Auth::routes(['verify' => true]);
 });
-// Auth::routes(['verify' => true]);
 
 Route::get('/',        function () { return view('common_pages/home');    });
 Route::get('/privacy', function () { return view('common_pages/privacy'); });
@@ -34,10 +33,10 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::post('pwRegister', 'Partners\Auth\RegisterController@pwRegister')->name('partner.pwRegister');
 		
 	// register_flow - 初期登録関連
-	Route::get('/register/initialRegistration/{partner_id}', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
-	Route::post('register/terms', 'Partners\InitialRegisterController@terms')->name('partner.register.terms');
-	Route::post('/register/initial/personal', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
-	Route::post('/register/preview/previewShow', 'Partners\InitialRegisterController@previewShow')->name('partner.register.preview.previewShow');
+	Route::get('/register/personal/{partner_id}', 'Partners\InitialRegisterController@createPartner')->name('partner.register.personal.create');
+	Route::post('/register/personal', 'Partners\InitialRegisterController@store')->name('partner.register.personal.store');
+	Route::get('register/terms/{partner_id}', 'Partners\InitialRegisterController@terms')->name('partner.register.terms');
+	Route::post('register/terms', 'Partners\InitialRegisterController@agreeTerms')->name('company.register.terms.store');
 	Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('partner.register.preview.previewStore');
 	
 	// password reset
@@ -49,12 +48,6 @@ Route::group(['prefix' => 'partner'], function(){
 	// invite
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
 
-	// preRegister - 仮登録後に表示させるページ
-	// Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('partner.register.preRegisterd.index');
-
-	// emailverify - Eメール認証
-	// Route::get('email/verify/{id}/{email}/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
-	
 	// Email変更
 	Route::get('setting/profile/email/update', 'Partners\ProfileController@updateEmail')->name('partner.profile.email.updateEmail');
 
@@ -110,11 +103,6 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
 	});
 });
-
-
-// Route::namespace('Companies')->as('company.')->group(function() {
-// 	Auth::routes(['verify' => true]);
-// });
 
 Route::group(['prefix' => 'company'], function(){
 

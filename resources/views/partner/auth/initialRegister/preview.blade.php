@@ -18,7 +18,7 @@
         </div>
 
         <form action="{{ route('partner.register.preview.previewStore') }}" method="POST">
-            @csrf
+        @csrf
             <input type="hidden" name="">
             <div class="edit-container">
 
@@ -73,8 +73,8 @@
                 </div>
             </div>
             <div class="btn-container">
-            <a href="{{ route('partner.register.intialRegistration.createPartner', ['partner_id' => $partner->id ]) }}">入力し直す</a>
-            <button data-impro-button="once" type="button" onclick="submit();">登録</button>
+            <a href="{{ route('partner.register.personal.create', ['partner_id' => $partner->id ]) }}">入力し直す</a>
+            <button data-impro-button="once" type="submit" onclick="submit();">登録</button>
         </div>
         </form> 
     </div>

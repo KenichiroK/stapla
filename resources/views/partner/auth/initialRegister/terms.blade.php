@@ -175,9 +175,9 @@
       </div>
     </div>
 
-    <form action="{{ route('partner.register.preview.previewShow') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('company.register.terms.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-        <input class="agree-terms" type="checkbox" id="check" name="agree_status" value=1 onclick="isCheck('check',this.checked)" disabled> ご利用規約に同意する
+        <input class="agree-terms" type="checkbox" id="check" name="is_agree" value=1 onclick="isCheck('check',this.checked)" disabled> ご利用規約に同意する
         <input type="hidden" name="partner_id" value="{{ $partner->id }}">
 
         <div class="btn-container">
@@ -205,7 +205,6 @@
 @section('asset-js')
 <script>
 var box = document.getElementsByClassName('terms-box-wrapper');
-console.log(box[0].onscroll)
 box[0].onscroll = (event) => {
   if (event.target.clientHeight + event.target.scrollTop === event.target.scrollHeight) {
     document.getElementById('check').disabled = false;

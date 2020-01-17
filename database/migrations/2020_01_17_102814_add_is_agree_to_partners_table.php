@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAgreeStatusToPartnersTable extends Migration
+class AddIsAgreeToPartnersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddAgreeStatusToPartnersTable extends Migration
     public function up()
     {
         Schema::table('partners', function (Blueprint $table) {
-            $table->boolean('agree_status')->after('password')->default(0);
+            $table->boolean('is_agree')->after('password')->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ class AddAgreeStatusToPartnersTable extends Migration
     public function down()
     {
         Schema::table('partners', function (Blueprint $table) {
-            $table->dropColumn('agree_status');
+            $table->dropColumn('is_agree');
         });
     }
 }
