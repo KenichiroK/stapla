@@ -10,10 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::namespace('Partners')->as('partner.')->group(function() {
-// 	Auth::routes(['verify' => true]);
-// });
-// Auth::routes(['verify' => true]);
+Route::namespace('Partners')->as('partner.')->group(function() {
+	Auth::routes(['verify' => true]);
+});
 
 Route::get('/',        function () { return view('common_pages/home');    });
 Route::get('/privacy', function () { return view('common_pages/privacy'); });
@@ -49,12 +48,6 @@ Route::group(['prefix' => 'partner'], function(){
 	// invite
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
 
-	// preRegister - 仮登録後に表示させるページ
-	// Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('partner.register.preRegisterd.index');
-
-	// emailverify - Eメール認証
-	// Route::get('email/verify/{id}/{email}/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
-	
 	// Email変更
 	Route::get('setting/profile/email/update', 'Partners\ProfileController@updateEmail')->name('partner.profile.email.updateEmail');
 
@@ -112,6 +105,11 @@ Route::group(['prefix' => 'partner'], function(){
 });
 
 
+Route::namespace('Companies')->as('company.')->group(function() {
+	Auth::routes(['verify' => true]);
+});
+Auth::routes();
+
 Route::group(['prefix' => 'company'], function(){
 
 	// login
@@ -136,15 +134,12 @@ Route::group(['prefix' => 'company'], function(){
 	Route::post('pwRegister', 'Companies\Auth\RegisterController@pwRegister')->name('company.pwRegister');
 
 	// register_flow
-	// Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerify')->name('company.register.doneVerify');
 	Route::get('/register/personal/{companyUser_id}', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');
 	Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
 	Route::get('register/terms/{companyUser_id}', 'Companies\Registration\PersonalController@terms')->name('company.register.terms');
 	Route::post('register/terms', 'Companies\Registration\PersonalController@agreeTerms')->name('company.register.terms.store');
-	// Route::get('/register/preview', 'Companies\Registration\PersonalController@create')->name('company.register.preview.create');
-	Route::post('/register/preview', 'Companies\Registration\PersonalController@register')->name('company.register.preview.register');
+	Route::post('/register/previewStore', 'Companies\Registration\PersonalController@previewStore')->name('partner.register.preview.previewStore');
 	
-
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
 		
 		// dashboard

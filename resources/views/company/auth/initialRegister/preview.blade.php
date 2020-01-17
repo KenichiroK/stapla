@@ -17,7 +17,7 @@
 			<h3>入力内容確認</h3>
 		</div>
 
-		<form action="{{ route('company.register.preview.register') }}" method="POST" enctype="multipart/form-data">
+		<form action="{{ route('partner.register.preview.previewStore') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 			<div class="edit-container">
 				<div class="company-container">

@@ -81,7 +81,7 @@ class PersonalController extends Controller
         return view('company/auth/initialRegister/preview', compact('companyUser', 'request'));
     }
 
-    public function register(Request $request)
+    public function previewStore(Request $request)
     {
         $companyUser = CompanyUser::findOrFail($request->companyUser_id);
         $companyUser->is_agree = 1;

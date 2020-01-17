@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Companies\Auth;
 
 use App\Http\Controllers\Controller;
-// use App\Models\FirstCompanyUserAuth;
 use App\Models\CompanyUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
