@@ -36,7 +36,7 @@
                     <div class="title-container">
                         <h4>発注書</h4>
                     </div>
-                    <div class="partnerName-container">
+                    <div class="partner-name-container">
                         <h4>{{ $partner->name }} 様</h4>
                     </div>
                     <div class="company-container">
