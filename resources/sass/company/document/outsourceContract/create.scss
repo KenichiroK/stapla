@@ -90,8 +90,10 @@
         height: 626px;
         max-height: 626px;
         margin-bottom: 66px;
-        padding: 10px;
+        padding: 20px 10px;
         overflow-y: scroll;
+        font-size: 10.5px;
+        font-family: "IPAexGothic", sans-serif;
 
         // NOTE: スクロールバーを消す場合は下記プロパティを有効にする
         // -ms-overflow-style: none;
@@ -101,12 +103,56 @@
         //   display: none;
         // }
 
+        &__title {
+          margin-top: 0;
+          margin-bottom: 20px;
+          font-size: 12px;
+          font-weight: bold;
+        }
+
+        &__subtitle {
+          width: 100%;
+          margin-top: 10px;
+          margin-bottom: 5px;
+          font-weight: bold;
+          text-align: left;
+        }
+
         &__bullet {
           list-style: none;
 
           li {
             text-indent: -1.1em;
             padding-left: 1.1em;
+          }
+        }
+
+        &__context {
+          width: 100%;
+          padding-left: 12px;
+        }
+
+        &__end-discription {
+          margin-bottom: 30px;
+        }
+
+        &__date {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+
+        &__contractor-wrapper {
+          // HACK: 右寄せの指定方法としてはスマートでなさそう
+          width: 100%;
+          padding-left: 200px;
+
+          .contractor {
+            display: flex;
+            margin-bottom: 30px;
+
+            &__type {
+              margin-right: 15px;
+            }
           }
         }
 
