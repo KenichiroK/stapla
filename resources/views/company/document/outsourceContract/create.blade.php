@@ -32,12 +32,20 @@
 			</div>
 			<div class="field">
 				<label class="field__label">契約締結日<span class="field__label--require">（必須）</span></label>
-				{{-- TODO: カレンダーピッカーの導入 --}}
 				<i id="calender-icon" class="fas fa-calendar-alt calender-icon"></i>
 				<input id="contract-date-input" name="contract_date" type="text" value="" class="field__input field__input--icon form-control">
 			</div>
+			{{-- TODO: 裁判所の登録 --}}
 		</div>
-		<div class="contract-wrapper"></div>
+		<div class="contract-wrapper">
+			<div class="contract">
+				@include('company.document.outsourceContract.components.contract')
+			</div>
+
+			<button class="contract-wrapper__btn" data-impro-button="once" type="button" onclick="submit();">プレビューを確認する</button>
+		</div>
+
+		{{-- TODO: 同じ内容をhiddenで用意しておき、jsで生成するときはそっちを使う --}}
 	</form>
 </div>
 @endsection

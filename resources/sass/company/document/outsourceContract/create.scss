@@ -77,8 +77,61 @@
     }
 
     .contract-wrapper {
+      position: relative;
       width: 568px;
       height: 100%;
+      padding-left: 40px;
+
+      .contract {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 481px;
+        height: 626px;
+        max-height: 626px;
+        margin-bottom: 66px;
+        padding: 10px;
+        overflow-y: scroll;
+
+        // NOTE: スクロールバーを消す場合は下記プロパティを有効にする
+        // -ms-overflow-style: none;
+        // scrollbar-width: none;
+
+        // &::-webkit-scrollbar {
+        //   display: none;
+        // }
+
+        &__bullet {
+          list-style: none;
+
+          li {
+            text-indent: -1.1em;
+            padding-left: 1.1em;
+          }
+        }
+
+        // TODO: PDFでA4サイズにするためにmm指定 pdf用のレイアウトを作るときに使う
+        // width: 210mm;
+        // height: 296mm;
+        // padding: 10mm;
+      }
+
+      // HACK: btnのcssも共通化したい
+      &__btn {
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100px;
+        background-color: colors(primary);
+        color: colors(white1);
+        font-weight: bold;
+        padding: 8px 30px;
+        font-size: 16px;
+        border: solid 2px colors(primary);
+        cursor: pointer;
+      }
     }
   }
 }
