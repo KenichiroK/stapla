@@ -41,7 +41,8 @@
 					<div class="section-container">
 						<p>
 							<span class="profile-subject">郵便番号　　　</span>
-							<span>{{ $companyUser->Company->zip_code }}</span>
+							<span>{{ mb_substr($companyUser->Company->zip_code, 0, 3) }}-{{ mb_substr($companyUser->Company->zip_code, 3) }}</span>
+							
 						</p>
 						<input type="hidden" name="zip_code" value="{{ $companyUser->Company->zip_code }}">
 					</div>
