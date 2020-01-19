@@ -9,6 +9,7 @@ use App\Models\CompanyUser;
 use App\Models\Company;
 use App\Notifications\RegisteredCompanyUser;
 use App\Notifications\doneRegisteredCompanyUser;
+use Carbon\Carbon;
 
 class PersonalController extends Controller
 {
@@ -84,6 +85,7 @@ class PersonalController extends Controller
     public function previewStore(Request $request)
     {
         $companyUser = CompanyUser::findOrFail($request->companyUser_id);
+        $companyUser->email_verified_at = Carbon::now();
         $companyUser->is_agree = 1;
         $companyUser->save();
 
