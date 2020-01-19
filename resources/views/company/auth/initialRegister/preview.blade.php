@@ -23,59 +23,46 @@
 			<div class="edit-container">
 				<div class="company-container">
 					<div class="section-container">
-						<p>
-							<span class="profile-subject">企業名　　　　</span>
-							<span>{{ $companyUser->Company->company_name }}</span>
-						</p>
+						<p class="profile-subject">企業名</p>
+						<p>{{ $companyUser->Company->company_name }}</p>
 						<input type="hidden" name="company_name" value="{{ $companyUser->company->company_name }}">
 					</div>
 
 					<div class="section-container">
-						<p>
-							<span class="profile-subject">代表者名　　　</span>
-							<span>{{ $companyUser->Company->representive_name }}</span>
-						</p>
+						<p class="profile-subject">代表者名</p>
+						<p>{{ $companyUser->Company->representive_name }}</p>
 						<input type="hidden" name="representive_name" value="{{ $companyUser->Company->representive_name }}">
 					</div>
 
 					<div class="section-container">
-						<p>
-							<span class="profile-subject">郵便番号　　　</span>
-							<span>{{ mb_substr($companyUser->Company->zip_code, 0, 3) }}-{{ mb_substr($companyUser->Company->zip_code, 3) }}</span>
-							
-						</p>
+						<p class="profile-subject">郵便番号</p>
+						<p>{{ mb_substr($companyUser->Company->zip_code, 0, 3) }}-{{ mb_substr($companyUser->Company->zip_code, 3) }}</p>
 						<input type="hidden" name="zip_code" value="{{ $companyUser->Company->zip_code }}">
 					</div>
 
 					<div class="section-container">
-						<p>
-							<span class="profile-subject">都道府県　　　</span>
-							<span>{{ $companyUser->Company->address_prefecture }}</span>
-						</p>
+						<p class="profile-subject">都道府県</p>
+						<p>{{ $companyUser->Company->address_prefecture }}</p>
 						<input type="hidden" name="address_prefecture" value="{{ $companyUser->Company->address_prefecture }}">
 					</div>
 
 					<div class="section-container">
-						<p>
-							<span class="profile-subject">市区町村・番地</span>
-							<span>{{ $companyUser->Company->address_city }}</span>
-						</p>
+						<p class="profile-subject">市区町村・番地</p>
+						<p>{{ $companyUser->Company->address_city }}</p>
 						<input type="hidden" name="address_city" value="{{ $companyUser->Company->address_city }}">
 					</div>
 
 					<div class="section-container">
 						<p>
-							<span class="profile-subject">建物名・部屋番号</span>
-							<span>{{ $companyUser->Company->address_building }}</span>
+							<p class="profile-subject">建物名・部屋番号</p>
+							<p>{{ $companyUser->Company->address_building }}</p>
 						</p>
 						<input type="hidden" name="address_building" value="{{ $companyUser->Company->address_building }}">
 					</div>
 
 					<div class="section-container">
-						<p>
-							<span class="profile-subject">電話番号　　　</span>
-							<span>{{ $companyUser->Company->tel }}</span>
-						</p>
+						<p class="profile-subject">電話番号</p>
+						<p>{{ $companyUser->Company->tel }}</p>
 						<input type="hidden" name="tel" value="{{ $companyUser->Company->tel }}">
 					</div>
 				</div>
@@ -92,34 +79,26 @@
 				<div class="personal-container">
 					<div class="profile-container">
 						<div class="section-container">
-							<p>
-								<span class="profile-subject">名前　　</span>
-								<span>{{ $companyUser->name }}</span>
-							</p>
+							<p class="profile-subject">名前</p>
+							<p>{{ $companyUser->name }}</p>
 							<input type="hidden" name="name" value="{{ $companyUser->name }}">
 						</div>
 
 						<div class="section-container">
-							<p>
-								<span class="profile-subject">所属部署</span>
-								<span>{{ $companyUser->department }}</span>
-							</p>
+							<p class="profile-subject">所属部署</p>
+							<p>{{ $companyUser->department }}</p>
 							<input type="hidden" name="department" value="{{ $companyUser->department }}">
 						</div>
 
 						<div class="section-container">
-							<p>
-								<span class="profile-subject">職種　　</span>
-								<span>{{ $companyUser->occupation }}</span>
-							</p>
+							<p class="profile-subject">職種</p>
+							<p>{{ $companyUser->occupation }}</p>
 							<input type="hidden" name="occupation" value="{{ $companyUser->occupation }}">
 						</div>
 
 						<div class="section-container">
-							<p>
-								<span class="profile-subject">自己紹介</span>
-								<span>{{ $companyUser->occupation }}</span>
-							</p>
+							<p class="profile-subject">自己紹介</p>
+							<p>{{ $companyUser->occupation }}</p>
 							<input type="hidden" name="self_introduction" value="{{ $companyUser->self_introduction }}">
 						</div>
 					</div>

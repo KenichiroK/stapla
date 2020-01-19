@@ -1,3 +1,5 @@
+@import "../../mixin/font/primary";
+
 body {
   font-family: 'Source Sans Pro';
   position: relative;
@@ -46,7 +48,7 @@ main {
         color: #43425d;
       }
     }
-    
+
     .edit-container {
       width: 100%;
       display: flex;
@@ -58,18 +60,15 @@ main {
       border-radius: 2px;
 
       .company-container {
-        width: 100%;
         .section-container {
           display: flex;
-          font-size: 16px;
+          padding: 26px;
+          color: #4d4f5c;
           border-bottom: 1px solid #f0f0f7;
-          p {
-            margin: 26px;
-            color: #4d4f5c;
-            .profile-subject {
-              margin-right: 60px;
-              font-weight: bold;
-            }
+          @include primary-text();
+          .profile-subject {
+            width: 180px;
+            font-weight: bold;
           }
         }
       }
@@ -100,15 +99,13 @@ main {
           width: 100%;
           .section-container {
             display: flex;
-            font-size: 16px;
+            padding: 26px;
+            color: #4d4f5c;
             border-bottom: 1px solid #f0f0f7;
-            p {
-              margin: 26px;
-              color: #4d4f5c;
-              .profile-subject {
-                margin-right: 60px;
-                font-weight: bold;
-              }
+            @include primary-text();
+            .profile-subject {
+              width: 180px;
+              font-weight: bold;
             }
           }
         }
