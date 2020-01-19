@@ -12,23 +12,23 @@
 		<div class="field-wrapper">
 			<div class="field">
 				<label class="field__label">企業名<span class="field__label--require">（必須）</span></label>
-				<input name="company_name" type="text" value="" class="field__input form-control">
+				<input id="company_name" name="company_name" type="text" value="" class="field__input form-control">
 			</div>
 			<div class="field">
 				<label class="field__label">企業住所<span class="field__label--require">（必須）</span></label>
-				<input name="company_address" type="text" value="" class="field__input form-control">
+				<input id="company_address" name="company_address" type="text" value="" class="field__input form-control">
 			</div>
 			<div class="field">
 				<label class="field__label">企業代表者名<span class="field__label--require">（必須）</span></label>
-				<input name="representive_name" type="text" value="" class="field__input form-control">
+				<input id="representive_name" name="representive_name" type="text" value="" class="field__input form-control">
 			</div>
 			<div class="field">
 				<label class="field__label">パートナー名<span class="field__label--require">（必須）</span></label>
-				<input name="partner_name" type="text" value="" class="field__input form-control">
+				<input id="partner_name" name="partner_name" type="text" value="" class="field__input form-control">
 			</div>
 			<div class="field">
 				<label class="field__label">パートナー住所<span class="field__label--require">（必須）</span></label>
-				<input name="partner_address" type="text" value="" class="field__input form-control">
+				<input id="partner_address" name="partner_address" type="text" value="" class="field__input form-control">
 			</div>
 			<div class="field">
 				<label class="field__label">契約締結日<span class="field__label--require">（必須）</span></label>
