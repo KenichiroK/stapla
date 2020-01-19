@@ -12,13 +12,12 @@ class VerificationController extends Controller
 {
     use VerifiesEmails;
 
-    protected $redirectTo = '/company/auth/firstLogin';
+    protected $redirectTo = '/company/login';
 
     public function __construct()
     {
         $this->middleware('auth:company');
         $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
@@ -44,6 +43,17 @@ class VerificationController extends Controller
             event(new Verified($request->user()));
         }
 
-        return redirect($this->redirectPath())->with('verified', true);
+        return redirect($this->redirectPath())->with('company.verified', true);
+    }
+
+    public function resend(Request $request)
+    {
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect($this->redirectPath());
+        }
+         
+        $request->user()->sendEmailVerificationNotification();
+         
+        return back()->with('company.resent', true);
     }
 }
