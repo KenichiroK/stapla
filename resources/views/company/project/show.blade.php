@@ -132,7 +132,7 @@
                 <form action="{{ route('company.project.complete', ['id' => $project->id, 'status' => $project->status]) }}" name="form1" method='POST' enctype="multipart/form-data">
                     @csrf
 
-                    @if($finTasks === 0)
+                    @if($finTaskCount === 0)
                         <p class="non-action-text">未完了タスクがあります。</p>
                     @elseif($project->status == config('const.PROJECT_CREATE'))
                         @foreach($tasks as $task)
