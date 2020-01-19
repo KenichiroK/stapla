@@ -46,7 +46,7 @@
                     @endisset
                 </p>
                 <p class="content-container__body--middle">{{ config('const.TASK_STATUS_LIST')[$task->status] }}</p>
-                <p class="content-container__body--middle">¥{{ number_format($task->price) }}</p>
+                <p class="content-container__body--middle">¥ {{ number_format($task->price) }}</p>
             </a>
         </div>
         @endforeach
