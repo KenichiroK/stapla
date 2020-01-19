@@ -2,7 +2,7 @@
 
 <h4 class="contract__title">業務委託基本契約書</h4>
 <p class="contract__description">
-    委託者<span id="c_company_name">【企業を入力してください】</span>（以下「甲」という。）と<span id="c_partner_name">受託者[Y] 【OMT：パートナーが記入されるようにして下さい。】</span>（以下「乙」という。）とは、甲が乙に委託する業務に関し、株式会社Humoが運営する業務委託に関するマネジメントプラットフォーム「impro」（以下「impro」という。）のシステム上で、以下のとおり業務委託基本契約書（以下「本契約」という。）を締結する。
+    <span id="c_company_name">【企業名を入力してください】</span>（以下「甲」という。）と<span id="c_partner_name">【パートナー名を入力してください】</span>（以下「乙」という。）とは、甲が乙に委託する業務に関し、株式会社Humoが運営する業務委託に関するマネジメントプラットフォーム「impro」（以下「impro」という。）のシステム上で、以下のとおり業務委託基本契約書（以下「本契約」という。）を締結する。
 </p>
 
 <p class="contract__subtitle">第1条（業務委託）</p>
@@ -131,7 +131,7 @@
 
 <p class="contract__end-discription">以上、本契約締結の証として本電磁的記録を作成し、甲乙が電磁的方法によりこれに合意する。なお、本契約については、本電磁的記録を原本とし、これを印刷した文書は写しとする。</p>
 
-<p class="contract__date">●年●月●日【OMT：両当事者の合意日が記入されるようにして下さい。】</p>
+<p id="c_contract_date_input" class="contract__date">【契約締結日を入力してください】</p>
 
 <div class="contract__contractor-wrapper">
     <div class="contractor">
@@ -139,9 +139,9 @@
             <p>（甲）</p>
         </div>
         <div class="contractor__info">
-            <p>xの住所</p>
-            <p>xの商号</p>
-            <p>xの代表者名</p>
+            <p id="c_company_address">【企業住所を入力してください】</p>
+            <p id="c_company_name_2">【企業名を入力してください】</p>
+            <p id="c_representive_name">【企業代表者名を入力してください】</p>
         </div>
     </div>
     <div class="contractor">
@@ -149,16 +149,11 @@
             <p>（乙）</p>
         </div>
         <div class="contractor__info">
-            <p>yの住所</p>
-            <p>yの氏名</p>
+            <p id="c_partner_name_2">【パートナー名を入力してください】</p>
+            <p id="c_partner_address">【パートナ住所を入力してください】</p>
         </div>
     </div>
 </div>
-
-
-
-
-
 
 
 

@@ -110,6 +110,11 @@
           font-weight: bold;
         }
 
+        &__description {
+          max-width: 100%;
+          overflow-wrap: break-word;
+        }
+
         &__subtitle {
           width: 100%;
           margin-top: 10px;
@@ -138,7 +143,9 @@
 
         &__date {
           width: 100%;
+          max-width: 100%;
           margin-bottom: 30px;
+          overflow-wrap: break-word;
         }
 
         &__contractor-wrapper {
@@ -152,6 +159,12 @@
 
             &__type {
               margin-right: 15px;
+            }
+
+            &__info {
+              // HACK: pdf時に調整いりそう
+              max-width: 180px;
+              overflow-wrap: break-word;
             }
           }
         }

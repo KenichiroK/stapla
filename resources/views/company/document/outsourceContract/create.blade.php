@@ -32,8 +32,8 @@
 			</div>
 			<div class="field">
 				<label class="field__label">契約締結日<span class="field__label--require">（必須）</span></label>
-				<i id="calender-icon" class="fas fa-calendar-alt calender-icon"></i>
-				<input id="contract-date-input" name="contract_date" type="text" value="" class="field__input field__input--icon form-control">
+				<i id="calender_icon" class="fas fa-calendar-alt calender-icon"></i>
+				<input id="contract_date_input" name="contract_date" type="text" value="" class="field__input field__input--icon form-control">
 			</div>
 			{{-- TODO: 裁判所の登録 --}}
 		</div>
