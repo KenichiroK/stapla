@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Companies;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Companies\TaskDraftRequest;
-use App\Http\Requests\Companies\TaskUpdateDraftRequest;
 use App\Http\Requests\Companies\TaskPreviewRequest;
+use App\Http\Requests\Companies\TaskUpdateDraftRequest;
 use App\Models\CompanyUser;
 use App\Models\Deliver;
 use App\Models\Invoice;
@@ -32,7 +32,6 @@ class TaskController extends Controller
         foreach (config('const.TASK_STATUS_ARR') as $key => $TASK_STATUS) {
             $status_arr[$key] = $tasks->where('status', config('const')[$TASK_STATUS])->count();
         }
-
         $shown_task_status = null;
 
         return view('company/task/index', compact('tasks', 'status_arr', 'shown_task_status'));
@@ -71,10 +70,9 @@ class TaskController extends Controller
 
         if($request->query('pid')){
             $project_id = $request->query('pid');
-            $project = Project::where('id', $project_id)->first();
-            
-            return view('company/task/create', compact('projects', 'project', 'company_users', 'partners', 'company_user', 'task'));
-        } else {
+            $quoted_project = Project::where('id', $project_id)->first();
+            return view('company/task/create', compact('projects', 'quoted_project', 'company_users', 'partners', 'company_user', 'task'));
+        } else{
             return view('company/task/create', compact('projects', 'company_users', 'partners', 'company_user', 'task'));
         }
     }
@@ -93,7 +91,7 @@ class TaskController extends Controller
 
         return view('company/task/create', compact('projects', 'company_users', 'partners', 'task', 'purchaseOrder'));
     }
-    
+
     // 下書きとして保存
     public function draft(TaskDraftRequest $request)
     {
@@ -101,7 +99,7 @@ class TaskController extends Controller
         if(isset($request->task_id)){
             // NOTE: タスク・発注書が下書きとしてすでに保存してある場合
             $task = Task::findOrFail($request->task_id);
-            $purchaseOrder = PurchaseOrder::where('task_id', $task->id)->first();
+            $purchaseOrder = PurchaseOrder::where('task_id', $task->id)->firstOrFail();
         } else{
             // NOTE: タスク・発注書を新規作成する場合
             $task = new Task;
@@ -119,41 +117,25 @@ class TaskController extends Controller
         $task->purchaseorder     = false;
         $task->invoice           = false;
         $task->tax               = config('const.FREE_TAX');
-        $task->cases             = 0;
-        $task->fee_format        = "固定";
         $task->status_updated_at = Carbon::now();
-        // nullable()の可能性がある項目
-        if($request->task_company_user_id){
-            $task->company_user_id = $request->task_company_user_id;
-        }
-        if($request->superior_id){
-            $task->superior_id = $request->superior_id;
-        }
-        if($request->accounting_id){
-            $task->accounting_id = $request->accounting_id;
-        }
-        if($request->projet_id){
-            $task->partner_id = $request->partner_id;
-        }
-        if($request->content){
-            $task->content = $request->content;
-        }
-        if($request->partner_id){
-            $task->partner_id = $request->partner_id;
-        }
-        if($request->order_price){
-            $task->price = $request->order_price;
-        }
-        if($request->delivery_date){
-            $task->delivery_date = Carbon::createFromTimestamp(strtotime($request->delivery_date))
+        $task->delivery_date     = Carbon::createFromTimestamp(strtotime($request->delivery_date))
                                     ->format('Y-m-d-H-i-s');
-        }
+        // nullable()の可能性がある項目
+        $task->company_user_id = $request->task_company_user_id ?? null;
+        $task->superior_id     = $request->superior_id ?? null;
+        $task->accounting_id   = $request->accounting_id ?? null;
+        $task->partner_id      = $request->partner_id ?? null;
+        $task->content         = $request->content ?? null;
+        $task->partner_id      = $request->partner_id ?? null;
+        $task->price           = $request->order_price ?? null;
+        $task->delivery_date   = Carbon::createFromTimestamp(strtotime($request->delivery_date))
+                                    ->format('Y-m-d-H-i-s') ?? null;
         $task->save();
 
         // 発注書下書き
         $purchaseOrder->company_id         = $auth->company_id;
         $purchaseOrder->task_id            = $task->id;
-        $purchaseOrder->status             = 0;
+        $purchaseOrder->status             = config('const.ORDER_DRAFT');
         $purchaseOrder->ordered_at         = $request->order_at;
         $purchaseOrder->company_name       = $auth->company->company_name;
         $purchaseOrder->company_tel        = $auth->company->tel;
@@ -177,7 +159,6 @@ class TaskController extends Controller
             $purchaseOrder->companyUser_name  = CompanyUser::findOrFail($request->task_company_user_id)->name;
             $purchaseOrder->billing_to_text   = $request->billing_to_text;
         }
-        $task = Task::findOrFail($task->id);
         if(isset($request->order_name)){
             $purchaseOrder->task_name= $request->order_name;
         } else{
@@ -191,7 +172,6 @@ class TaskController extends Controller
         return redirect()->route('company.task.createDraft' ,['task_id' => $task->id])
                                 ->withInput($request->all())
                                 ->with('completed', '「'.$task->name.'」を下書きとして保存しました。');
-        
     }
 
     // タスクプレビュー
@@ -206,9 +186,8 @@ class TaskController extends Controller
         $company_user = CompanyUser::findOrFail($request->task_company_user_id);
         $superior_user = CompanyUser::findOrFail($request->superior_id);
         $accounting_user = CompanyUser::findOrFail($request->accounting_id);
-
         $partner = Partner::findORFail($request->partner_id);
-        
+
         if(isset($request->task_id)){
             return view('company.task.preview.show', compact('request', 'company_user', 'project', 'superior_user', 'accounting_user', 'partner', 'task', 'task_status'));
         } else{
@@ -231,7 +210,6 @@ class TaskController extends Controller
             $task_id = $request->task_id;
             return view('company.document.purchaseOrder.preview.show', compact('request', 'order_company_user', 'superior_user', 'ordered_at', 'partner', 'order_name', 'delivery_date', 'order_company_user_id', 'task_id'));
         }
-
         return view('company.document.purchaseOrder.preview.show', compact('request', 'order_company_user', 'superior_user', 'ordered_at', 'partner', 'order_name', 'delivery_date', 'order_company_user_id'));
     }
 
@@ -255,7 +233,7 @@ class TaskController extends Controller
         if(isset($request->task_id)){
             // NOTE: タスク・発注書が下書きとしてすでに保存してある場合
             $task = Task::findOrFail($request->task_id);
-            $purchaseOrder = PurchaseOrder::where('task_id', $request->task_id)->first();
+            $purchaseOrder = PurchaseOrder::where('task_id', $request->task_id)->firstOrFail();
         } else{
             // NOTE: タスク・発注書を新規作成する場合
             $task = new Task;
@@ -286,7 +264,7 @@ class TaskController extends Controller
         $purchaseOrder->company_id           = $auth->company_id;
         $purchaseOrder->partner_id           = $request->partner_id;
         $purchaseOrder->task_id              = $task->id;
-        $purchaseOrder->status               = 0;
+        $purchaseOrder->status               = config('const.ORDER_CREATED');
         $purchaseOrder->ordered_at           = $request->order_at;
         $purchaseOrder->company_name         = $auth->company->company_name;
         $purchaseOrder->company_tel          = $auth->company->tel;
@@ -331,7 +309,7 @@ class TaskController extends Controller
         if($task->deliver){
             $deliver = Deliver::where('task_id', $task->id)->first();
             $deliver_items = $deliver->deliverItems;
-        }        
+        }
 
         $company_user_ids = array();
         if ($task->companyUser) {

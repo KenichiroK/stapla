@@ -9,7 +9,6 @@ class AddNullableToPurchaseOrdersTable extends Migration
     public function up()
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
-            // 外部キーを無効化
             Schema::disableForeignKeyConstraints();
 
             $table->string('partner_id')->nullable()->change();
@@ -24,14 +23,13 @@ class AddNullableToPurchaseOrdersTable extends Migration
     public function down()
     {
         Schema::table('purchase_orders', function (Blueprint $table) {
-            // 外部キーを有効化
             Schema::enableForeignKeyConstraints();
             
-            $table->uuid('partner_id')->change();
-            $table->uuid('companyUser_id')->change();
-            $table->string('companyUser_name')->change();
-            $table->string('partner_name')->change();
-            $table->integer('task_price')->change();
+            $table->uuid('partner_id')->nullable(false)->change();
+            $table->uuid('companyUser_id')->nullable(false)->change();
+            $table->string('companyUser_name')->nullable(false)->change();
+            $table->string('partner_name')->nullable(false)->change();
+            $table->integer('task_price')->nullable(false)->change();
         });
     }
 }
