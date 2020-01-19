@@ -9,4 +9,12 @@
   @import "../../module/table/todo";
   @import "../../module/table/project";
   @import "../../module/table/task";
+
+  .status-container {
+    margin: 0;
+  }
+  .navbar-container {
+    background-color: #f5f6fa;
+    margin-bottom: 0px;
+  }
 }
