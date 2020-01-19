@@ -8,6 +8,7 @@ use App\Http\Requests\Partners\PartnerRequest;
 use App\Models\Partner;
 use App\Notifications\RegisteredPartner;
 use App\Notifications\doneRegisteredPartner;
+use Carbon\Carbon;
 
 class InitialRegisterController extends Controller
 {
@@ -61,6 +62,7 @@ class InitialRegisterController extends Controller
     public function previewStore(Request $request)
     {
         $partner = Partner::findOrFail($request->partner_id);
+        $partner->email_verified_at = Carbon::now();
         $partner->is_agree = 1;
         $partner->save();
 

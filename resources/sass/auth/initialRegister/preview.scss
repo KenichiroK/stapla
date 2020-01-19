@@ -1,3 +1,5 @@
+@import "../../mixin/font/primary";
+
 body {
   font-family: 'Source Sans Pro';
   position: relative;
@@ -39,10 +41,9 @@ main {
 
     .title-container {
       margin-bottom: 40px;
-
       h3 {
         margin: 0;
-        font-size: 20px;
+        font-size: 28px;
         font-weight: bold;
         color: #43425d;
       }
@@ -50,10 +51,43 @@ main {
 
     .edit-container {
       width: 100%;
+      display: flex;
+      justify-content: flex-start;
       background-color: #fff;
       padding: 36px;
       margin: 0 auto 40px;
       box-sizing: border-box;
+      border-radius: 2px;
+
+      .company-container {
+        .section-container {
+          display: flex;
+          padding: 26px;
+          color: #4d4f5c;
+          border-bottom: 1px solid #f0f0f7;
+          @include primary-text();
+          .profile-subject {
+            width: 200px;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .image-container {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .imgbox{
+          width: 102px;
+          img {
+            width: 102px;
+            height: 102px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+          }
+        }
+      }
 
       .personal-container {
         width: 100%;
@@ -61,61 +95,18 @@ main {
         justify-content: space-between;
         margin-bottom: 36px;
   
-        .image-container {
-          width: 30%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-  
-          img {
-            border-radius: 50%;
-            margin-bottom: 12px;
-          }
-        }
-  
         .profile-container {
-          width: 65%;
-  
-          .section-container {
-            margin-bottom: 36px;
-  
-            p {
-              font-size: 16px;
-              margin-bottom: 8px;
-              font-weight: bold;
-              color: #43425d;
-            }
-  
-            h4 {
-              font-size: 20px;
-              margin: 0;
-              font-weight: bold;
-              color: #43425D;
-            }
-          }
-        }
-      }
-
-      .company-container {
-        width: 100%;
-
-        .section-container {
           width: 100%;
-          margin-left: calc(15% - 70px);
-          margin-bottom: 36px;
-
-          p {
-            font-size: 16px;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #43425d;
-          }
-
-          h4 {
-            font-size: 20px;
-            margin: 0;
-            font-weight: bold;
-            color: #43425D;
+          .section-container {
+            display: flex;
+            padding: 26px;
+            color: #4d4f5c;
+            border-bottom: 1px solid #f0f0f7;
+            @include primary-text();
+            .profile-subject {
+              width: 180px;
+              font-weight: bold;
+            }
           }
         }
       }
