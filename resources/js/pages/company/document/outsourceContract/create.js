@@ -7,13 +7,25 @@ $(function() {
   $("#contract_date_input").datetimepicker({
     timepicker: false,
     format: "Y-m-d",
-  });
-  $("#calender_icon").on("click", function() {
-    $("#contract_date_input").focus();
+    onChangeDateTime: function(dp, $input) {
+      const targetElement = document.getElementById("c_contract_date_input");
+      if ($input.val() && targetElement) {
+        const dateString = new Date($input.val()).toLocaleDateString("ja-JP-u-ca-japanese", {
+          era: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+
+        targetElement.textContent = dateString;
+      } else {
+        targetElement.textContent = "【契約締結日を入力してください】";
+      }
+    },
   });
 
-  $("#contract_date_input").on("onselect", function() {
-    console.log("testing");
+  $("#calender_icon").on("click", function() {
+    $("#contract_date_input").focus();
   });
 });
 
@@ -22,7 +34,7 @@ document.getElementById("company_address").addEventListener("input", updateText)
 document.getElementById("representive_name").addEventListener("input", updateText);
 document.getElementById("partner_name").addEventListener("input", updateText);
 document.getElementById("partner_address").addEventListener("input", updateText);
-document.getElementById("contract_date_input").addEventListener("input", updateDate);
+// document.getElementById("contract_date_input").addEventListener("input", updateDate);
 
 function updateText(e) {
   const targetElement = document.getElementById(`c_${e.target.id}`);
@@ -64,21 +76,4 @@ function updateText(e) {
     default:
       break;
   }
-}
-
-function updateDate(e) {
-  const targetElement = document.getElementById(`c_${e.target.id}`);
-  if (e.target.value && targetElement) {
-    const dateString = new Date(e.target.value).toLocaleDateString("ja-JP-u-ca-japanese", {
-      era: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-
-    targetElement.textContent = dateString;
-    return;
-  }
-
-  targetElement.textContent = "【契約締結日を入力してください】";
 }
