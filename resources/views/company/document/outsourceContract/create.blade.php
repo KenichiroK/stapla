@@ -35,7 +35,15 @@
 				<i id="calender_icon" class="fas fa-calendar-alt calender-icon"></i>
 				<input id="contract_date_input" name="contract_date" type="text" value="" class="field__input field__input--icon form-control">
 			</div>
-			{{-- TODO: 裁判所の登録 --}}
+			<div class="control">
+				<label class="field__label">裁判所<span class="field__label--require">（必須）</span></label>
+				<div class="select is">
+					<select id="court" name="court" class="form-control">
+						<option disabled selected></option>
+						@include('company.document.outsourceContract.components.court')
+					</select>
+				</div>
+			</div>
 		</div>
 		<div class="contract-wrapper">
 			<div class="contract">

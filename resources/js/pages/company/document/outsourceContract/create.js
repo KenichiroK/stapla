@@ -1,5 +1,3 @@
-// HACK: resources/js/company/task/toggle-calendar.jsと共通化
-
 import "jquery-datetimepicker/build/jquery.datetimepicker.full";
 import "jquery-datetimepicker/jquery";
 
@@ -34,11 +32,10 @@ document.getElementById("company_address").addEventListener("input", updateText)
 document.getElementById("representive_name").addEventListener("input", updateText);
 document.getElementById("partner_name").addEventListener("input", updateText);
 document.getElementById("partner_address").addEventListener("input", updateText);
-// document.getElementById("contract_date_input").addEventListener("input", updateDate);
+document.getElementById("court").addEventListener("change", updateSelect);
 
 function updateText(e) {
   const targetElement = document.getElementById(`c_${e.target.id}`);
-
   // HACK: いけてない気もする
   const targetElement2 = document.getElementById(`c_${e.target.id}_2`);
   if (targetElement2) {
@@ -76,4 +73,15 @@ function updateText(e) {
     default:
       break;
   }
+}
+
+function updateSelect(e) {
+  const targetElement = document.getElementById(`c_${e.target.id}`);
+
+  if (e.target.value && targetElement) {
+    targetElement.textContent = `${e.target.value}地方裁判所`;
+    return;
+  }
+
+  targetElement.textContent = "【裁判所を選択してください】";
 }

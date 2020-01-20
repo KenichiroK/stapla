@@ -1,5 +1,3 @@
-{{-- TODO: 入力内容を動的に表示させる --}}
-
 <h4 class="contract__title">業務委託基本契約書</h4>
 <p class="contract__description">
     <span id="c_company_name">【企業名を入力してください】</span>（以下「甲」という。）と<span id="c_partner_name">【パートナー名を入力してください】</span>（以下「乙」という。）とは、甲が乙に委託する業務に関し、株式会社Humoが運営する業務委託に関するマネジメントプラットフォーム「impro」（以下「impro」という。）のシステム上で、以下のとおり業務委託基本契約書（以下「本契約」という。）を締結する。
@@ -122,7 +120,7 @@
 <p class="contract__context">本契約は、日本法に準拠するものとし、これに従って解釈されるものとする。</p>
 
 <p class="contract__subtitle">第18条（管轄）</p>
-<p class="contract__context">本契約に関して生じた甲乙間の紛争については、[東京地方裁判所]【OMT：登録企業が裁判所を選択できるようにして下さい。】を第一審の専属的合意管轄裁判所とする。</p>
+<p class="contract__context">本契約に関して生じた甲乙間の紛争については、<span id="c_court">【裁判所を選択してください】</span>を第一審の専属的合意管轄裁判所とする。</p>
 
 <p class="contract__subtitle">第19条（協議解決）</p>
 <p class="contract__context">本契約及び個別契約に定めのない事項又は本契約及び個別契約の各条項の解釈について疑義を生じた場合は、甲及び乙は誠意をもって協議し解決を図る。</p>
