@@ -124,11 +124,8 @@ Route::group(['prefix' => 'company'], function(){
 	Route::get('password/reset', 'Companies\Auth\ForgotPasswordController@showLinkRequestForm')->name('company.password.request');
 	Route::post('password/email', 'Companies\Auth\ForgotPasswordController@sendResetLinkEmail')->name('company.password.email');
 	Route::get('password/reset/{token}', 'Companies\Auth\ResetPasswordController@showResetForm')->name('company.password.reset');
-    Route::post('password/reset', 'Companies\Auth\ResetPasswordController@reset')->name('company.password.update');
-
-	// preRegister - 1st企業ユーザー仮登録完了ページ
-	Route::get('/register/preRegistered', 'Companies\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
-
+	Route::post('password/reset', 'Companies\Auth\ResetPasswordController@reset')->name('company.password.update');
+	
 	// register - 企業ユーザー本登録
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
 	Route::post('pwRegister', 'Companies\Auth\RegisterController@pwRegister')->name('company.pwRegister');

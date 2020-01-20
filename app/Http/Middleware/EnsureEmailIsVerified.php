@@ -39,7 +39,7 @@ class EnsureEmailIsVerified
 
             // 規約の同意が済んでいない場合
             if (!auth()->user()->is_agree) {
-                return redirect()->route('company.register');
+                return redirect()->route('company.register.terms', auth()->user()->id);
             }
 
             return $next($request);

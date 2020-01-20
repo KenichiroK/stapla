@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Companies\Registration;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Companies\CompanyAndCompanyUserRequest;
 use App\Models\CompanyUser;
 use App\Models\Company;
@@ -101,6 +102,15 @@ class PersonalController extends Controller
             \Log::info('担当者新規作成(企業)', ['user_id(company)' => $companyUser->id]);
             $invitationUser->notify(new RegisteredCompanyUser($companyUser));
         }
+
+        $this->middleware('auth:company');
+        $this->guard()->login($companyUser);
+
         return view('company/auth/initialRegister/done');
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('company');
     }
 }

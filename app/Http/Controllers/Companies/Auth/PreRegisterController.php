@@ -19,7 +19,7 @@ class PreRegisterController extends Controller
         return view('company.auth.preRegister');
     }
 
-    protected $redirectTo = '/company/register/preRegistered';
+    protected $redirectTo = '/email/verify';
 
     public function __construct()
     {
@@ -31,6 +31,8 @@ class PreRegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
