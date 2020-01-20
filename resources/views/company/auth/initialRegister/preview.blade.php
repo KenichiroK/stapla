@@ -17,7 +17,7 @@
 			<h3>プレビュー</h3>
 		</div>
 
-		<form action="{{ route('partner.register.preview.previewStore') }}" method="POST" enctype="multipart/form-data">
+		<form action="{{ route('company.register.preview.previewStore') }}" method="POST" enctype="multipart/form-data">
 		@csrf
 			@if(!isset($companyUser->invitation_user_id))
 			<div class="edit-container">

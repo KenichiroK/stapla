@@ -106,6 +106,11 @@ class PersonalController extends Controller
         $this->middleware('auth:company');
         $this->guard()->login($companyUser);
 
+        return redirect()->route('company.register.doneRegister');
+    }
+
+    public function doneRegister()
+    {
         return view('company/auth/initialRegister/done');
     }
 

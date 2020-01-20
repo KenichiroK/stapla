@@ -26,8 +26,6 @@ class RegisterController extends Controller
         return redirect()->route('company.dashboard', compact('companyUser'));
     }
 
-    protected $redirectTo = '/company/register/doneVerify';
-
     protected function pwRegister(Request $request)
     {
         $request->validate([

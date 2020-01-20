@@ -133,8 +133,10 @@ Route::group(['prefix' => 'company'], function(){
 	Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
 	Route::get('register/terms/{companyUser_id}', 'Companies\Registration\PersonalController@terms')->name('company.register.terms');
 	Route::post('register/terms', 'Companies\Registration\PersonalController@agreeTerms')->name('company.register.terms.store');
-	Route::post('/register/previewStore', 'Companies\Registration\PersonalController@previewStore')->name('partner.register.preview.previewStore');
-	
+	Route::post('/register/previewStore', 'Companies\Registration\PersonalController@previewStore')->name('company.register.preview.previewStore');
+	Route::get('/register/doneRegister', 'Companies\Registration\PersonalController@doneRegister')->name('company.register.doneRegister');
+
+
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
 		
 		// dashboard
