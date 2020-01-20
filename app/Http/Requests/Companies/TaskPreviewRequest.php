@@ -22,13 +22,20 @@ class TaskPreviewRequest extends FormRequest
             'superior_id'          => 'bail | required | uuid',
             'accounting_id'        => 'bail | required | uuid',
             'started_at'           => 'required',
-            'ended_at'             => 'bail | required | after:started_at',
+            'ended_at'             => 'bail | required | after:started_at | after:yesterday',
             'partner_id'           => 'bail | required | uuid',
             'order_price'          => 'bail | required | integer | digits_between:1, 12',
-            'delivery_date'        => 'required',
+            'delivery_date'        => 'required | after:started_at | after:yesterday',
             // 発注書
             'order_name'           => 'max:64',
             'order_company_user'   => 'max:64',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'yesterday' => '本日',
         ];
     }
 }

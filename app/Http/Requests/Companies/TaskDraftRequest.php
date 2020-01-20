@@ -20,9 +20,10 @@ class TaskDraftRequest extends FormRequest
             'task_company_user_id' => 'nullable | uuid',
             'superior_id'          => 'nullable | uuid',
             'accounting_id'        => 'nullable | uuid',
-            'budget'               => 'nullable | bail | integer | digits_between:1, 12',
             'price'                => 'nullable | bail | integer | digits_between:1, 12',
             'partner_id'           => 'nullable | uuid',
+            'delivery_date'        => 'required'
         ];
     }
+    
 }
