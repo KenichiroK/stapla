@@ -128,8 +128,7 @@ class TaskController extends Controller
         $task->content         = $request->content ?? null;
         $task->partner_id      = $request->partner_id ?? null;
         $task->price           = $request->order_price ?? null;
-        $task->delivery_date   = Carbon::createFromTimestamp(strtotime($request->delivery_date))
-                                    ->format('Y-m-d-H-i-s') ?? null;
+
         $task->save();
 
         // 発注書下書き
