@@ -20,8 +20,6 @@ Route::get('/terms',   function () { return view('common_pages/terms');   });
 // update notification read_at using ajax
 Route::post('notification/mark_as_read', 'Commons\NotificationController@markAsRead');
 
-Auth::routes();
-
 Route::group(['prefix' => 'partner'], function(){
 	
 	//login   

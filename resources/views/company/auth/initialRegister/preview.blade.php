@@ -98,7 +98,7 @@
 
 						<div class="section-container">
 							<p class="profile-subject">自己紹介</p>
-							<p>{{ $companyUser->occupation }}</p>
+							<p>{{ $companyUser->self_introduction }}</p>
 							<input type="hidden" name="self_introduction" value="{{ $companyUser->self_introduction }}">
 						</div>
 					</div>
