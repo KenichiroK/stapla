@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Partners;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Partners\PartnerRequest;
 use App\Models\Partner;
 use App\Notifications\RegisteredPartner;
@@ -73,8 +74,21 @@ class InitialRegisterController extends Controller
         }
 
         $partner->notify(new doneRegisteredPartner($partner));
-        // HACK:: ログイン操作なしでDashboardへ
-        return redirect()->route('partner.dashboard', compact('partner'));
+        
+        $this->middleware('auth:partner');
+        $this->guard()->login($partner);
+
+        return redirect()->route('partner.register.doneRegister');
+    }
+
+    public function doneRegister()
+    {
+        return view('partner/auth/initialRegister/done');
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('partner');
     }
 
     public function resetPassword()
