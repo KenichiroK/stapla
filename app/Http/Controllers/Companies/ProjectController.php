@@ -19,28 +19,26 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $company_user = Auth::user();
-        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();        
+        $projects = Project::where('company_id', Auth::user()->company_id)
+                        ->where('status', '!=', config('const.PROJECT_COMPLETE'))
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        
+        $project_status = config('const.PROJECT_ALL');
 
-        $task_count_arr = []; 
-        for($i = 0; $i < count($projects); $i++){
-            $taskCount = count($projects[$i]->tasks);
-            array_push($task_count_arr, $taskCount);
-        }
-        return view('company/project/index', compact('projects', 'task_count_arr'));
+        return view('company/project/index', compact('projects', 'project_status'));
     }
 
     public function doneIndex()
     {
-        $company_user = Auth::user();
-        $projects = Project::where('company_id', $company_user->company_id)->where('status', config('const.PROJECT_COMPLETE'))->get();
+        $projects = Project::where('company_id', Auth::user()->company_id)
+                        ->where('status', config('const.PROJECT_COMPLETE'))
+                        ->orderBy('created_at', 'desc')
+                        ->get();
 
-        $task_count_arr = []; 
-        for($i = 0; $i < count($projects); $i++){
-            $taskCount = count($projects[$i]->tasks);
-            array_push($task_count_arr, $taskCount);
-        }
-        return view('company/project/done-index', compact('projects', 'task_count_arr'));
+        $project_status = config('const.PROJECT_COMPLETE');
+
+        return view('company/project/index', compact('projects', 'project_status'));
     }
 
     public function create()
@@ -90,8 +88,10 @@ class ProjectController extends Controller
 
         $project = Project::where('company_id', $company_user->company_id)->findOrFail($id);
         $tasks = Task::where('project_id',$project->id)->get();
-        
-        return view('/company/project/show', compact('project','tasks', 'company_user'));
+        $finTaskCount = $tasks->whereIn("status", [config("const.COMPLETE_STAFF"), config("const.TASK_CANCELED")])
+                        ->count();
+
+        return view('/company/project/show', compact('project','tasks', 'company_user', 'finTaskCount'));
     }
 
     public function edit($project_id)

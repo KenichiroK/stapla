@@ -4,6 +4,14 @@ return array(
   'PROJECT_CREATE'   => 0,
   'PROJECT_COMPLETE' => 1,
   'PROJECT_CANCELED' => 2,
+  'PROJECT_ALL'      => 3,
+
+  'PROJECT_STATUS_NAME' => [
+    '作成',
+    '完了',
+    'キャンセル',
+    'すべて'
+  ],
 
   'TASK_CREATE'             => 0,  // 下書き
   'TASK_SUBMIT_SUPERIOR'    => 1,  // タスク上長確認中
@@ -24,6 +32,28 @@ return array(
   'APPROVAL_ACCOUNTING'     => 16, // 請求書経理承認済み
   'COMPLETE_STAFF'          => 17, // 完了
   'TASK_CANCELED'           => 18, // キャンセル
+
+  'TASK_STATUS_ARR' => [
+    'TASK_CREATE',
+    'TASK_SUBMIT_SUPERIOR',
+    'TASK_APPROVAL_SUPERIOR',
+    'TASK_SUBMIT_PARTNER',
+    'TASK_APPROVAL_PARTNER',
+    'ORDER_SUBMIT_SUPERIOR',
+    'ORDER_APPROVAL_SUPERIOR',
+    'ORDER_SUBMIT_PARTNER',
+    'ORDER_APPROVAL_PARTNER',
+    'WORKING',
+    'DELIVERY_PARTNER',
+    'ACCEPTANCE',
+    'INVOICE_DRAFT_CREATE',
+    'INVOICE_CREATE',
+    'SUBMIT_STAFF',
+    'SUBMIT_ACCOUNTING',
+    'APPROVAL_ACCOUNTING',
+    'COMPLETE_STAFF',
+    'TASK_CANCELED',
+  ],
 
   'TASK_STATUS_LIST' => [
     '下書き',

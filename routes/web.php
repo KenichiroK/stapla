@@ -46,6 +46,9 @@ Route::group(['prefix' => 'partner'], function(){
 	// emailverify - Eメール認証
 	Route::get('email/verify/{id}/{email}/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
 	
+	// Email変更
+	Route::get('setting/profile/email/update', 'Partners\ProfileController@updateEmail')->name('partner.profile.email.updateEmail');
+
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 		
 		// register_flow - 初期登録関連
@@ -84,6 +87,8 @@ Route::group(['prefix' => 'partner'], function(){
 		// profile
 		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
 		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
+		Route::get('setting/profile/email', 'Partners\ProfileController@email')->name('partner.profile.email');
+		Route::post('setting/profile/email', 'Partners\ProfileController@sendMail')->name('partner.profile.email.sendMail');
 		
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
@@ -177,7 +182,7 @@ Route::group(['prefix' => 'company'], function(){
 			// タスク登録
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// タスク詳細
-		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
+		Route::get('/task/{task_id}', 'Companies\TaskController@show')->name('company.task.show');
 				// task-show-file_download
 		Route::post('/file-download', 'Companies\DeliverController@download')->name('company.fileDownload');
 			// task-edit
@@ -209,9 +214,11 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/setting/companyElse', 'Companies\Setting\CompanyElseController@create')->name('company.setting.companyElse.create');
 		Route::post('/setting/companyElse', 'Companies\Setting\CompanyElseController@store')->name('company.setting.companyElse.store');
 		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create')->name('company.setting.userSetting.create');
-		Route::get('/setting/account', 'Companies\Setting\AccountController@create')->name('company.setting.account.create');
 		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@create')->name('company.setting.personalInfo.create');
 		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@store')->name('company.setting.personalInfo.store');
+		Route::get('/setting/email', 'Companies\Setting\AccountController@create')->name('company.setting.email.create');
+		Route::post('/setting/email', 'Companies\Setting\AccountController@sendEmail')->name('company.setting.email.sendEmail');
+		Route::get('/setting/email/update', 'Companies\Setting\AccountController@updateEmail')->name('company.setting.email.updateEmail');
 
 		// invite companyUser - 招待による企業ユーザー仮登録
 		Route::get('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@showRegisterForm')->name('company.invitePreRegister');

@@ -38,9 +38,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return Partner::create([
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'company_id' => $data['company_id'],
+            'email'              => $data['email'],
+            'password'           => Hash::make($data['password']),
+            'company_id'         => $data['company_id'],
+            'invitation_user_id' => $data['invitation_user_id'],
         ]);
     }
     protected function guard()

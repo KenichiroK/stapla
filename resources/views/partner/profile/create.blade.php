@@ -40,7 +40,7 @@ const setPreview = (input) => {
     <div class="menu-container">
 		<ul>
 			<li><a href="" class="isActive">プロフィール</a></li>
-			<!-- <li><a href="">メールアドレス・パスワード設定</a></li> -->
+			<li><a href="{{ route('partner.profile.email') }}">メールアドレス</a></li>
 		</ul>
 	</div>
 
@@ -86,7 +86,7 @@ const setPreview = (input) => {
                         @endif
                     </div>
 
-                    <div class="short-input-container">
+                    <!-- <div class="short-input-container">
                         <p>メールアドレス</p>
                         @if (Auth::user())
                             <input type="text" name="email" value="{{ old('email', Auth::user()->email) }}">
@@ -98,7 +98,7 @@ const setPreview = (input) => {
                                 <strong>{{ $errors->first('email') }}</strong>
                             </div>
                         @endif
-                    </div>
+                    </div> -->
 
                     <div class="short-input-container">
                         <p>職種</p>
@@ -205,7 +205,7 @@ const setPreview = (input) => {
                 <button type="submit">プレビュー</button>
             </div> -->
             <div class="save-btn">
-                <button type="button" onclick="submit();">保存</button>
+                <button data-impro-button="once" type="button" onclick="submit();">保存</button>
             </div>
         </div>
     </form>

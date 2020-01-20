@@ -3,39 +3,6 @@
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/partner/setting/invoice/index.css') }}">
-<script>
-const setPreview = (input) => {
-  const preview = document.getElementById('preview');
-
-  if (input.files && input.files[0]) {
-    let reader = new FileReader();
-    reader.onload = (e) => {
-      preview.src = e.target.result;
-    }
-
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-// 郵便番号入力欄の自動遷移
-function nextField(t, name ,maxlength) {
-	if(t.value.length >= maxlength) {
-		t.form.elements[name].focus();
-	}
-}
-
-
-const setPostal = () => {
-  const front = document.getElementById('postal_front').value;
-  const back = document.getElementById('postal_back').value;
-  const postal = document.getElementById('postal');
-  postal.value = front + back;
-}
-
-window.onload = () => {
-	setPostal();
-}
-</script>
 @endsection
 
 @section('content')
@@ -337,8 +304,45 @@ $pref = array(
 		</div>
 
 		<div class="btn01-container">
-			<button type="button" onclick="submit();">設定</button>
+			<button data-impro-button="once" type="button" onclick="submit();">設定</button>
 		</div>
 	</form>
 </div>
+@endsection
+
+@section('asset-js')
+<script>
+	const setPreview = (input) => {
+	const preview = document.getElementById('preview');
+
+	if (input.files && input.files[0]) {
+		let reader = new FileReader();
+		reader.onload = (e) => {
+		preview.src = e.target.result;
+		}
+
+		reader.readAsDataURL(input.files[0]);
+	}
+	}
+
+	// 郵便番号入力欄の自動遷移
+	function nextField(t, name ,maxlength) {
+		if(t.value.length >= maxlength) {
+			t.form.elements[name].focus();
+		}
+	}
+
+
+	const setPostal = () => {
+	const front = document.getElementById('postal_front').value;
+	const back = document.getElementById('postal_back').value;
+	const postal = document.getElementById('postal');
+	postal.value = front + back;
+	}
+
+	window.onload = () => {
+		setPostal();
+	}
+</script>
+
 @endsection

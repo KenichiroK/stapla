@@ -24,7 +24,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "dayjs": "^1.8.18",
         "html2canvas": "^1.0.0-rc.3",
+        "jquery-datetimepicker": "^2.5.21",
         "pdfmake": "^0.1.58"
     }
 }

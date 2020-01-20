@@ -1,0 +1,11 @@
+@import "../setting/colors";
+@import "../mixin/font/primary";
+
+.page-title-container {
+  margin: 0 0 32px;
+
+  &__text {
+    @include primary-text(28px, bold);
+    margin-bottom: 0;
+  }
+}

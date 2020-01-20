@@ -1,0 +1,6 @@
+@import "./font";
+
+@mixin primary-text($fontSize: 16px, $fontWeight: normal) {
+  @include font($fontSize, $fontWeight);
+  color: colors(primary);
+}

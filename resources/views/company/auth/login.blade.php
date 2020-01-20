@@ -49,12 +49,12 @@
                 </div>
 
                 <div class="checkbox_wrapper">
-                    <input id="check" type="checkbox">
+                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                     <label for="check">ログインしたままにする</label>
                 </div>
 
                 <div class="button_wrapper">
-                    <button class="text" id="button" type="button" onclick="submit();">ログイン</button>
+                    <button class="text" id="button" data-impro-button="once" type="button" onclick="submit();">ログイン</button>
                 </div>
             </form>
 

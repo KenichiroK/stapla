@@ -195,38 +195,6 @@
         }
     }
 
-    .actionButton {
-        margin: 24px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .done {
-            border-radius: 100px;
-            background-color: #43425d;
-            color: #fff;
-            font-weight: bold;
-            padding: 8px 30px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .undone {
-            border-radius: 100px;
-            background-color: #fff;
-            color: #43425d;
-            font-weight: bold;
-            padding: 8px 24px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        button:hover {
-            opacity: 0.7;
-            transition: 0.3s;
-        }
-    }
-
     .send-done {
         text-align: center;
         color: #ccc;

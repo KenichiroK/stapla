@@ -426,27 +426,6 @@
             }
         }
     }
-
-    .button-container {
-        width: 100%;
-        text-align: center;
-
-        button {
-            background-color: #43425d;
-            color: #fff;
-            font-weight: bold;
-            padding: 8px 40px;
-            border-radius: 48px;
-            font-size: 16px;
-            cursor: pointer;
-            outline: none;
-        }
-
-        button:hover {
-            opacity: 0.7;
-            transition: 0.3s;
-        }
-    }
 }
 
 // 請求総額が発注学を超えた時のアラート

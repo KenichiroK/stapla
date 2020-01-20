@@ -11,7 +11,7 @@
 
     <title>Impro</title>
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ env('AWS_URL') }}/common/impro_favicon.png">
+    <link rel="shortcut icon" href="{{ env('AWS_URL') }}/common/favicon.ico">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,7 +22,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
     @yield('assets')
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
     <div id="app">
@@ -98,6 +100,13 @@
     <script src="{{ asset('js/common/toggle-notification-bar.js') }}" defer></script>
     <script src="{{ asset('js/common/update-notification-mark-as-read.js') }}" defer></script>
     <script src="{{ asset('js/common/toggle-header-ballon.js') }}" defer></script>
+    <script src="{{ asset('js/common/toggle-button.js') }}" defer></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" rel="stylesheet"></script>
 
     <script>
         const project_create = {{ config('const.PROJECT_CREATE') }};
@@ -123,6 +132,22 @@
         const approval_accounting = {{ config('const.APPROVAL_ACCOUNTING') }};
         const complete_staff = {{ config('const.COMPLETE_STAFF') }};
         const task_canceled = {{ config('const.TASK_CANCELED') }};
+    </script>
+    <script>
+        $('.confirm').click(function(){
+            $('.confirm-btn').val( $(this).val() );
+        })
+
+        $(function(){
+            let $inputPrice = $('#inputPrice');
+            let $outputPrice = $('.outputPrice');
+            let $outputPriceWithTax = $('.outputPriceWithTax');
+            $inputPrice.on('input', function(event){
+                let $value = $inputPrice.val();
+                $outputPrice.text($value);
+                $outputPriceWithTax($value);
+            });
+        })
     </script>
     @yield('asset-js')
 </body>

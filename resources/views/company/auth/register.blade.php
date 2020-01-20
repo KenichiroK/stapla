@@ -55,11 +55,23 @@
                 <div class="input_wrapper">
                     <input class="input_text" type="hidden" name="company_id" value="{{ $request->company_id }}">
                     @if ($errors->has('company_id'))
-                    <div class="invalid-feedback error-msg" role="alert">
-                        <strong>{{ $errors->first('company_id') }}</strong>
-                    </div>
-                @endif
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('company_id') }}</strong>
+                        </div>
+                    @endif
                 </div>
+
+                {{-- NOTE: 初回登録時のユーザはinvitation_user_idがnullなのでissetしとく --}}
+                @isset($request->invitation_user_id )
+                    <div class="input_wrapper">
+                        <input class="input_text" type="hidden" name="invitation_user_id" value="{{ $request->invitation_user_id }}">
+                        @if ($errors->has('invitation_user_id'))
+                            <div class="invalid-feedback error-msg" role="alert">
+                                <strong>{{ $errors->first('invitation_user_id') }}</strong>
+                            </div>
+                        @endif
+                    </div>
+                @endisset
 
                 <!-- <div class="checkbox_wrapper">
                     <a href="#">ご利用規約</a>
@@ -67,7 +79,7 @@
                 </div> -->
 
                 <div class="button_wrapper">
-                    <button type="button" onclick="submit();" class="text">新規会員登録</button>
+                    <button data-impro-button="once" type="button" onclick="submit();" class="text">新規会員登録</button>
                 </div>
             </form>
 

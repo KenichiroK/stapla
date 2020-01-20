@@ -28,8 +28,12 @@
 					<input class="input_text" type="hidden" name="company_id" value="{{ Auth::user()->company_id }}">
 				</div>
 
+				<div class='input-container'>
+					<input class="input_text" type="hidden" name="invitation_user_id" value="{{ Auth::user()->id }}">
+				</div>
+
 				<div class='button-container'>
-					<button type="button" onclick="submit();">メールを送信する</button>
+					<button data-impro-button="once" type="button" onclick="submit();">メールを送信する</button>
 				</div>
 			</form>
 			

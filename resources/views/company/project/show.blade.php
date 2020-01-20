@@ -17,32 +17,54 @@
             @endif
             <div class="top-container">
                 <h1 class="top-container__title">{{ $project->name }}詳細</h1>
-                <a class="top-container__edit-btn" href="{{ route('company.project.edit', ['company_id' => $project->id] ) }}"><div>編集</div></a>
+                <a class="top-container__edit-btn" href="{{ route('company.project.edit', ['company_id' => $project->id] ) }}">
+                    <div>編集</div>
+                </a>
             </div>
 
             <div class="detail-container">
                 <ul class="detail-container__list">
-                    <li class="detail-container__list__item margin--none"><div class="detail-container__list__item__name">プロジェクト名</div> <p class="detail-container__list__item__content">{{ $project->name }}</p> </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト詳細</div><p class="detail-container__list__item__content desc-item">{!! nl2br(e($project->detail)) !!}</p></li>
-                    <li class="detail-container__list__item al-center"><div class="detail-container__list__item__name">担当者</div>
+                    <li class="detail-container__list__item margin--none">
+                        <div class="detail-container__list__item__name">プロジェクト名</div>
+                        <p class="detail-container__list__item__content">{{ $project->name }}</p>
+                    </li>
+                    <li class="detail-container__list__item">
+                        <div class="detail-container__list__item__name">プロジェクト詳細</div>
+                        <p class="detail-container__list__item__content desc-item">{!! nl2br(e($project->detail)) !!}</p>
+                    </li>
+                    <li class="detail-container__list__item al-center">
+                        <div class="detail-container__list__item__name">担当者</div>
                         <div class="detail-container__list__item__content">
                             @foreach($project->projectCompanies as $projectCompany)
-                            <div class="staff-item">
-                                <div class="imgbox"><img src="{{ $projectCompany->companyUser->picture }}" alt=""></div>
-                                <p class="name">{{ $projectCompany->companyUser->name }}</p>
-                            </div>
+                                <div class="staff-item">
+                                    <div class="imgbox"><img src="{{ $projectCompany->companyUser->picture }}" alt=""></div>
+                                    <p class="name">{{ $projectCompany->companyUser->name }}</p>
+                                </div>
                             @endforeach
                         </div> 
                     </li>
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
                         <div class="period__wrapper">
                             <div class="period__wrapper__container">
-                                <div class="period__wrapper__container__start">開始日<span class="period__wrapper__container__start__date">{{ date("Y年m月d日", strtotime($project->started_at)) }}</span></div>
-                                <div class="period__wrapper__container__end">終了日<span class="period__wrapper__container__end__date">{{ $project->ended_at->format('Y年m月d日') }}</span></div>
+                                <div class="period__wrapper__container__start">
+                                    開始日
+                                    <span class="period__wrapper__container__start__date">
+                                        {{ date("Y年m月d日", strtotime($project->started_at)) }}
+                                    </span>
+                                </div>
+                                <div class="period__wrapper__container__end">
+                                    終了日
+                                    <span class="period__wrapper__container__end__date">
+                                        {{ $project->ended_at->format('Y年m月d日') }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </li>
-                    <li class="detail-container__list__item"><div class="detail-container__list__item__name">予算</div><div class="detail-container__list__item__content">{{ number_format($project->budget) }}円</div></li>
+                    <li class="detail-container__list__item">
+                        <div class="detail-container__list__item__name">予算</div>
+                        <div class="detail-container__list__item__content">{{ number_format($project->budget) }}円</div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -66,97 +88,34 @@
 
             <div class="task-container__content">
                 @foreach ($tasks as $task)
-                    @if($task->status === config('const.TASK_CREATE'))
-                        <a class="task-show-link" href="{{ route('company.task.createDraft', ['task_id' => $task->id ]) }}">
-                    @else
-                        <a class="task-show-link" href="{{ route('company.task.show', ['id' => $task->id ]) }}">
-                    @endif
+                    <a class="task-show-link"
+                        @if($task->status === config('const.TASK_CREATE'))
+                            href="{{ route('company.task.createDraft', ['task_id' => $task->id ]) }}"
+                        @else
+                            href="{{ route('company.task.show', ['id' => $task->id ]) }}"
+                        @endif
+                    >
                         <ul class="task-item-list task-container__content__list">
                             <li class="task-name">{{ $task->project->name }}</li>
                             <li>{{ $task->name }}</li>
                             <li class="partner-item">
                             @isset($task->partner_id)
                                 <div class="imgbox"><img src="{{ $task->partner->picture }}" alt=""></div>
-                                <p class="name">{{ $task->partner->name }}</p>
+                                <p class="name">
+                                    {{ $task->partner->name }}</p>
                             @endisset
                             </li>
-                            @if($task->status === config('const.TASK_CREATE'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">下書き</div>
-                                </li>
-                            @elseif($task->status === config('const.TASK_SUBMIT_SUPERIOR'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">タスク上長確認中</div>
-                                </li>
-                            @elseif($task->status === config('const.TASK_APPROVAL_SUPERIOR'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">タスクパートナー依頼前</div>
-                                </li>
-                            @elseif($task->status === config('const.TASK_SUBMIT_PARTNER'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">タスクパートナー確認中</div>
-                                </li>
-                            @elseif($task->status === config('const.TASK_APPROVAL_PARTNER'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">発注書作成前</div>
-                                </li>
-                            @elseif($task->status === config('const.ORDER_SUBMIT_SUPERIOR'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">発注書上長確認中</div>
-                                </li>
-                            @elseif($task->status === config('const.ORDER_APPROVAL_SUPERIOR'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">発注書パートナー確認前</div>
-                                </li>
-                            @elseif($task->status === config('const.ORDER_SUBMIT_PARTNER'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">発注書パートナー確認中</div>
-                                </li>
-                            @elseif($task->status === config('const.ORDER_APPROVAL_PARTNER'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">作業前</div>
-                                </li>
-                            @elseif($task->status === config('const.WORKING'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">作業中</div>
-                                </li>
-                            @elseif($task->status === config('const.DELIVERY_PARTNER'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">検品中</div>
-                                </li>
-                            @elseif($task->status === config('const.ACCEPTANCE'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">請求書作成前</div>
-                                </li>
-                            @elseif($task->status === config('const.INVOICE_DRAFT_CREATE'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">請求書下書き</div>
-                                </li>
-                            @elseif($task->status === config('const.INVOICE_CREATE'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">請求書担当者確認前</div>
-                                </li>
-                            @elseif($task->status === config('const.SUBMIT_STAFF'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">請求書担当者確認中</div>
-                                </li>
-                            @elseif($task->status === config('const.SUBMIT_ACCOUNTING'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">請求書経理提出</div>
-                                </li>
-                            @elseif($task->status === config('const.APPROVAL_ACCOUNTING'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">請求書経理承認済み</div>
-                                </li>
-                            @elseif($task->status === config('const.COMPLETE_STAFF'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn done">完了</div>
-                                </li>
-                            @elseif($task->status === config('const.TASK_CANCELED'))
-                                <li class="task-container__content__list__status">
-                                    <div class="s-btn">キャンセル</div>
-                                </li>
-                            @endif 
+                            <li class="task-container__content__list__status">
+                                <div
+                                    @if($task->status === config('const.COMPLETE_STAFF'))
+                                        class="s-btn done"
+                                    @else
+                                        class="s-btn"
+                                    @endif
+                                >
+                                    {{ config('const.TASK_STATUS_LIST')[$task->status] }}
+                                </div>
+                            </li>
                             <li>¥{{ number_format($task->price) }}</li>
                         </ul>
                     </a> 
@@ -169,59 +128,48 @@
         </div>
 
         @if($projectCompany->companyUser->id === Auth::id())
-            <form onsubmit="return checkStatus()" action="{{ route('company.project.complete', ['id' => $project->id, 'status' => $project->status]) }}" name="form1" method='POST' enctype="multipart/form-data">
-                @csrf
+            <div class="actionButton">
+                <form action="{{ route('company.project.complete', ['id' => $project->id, 'status' => $project->status]) }}" name="form1" method='POST' enctype="multipart/form-data">
+                    @csrf
 
-                @foreach($tasks as $task)
-                    <input type="hidden" name="taskStatus[]" value="{{ $task->status }}">
-                @endforeach
-
-                <div class="button-container">
-                    @if($project->status == config('const.PROJECT_CREATE'))
-                        <div class="btn01-container">
-                            <button type="submit">完了</button>
-                            <input type="hidden" name="projectStatus" value="{{ $project->status }}">
-                        </div>
+                    @if($finTaskCount === 0)
+                        <p class="non-action-text">未完了タスクがあります。</p>
+                    @elseif($project->status == config('const.PROJECT_CREATE'))
+                        @foreach($tasks as $task)
+                            <input type="hidden" name="taskStatus[]" value="{{ $task->status }}">
+                        @endforeach
+                        <input type="hidden" class="undone"  name="projectStatus" value="{{ $project->status }}">
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">完了</button>
+                        <!-- Modal -->
+                        @component('components.confirm-modal')
+                            @slot('modalID')
+                                confirm
+                            @endslot
+                            @slot('confirmBtnLabel')
+                                完了
+                            @endslot
+                            プロジェクトを完了します。
+                        @endcomponent
                     @elseif($project->status == config('const.PROJECT_COMPLETE'))
-                        <div class="btn01-container">
-                            <button type="submit">再オープン</button>
-                            <input type="hidden" name="projectStatus" value="{{ $project->status }}">
-                        </div>
+                        <input type="hidden" name="projectStatus" value="{{ $project->status }}">
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">再オープン</button>
+                        <!-- Modal -->
+                        @component('components.confirm-modal')
+                            @slot('modalID')
+                                confirm
+                            @endslot
+                            @slot('confirmBtnLabel')
+                                再オープン
+                            @endslot
+                            プロジェクトを再オープンします。
+                        @endcomponent
                     @endif
-                </div>
-            </form>
+                </form>
+            
+            </div>
         @endif
+
+ 
     </div>
 </div>
-@endsection
-
-@section('asset-js')
-<script>
-    function checkStatus() {
-        const projectStatus = document.getElementsByName('projectStatus');
-        if(projectStatus[0].value == project_create) {
-            const taskStatuses = document.getElementsByName('taskStatus[]');
-            for (i=0; i<taskStatuses.length; i++) {
-                console.log(taskStatuses[i].value)
-                if(taskStatuses[i].value != complete_staff && taskStatuses[i].value != task_canceled){
-                    alert("「全てのタスクを完了またはキャンセルしてから、プロジェクトを完了してください。」")
-                    return false;
-                }
-            };
-            var result = confirm("「プロジェクトを完了してよろしいですか？」")
-            if( result ) {
-            }
-            else {
-                return false;
-            }
-        } else if(projectStatus[0].value == project_complete){
-            var result = confirm("「再オープンしてよろしいですか？」")
-            if( result ) {
-            }
-            else {
-                return false;
-            }
-        }
-    };
-</script>
 @endsection

@@ -83,14 +83,6 @@
                     </div>
                 </dd>
             </dl>
-            <!-- <dl>
-                <dt>
-                    報酬形式
-                </dt>
-                <dd>
-                    固定
-                </dd>
-            </dl> -->
             <dl>
                 <dt>
                     発注単価<span>(税抜)</span>
@@ -99,14 +91,6 @@
                     {{ number_format($task->budget) }}円
                 </dd>
             </dl>
-            <!-- <dl>
-                <dt>
-                    件数
-                </dt>
-                <dd>
-                    {{ $task->project->tasks->count() }}件
-                </dd>
-            </dl> -->
             <dl>
                 <dt>
                     発注額
@@ -145,7 +129,68 @@
             </dl>
         </div>
 
-        @if( $task->status !== config('const.DELIVERY_PARTWORKINGNER') )
+        <!-- 納品のアップロードエリアは納品するとき($task->status === 9)の時のみ表示 -->
+        @if( $task->status === config('const.WORKING') && $task->partner->id === Auth::user()->id )
+            <form action="{{ route('partner.deliver.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="patner">
+                    <p class="ptnr-title">納品</p>
+                    <dl>
+                        <dt class="textarea-wrp">
+                            自由記述
+                        </dt>
+                        <dd>
+                            <div class="textarea-wrp">
+                                <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="deliver_comment" id="">{{ old('deliver_comment') }}</textarea>
+                            </div>
+                            @if ($errors->has('deliver_comment'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('deliver_comment') }}</strong>
+                                </div>
+                            @endif
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            ファイル納品
+                        </dt>
+                        <dd class="upload-content">
+                            <div class="upload-item">
+                                <input type="file" name="deliver_files[]">
+                            </div>
+                            <div class="upload-item">
+                                <input type="file" name="deliver_files[]">
+                            </div>
+                            <div class="upload-item">
+                                <input type="file" name="deliver_files[]">
+                            </div>
+                            <p>（※ 1ファイル最大100MBまで）</p>
+                            @if ($errors->has('deliver_files.*'))
+                                <div class="invalid-feedback error-msg" role="alert">
+                                    <strong>{{ $errors->first('deliver_files.*') }}</strong>
+                                </div>
+                            @endif
+                        </dd>
+                    </dl>
+                </div>
+                <div class="actionButton">
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <input type="hidden" name="status" value="{{ config('const.DELIVERY_PARTNER') }}">
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">納品する</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                                confirm
+                            @endslot
+                        @slot('confirmBtnLabel')
+                            納品
+                        @endslot
+                        納品します。
+                    @endcomponent
+                <div>
+            </form>
+        @elseif( $task->status !== config('const.WORKING') )
             <!-- 納品エリアは納品以降($task->status > 9)の時に表示 -->
             @if( $task->status > config('const.WORKING') )
                 <div class="patner">
@@ -155,7 +200,7 @@
                         自由記述
                         </dt>
                         <dd class="flex01">
-                            @isset($task->deliver_id)
+                            @isset($task->deliver)
                                 {!! nl2br(e($deliver->deliver_comment)) !!}
                             @endisset
                         </dd>
@@ -166,7 +211,7 @@
                         ファイル納品
                         </dt>
                         <dd>
-                            @isset($task->deliver_id)
+                            @isset($task->deliver)
                                 @for( $n=0; $n < count($deliver_items); $n++)
                                     <form action="{{ route('company.fileDownload') }}" method="post">
                                         @csrf
@@ -183,16 +228,26 @@
             <div class="actionButton">
                 @if($task->status === config('const.TASK_SUBMIT_PARTNER') && $task->partner->id === Auth::user()->id)
                     <form action="{{ route('partner.task.status.change') }}" method="POST">
-                    @csrf
+                        @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                         <button type="submit" class="undone">タスク依頼を受けない</button>
                     </form>
                     <form action="{{ route('partner.task.status.change') }}" method="POST">
-                    @csrf
+                        @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
-                        <button type="submit" class="done">タスク依頼を受ける</button>
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスク依頼を受ける</button>
+                        <!-- Modal -->
+                        @component('components.confirm-modal')
+                            @slot('modalID')
+                                confirm
+                            @endslot
+                            @slot('confirmBtnLabel')
+                                承認
+                            @endslot
+                            タスクを承認します。
+                        @endcomponent
                     </form>
                 @elseif($task->status === config('const.ORDER_SUBMIT_PARTNER') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="done">発注書を確認する</a>
@@ -201,19 +256,22 @@
                     @csrf
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
                         <input type="hidden" name="status" value="{{ config('const.WORKING') }}">
-                        <button type="submit" class="done">作業に入る</button>
-                    </form>
-                @elseif($task->status === config('const.WORKING') && $task->partner->id === Auth::user()->id)
-                    <form action="{{ route('partner.deliver.store') }}" method="POST">
-                    @csrf
-                        <input type="hidden" name="task_id" value="{{ $task->id }}">
-                        <input type="hidden" name="status" value="{{ config('const.DELIVERY_PARTNER') }}">
-                        <button type="submit" class="done">納品する</button>
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">作業に入る</button>
+                        <!-- Modal -->
+                        @component('components.confirm-modal')
+                            @slot('modalID')
+                                confirm
+                            @endslot
+                            @slot('confirmBtnLabel')
+                                開始
+                            @endslot
+                            作業を開始します。
+                        @endcomponent
                     </form>
                 @elseif($task->status === config('const.ACCEPTANCE') && $task->partner->id === Auth::user()->id)
                     <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
                 @elseif($task->status === config('const.INVOICE_DRAFT_CREATE') && $task->partner->id === Auth::user()->id)
-                    <a href="{{ route('partner.document.invoice.create', ['task_id' => $task->id]) }}" class="done">請求書を作成する</a>
+                    <a href="{{ route('partner.document.invoice.edit', ['id' => $invoice->id]) }}" class="done">請求書を編集する</a>
                 @elseif($task->status === config('const.COMPLETE_STAFF'))
                     <p class="non-action-text">このタスクは完了しています</p>
                 @elseif($task->status === config('const.TASK_CANCELED'))

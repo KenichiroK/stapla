@@ -1,5 +1,5 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Nunito");
+// @import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
 @import "../../variables";
@@ -12,312 +12,360 @@
 
 @import "../../components/notification_bar";
 
-@import '../../components/label';
+@import "../../components/label";
 
 body {
-    padding: 0;
-    margin: 0;
-}
-
-.navbar-laravel {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-a:hover {
-    opacity: 0.7;
+  padding: 0;
+  margin: 0;
 }
 
 main {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 
-    .sidebar-wrapper {
-        width: 18%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        background-color: #43425d;
+  .sidebar-wrapper {
+    width: 18%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #43425d;
+  }
+
+  .content-wrapper {
+    width: 82%;
+    min-height: 100vh;
+    margin: 0 0 0 auto;
+    padding-top: 70px;
+    background-color: #f0f0f7;
+
+    // 各inputのエラーメッセージ
+    .error-msg {
+      margin-top: 5px;
+      display: block;
+      strong {
+        color: #ff0031;
+        font-size: 12px;
+      }
     }
-
-    .content-wrapper {
-        width: 82%;
-        min-height: 100vh;
-        position: absolute;
-        top: 64px;
-        right: 0;
-        background-color: #f0f0f7;
-
-        // 各inputのエラーメッセージ
-        .error-msg {
-            margin-top: 5px;
-            display: block;
-            strong {
-                color: #ff0031;
-                font-size: 12px;
-            }
-        }
-        // ページトップのエラーメッセージ
-        .error-container {
-            p {
-                color: #ff0031;
-                font-weight: bold;
-                font-size: 16px;
-            }
-        }
-        // 完了メッセージ
-        .complete-container {
-            p {
-                color: #09c221;
-                font-weight: bold;
-                font-size: 16px;
-            }
-        }
+    // ページトップのエラーメッセージ
+    .error-container {
+      p {
+        color: #ff0031;
+        font-weight: bold;
+        font-size: 16px;
+      }
     }
-
-    .notification-wrapper {
-        width: 25%;
-        position: fixed;
-        top: 70px;
-        right: -500px;
-        bottom: 0;
-        background-color: #fff;
-        overflow: scroll;
-        z-index: 1000;
-        transition: 0.5s;
+    // 完了メッセージ
+    .complete-container {
+      p {
+        color: #09c221;
+        font-weight: bold;
+        font-size: 16px;
+      }
     }
+  }
 
-    .isActive {
-        right: 0;
-    }
+  .notification-wrapper {
+    width: 25%;
+    position: fixed;
+    top: 70px;
+    right: -500px;
+    bottom: 0;
+    background-color: #fff;
+    overflow: scroll;
+    z-index: 1000;
+    transition: 0.5s;
+  }
+
+  .isActive {
+    right: 0;
+  }
 }
+
 .btn01-container {
-    width: 100%;
-    text-align: center;
-    button {
-        border-color: #43425d;
-        background-color: #43425d;
-        font-weight: bold;
-        color: #fff;
-        padding: 8px 40px;
-        font-size: 16px;
-        border-radius: 100px;
-        outline: none;
-        width: 140px;
-        opacity: 1;
-        transition: 0.3s;
-    }
-    .back_button {
-        border-color: #43425d;
-        background-color: #fff;
-        font-weight: bold;
-        color: #43425d;
-        padding: 8px 40px;
-        font-size: 16px;
-        border-radius: 100px;
-        outline: none;
-        width: 140px;
-        opacity: 1;
-        transition: 0.3s;
-    }
-    button:hover {
-        opacity: 0.7;
-    }
+  width: 100%;
+  text-align: center;
+  button {
+    border-color: #43425d;
+    background-color: #43425d;
+    font-weight: bold;
+    color: #fff;
+    padding: 8px 40px;
+    font-size: 16px;
+    border-radius: 100px;
+    outline: none;
+    width: 140px;
+    opacity: 1;
+    transition: 0.3s;
+  }
+  .back_button {
+    border-color: #43425d;
+    background-color: #fff;
+    font-weight: bold;
+    color: #43425d;
+    padding: 8px 40px;
+    font-size: 16px;
+    border-radius: 100px;
+    outline: none;
+    width: 140px;
+    opacity: 1;
+    transition: 0.3s;
+  }
+  button:hover {
+    opacity: 0.7;
+  }
 }
 .btn02-container {
-    text-align: center;
-    button {
-        height: 2.25em;
-        width: 140px;
-        border-radius: 100px;
-        color: #fff;
-        font-weight: bold;
-        font-size: 18px;
-        background: #43425d;
-    }
+  text-align: center;
+  button {
+    height: 2.25em;
+    width: 140px;
+    border-radius: 100px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    background: #43425d;
+  }
 }
 
 .btn-a-container {
-    a {
-        background-color: #43425d;
-        font-weight: bold;
-        color: #fff;
-        padding: 8px 20px;
-        font-size: 15px;
-        border-radius: 100px;
-        outline: none;
-        text-decoration: none;
-        opacity: 1;
-        transition: 0.3s;
-    }
-    a:hover {
-        opacity: 0.7;
-    }
+  a {
+    background-color: #43425d;
+    font-weight: bold;
+    color: #fff;
+    padding: 8px 20px;
+    font-size: 15px;
+    border-radius: 100px;
+    outline: none;
+    text-decoration: none;
+    opacity: 1;
+    transition: 0.3s;
+  }
+  a:hover {
+    opacity: 0.7;
+  }
 }
 // ダウンロードボタン
 .title_btn-container__wrapper {
-    display: flex;
+  display: flex;
 }
 .download-btn-container {
-    margin-left: auto;
-    .download-button {
-        height: 40px;
-        width: 140px;
-        background-color: #fff;
-        color: #43425d;
-        margin: 24px 0;
-        border-radius: 100px;
-        border: 2px solid #43425d;
-        font-size: 16px;
-        font-weight: bold;
-    }
-    .download-button:hover {
-        text-decoration: none;
-        border: 2px solid #43425d;
-    }
+  margin-left: auto;
+  .download-button {
+    height: 40px;
+    width: 140px;
+    background-color: #fff;
+    color: #43425d;
+    margin: 24px 0;
+    border-radius: 100px;
+    border: 2px solid #43425d;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .download-button:hover {
+    text-decoration: none;
+    border: 2px solid #43425d;
+  }
 }
 // セレクトボックス 矢印アイコン
 .select-arrow {
-    overflow: hidden;
-    text-align: center;
-    position: relative;
-    border: 1px solid #e9e9f0;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  border: 1px solid #e9e9f0;
+  border-radius: 2px;
+  background: #ffffff;
+  select {
+    width: 100%;
+    padding-right: 1em;
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 8px 38px 8px 8px;
+    color: #666666;
+  }
+  select::-ms-expand {
+    display: none;
+  }
+  &::after {
+    right: 18px;
+    padding: 0;
+    border: 3px solid #94949400;
     border-radius: 2px;
-    background: #ffffff;
-    select {
-        width: 100%;
-        padding-right: 1em;
-        cursor: pointer;
-        text-indent: 0.01px;
-        text-overflow: ellipsis;
-        border: none;
-        outline: none;
-        background: transparent;
-        background-image: none;
-        box-shadow: none;
-        -webkit-appearance: none;
-        appearance: none;
-        padding: 8px 38px 8px 8px;
-        color: #666666;
-    }
-    select::-ms-expand {
-        display: none;
-    }
-    &::after {
-        right: 18px;
-        padding: 0;
-        border: 3px solid #94949400;
-        border-radius: 2px;
-        border-right: 0;
-        border-top: 0;
-        content: " ";
-        display: block;
-        height: 0.625em;
-        margin-top: -0.4375em;
-        pointer-events: none;
-        position: absolute;
-        top: 50%;
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        -webkit-transform-origin: center;
-        transform-origin: center;
-        width: 0.625em;
-        border-color: #a4afb7;
-    }
+    border-right: 0;
+    border-top: 0;
+    content: " ";
+    display: block;
+    height: 0.625em;
+    margin-top: -0.4375em;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    width: 0.625em;
+    border-color: #a4afb7;
+  }
 }
 
 // セレクトボックス＋アイコン
 .select-plusicon {
-    overflow: hidden;
-    text-align: center;
-    position: relative;
-    border: 1px solid #e9e9f0;
-    border-radius: 2px;
-    background: #ffffff;
-    select {
-        width: 100%;
-        padding-right: 1em;
-        cursor: pointer;
-        text-indent: 0.01px;
-        text-overflow: ellipsis;
-        border: none;
-        outline: none;
-        background: transparent;
-        background-image: none;
-        box-shadow: none;
-        -webkit-appearance: none;
-        appearance: none;
-        padding: 8px 38px 8px 8px;
-        color: #666666;
-    }
-    select::-ms-expand {
-        display: none;
-    }
-    &::before {
-        position: absolute;
-        top: 15px;
-        right: 22px;
-        width: 2px;
-        height: 5px;
-        padding: 0;
-        content: "";
-        border-top: 16px solid #a4afb7;
-        pointer-events: none;
-    }
-    &::after {
-        position: absolute;
-        top: 22px;
-        right: 15px;
-        width: 16px;
-        height: 2px;
-        padding: 0;
-        content: "";
-        border-top: 2px solid #a4afb7;
-        pointer-events: none;
-    }
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  border: 1px solid #e9e9f0;
+  border-radius: 2px;
+  background: #ffffff;
+  select {
+    width: 100%;
+    padding-right: 1em;
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 8px 38px 8px 8px;
+    color: #666666;
+  }
+  select::-ms-expand {
+    display: none;
+  }
+  &::before {
+    position: absolute;
+    top: 15px;
+    right: 22px;
+    width: 2px;
+    height: 5px;
+    padding: 0;
+    content: "";
+    border-top: 16px solid #a4afb7;
+    pointer-events: none;
+  }
+  &::after {
+    position: absolute;
+    top: 22px;
+    right: 15px;
+    width: 16px;
+    height: 2px;
+    padding: 0;
+    content: "";
+    border-top: 2px solid #a4afb7;
+    pointer-events: none;
+  }
 }
 
 // actionButton
 .actionButton {
-    margin: 24px 0;
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .done {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 100px;
+    background-color: #43425d;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 30px;
+    cursor: pointer;
+    font-size: 12px;
+    border: solid 2px #43425d;
+  }
 
-    .done {
-        border-radius: 100px;
-        background-color: #43425d;
-        color: #fff;
-        font-weight: bold;
-        padding: 8px 30px;
-        cursor: pointer;
-        font-size: 12px;
-    }
+  .undone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    background-color: #fff;
+    color: #43425d;
+    font-weight: bold;
+    padding: 8px 24px;
+    margin-right: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    border: solid 2px #43425d;
+  }
 
-    .undone {
-        border-radius: 100px;
-        background-color: #fff;
-        color: #43425d;
-        font-weight: bold;
-        padding: 8px 24px;
-        margin-right: 12px;
-        cursor: pointer;
-        font-size: 12px;
-    }
+  button:hover {
+    opacity: 0.7;
+    transition: 0.3s;
+  }
 
-    button:hover {
-        opacity: 0.7;
-        transition: 0.3s;
-    }
-
-    .non-action-text {
-        color: #ccc;
-        margin-bottom: 0;
-    }
+  .non-action-text {
+    color: #ccc;
+    margin-bottom: 0;
+  }
 }
 
 .error-message-wrapper {
-    width: 100%;
-    text-align: center;
-    margin-top: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 0;
+}
+
+// モーダル
+.modal {
+  .modal-dialog {
+    max-width: 716px;
+  }
+  .close {
+    height: 25px;
+    padding-right: 8px;
+    text-transform: uppercase;
+  }
+  .modal-header {
+    text-decoration: noen;
+    margin-top: 20px;
+
+    h5 {
+      font-size: 32px;
+      font-weight: bold;
+      color: #43425d;
+    }
+    p {
+      // line-height: 1;
+      padding-bottom: 1px;
+    }
+  }
+  .modal-footer {
+    margin: 24px auto 40px;
+  }
+}
+.actionButton {
+  p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #43425d;
+  }
+  .confirm-btn {
+    width: 174px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .confirm-done {
+    background-color: #00ce47;
+    border: solid 2px #00ce47;
+  }
+  .confirm-undone {
+    border: solid 2px #43425d;
+  }
 }
