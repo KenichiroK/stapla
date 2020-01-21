@@ -45,15 +45,4 @@ class VerificationController extends Controller
 
         return redirect($this->redirectPath())->with('company.verified', true);
     }
-
-    public function resend(Request $request)
-    {
-        if ($request->user()->hasVerifiedEmail()) {
-            return redirect($this->redirectPath());
-        }
-         
-        $request->user()->sendEmailVerificationNotification();
-         
-        return back()->with('company.resent', true);
-    }
 }
