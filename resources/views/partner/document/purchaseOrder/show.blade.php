@@ -123,7 +123,7 @@ const setPreview = (input) => {
             <form action="{{ route('partner.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
+                <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                 <button type="submit" class="undone">断る</button>
             </form>
             <a class="undone" href="{{ route('partner.task.show', ['task_id' => $task->id]) }}">タスクに戻る</a>

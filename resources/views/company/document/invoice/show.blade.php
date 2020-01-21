@@ -293,7 +293,7 @@
 			<form action="{{ route('company.task.status.change') }}" method="POST">
 				@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-				<input type="hidden" name="status" value="{{ config('const.APPROVAL_ACCOUNTING') }}">
+				<input type="hidden" name="status" value="{{ config('const.WORKING') }}">
 				<button class="undone" type="submit">請求書を拒否する</button>
 			</form>
 			<form action="{{ route('company.task.status.change')}}" method="POST">

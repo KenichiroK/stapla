@@ -224,7 +224,7 @@
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                    <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
+                    <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                     <button type="submit" class="undone">発注書を承認しない</button>
                 </form>
                 <a class="undone" href="{{ route('company.task.show', ['task_id' => $task->id]) }}">タスクに戻る</a>
