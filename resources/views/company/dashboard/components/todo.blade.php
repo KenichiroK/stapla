@@ -14,7 +14,7 @@
             <p class="content-container__head--long">プロジェクト</p>
             <p class="content-container__head--long">タスク</p>
             <p class="content-container__head--long">パートナー</p>
-            <p class="content-container__head--long">以来日時</p>
+            <p class="content-container__head--long">依頼日時</p>
             <p class="content-container__head--short"></p>
         </div>
 
