@@ -53,7 +53,7 @@
 
                 <div class="checkbox_wrapper">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                    <label for="check">ログインしたままにする</label>
+                    <label for="remember">ログインしたままにする</label>
                 </div>
 
                 <div class="button_wrapper">
