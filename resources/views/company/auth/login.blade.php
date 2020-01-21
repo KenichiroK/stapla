@@ -23,7 +23,7 @@
 
         <div class="form_wrapper">
             <form method="POST" action="{{ route('company.login') }}">
-                @csrf
+            @csrf
                 <div class="input_wrapper">
                     <h4 class="title">ユーザーID</h4>
                     <input class="input_text" type="email" name="email" placeholder="ユーザーネーム又はメールアドレス" value={{ old('email') }}>
@@ -52,7 +52,7 @@
                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                     <label for="remember">ログインしたままにする</label>
                 </div>
-
+                
                 <div class="button_wrapper">
                     <button class="text" id="button" data-impro-button="once" type="button" onclick="submit();">ログイン</button>
                 </div>
