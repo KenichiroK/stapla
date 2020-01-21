@@ -8,10 +8,10 @@
 @section('content')
 <div class="main__container">
     <div class="main__container__wrapper">
-        @if (session('completed'))
-            <div class="complete-container">
-                <p>{{ session('completed') }}</p>
-            </div>
+        @if(session('completed'))
+        <div class="complete-container">
+            <p>{{ session('completed') }}</p>
+        </div>
         @endif
 
         <div class="top-container">
@@ -28,9 +28,7 @@
         </div>
         
         <div class="profile-list">
-            
-            @foreach( $partners as $partner )
-            
+            @foreach($partners as $partner)
             <div class="profile-card-container">
                 <div class="profile-card-container__wrapper">
                     <div class="main-content">
@@ -44,9 +42,7 @@
                             <div class="main-content__info-list__assessment-achievement">
                                 <!-- <div class="assessment">⭐⭐⭐⭐</div> -->
                                 <!-- <div class="achievement">実績<span class="num">1</span><span class="ken">件</span></div> -->
-                            
                             </div>
-                            
                         </div>
                         <!-- <div class="main-content__edit-icons">
                             <div>
@@ -56,7 +52,6 @@
                     </div>
                 </div>
             </div>
-            
             @endforeach
             
             <div class="pagenate-container">

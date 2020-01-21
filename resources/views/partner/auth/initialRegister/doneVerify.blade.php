@@ -19,16 +19,11 @@
 
         <div class="btn-container">
             @if(isset($partner))
-                <a href="{{ route('partner.dashboard') }}">ダッシュボードに行く</a>
+                <a href="{{ route('partner.dashboard', [ 'partner_id' => $partner_id]) }}">ダッシュボードに行く</a>
             @else
-                <a href="{{ route('partner.register.intialRegistration.createPartner') }}">ユーザー情報を登録する</a>
+                <a href="{{ route('partner.register.personal.create') }}">ユーザー情報を登録する</a>
             @endif
         </div>
     </div>
 </main>
-
-<footer>
-    <span>ご利用規約</span>
-    <span>プライバシーポリシー</span>
-</footer>
 @endsection

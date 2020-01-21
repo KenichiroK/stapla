@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\PartnerPasswordResetNotification;
 
-class Partner extends Authenticatable
+class Partner extends Authenticatable implements MustVerifyEmail
 {   
     use Notifiable;
     public $incrementing = false;

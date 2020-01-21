@@ -29,7 +29,6 @@ class VerificationController extends Controller
                         : view('partner.auth.verify');
     }
 
-
     public function verify(Request $request, $id, $email, $access_key)
     {
         if ($request->route('id') != $request->user()->getKey()) {

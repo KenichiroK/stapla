@@ -110,6 +110,7 @@ mix
   .sass("resources/sass/auth/login/index.scss", "public/css/auth/login")
   .sass("resources/sass/auth/initialRegister/personal.scss", "public/css/auth/initialRegister")
   .sass("resources/sass/auth/initialRegister/company.scss", "public/css/auth/initialRegister")
+  .sass("resources/sass/auth/initialRegister/terms.scss", "public/css/auth/initialRegister")
   .sass("resources/sass/auth/initialRegister/preview.scss", "public/css/auth/initialRegister")
   .sass("resources/sass/auth/initialRegister/done.scss", "public/css/auth/initialRegister")
   .sass("resources/sass/company/dashboard/index.scss", "public/css/company/dashboard")
