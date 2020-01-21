@@ -31,12 +31,13 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::post('pwRegister', 'Partners\Auth\RegisterController@pwRegister')->name('partner.pwRegister');
 		
 	// register_flow - 初期登録関連
-	Route::get('/register/initialRegistration/{partner_id}', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
-	Route::post('register/terms', 'Partners\InitialRegisterController@terms')->name('partner.register.terms');
-	Route::post('/register/initial/personal', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
-	Route::post('/register/preview/previewShow', 'Partners\InitialRegisterController@previewShow')->name('partner.register.preview.previewShow');
+	Route::get('/register/personal/{partner_id}', 'Partners\InitialRegisterController@createPartner')->name('partner.register.personal.create');
+	Route::post('/register/personal', 'Partners\InitialRegisterController@store')->name('partner.register.personal.store');
+	Route::get('register/terms/{partner_id}', 'Partners\InitialRegisterController@terms')->name('partner.register.terms');
+	Route::post('register/terms', 'Partners\InitialRegisterController@agreeTerms')->name('company.register.terms.store');
 	Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('partner.register.preview.previewStore');
-	
+	Route::get('/register/doneRegister', 'Partners\InitialRegisterController@doneRegister')->name('partner.register.doneRegister');
+
 	// password reset
 	Route::get('password/reset', 'Partners\Auth\ForgotPasswordController@showLinkRequestForm')->name('partner.password.request');
 	Route::post('password/email', 'Partners\Auth\ForgotPasswordController@sendResetLinkEmail')->name('partner.password.email');
