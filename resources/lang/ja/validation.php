@@ -175,7 +175,6 @@ return [
 
         // 担当者
         'tel' => '電話番号',
-        'tel' => '電話番号',
         
         // パートナー
         'occupations' => '職種',
@@ -192,22 +191,19 @@ return [
         'accounting_id'      => '経理',
 
         // task
-        'task_name'       => 'タスク名',
-        'task_content'    => 'タスク内容',
-        'started_at'      => '開始日',
-        'ended_at'        => '終了日',
-        'status'          => 'ステータス',
-        'budget'          => '予算',
-        'price'           => '金額',
-        'cases'           => '件数',
-        'fee_format'      => '報酬形式',
-        'payment_terms'   => '支払い条件',
-        'partner_id'      => 'パートナー',
-        'project_name'    => 'プロジェクト名',
-        'project_detail'  => 'プロジェクト詳細',
-        'deliver_comment' => '自由記述欄',
-        'deliver_files'   => '添付ファイル',
-        'deliver_files.*' => 'アップロードできるファイル',
+        'task_name'            => 'タスク名',
+        'content'              => 'タスク内容',
+        'task_company_user_id' => '担当者',
+        'started_at'           => '開始日',
+        'ended_at'             => '終了日',
+        'status'               => 'ステータス',
+        'order_price'          => '発注金額',
+        'partner_id'           => 'パートナー',
+        'project_name'         => 'プロジェクト名',
+        'project_detail'       => 'プロジェクト詳細',
+        'deliver_comment'      => '自由記述欄',
+        'deliver_files'        => '添付ファイル',
+        'deliver_files.*'      => 'アップロードできるファイル',
 
         // doucment 作成
         'task_id'              => 'タスク',

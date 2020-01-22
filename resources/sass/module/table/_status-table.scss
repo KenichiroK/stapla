@@ -12,7 +12,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid colors(border-light);
+    border-bottom: 1px solid colors(borderLight);
     margin: 0 0 20px;
 
     &__text {
@@ -58,11 +58,11 @@
       color: colors(navy1);
       font-family: "NotoSansCJKjp";
       font-weight: bold;
-      border-left: 1px solid colors(border-light);
+      border-left: 1px solid colors(borderLight);
       text-decoration: none;
 
       &:last-child {
-        border-right: 1px solid colors(border-light);
+        border-right: 1px solid colors(borderLight);
       }
 
       &--text {
@@ -76,7 +76,7 @@
     }
 
     .is-active {
-      background-color: colors(bg-light);
+      background-color: colors(bgLight);
       cursor: default;
       &:hover {
         opacity: 1;

@@ -31,12 +31,13 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::post('passwordRegister', 'Partners\Auth\RegisterController@passwordRegister')->name('partner.passwordRegister');
 		
 	// register_flow - 初期登録関連
-	Route::get('/register/initialRegistration/{partner_id}', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
-	Route::post('register/terms', 'Partners\InitialRegisterController@terms')->name('partner.register.terms');
-	Route::post('/register/initial/personal', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
-	Route::post('/register/preview/previewShow', 'Partners\InitialRegisterController@previewShow')->name('partner.register.preview.previewShow');
+	Route::get('/register/personal/{partner_id}', 'Partners\InitialRegisterController@createPartner')->name('partner.register.personal.create');
+	Route::post('/register/personal', 'Partners\InitialRegisterController@store')->name('partner.register.personal.store');
+	Route::get('register/terms/{partner_id}', 'Partners\InitialRegisterController@terms')->name('partner.register.terms');
+	Route::post('register/terms', 'Partners\InitialRegisterController@agreeTerms')->name('company.register.terms.store');
 	Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('partner.register.preview.previewStore');
-	
+	Route::get('/register/doneRegister', 'Partners\InitialRegisterController@doneRegister')->name('partner.register.doneRegister');
+
 	// password reset
 	Route::get('password/reset', 'Partners\Auth\ForgotPasswordController@showLinkRequestForm')->name('partner.password.request');
 	Route::post('password/email', 'Partners\Auth\ForgotPasswordController@sendResetLinkEmail')->name('partner.password.email');
@@ -168,15 +169,19 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/task/draft', 'Companies\TaskController@draft')->name('company.task.draft');
 			// 下書きを更新
 		Route::post('/task/update-draft', 'Companies\TaskController@updateDraft')->name('company.task.updateDraft');
-			// プレビュー
-		Route::post('/task/preview', 'Companies\TaskController@preview')->name('company.task.preview');
-			// タスク再編集
+			
+		// タスクプレビュー
+		Route::post('/task/task-preview', 'Companies\TaskController@taskPreview')->name('company.task.taskPreview');
+			// 発注書プレビュー
+		Route::post('/task/purchase-order-preview', 'Companies\TaskController@purchaseOrderPreview')->name('company.task.purchaseOrderPreview');
+			
+		// タスク再編集
 		Route::post('/task/recreate', 'Companies\TaskController@reCreate')->name('company.task.reCreate');
 			// タスク登録
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// タスク詳細
 		Route::get('/task/{task_id}', 'Companies\TaskController@show')->name('company.task.show');
-				// task-show-file_download
+				// 納品関連ファイルのダウンロード
 		Route::post('/file-download', 'Companies\DeliverController@download')->name('company.fileDownload');
 			// task-edit
 		Route::get('/task/{id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');

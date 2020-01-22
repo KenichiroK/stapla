@@ -21,7 +21,11 @@
 
         @foreach($tasks as $task)
         <div class="content-container__body task_item">
-            <a class="content-container__body--link" href="{{ route('company.task.show', ['id' => $task->id]) }}">
+            @if($task->status === config('const.TASK_CREATE'))
+                <a class="content-container__body--link" href="{{ route('company.task.createDraft', ['id' => $task->id]) }}">
+            @else
+                <a class="content-container__body--link" href="{{ route('company.task.show', ['id' => $task->id]) }}">
+            @endif
                 <p class="content-container__body--short">
                     @if ($task->company_user_id === Auth::user()->id)
                         担当者<br>
@@ -36,11 +40,13 @@
                 <p class="content-container__body--middle">{{ $task->project->name }}</p>
                 <p class="content-container__body--middle">{{ $task->name }}</p>
                 <p class="content-container__body--middle">
-                    <img class="profile-img" src="{{ $task->partner->picture }}" alt="">
-                    <span>{{ $task->partner->name }}</span>
+                    @isset($task->partner_id)
+                        <img class="profile-img" src="{{ $task->partner->picture }}" alt="">
+                        <span>{{ $task->partner->name }}</span>
+                    @endisset
                 </p>
                 <p class="content-container__body--middle">{{ config('const.TASK_STATUS_LIST')[$task->status] }}</p>
-                <p class="content-container__body--middle">¥{{ number_format($task->price) }}</p>
+                <p class="content-container__body--middle">¥ {{ number_format($task->price) }}</p>
             </a>
         </div>
         @endforeach

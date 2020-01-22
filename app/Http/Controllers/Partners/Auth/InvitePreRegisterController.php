@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers\Partners\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
-// use App\Models\PartnerAuth;
 use App\Models\Partner;
-use App\Models\CompanyUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class InvitePreRegisterController extends Controller

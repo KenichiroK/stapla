@@ -1,0 +1,18 @@
+@import "../../setting/colors";
+
+.textarea {
+  width: 100%;
+  padding: 16px 16px;
+  box-sizing: border-box;
+  box-shadow: none;
+  border-radius: 0;
+  font-size: 16px;
+  border: 2px solid colors(borderLight);
+  background: colors(white1);
+  color: colors(primary);
+  outline: none;
+
+  &:hover {
+    border: 2px solid colors(borderLight);
+  }
+}

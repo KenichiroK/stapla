@@ -10,19 +10,32 @@ use Illuminate\Support\Facades\Redirect;
 class PartnerEnsureEmailIsVerified
 {
     public function handle($request, Closure $next, $guard = null)
-    {        
-        if($guard == "partner" && Auth::guard($guard)->check() && auth()->user()->agree_status == 1) {
-            return $next($request);
-        } elseif($guard == 'partner' && Auth::guard($guard)->check()) {
-            if (! Auth::guard($guard)->user() ||
-                 (Auth::guard($guard)->user() instanceof MustVerifyEmail && ! Auth::guard($guard)->user()->hasVerifiedEmail())) {
-                
-                    return $request->expectsJson()
-                        ? abort(403, 'Your email address is not verified.')
-                        : Redirect::route('partner.verification.notice');
+    {
+        if($guard == 'partner') {
+            // signin していない場合
+            if (!Auth::guard($guard)->check()) {
+                return redirect()->route('/partner/login');
             }
-        } else{
-            return redirect('/');
+
+            // メール認証が済んでいない場合
+            if (
+                !Auth::guard($guard)->user() ||
+                (
+                    Auth::guard($guard)->user() instanceof MustVerifyEmail &&
+                    !Auth::guard($guard)->user()->hasVerifiedEmail()
+                )
+            ) {
+                return $request->expectsJson()
+                    ? abort(403, 'Your email address is not verified.')
+                    : Redirect::route('partner.verification.notice');
+            }
+
+            // 規約の同意が済んでいない場合
+            if (!auth()->user()->is_agree) {
+                return redirect()->route('partner.register.terms', auth()->user()->id);
+            }
+
+            return $next($request);
         }
     }
 }
