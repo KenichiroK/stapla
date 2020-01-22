@@ -65,10 +65,10 @@
     </div>
 </main>
 
-<footer>
+<!-- <footer>
     <span class="tos"><a href="/terms">ご利用規約</a></span>
     <span class="privacy"><a href="/privacy">プライバシーポリシー</a></span>
-</footer>
+</footer> -->
 @endsection
 
 @section('asset-js')
