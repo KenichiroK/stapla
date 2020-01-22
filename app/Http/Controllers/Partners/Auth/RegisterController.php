@@ -23,7 +23,9 @@ class RegisterController extends Controller
         return redirect()->route('partner.dashboard', compact('partner'));
     }
 
-    protected function pwRegister(Request $request)
+    protected $redirectTo = '/partner/register/doneVerify';
+
+    protected function passwordRegister(Request $request)
     {
         $request->validate([
             'password' => ['required', 'string', 'min:6', 'confirmed'],
