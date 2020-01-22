@@ -17,7 +17,7 @@
 
     &__head {
       width: 100%;
-      background-color: colors(bg-light);
+      background-color: colors(bgLight);
       display: flex;
       align-items: center;
 
@@ -70,7 +70,7 @@
         transition: 0.18s;
 
         &:hover {
-          background-color: colors(bg-light);
+          background-color: colors(bgLight);
         }
       }
 
@@ -123,7 +123,7 @@
         padding: 14px 0;
         word-break: break-all;
         @include primary-text(14px, bold);
-        background-color: colors(bg-light);
+        background-color: colors(bgLight);
       }
 
       &--task-index {

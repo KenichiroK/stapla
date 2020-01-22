@@ -169,15 +169,19 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/task/draft', 'Companies\TaskController@draft')->name('company.task.draft');
 			// 下書きを更新
 		Route::post('/task/update-draft', 'Companies\TaskController@updateDraft')->name('company.task.updateDraft');
-			// プレビュー
-		Route::post('/task/preview', 'Companies\TaskController@preview')->name('company.task.preview');
-			// タスク再編集
+			
+		// タスクプレビュー
+		Route::post('/task/task-preview', 'Companies\TaskController@taskPreview')->name('company.task.taskPreview');
+			// 発注書プレビュー
+		Route::post('/task/purchase-order-preview', 'Companies\TaskController@purchaseOrderPreview')->name('company.task.purchaseOrderPreview');
+			
+		// タスク再編集
 		Route::post('/task/recreate', 'Companies\TaskController@reCreate')->name('company.task.reCreate');
 			// タスク登録
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// タスク詳細
 		Route::get('/task/{task_id}', 'Companies\TaskController@show')->name('company.task.show');
-				// task-show-file_download
+				// 納品関連ファイルのダウンロード
 		Route::post('/file-download', 'Companies\DeliverController@download')->name('company.fileDownload');
 			// task-edit
 		Route::get('/task/{id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');

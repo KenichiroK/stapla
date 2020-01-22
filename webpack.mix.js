@@ -52,6 +52,7 @@ mix.js(["resources/js/pages/company/project/index/index.js"], "public/js/pages/c
 
 // task
 mix.js(["resources/js/pages/company/task/index/index.js"], "public/js/pages/company/task/index/index.js");
+mix.js(["resources/js/pages/company/task/create/index.js"], "public/js/pages/company/task/create/index.js");
 
 // order
 mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/index.js");
@@ -101,8 +102,6 @@ mix.js(
   ],
   "public/js/company/setting/general/index.js",
 );
-
-mix.js(["resources/js/company/task/toggle-calendar.js"], "public/js/company/task/toggle-calendar.js");
 
 mix
   .sass("resources/sass/style.scss", "public/css")
@@ -159,7 +158,8 @@ mix
   // renewal project
   .sass("resources/sass/page/project/index/style.scss", "public/css/page/project/index")
   // renewal task
-  .sass("resources/sass/page/task/index/style.scss", "public/css/page/task/index");
+  .sass("resources/sass/page/task/index/style.scss", "public/css/page/task/index")
+  .sass("resources/sass/page/task/create/style.scss", "public/css/page/task/create");
 
 mix.options({
   publicPath: "public",

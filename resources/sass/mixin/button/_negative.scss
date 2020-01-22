@@ -1,6 +1,6 @@
 @import "./button";
 
-@mixin positive-btn($width: 64px, $height: 32px, $px: 16px, $py: 8px, $fontSize: 16px) {
+@mixin negative-btn($width: 120px, $height: 36px, $px: 16px, $py: 8px, $fontSize: 16px) {
   @extend .button;
   width: $width;
   height: $height;
@@ -9,8 +9,8 @@
   padding-bottom: $py;
   padding-left: $px;
   font-size: $fontSize;
-  line-height: $height - $py * 2;
-  background-color: colors(primary);
-  color: colors(white1);
+  line-height: $fontSize;
+  background-color: colors(white1);
+  color: colors(primary);
   border: solid 1px colors(primary);
 }

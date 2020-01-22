@@ -1,0 +1,6 @@
+@import "./font";
+
+@mixin danger-text($fontSize: 16px, $fontWeight: normal) {
+  @include font($fontSize, $fontWeight);
+  color: colors(red1);
+}

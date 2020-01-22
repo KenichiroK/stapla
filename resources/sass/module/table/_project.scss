@@ -17,7 +17,7 @@
 
     &__head {
       width: 100%;
-      background-color: colors(bg-light);
+      background-color: colors(bgLight);
       display: flex;
       align-items: center;
 
@@ -51,7 +51,7 @@
         transition: 0.18s;
 
         &:hover {
-          background-color: colors(bg-light);
+          background-color: colors(bgLight);
         }
       }
 
