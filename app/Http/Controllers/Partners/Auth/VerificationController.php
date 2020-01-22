@@ -12,7 +12,7 @@ class VerificationController extends Controller
 {
     use VerifiesEmails;
 
-    protected $redirectTo = '/partner/auth/firstLogin';
+    protected $redirectTo = '/partner/login';
 
     public function __construct()
     {

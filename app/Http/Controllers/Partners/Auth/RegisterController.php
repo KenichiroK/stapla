@@ -38,4 +38,9 @@ class RegisterController extends Controller
 
         return redirect()->route('partner.register.personal.create', [ 'partner_id' => $partner->id ]);
     }
+
+    protected function verify()
+    {
+        return view('partner/auth/verify');
+    }
 }
