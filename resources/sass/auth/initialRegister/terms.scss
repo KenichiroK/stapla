@@ -41,6 +41,15 @@ main {
     margin: 40px 100px;
     .terms-title {
     text-align: left;
+    color: #43425d;
+    h3 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    p {
+      line-height: 1.5;
+    }
     }
     .terms-box-wrapper {
       margin: 26px 0 37px;
@@ -53,7 +62,7 @@ main {
         color: #4d4f5c;
         margin: 26px;
         letter-spacing: 0.5px;
-        line-height: 1.3;
+        line-height: 1.5;
         .terms-box-inner-title {
             color: #000;
             text-align: center;

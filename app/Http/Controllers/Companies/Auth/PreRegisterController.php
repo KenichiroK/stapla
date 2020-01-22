@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Companies\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\FirstCompanyUserAuth;
+use App\Models\CompanyUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -15,13 +14,12 @@ class PreRegisterController extends Controller
 {
     use RegistersUsers;
 
-
     public function showRegisterForm()
     {
         return view('company.auth.preRegister');
     }
 
-    protected $redirectTo = '/company/register/preRegistered';
+    protected $redirectTo = '/email/verify';
 
     public function __construct()
     {
@@ -33,6 +31,8 @@ class PreRegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
@@ -47,7 +47,7 @@ class PreRegisterController extends Controller
 
     protected function create(array $data)
     {
-        return FirstCompanyUserAuth::create([
+        return CompanyUser::create([
             'email' => $data['email'],
         ]);
     }

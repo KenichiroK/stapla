@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Companies\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\CompanyUser;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -17,31 +14,29 @@ class RegisterController extends Controller
 
     public function showRegisterForm(Request $request)
     {
-        return view('company.auth.register', compact('request'));
+        $companyUser = CompanyUser::where('email', $request->email)->firstOrFail();
+
+        if(!$companyUser->password){
+            return view('company.auth.register', compact('request'));
+        }
+        if($companyUser->is_agree == 0){
+            return redirect()->route('company.register.personal.create', [ "companyUser_id" => $companyUser->id ]);
+        } 
+        
+        return redirect()->route('company.dashboard', compact('companyUser'));
     }
 
-    protected $redirectTo = '/company/register/doneVerify';
-
-    protected function validator(array $data)
+    protected function pwRegister(Request $request)
     {
-        return Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:company_users'],
+        $request->validate([
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
-    }
+        $company_user = CompanyUser::where('email', $request->email)->firstOrFail();
+        $company_user->password           = Hash::make($request->password);
+        $company_user->company_id         = $request->company_id;
+        $company_user->invitation_user_id = $request->invitation_user_id;
+        $company_user->save();
 
-    protected function create(array $data)
-    {
-        return CompanyUser::create([
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'company_id' => $data['company_id'],
-            'invitation_user_id' => $data['invitation_user_id'] ?? null,
-        ]);
-    }
-
-    protected function guard()
-    {
-        return Auth::guard('company');
+        return redirect()->route('company.register.personal.create', [ 'company_user_id' => $company_user->id ]);
     }
 }

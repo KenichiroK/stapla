@@ -20,8 +20,6 @@ Route::get('/terms',   function () { return view('common_pages/terms');   });
 // update notification read_at using ajax
 Route::post('notification/mark_as_read', 'Commons\NotificationController@markAsRead');
 
-Auth::routes();
-
 Route::group(['prefix' => 'partner'], function(){
 	
 	//login   
@@ -105,6 +103,12 @@ Route::group(['prefix' => 'partner'], function(){
 	});
 });
 
+
+Route::namespace('Companies')->as('company.')->group(function() {
+	Auth::routes(['verify' => true]);
+});
+Auth::routes();
+
 Route::group(['prefix' => 'company'], function(){
 
 	// login
@@ -119,26 +123,22 @@ Route::group(['prefix' => 'company'], function(){
 	Route::get('password/reset', 'Companies\Auth\ForgotPasswordController@showLinkRequestForm')->name('company.password.request');
 	Route::post('password/email', 'Companies\Auth\ForgotPasswordController@sendResetLinkEmail')->name('company.password.email');
 	Route::get('password/reset/{token}', 'Companies\Auth\ResetPasswordController@showResetForm')->name('company.password.reset');
-    Route::post('password/reset', 'Companies\Auth\ResetPasswordController@reset')->name('company.password.update');
-
-	// preRegister - 1st企業ユーザー仮登録完了ページ
-	Route::get('/register/preRegistered', 'Companies\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
-
+	Route::post('password/reset', 'Companies\Auth\ResetPasswordController@reset')->name('company.password.update');
+	
 	// register - 企業ユーザー本登録
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
-	Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
-	
-	
+	Route::post('pwRegister', 'Companies\Auth\RegisterController@pwRegister')->name('company.pwRegister');
+
+	// register_flow
+	Route::get('/register/personal/{companyUser_id}', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');
+	Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
+	Route::get('register/terms/{companyUser_id}', 'Companies\Registration\PersonalController@terms')->name('company.register.terms');
+	Route::post('register/terms', 'Companies\Registration\PersonalController@agreeTerms')->name('company.register.terms.store');
+	Route::post('/register/previewStore', 'Companies\Registration\PersonalController@previewStore')->name('company.register.preview.previewStore');
+	Route::get('/register/doneRegister', 'Companies\Registration\PersonalController@doneRegister')->name('company.register.doneRegister');
+
+
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
-		
-		// register_flow
-		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerify')->name('company.register.doneVerify');
-		Route::get('/register/personal', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');
-		Route::post('/register/company-and-personal', 'Companies\Registration\PersonalController@companyStore')->name('company.register.company-and-personal.store');
-		Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
-		Route::get('/register/preview', 'Companies\Registration\PreviewController@create')->name('company.register.preview.create');
-		Route::post('/register/company-preview', 'Companies\Registration\PreviewController@companyStore')->name('company.register.company-preview.store');
-		Route::post('/register/preview', 'Companies\Registration\PreviewController@store')->name('company.register.preview.store');
 		
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');

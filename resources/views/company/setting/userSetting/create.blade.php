@@ -33,24 +33,36 @@ const setPreview = (input) => {
             <ul>
                 <li>担当者名</li>
                 <li>メールアドレス</li>
-                <!-- <li>パートナー依頼中</li> -->
                 <li>ステータス</li>
             </ul>
         </div>
         <div class="charge-container_content">
             @foreach($companyUsers as $companyUser)
             <ul>
+                {{-- NOTE: 契約書締結フロー実装後デザイン変更 --}}
+                @if($companyUser->is_agree == 1)
                 <li>
                     <div class="name-container">
                         <div class="name-container__img-container">
-                        <img src="{{ $companyUser->picture }}" alt="">
+                            <img src="{{ $companyUser->picture }}" alt="">
                         </div>
                         {{ $companyUser->name }}
                     </div>
                 </li>
                 <li>{{ $companyUser->email }}</li>
-                <!-- <li>管理者</li> -->
                 <li>登録済み</li>
+                @else
+                <li>
+                    <div class="name-container">
+                        <div class="name-container__img-container">
+                            <img src="{{ env('AWS_URL').'/common/dummy_profile_icon.png' }}" alt="">
+                        </div>
+                        設定中
+                    </div>
+                </li>
+                <li>{{ $companyUser->email }}</li>
+                <li>招待中</li>
+                @endif
             </ul>
             @endforeach
             
