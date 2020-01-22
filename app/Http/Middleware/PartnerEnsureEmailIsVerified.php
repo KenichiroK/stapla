@@ -27,7 +27,7 @@ class PartnerEnsureEmailIsVerified
             ) {
                 return $request->expectsJson()
                     ? abort(403, 'Your email address is not verified.')
-                    : Redirect::route('partner.verify');
+                    : Redirect::route('partner.register.personal.create', auth()->user()->id);
             }
 
             // 規約の同意が済んでいない場合
