@@ -94,7 +94,6 @@ class PersonalController extends Controller
 
         if(!isset($companyUser->invitation_user_id)) {
             \Log::info('企業新規作成', ['user_id(company)' => $companyUser->id, 'company_id' => $companyUser->Company->id]);
-            // return view('company/auth/initialRegister/done');
             return redirect()->route('company.register.doneRegister');
         }
 
