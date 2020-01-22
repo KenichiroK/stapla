@@ -9,7 +9,7 @@
     <meta name="auth-id" content="{{ Auth::user()->id }}">
     <meta name="url" content="{{ env('APP_URL') }}">
 
-    <title>Impro</title>
+    <title>impro</title>
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ env('AWS_URL') }}/common/favicon.ico">
 
