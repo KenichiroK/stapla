@@ -175,7 +175,7 @@
       </div>
     </div>
 
-    <form action="{{ route('company.register.terms.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('partner.register.terms.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
         <input class="agree-terms" type="checkbox" id="check" name="is_agree" value=1 onclick="isCheck('check',this.checked)" disabled> ご利用規約に同意する
         <input type="hidden" name="partner_id" value="{{ $partner->id }}">

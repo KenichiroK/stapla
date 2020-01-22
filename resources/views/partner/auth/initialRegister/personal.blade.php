@@ -49,7 +49,7 @@ function setPostal(){
 		</div>
 
 		<form action="{{ route('partner.register.personal.store') }}" method="POST" enctype="multipart/form-data">
-		@csrf
+			@csrf
 			<div class="edit-container top">
 				<div class="image-container">
 					<div class="imgbox">
@@ -69,9 +69,9 @@ function setPostal(){
 						</p>
 						<input type="text" name="name" value="{{ old('name', $partner->name) }}">								
 						@if($errors->has('name'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('name') }}</strong>
-						</div>
+							<div class="error-msg">
+								<strong>{{ $errors->first('name') }}</strong>
+							</div>
 						@endif
 					</div>
 
@@ -82,9 +82,9 @@ function setPostal(){
 						</p>
 						<input type="text" name="occupations" value="{{ old('occupations', $partner->occupations) }}" placeholder="例）UIデザイナー、フロントエンドエンジニア、etc">	
 						@if($errors->has('occupations'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('occupations') }}</strong>
-						</div>
+							<div class="error-msg">
+								<strong>{{ $errors->first('occupations') }}</strong>
+							</div>
 						@endif
 					</div>
 
@@ -95,9 +95,9 @@ function setPostal(){
                         </p>
 						<textarea type="text" name="introduction" cols="30" rows="10">{{ old('introduction', $partner->introduction) }}</textarea>
 						@if($errors->has('introduction'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('introduction') }}</strong>
-						</div>
+							<div class="error-msg">
+								<strong>{{ $errors->first('introduction') }}</strong>
+							</div>
 						@endif
 					</div>
 					
@@ -118,9 +118,9 @@ function setPostal(){
 							<input type="hidden" name="zip_code" id="postal" value="{{ old('zip_code') }}">
 						</div>
 						@if($errors->has('zip_code'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('zip_code') }}</strong>
-						</div>
+							<div class="error-msg">
+								<strong>{{ $errors->first('zip_code') }}</strong>
+							</div>
 						@endif
 					</div>
 
@@ -137,9 +137,9 @@ function setPostal(){
 							</select>
 						</div>
 						@if($errors->has('prefecture'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('prefecture') }}</strong>
-						</div>
+							<div class="error-msg">
+								<strong>{{ $errors->first('prefecture') }}</strong>
+							</div>
 						@endif
 					</div>
 				</div>
@@ -152,9 +152,9 @@ function setPostal(){
 						</p>
 							<input type="text" name="city" value="{{ old('city', $partner->city) }}">
 							@if($errors->has('city'))
-							<div class="error-msg">
-								<strong>{{ $errors->first('city') }}</strong>
-							</div>
+								<div class="error-msg">
+									<strong>{{ $errors->first('city') }}</strong>
+								</div>
 							@endif
 					</div>
 
@@ -165,9 +165,9 @@ function setPostal(){
 						</p>
 							<input type="text" name="street" value="{{ old('street', $partner->street) }}">
 							@if($errors->has('street'))
-							<div class="error-msg">
-								<strong>{{ $errors->first('street') }}</strong>
-							</div>
+								<div class="error-msg">
+									<strong>{{ $errors->first('street') }}</strong>
+								</div>
 							@endif
 					</div>
 				</div>
@@ -180,9 +180,9 @@ function setPostal(){
 						</p>
 						<input type="text" name="building" value="{{ old('building', $partner->building) }}">
 						@if($errors->has('building'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('building') }}</strong>
-						</div>
+							<div class="error-msg">
+								<strong>{{ $errors->first('building') }}</strong>
+							</div>
 						@endif
 					</div>
 				</div>
@@ -197,9 +197,9 @@ function setPostal(){
 							<input type="text" name="tel" id="tel" value="{{ old('tel', $partner->tel) }}" maxlength="11">
 						</div>
 						@if($errors->has('tel'))
-						<div class="error-msg">
-							<strong>{{ $errors->first('tel') }}</strong>
-						</div>					
+							<div class="error-msg">
+								<strong>{{ $errors->first('tel') }}</strong>
+							</div>					
 						@endif
 					</div>
 				</div>

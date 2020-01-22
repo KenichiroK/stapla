@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::namespace('Partners')->as('partner.')->group(function() {
-	Auth::routes(['verify' => true]);
-});
 
 Route::get('/',        function () { return view('common_pages/home');    });
 Route::get('/privacy', function () { return view('common_pages/privacy'); });
@@ -20,8 +17,11 @@ Route::get('/terms',   function () { return view('common_pages/terms');   });
 // update notification read_at using ajax
 Route::post('notification/mark_as_read', 'Commons\NotificationController@markAsRead');
 
-Route::group(['prefix' => 'partner'], function(){
-	
+Route::namespace('Partners')->as('partner.')->group(function() {
+	Auth::routes(['verify' => true]);
+});
+
+Route::group(['prefix' => 'partner'], function(){	
 	//login   
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
@@ -34,7 +34,7 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::get('/register/personal/{partner_id}', 'Partners\InitialRegisterController@createPartner')->name('partner.register.personal.create');
 	Route::post('/register/personal', 'Partners\InitialRegisterController@store')->name('partner.register.personal.store');
 	Route::get('register/terms/{partner_id}', 'Partners\InitialRegisterController@terms')->name('partner.register.terms');
-	Route::post('register/terms', 'Partners\InitialRegisterController@agreeTerms')->name('company.register.terms.store');
+	Route::post('register/terms', 'Partners\InitialRegisterController@agreeTerms')->name('partner.register.terms.store');
 	Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('partner.register.preview.previewStore');
 	Route::get('/register/doneRegister', 'Partners\InitialRegisterController@doneRegister')->name('partner.register.doneRegister');
 

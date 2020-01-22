@@ -18,7 +18,7 @@
         </div>
 
         <form action="{{ route('partner.register.preview.previewStore') }}" method="POST">
-        @csrf
+            @csrf
             <div class="edit-container">
                 <div class="company-container">
                     <div class="section-container">
