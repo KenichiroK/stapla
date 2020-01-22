@@ -26,7 +26,7 @@ class RegisterController extends Controller
         return redirect()->route('company.dashboard', compact('companyUser'));
     }
 
-    protected function pwRegister(Request $request)
+    protected function passwordRegister(Request $request)
     {
         $request->validate([
             'password' => ['required', 'string', 'min:6', 'confirmed'],

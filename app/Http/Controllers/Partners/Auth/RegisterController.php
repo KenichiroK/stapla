@@ -40,7 +40,7 @@ class RegisterController extends Controller
     //     $this->middleware('guest:partner');
     // }
 
-    protected function pwRegister(Request $request)
+    protected function passwordRegister(Request $request)
     {
         $request->validate([
             'password' => ['required', 'string', 'min:6', 'confirmed'],

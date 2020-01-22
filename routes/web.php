@@ -28,7 +28,7 @@ Route::group(['prefix' => 'partner'], function(){
 	
 	// register   
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
-	Route::post('pwRegister', 'Partners\Auth\RegisterController@pwRegister')->name('partner.pwRegister');
+	Route::post('passwordRegister', 'Partners\Auth\RegisterController@passwordRegister')->name('partner.passwordRegister');
 		
 	// register_flow - 初期登録関連
 	Route::get('/register/initialRegistration/{partner_id}', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
@@ -126,7 +126,7 @@ Route::group(['prefix' => 'company'], function(){
 	
 	// register - 企業ユーザー本登録
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
-	Route::post('pwRegister', 'Companies\Auth\RegisterController@pwRegister')->name('company.pwRegister');
+	Route::post('passwordRegister', 'Companies\Auth\RegisterController@passwordRegister')->name('company.passwordRegister');
 
 	// register_flow
 	Route::get('/register/personal/{companyUser_id}', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');

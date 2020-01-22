@@ -19,7 +19,7 @@
 
         <div class="form_wrapper">
             <form method="POST" action="{{ route('company.PreRegister') }}">
-            @csrf
+                @csrf
                 <div class="input_wrapper">
                     <h4 class="title">メールアドレス</h4>
                     <input class="input_text" type="email" name="email" value="{{ old('email')}}" placeholder="impro@example.com">

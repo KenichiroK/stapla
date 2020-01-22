@@ -26,14 +26,14 @@
         </div>
 
         <div class="form_wrapper">
-            <form method="POST" action="{{ route('partner.pwRegister') }}">
-            @csrf
+            <form method="POST" action="{{ route('partner.passwordRegister') }}">
+                @csrf
                 <div class="input_wrapper">
                     <input class="input_text" type="hidden" name="email" value="{{ $request->email }}">
                     @if($errors->has('email'))
-                    <div class="invalid-feedback error-msg" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </div>
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </div>
                     @endif
                 </div>
 
@@ -43,10 +43,10 @@
                         <span class="required-label row-label">( 必須 )</span>
                     </h4>
                     <input class="input_text" type="password" name="password">
-                    @if ($errors->has('password'))
-                    <div class="invalid-feedback error-msg" role="alert">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </div>
+                        @if ($errors->has('password'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </div>
                     @endif
                 </div>
 
@@ -61,9 +61,9 @@
                 <div class="input_wrapper">
                     <input class="input_text" type="hidden" name="company_id" value="{{ $request->company_id }}">
                     @if($errors->has('company_id'))
-                    <div class="invalid-feedback error-msg" role="alert">
-                        <strong>{{ $errors->first('company_id') }}</strong>
-                    </div>
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('company_id') }}</strong>
+                        </div>
                     @endif
                 </div>
 
@@ -71,9 +71,9 @@
                 <div class="input_wrapper">
                     <input class="input_text" type="hidden" name="invitation_user_id" value="{{ $request->invitation_user_id }}">
                     @if($errors->has('invitation_user_id'))
-                    <div class="invalid-feedback error-msg" role="alert">
-                        <strong>{{ $errors->first('invitation_user_id') }}</strong>
-                    </div>
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('invitation_user_id') }}</strong>
+                        </div>
                     @endif
                 </div>
 
