@@ -14,7 +14,6 @@
                 <div class="page-title-container">
                     <div class="page-title-container__page-title">発注書</div>
                 </div>
-                <!-- downloadボタン -->
                 <div class="download-btn-container">
                     <a id="order_print_btn" class="button download-button">ダウンロード</a>
                 </div>
