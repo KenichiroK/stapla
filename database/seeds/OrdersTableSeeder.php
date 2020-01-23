@@ -11,7 +11,7 @@ class OrdersTableSeeder extends Seeder
      */
     public function run()
     {
-         $faker = Faker\Factory::create('ja_JP');
+        $faker = Faker\Factory::create('ja_JP');
         factory(App\Models\PurchaseOrder::class, 1)->create(); 
     }
 }
