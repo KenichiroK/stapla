@@ -208,7 +208,8 @@ Route::group(['prefix' => 'company'], function(){
 
 		//document outsource contract(業務委託契約書)
 		Route::get('/document/outsource-contracts/create', 'Companies\Document\OutsourceContractController@create')->name('company.document.outsource-contracts.show');
-
+		// TODO: postにしてプレビュー画面へ遷移するように
+		Route::get('/document/outsource-contracts/preview', 'Companies\Document\OutsourceContractController@preview')->name('company.document.outsource-contracts.preview');
 
 		// setting
 		Route::get('/setting/general', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');

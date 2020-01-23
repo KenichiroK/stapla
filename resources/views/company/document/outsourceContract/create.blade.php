@@ -59,6 +59,9 @@
 @endsection
 
 @section('asset-js')
+<script>
+</script>
+
 <script src="{{ asset('js/pages/company/document/outsourceContract/create.js') }}" defer></script>
 
 @endsection

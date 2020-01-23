@@ -172,17 +172,11 @@
             }
 
             &__info {
-              // HACK: pdf時に調整いりそう
               max-width: 180px;
               overflow-wrap: break-word;
             }
           }
         }
-
-        // TODO: PDFでA4サイズにするためにmm指定 pdf用のレイアウトを作るときに使う
-        // width: 210mm;
-        // height: 296mm;
-        // padding: 10mm;
       }
 
       // HACK: btnのcssも共通化したい

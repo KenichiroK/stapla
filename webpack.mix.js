@@ -68,6 +68,10 @@ mix.js(
   ["resources/js/pages/company/document/outsourceContract/create.js"],
   "public/js/pages/company/document/outsourceContract/create.js",
 );
+mix.js(
+  ["resources/js/pages/company/document/outsourceContract/preview.js"],
+  "public/js/pages/company/document/outsourceContract/preview.js",
+);
 
 mix.js(
   [
@@ -142,6 +146,10 @@ mix
   .sass("resources/sass/company/document/purchaseOrder/show.scss", "public/css/company/document/purchaseOrder")
   .sass(
     "resources/sass/company/document/outsourceContract/create.scss",
+    "public/css/company/document/outsourceContract",
+  )
+  .sass(
+    "resources/sass/company/document/outsourceContract/preview.scss",
     "public/css/company/document/outsourceContract",
   )
   .sass("resources/sass/company/setting/general/index.scss", "public/css/company/setting/general")

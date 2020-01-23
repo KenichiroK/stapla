@@ -13,4 +13,9 @@ class OutsourceContractController extends Controller
     {
         return view('/company/document/outsourceContract/create');
     }
+
+    public function preview()
+    {
+        return view('/company/document/outsourceContract/preview');
+    }
 }
