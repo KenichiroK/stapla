@@ -55,10 +55,10 @@
 						
                     </div>
                     @if ($errors->has('zip_code'))
-							<div class="error-msg">
-								<strong>{{ $errors->first('zip_code') }}</strong>
-							</div>
-						@endif
+						<div class="error-msg">
+							<strong>{{ $errors->first('zip_code') }}</strong>
+						</div>
+					@endif
 				</div>
 	
 				<div class="prefecture-container item-container">
