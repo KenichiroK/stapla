@@ -56,10 +56,10 @@
 }
 
 .negative-btn {
-  @include negative-btn(200px);
+  @include negative-btn(180px, 42px);
   margin-right: 40px;
 }
 
 .positive-btn {
-  @include positive-btn(200px);
+  @include positive-btn(180px, 42px);
 }

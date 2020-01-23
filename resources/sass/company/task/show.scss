@@ -34,13 +34,18 @@
     justify-content: space-between;
     .button-wrapper {
         &__btn {
-            width: 140px;
-            height: 35px;
+            width: 106px;
+            height: 40px;
             margin-top: 5px;
             border-radius: 100px;
             color: #fff;
             font-weight: bold;
+            font-size: 14px;
             background: #43425d;
+            text-decoration: none;
+            &:hover {
+                opacity: 0.7;
+            }
         }
     }
 }

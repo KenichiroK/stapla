@@ -229,7 +229,7 @@ const setPostal = () => {
 			<input type="hidden" name="invitation_user_id" value="{{ $companyUser->invitation_user_id }}">
 			
 			<div class="btn-container">
-				<button data-impro-button="once" type="button" onclick="submit();">確認</button>
+				<button class="button" data-impro-button="once" type="button" onclick="submit();">確認</button>
 			</div>
 		</form>
 	</div>

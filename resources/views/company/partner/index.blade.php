@@ -9,9 +9,9 @@
 <div class="main__container">
     <div class="main__container__wrapper">
         @if(session('completed'))
-        <div class="complete-container">
-            <p>{{ session('completed') }}</p>
-        </div>
+            <div class="complete-container">
+                <p>{{ session('completed') }}</p>
+            </div>
         @endif
 
         <div class="top-container">
