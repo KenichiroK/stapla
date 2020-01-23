@@ -188,7 +188,7 @@
         <input type="hidden" name="companyUser_id" value="{{ $companyUser->id }}">
 
         <div class="btn-container">
-            <button type="submit" id="registerBtn" disabled>登録</button>
+            <button class="button" type="submit" id="registerBtn" disabled>登録</button>
         </div>
     </form>
 

@@ -216,9 +216,7 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
-            
         </div>
         @isset($project)
         @else
@@ -226,7 +224,6 @@
                 <button data-impro-button="once" type="button" onclick="submit();">作成</button>
             </div>
         @endisset
-             
     </form>
 </div>
 @endsection

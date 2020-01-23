@@ -8,21 +8,21 @@
 @section('content')
 <div class="main-wrapper">
 	@if (session('completed'))
-	<div class="complete-container">
-		<p>{{ session('completed') }}</p>
-	</div>
+		<div class="complete-container">
+			<p>{{ session('completed') }}</p>
+		</div>
 	@endif
 
 	@if(count($errors) > 0)
-	<div class="error-container">
-		<p>入力に問題があります。再入力して下さい。</p>
-	</div>
+		<div class="error-container">
+			<p>入力に問題があります。再入力して下さい。</p>
+		</div>
   	@endif
 
 	@if(Session::has('not_register_invoice'))
-	<div class="error-container">
-		<p>{{ session('not_register_invoice') }}</p>
-	</div>
+		<div class="error-container">
+			<p>{{ session('not_register_invoice') }}</p>
+		</div>
   	@endif
 
 	<div class="title-container">

@@ -181,7 +181,7 @@
         <input type="hidden" name="partner_id" value="{{ $partner->id }}">
 
         <div class="btn-container">
-            <button type="button" id="registerBtn"  data-impro-button="once" onclick="submit();" disabled>登録</button>
+            <button class="button" type="button" id="registerBtn"  data-impro-button="once" onclick="submit();" disabled>登録</button>
         </div>
     </form>
 

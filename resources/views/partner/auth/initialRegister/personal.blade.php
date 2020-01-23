@@ -208,7 +208,7 @@ function setPostal(){
 			<input type="hidden" name="partner_id" value="{{ $partner->id }}">
 
 			<div class="btn-container">
-				<button data-impro-button="once" type="button" onclick="submit();">確認</button>
+				<button class="button" data-impro-button="once" type="button" onclick="submit();">確認</button>
 			</div>
 		</form>
 	</div>
