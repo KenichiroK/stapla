@@ -232,6 +232,22 @@ const setPostal = () => {
 				<button class="button" data-impro-button="once" type="button" onclick="submit();">確認</button>
 			</div>
 		</form>
+
+		@if(!isset($companyUser->invitation_user_id))
+		<div class="register-step">
+			<div class="register-step-company-info">
+				<p class="step1">Step1</p>
+				<p class="company-info-title">企業情報登録</p>
+			</div>
+
+			<div class="register-step-bar">　</div>
+
+			<div class="register-step-terms">
+				<p class="step2">Step2</p>
+				<p class="terms-title">ご利用規約</p>
+			</div>
+		</div>
+		@endif
 	</div>
 </main>
 @endsection
