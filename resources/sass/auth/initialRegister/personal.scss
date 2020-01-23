@@ -113,6 +113,39 @@ main {
         margin-left: 40px;
       }
     }
+
+    .register-step {
+      width: 270px;
+      margin: 60px auto 0;
+      font-size: 14px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      letter-spacing: 1px;
+      .register-step-company-info {
+        color: #4d4f5c;
+        .step1 {
+          font-family: HelveticaNeue;
+        }
+        .company-info-title {
+          font-weight: bold;
+        }
+      }
+      .register-step-bar {
+        width: 64px;
+        margin-bottom: 36.5px;
+        border-bottom: solid 1px black;
+      }
+      .register-step-terms {
+        color: #a4a4a7;
+        .step2 {
+          font-family: HelveticaNeue;
+        }
+        .terms-title {
+          font-weight: bold;
+        }
+      }
+    }
   }
 
   .input-container {
