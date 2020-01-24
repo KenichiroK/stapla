@@ -25,7 +25,13 @@ class PartnerTaskStatus implements Rule
      */
     public function passes($attribute, $value)
     {
-        return in_array($value, ['0', '4', '5', '8', '9', '10', '13']);
+        return in_array($value, [
+            config('const.TASK_CREATE'),
+            config('const.ORDER_APPROVAL_PARTNER'),
+            config('const.WORKING'),
+            config('const.INVOICE_DRAFT_CREATE'),
+            config('const.INVOICE_CREATE')
+        ]);
     }
 
     /**

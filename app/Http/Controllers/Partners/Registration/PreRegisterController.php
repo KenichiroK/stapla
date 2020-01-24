@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Partners\Registration;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PreRegisterController extends Controller

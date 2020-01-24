@@ -17,9 +17,14 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">登録したメールを確認してください。</div>
-                        <div class="card-body">続行する前に、電子メールで確認リンクを確認してください。メールが届かない場合は、 <br/>
-                        <a href="{{ route('company.PreRegister') }}">ここをクリックしてもう一度、新規会員登録をおこなってください</a>。</div>
+                        <div class="card-body">
+                            登録したメールを確認してください。<br/>
+                            続行する前に、電子メールで確認リンクを確認してください。
+                            <p>
+                                メールが届かない場合は、<br/>
+                                <a href="{{ route('company.verification.resend') }}">ここ</a>をクリックしてもう一度、新規会員登録をおこなってください。
+                            </p>
+                        </div>
 
                         <div class="card-body">
                             @if (session('resent'))
@@ -34,9 +39,4 @@
         </div>
     </div>
 </main>
-
-<footer>
-    <span>ご利用規約</span>
-    <span>プライバシーポリシー</span>
-</footer>
 @endsection

@@ -5,4 +5,10 @@
   letter-spacing: 0.86px;
   text-align: center;
   text-decoration: none;
+  transition: linear 0.18s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }

@@ -2,7 +2,6 @@
 
 @section('assets')
 <link href="{{ mix('css/auth/login/index.css') }}" rel="stylesheet">
-
 @endsection
 
 @section('content')
@@ -15,11 +14,11 @@
 <main>
     <div class="main_container">
         <div class="title_wrapper">
-            <h1 class="text">パスワードを設定してください</h1>
+            <h1 class="text">パスワードを設定してください。</h1>
         </div>
 
         <div class="form_wrapper">
-            <form method="POST" action="{{ route('company.register') }}">
+            <form method="POST" action="{{ route('company.passwordRegister') }}">
                 @csrf
 
                 <div class="input_wrapper">
@@ -73,26 +72,11 @@
                     </div>
                 @endisset
 
-                <!-- <div class="checkbox_wrapper">
-                    <a href="#">ご利用規約</a>
-                    <span>に同意して</span>
-                </div> -->
-
                 <div class="button_wrapper">
-                    <button data-impro-button="once" type="button" onclick="submit();" class="text">新規会員登録</button>
+                    <button class="button" data-impro-button="once" type="button" onclick="submit();">新規会員登録</button>
                 </div>
             </form>
-
-            <!-- <div class="signup_wrapper">
-                <a href="{{ route('company.login') }}">ログイン</a>
-            </div> -->
-            
         </div>
     </div>
 </main>
-
-<!-- <footer>
-    <span>ご利用規約</span>
-    <span>プライバシーポリシー</span>
-</footer> -->
 @endsection

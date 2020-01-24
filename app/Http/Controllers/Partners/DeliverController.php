@@ -19,7 +19,6 @@ class DeliverController extends Controller
 {
     public function create($task_id)
     {
-        // task_id;
         $partner = Auth::user();
         $task = Task::findOrFail($task_id);
         return view('partner/deliver/create', compact('partner', 'task'));

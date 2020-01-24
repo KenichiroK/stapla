@@ -73,7 +73,7 @@ const setPreview = (input) => {
     
                         <tbody>
                             <tr>
-                                <td>{{ $purchaseOrder->task_name }}</td>
+                                <td>{{ $task->name }}</td>
                                 <td>1</td>
                                 <td>{{ number_format($purchaseOrder->task_price) }}</td>
                                 <td>{{ number_format($purchaseOrder->task_price) }}</td>
@@ -113,19 +113,20 @@ const setPreview = (input) => {
                     <div class="sub-container">
                         <span>備考</span>
                     </div>
+
                 </div>
             </div>
-
         </div>
 
-    @if($purchaseOrder->task->status === config('const.ORDER_SUBMIT_PARTNER') && $purchaseOrder->partner->id === Auth::user()->id)
+    @if($purchaseOrder->task->status === config('const.TASK_SUBMIT_PARTNER') && $purchaseOrder->partner->id === Auth::user()->id)
         <div class="actionButton">
             <form action="{{ route('partner.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
+                <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                 <button type="submit" class="undone">断る</button>
             </form>
+            <a class="undone" href="{{ route('partner.task.show', ['task_id' => $task->id]) }}">タスクに戻る</a>
             <form action="{{ route('partner.task.status.change') }}" method="POST">
             @csrf
                 <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
@@ -139,7 +140,7 @@ const setPreview = (input) => {
                     @slot('confirmBtnLabel')
                         承認
                     @endslot
-                    発注書を承認します。
+                    こちらの案件を承認します。
                 @endcomponent
             </form>
         </div>

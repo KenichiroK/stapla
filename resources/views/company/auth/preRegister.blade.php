@@ -28,29 +28,13 @@
                             <strong>{{ $errors->first('email') }}</strong>
                         </div>
                     @endif
-
                 </div>
-
-                <!-- <div class="checkbox_wrapper">
-                    <a href="#">ご利用規約</a>
-                    <span>に同意して</span>
-                </div> -->
 
                 <div class="button_wrapper">
-                    <button data-impro-button="once" type="button" onclick="submit();" class="text">新規会員登録</button>
+                    <button class="button" data-impro-button="once" type="button" onclick="submit();" class="text">新規会員登録</button>
                 </div>
             </form>
-
-            <!-- <div class="signup_wrapper">
-                <a href="{{ route('company.login') }}">ログイン</a>
-            </div> -->
-            
         </div>
     </div>
 </main>
-
-<!-- <footer>
-    <span>ご利用規約</span>
-    <span>プライバシーポリシー</span>
-</footer> -->
 @endsection

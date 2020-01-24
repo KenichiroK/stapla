@@ -23,15 +23,22 @@ class CompanyAndCompanyUserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'company_name'       => 'required | string | max:64',
-            'representive_name'  => 'required | string | max:64',
-            'zip_code'           => 'required | numeric | digits:7',
-            'address_prefecture' => 'required',
-            'address_city'       => 'required | string | max:64',
-            'tel'                => 'required | numeric | digits_between:10,11',
-            'name'               => 'required | string | max:64',
-            'department'         => 'required | string | max:64',
-        ];
+        if($this->request->get('invitation_user_id')) {
+            return [
+                'name'       => 'required | string | max:64',
+                'department' => 'required | string | max:64',
+            ];
+        } else {
+            return [
+                'company_name'       => 'required | string | max:64',
+                'representive_name'  => 'required | string | max:64',
+                'zip_code'           => 'required | numeric | digits:7',
+                'address_prefecture' => 'required',
+                'address_city'       => 'required | string | max:64',
+                'tel'                => 'required | numeric | digits_between:10,11',
+                'name'               => 'required | string | max:64',
+                'department'         => 'required | string | max:64',
+            ];
+        }
     }
 }

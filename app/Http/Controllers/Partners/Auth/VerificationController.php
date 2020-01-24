@@ -12,13 +12,12 @@ class VerificationController extends Controller
 {
     use VerifiesEmails;
 
-    protected $redirectTo = '/partner/auth/firstLogin';
+    protected $redirectTo = '/partner/login';
 
     public function __construct()
     {
         $this->middleware('auth:partner');
         $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
@@ -28,7 +27,6 @@ class VerificationController extends Controller
                         ? redirect($this->redirectPath())
                         : view('partner.auth.verify');
     }
-
 
     public function verify(Request $request, $id, $email, $access_key)
     {

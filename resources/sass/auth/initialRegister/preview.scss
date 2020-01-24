@@ -1,3 +1,6 @@
+@import "../../mixin/font/primary";
+@import "../../mixin/button/button";
+
 body {
   font-family: 'Source Sans Pro';
   position: relative;
@@ -39,10 +42,9 @@ main {
 
     .title-container {
       margin-bottom: 40px;
-
       h3 {
         margin: 0;
-        font-size: 20px;
+        font-size: 28px;
         font-weight: bold;
         color: #43425d;
       }
@@ -50,10 +52,44 @@ main {
 
     .edit-container {
       width: 100%;
+      display: flex;
+      justify-content: flex-start;
       background-color: #fff;
       padding: 36px;
       margin: 0 auto 40px;
       box-sizing: border-box;
+      border-radius: 2px;
+
+      .company-container {
+        .section-container {
+          width: 1000px;
+          display: flex;
+          padding: 26px;
+          color: #4d4f5c;
+          border-bottom: 1px solid #f0f0f7;
+          @include primary-text();
+          .profile-subject {
+            width: 200px;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .image-container {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .imgbox{
+          width: 102px;
+          img {
+            width: 102px;
+            height: 102px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+          }
+        }
+      }
 
       .personal-container {
         width: 100%;
@@ -61,61 +97,18 @@ main {
         justify-content: space-between;
         margin-bottom: 36px;
   
-        .image-container {
-          width: 30%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-  
-          img {
-            border-radius: 50%;
-            margin-bottom: 12px;
-          }
-        }
-  
         .profile-container {
-          width: 65%;
-  
-          .section-container {
-            margin-bottom: 36px;
-  
-            p {
-              font-size: 16px;
-              margin-bottom: 8px;
-              font-weight: bold;
-              color: #43425d;
-            }
-  
-            h4 {
-              font-size: 20px;
-              margin: 0;
-              font-weight: bold;
-              color: #43425D;
-            }
-          }
-        }
-      }
-
-      .company-container {
-        width: 100%;
-
-        .section-container {
           width: 100%;
-          margin-left: calc(15% - 70px);
-          margin-bottom: 36px;
-
-          p {
-            font-size: 16px;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #43425d;
-          }
-
-          h4 {
-            font-size: 20px;
-            margin: 0;
-            font-weight: bold;
-            color: #43425D;
+          .section-container {
+            display: flex;
+            padding: 26px;
+            color: #4d4f5c;
+            border-bottom: 1px solid #f0f0f7;
+            @include primary-text();
+            .profile-subject {
+              width: 180px;
+              font-weight: bold;
+            }
           }
         }
       }
@@ -129,36 +122,36 @@ main {
     align-items: center;
     justify-content: center;
 
-    button[type="button"] {
+    a {
+      width: 20%;
       background-color: #fff;
       color: #43425d;
-      font-weight: bold;
-      padding: 8px 40px;
+      padding: 16px 0;
+      margin-right: 24px;
       border: 1px solid #43425D;
-      border-radius: 48px;
-      font-size: 16px;
+      border-radius: 32px;
+      font-family: "NotoSansCJKjp";
+      font-weight: bold;
+      letter-spacing: 0.86px;
+      text-align: center;
+      text-decoration: none;
+      transition: linear 0.18s;
       cursor: pointer;
-      outline: none;
-      margin-right: 12px;
-    }
-    
 
-    button[type="submit"] {
+      &:hover {
+        opacity: 0.7;
+        transition: 0.3s;
+      }
+    }
+
+    .button {
+      width: 20%;
       background-color: #43425d;
       color: #fff;
-      font-weight: bold;
-      padding: 8px 40px;
-      border-radius: 48px;
-      font-size: 16px;
-      cursor: pointer;
-      outline: none;
+      border-radius: 100px;
+      padding: 16px 0;
     }
 
-
-    button:hover {
-      opacity: 0.7;
-      transition: 0.3s;
-    }
   }
 }
 

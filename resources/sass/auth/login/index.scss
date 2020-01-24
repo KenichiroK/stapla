@@ -1,4 +1,5 @@
 @import '../../components/label';
+@import "../../mixin/button/button";
 
 body {
     height: 100vh;
@@ -138,7 +139,7 @@ main {
                 margin: 0 auto 30px;
                 text-align: center;
 
-                .text {
+                .button {
                     width: 60%;
                     background-color: #43425d;
                     color: #fff;

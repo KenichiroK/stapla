@@ -21,10 +21,10 @@
         <div class="content-container__body task_item">
             <a 
                 class="content-container__body--link"
-                @if(isset($task->company_user_id))
-                    href="{{ route('company.task.show', ['id' => $task->id]) }}"
-                @else
+                @if($task->status === config('const.TASK_CREATE'))
                     href="{{ route('company.task.createDraft', ['id' => $task->id]) }}"
+                @else
+                    href="{{ route('company.task.show', ['id' => $task->id]) }}"
                 @endif
             >
                 <p class="content-container__body--task-index">{{ $task->project->name }}</p>

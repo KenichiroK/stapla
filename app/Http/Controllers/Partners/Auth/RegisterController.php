@@ -4,48 +4,43 @@ namespace App\Http\Controllers\Partners\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
-use App\Models\CompanyUser;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers;
     public function showRegisterForm(Request $request)
     {
-        return view('partner.auth.register', compact('request'));
+        $partner = Partner::where('email', $request->email)->firstOrFail();
+
+        if(!$partner->password){
+            return view('partner.auth.register', compact('request'));
+        }
+        if($partner->is_agree == 0){
+            return redirect()->route('partner.register.personal.create', [ "partner_id" => $partner->id ]);
+        }
+
+        return redirect()->route('partner.dashboard', compact('partner'));
     }
 
     protected $redirectTo = '/partner/register/doneVerify';
 
-    public function __construct()
+    protected function passwordRegister(Request $request)
     {
-        $this->middleware('guest:partner');
-    }
-
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:partners'],
+        $request->validate([
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
+        $partner = Partner::where('email', $request->email)->firstOrFail();
+        $partner->password           = Hash::make($request->password);
+        $partner->company_id         = $request->company_id;
+        $partner->invitation_user_id = $request->invitation_user_id;
+        $partner->save();
+
+        return redirect()->route('partner.register.personal.create', [ 'partner_id' => $partner->id ]);
     }
 
-    protected function create(array $data)
+    protected function verify()
     {
-        return Partner::create([
-            'email'              => $data['email'],
-            'password'           => Hash::make($data['password']),
-            'company_id'         => $data['company_id'],
-            'invitation_user_id' => $data['invitation_user_id'],
-        ]);
-    }
-    protected function guard()
-    {
-        return Auth::guard('partner');
+        return view('partner/auth/verify');
     }
 }

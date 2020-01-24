@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers\Companies;
 
-use App\Models\Task;
 use App\Models\Partner;
-use App\Models\CompanyUser;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 

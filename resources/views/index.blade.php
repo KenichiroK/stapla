@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Impro</title>
+    <title>impro</title>
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ env('AWS_URL') }}/common/favicon.ico">
 

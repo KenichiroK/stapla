@@ -21,7 +21,14 @@
 
         @foreach($tasks as $task)
         <div class="content-container__body task_item">
-            <a class="content-container__body--link" href="{{ route('company.task.show', ['id' => $task->id]) }}">
+            <a
+                class="content-container__body--link"
+                @if($task->status === config('const.TASK_CREATE'))
+                    href="{{ route('company.task.createDraft', ['id' => $task->id]) }}"
+                @else
+                    href="{{ route('company.task.show', ['id' => $task->id]) }}"
+                @endif
+            >
                 <p class="content-container__body--short">
                     @if ($task->company_user_id === Auth::user()->id)
                         担当者<br>

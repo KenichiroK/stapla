@@ -12,4 +12,5 @@
   line-height: $height - $py * 2;
   background-color: colors(primary);
   color: colors(white1);
+  border: solid 1px colors(primary);
 }

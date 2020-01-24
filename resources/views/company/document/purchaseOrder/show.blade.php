@@ -14,7 +14,6 @@
                 <div class="page-title-container">
                     <div class="page-title-container__page-title">発注書</div>
                 </div>
-                <!-- downloadボタン -->
                 <div class="download-btn-container">
                     <a id="order_print_btn" class="button download-button">ダウンロード</a>
                 </div>
@@ -68,65 +67,19 @@
         
                             <tbody>
                                 <tr>
-                                    <td>{{ $purchaseOrder->task_name }}</td>
+                                    <td>{{ $task->name }}</td>
                                     <td>1</td>
                                     <td>{{ number_format($purchaseOrder->task_price) }}</td>
                                     <td>{{ number_format($purchaseOrder->task_price) }}</td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @for($i=1; $i<10; $i++)
                                     <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                @endfor
                             </tbody>
                         </table>
         
@@ -202,65 +155,19 @@
     
                         <tbody>
                             <tr>
-                                <td>{{ $purchaseOrder->task_name }}</td>
+                                <td>{{ $task->name }}</td>
                                 <td>1</td>
                                 <td>{{ number_format($purchaseOrder->task_price) }}</td>
                                 <td>{{ number_format($purchaseOrder->task_price) }}</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @for($i=1; $i<10; $i++)
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
     
@@ -311,19 +218,20 @@
                     @endcomponent
                 </form>
             </div>
-        @elseif($purchaseOrder->task->status === config('const.ORDER_SUBMIT_SUPERIOR') && $purchaseOrder->task->superior->id === $company_user->id)
+        @elseif($purchaseOrder->task->status === config('const.TASK_SUBMIT_SUPERIOR') && $purchaseOrder->task->superior->id === $company_user->id)
             <div class="actionButton">
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                    <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_PARTNER') }}">
+                    <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                     <button type="submit" class="undone">発注書を承認しない</button>
                 </form>
+                <a class="undone" href="{{ route('company.task.show', ['task_id' => $task->id]) }}">タスクに戻る</a>
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                 @csrf
                     <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                    <input type="hidden" name="status" value="{{ config('const.ORDER_APPROVAL_SUPERIOR') }}">
-                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">発注書を承認する</button>
+                    <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_SUPERIOR') }}">
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスク/発注書を承認する</button>
                     <!-- Modal -->
                     @component('components.confirm-modal')
                         @slot('modalID')
@@ -332,7 +240,7 @@
                         @slot('confirmBtnLabel')
                             承認
                         @endslot
-                        発注書を承認します。
+                        タスク・発注書を承認します。
                     @endcomponent
                 </form>
             </div>

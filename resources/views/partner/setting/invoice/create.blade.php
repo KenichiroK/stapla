@@ -6,74 +6,23 @@
 @endsection
 
 @section('content')
-<?php
-$pref = array(
-    '北海道',
-    '青森県',
-    '岩手県',
-    '宮城県',
-    '秋田県',
-    '山形県',
-    '福島県',
-    '茨城県',
-    '栃木県',
-    '群馬県',
-    '埼玉県',
-    '千葉県',
-    '東京都',
-    '神奈川県',
-    '新潟県',
-    '富山県',
-    '石川県',
-    '福井県',
-    '山梨県',
-    '長野県',
-    '岐阜県',
-    '静岡県',
-    '愛知県',
-    '三重県',
-    '滋賀県',
-    '京都府',
-    '大阪府',
-    '兵庫県',
-    '奈良県',
-    '和歌山県',
-    '鳥取県',
-    '島根県',
-    '岡山県',
-    '広島県',
-    '山口県',
-    '徳島県',
-    '香川県',
-    '愛媛県',
-    '高知県',
-    '福岡県',
-    '佐賀県',
-    '長崎県',
-    '熊本県',
-    '大分県',
-    '宮崎県',
-    '鹿児島県',
-    '沖縄県'
-);
-?>
 <div class="main-wrapper">
 	@if (session('completed'))
-	<div class="complete-container">
-		<p>{{ session('completed') }}</p>
-	</div>
+		<div class="complete-container">
+			<p>{{ session('completed') }}</p>
+		</div>
 	@endif
 
 	@if(count($errors) > 0)
-	<div class="error-container">
-		<p>入力に問題があります。再入力して下さい。</p>
-	</div>
+		<div class="error-container">
+			<p>入力に問題があります。再入力して下さい。</p>
+		</div>
   	@endif
 
 	@if(Session::has('not_register_invoice'))
-	<div class="error-container">
-		<p>{{ session('not_register_invoice') }}</p>
-	</div>
+		<div class="error-container">
+			<p>{{ session('not_register_invoice') }}</p>
+		</div>
   	@endif
 
 	<div class="title-container">
@@ -153,8 +102,8 @@ $pref = array(
 					<p>都道府県</p>
 					<div class="select-arrow">
 						<select name="prefecture">
-							@foreach($pref as $_pref)
-							<option value="{{ $_pref }}" {{ (Auth::user()->prefecture === $_pref) ? 'selected' : '' }}>{{ $_pref }}</option>
+							@foreach(config('consts.pref') as $_pref)
+							<option value="{{ $_pref }}" {{ old('prefecture', Auth::user()->prefecture) === $_pref ? 'selected' : '' }}>{{ $_pref }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -332,7 +281,6 @@ $pref = array(
 		}
 	}
 
-
 	const setPostal = () => {
 	const front = document.getElementById('postal_front').value;
 	const back = document.getElementById('postal_back').value;
@@ -340,9 +288,9 @@ $pref = array(
 	postal.value = front + back;
 	}
 
-	window.onload = () => {
+	window.addEventListener('load', function(){
 		setPostal();
-	}
+	})
 </script>
 
 @endsection

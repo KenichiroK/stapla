@@ -53,11 +53,11 @@
 
                 <div class="checkbox_wrapper">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                    <label for="check">ログインしたままにする</label>
+                    <label for="remember">ログインしたままにする</label>
                 </div>
-
+                
                 <div class="button_wrapper">
-                    <button class="text" id="button" data-impro-button="once" type="button" onclick="submit();">ログイン</button>
+                    <button class="button" id="button" data-impro-button="once" type="button" onclick="submit();">ログイン</button>
                 </div>
             </form>
 
@@ -68,11 +68,10 @@
         </div>
     </div>
 </main>
-
-<footer>
+<!-- <footer>
     <span class="tos"><a href="/terms">ご利用規約</a></span>
     <span class="privacy"><a href="/privacy">プライバシーポリシー</a></span>
-</footer>
+</footer> -->
 @endsection
 
 @section('asset-js')

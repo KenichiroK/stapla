@@ -7,9 +7,7 @@
         <li id="task_status_btn" class="navbar-container__text">タスク
             <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.TASK_CREATE'), config('const.TASK_APPROVAL_PARTNER')) }})</span>
         </li>
-        <li id="order_status_btn" class="navbar-container__text">発注書
-            <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.ORDER_SUBMIT_SUPERIOR'), config('const.ORDER_APPROVAL_PARTNER')) }})</span>
-        </li>
+
         <li id="working_status_btn" class="navbar-container__text">作業中
             <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.WORKING'), config('const.ACCEPTANCE')) }})</span>
         </li>
@@ -39,26 +37,8 @@
             <span class="detail-container__content--num">{{ $status_arr[config('const.TASK_SUBMIT_PARTNER')] }}</span>
         </li>
         <li class="detail-container__content">
-            <span class="detail-container__content--title">発注書作成前</span>
-            <span class="detail-container__content--num">{{ $status_arr[config('const.TASK_APPROVAL_PARTNER')] }}</span>
-        </li>
-    </ul>
-    <ul id="order_status_table" class="detail-container">
-        <li class="detail-container__content">
-            <span class="detail-container__content--title">上長確認中</span>
-            <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_SUBMIT_SUPERIOR')] }}</span>
-        </li>
-        <li class="detail-container__content">
-            <span class="detail-container__content--title">パートナー依頼前</span>
-            <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_APPROVAL_SUPERIOR')] }}</span>
-        </li>
-        <li class="detail-container__content">
-            <span class="detail-container__content--title">パートナー確認中</span>
-            <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_SUBMIT_PARTNER')] }}</span>
-        </li>
-        <li class="detail-container__content">
             <span class="detail-container__content--title">作業前</span>
-            <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_APPROVAL_PARTNER')] }}</span>
+            <span class="detail-container__content--num">{{ $status_arr[config('const.TASK_APPROVAL_PARTNER')] }}</span>
         </li>
     </ul>
     <ul id="working_status_table" class="detail-container">

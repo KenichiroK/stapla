@@ -1,441 +1,376 @@
 @extends('company.index')
 
 @section('assets')
-<link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
-<link rel="stylesheet" href="{{ mix('css/company/task/create.css') }}">
+<link rel="stylesheet" href="{{ mix('css/style.css') }}">
+<link rel="stylesheet" href="{{ mix('css/page/task/create/style.css') }}">
 @endsection
 
 @section('content')
-<div class="main__container">
-    
-    <form action="{{ route('company.task.preview') }}" method='POST' class="main__container__wrapper">
+<div class="main-wrapper">
+    <form action="{{ route('company.task.taskPreview') }}" method='POST'>
         @csrf
         @if(count($errors) > 0)
-        <div class="error-container">
-            <p>入力に問題があります。再入力して下さい。</p>
-        </div>
+            <div class="error-container">
+                <p>入力に問題があります。再入力して下さい。</p>
+            </div>
         @endif
         @if (session('completed'))
-        <div class="complete-container">
-            <p>{{ session('completed') }}</p>
-        </div>
+            <div class="complete-container">
+                <p>{{ session('completed') }}</p>
+            </div>
         @endif
 
-
-        <!-- ページタイトル エリア -->
-        <div class="page-title-container">
-            <div class="page-title-container__page-title">タスク作成</div>
+        <div class="title-container">
+            <h3>タスク・発注書作成</h3>
         </div>
 
-        <!-- プロジェクトを選択する エリア -->
-        <div class="select-container">
-            <div class="select-container__wrapper">
-                <div class="select-textarea">
-                    <div class="select-text">
-                        プロジェクトを選択する
-                       <span class="required-label">( 必須 )</span>
-                    </div>
+        <div class="block-container">
+            <div class="form-container">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">プロジェクトを選択する</p>
+                    <p class="form-container__text--required"> ( 必須 ) </p>
                 </div>
-                <div class="select-error-wrp">
-                    <div class="select-area control">
-                        <div class="select-wrp select is-info">
-                            
-                            @if(isset($task->project_id))
-                            <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >
-                                <option disabled selected></option>
-                                @foreach($projects as $project)
-                                <option value="{{ $project->id }}" {{ ($task->project_id === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
-                                @endforeach
-                            </select>
-                            @else
-                            <select name="project_id" class="form-control{{ $errors->has('project_id') ? ' is-invalid' : '' }}" >                            
-                                @if(isset($project))
-                                <option value="{{ $project->id }}" selected>{{ $project->name }}</option>
-                                @else
-                                <option disabled selected></option>
-                                    @foreach($projects as $project)
-                                    <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                            @endif
-                            @if ($errors->has('project_id'))
-                            <div class="invalid-feedback error-msg" role="alert">
-                                <strong>{{ $errors->first('project_id') }}</strong>
-                            </div>
-                            @endif
 
-                        </div>
+                <div class="form-container__body">
+                    <div class="select-arrow">
+                        <select name="project_id">
+                            <option disabled selected></option>
+                            @foreach($projects as $project)
+                                @if(isset($task->project_id))
+                                    <option value="{{ $project->id }}" {{ ($task->project_id === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                @else
+                                    @if(isset($quoted_project))
+                                        <option value="{{ $quoted_project->id }}" selected>{{ $quoted_project->name }}</option>
+                                    @else
+                                        <option value="{{ $project->id }}" {{ (old('project_id') === $project->id) ? 'selected' : '' }}>{{ $project->name }}</option>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </select>
                     </div>
+                    @if ($errors->has('project_id'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('project_id') }}</strong>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
 
-        <div class="content-container">
-            <div class="content-container__wrapper">
-
-                <!-- main -->
-                <div class="main-container">
-                    <div class="main-container__wrapper">
-                        <!-- 項目：タスク名 -->
-                        <div class="item-container">
-                            <div class="item-name-wrapper">
-                                <div class="item-name">
-                                    タスク名
-                                    <span class="required-label">( 必須 )</span>
-                                </div>
-                            </div>
-                            <div class="inputarea">
-                                <div class="input-control">
-
-                                    @if(isset($task->name))
-                                    <input class="input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name='name' type="text" value="{{ old('name', $task->name) }}">
-                                    @else
-                                    <input class="input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name='name' type="text" value="{{ old('name') }}">
-                                    @endif
-                                    @if ($errors->has('name'))
-                                    <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </div>
-                                    @endif
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 項目：タスク内容 -->
-                        <div class="item-container">
-                            <div class="item-name-wrapper contentsname">
-                                <div class="item-name">
-                                    タスク内容
-                                    <span class="required-label">( 必須 )</span>
-                                </div>
-                            </div>
-                            <div class="textarea-wrp">
-
-                                @if(isset($task->content))
-                                <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name='content'>{{ old('content', $task->content) }}</textarea>
-                                @else
-                                <textarea class="textarea form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name='content'>{{ old('content') }}</textarea>
-                                @endif
-                                @if ($errors->has('content'))
-                                <div class="invalid-feedback error-msg" role="alert">
-                                    <strong>{{ $errors->first('content') }}</strong>
-                                </div>
-                                @endif
-
-                            </div>
-                        </div>
-
-                        <!-- 担当者 -->
-                        <div class="item-container">
-                            <div class="item-name-wrapper">
-                                <div class="item-name">
-                                    担当者
-                                    <span class="required-label">( 必須 )</span>
-                                </div>
-                            </div>
-                            <div class="select-error-wrp">
-                                <div class="select-area control staff">
-                                    <div class="select-wrp select is-info">
-
-                                        @if(isset($task->company_user_id))
-                                        <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                            @foreach($company_users as $company_user)
-                                                <option value="{{ $company_user->id }}" {{ ($task->company_user_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @else
-                                        <select name='company_user_id' class="plusicon form-control{{ $errors->has('company_user_id') ? ' is-invalid' : '' }}">
-                                            <option disabled selected></option>
-                                            @foreach($company_users as $company_user)
-                                                <option value="{{ $company_user->id }}" {{ (old('company_user_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @endif
-                                        @if ($errors->has('company_user_id'))
-                                        <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('company_user_id') }}</strong>
-                                        </div>
-                                        @endif
-                                        
-                                    </div>
-                                </div> 
-                            </div>
-                        </div>                        
-
-                        <!-- 上長 -->
-                        <div class="item-container">
-                            <div class="item-name-wrapper">
-                                <div class="item-name">
-                                    上長
-                                    <span class="required-label">( 必須 )</span>
-                                </div>
-                            </div>
-                            <div class="select-error-wrp">
-                                <div class="select-area control staff">
-                                    <div class="select-wrp select is-info">
-
-                                        @if(isset($task->superior_id))
-                                        <select name='superior_id'>
-                                            <option selected></option>
-                                            @foreach($company_users as $company_user)
-                                            <option value={{ $company_user->id }} {{ ($task->superior_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @else
-                                        <select name='superior_id'>
-                                            <option selected></option>
-                                            @foreach($company_users as $company_user)
-                                            <option value={{ $company_user->id }} {{ (old('superior_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @endif
-                                        @if ($errors->has('superior_id'))
-                                        <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('superior_id') }}</strong>
-                                        </div>
-                                        @endif
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 経理 -->
-                        <div class="item-container">
-                            <div class="item-name-wrapper">
-                                <div class="item-name">
-                                    経理
-                                    <span class="required-label">( 必須 )</span>
-                                </div>
-                            </div>
-                            <div class="select-error-wrp">
-                                <div class="select-area control staff">
-                                    <div class="select-wrp select is-info">
-                                        @if(isset($task->accounting_id))
-                                        <select name='accounting_id'>
-                                            <option selected></option>
-                                            @foreach($company_users as $company_user)
-                                                <option value={{ $company_user->id }} {{ ($task->accounting_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @else
-                                        <select name='accounting_id'>
-                                            <option selected></option>
-                                            @foreach($company_users as $company_user)
-                                                <option value={{ $company_user->id }} {{ (old('accounting_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @endif
-                                        @if ($errors->has('accounting_id'))
-                                        <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('accounting_id') }}</strong>
-                                        </div>
-                                        @endif
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- 項目：締め切り -->
-                        <div class="item-container">
-                            <div class="item-name-wrapper period">
-                                <div class="item-name">
-                                    タスク期間
-                                    <span class="required-label">( 必須 )</span>
-                                </div>
-                            </div>
-                            <div class="calendar-wrp">
-                                <!-- 開始日カレンダー -->
-                                <div class="calendar-item">                               
-                                    <div class="calendar-name start">
-                                        開始日<i id="start_calendar_icon" class="fas fa-calendar-alt"></i>
-                                    </div>
-
-                                    @if(isset($task->started_at))
-                                    <input
-                                        id="start_calendar"
-                                        type="text"
-                                        name="started_at"
-                                        class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
-                                        value="{{ old('started_at') ? old('started_at') : date('Y/m/d H:i', strtotime($task->started_at)) }}"
-                                    >
-                                    @else
-                                    <input
-                                        class="input form-control{{ $errors->has('started_at') ? ' is-invalid' : '' }}"
-                                        type="text"
-                                        id="start_calendar"
-                                        name="started_at"
-                                        value="{{ old('started_at') ? old('started_at') : date('Y/m/d 00:00') }}"
-                                    >
-                                    @endif
-                                    @if($errors->has('started_at'))
-                                    <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('started_at') }}</strong>
-                                    </div>
-                                    @endif
-
-                                </div>
-                                <!-- 終了日カレンダー -->
-                                <div class="calendar-item end">
-                                    <div class="calendar-name">
-                                        終了日<i id="end_calendar_icon" class="fas fa-calendar-alt"></i>
-                                    </div>
-
-                                    @if(isset($task->ended_at))
-                                    <input
-                                        id="end_calendar"
-                                        type="text"
-                                        class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
-                                        name='ended_at'
-                                        value="{{ old('ended_at') ?  old('ended_at') : date('Y/m/d H:i', strtotime($task->ended_at)) }}"
-                                    >
-                                    @else
-                                    <input
-                                        id="end_calendar"
-                                        type="text"
-                                        class="input form-control{{ $errors->has('ended_at') ? ' is-invalid' : '' }}"
-                                        name='ended_at'
-                                        value="{{ old('ended_at') ? old('ended_at') : date('Y/m/d 23:00') }}"
-                                    >
-                                    @endif
-                                    @if ($errors->has('ended_at'))
-                                    <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('ended_at') }}</strong>
-                                    </div>
-                                    @endif
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 予算 -->
-                        <div class="item-container">
-                            <div class="item-name-wrapper">
-                                <div class="item-name">
-                                    予算
-                                    <span class="required-label">( 必須 )</span>
-                                </div>
-                            </div>
-                            <div class="inputarea">
-                                <div class="input-control budget">
-
-                                    @if(isset($task->budget))
-                                    <input id="inputPrice" class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text" value="{{ old('budget', $task->budget) }}">
-                                    @else
-                                    <input id="inputPrice" class="input form-control{{ $errors->has('budget') ? ' is-invalid' : '' }}" name='budget' type="text" value="{{ old('budget') }}">
-                                    @endif
-                                    @if ($errors->has('budget'))
-                                    <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('budget') }}</strong>
-                                    </div>
-                                    @endif
-                                    
-                                    <div class="input-yen">
-                                        円
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>      
+        <div class="block-container">
+            <div class="form-container mb-5">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">タスク名</p>
+                    <p class="form-container__text--required"> ( 必須 ) </p>
                 </div>
 
-                <!-- パートナー契約内容 -->
-                <div class="partner-container">
-                    <p class="partner-container__title">パートナー契約内容</p>
-                    <div class="partner-container__wrpper">
-                        <!-- パートナー -->
-                        <div class="item-container">
-                            <div class="item-name-wrapper">
-                                <div class="item-name">
-                                    パートナー
-                                    <span class="required-label">( 必須 )</span>
-                                </div>
-                            </div>
-                            <div class="select-area control">
-                                <div class="select-wrp select is-info">
-
-                                    @if(isset($task->partner_id))
-                                    <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                        @foreach($partners as $partner)
-                                        <option value="{{ $partner->id }}" {{ ($task->partner_id === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @else
-                                    <select name='partner_id' class="form-control{{ $errors->has('partner_id') ? ' is-invalid' : '' }}">
-                                        <option disabled selected></option>
-                                        @foreach($partners as $partner)
-                                        <option value="{{ $partner->id }}" {{ (old('partner_id') === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @endif
-                                    @if ($errors->has('partner_id'))
-                                    <div class="invalid-feedback error-msg" role="alert">
-                                        <strong>{{ $errors->first('partner_id') }}</strong>
-                                    </div>
-                                    @endif
-
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 発注単価・件数 -->
-                        <div class="item-container order__unit-number">
-                            <div class="order-wrp">
-                                
-                                <!-- 発注単価 タイトル -->
-                                <div class="item-name-wrapper unitname">
-                                    <div class="item-name">
-                                        発注単価<span class="tax">( 税抜 )</span>
-                                        <span class="required-label">( 必須 )</span>
-                                    </div>
-                                </div>
-                                    
-                                <div class="unit-num">
-                                    <!-- 発注単位 input -->
-                                    <div class="unit-num_contents">
-
-                                        @if(isset($task->price))
-                                        <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price', $task->price) }}">
-                                        @else
-                                        <input id="inputPrice" class="input form-control{{ $errors->has('task_content') ? ' is-invalid' : '' }}" name='price' type="text" value="{{ old('price') }}">
-                                        @endif
-                                        @if ($errors->has('price'))
-                                        <div class="invalid-feedback error-msg" role="alert">
-                                            <strong>{{ $errors->first('price') }}</strong>
-                                        </div>
-                                        @endif
-                                        <div class="aux-text">
-                                            円
-                                        </div>
-                                    </div>  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="actionButton">
-                    @if(isset($task->id))
-                    <!-- 下書き保存されているタスクの場合 -->
-                    <input type="hidden" name='task_id' value="{{ $task->id }}">
-                    <button class="undone" type="submit" formaction="{{ route('company.task.updateDraft') }}">下書更新</button>
-                    <button class="done" type="submit" formaction="{{ route('company.task.preview') }}" style="width:auto">プレビュー</button>
+                <div class="form-container__body">
+                    @if(isset($task->name))
+                        <input class="input" type="text" name="task_name" value="{{ old('task_name',$task->name) }}">
                     @else
-                    <!-- 新規作成のタスクの場合 -->
-                    <button class="undone" type="submit" formaction="{{ route('company.task.draft') }}">下書保存</button>
-                    <button class="done" type="submit" formaction="{{ route('company.task.preview') }}" style="width:auto">プレビュー</button>
+                        <input class="input" type="text" name="task_name" value="{{ old('task_name') }}">
+                    @endif
+                    @if($errors->has('task_name'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('task_name') }}</strong>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-container mb-5">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">タスク内容</p>
+                    <p class="form-container__text--required"> ( 必須 ) </p>
+                </div>
+
+                <div class="form-container__body">
+                    @if(isset($task->content))
+                        <textarea class="textarea" name="content" cols="30" rows="5">{{ old('content', $task->content) }}</textarea>
+                    @else
+                        <textarea class="textarea" name="content" cols="30" rows="5">{{ old('content') }}</textarea>
+                    @endif
+                    @if($errors->has('content'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('content') }}</strong>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-container mb-5">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">担当者</p>
+                    <p class="form-container__text--required"> ( 必須 ) </p>
+                </div>
+
+                <div class="form-container__body">
+                    <div class="select-arrow">
+                        <select name="task_company_user_id">
+                            <option disabled selected></option>
+                            @foreach($company_users as $company_user)
+                                @if(isset($task->company_user_id))
+                                    <option value={{ $company_user->id }} {{ ($task->company_user_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                @else
+                                    <option value={{ $company_user->id }} {{ (old('task_company_user_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                    @if($errors->has('task_company_user_id'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('task_company_user_id') }}</strong>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-container mb-5">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">上長</p>
+                    <p class="form-container__text--required"> ( 必須 ) </p>
+                </div>
+
+                <div class="form-container__body">
+                    <div class="select-arrow">
+                        <select name="superior_id">
+                            <option selected></option>
+                                @foreach($company_users as $company_user)
+                                    @if(isset($task->superior_id))
+                                        <option value={{ $company_user->id }} {{ ($task->superior_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                    @else
+                                        <option value={{ $company_user->id }} {{ (old('superior_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                    @endif
+                                @endforeach
+                        </select>
+                    </div>
+                    @if ($errors->has('superior_id'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('superior_id') }}</strong>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-container mb-5">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">経理</p>
+                    <p class="form-container__text--required"> ( 必須 ) </p>
+                </div>
+
+                <div class="form-container__body">
+                    <div class="select-arrow">
+                        <select name="accounting_id">
+                            <option selected></option>
+                                @foreach($company_users as $company_user)
+                                    @if(isset($task->accounting_id))
+                                        <option value={{ $company_user->id }} {{ ($task->accounting_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                    @else
+                                        <option value={{ $company_user->id }} {{ (old('accounting_id') === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
+                                    @endif
+                                @endforeach
+                        </select>
+                    </div>
+                    @if ($errors->has('accounting_id'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('accounting_id') }}</strong>
+                        </div>
                     @endif
 
-                </div>  
+                </div>
             </div>
+
+            <div class="form-container">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">タスク期間</p>
+                    <p class="form-container__text--required"> ( 必須 ) </p>
+                </div>
+
+                <div class="form-container__body">
+                    <div class="date-container">
+                        <div class="date-container__input">
+                            <input
+                                id="start_calendar"
+                                class="date"
+                                type="text"
+                                name="started_at"
+                                @if(isset($task->started_at))
+                                    value="{{ old('started_at') ? old('started_at') : date('Y/m/d H:i', strtotime($task->started_at)) }}"
+                                @else
+                                    value="{{ old('started_at') ? old('started_at') : date('Y/m/d 00:00') }}"
+                                @endif
+                            >
+                        </div>
+
+                        <div class="date-container__hyphen">〜</div>
+
+                        <div class="date-container__input">
+                            <input
+                                id="end_calendar"
+                                class="date"
+                                type="text"
+                                name="ended_at"
+                                @if(isset($task->ended_at))
+                                    value="{{ old('ended_at') ?  old('ended_at') : date('Y/m/d H:i', strtotime($task->ended_at)) }}"
+                                @else
+                                    value="{{ old('ended_at') ? old('ended_at') : date('Y/m/d 23:00') }}"
+                                @endif
+                            >
+                        </div>  
+                    </div>
+                    @if($errors->has('started_at'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('started_at') }}</strong>
+                        </div>
+                    @endif
+                    @if ($errors->has('ended_at'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('ended_at') }}</strong>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="block-container">
+            <div class="form-container mb-5">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">発注書件名</p>
+                    <p class="form-container__text--optional"> ( 任意 ) </p>
+                </div>
+
+                <div class="form-container__body">
+                        <input 
+                            class="input"
+                            type="text"
+                            name="order_name"
+                            placeholder="未入力の場合、タスク名を表示します。"
+                            @if(isset($purchaseOrder->task_name))
+                                value="{{ old('order_name', $purchaseOrder->task_name) }}"
+                            @else
+                                value="{{ old('order_name') }}"
+                            @endif
+                        >
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">担当者名 ( 発注書記載 ) </p>
+                    <p class="form-container__text--optional"> ( 任意 ) </p>
+                </div>
+
+                <div class="form-container__body">
+                    <input
+                        class="input"
+                        type="text"
+                        name="order_company_user"
+                        placeholder="発注書に記載する担当者名を変更したい場合には、こちらに記入してください。"
+                        @if(isset($purchaseOrder->companyUser_id))
+                            value="{{ old('order_company_user', $task->companyUser->name) }}"
+                        @else
+                            value="{{ old('order_company_user') }}"
+                        @endif
+                    >
+                </div>
+            </div>
+        </div>
+
+        <div class="block-container">
+            <div class="form-container mb-5">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">パートナー</p>
+                    <p class="form-container__text--required"> ( 必須 ) </p>
+                </div>
+
+                <div class="form-container__body">
+                    <div class="select-arrow">
+                        <select name="partner_id">
+                            <option disabled selected></option>
+                                @foreach($partners as $partner)
+                                    @if(isset($task->partner_id))
+                                        <option value="{{ $partner->id }}" {{ ($task->partner_id === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
+                                    @else
+                                        <option value="{{ $partner->id }}" {{ (old('partner_id') === $partner->id) ? 'selected' : '' }}>{{ $partner->name }}</option>
+                                    @endif
+                                @endforeach
+                        </select>
+                    </div>
+                    @if ($errors->has('partner_id'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('partner_id') }}</strong>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-container mb-5">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">発注金額 ( 税抜 ) </p>
+                    <p class="form-container__text--required"> ( 必須 ) </p>
+                </div>
+
+                <div class="form-container__body">
+                    <div class="price-container">
+                        <div class="price-container__input">
+                            @if(isset($task->price))
+                                <input class="input" type="text" name="order_price" value="{{ old('order_price', $task->price) }}">
+                            @else
+                                <input class="input" type="text" name="order_price" value="{{ old('order_price') }}">
+                            @endif
+                        </div>
+                        <span class="unit">円</span>
+                    </div>
+                    @if ($errors->has('order_price'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('order_price') }}</strong>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-container__text">
+                    <p class="form-container__text--title">納期</p>
+                    <p class="form-container__text--required"> ( 必須 ) </p>
+                </div>
+
+                <div class="form-container__body">
+                    <div class="date-container">
+                        <div class="date-container__input">
+                            <input
+                                id="deliver_calendar"
+                                class="date"
+                                type="text"
+                                name="delivery_date"
+                                @if(isset($task->delivery_date))
+                                    value="{{ old('delivery_date') ?  old('delivery_date') : date('Y/m/d H:i', strtotime($task->delivery_date)) }}"
+                                @else
+                                    value="{{ old('delivery_date') ? old('delivery_date') : date('Y/m/d 23:00') }}"
+                                @endif
+                            >
+                        </div>
+                    </div>
+                    @if($errors->has('delivery_date'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('delivery_date') }}</strong>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            @if(isset($task->id))
+                <input type="hidden" name='task_id' value="{{ $task->id }}">
+            @endif
+            <button class="negative-btn" formaction="{{ route('company.task.draft') }}">一時保存</button>
+            <button class="positive-btn">プレビュー</button>
         </div>
     </form>
 </div>
 @endsection
 
 @section('asset-js')
-<script src="{{ mix('js/company/task/toggle-calendar.js') }}"></script>
-
+<script src="{{ mix('js/pages/company/task/create/index.js') }}"></script>
 @endsection

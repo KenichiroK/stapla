@@ -6,7 +6,6 @@
 @endsection
 
 @section('content')
-
 <div class="main__container">
     <div class="main__container__wrapper">
         @if (session('completed'))
@@ -105,14 +104,6 @@
                     </div>
                 </dd>
             </dl>
-            <dl>
-                <dt>
-                    予算
-                </dt>
-                <dd>
-                    {{ number_format($task->budget) }}円
-                </dd>
-            </dl>
         </div>
 
         <div class="patner">
@@ -145,7 +136,7 @@
                     発注額
                 </dt>
                 <dd class="orderprice">
-                    <span class="tax">税込</span><span class="yen">￥</span>{{ number_format( ($task->price * $task->cases) * (1 + $task->tax)) }}
+                    <span class="tax">税込</span><span class="yen">￥</span>{{ number_format( ($task->price) * (1 + $task->tax)) }}
                 </dd>
             </dl>
             <dl>
@@ -255,22 +246,7 @@
                     <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
                     <button type="submit" class="undone">タスクを承認しない</button>
                 </form>
-                <form action="{{ route('company.task.status.change') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_SUPERIOR') }}">
-                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスクを承認する</button>
-                    <!-- Modal -->
-                    @component('components.confirm-modal')
-                        @slot('modalID')
-                            confirm
-                        @endslot
-                        @slot('confirmBtnLabel')
-                            承認
-                        @endslot
-                        タスクを承認します。
-                    @endcomponent
-                </form>
+                <a class="done" href="{{ route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}">発注書を確認する</a>
             @elseif($task->status === config('const.TASK_APPROVAL_SUPERIOR') && in_array($auth->id, $company_user_ids))
                 <form action="{{ route('company.task.status.change') }}" method="POST">
                     @csrf
