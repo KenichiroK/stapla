@@ -80,13 +80,6 @@ return array(
     'キャンセル',
   ],
 
-
-  // 発注書ステータス 定数化
-  'ORDER_DRAFT'            => 0,  // 発注書下書き
-  'ORDER_CREATED'          => 1,  // 発注書作成済み
-  'ORDER_APPROVAL_PARTNER' => 2,  // 発注書パートナー承認済み
-  'ORDER_COMPLETE_STAFF'   => 3,  // 完了タスクの発注書
-
   // 消費税 定数化
   'FREE_TAX' => 0,
   'REDUCED_EIGHT_TAX' => 0.08,
