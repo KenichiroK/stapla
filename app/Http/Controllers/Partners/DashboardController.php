@@ -41,4 +41,9 @@ class DashboardController extends Controller
 
         return view('partner/dashboard/index', compact(['projects', 'tasks', 'todos', 'passed_3days_todos', 'status_arr']));
     }
+
+    public function notContract()
+    {
+        return view('partner/dashboard/notContract');
+    }
 }

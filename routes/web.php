@@ -54,6 +54,11 @@ Route::group(['prefix' => 'partner'], function(){
 
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 
+		// dashboard 契約締結前
+		Route::get('not-contract', 'Partners\DashboardController@notContract')->name('partner.notContract');
+
+		// TODO: ミドルウェアの実装(業務委託契約書が締結されていなければnot-contractへリダイレクト)
+
 		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
 
