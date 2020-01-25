@@ -23,6 +23,7 @@ mix.webpackConfig({
  |
  */
 
+// HACK: appから分離する
 mix.js(
   [
     //company
