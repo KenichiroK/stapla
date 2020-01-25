@@ -20,4 +20,9 @@ class DocumentController extends Controller
 
         return view('partner.document.index', compact('invoices', 'purchaseOrders'));
     }
+
+    public function editOutsource()
+    {
+        return view('partner.document.outsourceContract.edit');
+    }
 }

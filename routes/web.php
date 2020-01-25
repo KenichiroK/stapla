@@ -103,6 +103,7 @@ Route::group(['prefix' => 'partner'], function(){
 
 		//outsource contract(業務委託契約書)
 		// HACK: outsource用のコントローラにしたいがPartnersディレクトリのリファクタが済むまではいったんDocumentControllerに書く
+		// TODO: pathにoutsource-contract-idを追加する
 		Route::get('/document/outsource-contracts/edit', 'Partners\DocumentController@editOutsource')->name('partner.document.outsource-contracts.edit');
 
 		// logout
@@ -131,7 +132,7 @@ Route::group(['prefix' => 'company'], function(){
 	Route::post('password/email', 'Companies\Auth\ForgotPasswordController@sendResetLinkEmail')->name('company.password.email');
 	Route::get('password/reset/{token}', 'Companies\Auth\ResetPasswordController@showResetForm')->name('company.password.reset');
 	Route::post('password/reset', 'Companies\Auth\ResetPasswordController@reset')->name('company.password.update');
-	
+
 	// register - 企業ユーザー本登録
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
 	Route::post('passwordRegister', 'Companies\Auth\RegisterController@passwordRegister')->name('company.passwordRegister');
@@ -146,7 +147,7 @@ Route::group(['prefix' => 'company'], function(){
 
 
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
-		
+
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
 
@@ -176,12 +177,12 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/task/draft', 'Companies\TaskController@draft')->name('company.task.draft');
 			// 下書きを更新
 		Route::post('/task/update-draft', 'Companies\TaskController@updateDraft')->name('company.task.updateDraft');
-			
+
 		// タスクプレビュー
 		Route::post('/task/task-preview', 'Companies\TaskController@taskPreview')->name('company.task.taskPreview');
 			// 発注書プレビュー
 		Route::post('/task/purchase-order-preview', 'Companies\TaskController@purchaseOrderPreview')->name('company.task.purchaseOrderPreview');
-			
+
 		// タスク再編集
 		Route::post('/task/recreate', 'Companies\TaskController@reCreate')->name('company.task.reCreate');
 			// タスク登録
