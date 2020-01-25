@@ -10,18 +10,15 @@
 	<h3 class="main-wrapper__title">業務委託契約書のプレビュー</h3>
 	<div class="main-wrapper__content">
 		<div class="contract-wrapper">
-			{{-- <div class="pageout">
-				<div id="contract" class="contract">
-					@include('company.document.outsourceContract.components.contract')
-				</div>
-			</div> --}}
 			<div id="contract" class="contract">
 				@include('company.document.outsourceContract.components.contract')
 			</div>
 			<div class="footer">
 				<form id="contract_form" action="" method="post">
 					<button class="btn white" data-impro-button="once" type="button" onclick="submit();" style="margin-right: 30px;">修正する</button>
-					<button id="submit_btn" class="btn" data-impro-button="once" type="button">パートナーに確認依頼をする</button>
+					<button class="btn" data-impro-button="once" type="button" onclick="submit();">パートナーに確認依頼をする</button>
+
+					{{-- TODO: hiddenのinputの用意 --}}
 				</form>
 			</div>
 		</div>
