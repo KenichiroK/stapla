@@ -42,7 +42,7 @@
 
             <div class="pagenate-container">
                 <div class="pagenate-container__wrapper">
-                    {{ $partners->links() }}
+                    {{ $partners->links('components.pagination') }}
                 </div>
             </div>
         </div>
