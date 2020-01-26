@@ -132,7 +132,7 @@
                 <form action="{{ route('company.project.complete', ['id' => $project->id, 'status' => $project->status]) }}" name="form1" method='POST' enctype="multipart/form-data">
                     @csrf
 
-                    @if($finTaskCount === 0)
+                    @if($activeTaskCount !== 0)
                         <p class="non-action-text">未完了タスクがあります。</p>
                     @elseif($project->status == config('const.PROJECT_CREATE'))
                         @foreach($tasks as $task)
@@ -152,24 +152,22 @@
                         @endcomponent
                     @elseif($project->status == config('const.PROJECT_COMPLETE'))
                         <input type="hidden" name="projectStatus" value="{{ $project->status }}">
-                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">再オープン</button>
+                        <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">プロジェクトを再開する</button>
                         <!-- Modal -->
                         @component('components.confirm-modal')
                             @slot('modalID')
                                 confirm
                             @endslot
                             @slot('confirmBtnLabel')
-                                再オープン
+                                再開
                             @endslot
-                            プロジェクトを再オープンします。
+                            プロジェクトを再開します。
                         @endcomponent
                     @endif
                 </form>
             
             </div>
         @endif
-
- 
     </div>
 </div>
 @endsection

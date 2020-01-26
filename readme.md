@@ -46,9 +46,9 @@ https://app.zeplin.io/project/5db8f7e1d517762c27bade3c/dashboard
 
 http://tsudoi.org/guide/detail/8.html
 
-eslint ( 予定 ) https://github.com/tatsuya-nagase/impro/issues/459
-
-Prettier を使ってオートフォーマット
+eslint prettier を入れています。
+以下記事の Stylelint の箇所はスルーしてください。
+https://wemo.tech/3307
 
 #### js
 

@@ -16,7 +16,7 @@
              <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                    <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div>
+                        <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div>
                         <div class="item-name-wrapper__item-name">発注書</div>
                     </div>
                     <div class="table-container">

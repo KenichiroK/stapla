@@ -6,7 +6,6 @@
 @endsection
 
 @section('content')
-
 <div class="main__container">
     <div class="main__container__wrapper">
         @if (session('completed'))

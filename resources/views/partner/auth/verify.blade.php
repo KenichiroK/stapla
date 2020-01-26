@@ -17,7 +17,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">登録したメールを確認してください。</div>
+                        <div class="card-header">電子メールを確認してください。</div>
 
                         <div class="card-body">
                             @if(session('resent'))
@@ -25,7 +25,6 @@
                                 確認リンクがパートナーのメールアドレスに送信されました。
                             </div>
                             @endif
-                            電子メールで確認リンクを確認してください。
                         </div>
                     </div>
                 </div>

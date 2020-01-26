@@ -108,7 +108,7 @@
 
 			<div class="btn-container">
 				<a href="{{ route('company.register.personal.create', [ 'companyUser_id' => $companyUser->id ]) }}">入力し直す</a>
-				<button type="submit">この内容で登録</button>
+				<button class="button" type="submit">この内容で登録</button>
 			</div>
 		</form>
 	</div>

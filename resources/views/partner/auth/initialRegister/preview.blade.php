@@ -71,7 +71,7 @@
             </div>
             <div class="btn-container">
             <a href="{{ route('partner.register.personal.create', ['partner_id' => $partner->id ]) }}">入力し直す</a>
-            <button data-impro-button="once" type="submit" onclick="submit();">登録</button>
+            <button class="button" data-impro-button="once" type="submit" onclick="submit();">登録</button>
         </div>
         </form> 
     </div>

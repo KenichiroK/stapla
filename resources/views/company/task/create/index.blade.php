@@ -10,18 +10,18 @@
     <form action="{{ route('company.task.taskPreview') }}" method='POST'>
         @csrf
         @if(count($errors) > 0)
-        <div class="error-container">
-            <p>入力に問題があります。再入力して下さい。</p>
-        </div>
+            <div class="error-container">
+                <p>入力に問題があります。再入力して下さい。</p>
+            </div>
         @endif
         @if (session('completed'))
-        <div class="complete-container">
-            <p>{{ session('completed') }}</p>
-        </div>
+            <div class="complete-container">
+                <p>{{ session('completed') }}</p>
+            </div>
         @endif
 
-        <div class="title-container">
-            <h3>タスク・発注書作成</h3>
+        <div class="page-title-container">
+            <h3  class="page-title-container__text">タスク・発注書作成</h3>
         </div>
 
         <div class="block-container">

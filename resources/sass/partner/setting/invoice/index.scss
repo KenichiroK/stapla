@@ -275,17 +275,23 @@
     }
 
     .depositType-container {
-      width: 50%;
-      margin-bottom: 30px;
-      
-      p {
-        @include p-style;
-      }
+        width: 150px;
+        margin-bottom: 30px;
+        p {
+          @include p-style;
+        }
 
-      input {
-        @include input-style;
+        input {
+          @include input-style;
+          width: 80%;
+        }
+        .select-arrow {
+          width: 100%;
+          select {
+            height: 46px;
+          }
+        }
       }
-    }
 
     .accountNumber-container{
       width: 50%;
@@ -369,7 +375,6 @@
       }
     }
   }
-
   .btn01-container {
     button {
       font-size: 18px;

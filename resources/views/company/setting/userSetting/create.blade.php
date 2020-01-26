@@ -41,27 +41,27 @@ const setPreview = (input) => {
             <ul>
                 {{-- NOTE: 契約書締結フロー実装後デザイン変更 --}}
                 @if($companyUser->is_agree == 1)
-                <li>
-                    <div class="name-container">
-                        <div class="name-container__img-container">
-                            <img src="{{ $companyUser->picture }}" alt="">
+                    <li>
+                        <div class="name-container">
+                            <div class="name-container__img-container">
+                                <img src="{{ $companyUser->picture }}" alt="">
+                            </div>
+                            {{ $companyUser->name }}
                         </div>
-                        {{ $companyUser->name }}
-                    </div>
-                </li>
-                <li>{{ $companyUser->email }}</li>
-                <li>登録済み</li>
+                    </li>
+                    <li>{{ $companyUser->email }}</li>
+                    <li>登録済み</li>
                 @else
-                <li>
-                    <div class="name-container">
-                        <div class="name-container__img-container">
-                            <img src="{{ env('AWS_URL').'/common/dummy_profile_icon.png' }}" alt="">
+                    <li>
+                        <div class="name-container">
+                            <div class="name-container__img-container">
+                                <img src="{{ env('AWS_URL').'/common/dummy_profile_icon.png' }}" alt="">
+                            </div>
+                            設定中
                         </div>
-                        設定中
-                    </div>
-                </li>
-                <li>{{ $companyUser->email }}</li>
-                <li>招待中</li>
+                    </li>
+                    <li>{{ $companyUser->email }}</li>
+                    <li>招待中</li>
                 @endif
             </ul>
             @endforeach

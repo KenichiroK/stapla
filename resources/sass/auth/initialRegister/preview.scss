@@ -1,4 +1,5 @@
 @import "../../mixin/font/primary";
+@import "../../mixin/button/button";
 
 body {
   font-family: 'Source Sans Pro';
@@ -61,6 +62,7 @@ main {
 
       .company-container {
         .section-container {
+          width: 1000px;
           display: flex;
           padding: 26px;
           color: #4d4f5c;
@@ -121,54 +123,35 @@ main {
     justify-content: center;
 
     a {
+      width: 20%;
       background-color: #fff;
       color: #43425d;
-      font-weight: bold;
-      padding: 8px 40px;
-      border: 1px solid #43425D;
-      border-radius: 48px;
-      font-size: 16px;
-      cursor: pointer;
-      outline: none;
-      text-decoration: none;
+      padding: 16px 0;
       margin-right: 24px;
-    }
-
-    a:hover {
-      opacity: 0.7;
-      transition: 0.3s;
-    }
-
-    button[type="button"] {
-      background-color: #fff;
-      color: #43425d;
-      font-weight: bold;
-      padding: 8px 40px;
       border: 1px solid #43425D;
-      border-radius: 48px;
-      font-size: 16px;
+      border-radius: 32px;
+      font-family: "NotoSansCJKjp";
+      font-weight: bold;
+      letter-spacing: 0.86px;
+      text-align: center;
+      text-decoration: none;
+      transition: linear 0.18s;
       cursor: pointer;
-      outline: none;
-      margin-right: 12px;
-    }
-    
 
-    button[type="submit"] {
+      &:hover {
+        opacity: 0.7;
+        transition: 0.3s;
+      }
+    }
+
+    .button {
+      width: 20%;
       background-color: #43425d;
       color: #fff;
-      font-weight: bold;
-      padding: 8px 40px;
-      border-radius: 48px;
-      font-size: 16px;
-      cursor: pointer;
-      outline: none;
+      border-radius: 100px;
+      padding: 16px 0;
     }
 
-
-    button:hover {
-      opacity: 0.7;
-      transition: 0.3s;
-    }
   }
 }
 

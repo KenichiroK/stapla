@@ -11,7 +11,7 @@
 
 	<div class="profile-container white-bg-container">
 		<form action="{{ route('company.setting.general.update') }}" method="POST">
-		@csrf
+			@csrf
 			<div class="top-area">
 				<div class="name-container item-container">
 					<p>会社名</p>
@@ -55,10 +55,10 @@
 						
                     </div>
                     @if ($errors->has('zip_code'))
-							<div class="error-msg">
-								<strong>{{ $errors->first('zip_code') }}</strong>
-							</div>
-						@endif
+						<div class="error-msg">
+							<strong>{{ $errors->first('zip_code') }}</strong>
+						</div>
+					@endif
 				</div>
 	
 				<div class="prefecture-container item-container">

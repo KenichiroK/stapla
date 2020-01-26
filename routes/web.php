@@ -29,7 +29,8 @@ Route::group(['prefix' => 'partner'], function(){
 	// register   
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('passwordRegister', 'Partners\Auth\RegisterController@passwordRegister')->name('partner.passwordRegister');
-		
+	Route::get('verify', 'Partners\Auth\RegisterController@verify')->name('partner.verify');
+
 	// register_flow - 初期登録関連
 	Route::get('/register/personal/{partner_id}', 'Partners\InitialRegisterController@createPartner')->name('partner.register.personal.create');
 	Route::post('/register/personal', 'Partners\InitialRegisterController@store')->name('partner.register.personal.store');

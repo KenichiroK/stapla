@@ -184,11 +184,12 @@
 
     <form action="{{ route('company.register.terms.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-        <input class="agree-terms" type="checkbox" id="check" name="is_agree" value=1 onclick="isCheck('check',this.checked)" disabled> ご利用規約に同意する
-        <input type="hidden" name="companyUser_id" value="{{ $companyUser->id }}">
+        <input class="agree-terms" type="checkbox" id="check" name="is_agree" value=1 onclick="isCheck('check',this.checked)" disabled>
+        <label for="check"> ご利用規約に同意する</label>
 
+        <input type="hidden" name="companyUser_id" value="{{ $companyUser->id }}">
         <div class="btn-container">
-            <button type="submit" id="registerBtn" disabled>登録</button>
+            <button class="button" type="submit" id="registerBtn" disabled>登録</button>
         </div>
     </form>
 

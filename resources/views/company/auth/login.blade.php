@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="button_wrapper">
-                    <button class="text" id="button" data-impro-button="once" type="button" onclick="submit();">ログイン</button>
+                    <button class="button" id="button" data-impro-button="once" type="button" onclick="submit();">ログイン</button>
                 </div>
             </form>
 
@@ -64,7 +64,6 @@
         </div>
     </div>
 </main>
-
 <!-- <footer>
     <span class="tos"><a href="/terms">ご利用規約</a></span>
     <span class="privacy"><a href="/privacy">プライバシーポリシー</a></span>
