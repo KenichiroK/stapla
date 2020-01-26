@@ -13,7 +13,7 @@ $factory->define(App\Models\PurchaseOrder::class, function (Faker $faker) {
         'companyUser_id'       => $task->company_user_id,
         'partner_id'           => $task->partner_id,
         'task_id'              => $task->id,
-        'status'               => config('const.ORDER_CREATED'),
+        'status'               => config('consts.order.DRAFT'),
         'ordered_at'           => $task->created_at,
         'company_name'         => $company->company_name,
         'company_tel'          => $company->tel,

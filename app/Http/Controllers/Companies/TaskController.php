@@ -23,14 +23,15 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::where('company_id', Auth::user()->company_id)
-                        ->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')])
+        $all_tasks = Task::where('company_id', Auth::user()->company_id)
                         ->orderBy('created_at', 'desc')
                         ->get();
 
+        $tasks = $all_tasks->whereNotIn('status', [config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')]);
+
         $status_arr = [];
         foreach (config('const.TASK_STATUS_ARR') as $key => $TASK_STATUS) {
-            $status_arr[$key] = $tasks->where('status', config('const')[$TASK_STATUS])->count();
+            $status_arr[$key] = $all_tasks->where('status', config('const')[$TASK_STATUS])->count();
         }
         $shown_task_status = null;
 
@@ -45,9 +46,10 @@ class TaskController extends Controller
                         ->get();
 
         $status_arr = [];
-        $alltasks = Task::where('company_id', Auth::user()->company_id)->get();
+        $all_tasks = Task::where('company_id', Auth::user()->company_id)->get();
+
         foreach (config('const.TASK_STATUS_ARR') as $key => $TASK_STATUS) {
-            $status_arr[$key] = $alltasks->where('status', config('const')[$TASK_STATUS])->count();
+            $status_arr[$key] = $all_tasks->where('status', config('const')[$TASK_STATUS])->count();
         }
 
         $shown_task_status = (integer)$task_status;
@@ -134,7 +136,7 @@ class TaskController extends Controller
         // 発注書下書き
         $purchaseOrder->company_id         = $auth->company_id;
         $purchaseOrder->task_id            = $task->id;
-        $purchaseOrder->status             = config('const.ORDER_DRAFT');
+        $purchaseOrder->status             = config('consts.order.DRAFT');
         $purchaseOrder->ordered_at         = $request->order_at;
         $purchaseOrder->company_name       = $auth->company->company_name;
         $purchaseOrder->company_tel        = $auth->company->tel;
@@ -263,7 +265,7 @@ class TaskController extends Controller
         $purchaseOrder->company_id           = $auth->company_id;
         $purchaseOrder->partner_id           = $request->partner_id;
         $purchaseOrder->task_id              = $task->id;
-        $purchaseOrder->status               = config('const.ORDER_CREATED');
+        $purchaseOrder->status               = config('consts.order.CREATED');
         $purchaseOrder->ordered_at           = $request->order_at;
         $purchaseOrder->company_name         = $auth->company->company_name;
         $purchaseOrder->company_tel          = $auth->company->tel;
@@ -303,8 +305,7 @@ class TaskController extends Controller
         $task = Task::findOrFail($task_id);
         $purchaseOrder = PurchaseOrder::where('task_id', $task_id)->first();
         $invoice = Invoice::where('task_id', $task_id)->first();
-        $auth = Auth::user();
-        $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
+        
         if($task->deliver){
             $deliver = Deliver::where('task_id', $task->id)->first();
             $deliver_items = $deliver->deliverItems;
@@ -315,9 +316,37 @@ class TaskController extends Controller
             array_push($company_user_ids, $task->companyUser->id);
         }
 
-        $partners = Partner::where('company_id', $auth->company_id)->get();
+        $alert_next_action_user = null;
 
-        return view('/company/task/show', compact('auth', 'task', 'project_count', 'company_users', 'partners', 'purchaseOrder', 'invoice', 'company_user_ids', 'deliver', 'deliver_items'));
+        if ($task->company_user_id === Auth::user()->id && in_array(config('const.TASK_STATUS_ARR')[$task->status], config('consts.taskNextAction.ASK_TO_SUPERIOR_FROM_COMPANY_USER'))) {
+            $alert_next_action_user = '上長に承認依頼';
+        }
+
+        if ($task->company_user_id === Auth::user()->id && in_array(config('const.TASK_STATUS_ARR')[$task->status], config('consts.taskNextAction.ASK_TO_ACCOUNTING_FROM_COMPANY_USER'))) {
+            $alert_next_action_user = '経理に承認依頼';
+        }
+
+        if ($task->company_user_id === Auth::user()->id && ($task->status === config('const.DELIVERY_PARTNER'))) {
+            $alert_next_action_user = '検収';
+        }
+
+        if ($task->company_user_id === Auth::user()->id && ($task->status === config('const.APPROVAL_ACCOUNTING'))) {
+            $alert_next_action_user = 'タスクを完了';
+        }
+
+        if ($task->company_user_id === Auth::user()->id && in_array(config('const.TASK_STATUS_ARR')[$task->status], config('consts.taskNextAction.ASK_TO_PARTNER_FROM_COMPANY_USER'))) {
+            $alert_next_action_user = 'パートナーに確認依頼';
+        }
+
+        if ($task->superior_id === Auth::user()->id && in_array(config('const.TASK_STATUS_ARR')[$task->status], config('consts.taskNextAction.APPROVED_SUPERIOR'))) {
+            $alert_next_action_user = '上長承認';
+        }
+
+        if ($task->accounting_id === Auth::user()->id && in_array(config('const.TASK_STATUS_ARR')[$task->status], config('consts.taskNextAction.APPROVED_ACCOUNTING'))) {
+            $alert_next_action_user = '経理承認';
+        }
+
+        return view('/company/task/show/index', compact('task', 'alert_next_action_user', 'purchaseOrder', 'invoice', 'company_user_ids', 'deliver'));
     }
 
     public function edit($id)
