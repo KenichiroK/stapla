@@ -56,6 +56,11 @@ class Partner extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\Invoice', 'partner_id', 'id');
     }
 
+    public function outsourceContracts()
+    {
+        return $this->hasMany('App\Models\OutsourceContract', 'partner_id', 'id');
+    }
+
     public function partnerInvoice()
     {
         return $this->hasOne('App\Models\PartnerInvoice', 'partner_id', 'id');
