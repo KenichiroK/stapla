@@ -34,7 +34,7 @@ class TaskController extends Controller
         }
         $shown_task_status = null;
 
-        return view('company/task/index', compact('tasks', 'status_arr', 'shown_task_status'));
+        return view('company/task/index/index', compact('tasks', 'status_arr', 'shown_task_status'));
     }
 
     public function statusIndex($task_status)
@@ -52,7 +52,7 @@ class TaskController extends Controller
 
         $shown_task_status = (integer)$task_status;
 
-        return view('company/task/index', compact('tasks', 'status_arr', 'shown_task_status'));
+        return view('company/task/index/index', compact('tasks', 'status_arr', 'shown_task_status'));
     }
 
     public function projectTaskIndex($project_uid)
@@ -71,9 +71,9 @@ class TaskController extends Controller
         if($request->query('pid')){
             $project_id = $request->query('pid');
             $quoted_project = Project::where('id', $project_id)->first();
-            return view('company/task/create', compact('projects', 'quoted_project', 'company_users', 'partners', 'company_user', 'task'));
+            return view('company/task/create/index', compact('projects', 'quoted_project', 'company_users', 'partners', 'company_user', 'task'));
         } else{
-            return view('company/task/create', compact('projects', 'company_users', 'partners', 'company_user', 'task'));
+            return view('company/task/create/index', compact('projects', 'company_users', 'partners', 'company_user', 'task'));
         }
     }
 
@@ -89,7 +89,7 @@ class TaskController extends Controller
         // 発注書
         $purchaseOrder = PurchaseOrder::where('task_id', $task->id)->first();
 
-        return view('company/task/create', compact('projects', 'company_users', 'partners', 'task', 'purchaseOrder'));
+        return view('company/task/create/index', compact('projects', 'company_users', 'partners', 'task', 'purchaseOrder'));
     }
 
     // 下書きとして保存
