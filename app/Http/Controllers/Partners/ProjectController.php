@@ -35,7 +35,7 @@ class ProjectController extends Controller
     public function doneIndex()
     {
         $partner = Auth::user();
-        $projects = Project::where('company_id', $partner->company_id)->where('status', config('const.PROJECT_COMPLETE'))->get();
+        $projects = Project::where('company_id', $partner->company_id)->where('status', config('consts.project.COMPLETED'))->get();
 
         $task_count_arr = []; 
         for($i = 0; $i < count($projects); $i++){

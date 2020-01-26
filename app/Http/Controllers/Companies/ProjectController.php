@@ -20,11 +20,11 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::where('company_id', Auth::user()->company_id)
-                        ->where('status', '!=', config('const.PROJECT_COMPLETE'))
+                        ->where('status', '!=', config('consts.project.COMPLETED'))
                         ->orderBy('created_at', 'desc')
                         ->get();
         
-        $project_status = config('const.PROJECT_ALL');
+        $project_status = config('consts.project.ALL');
 
         return view('company/project/index/index', compact('projects', 'project_status'));
     }
@@ -32,11 +32,11 @@ class ProjectController extends Controller
     public function doneIndex()
     {
         $projects = Project::where('company_id', Auth::user()->company_id)
-                        ->where('status', config('const.PROJECT_COMPLETE'))
+                        ->where('status', config('consts.project.COMPLETED'))
                         ->orderBy('created_at', 'desc')
                         ->get();
 
-        $project_status = config('const.PROJECT_COMPLETE');
+        $project_status = config('consts.project.COMPLETED');
 
         return view('company/project/index/index', compact('projects', 'project_status'));
     }
@@ -133,10 +133,10 @@ class ProjectController extends Controller
         \Log::info('プロジェクトstatus変更前', ['user_id(company)' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
 
         if($status == 0) {
-            $project->status = config('const.PROJECT_COMPLETE');
+            $project->status = config('consts.project.COMPLETED');
             \Log::info('プロジェクト完了', ['user_id(company)' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
-        } elseif($status == config('const.PROJECT_COMPLETE')) {
-            $project->status = config('const.PROJECT_CREATE');
+        } elseif($status == config('consts.project.COMPLETED')) {
+            $project->status = config('consts.project.CREATED');
             \Log::info('プロジェクト再オープン', ['user_id(company)' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
         }
         $project->save();
