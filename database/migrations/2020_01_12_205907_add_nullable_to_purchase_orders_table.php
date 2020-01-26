@@ -15,7 +15,7 @@ class AddNullableToPurchaseOrdersTable extends Migration
             $table->string('companyUser_id')->nullable()->change();
             $table->string('companyUser_name')->nullable()->change();
             $table->string('partner_name')->nullable()->change();
-            $table->integer('task_price')->nullable()->change();
+            $table->biginteger('task_price')->nullable()->change();
 
         });
     }
