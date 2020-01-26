@@ -26,7 +26,7 @@ class ProjectController extends Controller
         
         $project_status = config('const.PROJECT_ALL');
 
-        return view('company/project/index', compact('projects', 'project_status'));
+        return view('company/project/index/index', compact('projects', 'project_status'));
     }
 
     public function doneIndex()
@@ -38,7 +38,7 @@ class ProjectController extends Controller
 
         $project_status = config('const.PROJECT_COMPLETE');
 
-        return view('company/project/index', compact('projects', 'project_status'));
+        return view('company/project/index/index', compact('projects', 'project_status'));
     }
 
     public function create()

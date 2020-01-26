@@ -22,7 +22,7 @@
         <a class="{{ $project_status === config('const.PROJECT_COMPLETE') ? 'tab-container__btn is-active' : 'tab-container__btn' }}" href="{{ route('company.project.done.index') }}">完了したプロジェクト</a>
     </div>
 
-    @include('company.project.components.table')
+    @include('company.project.index.components.table')
 
 </div>
 @endsection
