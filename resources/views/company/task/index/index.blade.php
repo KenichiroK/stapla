@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    @include('company.task.components.status')
+    @include('company.task.index.components.status')
 
     <div class="tab-container">
         @if ($shown_task_status !== null && $shown_task_status !== config('const.COMPLETE_STAFF'))
@@ -42,7 +42,7 @@
         </a>
     </div>
 
-    @include('company.task.components.table')
+    @include('company.task.index.components.table')
 </div>
 @endsection
 

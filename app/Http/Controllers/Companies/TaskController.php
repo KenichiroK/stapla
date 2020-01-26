@@ -34,7 +34,7 @@ class TaskController extends Controller
         }
         $shown_task_status = null;
 
-        return view('company/task/index', compact('tasks', 'status_arr', 'shown_task_status'));
+        return view('company/task/index/index', compact('tasks', 'status_arr', 'shown_task_status'));
     }
 
     public function statusIndex($task_status)
@@ -52,7 +52,7 @@ class TaskController extends Controller
 
         $shown_task_status = (integer)$task_status;
 
-        return view('company/task/index', compact('tasks', 'status_arr', 'shown_task_status'));
+        return view('company/task/index/index', compact('tasks', 'status_arr', 'shown_task_status'));
     }
 
     public function projectTaskIndex($project_uid)
