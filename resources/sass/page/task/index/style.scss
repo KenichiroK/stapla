@@ -17,27 +17,6 @@
     }
   }
 
-  .title-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 0 24px;
-  }
-
-  .page-title-container {
-    margin: 0;
-  }
-
-  .btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &__text {
-      @include positive-btn(130px, 40px, 16px, 8px, 14px);
-    }
-  }
-
   .tab-container {
     display: flex;
     align-items: center;

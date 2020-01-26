@@ -7,14 +7,9 @@
 
 @section('content')
 <div class="main-wrapper">
-    <div class="title-container">
-        <div class="page-title-container">
-            <h3 class="page-title-container__text">プロジェクト</h3>
-        </div>
-
-        <div class="btn-container">
-            <a class="btn-container__text" href="{{ route('company.project.create') }}">プロジェクト作成</a>
-        </div>
+    <div class="page-title-container">
+        <h3 class="page-title-container__text">プロジェクト</h3>
+        <a class="page-title-container__btn" href="{{ route('company.project.create') }}">プロジェクト作成</a>
     </div>
 
     <div class="tab-container">

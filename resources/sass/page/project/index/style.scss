@@ -11,27 +11,6 @@
   margin: auto;
   padding: 40px;
 
-  .title-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 0 40px;
-
-    > .page-title-container {
-      margin: 0;
-    }
-  }
-
-  .btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &__text {
-      @include positive-btn(160px, 40px, 16px, 8px, 14px);
-    }
-  }
-
   .tab-container {
     display: flex;
     align-items: center;

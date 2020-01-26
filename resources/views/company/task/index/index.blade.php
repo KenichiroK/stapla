@@ -7,14 +7,9 @@
 
 @section('content')
 <div class="main-wrapper">
-    <div class="title-container">
-        <div class="page-title-container">
-            <h3 class="page-title-container__text">タスク</h3>
-        </div>
-
-        <div class="btn-container">
-            <a class="btn-container__text" href="{{ route('company.task.create') }}">タスク作成</a>
-        </div>
+    <div class="page-title-container">
+        <h3 class="page-title-container__text">タスク</h3>
+        <a class="page-title-container__btn" href="{{ route('company.task.create') }}">タスク作成</a>
     </div>
 
     @include('company.task.index.components.status')
