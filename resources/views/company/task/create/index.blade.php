@@ -20,8 +20,8 @@
             </div>
         @endif
 
-        <div class="title-container">
-            <h3>タスク・発注書作成</h3>
+        <div class="page-title-container">
+            <h3  class="page-title-container__text">タスク・発注書作成</h3>
         </div>
 
         <div class="block-container">
