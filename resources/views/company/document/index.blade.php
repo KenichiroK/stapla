@@ -26,7 +26,7 @@
                                 <th>納期</th>
                                 <th>担当者</th>
                                 <th>パートナー</th>
-                                <th>金額</th>
+                                <th>発注金額</th>
                                 <th></th>
                             </tr>
                             @foreach($purchaseOrders as $purchaseOrder)
@@ -90,7 +90,7 @@
                                 <th>請求日</th>
                                 <th>担当者</th>
                                 <th>パートナー</th>
-                                <th>金額</th>
+                                <th>発注金額</th>
                                 <th></th>
                             </tr>
                             @foreach($invoices as $invoice)
