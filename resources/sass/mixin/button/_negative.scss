@@ -1,16 +1,16 @@
 @import "./button";
 
-@mixin negative-btn($width: 120px, $height: 36px, $px: 16px, $py: 8px, $fontSize: 16px) {
+@mixin negative-btn($width: 64px, $height: 32px, $px: 16px, $py: 8px, $fontSize: 16px) {
   @extend .button;
-  width: $width;
+  min-width: $width;
   height: $height;
   padding-top: $py;
   padding-right: $px;
   padding-bottom: $py;
   padding-left: $px;
   font-size: $fontSize;
-  line-height: $fontSize;
+  line-height: $height - $py * 2 - 4px;
   background-color: colors(white1);
   color: colors(primary);
-  border: solid 1px colors(primary);
+  border: 2px solid colors(primary);
 }
