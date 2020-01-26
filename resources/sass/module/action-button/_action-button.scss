@@ -12,6 +12,7 @@
   }
 
   &__undone {
+    margin-right: 40px;
     @include negative-btn(180px, 40px, 16px, 8px, 14px);
   }
 
