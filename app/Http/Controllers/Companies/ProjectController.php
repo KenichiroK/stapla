@@ -43,13 +43,8 @@ class ProjectController extends Controller
 
     public function create()
     {
-        $company_user = Auth::user();
-
-        $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
-
-        $partner_users = Partner::where('company_id', $company_user->company_id)->get();
-        
-        return view('company/project/create', compact('company_user', 'company_users'));
+        $company_users = CompanyUser::where('company_id', Auth::user()->company_id)->get();        
+        return view('company/project/create/index', compact('company_users'));
     }
 
     public function store(CreateProjectRequest $request)
