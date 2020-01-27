@@ -47,11 +47,11 @@
                             </div>
                             <div class="left">
                                 <p class="date">発注日: {{ date("Y年m月d日", strtotime($ordered_at)) }}</p>
-                                <p clss="name">{{ $order_company_user->company->company_name }}</p>
-                                <p class="tel">{{ $order_company_user->company->company_tel }}</p>
-                                <p classs="address">〒{{ $order_company_user->company->zip_code }} {{ $order_company_user->company->address_prefecture }}{{ $order_company_user->company->address_city }}</p>
-                                <p class="building">{{ $order_company_user->company->address_building }}</p>
-                                <p class="building">{{ $order_company_user->companyUser_name }}</p>
+                                <p clss="name">{{ $task_company_user->company->company_name }}</p>
+                                <p class="tel">{{ $task_company_user->company->company_tel }}</p>
+                                <p classs="address">〒{{ $task_company_user->company->zip_code }} {{ $task_company_user->company->address_prefecture }}{{ $task_company_user->company->address_city }}</p>
+                                <p class="building">{{ $task_company_user->company->address_building }}</p>
+                                <p class="building">{{ $task_company_user->name }}</p>
                             </div>
                         </div>
             
@@ -137,11 +137,11 @@
                         <div class="left">
                             <p class="date">発注日: {{ date("Y年m月d日", strtotime($ordered_at)) }}</p>
                             <input type="hidden" name="ordered_at" value="{{ $ordered_at }}">
-                            <p clss="name">{{ $order_company_user->company->company_name }}</p>
-                            <p class="tel">{{ $order_company_user->company->company_tel }}</p>
-                            <p classs="address">〒{{ $order_company_user->company->zip_code }} {{ $order_company_user->company->address_prefecture }}{{ $order_company_user->company->address_city }}</p>
-                            <p class="building">{{ $order_company_user->company->address_building }}</p>
-                            <p class="building">{{ $order_company_user->companyUser_name }}</p>
+                            <p clss="name">{{ $task_company_user->company->company_name }}</p>
+                            <p class="tel">{{ $task_company_user->company->company_tel }}</p>
+                            <p classs="address">〒{{ $task_company_user->company->zip_code }} {{ $task_company_user->company->address_prefecture }}{{ $task_company_user->company->address_city }}</p>
+                            <p class="building">{{ $task_company_user->company->address_building }}</p>
+                            <p class="building">{{ $task_company_user->name }}</p>
                         </div>
                     </div>
 

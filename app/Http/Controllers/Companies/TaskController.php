@@ -181,35 +181,38 @@ class TaskController extends Controller
             $task = Task::findOrFail($request->task_id);
             $task_status = config('const.TASK_CREATE');
         }
-        $project = Project::findOrFail($request->project_id);
-        $company_user = CompanyUser::findOrFail($request->task_company_user_id);
-        $superior_user = CompanyUser::findOrFail($request->superior_id);
-        $accounting_user = CompanyUser::findOrFail($request->accounting_id);
+        $project           = Project::findOrFail($request->project_id);
+        $task_company_user = CompanyUser::findOrFail($request->task_company_user_id);
+        $superior_user     = CompanyUser::findOrFail($request->superior_id);
+        $accounting_user   = CompanyUser::findOrFail($request->accounting_id);
         $partner = Partner::findORFail($request->partner_id);
+        // 発注書
+        $order_name         = $request->order_name;
+        $order_company_user = $request->order_company_user;
 
         if(isset($request->task_id)){
-            return view('company.task.preview.show', compact('request', 'company_user', 'project', 'superior_user', 'accounting_user', 'partner', 'task', 'task_status'));
+            return view('company.task.preview.show', compact('request', 'task_company_user', 'project', 'superior_user', 'accounting_user', 'partner', 'task', 'task_status', 'order_name', 'order_company_name'));
         } else{
-            return view('company.task.preview.show', compact('request', 'company_user', 'project', 'superior_user', 'accounting_user', 'partner'));
+            return view('company.task.preview.show', compact('request', 'task_company_user', 'project', 'superior_user', 'accounting_user', 'partner'));
         }
     }
 
     // 発注書プレビュー
     public function purchaseOrderPreview(Request $request)
     {
-        $order_company_user    = CompanyUser::findOrFail($request->task_company_user_id);
-        $superior_user         = CompanyUser::findOrFail($request->superior_id);
-        $ordered_at            = date("Y-m-d");
-        $partner               = Partner::findORFail($request->partner_id);
-        $order_name            = $request->order_name;
-        $delivery_date         = Carbon::createFromTimestamp(strtotime($request->delivery_date))
+        $task_company_user   = CompanyUser::findOrFail($request->task_company_user_id);
+        $superior_user       = CompanyUser::findOrFail($request->superior_id);
+        $ordered_at          = date("Y-m-d");
+        $partner             = Partner::findORFail($request->partner_id);
+        $order_name          = $request->order_name;
+        $delivery_date       = Carbon::createFromTimestamp(strtotime($request->delivery_date))
                                 ->format('Y-m-d-H-i-s');
-        $order_company_user_id = $request->order_company_user_id;
+        $order_company_user = $request->order_company_user;
         if(isset($request->task_id)){
             $task_id = $request->task_id;
-            return view('company.document.purchaseOrder.preview.show', compact('request', 'order_company_user', 'superior_user', 'ordered_at', 'partner', 'order_name', 'delivery_date', 'order_company_user_id', 'task_id'));
+            return view('company.document.purchaseOrder.preview.show', compact('request', 'task_company_user', 'superior_user', 'ordered_at', 'partner', 'order_name', 'delivery_date', 'order_company_user', 'task_id'));
         }
-        return view('company.document.purchaseOrder.preview.show', compact('request', 'order_company_user', 'superior_user', 'ordered_at', 'partner', 'order_name', 'delivery_date', 'order_company_user_id'));
+        return view('company.document.purchaseOrder.preview.show', compact('request', 'task_company_user', 'superior_user', 'ordered_at', 'partner', 'order_name', 'delivery_date', 'order_company_user'));
     }
 
     // 再編集
