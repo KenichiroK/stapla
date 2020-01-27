@@ -1,10 +1,13 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+// Variables
+@import "./variables";
 
 @import "./components/label";
 @import "./components/notification_bar";
 @import "./header/index";
 @import "./sidebar/index";
+@import "./module/modal/confirm";
 
 body {
   padding: 0;
