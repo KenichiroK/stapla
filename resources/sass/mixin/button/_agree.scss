@@ -13,4 +13,8 @@
   background-color: colors(agree);
   color: colors(white1);
   border: 2px solid colors(agree);
+
+  &:hover {
+    color: colors(white1);
+  }
 }
