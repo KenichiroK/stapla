@@ -91,12 +91,13 @@ develop branch -> 開発環境
 staging branch から各々が作業ブランチを切って作業する ( 1-5 リリース以降 )
 
 #### PR
+* 挙動確認 -> 小松さん
+* code 確認 -> 羽田さん・宗定
+* 小松さんと羽田さんの approve で staging branch と develop branch に作業者が自分でそれぞれ merge ( 1-5 リリース以降 )
 
-挙動確認 -> 小松さん
-
-code 確認 -> 羽田さん
-
-小松さんと羽田さんの approve で staging branch と develop branch に作業者が自分でそれぞれ merge ( 1-5 リリース以降 )
+##### PR作成ルール
+1. トレロチケットのURLを貼り付ける（ない場合は、トレロチケットを作成する、リリース管理のため）。
+2. PR内容を明確にし、リファクタとチケット対応は別のPRとする。
 
 ## Tips
 
