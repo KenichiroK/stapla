@@ -4,11 +4,8 @@
     </div>
 
     <ul class="navbar-container">
-        <li id="task_status_btn" class="navbar-container__text">タスク
+        <li id="task_status_btn" class="navbar-container__text">タスク・発注書
             <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.TASK_CREATE'), config('const.TASK_APPROVAL_PARTNER')) }})</span>
-        </li>
-        <li id="order_status_btn" class="navbar-container__text">発注書
-            <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.ORDER_SUBMIT_SUPERIOR'), config('const.ORDER_APPROVAL_PARTNER')) }})</span>
         </li>
         <li id="working_status_btn" class="navbar-container__text">作業中
             <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.WORKING'), config('const.ACCEPTANCE')) }})</span>
@@ -21,7 +18,7 @@
         </li>
     </ul>
 
-    <div id="task_status_table" class="detail-container">
+    <ul id="task_status_table" class="detail-container">
         <a
             class="{{ $shown_task_status === config('const.TASK_CREATE') ? 'detail-container__content is-active' : 'detail-container__content' }}"
             href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.TASK_CREATE')]) }}"
@@ -53,36 +50,6 @@
         <a
             class="{{ $shown_task_status === config('const.TASK_APPROVAL_PARTNER') ? 'detail-container__content is-active' : 'detail-container__content' }}"
             href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.TASK_APPROVAL_PARTNER')]) }}"
-        >
-            <span class="detail-container__content--title">発注書作成前</span>
-            <span class="detail-container__content--num">{{ $status_arr[config('const.TASK_APPROVAL_PARTNER')] }}</span>
-        </a>
-    </div>
-    <ul id="order_status_table" class="detail-container">
-        <a
-            class="{{ $shown_task_status === config('const.ORDER_SUBMIT_SUPERIOR') ? 'detail-container__content is-active' : 'detail-container__content' }}"
-            href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.ORDER_SUBMIT_SUPERIOR')]) }}"
-        >
-            <span class="detail-container__content--title">上長確認中</span>
-            <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_SUBMIT_SUPERIOR')] }}</span>
-        </a>
-        <a
-            class="{{ $shown_task_status === config('const.ORDER_APPROVAL_SUPERIOR') ? 'detail-container__content is-active' : 'detail-container__content' }}"
-            href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.ORDER_APPROVAL_SUPERIOR')]) }}"
-        >
-            <span class="detail-container__content--title">パートナー依頼前</span>
-            <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_APPROVAL_SUPERIOR')] }}</span>
-        </a>
-        <a
-            class="{{ $shown_task_status === config('const.ORDER_SUBMIT_PARTNER') ? 'detail-container__content is-active' : 'detail-container__content' }}"
-            href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.ORDER_SUBMIT_PARTNER')]) }}"
-        >
-            <span class="detail-container__content--title">パートナー確認中</span>
-            <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_SUBMIT_PARTNER')] }}</span>
-        </a>
-        <a
-            class="{{ $shown_task_status === config('const.ORDER_APPROVAL_PARTNER') ? 'detail-container__content is-active' : 'detail-container__content' }}"
-            href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.ORDER_APPROVAL_PARTNER')]) }}"
         >
             <span class="detail-container__content--title">作業前</span>
             <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_APPROVAL_PARTNER')] }}</span>
