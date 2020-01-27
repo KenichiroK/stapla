@@ -26,7 +26,7 @@ class ProjectController extends Controller
         
         $project_status = config('const.PROJECT_ALL');
 
-        return view('company/project/index', compact('projects', 'project_status'));
+        return view('company/project/index/index', compact('projects', 'project_status'));
     }
 
     public function doneIndex()
@@ -38,7 +38,7 @@ class ProjectController extends Controller
 
         $project_status = config('const.PROJECT_COMPLETE');
 
-        return view('company/project/index', compact('projects', 'project_status'));
+        return view('company/project/index/index', compact('projects', 'project_status'));
     }
 
     public function create()
@@ -88,10 +88,10 @@ class ProjectController extends Controller
 
         $project = Project::where('company_id', $company_user->company_id)->findOrFail($id);
         $tasks = Task::where('project_id',$project->id)->get();
-        $finTaskCount = $tasks->whereIn("status", [config("const.COMPLETE_STAFF"), config("const.TASK_CANCELED")])
+        $activeTaskCount = $tasks->whereNotIn('status', [config("const.COMPLETE_STAFF"), config("const.TASK_CANCELED")])
                         ->count();
 
-        return view('/company/project/show', compact('project','tasks', 'company_user', 'finTaskCount'));
+        return view('/company/project/show', compact('project','tasks', 'company_user', 'activeTaskCount'));
     }
 
     public function edit($project_id)

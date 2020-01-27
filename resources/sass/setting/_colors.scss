@@ -1,5 +1,6 @@
 $colors: (
   primary: #43425d,
+  agree: #00ce47,
   bgPrimary: rgba(245, 246, 250, 0.7),
   bgLight: #f5f6fa,
   bgTableRow: rgba(245, 246, 250, 0.4),
@@ -8,6 +9,8 @@ $colors: (
   red1: #ff0031,
   navy1: #4d4f5c,
   grayLighten1: rgba(77, 79, 92, 0.5),
+  grayLighten2: #a3a6b4,
+  grayLighten3: #d4d5d9,
 );
 
 @function colors($key) {

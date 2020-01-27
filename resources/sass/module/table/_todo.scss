@@ -62,7 +62,7 @@
         align-items: center;
         justify-content: center;
         word-break: break-all;
-        padding: 14px 0;
+        padding: 14px 8px;
         @include primary-text(14px, bold);
 
         > .profile-img {
@@ -86,7 +86,7 @@
         align-items: center;
         justify-content: center;
         word-break: break-all;
-        padding: 14px 0;
+        padding: 14px 8px;
         @include primary-text(14px, bold);
 
         > .button {

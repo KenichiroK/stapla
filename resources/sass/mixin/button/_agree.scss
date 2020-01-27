@@ -1,6 +1,6 @@
 @import "./button";
 
-@mixin negative-btn($width: 64px, $height: 32px, $px: 16px, $py: 8px, $fontSize: 16px) {
+@mixin agree-btn($width: 64px, $height: 32px, $px: 16px, $py: 8px, $fontSize: 16px) {
   @extend .button;
   min-width: $width;
   height: $height;
@@ -10,7 +10,7 @@
   padding-left: $px;
   font-size: $fontSize;
   line-height: $height - $py * 2 - 4px;
-  background-color: colors(white1);
-  color: colors(primary);
-  border: 2px solid colors(primary);
+  background-color: colors(agree);
+  color: colors(white1);
+  border: 2px solid colors(agree);
 }
