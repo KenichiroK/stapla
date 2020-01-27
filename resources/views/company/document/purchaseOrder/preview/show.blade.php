@@ -106,6 +106,7 @@
             
                             <div class="sub-container">
                                 <span>備考</span>
+                                {{ $request->content }}
                             </div>
                         </div>
                     </div>

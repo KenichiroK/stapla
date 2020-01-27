@@ -106,6 +106,7 @@
         
                         <div class="sub-container">
                             <span>備考</span>
+                            {{ $task->content }}
                         </div>
                     </div>
                 </div>
@@ -194,6 +195,7 @@
     
                     <div class="sub-container">
                         <span>備考</span>
+                        {{ $task->content }}
                     </div>
                 </div>
             </div>
