@@ -111,11 +111,7 @@
             <p class="item-container__left">プロジェクト期間</p>
             <p class="item-container__right">{{ date('Y年m月d日', strtotime($task->started_at)) }}<span class="date-line"></span>{{ date('Y年m月d日', strtotime($task->ended_at)) }}</p>
         </div>
-
-        <div class="item-container">
-            <p class="item-container__left">予算</p>
-            <p class="item-container__right">￥{{ number_format($task->budget) }}</p>
-        </div>
+        
     </div>
 
     <div class="items-container">
@@ -134,18 +130,8 @@
         </div>
 
         <div class="item-container">
-            <p class="item-container__left">報酬形式</p>
-            <p class="item-container__right">{{ $task->fee_format }}</p>
-        </div>
-
-        <div class="item-container">
             <p class="item-container__left">発注単価 (税抜)</p>
             <p class="item-container__right">￥{{ number_format($task->price) }}</p>
-        </div>
-
-        <div class="item-container">
-            <p class="item-container__left">発注件数</p>
-            <p class="item-container__right">{{ $task->fee_format }}</p>
         </div>
 
         <div class="item-container">
