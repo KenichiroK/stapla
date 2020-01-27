@@ -43,26 +43,20 @@ taskMoreBtn.addEventListener("click", () => {
 
 // toggle status table
 const taskStatusTable = document.getElementById("task_status_table");
-const orderStatusTable = document.getElementById("order_status_table");
 const workingStatusTable = document.getElementById("working_status_table");
 const invoiceStatusTable = document.getElementById("invoice_status_table");
 const completeStatusTable = document.getElementById("complete_status_table");
-const tableItems = [taskStatusTable, orderStatusTable, workingStatusTable, invoiceStatusTable, completeStatusTable];
+const tableItems = [taskStatusTable, workingStatusTable, invoiceStatusTable, completeStatusTable];
 
 const taskStatusBtn = document.getElementById("task_status_btn");
-const orderStatusBtn = document.getElementById("order_status_btn");
 const workingStatusBtn = document.getElementById("working_status_btn");
 const invoiceStatusBtn = document.getElementById("invoice_status_btn");
 const completeStatusBtn = document.getElementById("complete_status_btn");
-const tabBtns = [taskStatusBtn, orderStatusBtn, workingStatusBtn, invoiceStatusBtn, completeStatusBtn];
+const tabBtns = [taskStatusBtn, workingStatusBtn, invoiceStatusBtn, completeStatusBtn];
 
 taskStatusBtn.addEventListener("click", () => {
   switchShownItem(tableItems, taskStatusTable, displayType.flex);
   switchIsActiveBtn(tabBtns, taskStatusBtn);
-});
-orderStatusBtn.addEventListener("click", () => {
-  switchShownItem(tableItems, orderStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, orderStatusBtn);
 });
 workingStatusBtn.addEventListener("click", () => {
   switchShownItem(tableItems, workingStatusTable, displayType.flex);
