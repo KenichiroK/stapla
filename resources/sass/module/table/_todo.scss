@@ -22,13 +22,13 @@
       align-items: center;
 
       &--long {
-        width: 22.5%;
+        width: 21%;
         padding: 12px 0;
         @include table-head-text;
       }
 
       &--short {
-        width: 10%;
+        width: 16%;
         padding: 12px 0;
         @include table-head-text;
       }
@@ -56,7 +56,7 @@
       }
 
       &--long {
-        width: 22.5%;
+        width: 21%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -80,7 +80,7 @@
       }
 
       &--short {
-        width: 10%;
+        width: 16%;
         display: flex;
         flex-direction: column;
         align-items: center;
