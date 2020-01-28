@@ -215,7 +215,7 @@ function setPostal(){
 		<div class="register-step">
 			<div class="register-step-company-info">
 				<p class="step1">Step1</p>
-				<p class="company-info-title">個人情報登録</p>
+				<p class="company-info-title">情報登録</p>
 			</div>
 
 			<div class="register-step-bar">　</div>
