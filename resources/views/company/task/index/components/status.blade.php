@@ -48,8 +48,8 @@
             <span class="detail-container__content--num">{{ $status_arr[config('const.TASK_SUBMIT_PARTNER')] }}</span>
         </a>
         <a
-            class="{{ $shown_task_status === config('const.TASK_APPROVAL_PARTNER') ? 'detail-container__content is-active' : 'detail-container__content' }}"
-            href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.TASK_APPROVAL_PARTNER')]) }}"
+            class="{{ $shown_task_status === config('const.ORDER_APPROVAL_PARTNER') ? 'detail-container__content is-active' : 'detail-container__content' }}"
+            href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.ORDER_APPROVAL_PARTNER')]) }}"
         >
             <span class="detail-container__content--title">作業前</span>
             <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_APPROVAL_PARTNER')] }}</span>

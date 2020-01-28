@@ -7,13 +7,10 @@ window.onload = () => {
 
   //表示している task の status で status テーブルの表示を切り替える
   const task_status = location.href.split("/")[location.href.split("/").length - 1];
-  if (task_status <= task_approval_partner) {
+  if (task_status <= order_approval_partner) {
     switchShownItem(tableItems, taskStatusTable, displayType.flex);
     switchIsActive(tabBtns, taskStatusBtn);
     switchIsActive(statusNums, taskStatusNum);
-  } else if (task_status <= order_approval_partner) {
-    switchShownItem(tableItems, orderStatusTable, displayType.flex);
-    switchIsActive(tabBtns, orderStatusBtn);
   } else if (task_status <= acceptance) {
     switchShownItem(tableItems, workingStatusTable, displayType.flex);
     switchIsActive(tabBtns, workingStatusBtn);
