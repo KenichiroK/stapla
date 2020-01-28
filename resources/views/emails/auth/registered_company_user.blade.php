@@ -25,7 +25,7 @@
     --------------------------------------------------------------<br/>
     運営サイト：work style を科学する <br/>
     フリーランス書類一元管理ツール「impro」<br/>
-    https://impro.work/<br/>
+    https://impro.work<br/>
     運営会社 ：株式会社HUMO<br/>
     住所 ：東京都中央区銀座１丁目１９−１２八木ビル７F<br/>
     HP :<a href="http://humo.jp">http://humo.jp</a><br/>
