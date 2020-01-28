@@ -148,24 +148,26 @@ class TaskController extends Controller
         $purchaseOrder->task_tax           = $task->tax;
         // nullable()の可能性がある項目
         if(isset($request->partner_id)){
-            $purchaseOrder->partner_id        = $request->partner_id;
-            $purchaseOrder->partner_name      = Partner::findOrFail($request->partner_id)->name;
+            $purchaseOrder->partner_id   = $request->partner_id;
+            $purchaseOrder->partner_name = Partner::findOrFail($request->partner_id)->name;
         }
         if(isset($request->task_company_user_id)){
-            $purchaseOrder->companyUser_id    = $request->task_company_user_id;
-            if(isset($request->order_company_user)){
-                $purchaseOrder->companyUser_name = $request->order_company_user;
-            } else{
-                $purchaseOrder->companyUser_name = CompanyUser::findOrFail($request->task_company_user_id)->name;
-            }
+            $purchaseOrder->companyUser_id = $request->task_company_user_id;
         }
         if(isset($request->order_name)){
             $purchaseOrder->task_name = $request->order_name;
         } else{
             $purchaseOrder->task_name = $task->name;
         }
+        if(isset($request->order_company_user)){
+            $purchaseOrder->companyUser_name = $request->order_company_user;
+        } else{
+            if(isset($request->task_company_user_id)){
+                $purchaseOrder->companyUser_name = CompanyUser::findOrFail($request->task_company_user_id)->name;
+            }
+        }
         if(isset($request->order_price)){
-            $purchaseOrder->task_price        = $request->order_price;
+            $purchaseOrder->task_price = $request->order_price;
         }
         $purchaseOrder->save();
 
@@ -188,7 +190,7 @@ class TaskController extends Controller
         $accounting_user   = CompanyUser::findOrFail($request->accounting_id);
         $partner = Partner::findORFail($request->partner_id);
         // 発注書
-        $order_name         = $request->order_name;
+        $order_name        = $request->order_name;
         if(isset($request->order_company_user)){
             $order_company_user = $request->order_company_user;
         } else{
