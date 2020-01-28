@@ -74,7 +74,9 @@
                 <div class="task-container__item__wrap">
                     <h2 class="task-container__item__wrap__title">タスク</h2>
                     <div class="btn-a-container">
+                        @if ($project->status !== config('consts.project.COMPLETED'))
                         <a href="{{ route('company.task.create')}}?pid={{ $project->id }}">タスク作成</a>
+                        @endif
                     </div>
                 </div>
                 <ul class="task-container__item__list">
@@ -134,7 +136,7 @@
 
                     @if($activeTaskCount !== 0)
                         <p class="non-action-text">未完了タスクがあります。</p>
-                    @elseif($project->status == config('const.PROJECT_CREATE'))
+                    @elseif($project->status == config('consts.project.CREATED'))
                         @foreach($tasks as $task)
                             <input type="hidden" name="taskStatus[]" value="{{ $task->status }}">
                         @endforeach
@@ -150,7 +152,7 @@
                             @endslot
                             プロジェクトを完了します。
                         @endcomponent
-                    @elseif($project->status == config('const.PROJECT_COMPLETE'))
+                    @elseif($project->status == config('consts.project.COMPLETED'))
                         <input type="hidden" name="projectStatus" value="{{ $project->status }}">
                         <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">プロジェクトを再開する</button>
                         <!-- Modal -->

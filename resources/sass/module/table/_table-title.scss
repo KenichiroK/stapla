@@ -1,3 +1,7 @@
+@import "../../mixin/font/primary";
+@import "../../mixin/font/font";
+@import "../../mixin/button/button";
+
 .table-title-container {
   display: flex;
   justify-content: space-between;
@@ -5,10 +9,7 @@
   margin: 0 0 24px;
 
   &__text {
-    margin: 0;
-    font-size: 18px;
-    color: colors(primary);
-    font-weight: bold;
+    @include primary-text(18px, bold);
   }
 
   &__num {
@@ -16,29 +17,19 @@
   }
 
   &__alert {
-    font-size: 14px;
-    font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.78px;
+    @include font(14px, 600);
     color: colors(navy1);
 
     &--button {
-      font-size: 14px;
-      font-family: "NotoSansCJKjp";
+      @include button(40px, 28px, 4px, 4px, 14px);
       background-color: colors(white1);
-      border-radius: 16px;
-      border: 2px solid colors(red1);
+      border-color: colors(red1);
       color: colors(red1);
-      font-weight: bold;
     }
 
     &--unit {
-      font-size: 10px;
-      font-family: "NotoSansCJKjp";
+      @include font(10px, bold);
       color: colors(red1);
-      font-weight: bold;
       letter-spacing: 0.56px;
     }
   }

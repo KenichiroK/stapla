@@ -13,8 +13,8 @@
     </div>
 
     <div class="tab-container">
-        <a class="{{ $project_status !== config('const.PROJECT_COMPLETE') ? 'tab-container__btn is-active' : 'tab-container__btn' }}" href="{{ route('company.project.index') }}">プロジェクト</a>
-        <a class="{{ $project_status === config('const.PROJECT_COMPLETE') ? 'tab-container__btn is-active' : 'tab-container__btn' }}" href="{{ route('company.project.done.index') }}">完了したプロジェクト</a>
+        <a class="{{ $project_status !== config('consts.project.COMPLETED') ? 'tab-container__btn is-active' : 'tab-container__btn' }}" href="{{ route('company.project.index') }}">プロジェクト</a>
+        <a class="{{ $project_status === config('consts.project.COMPLETED') ? 'tab-container__btn is-active' : 'tab-container__btn' }}" href="{{ route('company.project.done.index') }}">完了したプロジェクト</a>
     </div>
 
     @include('company.project.index.components.table')

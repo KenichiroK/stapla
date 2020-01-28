@@ -1,14 +1,24 @@
-.button {
+@mixin button($width: 64px, $height: 32px, $px: 16px, $py: 8px, $fontSize: 16px) {
+  min-width: $width;
+  height: $height;
+  padding-top: $py;
+  padding-right: $px;
+  padding-bottom: $py;
+  padding-left: $px;
   border-radius: 32px;
-  font-family: "NotoSansCJKjp";
+  font-family: -apple-system, Meiryo, "游ゴシック体", YuGothic, "游ゴシック";
   font-weight: bold;
   letter-spacing: 0.86px;
+  line-height: $height - $py * 2 - 4px;
   text-align: center;
   text-decoration: none;
   transition: linear 0.18s;
   cursor: pointer;
+  border: 2px solid colors(white1);
+  outline: none;
 
   &:hover {
     opacity: 0.7;
+    text-decoration: none;
   }
 }
