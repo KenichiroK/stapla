@@ -51,7 +51,7 @@
                                 <p class="tel">{{ $task_company_user->company->company_tel }}</p>
                                 <p classs="address">〒{{ $task_company_user->company->zip_code }} {{ $task_company_user->company->address_prefecture }}{{ $task_company_user->company->address_city }}</p>
                                 <p class="building">{{ $task_company_user->company->address_building }}</p>
-                                <p class="building">{{ $task_company_user->name }}</p>
+                                <p class="building">{{ $order_company_user }}</p>
                             </div>
                         </div>
             
@@ -105,7 +105,6 @@
                             </div>
             
                             <div class="sub-container">
-                                <span>備考</span>
                                 {{ $request->content }}
                             </div>
                         </div>
@@ -142,7 +141,8 @@
                             <p class="tel">{{ $task_company_user->company->company_tel }}</p>
                             <p classs="address">〒{{ $task_company_user->company->zip_code }} {{ $task_company_user->company->address_prefecture }}{{ $task_company_user->company->address_city }}</p>
                             <p class="building">{{ $task_company_user->company->address_building }}</p>
-                            <p class="building">{{ $task_company_user->name }}</p>
+                            <p class="building">{{ $order_company_user }}</p>
+                            <input type="hidden" name="order_company_user" value="{{ $order_company_user }}">
                         </div>
                     </div>
 
@@ -197,7 +197,6 @@
                             </div>
                         </div>
                         <div class="sub-container">
-                            <span>備考</span>
                             {{ $request->content }}
                             <input type="hidden" name="content" value="{{ $request->content }}">
                         </div>
@@ -214,7 +213,6 @@
             <input type="hidden" name="accounting_id" value="{{ $request->accounting_id }}">
             <input type="hidden" name="started_at" value="{{ $request->started_at }}">
             <input type="hidden" name="ended_at" value="{{ $request->ended_at }}">
-            <input type="hidden" name="order_company_user_id" value="{{ $request->order_company_user_id }}">
             @if(isset($request->billing_to_text))
                 <input type="hidden" name="billing_to_text" value="{{ $request->billing_to_text }}">
             @endif

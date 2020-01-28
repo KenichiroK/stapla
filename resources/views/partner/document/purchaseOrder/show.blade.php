@@ -51,11 +51,7 @@ const setPreview = (input) => {
                         <p class="tel">{{ $purchaseOrder->company_tel }}</p>
                         <p classs="address">〒{{ $purchaseOrder->company_zip_code }} {{ $purchaseOrder->company->address_prefecture }}{{ $purchaseOrder->company->address_city }}{{ $purchaseOrder->company->address_streetAddress }}</p>
                         <p class="building">{{ $purchaseOrder->company_streetAddress }}</p>
-                        @if($purchaseOrder->billing_to_text)
-                            <p class="building">{{ $purchaseOrder->billing_to_text }}</p>
-                        @else
-                         <p class="building">{{ $purchaseOrder->companyUser_name }}</p>
-                        @endif                            
+                        <p class="building">{{ $purchaseOrder->companyUser_name }}</p>
                         <p class="symbol">印</p>
                     </div>
                 </div>

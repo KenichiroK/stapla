@@ -88,7 +88,7 @@
                     発注単価<span>(税抜)</span>
                 </dt>
                 <dd>
-                    {{ number_format($task->price5665665655666554t6t555) }}円
+                    {{ number_format($task->price) }}円
                 </dd>
             </dl>
             <dl>
