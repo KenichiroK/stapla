@@ -115,7 +115,7 @@ main {
     }
 
     .register-step {
-      width: 270px;
+      width: 280px;
       margin: 60px auto 0;
       font-size: 14px;
       text-align: center;
@@ -124,6 +124,7 @@ main {
       letter-spacing: 1px;
       .register-step-company-info {
         color: #4d4f5c;
+        margin-left: 15px;
         .step1 {
           font-family: HelveticaNeue;
         }
