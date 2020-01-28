@@ -134,7 +134,7 @@
 				<div class="tel-container">
 					<p>電話番号</p>
 					<div class="tel-container__wrapper">
-                        <input type="text" name="tel" id="tel" value="{{ old('tel', isset(Auth::user()->tel) ? Auth::user()->tel : '') }}" maxlength="11">
+                        <input type="text" name="tel" id="tel" value="{{ old('tel', isset(Auth::user()->tel) ? Auth::user()->tel : '') }}" maxlength="11" onblur="convert(this)">
 					</div>
 					@if ($errors->has('tel'))
 						<div class="error-msg">
@@ -184,7 +184,7 @@
 
 			<div class="accountNumber-container">
 				<p>口座番号</p>
-				<input type="text" id="account_number" name="account_number" value="{{ old('account_number', isset($partner_invoice->account_number) ? $partner_invoice->account_number : '') }}" maxlength="7" onblur="convert(this.value)">
+				<input type="text" id="account_number" name="account_number" value="{{ old('account_number', isset($partner_invoice->account_number) ? $partner_invoice->account_number : '') }}" maxlength="7" onblur="convert(this)">
 				@if ($errors->has('account_number'))
 					<div class="error-msg">
 						<strong>{{ $errors->first('account_number') }}</strong>
@@ -211,6 +211,7 @@
 @endsection
 
 @section('asset-js')
+<script src="{{ asset('js/common/convert-character.js') }}" defer></script>
 <script>
 	const setPreview = (input) => {
 		const preview = document.getElementById('preview');
@@ -222,14 +223,6 @@
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
-	}
-
-	function convert(account_number) {
-		var half_size_account_number = document.getElementById('account_number').value
-		half_size_account_number = account_number.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-			return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-		});
-		document.getElementById('account_number').value = half_size_account_number
 	}
 
 	// 郵便番号入力欄の自動遷移

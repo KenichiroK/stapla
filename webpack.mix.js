@@ -61,6 +61,14 @@ mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/i
 // invoice
 mix.js(["resources/js/pages/invoice/show/index.js"], "public/js/pages/invoice/show/index.js");
 
+mix.babel(
+  [
+    //convert from full-widht to half-size
+    "resources/js/common/convert-character.js",
+  ],
+  "public/js/common/convert-character.js",
+);
+
 mix.js(
   [
     //change label of task_index

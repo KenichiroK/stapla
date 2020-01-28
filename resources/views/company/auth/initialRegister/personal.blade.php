@@ -153,7 +153,7 @@ const setPostal = () => {
 								<span class="required-label row-label">( 必須 )</span>
 							</p>
 							<div class="tel-container__wrapper">
-								<input type="text" name="tel" id="tel" value="{{ old('tel', isset($companyUser->Company->tel) ? $companyUser->Company->tel : '') }}" maxlength="11">
+								<input type="text" name="tel" id="tel" value="{{ old('tel', isset($companyUser->Company->tel) ? $companyUser->Company->tel : '') }}" maxlength="11" onblur="convert(this)">
 							</div>
 							@if ($errors->has('tel'))
 								<div class="error-msg">
@@ -250,4 +250,8 @@ const setPostal = () => {
 		@endif
 	</div>
 </main>
+@endsection
+
+@section('asset-js')
+<script src="{{ asset('js/common/convert-character.js') }}" defer></script>
 @endsection

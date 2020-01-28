@@ -194,7 +194,7 @@ function setPostal(){
 							<span class="required-label row-label">( 必須 )</span>
 						</p>
 						<div class="tel-container__wrapper">
-							<input type="text" name="tel" id="tel" value="{{ old('tel', $partner->tel) }}" maxlength="11">
+							<input type="text" name="tel" id="tel" value="{{ old('tel', $partner->tel) }}" maxlength="11" onblur="convert(this)">
 						</div>
 						@if($errors->has('tel'))
 							<div class="error-msg">
@@ -213,4 +213,8 @@ function setPostal(){
 		</form>
 	</div>
 </main>
+@endsection
+
+@section('asset-js')
+<script src="{{ asset('js/common/convert-character.js') }}" defer></script>
 @endsection
