@@ -46,6 +46,10 @@
   justify-content: flex-start;
   &__input {
     width: 45%;
+
+    .input {
+      text-align: right;
+    }
   }
 
   .unit {
