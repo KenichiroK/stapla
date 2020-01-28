@@ -1,7 +1,7 @@
 <div class="project-container">
     <div class="table-title-container">
         <h4 class="table-title-container__text">
-            {{ config('const.PROJECT_STATUS_NAME')[$project_status] }}のプロジェクト<span class="table-title-container__num">{{ $projects->count() }}件</span>
+            {{ config('consts.project.STATUS_NAME')[$project_status] }}のプロジェクト<span class="table-title-container__num">{{ $projects->count() }}件</span>
         </h4>
     </div>
 
@@ -17,7 +17,7 @@
 
         @if (count($projects) === 0)
         <p class="no-data">
-            {{ config('const.PROJECT_STATUS_NAME')[$project_status] }}のプロジェクトはありません
+            {{ config('consts.project.STATUS_NAME')[$project_status] }}のプロジェクトはありません
         </p>
         @endif
 

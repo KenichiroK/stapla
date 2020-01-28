@@ -111,9 +111,9 @@
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script>
-        const project_create = {{ config('const.PROJECT_CREATE') }};
-        const project_complete = {{ config('const.PROJECT_COMPLETE') }};
-        const project_canceled = {{ config('const.PROJECT_CANCELED') }};
+        const project_create = {{ config('consts.project.CREATED') }};
+        const project_complete = {{ config('consts.project.COMPLETED') }};
+        const project_canceled = {{ config('consts.project.CANCELED') }};
 
         const task_create = {{ config('const.TASK_CREATE') }};
         const task_submit_superior = {{ config('const.TASK_SUBMIT_SUPERIOR') }};

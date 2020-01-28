@@ -1,16 +1,13 @@
 @import "./button";
 
 @mixin agree-btn($width: 64px, $height: 32px, $px: 16px, $py: 8px, $fontSize: 16px) {
-  @extend .button;
-  min-width: $width;
-  height: $height;
-  padding-top: $py;
-  padding-right: $px;
-  padding-bottom: $py;
-  padding-left: $px;
-  font-size: $fontSize;
+  @include button($width, $height, $px, $py, $fontSize);
   line-height: $height - $py * 2 - 4px;
   background-color: colors(agree);
   color: colors(white1);
-  border: 2px solid colors(agree);
+  border-color: colors(agree);
+
+  &:hover {
+    color: colors(white1);
+  }
 }

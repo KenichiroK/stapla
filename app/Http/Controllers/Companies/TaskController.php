@@ -68,7 +68,7 @@ class TaskController extends Controller
         $auth = Auth::user();
         $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
         $partners = Partner::where('company_id', $auth->company_id)->get();
-        $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
+        $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('consts.project.COMPLETED'))->get();
 
         if($request->query('pid')){
             $project_id = $request->query('pid');
@@ -85,7 +85,7 @@ class TaskController extends Controller
         // タスク
         $task = Task::findOrFail($task_id);
         $company_user = Auth::user();
-        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();
+        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('consts.project.COMPLETED'))->get();
         $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
         $partners = Partner::where('company_id', $company_user->company_id)->get();
         // 発注書

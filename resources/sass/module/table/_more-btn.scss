@@ -1,18 +1,17 @@
+@import "../../mixin/font/primary";
+
 .morebtn-container {
   width: 100%;
   margin: 24px 0 0;
   display: none;
 
   &__text {
+    @include primary-text(14px, bold);
     width: 80px;
     position: relative;
     text-align: center;
-    font-family: "NotoSansCJKjp";
-    font-size: 14px;
-    font-weight: bold;
     letter-spacing: 1px;
     text-align: center;
-    color: colors(primary);
     cursor: pointer;
 
     &:after {
