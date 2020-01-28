@@ -1,5 +1,5 @@
 import { showElements } from "@/modules/more-btn/logic";
-import { switchShownItem, switchIsActiveBtn } from "@/modules/switch-btn/logic";
+import { switchShownItem, switchIsActive } from "@/modules/switch-btn/logic";
 import { displayType } from "@/modules/switch-btn/type";
 
 window.onload = () => {
@@ -9,22 +9,27 @@ window.onload = () => {
   const task_status = location.href.split("/")[location.href.split("/").length - 1];
   if (task_status <= task_approval_partner) {
     switchShownItem(tableItems, taskStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, taskStatusBtn);
+    switchIsActive(tabBtns, taskStatusBtn);
+    switchIsActive(statusNums, taskStatusNum);
   } else if (task_status <= order_approval_partner) {
     switchShownItem(tableItems, orderStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, orderStatusBtn);
+    switchIsActive(tabBtns, orderStatusBtn);
   } else if (task_status <= acceptance) {
     switchShownItem(tableItems, workingStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, workingStatusBtn);
+    switchIsActive(tabBtns, workingStatusBtn);
+    switchIsActive(statusNums, workingStatusNum);
   } else if (task_status <= approval_accounting) {
     switchShownItem(tableItems, invoiceStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, invoiceStatusBtn);
+    switchIsActive(tabBtns, invoiceStatusBtn);
+    switchIsActive(statusNums, invoiceStatusNum);
   } else if (task_status <= task_canceled) {
     switchShownItem(tableItems, completeStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, completeStatusBtn);
+    switchIsActive(tabBtns, completeStatusBtn);
+    switchIsActive(statusNums, completeStatusNum);
   } else {
     switchShownItem(tableItems, taskStatusTable, displayType.flex);
-    switchIsActiveBtn(tabBtns, taskStatusBtn);
+    switchIsActive(tabBtns, taskStatusBtn);
+    switchIsActive(statusNums, taskStatusNum);
   }
 };
 
@@ -54,19 +59,29 @@ const invoiceStatusBtn = document.getElementById("invoice_status_btn");
 const completeStatusBtn = document.getElementById("complete_status_btn");
 const tabBtns = [taskStatusBtn, workingStatusBtn, invoiceStatusBtn, completeStatusBtn];
 
+const taskStatusNum = document.getElementById("task_status_num");
+const workingStatusNum = document.getElementById("working_status_num");
+const invoiceStatusNum = document.getElementById("invoice_status_num");
+const completeStatusNum = document.getElementById("complete_status_num");
+const statusNums = [taskStatusNum, workingStatusNum, invoiceStatusNum, completeStatusNum];
+
 taskStatusBtn.addEventListener("click", () => {
   switchShownItem(tableItems, taskStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, taskStatusBtn);
+  switchIsActive(tabBtns, taskStatusBtn);
+  switchIsActive(statusNums, taskStatusNum);
 });
 workingStatusBtn.addEventListener("click", () => {
   switchShownItem(tableItems, workingStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, workingStatusBtn);
+  switchIsActive(tabBtns, workingStatusBtn);
+  switchIsActive(statusNums, workingStatusNum);
 });
 invoiceStatusBtn.addEventListener("click", () => {
   switchShownItem(tableItems, invoiceStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, invoiceStatusBtn);
+  switchIsActive(tabBtns, invoiceStatusBtn);
+  switchIsActive(statusNums, invoiceStatusNum);
 });
 completeStatusBtn.addEventListener("click", () => {
   switchShownItem(tableItems, completeStatusTable, displayType.flex);
-  switchIsActiveBtn(tabBtns, completeStatusBtn);
+  switchIsActive(tabBtns, completeStatusBtn);
+  switchIsActive(statusNums, completeStatusNum);
 });
