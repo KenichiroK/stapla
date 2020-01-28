@@ -33,6 +33,7 @@
     &__num {
       @include font(12px);
       margin-left: 6px;
+      border-bottom: none !important;
     }
 
     .is-active {

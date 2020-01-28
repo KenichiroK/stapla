@@ -14,7 +14,7 @@ export const switchShownItem = (elements, willShownElement, displayType) => {
  * @param {HTMTLElement[]} btns 全てのボタン
  * @param {HTMTLElement} willActiveBtn 表示するボタン
  */
-export const switchIsActiveBtn = (btns, willActiveBtn) => {
+export const switchIsActive = (btns, willActiveBtn) => {
   btns.filter(btn => btn !== willActiveBtn).map(btn => btn.classList.remove("is-active"));
   willActiveBtn.classList.add("is-active");
 };

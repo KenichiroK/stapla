@@ -5,16 +5,16 @@
 
     <ul class="navbar-container">
         <li id="task_status_btn" class="navbar-container__text">タスク・発注書
-            <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.TASK_CREATE'), config('const.TASK_APPROVAL_PARTNER')) }})</span>
+            <span id="task_status_num" class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.TASK_CREATE'), config('const.TASK_APPROVAL_PARTNER')) }})</span>
         </li>
         <li id="working_status_btn" class="navbar-container__text">作業中
-            <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.WORKING'), config('const.ACCEPTANCE')) }})</span>
+            <span id="working_status_num" class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.WORKING'), config('const.ACCEPTANCE')) }})</span>
         </li>
         <li id="invoice_status_btn" class="navbar-container__text">請求書
-            <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.INVOICE_DRAFT_CREATE'), config('const.APPROVAL_ACCOUNTING')) }})</span>
+            <span id="invoice_status_num" class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.INVOICE_DRAFT_CREATE'), config('const.APPROVAL_ACCOUNTING')) }})</span>
         </li>
         <li id="complete_status_btn" class="navbar-container__text">完了
-            <span class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')) }})</span>
+            <span id="complete_status_num" class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.COMPLETE_STAFF'), config('const.TASK_CANCELED')) }})</span>
         </li>
     </ul>
 
@@ -48,8 +48,8 @@
             <span class="detail-container__content--num">{{ $status_arr[config('const.TASK_SUBMIT_PARTNER')] }}</span>
         </a>
         <a
-            class="{{ $shown_task_status === config('const.TASK_APPROVAL_PARTNER') ? 'detail-container__content is-active' : 'detail-container__content' }}"
-            href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.TASK_APPROVAL_PARTNER')]) }}"
+            class="{{ $shown_task_status === config('const.ORDER_APPROVAL_PARTNER') ? 'detail-container__content is-active' : 'detail-container__content' }}"
+            href="{{ route('company.task.status.statusIndex', ['task_status' => config('const.ORDER_APPROVAL_PARTNER')]) }}"
         >
             <span class="detail-container__content--title">作業前</span>
             <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_APPROVAL_PARTNER')] }}</span>
