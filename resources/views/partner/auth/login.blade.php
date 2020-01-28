@@ -62,7 +62,7 @@
             </form>
 
             <div class="forget_password_wrapper">
-                <a href="{{  route('partner.password.request')  }}">パスワードをお忘れの場合はこちら</a>
+                <a href="{{ route('partner.password.request') }}" target="_blank">パスワードをお忘れの場合はこちら</a>
             </div>
             
         </div>
