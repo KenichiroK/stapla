@@ -23,22 +23,7 @@
         <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
         <button type="submit" class="action-button-container__undone">タスクを承認しない</button>
     </form>
-    <form action="{{ route('company.task.status.change') }}" method="POST">
-        @csrf
-        <input type="hidden" name="task_id" value="{{ $task->id }}">
-        <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_SUPERIOR') }}">
-        <button type="button" class="action-button-container__done confirm" data-toggle="modal" data-target="#confirm">タスクを承認する</button>
-        <!-- Modal -->
-        @component('components.confirm-modal')
-            @slot('modalID')
-                confirm
-            @endslot
-            @slot('confirmBtnLabel')
-                承認
-            @endslot
-            タスクを承認します。
-        @endcomponent
-    </form>
+    <a href="{{ route('company.document.purchaseOrder.show', ['purchaseOrder_id' => $purchaseOrder->id]) }}" class="action-button-container__done">発注書を確認する</a>
     @elseif($task->status === config('const.TASK_APPROVAL_SUPERIOR') && in_array(Auth::user()->id, $company_user_ids))
     <form action="{{ route('company.task.status.change') }}" method="POST">
         @csrf
