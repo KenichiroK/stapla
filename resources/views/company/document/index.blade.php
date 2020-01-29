@@ -16,8 +16,6 @@
             <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                        {{-- TODO: アイコンを変更する --}}
-                        <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div>
                         <div class="item-name-wrapper__item-name">業務委託基本契約書</div>
                     </div>
                     <div class="table-container">
@@ -41,7 +39,6 @@
                                 <td>
                                     <div class="create-container">
                                         <div class="btn-a-container">
-                                            {{-- TODO: urlを登録 --}}
                                             <a href="{{ route('company.document.outsource-contracts.preview', ['outsource_contract_id' => $outsourceContract->id]) }}">詳細</a>
                                         </div>
                                     </div>

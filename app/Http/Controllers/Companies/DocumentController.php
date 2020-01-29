@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Companies;
 
-use App\Models\Invoice;
-use App\Models\PurchaseOrder;
+
+use App\Http\Controllers\Controller;
 use App\Models\CompanyUser;
+use App\Models\Invoice;
 use App\Models\OutsourceContract;
+use App\Models\PurchaseOrder;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller

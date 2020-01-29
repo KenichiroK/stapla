@@ -38,7 +38,7 @@ class PartnerController extends Controller
             }
         }
 
-        $partners = $partnerBuilder->orderBy('created_at', 'desc')->paginate(20);
+        $partners = $partnerBuilder->orderBy('updated_at', 'desc')->paginate(20);
 
         foreach ($partners as $partner) {
             $partner['outsourceContract'] = $partner->outsourceContracts()->where('company_id', $companyUser->company_id)->first();

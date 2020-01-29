@@ -19,7 +19,7 @@ class OutsourceContractController extends Controller
         $company = Company::findOrFail($companyUser->company_id);
         $partner = Partner::findOrFail($partner_id);
 
-        return view('/company/document/outsourceContract/create', compact('partner', 'company'));
+        return view('company.document.outsourceContract.create', compact('partner', 'company'));
     }
 
     // TODO: バリデーションの設定
@@ -44,13 +44,13 @@ class OutsourceContractController extends Controller
     public function preview($outsource_contract_id)
     {
         $outsourceContract = OutsourceContract::findOrFail($outsource_contract_id);
-        return view('/company/document/outsourceContract/preview', compact('outsourceContract'));
+        return view('company.document.outsourceContract.preview', compact('outsourceContract'));
     }
 
     public function edit($outsource_contract_id)
     {
         $outsourceContract = OutsourceContract::findOrFail($outsource_contract_id);
-        return view('/company/document/outsourceContract/edit', compact('outsourceContract'));
+        return view('company.document.outsourceContract.edit', compact('outsourceContract'));
     }
 
     public function update(Request $request)

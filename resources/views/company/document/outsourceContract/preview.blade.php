@@ -13,14 +13,16 @@
 			<div id="contract" class="contract">
 				@include('company.document.outsourceContract.components.contract')
 			</div>
+
+			{{-- NOTE: 契約締結後は修正できなくても良いのかどうか --}}
+			@if ($outsourceContract->status !== 'complete')
 			<div class="footer">
-				<form id="contract_form" action="{{ route('company.document.outsource-contracts.updateStatus') }}" method="post">
+				<form action="{{ route('company.document.outsource-contracts.updateStatus') }}" method="post">
 					@csrf
-					@isset($outsourceContract->comment)
-					{{-- TODO: コメント用のcss当てる --}}
+					@if(isset($outsourceContract->comment) && $outsourceContract->status === 'progress')
 					<p>パートナからの修正依頼</p>
 					<p class="footer__comment">{{ $outsourceContract->comment }}</p>
-					@endisset
+					@endif
 
 					<div class="footer__btn-wrapper">
 						<a class="btn white" href="{{ route('company.document.outsource-contracts.edit', ['outsource_contract_id' => $outsourceContract->id]) }}" style="margin-right: 30px;">修正する</a>
@@ -31,6 +33,7 @@
 					<input name="status" type="hidden" value="progress">
 				</form>
 			</div>
+			@endif
 		</div>
 	</div>
 </div>

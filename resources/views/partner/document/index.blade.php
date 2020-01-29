@@ -16,8 +16,6 @@
             <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                        {{-- TODO: アイコンを変更する --}}
-                        <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div>
                         <div class="item-name-wrapper__item-name">業務委託基本契約書</div>
                     </div>
                     <div class="table-container">
@@ -25,29 +23,30 @@
                             <tr class="head-row">
                                 <th>企業名</th>
                                 <th>締結日</th>
+                                <th>ステータス</th>
                                 {{-- TODO: pdfがダウンロードできるようになったら --}}
                                 {{-- <th>PDF</th> --}}
                                 {{-- HACK: 発注書・請求書とスタイルを合わせるために空の列を追加してる --}}
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th></th>
                             </tr>
+                            @foreach ($outsourceContracts as $outsourceContract)
                             <tr class="data-row">
-                                <td class="task-data">テスト企業名</td>
-                                <td>2019年12月25日</td>
-                                <td></td>
+                                <td class="task-data">{{ $outsourceContract->company_name }}</td>
+                                <td>{{ date("Y年m月d日", strtotime($outsourceContract->contarcted_at)) }}</td>
+                                <td>{{ config('consts.document.outsourceContract.statusToJp')[$outsourceContract->status] }}</td>
                                 <td></td>
                                 <td></td>
                                 <td>
                                     <div class="create-container">
                                         <div class="btn-a-container">
-                                            {{-- TODO: urlを登録 --}}
-                                            <a href="">詳細</a>
+                                            <a href="{{ route('partner.document.outsource-contracts.edit', ['outsource_contract_id' => $outsourceContract->id]) }}">詳細</a>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </table>
                         <!-- Show More部分 -->
                         <div class="more-container">

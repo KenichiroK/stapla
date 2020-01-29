@@ -1,4 +1,4 @@
-@extends('company.index')
+@extends('partner.index')
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
@@ -13,17 +13,21 @@
 			<div id="contract" class="contract">
 				@include('company.document.outsourceContract.components.contract')
 			</div>
+			@if ($outsourceContract->status !== 'complete')
 			<div class="footer">
-				<form id="contract_form" action="" method="post" class="contract-form">
-					<button class="btn" data-impro-button="once" type="button" onclick="submit();">契約内容に合意する</button>
+				<form method="post" class="contract-form" name="contractForm">
+					@csrf
+					<button class="btn" data-impro-button="once" type="button" onclick="contractForm.action='{{ route('partner.document.outsource-contracts.updateStatus') }}';contractForm.submit();">契約内容に合意する</button>
 
-					<textarea class="textarea form-control" name="outsource_contract_comment" placeholder="修正を依頼したい内容を記載してください"></textarea>
+				<textarea class="textarea form-control" name="comment" placeholder="修正を依頼したい内容を記載してください">{{ $outsourceContract->comment }}</textarea>
 
-					<button class="btn white" data-impro-button="once" type="button" onclick="submit();">修正を依頼する</button>
+					<button class="btn white" data-impro-button="once" type="button" onclick="contractForm.action='{{ route('partner.document.outsource-contracts.updateComment') }}';contractForm.submit();">修正を依頼する</button>
 
-					{{-- TODO: hiddenのinputの用意 --}}
+					<input type="hidden" name="id" value="{{ $outsourceContract->id }}">
+					<input type="hidden" name="status" value="complete">
 				</form>
 			</div>
+			@endif
 		</div>
 	</div>
 </div>
@@ -31,14 +35,20 @@
 
 @section('asset-js')
 <script>
-	// TODO: サーバサイドから入力された値を受け取る
-	const COMPANY_NAME = "テスト企業";
-	const COMPANY_ADDRESS = "テスト企業住所";
-	const REPRESENTIVE_NAME = "代表者名";
-	const PARTNER_NAME = "テストパートナ";
-	const PARTNER_ADDRESS = "テストパートナ住所";
-	const COURT = "さいたま";
-	const CONTRACT_DATE = "令和2年1月16日";
+	const COMPANY_NAME = "{{ $outsourceContract->company_name }}";
+	const COMPANY_ADDRESS = "{{ $outsourceContract->company_address }}";
+	const REPRESENTIVE_NAME = "{{ $outsourceContract->representive_name }}";
+	const PARTNER_NAME = "{{ $outsourceContract->partner_name }}";
+	const PARTNER_ADDRESS = "{{ $outsourceContract->partner_address }}";
+	const COURT = "{{ $outsourceContract->court_name }}";
+
+	const contractDate = "{{ $outsourceContract->contarcted_at }}"
+	const CONTRACT_DATE = new Date(contractDate).toLocaleDateString("ja-JP-u-ca-japanese", {
+		era: "long",
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
 </script>
 
 <script src="{{ asset('js/pages/partner/document/outsourceContract/edit.js') }}" defer></script>

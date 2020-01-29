@@ -77,7 +77,6 @@ Route::group(['prefix' => 'partner'], function(){
 
 		// document
 		Route::get('/document', 'Partners\DocumentController@index')->name('partner.document.index');
-		Route::get('/document', 'Partners\DocumentController@index')->name('partner.document.index');
 
 		// task status change
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
@@ -107,9 +106,18 @@ Route::group(['prefix' => 'partner'], function(){
 		Route::post('document/invoice/{id}/update', 'Partners\InvoiceController@update')->name('partner.document.invoice.update');
 
 		//outsource contract(業務委託契約書)
-		// HACK: outsource用のコントローラにしたいがPartnersディレクトリのリファクタが済むまではいったんDocumentControllerに書く
-		// TODO: pathにoutsource-contract-idを追加する
-		Route::get('/document/outsource-contracts/edit', 'Partners\DocumentController@editOutsource')->name('partner.document.outsource-contracts.edit');
+		
+		Route::get('/document/outsource-contracts/edit/{outsource_contract_id}', 'Partners\DocumentController@editOutsource')->name('partner.document.outsource-contracts.edit');
+
+		//document outsource contract(業務委託契約書)
+		// HACK: namespaceも付けたい
+		Route::prefix('/document/outsource-contracts')->name('partner.document.outsource-contracts.')->group(function () {
+			// HACK: outsource用のコントローラにしたいがPartnersディレクトリのリファクタが済むまではいったんDocumentControllerに書く
+			Route::get('edit/{outsource_contract_id}', 'Partners\DocumentController@editOutsource')->name('edit');
+			Route::post('update-comment', 'Partners\DocumentController@updateOutsourceComment')->name('updateComment');
+			Route::post('update-status', 'Partners\DocumentController@updateOutsourceStatus')->name('updateStatus');
+		});
+
 
 		// logout
 		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
