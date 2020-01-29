@@ -25,7 +25,6 @@ class OutsourceContractController extends Controller
     // TODO: バリデーションの設定
     public function store(Request $request) {
         // NOTE: 1企業に対しパートナーは業務委託契約書を1枚しか必要ないのでfirstOrNewを使用
-
         $outsourceContract = OutsourceContract::firstOrNew([
             'company_id' => $request->company_id,
             'partner_id' => $request->partner_id,

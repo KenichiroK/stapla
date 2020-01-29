@@ -23,20 +23,54 @@
 
         <div class="partner-content">
             <h3 class="partner-content__title">ステータス</h3>
-
             <ul class="partner-content__tab">
-                {{-- TODO: ステータスでのフィルタ --}}
-                <li class="is-active">
-                    <a class="tab-btn" href="">全て<span class="counter">({{ $outsourceContractCount['all'] }})</span></a>
+                <li
+                    @if (is_null(Request::query('status')))
+                    class="is-active"
+                    @endif
+                >
+                    <a
+                        class="tab-btn"
+                        href="{{ route('company.partner.index') }}"
+                    >
+                        全て<span class="counter">({{ $outsourceContractCount['all'] }})</span>
+                    </a>
                 </li>
-                <li>
-                    <a class="tab-btn" href="">契約締結済<span class="counter">({{ $outsourceContractCount['complete'] }})</span></a>
+                <li
+                    @if (Request::query('status') == 'complete')
+                    class="is-active"
+                    @endif
+                >
+                    <a
+                        class="tab-btn"
+                        href="{{ route('company.partner.index', ['status' => 'complete']) }}"
+                    >
+                        契約締結済<span class="counter">({{ $outsourceContractCount['complete'] }})</span>
+                    </a>
                 </li>
-                <li>
-                    <a class="tab-btn" href="">契約作業中<span class="counter">({{ $outsourceContractCount['progress'] }})</span></a>
+                <li
+                    @if (Request::query('status') == 'progress')
+                    class="is-active"
+                    @endif
+                >
+                    <a
+                        class="tab-btn"
+                        href="{{ route('company.partner.index', ['status' => 'progress']) }}"
+                    >
+                        契約作業中<span class="counter">({{ $outsourceContractCount['progress'] }})</span>
+                    </a>
                 </li>
-                <li>
-                    <a class="tab-btn" href="">未契約<span class="counter">({{ $outsourceContractCount['uncontracted'] }})</span></a>
+                <li
+                    @if (Request::query('status') == 'uncontracted')
+                    class="is-active"
+                    @endif
+                >
+                    <a
+                        class="tab-btn"
+                        href="{{ route('company.partner.index', ['status' => 'uncontracted']) }}"
+                    >
+                        未契約<span class="counter">({{ $outsourceContractCount['uncontracted'] }})</span>
+                    </a>
                 </li>
             </ul>
 
