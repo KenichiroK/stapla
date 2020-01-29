@@ -60,7 +60,7 @@ Route::group(['prefix' => 'partner'], function(){
 
 		//document outsource contract(業務委託契約書)
 		// HACK: namespaceも付けたい
-		Route::prefix('/document/outsource-contracts')->name('partner.document.outsource-contracts.')->group(function () {
+		Route::prefix('/document/outsource-contracts')->name('partner.document.outsourceContracts.')->group(function () {
 			// HACK: outsource用のコントローラにしたいがPartnersディレクトリのリファクタが済むまではいったんDocumentControllerに書く
 			Route::get('edit/{outsource_contract_id}', 'Partners\DocumentController@editOutsource')->name('edit');
 			Route::post('update-comment', 'Partners\DocumentController@updateOutsourceComment')->name('updateComment');
@@ -224,7 +224,7 @@ Route::group(['prefix' => 'company'], function(){
 
 		//document outsource contract(業務委託契約書)
 		// HACK: namespaceも付けたい
-		Route::prefix('/document/outsource-contracts')->name('company.document.outsource-contracts.')->group(function () {
+		Route::prefix('/document/outsource-contracts')->name('company.document.outsourceContracts.')->group(function () {
 			// HACK: uriがrestでもなんでもないところ
 			Route::get('create/{partner_id}', 'Companies\Document\OutsourceContractController@create')->name('create');
 			Route::post('create', 'Companies\Document\OutsourceContractController@store')->name('store');

@@ -8,7 +8,7 @@
 @section('content')
 <div class="main-wrapper">
 	<h3 class="main-wrapper__title">業務委託契約書の作成</h3>
-	<form action="{{ route('company.document.outsource-contracts.update') }}" method="post" class="main-wrapper__content">
+	<form action="{{ route('company.document.outsourceContracts.update') }}" method="post" class="main-wrapper__content">
 		@csrf
 		<div class="field-wrapper">
 			<div class="field">

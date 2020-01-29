@@ -41,7 +41,7 @@
                                 <td>
                                     <div class="create-container">
                                         <div class="btn-a-container">
-                                            <a href="{{ route('partner.document.outsource-contracts.edit', ['outsource_contract_id' => $outsourceContract->id]) }}">詳細</a>
+                                            <a href="{{ route('partner.document.outsourceContracts.edit', ['outsource_contract_id' => $outsourceContract->id]) }}">詳細</a>
                                         </div>
                                     </div>
                                 </td>

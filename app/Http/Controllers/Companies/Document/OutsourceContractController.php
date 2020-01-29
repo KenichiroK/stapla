@@ -12,6 +12,7 @@ use App\Http\Requests\Companies\Document\OutsourceContractUpdateStatus;
 use App\Models\Company;
 use App\Models\Partner;
 use App\Models\OutsourceContract;
+use App\Notifications\Company\Document\RequestConfirmOutsourceContract;
 
 class OutsourceContractController extends Controller
 {
@@ -40,7 +41,7 @@ class OutsourceContractController extends Controller
         $outsourceContract->contarcted_at = date('Y-m-d', strtotime($request->contract_date));
         $outsourceContract->save();
 
-        return redirect()->route('company.document.outsource-contracts.preview', ['outsource_contract_id' => $outsourceContract->id]);
+        return redirect()->route('company.document.outsourceContracts.preview', ['outsource_contract_id' => $outsourceContract->id]);
     }
 
     public function preview($outsource_contract_id)
@@ -67,7 +68,7 @@ class OutsourceContractController extends Controller
         $outsourceContract->contarcted_at = date('Y-m-d', strtotime($request->contract_date));
         $outsourceContract->save();
 
-        return redirect()->route('company.document.outsource-contracts.preview', ['outsource_contract_id' => $outsourceContract->id]);
+        return redirect()->route('company.document.outsourceContracts.preview', ['outsource_contract_id' => $outsourceContract->id]);
     }
 
     public function updateStatus(OutsourceContractUpdateStatus $request)
@@ -75,6 +76,10 @@ class OutsourceContractController extends Controller
         $outsourceContract = OutsourceContract::findOrFail($request->id);
         $outsourceContract->status = $request->status;
         $outsourceContract->save();
+
+        $partner = Partner::findOrFail($outsourceContract->partner_id);
+        $company = Company::findOrFail($outsourceContract->company_id);
+        $partner->notify(new RequestConfirmOutsourceContract($company, $outsourceContract));
 
         return redirect()->route('company.document.index');
     }

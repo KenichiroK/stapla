@@ -52,7 +52,7 @@
                 
             "
         >
-            <a href="{{ route('partner.document.outsource-contracts.edit', ['outsource_contract_id' => $outsourceContract->id ]) }}" style="color: white; text-decoration: none;">契約内容を確認する</a>
+            <a href="{{ route('partner.document.outsourceContracts.edit', ['outsource_contract_id' => $outsourceContract->id ]) }}" style="color: white; text-decoration: none;">契約内容を確認する</a>
         </button>
         @endif
     </div>

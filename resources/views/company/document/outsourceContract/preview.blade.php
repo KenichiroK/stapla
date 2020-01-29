@@ -17,7 +17,7 @@
 			{{-- NOTE: 契約締結後は修正できなくても良いのかどうか --}}
 			@if ($outsourceContract->status !== 'complete')
 			<div class="footer">
-				<form action="{{ route('company.document.outsource-contracts.updateStatus') }}" method="post">
+				<form action="{{ route('company.document.outsourceContracts.updateStatus') }}" method="post">
 					@csrf
 					@if(isset($outsourceContract->comment) && $outsourceContract->status === 'progress')
 					<p>パートナからの修正依頼</p>
@@ -25,7 +25,7 @@
 					@endif
 
 					<div class="footer__btn-wrapper">
-						<a class="btn white" href="{{ route('company.document.outsource-contracts.edit', ['outsource_contract_id' => $outsourceContract->id]) }}" style="margin-right: 30px;">修正する</a>
+						<a class="btn white" href="{{ route('company.document.outsourceContracts.edit', ['outsource_contract_id' => $outsourceContract->id]) }}" style="margin-right: 30px;">修正する</a>
 						<button class="btn" data-impro-button="once" type="button" onclick="submit();">パートナーに確認依頼をする</button>
 					</div>
 

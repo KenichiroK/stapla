@@ -17,7 +17,7 @@
 			<div class="footer">
 				<form method="post" class="contract-form" name="contractForm">
 					@csrf
-					<button class="btn" data-impro-button="once" type="button" onclick="contractForm.action='{{ route('partner.document.outsource-contracts.updateStatus') }}';contractForm.submit();">契約内容に合意する</button>
+					<button class="btn" data-impro-button="once" type="button" onclick="contractForm.action='{{ route('partner.document.outsourceContracts.updateStatus') }}';contractForm.submit();">契約内容に合意する</button>
 
 					{{-- HACK: textareaタグ内の改行でvalueに余分な空白ができるので一行にまとめてるところ --}}
 					<textarea class="textarea form-control" name="comment" placeholder="修正を依頼したい内容を記載してください">@if (!empty(old('comment'))){{ old('comment') }}@else{{ $outsourceContract->comment }}@endif</textarea>
@@ -27,7 +27,7 @@
 					</div>
 					@endif
 
-					<button class="btn white" data-impro-button="once" type="button" onclick="contractForm.action='{{ route('partner.document.outsource-contracts.updateComment') }}';contractForm.submit();" style="margin-top: 20px;">修正を依頼する</button>
+					<button class="btn white" data-impro-button="once" type="button" onclick="contractForm.action='{{ route('partner.document.outsourceContracts.updateComment') }}';contractForm.submit();" style="margin-top: 20px;">修正を依頼する</button>
 
 					<input type="hidden" name="id" value="{{ $outsourceContract->id }}">
 					<input type="hidden" name="status" value="complete">

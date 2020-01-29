@@ -78,10 +78,10 @@
                 @foreach( $partners as $partner )
                 <div class="card">
                     @if (!isset($partner->outsourceContract))
-                    <a href="{{ route('company.document.outsource-contracts.create', ['partner_id' => $partner->id]) }}">    
+                    <a href="{{ route('company.document.outsourceContracts.create', ['partner_id' => $partner->id]) }}">    
                     @else
                     {{-- TODO: プレビュー画面へ遷移する --}}
-                    <a href="{{ route('company.document.outsource-contracts.preview', [
+                    <a href="{{ route('company.document.outsourceContracts.preview', [
                         'outsource_contract_id' => $partner->outsourceContract->id
                     ]) }}">
                     @endif

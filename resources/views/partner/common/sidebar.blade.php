@@ -12,7 +12,7 @@
 			{{-- HACK: DRYじゃないところ --}}
 			@if (
 				Route::currentRouteName() === 'partner.notContract'
-				|| Route::currentRouteName() === 'partner.document.outsource-contracts.edit'
+				|| Route::currentRouteName() === 'partner.document.outsourceContracts.edit'
 			)
 			<ul class="menu-list menu menu__container__menu-list">
 				<li>
