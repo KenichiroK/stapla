@@ -25,13 +25,13 @@ class OutsourceContractController extends Controller
         return view('company.document.outsourceContract.create', compact('partner', 'company'));
     }
 
-    // TODO: バリデーションの設定
     public function store(OutsourceContractStore $request) {
         // NOTE: 1企業に対しパートナーは業務委託契約書を1枚しか必要ないのでfirstOrNewを使用
         $outsourceContract = OutsourceContract::firstOrNew([
             'company_id' => $request->company_id,
             'partner_id' => $request->partner_id,
         ]);
+        $outsourceContract->company_user_id = Auth::user()->id;
         $outsourceContract->company_name = $request->company_name;
         $outsourceContract->company_address = $request->company_address;
         $outsourceContract->representive_name = $request->representive_name;

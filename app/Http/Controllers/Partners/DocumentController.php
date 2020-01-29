@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Partners;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Partners\Document\OutsourceContractUpdateComment;
 use App\Http\Requests\Partners\Document\OutsourceContractUpdateStatus;
+use App\Models\Company;
+use App\Models\CompanyUser;
 use App\Models\Invoice;
 use App\Models\OutsourceContract;
 use App\Models\Partner;
 use App\Models\PurchaseOrder;
+use App\Notifications\Partner\Document\CompleteOutsourceContract;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +35,6 @@ class DocumentController extends Controller
         return view('partner.document.outsourceContract.edit', compact('outsourceContract'));
     }
 
-    // TODO: バリデーション
     public function updateOutsourceComment(OutsourceContractUpdateComment $request)
     {
         $outsourceContract = OutsourceContract::findOrFail($request->id);
@@ -41,12 +43,17 @@ class DocumentController extends Controller
         return redirect()->route('partner.document.index');
     }
 
-    // TODO: バリデーション
     public function updateOutsourceStatus(OutsourceContractUpdateStatus $request)
     {
         $outsourceContract = OutsourceContract::findOrFail($request->id);
         $outsourceContract->status = $request->status;
         $outsourceContract->save();
+
+        $partner = Auth::user();
+        $company = Company::findOrFail($outsourceContract->company_id);
+        $companyUser = CompanyUser::findOrFail($outsourceContract->company_user_id);
+        $companyUser->notify(new CompleteOutsourceContract($company, $partner, $outsourceContract));
+
         return redirect()->route('partner.document.index');
     }
 }

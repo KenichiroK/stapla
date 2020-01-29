@@ -16,6 +16,7 @@ class CreateOutsourceContractsTable extends Migration
         Schema::create('outsource_contracts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('company_id');
+            $table->uuid('company_user_id');
             $table->uuid('partner_id');
             $table->string('company_name', 64);
             // NOTE: varchar191にする理由 https://qiita.com/jkr_2255/items/74fc79e764378b59355a

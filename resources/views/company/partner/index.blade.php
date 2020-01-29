@@ -80,7 +80,6 @@
                     @if (!isset($partner->outsourceContract))
                     <a href="{{ route('company.document.outsourceContracts.create', ['partner_id' => $partner->id]) }}">    
                     @else
-                    {{-- TODO: プレビュー画面へ遷移する --}}
                     <a href="{{ route('company.document.outsourceContracts.preview', [
                         'outsource_contract_id' => $partner->outsourceContract->id
                     ]) }}">
