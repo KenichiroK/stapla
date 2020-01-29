@@ -56,59 +56,6 @@ Route::group(['prefix' => 'partner'], function(){
 
 		// dashboard 契約締結前
 		Route::get('not-contract', 'Partners\DashboardController@notContract')->name('partner.notContract');
-
-		// TODO: ミドルウェアの実装(業務委託契約書が締結されていなければnot-contractへリダイレクト)
-
-		// dashboard
-		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
-
-		// project
-		Route::get('/project', 'Partners\ProjectController@index')->name('partner.project.index');
-		Route::get('/project/done', 'Partners\ProjectController@doneIndex')->name('partner.project.done.index');
-		Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
-
-		// task
-		Route::get('/task', 'Partners\TaskController@index')->name('partner.task.index');
-				// task-show-file_download
-		Route::post('/file-download', 'Partners\DeliverController@download')->name('partner.fileDownload');
-			// task statusIndex
-		Route::get('task/status/{task_status}', 'Partners\TaskController@statusIndex')->name('partner.task.status');
-		Route::get('/task/{task_id}', 'Partners\TaskController@show')->name('partner.task.show');
-
-		// document
-		Route::get('/document', 'Partners\DocumentController@index')->name('partner.document.index');
-
-		// task status change
-		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
-
-		// Deliver
-		Route::get('/deliver/{task_id}', 'Partners\DeliverController@create')->name('partner.deliver.create');
-		Route::post('/deliver', 'Partners\DeliverController@store')->name('partner.deliver.store');
-
-		// profile
-		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
-		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
-		Route::get('setting/profile/email', 'Partners\ProfileController@email')->name('partner.profile.email');
-		Route::post('setting/profile/email', 'Partners\ProfileController@sendMail')->name('partner.profile.email.sendMail');
-
-		//  invoice setting
-		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
-		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
-
-		// purchase-order
-		Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.document.purchaseOrder.show');
-
-		// invoice
-		Route::get('document/invoice/create/{task_id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
-		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
-		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
-		Route::get('document/invoice/{id}/edit', 'Partners\InvoiceController@edit')->name('partner.document.invoice.edit');
-		Route::post('document/invoice/{id}/update', 'Partners\InvoiceController@update')->name('partner.document.invoice.update');
-
-		//outsource contract(業務委託契約書)
-		
-		Route::get('/document/outsource-contracts/edit/{outsource_contract_id}', 'Partners\DocumentController@editOutsource')->name('partner.document.outsource-contracts.edit');
-
 		//document outsource contract(業務委託契約書)
 		// HACK: namespaceも付けたい
 		Route::prefix('/document/outsource-contracts')->name('partner.document.outsource-contracts.')->group(function () {
@@ -118,6 +65,53 @@ Route::group(['prefix' => 'partner'], function(){
 			Route::post('update-status', 'Partners\DocumentController@updateOutsourceStatus')->name('updateStatus');
 		});
 
+		Route::group(['middleware' => ['redirectIfNotOutsourceContracted']], function() {
+			// dashboard
+			Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
+
+			// project
+			Route::get('/project', 'Partners\ProjectController@index')->name('partner.project.index');
+			Route::get('/project/done', 'Partners\ProjectController@doneIndex')->name('partner.project.done.index');
+			Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
+
+			// task
+			Route::get('/task', 'Partners\TaskController@index')->name('partner.task.index');
+					// task-show-file_download
+			Route::post('/file-download', 'Partners\DeliverController@download')->name('partner.fileDownload');
+				// task statusIndex
+			Route::get('task/status/{task_status}', 'Partners\TaskController@statusIndex')->name('partner.task.status');
+			Route::get('/task/{task_id}', 'Partners\TaskController@show')->name('partner.task.show');
+
+			// document
+			Route::get('/document', 'Partners\DocumentController@index')->name('partner.document.index');
+
+			// task status change
+			Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
+
+			// Deliver
+			Route::get('/deliver/{task_id}', 'Partners\DeliverController@create')->name('partner.deliver.create');
+			Route::post('/deliver', 'Partners\DeliverController@store')->name('partner.deliver.store');
+
+			// profile
+			Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
+			Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
+			Route::get('setting/profile/email', 'Partners\ProfileController@email')->name('partner.profile.email');
+			Route::post('setting/profile/email', 'Partners\ProfileController@sendMail')->name('partner.profile.email.sendMail');
+
+			//  invoice setting
+			Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
+			Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
+
+			// purchase-order
+			Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.document.purchaseOrder.show');
+
+			// invoice
+			Route::get('document/invoice/create/{task_id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
+			Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
+			Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
+			Route::get('document/invoice/{id}/edit', 'Partners\InvoiceController@edit')->name('partner.document.invoice.edit');
+			Route::post('document/invoice/{id}/update', 'Partners\InvoiceController@update')->name('partner.document.invoice.update');
+		});
 
 		// logout
 		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');

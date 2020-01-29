@@ -10,7 +10,10 @@
 			</a>
 
 			{{-- HACK: DRYじゃないところ --}}
-			@if (Route::currentRouteName() === "partner.notContract")
+			@if (
+				Route::currentRouteName() === 'partner.notContract'
+				|| Route::currentRouteName() === 'partner.document.outsource-contracts.edit'
+			)
 			<ul class="menu-list menu menu__container__menu-list">
 				<li>
 					<a href="#" style="pointer-events: none; color: gray;">

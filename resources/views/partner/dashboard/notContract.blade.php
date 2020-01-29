@@ -10,6 +10,7 @@
     <div class="page-title-container">
         <h3 class="page-title-container__text" style="margin-bottom: 30px;">ダッシュボード</h3>
 
+        @if (!isset($outsourceContract) || $outsourceContract->status === 'uncontracted')
         {{-- HACK: 該当のcssに汚染しないようにstyleタグで直接指定してるところ --}}
         <p style="
             font-family: HiraginoSans-W3;
@@ -21,8 +22,8 @@
             企業と契約締結後にサービスをご利用いただけます。<br>
             企業からの契約依頼をお待ちください。
         </p>
-
-        {{-- <p style="
+        @elseif ($outsourceContract->status === 'progress')
+        <p style="
             margin-bottom: 20px;
             font-family: HiraginoSans-W3;
             font-size: 14px;
@@ -45,7 +46,10 @@
                 border: solid 2px #43425d;
                 cursor: pointer;
             "
-        >契約内容を確認する</button> --}}
+        >
+            <a href="{{ route('partner.document.outsource-contracts.edit', ['outsource_contract_id' => $outsourceContract->id ]) }}" style="color: white;">契約内容を確認する</a>
+        </button>
+        @endif
     </div>
 </div>
 @endsection

@@ -44,6 +44,9 @@ class DashboardController extends Controller
 
     public function notContract()
     {
-        return view('partner/dashboard/notContract');
+        $partner = Auth::user();
+        // NOTE: 最初に作成された業務委託契約書のステータスで判断する
+        $outsourceContract = $partner->outsourceContracts()->orderBy('created_at', 'desc')->first();
+        return view('partner/dashboard/notContract', compact('outsourceContract'));
     }
 }
