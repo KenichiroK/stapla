@@ -219,9 +219,16 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/document/invoice/{invoice_id}', 'Companies\Document\InvoiceController@show')->name('company.document.invoice.show');
 
 		//document outsource contract(業務委託契約書)
-		Route::get('/document/outsource-contracts/create', 'Companies\Document\OutsourceContractController@create')->name('company.document.outsource-contracts.show');
-		// TODO: postにしてプレビュー画面へ遷移するように
-		Route::get('/document/outsource-contracts/preview', 'Companies\Document\OutsourceContractController@preview')->name('company.document.outsource-contracts.preview');
+		// HACK: namespaceも付けたい
+		Route::prefix('/document/outsource-contracts')->name('company.document.outsource-contracts.')->group(function () {
+			// HACK: uriがrestでもなんでもないところ
+			Route::get('create/{partner_id}', 'Companies\Document\OutsourceContractController@create')->name('create');
+			Route::post('create', 'Companies\Document\OutsourceContractController@store')->name('store');
+			Route::get('edit/{outsource_contract_id}', 'Companies\Document\OutsourceContractController@edit')->name('edit');
+			Route::post('update', 'Companies\Document\OutsourceContractController@update')->name('update');
+			Route::post('update-status', 'Companies\Document\OutsourceContractController@updateStatus')->name('updateStatus');
+			Route::get('{outsource_contract_id}/preview', 'Companies\Document\OutsourceContractController@preview')->name('preview');
+		});
 
 		// setting
 		Route::get('/setting/general', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');

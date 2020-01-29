@@ -23,31 +23,31 @@
                     <div class="table-container">
                         <table class="outsource-table table01">
                             <tr class="head-row">
-                                <th>企業名</th>
+                                <th>パートナ名</th>
                                 <th>締結日</th>
-                                {{-- TODO: pdfがダウンロードできるようになったら --}}
-                                {{-- <th>PDF</th> --}}
+                                <th>ステータス</th>
                                 {{-- HACK: 発注書・請求書とスタイルを合わせるために空の列を追加してる --}}
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th></th>
                             </tr>
+                            @foreach ($outsourceContracts as $outsourceContract)
                             <tr class="data-row">
-                                <td class="task-data">テスト企業名</td>
-                                <td>2019年12月25日</td>
-                                <td></td>
+                                <td class="task-data">{{ $outsourceContract->partner_name }}</td>
+                                <td>{{ date("Y年m月d日", strtotime($outsourceContract->contarcted_at)) }}</td>
+                                <td>{{ config('consts.document.outsourceContract.statusToJp')[$outsourceContract->status] }}</td>
                                 <td></td>
                                 <td></td>
                                 <td>
                                     <div class="create-container">
                                         <div class="btn-a-container">
                                             {{-- TODO: urlを登録 --}}
-                                            <a href="">詳細</a>
+                                            <a href="{{ route('company.document.outsource-contracts.preview', ['outsource_contract_id' => $outsourceContract->id]) }}">詳細</a>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </table>
                         <!-- Show More部分 -->
                         <div class="more-container">

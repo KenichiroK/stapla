@@ -147,8 +147,8 @@
             <p>（乙）</p>
         </div>
         <div class="contractor__info">
-            <p id="c_partner_name_2">【パートナー名を入力してください】</p>
             <p id="c_partner_address">【パートナ住所を入力してください】</p>
+            <p id="c_partner_name_2">【パートナー名を入力してください】</p>
         </div>
     </div>
 </div>

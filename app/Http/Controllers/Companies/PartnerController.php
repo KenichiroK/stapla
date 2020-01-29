@@ -11,8 +11,30 @@ class PartnerController extends Controller
     public function index()
     {
         $companyUser = Auth::user();
-        // NOTE: 企業-パートナー間の契約書フロー実装後にis_agree条件削除
         $partners = Partner::where('company_id', $companyUser->company_id)->where('is_agree', true)->paginate(20);
-        return view('company/partner/index', compact('partners'));
+        foreach ($partners as $partner) {
+            $partner['outsourceContract'] = $partner->outsourceContracts()->where('company_id', $companyUser->company_id)->first();
+        }
+
+        // HACK: 二回クエリ叩いているところ
+        $partnersForCount = Partner::where('company_id', $companyUser->company_id)->get();
+        $outsourceContractCount = [
+            'all' => $partnersForCount->count(),
+            'uncontracted' => 0,
+            'complete' => 0,
+            'progress' => 0,
+        ];
+        foreach ($partnersForCount as $partner) {
+            $outsourceContract = $partner->outsourceContracts()->where('company_id', $companyUser->company_id)->first();
+            if (!isset($outsourceContract)) {
+                $outsourceContractCount['uncontracted']++;
+            } elseif ($outsourceContract->status == 'complete') {
+                $outsourceContractCount['complete']++;
+            } else {
+                $outsourceContractCount['progress']++;
+            }
+        }
+
+        return view('company/partner/index', compact('partners', 'outsourceContractCount'));
     }
 }

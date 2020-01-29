@@ -25,8 +25,8 @@ class CreateOutsourceContractsTable extends Migration
             $table->string('partner_address', 191);
             $table->string('court_name', 64);
             $table->date('contarcted_at');
-            $table->text('comment');
-            $table->boolean('is_agree')->default(false);
+            $table->text('comment')->nullable();
+            $table->enum('status', ['uncontracted', 'progress', 'complete'])->default('uncontracted');
             $table->timestamps();
         });
     }

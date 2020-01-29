@@ -27,6 +27,20 @@ $(function() {
   });
 });
 
+setDefaultText(document.getElementById("c_company_name"), COMPANY_NAME);
+setDefaultText(document.getElementById("c_company_name_2"), COMPANY_NAME);
+setDefaultText(document.getElementById("c_company_address"), COMPANY_ADDRESS);
+setDefaultText(document.getElementById("c_representive_name"), REPRESENTIVE_NAME);
+setDefaultText(document.getElementById("c_partner_name"), PARTNER_NAME);
+setDefaultText(document.getElementById("c_partner_name_2"), PARTNER_NAME);
+setDefaultText(document.getElementById("c_partner_address"), PARTNER_ADDRESS);
+if (COURT) {
+  setDefaultText(document.getElementById("c_court"), COURT);
+}
+if (CONTRACT_DATE) {
+  setDefaultText(document.getElementById("c_contract_date_input"), CONTRACT_DATE);
+}
+
 document.getElementById("company_name").addEventListener("input", updateText);
 document.getElementById("company_address").addEventListener("input", updateText);
 document.getElementById("representive_name").addEventListener("input", updateText);
@@ -84,4 +98,10 @@ function updateSelect(e) {
   }
 
   targetElement.textContent = "【裁判所を選択してください】";
+}
+
+function setDefaultText(element, text) {
+  if ("textContent" in element) {
+    element.textContent = text;
+  }
 }

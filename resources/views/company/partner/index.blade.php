@@ -25,89 +25,59 @@
             <h3 class="partner-content__title">ステータス</h3>
 
             <ul class="partner-content__tab">
+                {{-- TODO: ステータスでのフィルタ --}}
                 <li class="is-active">
-                    <a class="tab-btn" href="">全て<span class="counter">(20)</span></a>
+                    <a class="tab-btn" href="">全て<span class="counter">({{ $outsourceContractCount['all'] }})</span></a>
                 </li>
                 <li>
-                    <a class="tab-btn" href="">契約締結済<span class="counter">(5)</span></a>
+                    <a class="tab-btn" href="">契約締結済<span class="counter">({{ $outsourceContractCount['complete'] }})</span></a>
                 </li>
                 <li>
-                    <a class="tab-btn" href="">契約作業中<span class="counter">(10)</span></a>
+                    <a class="tab-btn" href="">契約作業中<span class="counter">({{ $outsourceContractCount['progress'] }})</span></a>
                 </li>
                 <li>
-                    <a class="tab-btn" href="">未契約<span class="counter">(5)</span></a>
+                    <a class="tab-btn" href="">未契約<span class="counter">({{ $outsourceContractCount['uncontracted'] }})</span></a>
                 </li>
             </ul>
 
             <div class="partner-content__card-wrapper">
-
-                {{-- TODO: ダミーデータの要素は削除 --}}
-                <div class="card">
-                    <div class="card__content">
-                        <div class="image-wrapper">
-                            <img class="profile-image" src="https://avatars2.githubusercontent.com/u/30946750?s=460&v=4" alt="logo">
-                        </div>
-                        <div class="name-wrapper">
-                            <p class="name">羽田 陽太</p>
-                            <p class="occupations">エンジニア</p>
-                        </div>
-                    </div>
-                    <div class="card__footer">
-                        <div class="circle complete-color"></div>
-                        <p class="status">契約締結済</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card__content">
-                        <div class="image-wrapper">
-                            <img class="profile-image" src="https://avatars2.githubusercontent.com/u/30946750?s=460&v=4" alt="logo">
-                        </div>
-                        <div class="name-wrapper">
-                            <p class="name">羽田 陽太</p>
-                            <p class="occupations">エンジニア</p>
-                        </div>
-                    </div>
-                    <div class="card__footer">
-                        <div class="circle uncontracted-color"></div>
-                        <p class="status">未契約</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__content">
-                        <div class="image-wrapper">
-                            <img class="profile-image" src="https://avatars2.githubusercontent.com/u/30946750?s=460&v=4" alt="logo">
-                        </div>
-                        <div class="name-wrapper">
-                            <p class="name">羽田 陽太</p>
-                            <p class="occupations">エンジニア</p>
-                        </div>
-                    </div>
-                    <div class="card__footer">
-                        <div class="circle progress-color"></div>
-                        <p class="status">契約作業中</p>
-                    </div>
-                </div>
-
                 @foreach( $partners as $partner )
                 <div class="card">
-                    <div class="card__content">
-                        <div class="image-wrapper">
-                            @if (isset($partner->picture))
-                            <img class="profile-image" src="{{ $partner->picture }}">
+                    @if (!isset($partner->outsourceContract))
+                    <a href="{{ route('company.document.outsource-contracts.create', ['partner_id' => $partner->id]) }}">    
+                    @else
+                    {{-- TODO: プレビュー画面へ遷移する --}}
+                    <a href="{{ route('company.document.outsource-contracts.preview', [
+                        'outsource_contract_id' => $partner->outsourceContract->id
+                    ]) }}">
+                    @endif
+                        <div class="card__content">
+                            <div class="image-wrapper">
+                                @if (isset($partner->picture))
+                                <img class="profile-image" src="{{ $partner->picture }}">
+                                @else
+                                <img class="profile-image" src="{{ env('AWS_URL').'/common/dummy_profile_icon.png' }}">
+                                @endif
+                            </div>
+                            <div class="name-wrapper">
+                                <p class="name">{{ $partner->name }}</p>
+                                <p class="occupations">{{ $partner->occupations }}</p>
+                            </div>
+                        </div>
+                        <div class="card__footer">
+                            @if (!isset($partner->outsourceContract))
+                            <div class="circle uncontracted-color"></div>
+                            {{-- HACK: ステータスの定数化 --}}
+                            <p class="status">未契約</p>
+                            @elseif ($partner->outsourceContract->status == "complete")
+                            <div class="circle complete-color"></div>
+                            <p class="status">契約締結済</p>
                             @else
-                            <img class="profile-image" src="{{ env('AWS_URL').'/common/dummy_profile_icon.png' }}">
+                            <div class="circle progress-color"></div>
+                            <p class="status">契約作業中</p>
                             @endif
                         </div>
-                        <div class="name-wrapper">
-                            <p class="name">{{ $partner->name }}</p>
-                            <p class="occupations">{{ $partner->occupations }}</p>
-                        </div>
-                    </div>
-                    <div class="card__footer">
-                        <div class="circle complete-color"></div>
-                        <p class="status">契約締結済</p>
-                    </div>
+                    </a>
                 </div>
                 @endforeach
             </div>
