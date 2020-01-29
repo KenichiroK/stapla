@@ -63,6 +63,12 @@ mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/i
 // invoice
 mix.js(["resources/js/pages/invoice/show/index.js"], "public/js/pages/invoice/show/index.js");
 
+// company/document/outsource
+mix.js(
+  ["resources/js/pages/company/document/outsourceContract/create.js"],
+  "public/js/pages/company/document/outsourceContract/create.js",
+);
+
 mix.js(
   [
     //change label of task_index
@@ -134,6 +140,10 @@ mix
   .sass("resources/sass/company/document/purchaseOrder/index.scss", "public/css/company/document/purchaseOrder")
   .sass("resources/sass/company/document/invoice/show.scss", "public/css/company/document/invoice")
   .sass("resources/sass/company/document/purchaseOrder/show.scss", "public/css/company/document/purchaseOrder")
+  .sass(
+    "resources/sass/company/document/outsourceContract/create.scss",
+    "public/css/company/document/outsourceContract",
+  )
   .sass("resources/sass/company/setting/general/index.scss", "public/css/company/setting/general")
   .sass("resources/sass/company/setting/companyElse/index.scss", "public/css/company/setting/companyElse")
   .sass("resources/sass/company/setting/account/index.scss", "public/css/company/setting/account")

@@ -1,0 +1,84 @@
+@import "~jquery-datetimepicker/jquery.datetimepicker.css";
+
+@import "../../../setting/colors";
+
+.main-wrapper {
+  width: 100%;
+  font-size: 14px;
+  padding: 42px;
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: 36px;
+    font-size: 28px;
+    // HACK: fontはcommonで共通で管理したい
+    font-family: HiraginoSans-W6;
+    letter-spacing: 0.88px;
+    color: colors(primary);
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    height: 784px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.04);
+    background-color: colors(white1);
+    padding: 20px 32px;
+
+    .field-wrapper {
+      width: 371px;
+      height: 100%;
+      padding-top: 20px;
+      padding-right: 40px;
+      border-right: solid 1px #e9e9f0;
+
+      .field {
+        margin-bottom: 20px;
+        position: relative;
+
+        .calender-icon {
+          position: absolute;
+          top: 36px;
+          right: 17px;
+          font-size: 30px;
+          color: #a5a4bf;
+        }
+
+        &__label {
+          font-size: 15px;
+          letter-spacing: 0.47px;
+          color: #4d4f5c;
+
+          &--require {
+            font-size: 12px;
+            line-height: 1.5;
+            letter-spacing: 0.38px;
+            color: #ff0031;
+          }
+        }
+
+        &__input {
+          box-shadow: none;
+          border-radius: 2px;
+          border: 1px solid #e9e9f0;
+          height: 50px;
+        }
+
+        &__input--icon {
+          padding-right: 43px;
+
+          // HACK: 絶対座標でアイコン指定してるからか変な座標をhover時にpointerになるのでいったんやめる
+          // &:hover {
+          //   cursor: pointer;
+          // }
+        }
+      }
+    }
+
+    .contract-wrapper {
+      width: 568px;
+      height: 100%;
+    }
+  }
+}
