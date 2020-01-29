@@ -67,11 +67,11 @@
 				<div class="zipcode-container">
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
-						<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', isset(Auth::user()->zip_code) ? substr(Auth::user()->zip_code, 0, 3) : '') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
+						<input id="postal_front" class="top-input input js-c-zenkaku2hankaku" type="text" name="zip_code_front" value="{{ old('zip_code_front', isset(Auth::user()->zip_code) ? substr(Auth::user()->zip_code, 0, 3) : '') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 						<span class="hyphen">
 							<hr>
 						</span>
-						<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', isset(Auth::user()->zip_code) ? substr(Auth::user()->zip_code, 3) : '') }}" maxlength="4" onchange="setPostal()">
+						<input id="postal_back" class="js-c-zenkaku2hankaku" type="text" name="zip_code_back" value="{{ old('zip_code_back', isset(Auth::user()->zip_code) ? substr(Auth::user()->zip_code, 3) : '') }}" maxlength="4" onchange="setPostal()">
 						<input id="postal" type="hidden" name="zip_code">
 					</div>
 					@if ($errors->has('zip_code'))

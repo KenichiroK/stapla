@@ -89,9 +89,9 @@ const setPostal = () => {
 								<span class="required-label row-label">( 必須 )</span>
 							</p>
 							<div class="zipcode-container__wrapper">
-								<input type="text" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front', isset($companyUser->Company->zip_code) ? mb_substr($companyUser->Company->zip_code, 0, 3) : '') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
+								<input type="text" class="js-c-zenkaku2hankaku" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front', isset($companyUser->Company->zip_code) ? mb_substr($companyUser->Company->zip_code, 0, 3) : '') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 								<span class="hyphen"><hr></span>
-								<input type="text" name="zip_code_back" id="postal_back" value="{{ old('zip_code_back', isset($companyUser->Company->zip_code) ? mb_substr($companyUser->Company->zip_code, 3) : '') }}" maxlength="4" onchange="setPostal()">
+								<input type="text" class="js-c-zenkaku2hankaku" name="zip_code_back" id="postal_back" value="{{ old('zip_code_back', isset($companyUser->Company->zip_code) ? mb_substr($companyUser->Company->zip_code, 3) : '') }}" maxlength="4" onchange="setPostal()">
 								<input type="hidden" name="zip_code" id="postal" value="{{ old('zip_code', isset($companyUser->Company->zip_code) ? $companyUser->Company->zip_code : '') }}">
 							</div>
 							@if ($errors->has('zip_code'))
@@ -250,4 +250,8 @@ const setPostal = () => {
 		@endif
 	</div>
 </main>
+@endsection
+
+@section('asset-js')
+<script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
