@@ -11,7 +11,7 @@ class PartnerController extends Controller
     public function index()
     {
         $companyUser = Auth::user();
-        $partners = Partner::where('company_id', $companyUser->company_id)->where('is_agree', true)->paginate(20);
+        $partners = Partner::where('company_id', $companyUser->company_id)->where('is_agree', true)->orderBy('created_at', 'desc')->paginate(20);
         foreach ($partners as $partner) {
             $partner['outsourceContract'] = $partner->outsourceContracts()->where('company_id', $companyUser->company_id)->first();
         }

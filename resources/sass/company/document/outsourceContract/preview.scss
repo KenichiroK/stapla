@@ -109,21 +109,38 @@
         margin-top: 50px;
         background-color: colors(white1);
 
-        // HACK: btnのcssも共通化したい
-        .btn {
-          border-radius: 100px;
-          background-color: colors(primary);
-          color: colors(white1);
-          font-weight: bold;
-          padding: 8px 30px;
-          font-size: 16px;
-          border: solid 2px colors(primary);
-          cursor: pointer;
+        &__comment {
+          width: 600px;
+          height: 160px;
+          max-height: 160px;
+          overflow-y: scroll;
+          margin-bottom: 30px;
+          border-radius: 2px;
+          border: 1px solid #e9e9f0;
+          box-shadow: none;
+          white-space: pre-wrap;
         }
 
-        .btn.white {
-          background-color: #fff;
-          color: #43425d;
+        &__btn-wrapper {
+          display: flex;
+          justify-content: center;
+
+          // HACK: btnのcssも共通化したい
+          .btn {
+            border-radius: 100px;
+            background-color: colors(primary);
+            color: colors(white1);
+            font-weight: bold;
+            padding: 8px 30px;
+            font-size: 16px;
+            border: solid 2px colors(primary);
+            cursor: pointer;
+          }
+
+          .btn.white {
+            background-color: #fff;
+            color: #43425d;
+          }
         }
       }
     }

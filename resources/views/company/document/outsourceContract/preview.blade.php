@@ -18,11 +18,14 @@
 					@csrf
 					@isset($outsourceContract->comment)
 					{{-- TODO: コメント用のcss当てる --}}
-					<p>{{ $outsourceContract->comment }}</p>
+					<p>パートナからの修正依頼</p>
+					<p class="footer__comment">{{ $outsourceContract->comment }}</p>
 					@endisset
 
-					<a class="btn white" href="{{ route('company.document.outsource-contracts.edit', ['outsource_contract_id' => $outsourceContract->id]) }}" style="margin-right: 30px;">修正する</a>
-					<button class="btn" data-impro-button="once" type="button" onclick="submit();">パートナーに確認依頼をする</button>
+					<div class="footer__btn-wrapper">
+						<a class="btn white" href="{{ route('company.document.outsource-contracts.edit', ['outsource_contract_id' => $outsourceContract->id]) }}" style="margin-right: 30px;">修正する</a>
+						<button class="btn" data-impro-button="once" type="button" onclick="submit();">パートナーに確認依頼をする</button>
+					</div>
 
 					<input name="id" type="hidden" value="{{ $outsourceContract->id }}">
 					<input name="status" type="hidden" value="progress">
