@@ -3,13 +3,13 @@
 return array(
   // タスクステータス 定数化
   'TASK_CREATE'             => 0,  // 下書き
-  'TASK_SUBMIT_SUPERIOR'    => 1,  // タスク上長確認中
-  'TASK_APPROVAL_SUPERIOR'  => 2,  // タスクパートナー依頼前
-  'TASK_SUBMIT_PARTNER'     => 3,  // タスクパートナー確認中
+  'TASK_SUBMIT_SUPERIOR'    => 1,  // 上長確認中
+  'TASK_APPROVAL_SUPERIOR'  => 2,  // パートナー依頼前
+  'TASK_SUBMIT_PARTNER'     => 3,  // パートナー確認中
   'TASK_APPROVAL_PARTNER'   => 4,  // 発注書作成前
-  'ORDER_SUBMIT_SUPERIOR'   => 5,  // 発注書上長確認中
-  'ORDER_APPROVAL_SUPERIOR' => 6,  // 発注書パートナー依頼前
-  'ORDER_SUBMIT_PARTNER'    => 7,  // 発注書パートナー確認中
+  'ORDER_SUBMIT_SUPERIOR'   => 5,  // 上長確認中
+  'ORDER_APPROVAL_SUPERIOR' => 6,  // パートナー依頼前
+  'ORDER_SUBMIT_PARTNER'    => 7,  // パートナー確認中
   'ORDER_APPROVAL_PARTNER'  => 8,  // 作業前
   'WORKING'                 => 9,  // 作業中
   'DELIVERY_PARTNER'        => 10, // 検品中
@@ -46,13 +46,13 @@ return array(
 
   'TASK_STATUS_LIST' => [
     '下書き',
-    'タスク上長確認中',
-    'タスクパートナー依頼前',
-    'タスクパートナー確認中',
+    '上長確認中',
+    'パートナー依頼前',
+    'パートナー確認中',
     '発注書作成前',
-    '発注書上長確認中',
-    '発注書パートナー依頼前',
-    '発注書パートナー確認中',
+    '上長確認中',
+    'パートナー依頼前',
+    'パートナー確認中',
     '作業前',
     '作業中',
     '検品中',
