@@ -12,6 +12,8 @@ use App\Models\OutsourceContract;
 use App\Models\Partner;
 use App\Models\PurchaseOrder;
 use App\Notifications\Partner\Document\CompleteOutsourceContract;
+// HACK: フォームリクエストと名前かぶってるところ useの量増えてきたらas付けて接尾語にNotificationをつける
+use App\Notifications\Partner\Document\UpdateCommentOutsourceContract;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +42,12 @@ class DocumentController extends Controller
         $outsourceContract = OutsourceContract::findOrFail($request->id);
         $outsourceContract->comment = $request->comment;
         $outsourceContract->save();
+
+        $partner = Auth::user();
+        $company = Company::findOrFail($outsourceContract->company_id);
+        $companyUser = CompanyUser::findOrFail($outsourceContract->company_user_id);
+        $companyUser->notify(new UpdateCommentOutsourceContract($company, $partner, $outsourceContract));
+
         return redirect()->route('partner.document.index');
     }
 
