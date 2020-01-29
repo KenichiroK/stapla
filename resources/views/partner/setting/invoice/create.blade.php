@@ -134,7 +134,7 @@
 				<div class="tel-container">
 					<p>電話番号</p>
 					<div class="tel-container__wrapper">
-                        <input type="text" name="tel" id="tel" value="{{ old('tel', isset(Auth::user()->tel) ? Auth::user()->tel : '') }}" maxlength="11" onblur="convert(this)">
+                        <input type="text" class="js-c-zenkaku2hankaku" name="tel" id="tel" value="{{ old('tel', isset(Auth::user()->tel) ? Auth::user()->tel : '') }}" maxlength="11">
 					</div>
 					@if ($errors->has('tel'))
 						<div class="error-msg">
@@ -184,7 +184,7 @@
 
 			<div class="accountNumber-container">
 				<p>口座番号</p>
-				<input type="text" id="account_number" name="account_number" value="{{ old('account_number', isset($partner_invoice->account_number) ? $partner_invoice->account_number : '') }}" maxlength="7" onblur="convert(this)">
+				<input type="text" class="js-c-zenkaku2hankaku" id="account_number" name="account_number" value="{{ old('account_number', isset($partner_invoice->account_number) ? $partner_invoice->account_number : '') }}" maxlength="7">
 				@if ($errors->has('account_number'))
 					<div class="error-msg">
 						<strong>{{ $errors->first('account_number') }}</strong>
@@ -211,7 +211,6 @@
 @endsection
 
 @section('asset-js')
-<script src="{{ asset('js/common/convert-character.js') }}" defer></script>
 <script>
 	const setPreview = (input) => {
 		const preview = document.getElementById('preview');

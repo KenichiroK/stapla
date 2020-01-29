@@ -25,6 +25,9 @@ mix.webpackConfig({
 
 mix.js(
   [
+    // 共通
+    "resources/js/common/convert-character.js",
+
     //company
     "resources/js/app.js",
     "resources/js/company/dashboad/index.js",
@@ -60,14 +63,6 @@ mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/i
 
 // invoice
 mix.js(["resources/js/pages/invoice/show/index.js"], "public/js/pages/invoice/show/index.js");
-
-mix.babel(
-  [
-    //convert from full-widht to half-size
-    "resources/js/common/convert-character.js",
-  ],
-  "public/js/common/convert-character.js",
-);
 
 mix.js(
   [
