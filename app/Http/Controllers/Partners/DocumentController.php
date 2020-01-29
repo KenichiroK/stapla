@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Partners;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Partners\Document\OutsourceContractUpdateComment;
+use App\Http\Requests\Partners\Document\OutsourceContractUpdateStatus;
 use App\Models\Invoice;
 use App\Models\OutsourceContract;
 use App\Models\Partner;
@@ -31,7 +33,7 @@ class DocumentController extends Controller
     }
 
     // TODO: バリデーション
-    public function updateOutsourceComment(Request $request)
+    public function updateOutsourceComment(OutsourceContractUpdateComment $request)
     {
         $outsourceContract = OutsourceContract::findOrFail($request->id);
         $outsourceContract->comment = $request->comment;
@@ -40,7 +42,7 @@ class DocumentController extends Controller
     }
 
     // TODO: バリデーション
-    public function updateOutsourceStatus(Request $request)
+    public function updateOutsourceStatus(OutsourceContractUpdateStatus $request)
     {
         $outsourceContract = OutsourceContract::findOrFail($request->id);
         $outsourceContract->status = $request->status;

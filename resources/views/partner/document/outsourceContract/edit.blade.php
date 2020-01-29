@@ -19,9 +19,15 @@
 					@csrf
 					<button class="btn" data-impro-button="once" type="button" onclick="contractForm.action='{{ route('partner.document.outsource-contracts.updateStatus') }}';contractForm.submit();">契約内容に合意する</button>
 
-				<textarea class="textarea form-control" name="comment" placeholder="修正を依頼したい内容を記載してください">{{ $outsourceContract->comment }}</textarea>
+					{{-- HACK: textareaタグ内の改行でvalueに余分な空白ができるので一行にまとめてるところ --}}
+					<textarea class="textarea form-control" name="comment" placeholder="修正を依頼したい内容を記載してください">@if (!empty(old('comment'))){{ old('comment') }}@else{{ $outsourceContract->comment }}@endif</textarea>
+					@if ($errors->has('comment'))
+					<div class="error-msg" style="magin-bottom: 20px;">
+						<strong>{{ $errors->first('comment') }}</strong>
+					</div>
+					@endif
 
-					<button class="btn white" data-impro-button="once" type="button" onclick="contractForm.action='{{ route('partner.document.outsource-contracts.updateComment') }}';contractForm.submit();">修正を依頼する</button>
+					<button class="btn white" data-impro-button="once" type="button" onclick="contractForm.action='{{ route('partner.document.outsource-contracts.updateComment') }}';contractForm.submit();" style="margin-top: 20px;">修正を依頼する</button>
 
 					<input type="hidden" name="id" value="{{ $outsourceContract->id }}">
 					<input type="hidden" name="status" value="complete">

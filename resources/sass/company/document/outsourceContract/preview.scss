@@ -135,6 +135,10 @@
             font-size: 16px;
             border: solid 2px colors(primary);
             cursor: pointer;
+
+            &:focus {
+              outline: none;
+            }
           }
 
           .btn.white {

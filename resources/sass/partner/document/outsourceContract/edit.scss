@@ -117,7 +117,7 @@
           .textarea {
             width: 600px;
             height: 160px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             border-radius: 2px;
             border: 1px solid #e9e9f0;
             box-shadow: none;
@@ -139,6 +139,10 @@
             font-size: 16px;
             border: solid 2px colors(primary);
             cursor: pointer;
+
+            &:focus {
+              outline: none;
+            }
           }
 
           .btn.white {

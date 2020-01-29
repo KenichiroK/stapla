@@ -55,7 +55,9 @@ Route::group(['prefix' => 'partner'], function(){
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 
 		// dashboard 契約締結前
+		// HACK: statusがcompletedの場合はダッシュボードへリダイレクトするミドルウェアがあっても良き
 		Route::get('not-contract', 'Partners\DashboardController@notContract')->name('partner.notContract');
+
 		//document outsource contract(業務委託契約書)
 		// HACK: namespaceも付けたい
 		Route::prefix('/document/outsource-contracts')->name('partner.document.outsource-contracts.')->group(function () {

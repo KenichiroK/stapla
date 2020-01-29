@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Companies\Document\OutsourceContractStore;
+use App\Http\Requests\Companies\Document\OutsourceContractUpdate;
+use App\Http\Requests\Companies\Document\OutsourceContractUpdateStatus;
 use App\Models\Company;
 use App\Models\Partner;
 use App\Models\OutsourceContract;
-
 
 class OutsourceContractController extends Controller
 {
@@ -23,7 +25,7 @@ class OutsourceContractController extends Controller
     }
 
     // TODO: バリデーションの設定
-    public function store(Request $request) {
+    public function store(OutsourceContractStore $request) {
         // NOTE: 1企業に対しパートナーは業務委託契約書を1枚しか必要ないのでfirstOrNewを使用
         $outsourceContract = OutsourceContract::firstOrNew([
             'company_id' => $request->company_id,
@@ -53,7 +55,7 @@ class OutsourceContractController extends Controller
         return view('company.document.outsourceContract.edit', compact('outsourceContract'));
     }
 
-    public function update(Request $request)
+    public function update(OutsourceContractUpdate $request)
     {
         $outsourceContract = OutsourceContract::findOrFail($request->id);
         $outsourceContract->company_name = $request->company_name;
@@ -68,7 +70,7 @@ class OutsourceContractController extends Controller
         return redirect()->route('company.document.outsource-contracts.preview', ['outsource_contract_id' => $outsourceContract->id]);
     }
 
-    public function updateStatus(Request $request)
+    public function updateStatus(OutsourceContractUpdateStatus $request)
     {
         $outsourceContract = OutsourceContract::findOrFail($request->id);
         $outsourceContract->status = $request->status;
