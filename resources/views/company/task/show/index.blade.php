@@ -15,7 +15,7 @@
 
     <div class="page-title-container">
         <h3 class="page-title-container__text">タスク詳細</h3>
-        <a class="page-title-container__btn" href="{{ route('company.task.edit', ['id' => $task->id]) }}">タスク編集</a>
+        <a class="page-title-container__btn" href="{{ route('company.task.edit', ['task_id' => $task->id]) }}">タスク編集</a>
     </div>
 
     <div class="navbar-container">
