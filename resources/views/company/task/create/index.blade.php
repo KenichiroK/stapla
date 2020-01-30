@@ -266,8 +266,8 @@
                         type="text"
                         name="order_company_user"
                         placeholder="発注書に記載する担当者名を変更したい場合には、こちらに記入してください。"
-                        @if(isset($purchaseOrder->companyUser_id))
-                            value="{{ old('order_company_user', $task->companyUser->name) }}"
+                        @if(isset($purchaseOrder->companyUser_name))
+                            value="{{ old('order_company_user', $purchaseOrder->companyUser_name) }}"
                         @else
                             value="{{ old('order_company_user') }}"
                         @endif

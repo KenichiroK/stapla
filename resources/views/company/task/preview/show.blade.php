@@ -70,8 +70,8 @@
                                     担当者
                                 </div>
                             </div>
-                            <p class="preview_p">{{ $company_user->name }}</p>
-                            <input type="hidden" name="task_company_user_id" value="{{ $company_user->id }}">
+                            <p class="preview_p">{{ $task_company_user->name }}</p>
+                            <input type="hidden" name="task_company_user_id" value="{{ $task_company_user->id }}">
                         </div>
 
                         <!-- 上長 -->
@@ -170,7 +170,7 @@
 
                 <!-- 発注書 -->
                 <input type="hidden" name="order_name" value="{{ $request->order_name }}">
-                <input type="hidden" name="order_company_user_id" value="{{ $request->order_company_user_id }}">
+                <input type="hidden" name="order_company_user" value="{{ $request->order_company_user }}">
 
                 <div class="actionButton">
                     @if(isset($task_status))
