@@ -18,37 +18,48 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $partner = Auth::user();
-        $tasks = Task::where('partner_id', $partner->id)
-                                ->whereNotIn('status', [config('const.TASK_CREATE'), config('const.TASK_SUBMIT_SUPERIOR'), config('const.TASK_APPROVAL_SUPERIOR'), config('const.COMPLETE_STAFF')])
-                                ->get();
-        return view('partner/task/index', compact('tasks'));
+        $tasks = Task::where('partner_id', Auth::user()->id)
+                        ->whereNotIn('status', [config('const.TASK_CREATE'), config('const.TASK_SUBMIT_SUPERIOR'), config('const.TASK_APPROVAL_SUPERIOR'), config('const.COMPLETE_STAFF')])
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+
+        $status_arr = [];
+        foreach (config('const.TASK_STATUS_ARR') as $key => $TASK_STATUS) {
+            $status_arr[$key] = $tasks->where('status', config('const')[$TASK_STATUS])->count();
+        }
+
+        $shown_task_status = null;
+        
+        return view('partner/task/index/index', compact('tasks', 'status_arr', 'shown_task_status'));
     }
     
     public function statusIndex($task_status)
     {
         $partner = Auth::user();
-        $alltasks = Task::where('company_id', $partner->company_id)
-                                    ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
-                                    ->get();
+        $all_tasks = Task::where('partner_id', Auth::user()->id)
+                            ->whereNotIn('status', [config('const.TASK_CREATE'), config('const.TASK_SUBMIT_SUPERIOR'), config('const.TASK_APPROVAL_SUPERIOR'), config('const.COMPLETE_STAFF')])
+                            ->orderBy('created_at', 'desc')
+                            ->get();
         
         $status_arr = [];
-        for ($i = 0; $i < 19; $i++) {
-            $status_arr[strval($i)] = 0;
-        }
-        for ($i = 0; $i < $alltasks->count(); $i++) {
-            $status_arr[$alltasks[$i]->status]++;
+        foreach (config('const.TASK_STATUS_ARR') as $key => $TASK_STATUS) {
+            $status_arr[$key] = $all_tasks->where('status', config('const')[$TASK_STATUS])->count();
         }
 
-        // タスクステータスを外部ファイルで定数化（congfig/const.php）
-        $statusName_arr = config('const.TASK_STATUS_LIST');
+        $shown_task_status = (integer)$task_status;
 
-        $tasks = Task::where('company_id', $partner->company_id)
-                                ->where('status', $task_status)
-                                ->with(['project', 'companyUser', 'partner', 'taskRoleRelation'])
-                                ->get();
+        $tasks = Task::where('partner_id', Auth::user()->id)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
 
-        return view('partner/task/index', compact('partner', 'tasks', 'statusName_arr', 'status_arr'));
+        if ($task_status === config('const.SUBMIT_STAFF')) {
+            $tasks = $tasks->where('status', $task_status)
+                            ->orWhere('status', config('const.SUBMIT_ACCOUNTING'));
+        } else {
+            $tasks = $tasks->where('status', $task_status);
+        }
+
+        return view('partner/task/index/index', compact('tasks', 'status_arr', 'shown_task_status'));
     }
 
     public function show($id)
