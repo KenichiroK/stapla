@@ -32,6 +32,7 @@ class CompanyTaskStatus implements Rule
             config('const.TASK_SUBMIT_PARTNER'),
             config('const.WORKING'),
             config('const.ACCEPTANCE'),
+            config('const.INVOICE_DRAFT_CREATE'),
             config('const.SUBMIT_ACCOUNTING'),
             config('const.APPROVAL_ACCOUNTING'),
             config('const.COMPLETE_STAFF'),
