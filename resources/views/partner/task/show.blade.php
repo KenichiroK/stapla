@@ -18,7 +18,7 @@
                 <div class="page-title-container__page-title">{{ $task->name }}詳細</div>
             </div>
         </div>
-
+        
         <div class="detail">
             <dl class="first">
                 <dt>
@@ -27,12 +27,6 @@
                 <dd>
                     {{ $task->project->name }}
                 </dd>
-            </dl>
-            <dl>
-                <dt>
-                    タスク作成日
-                </dt>
-                <dd>{{ date("Y年m月d日H時i分", strtotime($task->created_at)) }}</dd>
             </dl>
             <dl>
                 <dt>
