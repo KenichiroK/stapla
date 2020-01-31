@@ -71,15 +71,15 @@
                                 </li>
                             @elseif($task->status === config('const.TASK_SUBMIT_SUPERIOR'))
                                 <li class="task-container__content__list__status">
-                                    <div class="s-btn">タスク上長確認中</div>
+                                    <div class="s-btn">上長確認中</div>
                                 </li>
                             @elseif($task->status === config('const.TASK_APPROVAL_SUPERIOR'))
                                 <li class="task-container__content__list__status">
-                                    <div class="s-btn">タスクパートナー依頼前</div>
+                                    <div class="s-btn">パートナー依頼前</div>
                                 </li>
                             @elseif($task->status === config('const.TASK_SUBMIT_PARTNER'))
                                 <li class="task-container__content__list__status">
-                                    <div class="s-btn">タスクパートナー確認中</div>
+                                    <div class="s-btn">パートナー確認中</div>
                                 </li>
                             @elseif($task->status === config('const.TASK_APPROVAL_PARTNER'))
                                 <li class="task-container__content__list__status">
@@ -87,7 +87,7 @@
                                 </li>
                             @elseif($task->status === config('const.ORDER_SUBMIT_SUPERIOR'))
                                 <li class="task-container__content__list__status">
-                                    <div class="s-btn">発注書上長確認中</div>
+                                    <div class="s-btn">上長確認中</div>
                                 </li>
                             @elseif($task->status === config('const.ORDER_APPROVAL_SUPERIOR'))
                                 <li class="task-container__content__list__status">
@@ -95,7 +95,7 @@
                                 </li>
                             @elseif($task->status === config('const.ORDER_SUBMIT_PARTNER'))
                                 <li class="task-container__content__list__status">
-                                    <div class="s-btn">発注書パートナー確認中</div>
+                                    <div class="s-btn">パートナー確認中</div>
                                 </li>
                             @elseif($task->status === config('const.ORDER_APPROVAL_PARTNER'))
                                 <li class="task-container__content__list__status">

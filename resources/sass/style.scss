@@ -1,0 +1,84 @@
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+// Variables
+@import "./variables";
+
+@import "./components/label";
+@import "./components/notification_bar";
+@import "./header/index";
+@import "./sidebar/index";
+@import "./module/modal/confirm";
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, Meiryo, "游ゴシック体", YuGothic, "游ゴシック";
+}
+
+main {
+  width: 100%;
+  position: relative;
+
+  .sidebar-wrapper {
+    width: 18%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #43425d;
+  }
+
+  .content-wrapper {
+    width: 82%;
+    min-height: 100vh;
+    margin: 0 0 0 auto;
+    padding-top: 70px;
+    background-color: #f0f0f7;
+
+    // 各inputのエラーメッセージ
+    .error-msg {
+      margin-top: 5px;
+      display: block;
+      strong {
+        color: #ff0031;
+        font-size: 12px;
+      }
+    }
+    // ページトップのエラーメッセージ
+    .error-container {
+      p {
+        color: #ff0031;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+    // 完了メッセージ
+    .complete-container {
+      p {
+        color: #09c221;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .notification-wrapper {
+    width: 25%;
+    position: fixed;
+    top: 70px;
+    right: -500px;
+    bottom: 0;
+    background-color: #fff;
+    overflow: scroll;
+    z-index: 1000;
+    transition: 0.5s;
+  }
+
+  .isActive {
+    right: 0;
+  }
+}
+
+.none {
+  display: none;
+}

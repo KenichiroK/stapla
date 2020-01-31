@@ -4,6 +4,7 @@
 /public/storage
 /public/mix-manifest.json
 /public/css/*
+/public/images/*
 # NOTE: webpack.mix.jsでコンパイルされない最初からあるcssファイルたち
 !/public/css/app.css
 !/public/css/normalize.css

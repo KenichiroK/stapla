@@ -16,37 +16,48 @@
              <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
-                    <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div>
+                        <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div>
                         <div class="item-name-wrapper__item-name">発注書</div>
                     </div>
                     <div class="table-container">
                         <table class="order-table table01">
                             <tr class="head-row">
                                 <th>タスク</th>
-                                <th>請求日</th>
+                                <th>納期</th>
                                 <th>担当者</th>
-                                <th>金額</th>
-                                <th>PDF</th>
-                                <th>作成済</th>
+                                <th>パートナー</th>
+                                <th>発注金額</th>
+                                <th></th>
                             </tr>
                             @foreach($purchaseOrders as $purchaseOrder)
                             <tr class="data-row">
                                 <td class="task-data">{{ $purchaseOrder->task_name }}</td>
-                                <td>{{ date("Y年m月d日", strtotime($purchaseOrder->task_ended_at)) }}</td>
+                                <td>{{ date("Y年m月d日", strtotime($purchaseOrder->task->delivery_date)) }}</td>
                                 <td class="staff-data">
-                                @isset($task->company_user_id)
-                                    @isset($purchaseOrder->companyUser->picture)
-                                        <div class="imgbox">
-                                            <img src="{{ $purchaseOrder->companyUser->picture }}" alt="">
+                                    @isset($purchaseOrder->companyUser_id)
+                                        @isset($purchaseOrder->companyUser->picture)
+                                            <div class="imgbox">
+                                                <img src="{{ $purchaseOrder->companyUser->picture }}" alt="">
+                                            </div>
+                                        @endisset
+                                        <div class="name">
+                                            {{ $purchaseOrder->companyUser->name }}
                                         </div>
                                     @endisset
-                                    <div class="name">
-                                        {{ $purchaseOrder->companyUser->name }}
-                                    </div>
-                                @endisset
+                                </td>
+                                <td class="staff-data">
+                                    @isset($purchaseOrder->partner_id)
+                                        @isset($purchaseOrder->partner->picture)
+                                            <div class="imgbox">
+                                                <img src="{{ $purchaseOrder->partner->picture }}" alt="">
+                                            </div>
+                                        @endisset
+                                        <div class="name">
+                                            {{ $purchaseOrder->partner->name }}
+                                        </div>
+                                    @endisset
                                 </td>
                                 <td>{{ $purchaseOrder->task->price }}</td>
-                                <td>○</td>
                                 <td>
                                     <div class="create-container">
                                         <div class="btn-a-container">
@@ -78,28 +89,39 @@
                                 <th>タスク</th>
                                 <th>請求日</th>
                                 <th>担当者</th>
-                                <th>金額</th>
-                                <th>PDF</th>
-                                <th>作成済</th>
+                                <th>パートナー</th>
+                                <th>発注金額</th>
+                                <th></th>
                             </tr>
                             @foreach($invoices as $invoice)
                             <tr class="data-row">
                                 <td class="task-data">{{ $invoice->task->name }}</td>
                                 <td>{{ date("Y年m月d日", strtotime($invoice->task->ended_at)) }}</td>
                                 <td class="staff-data">
-                                @isset($invoice->company_user_id)
-                                    @isset($invoice->companyUser->picture)
-                                        <div class="imgbox">
-                                            <img src="{{ $invoice->companyUser->picture }}" alt="">
+                                    @isset($invoice->companyUser_id)
+                                        @isset($invoice->companyUser->picture)
+                                            <div class="imgbox">
+                                                <img src="{{ $invoice->companyUser->picture }}" alt="">
+                                            </div>
+                                        @endisset
+                                        <div class="name">
+                                            {{ $invoice->companyUser->name }}
                                         </div>
                                     @endisset
-                                    <div class="name">
-                                        {{ $invoice->companyUser->name }}
-                                    </div>
-                                @endisset
+                                </td>
+                                <td class="staff-data">
+                                    @isset($invoice->partner_id)
+                                        @isset($invoice->partner->picture)
+                                            <div class="imgbox">
+                                                <img src="{{ $invoice->partner->picture }}" alt="">
+                                            </div>
+                                        @endisset
+                                        <div class="name">
+                                            {{ $invoice->partner->name }}
+                                        </div>
+                                    @endisset
                                 </td>
                                 <td>{{ $invoice->task->price }}</td>
-                                <td>○</td>
                                 <td>
                                     <div class="create-container">
                                         <div class="btn-a-container">

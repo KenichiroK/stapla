@@ -19,39 +19,32 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $company_user = Auth::user();
-        $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('const.PROJECT_COMPLETE'))->get();        
+        $projects = Project::where('company_id', Auth::user()->company_id)
+                        ->where('status', '!=', config('consts.project.COMPLETED'))
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        
+        $project_status = config('consts.project.ALL');
 
-        $task_count_arr = []; 
-        for($i = 0; $i < count($projects); $i++){
-            $taskCount = count($projects[$i]->tasks);
-            array_push($task_count_arr, $taskCount);
-        }
-        return view('company/project/index', compact('projects', 'task_count_arr'));
+        return view('company/project/index/index', compact('projects', 'project_status'));
     }
 
     public function doneIndex()
     {
-        $company_user = Auth::user();
-        $projects = Project::where('company_id', $company_user->company_id)->where('status', config('const.PROJECT_COMPLETE'))->get();
+        $projects = Project::where('company_id', Auth::user()->company_id)
+                        ->where('status', config('consts.project.COMPLETED'))
+                        ->orderBy('created_at', 'desc')
+                        ->get();
 
-        $task_count_arr = []; 
-        for($i = 0; $i < count($projects); $i++){
-            $taskCount = count($projects[$i]->tasks);
-            array_push($task_count_arr, $taskCount);
-        }
-        return view('company/project/done-index', compact('projects', 'task_count_arr'));
+        $project_status = config('consts.project.COMPLETED');
+
+        return view('company/project/index/index', compact('projects', 'project_status'));
     }
 
     public function create()
     {
-        $company_user = Auth::user();
-
-        $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
-
-        $partner_users = Partner::where('company_id', $company_user->company_id)->get();
-        
-        return view('company/project/create', compact('company_user', 'company_users'));
+        $company_users = CompanyUser::where('company_id', Auth::user()->company_id)->get();        
+        return view('company/project/create/index', compact('company_users'));
     }
 
     public function store(CreateProjectRequest $request)
@@ -90,8 +83,10 @@ class ProjectController extends Controller
 
         $project = Project::where('company_id', $company_user->company_id)->findOrFail($id);
         $tasks = Task::where('project_id',$project->id)->get();
-        
-        return view('/company/project/show', compact('project','tasks', 'company_user'));
+        $activeTaskCount = $tasks->whereNotIn('status', [config("const.COMPLETE_STAFF"), config("const.TASK_CANCELED")])
+                        ->count();
+
+        return view('/company/project/show', compact('project','tasks', 'company_user', 'activeTaskCount'));
     }
 
     public function edit($project_id)
@@ -133,10 +128,10 @@ class ProjectController extends Controller
         \Log::info('プロジェクトstatus変更前', ['user_id(company)' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
 
         if($status == 0) {
-            $project->status = config('const.PROJECT_COMPLETE');
+            $project->status = config('consts.project.COMPLETED');
             \Log::info('プロジェクト完了', ['user_id(company)' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
-        } elseif($status == config('const.PROJECT_COMPLETE')) {
-            $project->status = config('const.PROJECT_CREATE');
+        } elseif($status == config('consts.project.COMPLETED')) {
+            $project->status = config('consts.project.CREATED');
             \Log::info('プロジェクト再オープン', ['user_id(company)' => $auth->id, 'project_id' => $project->id, 'status' => $project->status]);
         }
         $project->save();

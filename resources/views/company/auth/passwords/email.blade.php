@@ -2,6 +2,11 @@
 
 @section('assets')
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<style>
+    #email {
+        background-image: none;
+    }
+</style>
 @endsection
 
 @section('content')

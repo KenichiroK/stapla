@@ -1,0 +1,19 @@
+@import "../setting/colors";
+@import "../mixin/font/primary";
+@import "../mixin/button/positive";
+
+.page-title-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 32px;
+
+  &__text {
+    @include primary-text(28px, bold);
+  }
+
+  &__btn {
+    @include positive-btn(130px, 40px, 16px, 8px, 14px);
+  }
+}

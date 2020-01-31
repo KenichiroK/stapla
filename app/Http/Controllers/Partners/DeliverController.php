@@ -13,12 +13,12 @@ use App\Models\CompanyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class DeliverController extends Controller
 {
     public function create($task_id)
     {
-        // task_id;
         $partner = Auth::user();
         $task = Task::findOrFail($task_id);
         return view('partner/deliver/create', compact('partner', 'task'));
@@ -39,7 +39,7 @@ class DeliverController extends Controller
                 \Storage::disk('s3')->delete("deliver-file/" . $auth->company_id . "/" . explode('/', $item->file)[5]);
             }
             DeliverItem::where('deliver_id', $deliver->id)->delete();
-            if($request->files){
+            if($request->deliver_files){
                 foreach ($request->deliver_files as $file) {
                     $deliver_item = new DeliverItem;
                     $deliver_item->deliver_id = $deliver->id;
@@ -49,11 +49,8 @@ class DeliverController extends Controller
                     $deliver_item->save();
                     \Log::info('再納品', ['user_id(partner)' => $auth->id, 'task_id' => $task->id]);              
                 }
-            }
-                 
-            
+            }  
         } else{
-            
             $deliver = new Deliver;
             $deliver->task_id         = $request->task_id;
             $deliver->deliver_comment = $request->deliver_comment;
@@ -80,8 +77,9 @@ class DeliverController extends Controller
         $deliverLog->save();
 
         if($task->count()) {
-            $prev_status = $task->status;
-            $task->status = (int)$request->status;
+            $prev_status             = $task->status;
+            $task->status            = (int)$request->status;
+            $task->status_updated_at = Carbon::now();
             $task->save();
 
 

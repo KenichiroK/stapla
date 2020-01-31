@@ -18,18 +18,22 @@
 					<p>メールアドレス</p>
 					<input class="input_text" type="email" name="email" value="{{ old('email') }}" placeholder="impro@example.com">
                     @if($errors->has('email'))
-                        <div class="invalid-feedback error-msg" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </div>
-                    @endif
+						<div class="error-mes-wrp">
+							<strong style='color: #e3342f;'>{{ $errors->first('email') }}</strong>
+						</div>
+					@endif
 				</div>
 
 				<div class='input-container'>
 					<input class="input_text" type="hidden" name="company_id" value="{{ Auth::user()->company_id }}">
 				</div>
 
+				<div class='input-container'>
+					<input class="input_text" type="hidden" name="invitation_user_id" value="{{ Auth::user()->id }}">
+				</div>
+
 				<div class='button-container'>
-					<button type="button" onclick="submit();">メールを送信する</button>
+					<button data-impro-button="once" type="button" onclick="submit();">メールを送信する</button>
 				</div>
 			</form>
 			

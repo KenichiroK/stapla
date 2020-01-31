@@ -1,0 +1,6 @@
+@mixin font($fontSize: 16px, $fontWeight: normal) {
+  margin: 0;
+  font-family: -apple-system, Meiryo, "游ゴシック体", YuGothic, "游ゴシック";
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+}

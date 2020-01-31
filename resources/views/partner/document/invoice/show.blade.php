@@ -12,7 +12,7 @@
 		<h3>請求書プレビュー</h3>
 		<!-- downloadボタン -->
 		<div class="download-btn-container">
-			<a id="print_btn" class="button download-button">ダウンロード</a>
+			<a id="invoice_print_btn" class="button download-button">ダウンロード</a>
 		</div>
 	</div>
 	<div id="print" class="document-container A4">
@@ -36,7 +36,7 @@
 					</div>
 		
 					<div class="right">
-						<p>発注日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
+						<p>請求日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
 						<p>{{ $invoice->partner->name }}</p>
 						<p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
 					</div>
@@ -158,7 +158,7 @@
 				</div>
 	
 				<div class="right">
-					<p>発注日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
+					<p>請求日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
 					<p>{{ $invoice->partner->name }}</p>
 					<p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
 				</div>
@@ -262,20 +262,28 @@
 		</div>
 	</div>
 
-	@if($task->status === 12 && $task->partner->id === Auth::user()->id)
+	@if($task->status === config('const.INVOICE_DRAFT_CREATE') && $task->partner->id === Auth::user()->id)
 		<div class="actionButton">
 			<a href="{{ route('partner.document.invoice.edit', ['id' => $invoice->id]) }}" class="undone">作り直す</a>
 			<form action="{{ route('partner.task.status.change') }}" method="POST">
 			@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-				<input type="hidden" name="status" value="13">
+				<input type="hidden" name="status" value="{{ config('const.INVOICE_CREATE') }}">
 				<input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-				<div class="button-container">
-					<button type="submit">送信</button>
-				</div>
+				<button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">送信</button>
+				<!-- Modal -->
+				@component('components.confirm-modal')
+					@slot('modalID')
+						confirm
+					@endslot
+					@slot('confirmBtnLabel')
+						依頼
+					@endslot
+					{{ $task->companyUser->name }} さんに請求書の確認を依頼します。
+				@endcomponent
 			</form>
 		</div>
-	@elseif($task->status > 12 && $task->partner->id === Auth::user()->id)
+	@elseif($task->status > config('const.INVOICE_DRAFT_CREATE') && $task->partner->id === Auth::user()->id)
 		<p class="send-done">この請求書は提出済みです</p>
 	@else
 		<p class="send-done">必要なアクションはありません</p>
@@ -297,5 +305,5 @@
 @endsection
 
 @section('asset-js')
-    <script src="{{ asset('js/pdf.js') }}" defer></script>
+    <script src="{{ asset('js/pages/invoice/show/index.js') }}" defer></script>
 @endsection

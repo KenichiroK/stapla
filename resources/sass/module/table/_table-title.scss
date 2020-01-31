@@ -1,0 +1,36 @@
+@import "../../mixin/font/primary";
+@import "../../mixin/font/font";
+@import "../../mixin/button/button";
+
+.table-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 24px;
+
+  &__text {
+    @include primary-text(18px, bold);
+  }
+
+  &__num {
+    margin: 0 0 0 10px;
+  }
+
+  &__alert {
+    @include font(14px, 600);
+    color: colors(navy1);
+
+    &--button {
+      @include button(40px, 28px, 4px, 4px, 14px);
+      background-color: colors(white1);
+      border-color: colors(red1);
+      color: colors(red1);
+    }
+
+    &--unit {
+      @include font(10px, bold);
+      color: colors(red1);
+      letter-spacing: 0.56px;
+    }
+  }
+}

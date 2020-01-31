@@ -20,10 +20,12 @@
                 background-color: #43425d;
                 color: #fff;
                 font-weight: bold;
-                font-size: 12px;
-                width: 112px;
-                height: 32px;
+                font-size: 14px;
+                width: 106px;
+                height: 40px;
                 border-radius: 100px;
+                padding: 10px 18px;
+                margin: 0 0 0 auto;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -76,7 +78,6 @@
                 }
             }
         }
-
         .detail-container {
             &__list {
                 margin-top: 32px;
@@ -183,13 +184,13 @@
                     }
                     .btn-a-container {
                         margin-bottom: 30px;
-                        // text-align: right;
                         a {
-                            width: 100px;
-                            font-size: 12px;
+                            font-size: 14px;
                             margin: 0 0 0 auto;
                             display: block;
                             padding: 10px 18px;
+                            color: #fff;
+                            text-decoration: none;
                         }
                     }
                 }
@@ -306,102 +307,6 @@
                 }
             }
         }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            .preview-button-wrapper {
-                text-align: center;
-                margin-right: 40px;
-                &__btn {
-                    width: 120px;
-                    border-radius: 100px;
-                    color: #43425d;
-                    font-weight: bold;
-                    font-size: 15px;
-                    background: #ffffff;
-                    border: 2px solid #43425d;
-                }
-                &__btn:hover {
-                    opacity: 0.8;
-                }
-            }
-            .btn01-container {
-                button {
-                    width: 120px;
-                    font-size: 15px;
-                    padding: 4px 11px;
-                }
-            }
-        }
-    }
-    // モーダルメニュー
-    .activity-log-menu {
-        display: none;
-        position: absolute;
-        box-shadow: 0 0 8px gray;
-        right: 0;
-        width: 320px;
-        background-color: #fff;
-        height: 100%;
-        padding: 30px;
-        &__top {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 32px;
-            &__title {
-                font-weight: bold;
-                font-size: 16px;
-            }
-            .close-container {
-                cursor: pointer;
-                &__btn {
-                    font-size: 12px;
-                    margin-right: 4px;
-                    font-weight: bold;
-                }
-            }
-        }
-        .notification-wrp {
-            overflow: hidden;
-            margin: 0;
-            position: relative;
-            .notification-container {
-                display: flex;
-                border-left: 2px #f2f2fa solid;
-                margin-left: 10px;
-                padding-bottom: 30px;
-                &__img-container {
-                    width: 32px;
-                    margin-left: 20px;
-                }
-                &__content {
-                    margin-left: 8px;
-                    p {
-                        margin-bottom: 0;
-                    }
-                    &__name {
-                        font-weight: bold;
-                        font-size: 14px;
-                    }
-                    &__done {
-                        font-size: 14px;
-                    }
-                    &__date {
-                        font-size: 12px;
-                    }
-                }
-            }
-            .notification-container:before {
-                content: "";
-                width: 10px;
-                height: 10px;
-                background: #cccbd8;
-                position: absolute;
-                left: 6px;
-                top: 10px;
-                border-radius: 100%;
-            }
-        }
+     
     }
 }

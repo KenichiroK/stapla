@@ -22,15 +22,15 @@
 <main>
     <div class="main_container">
         <div class="title_wrapper">
-            <h1 class="text">パスワードを設定してください</h1>
+            <h1 class="text">パスワードを設定してください。</h1>
         </div>
 
         <div class="form_wrapper">
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('partner.passwordRegister') }}">
                 @csrf
                 <div class="input_wrapper">
                     <input class="input_text" type="hidden" name="email" value="{{ $request->email }}">
-                    @if ($errors->has('email'))
+                    @if($errors->has('email'))
                         <div class="invalid-feedback error-msg" role="alert">
                             <strong>{{ $errors->first('email') }}</strong>
                         </div>
@@ -43,7 +43,7 @@
                         <span class="required-label row-label">( 必須 )</span>
                     </h4>
                     <input class="input_text" type="password" name="password">
-                    @if ($errors->has('password'))
+                        @if ($errors->has('password'))
                         <div class="invalid-feedback error-msg" role="alert">
                             <strong>{{ $errors->first('password') }}</strong>
                         </div>
@@ -60,33 +60,28 @@
 
                 <div class="input_wrapper">
                     <input class="input_text" type="hidden" name="company_id" value="{{ $request->company_id }}">
-                    @if ($errors->has('company_id'))
+                    @if($errors->has('company_id'))
                         <div class="invalid-feedback error-msg" role="alert">
                             <strong>{{ $errors->first('company_id') }}</strong>
                         </div>
                     @endif
                 </div>
 
-                <!-- <div class="checkbox_wrapper">
-                    <a href="#">ご利用規約</a>
-                    <span>に同意して</span>
-                </div> -->
+                {{-- HACK: company_idもバリデーションかけてなかったけどもユーザがURLのパラメータ直接編集してくるの考慮しなくてもいいですかね --}}
+                <div class="input_wrapper">
+                    <input class="input_text" type="hidden" name="invitation_user_id" value="{{ $request->invitation_user_id }}">
+                    @if($errors->has('invitation_user_id'))
+                        <div class="invalid-feedback error-msg" role="alert">
+                            <strong>{{ $errors->first('invitation_user_id') }}</strong>
+                        </div>
+                    @endif
+                </div>
 
                 <div class="button_wrapper">
-                    <button type="button" onclick="submit();" class="text">新規会員登録</button>
+                    <button class="button" data-impro-button="once" type="button" onclick="submit();">新規会員登録</button>
                 </div>
             </form>
-
-            <!-- <div class="signup_wrapper">
-                <a href="{{ route('partner.login') }}">ログイン</a>
-            </div> -->
-            
         </div>
     </div>
 </main>
-
-<!-- <footer>
-    <span class="tos">ご利用規約</span>
-    <span class="privacy">プライバシーポリシー</span>
-</footer> -->
 @endsection

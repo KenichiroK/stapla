@@ -1,0 +1,87 @@
+@import "./table-title";
+@import "../../setting/colors";
+@import "../../mixin/font/font";
+@import "../../mixin/font/primary";
+
+.status-container {
+  width: 100%;
+  background-color: colors(white1);
+  padding: 24px;
+  margin: 0 0 32px;
+
+  .navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid colors(borderLight);
+    margin: 0 0 20px;
+
+    &__text {
+      @include font;
+      min-width: 10%;
+      text-align: center;
+      margin-right: 24px;
+      color: colors(navy1);
+      opacity: 0.5;
+      letter-spacing: 1px;
+      padding: 20px;
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+
+    &__num {
+      @include font(12px);
+      margin-left: 6px;
+      border-bottom: none !important;
+    }
+
+    .is-active {
+      font-weight: bold;
+      opacity: 1;
+      color: colors(primary);
+      border-bottom: 5px solid colors(primary);
+    }
+  }
+
+  .detail-container {
+    width: 100%;
+    display: none;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__content {
+      @include font(16px, bold);
+      width: 20%;
+      padding: 32px 0 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: colors(navy1);
+      border-left: 1px solid colors(borderLight);
+      text-decoration: none;
+
+      &:last-child {
+        border-right: 1px solid colors(borderLight);
+      }
+
+      &--text {
+        @include font(14px, bold);
+      }
+      &--num {
+        @include font(24px, bold);
+        color: colors(navy1);
+        text-decoration: none;
+      }
+    }
+
+    .is-active {
+      background-color: colors(bgLight);
+      cursor: default;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

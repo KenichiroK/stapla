@@ -36,7 +36,7 @@
                     }
                 }
 
-                .partnerName-container {
+                .partner-name-container {
                     text-align: left;
                     font-size: 20px;
                     margin-bottom: 48px;
@@ -83,10 +83,7 @@
 
                 .order-container {
                     width: 100%;
-                    border-top: 1px solid #43425d;
-                    border-bottom: 1px solid #43425d;
-                    border-right: 3px solid #43425d;
-                    border-left: 3px solid #43425d;
+                    border: 3px solid #43425d;
 
                     table {
                         width: 100%;
@@ -181,6 +178,7 @@
                     .sub-container {
                         height: 96px;
                         border-top: 1px solid #43425d;
+                        padding: 5px;
 
                         span {
                             font-size: 12px;
@@ -253,38 +251,6 @@
     &__button:hover {
         color: #fff;
         text-decoration: none;
-    }
-}
-
-.actionButton {
-    margin: 24px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .done {
-        border-radius: 100px;
-        background-color: #43425d;
-        color: #fff;
-        font-weight: bold;
-        padding: 8px 30px;
-        cursor: pointer;
-        font-size: 12px;
-    }
-
-    .undone {
-        border-radius: 100px;
-        background-color: #fff;
-        color: #43425d;
-        font-weight: bold;
-        padding: 8px 24px;
-        cursor: pointer;
-        font-size: 12px;
-    }
-
-    button:hover {
-        opacity: 0.7;
-        transition: 0.3s;
     }
 }
 

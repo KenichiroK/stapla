@@ -4,18 +4,6 @@
 <link rel="stylesheet" href="{{ mix('css/pdf/paper.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/common/index.css') }}">
 <link rel="stylesheet" href="{{ mix('css/company/document/purchaseOrder/show.css') }}">
-<script>
-const setPreview = (input) => {
-  const preview = document.getElementById('preview');
-  if (input.files && input.files[0]) {
-    let reader = new FileReader();
-    reader.onload = (e) => {
-      preview.src = e.target.result;
-    }
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-</script>
 @endsection
 
 @section('content')
@@ -26,9 +14,8 @@ const setPreview = (input) => {
                 <div class="page-title-container">
                     <div class="page-title-container__page-title">発注書</div>
                 </div>
-                <!-- downloadボタン -->
                 <div class="download-btn-container">
-                    <a id="print_btn" class="button download-button">ダウンロード</a>
+                    <a id="order_print_btn" class="button download-button">ダウンロード</a>
                 </div>
             </div>
             
@@ -80,65 +67,19 @@ const setPreview = (input) => {
         
                             <tbody>
                                 <tr>
-                                    <td>{{ $purchaseOrder->task_name }}</td>
+                                    <td>{{ $task->name }}</td>
                                     <td>1</td>
                                     <td>{{ number_format($purchaseOrder->task_price) }}</td>
                                     <td>{{ number_format($purchaseOrder->task_price) }}</td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @for($i=1; $i<10; $i++)
                                     <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                @endfor
                             </tbody>
                         </table>
         
@@ -164,7 +105,7 @@ const setPreview = (input) => {
                         </div>
         
                         <div class="sub-container">
-                            <span>備考</span>
+                            {{ $task->content }}
                         </div>
                     </div>
                 </div>
@@ -214,65 +155,19 @@ const setPreview = (input) => {
     
                         <tbody>
                             <tr>
-                                <td>{{ $purchaseOrder->task_name }}</td>
+                                <td>{{ $task->name }}</td>
                                 <td>1</td>
                                 <td>{{ number_format($purchaseOrder->task_price) }}</td>
                                 <td>{{ number_format($purchaseOrder->task_price) }}</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @for($i=1; $i<10; $i++)
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endfor
                         </tbody>
                     </table>
     
@@ -298,63 +193,92 @@ const setPreview = (input) => {
                     </div>
     
                     <div class="sub-container">
-                        <span>備考</span>
+                        {{ $task->content }}
                     </div>
                 </div>
             </div>
-
+        </div>
+        @if($purchaseOrder->task->status === config('const.TASK_APPROVAL_PARTNER') && in_array($company_user->id, $company_user_ids))
+            <div class="actionButton">
+                <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
+                <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
+                    <input type="hidden" name="status" value="{{ config('const.ORDER_SUBMIT_SUPERIOR') }}">
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">上長に確認を依頼</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            confirm
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            依頼
+                        @endslot
+                        発注書を新規作成し、 {{ $task->superior->name }} さんに上長確認を依頼します。
+                    @endcomponent
+                </form>
+            </div>
+        @elseif($purchaseOrder->task->status === config('const.TASK_SUBMIT_SUPERIOR') && $purchaseOrder->task->superior->id === $company_user->id)
+            <div class="actionButton">
+                <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
+                    <input type="hidden" name="status" value="{{ config('const.TASK_CREATE') }}">
+                    <button type="submit" class="undone">発注書を承認しない</button>
+                </form>
+                <a class="undone" href="{{ route('company.task.show', ['task_id' => $task->id]) }}">タスクに戻る</a>
+                <form action="{{ route('company.task.status.change') }}" method="POST">
+                @csrf
+                    <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
+                    <input type="hidden" name="status" value="{{ config('const.TASK_APPROVAL_SUPERIOR') }}">
+                    <button type="button" class="done confirm" data-toggle="modal" data-target="#confirm">タスク/発注書を承認する</button>
+                    <!-- Modal -->
+                    @component('components.confirm-modal')
+                        @slot('modalID')
+                            confirm
+                        @endslot
+                        @slot('confirmBtnLabel')
+                            承認
+                        @endslot
+                        タスク・発注書を承認します。
+                    @endcomponent
+                </form>
+            </div>
+        @elseif($purchaseOrder->task->status > config('const.ORDER_SUBMIT_PARTNER') && $purchaseOrder->task->superior->id === $company_user->id)
+            <p class="send-done">この発注書は承認済みです</p>
+        @elseif($purchaseOrder->task->status > config('const.ORDER_SUBMIT_SUPERIOR') && in_array($company_user->id, $company_user_ids))
+            <p class="send-done">この発注書は提出済みです</p>
+        @else
+            <p class="send-done">必要なアクションはありません</p>
+        @endif
+        
+        <div class="error-message-wrapper">
+            @if ($errors->has('task_id'))
+                <div class="error-msg" role="alert">
+                    <strong>{{ $errors->first('task_id') }}</strong>
+                </div>
+            @elseif ($errors->has('status'))
+                <div class="error-msg" role="alert">
+                    <strong>{{ $errors->first('status') }}</strong>
+                </div>
+            @endif
         </div>
     </div>
-
-
-    @if($purchaseOrder->task->status === 4 && in_array($company_user->id, $company_user_ids))
-    <div class="actionButton">
-        <a href="{{ route('company.document.purchaseOrder.create', ['id' => $task->id]) }}" class="undone">作り直す</a>
-        <form action="{{ route('company.task.status.change') }}" method="POST">
-        @csrf
-            <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-            <input type="hidden" name="status" value="5">
-            <button type="submit" class="done">上長に確認を依頼</button>
-        </form>
-    </div>
-    @elseif($purchaseOrder->task->status === 5 && $purchaseOrder->task->superior->id === $company_user->id)
-    <div class="actionButton">
-        <form action="{{ route('company.task.status.change') }}" method="POST">
-            @csrf
-                <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                <input type="hidden" name="status" value="4">
-                <button type="submit" class="undone">発注書を承認しない</button>
-            </form>
-            <form action="{{ route('company.task.status.change') }}" method="POST">
-            @csrf
-                <input type="hidden" name="task_id" value="{{ $purchaseOrder->task->id }}">
-                <input type="hidden" name="status" value="6">
-                <button type="submit" class="done">発注書を承認する</button>
-        </form>
-    </div>
-    @elseif($purchaseOrder->task->status > 7 && $purchaseOrder->task->superior->id === $company_user->id)
-    <p class="send-done">この発注書は承認済みです</p>
-    @elseif($purchaseOrder->task->status > 5 && in_array($company_user->id, $company_user_ids))
-    <p class="send-done">この発注書は提出済みです</p>
-    @else
-    <p class="send-done">必要なアクションはありません</p>
-    @endif
-    
-    <div class="error-message-wrapper">
-        @if ($errors->has('task_id'))
-            <div class="error-msg" role="alert">
-                <strong>{{ $errors->first('task_id') }}</strong>
-            </div>
-        @elseif ($errors->has('status'))
-            <div class="error-msg" role="alert">
-                <strong>{{ $errors->first('status') }}</strong>
-            </div>
-        @endif
-    </div>
-
 </div>
 @endsection
 
 @section('asset-js')
-    <script src="{{ asset('js/pdf.js') }}" defer></script>
+    <script src="{{ asset('js/pages/order/show/index.js') }}" defer></script>
+    <script>
+        const setPreview = (input) => {
+            const preview = document.getElementById('preview');
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                preview.src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+    </script>
 @endsection

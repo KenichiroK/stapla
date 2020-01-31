@@ -31,15 +31,15 @@
                 </div>
                 
                 <div class="button_wrapper">
-                    <button class="text" type="button" onclick="submit();">変更する</button>
+                    <button class="text" data-impro-button="once" type="button" onclick="submit();">変更する</button>
                 </div>
             </form>
         </div>
     </div>
 </main>
 
-<footer>
+<!-- <footer>
     <span>ご利用規約</span>
     <span>プライバシーポリシー</span>
-</footer>
+</footer> -->
 @endsection

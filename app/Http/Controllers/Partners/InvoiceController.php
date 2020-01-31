@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\Partners;
 
 use Illuminate\Http\Request;
-// use Exception;
-// use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\Partners\CreateInvoiceRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Partners\InvoiceTaskController;
 use App\Http\Controllers\Partners\InvoiceExpencesController;
-use App\Models\Partner;
 use App\Models\Task;
 use App\Models\Invoice;
 use App\Models\CompanyUser;
@@ -23,10 +19,6 @@ class InvoiceController extends Controller
 {
     public function create(Request $request, $task_id)
     {
-        // タスクステータスのアップデート
-        $task = Task::findOrFail($task_id)
-                            ->update(['status' => config('const.INVOICE_DRAFT_CREATE')]);
-
         $task = Task::findOrFail($task_id);
         $partner = Auth::user();
         $company_id = $partner->company_id;
@@ -46,6 +38,10 @@ class InvoiceController extends Controller
 
     public function store(CreateInvoiceRequest $request)
     {
+        // タスクステータスのアップデート
+        $task = Task::findOrFail($request->task_id)
+                ->update(['status' => config('const.INVOICE_DRAFT_CREATE')]);
+
         $partner = Auth::user();
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->get()->first();
         if (!$partner_invoice) {
@@ -122,8 +118,6 @@ class InvoiceController extends Controller
         $partner_invoice = PartnerInvoice::where('partner_id', $partner->id)->first();
         $task_count = "";
         $expences_count = "";
-
-        // dd($request->session()->get('_old_input'));
 
         if ($request->session()->has('_old_input')) {
             $old_input = $request->session()->get('_old_input');

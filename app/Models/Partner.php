@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\PartnerPasswordResetNotification;
 
-class Partner extends Authenticatable
+class Partner extends Authenticatable implements MustVerifyEmail
 {   
     use Notifiable;
     public $incrementing = false;
@@ -24,7 +24,7 @@ class Partner extends Authenticatable
     protected $fillable = [
         'company_id', 'email', 'password', 'name', 'nickname', 'zip_code', 'prefecture', 'city', 'street', 'building', 'tel', 'age',
         'sex', 'picture', 'occupations', 'academic', 'slack', 'chatwork', 'twitter', 'facebook', 'github', 'instagram', 'careersummary', 'jobcareer', 
-        'portfolio', 'introduction', 'possible', 'skill', 'feature', 'language', 'qualification', 'relatedlinks', 'attachment' 
+        'portfolio', 'introduction', 'possible', 'skill', 'feature', 'language', 'qualification', 'relatedlinks', 'attachment', 'invitation_user_id'
     ];
 
     protected $hidden = [
@@ -69,5 +69,10 @@ class Partner extends Authenticatable
     public function taskPartner()
     {
         return $this->hasOne('App\Models\Task', 'partner_id', 'id');
+    }
+
+    public function invitationUser()
+    {
+        return $this->belongsTo('App\Models\CompanyUser', 'invitation_user_id');
     }
 }

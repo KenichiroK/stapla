@@ -1,0 +1,68 @@
+@import "~jquery-datetimepicker/jquery.datetimepicker.css";
+@import "../../../module/page-title";
+@import "../../../module/form/container";
+@import "../../../module/form/date";
+@import "../../../module/form/input";
+@import "../../../module/form/textarea";
+@import "../../../module/form/selectbox";
+@import "../../../module/button/button";
+@import "../../../mixin/font/font";
+@import "../../../mixin/button/negative";
+@import "../../../mixin/button/positive";
+
+.main-wrapper {
+  width: 100%;
+  margin: auto;
+  padding: 40px;
+}
+
+.date-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__input {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__hyphen {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 24px;
+  }
+}
+
+.price-container {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  &__input {
+    width: 45%;
+
+    .input {
+      text-align: right;
+    }
+  }
+
+  .unit {
+    @include font(16px, bold);
+    margin-left: 10px;
+  }
+}
+
+.negative-btn {
+  @include negative-btn(180px, 42px);
+  margin-right: 40px;
+}
+
+.positive-btn {
+  @include positive-btn(180px, 42px);
+}

@@ -1,0 +1,13 @@
+@import "./button";
+
+@mixin positive-btn($width: 64px, $height: 32px, $px: 16px, $py: 8px, $fontSize: 16px) {
+  @include button($width, $height, $px, $py, $fontSize);
+  line-height: $height - $py * 2 - 4px;
+  background-color: colors(primary);
+  color: colors(white1);
+  border-color: colors(primary);
+
+  &:hover {
+    color: colors(white1);
+  }
+}

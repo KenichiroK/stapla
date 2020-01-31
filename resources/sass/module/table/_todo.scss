@@ -1,0 +1,108 @@
+@import "../../setting/colors";
+@import "./more-btn";
+@import "./table-title";
+@import "./common.scss";
+@import "../../mixin/font/primary";
+@import "../../mixin/font/table-head";
+@import "../../mixin/button/positive";
+
+.todo-container {
+  width: 100%;
+  background-color: colors(white1);
+  padding: 24px;
+  margin: 0 0 32px;
+
+  .content-container {
+    width: 100%;
+
+    &__head {
+      width: 100%;
+      background-color: colors(bgLight);
+      display: flex;
+      align-items: center;
+
+      &--long {
+        width: 21%;
+        padding: 12px 0;
+        @include table-head-text;
+      }
+
+      &--short {
+        width: 16%;
+        padding: 12px 0;
+        @include table-head-text;
+      }
+    }
+
+    &__body {
+      width: 100%;
+      display: none;
+      border-bottom: 1px solid #f1f1f3;
+      &:nth-child(2n + 1) {
+        background-color: colors(bgTableRow);
+      }
+
+      &--link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.18s;
+
+        &:hover {
+          background-color: colors(bgLight);
+        }
+      }
+
+      &--long {
+        width: 21%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        word-break: break-all;
+        padding: 14px 8px;
+        @include primary-text(14px, bold);
+
+        > .profile-img {
+          width: 31px;
+          height: 31px;
+          border-radius: 50%;
+          margin-bottom: 6px;
+        }
+
+        > .date-alert {
+          font-size: 14px;
+          font-weight: bold;
+          color: colors(red1);
+        }
+      }
+
+      &--short {
+        width: 16%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        word-break: break-all;
+        padding: 14px 8px;
+        @include primary-text(14px, bold);
+
+        > .button {
+          line-height: 12px;
+          @include positive-btn(80px, 32px, 12px, 10px, 12px);
+        }
+      }
+    }
+
+    .bg-navy {
+      background-color: #f5f6fa;
+    }
+
+    .date-alert {
+      color: colors(red1);
+      font-weight: bold;
+    }
+  }
+}

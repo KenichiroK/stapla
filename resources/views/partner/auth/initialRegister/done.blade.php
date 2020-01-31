@@ -23,8 +23,8 @@
     </div>
 </main>
 
-<footer>
+<!-- <footer>
     <span>ご利用規約</span>
     <span>プライバシーポリシー</span>
-</footer>
+</footer> -->
 @endsection

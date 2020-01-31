@@ -1,0 +1,46 @@
+@import "../../setting/colors";
+@import "../../mixin/button/agree";
+@import "../../mixin/button/negative";
+
+.modal {
+  .modal-dialog {
+    max-width: 716px;
+  }
+  .close {
+    height: 25px;
+    padding-right: 8px;
+    text-transform: uppercase;
+  }
+  .modal-header {
+    text-decoration: none;
+    margin-top: 20px;
+
+    h5 {
+      font-size: 32px;
+      font-weight: bold;
+      color: colors(primary);
+    }
+    p {
+      // line-height: 1;
+      padding-bottom: 1px;
+    }
+  }
+  .modal-footer {
+    margin: 24px auto 40px;
+  }
+}
+
+.action-button-container {
+  p {
+    font-size: 20px;
+    font-weight: bold;
+    color: colors(primary);
+  }
+
+  .confirm-done {
+    @include agree-btn(180px, 40px);
+  }
+  .confirm-undone {
+    @include negative-btn(180px, 40px);
+  }
+}

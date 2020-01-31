@@ -11,50 +11,48 @@
 |
 */
 
-Auth::routes(['verify' => true]);
-
 Route::get('/',        function () { return view('common_pages/home');    });
 Route::get('/privacy', function () { return view('common_pages/privacy'); });
 Route::get('/terms',   function () { return view('common_pages/terms');   });
 // update notification read_at using ajax
 Route::post('notification/mark_as_read', 'Commons\NotificationController@markAsRead');
 
-Auth::routes();
+Route::namespace('Partners')->as('partner.')->group(function() {
+	Auth::routes(['verify' => true]);
+});
 
-Route::group(['prefix' => 'partner'], function(){
-	
+Route::group(['prefix' => 'partner'], function(){	
 	//login   
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
 	
 	// register   
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
-	Route::post('register', 'Partners\Auth\RegisterController@register')->name('partner.register');
-	
+	Route::post('passwordRegister', 'Partners\Auth\RegisterController@passwordRegister')->name('partner.passwordRegister');
+	Route::get('verify', 'Partners\Auth\RegisterController@verify')->name('partner.verify');
+
+	// register_flow - 初期登録関連
+	Route::get('/register/personal/{partner_id}', 'Partners\InitialRegisterController@createPartner')->name('partner.register.personal.create');
+	Route::post('/register/personal', 'Partners\InitialRegisterController@store')->name('partner.register.personal.store');
+	Route::get('register/terms/{partner_id}', 'Partners\InitialRegisterController@terms')->name('partner.register.terms');
+	Route::post('register/terms', 'Partners\InitialRegisterController@agreeTerms')->name('partner.register.terms.store');
+	Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('partner.register.preview.previewStore');
+	Route::get('/register/doneRegister', 'Partners\InitialRegisterController@doneRegister')->name('partner.register.doneRegister');
+
 	// password reset
 	Route::get('password/reset', 'Partners\Auth\ForgotPasswordController@showLinkRequestForm')->name('partner.password.request');
 	Route::post('password/email', 'Partners\Auth\ForgotPasswordController@sendResetLinkEmail')->name('partner.password.email');
 	Route::get('password/reset/{token}', 'Partners\Auth\ResetPasswordController@showResetForm')->name('partner.password.reset');
 	Route::post('password/reset', 'Partners\Auth\ResetPasswordController@reset')->name('partner.password.update');
 
-	// preRegister - 仮登録後に表示させるページ
-	Route::get('register/preRegistered', 'Partners\Registration\PreRegisterController@index')->name('partner.register.preRegisterd.index');
-
 	// invite
 	Route::get('invite/register/reset/password', 'Partners\InitialRegisterController@resetPassword')->name('partner.invite.register.reset.password');
 
-	// emailverify - Eメール認証
-	Route::get('email/verify/{id}/{email}/{company_id}','Partners\Auth\VerificationController@verify')->name('partner.verification.verify');
-	
+	// Email変更
+	Route::get('setting/profile/email/update', 'Partners\ProfileController@updateEmail')->name('partner.profile.email.updateEmail');
+
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
-		
-		// register_flow - 初期登録関連
-		Route::get('/register/doneVerify', 'Partners\InitialRegisterController@doneVerify')->name('partner.register.doneVerify.doneVerify');
-		Route::get('/register/initialRegistration', 'Partners\InitialRegisterController@createPartner')->name('partner.register.intialRegistration.createPartner');
-		Route::post('/register/initial/personal', 'Partners\InitialRegisterController@preview')->name('partner.register.intialRegistrationPost');
-		Route::get('/register/preview/previwShow', 'Partners\InitialRegisterController@previwShow')->name('parnter.register.preview.previwShow');
-		Route::post('/register/preview/previewStore', 'Partners\InitialRegisterController@previewStore')->name('partner.register.preview.previewStore');
-		
+
 		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
 		
@@ -84,6 +82,8 @@ Route::group(['prefix' => 'partner'], function(){
 		// profile
 		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
 		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
+		Route::get('setting/profile/email', 'Partners\ProfileController@email')->name('partner.profile.email');
+		Route::post('setting/profile/email', 'Partners\ProfileController@sendMail')->name('partner.profile.email.sendMail');
 		
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
@@ -105,6 +105,10 @@ Route::group(['prefix' => 'partner'], function(){
 });
 
 
+Route::namespace('Companies')->as('company.')->group(function() {
+	Auth::routes(['verify' => true]);
+});
+Auth::routes();
 
 Route::group(['prefix' => 'company'], function(){
 
@@ -120,26 +124,22 @@ Route::group(['prefix' => 'company'], function(){
 	Route::get('password/reset', 'Companies\Auth\ForgotPasswordController@showLinkRequestForm')->name('company.password.request');
 	Route::post('password/email', 'Companies\Auth\ForgotPasswordController@sendResetLinkEmail')->name('company.password.email');
 	Route::get('password/reset/{token}', 'Companies\Auth\ResetPasswordController@showResetForm')->name('company.password.reset');
-    Route::post('password/reset', 'Companies\Auth\ResetPasswordController@reset')->name('company.password.update');
-
-	// preRegister - 1st企業ユーザー仮登録完了ページ
-	Route::get('/register/preRegistered', 'Companies\Registration\PreRegisterController@index')->name('company.register.preRegisterd.index');
-
+	Route::post('password/reset', 'Companies\Auth\ResetPasswordController@reset')->name('company.password.update');
+	
 	// register - 企業ユーザー本登録
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
-	Route::post('register', 'Companies\Auth\RegisterController@register')->name('company.register');
-	
-	
+	Route::post('passwordRegister', 'Companies\Auth\RegisterController@passwordRegister')->name('company.passwordRegister');
+
+	// register_flow
+	Route::get('/register/personal/{companyUser_id}', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');
+	Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
+	Route::get('register/terms/{companyUser_id}', 'Companies\Registration\PersonalController@terms')->name('company.register.terms');
+	Route::post('register/terms', 'Companies\Registration\PersonalController@agreeTerms')->name('company.register.terms.store');
+	Route::post('/register/previewStore', 'Companies\Registration\PersonalController@previewStore')->name('company.register.preview.previewStore');
+	Route::get('/register/doneRegister', 'Companies\Registration\PersonalController@doneRegister')->name('company.register.doneRegister');
+
+
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
-		
-		// register_flow
-		Route::get('/register/doneVerify', 'Companies\InitialRegisterController@doneVerify')->name('company.register.doneVerify');
-		Route::get('/register/personal', 'Companies\Registration\PersonalController@create')->name('company.register.personal.create');
-		Route::post('/register/company-and-personal', 'Companies\Registration\PersonalController@companyStore')->name('company.register.company-and-personal.store');
-		Route::post('/register/personal', 'Companies\Registration\PersonalController@store')->name('company.register.personal.store');
-		Route::get('/register/preview', 'Companies\Registration\PreviewController@create')->name('company.register.preview.create');
-		Route::post('/register/company-preview', 'Companies\Registration\PreviewController@companyStore')->name('company.register.company-preview.store');
-		Route::post('/register/preview', 'Companies\Registration\PreviewController@store')->name('company.register.preview.store');
 		
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
@@ -170,20 +170,24 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/task/draft', 'Companies\TaskController@draft')->name('company.task.draft');
 			// 下書きを更新
 		Route::post('/task/update-draft', 'Companies\TaskController@updateDraft')->name('company.task.updateDraft');
-			// プレビュー
-		Route::post('/task/preview', 'Companies\TaskController@preview')->name('company.task.preview');
-			// タスク再編集
+			
+		// タスクプレビュー
+		Route::post('/task/task-preview', 'Companies\TaskController@taskPreview')->name('company.task.taskPreview');
+			// 発注書プレビュー
+		Route::post('/task/purchase-order-preview', 'Companies\TaskController@purchaseOrderPreview')->name('company.task.purchaseOrderPreview');
+			
+		// タスク再編集
 		Route::post('/task/recreate', 'Companies\TaskController@reCreate')->name('company.task.reCreate');
 			// タスク登録
 		Route::post('/task/store', 'Companies\TaskController@store')->name('company.task.store');
 			// タスク詳細
-		Route::get('/task/{id}', 'Companies\TaskController@show')->name('company.task.show');
-				// task-show-file_download
+		Route::get('/task/{task_id}', 'Companies\TaskController@show')->name('company.task.show');
+				// 納品関連ファイルのダウンロード
 		Route::post('/file-download', 'Companies\DeliverController@download')->name('company.fileDownload');
 			// task-edit
-		Route::get('/task/{id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');
+		Route::get('/task/{task_id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');
 			// task-update
-		Route::patch('/task/{id}', 'Companies\TaskController@update')->name('company.task.update');
+		Route::post('/task/{task_id}/update', 'Companies\TaskController@update')->name('company.task.update');
 		
 		// task status change
 		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');
@@ -209,9 +213,11 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/setting/companyElse', 'Companies\Setting\CompanyElseController@create')->name('company.setting.companyElse.create');
 		Route::post('/setting/companyElse', 'Companies\Setting\CompanyElseController@store')->name('company.setting.companyElse.store');
 		Route::get('/setting/userSetting', 'Companies\Setting\UserSettingController@create')->name('company.setting.userSetting.create');
-		Route::get('/setting/account', 'Companies\Setting\AccountController@create')->name('company.setting.account.create');
 		Route::get('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@create')->name('company.setting.personalInfo.create');
 		Route::post('/setting/personalInfo', 'Companies\Setting\PersonalInfoController@store')->name('company.setting.personalInfo.store');
+		Route::get('/setting/email', 'Companies\Setting\AccountController@create')->name('company.setting.email.create');
+		Route::post('/setting/email', 'Companies\Setting\AccountController@sendEmail')->name('company.setting.email.sendEmail');
+		Route::get('/setting/email/update', 'Companies\Setting\AccountController@updateEmail')->name('company.setting.email.updateEmail');
 
 		// invite companyUser - 招待による企業ユーザー仮登録
 		Route::get('invite-preRegister', 'Companies\Auth\InvitePreRegisterController@showRegisterForm')->name('company.invitePreRegister');

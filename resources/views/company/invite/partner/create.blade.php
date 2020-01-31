@@ -14,14 +14,14 @@
 	<div class="main_container">
 		<div class="form_wrapper">
 			<form method="POST" action="{{ route('company.invite.partner') }}">
-				@csrf
+			@csrf
 				<div class='input-container'>
 					<p>メールアドレス</p>
 					<input class="input_text" type="email" name="email" placeholder="impro@example.com">
 					@if($errors->has('email'))
-						<div class="error-mes-wrp">
-							<strong style='color: #e3342f;'>{{ $errors->first('email') }}</strong>
-						</div>
+					<div class="error-mes-wrp">
+						<strong style='color: #e3342f;'>{{ $errors->first('email') }}</strong>
+					</div>
 					@endif
 				</div>
 
@@ -29,9 +29,9 @@
 					<p>パスワード</p>
 					<input class="input_text" type="password" name="password">
 					@if ($errors->has('password'))
-						<div class="invalid-feedback error-msg" role="alert">
-							<strong>{{ $errors->first('password') }}</strong>
-						</div>
+					<div class="invalid-feedback error-msg" role="alert">
+						<strong>{{ $errors->first('password') }}</strong>
+					</div>
 					@endif
 				</div>
 
@@ -39,9 +39,9 @@
 					<p>パスワード確認</p>
 					<input class="input_text" type="password" name="password_confirmation">
 					@if ($errors->has('password'))
-						<div class="invalid-feedback error-msg" role="alert">
-							<strong>{{ $errors->first('password') }}</strong>
-						</div>
+					<div class="invalid-feedback error-msg" role="alert">
+						<strong>{{ $errors->first('password') }}</strong>
+					</div>
 					@endif
 				</div>
 
@@ -50,10 +50,9 @@
 				</div>
 
 				<div class='button-container'>
-					<button type="button" onclick="submit();">メールを送信する</button>
+					<button data-impro-button="once" type="button" onclick="submit();">メールを送信する</button>
 				</div>
 			</form>
-			
 		</div>
 	</div>
 </div>
