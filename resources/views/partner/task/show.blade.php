@@ -18,7 +18,7 @@
                 <div class="page-title-container__page-title">{{ $task->name }}詳細</div>
             </div>
         </div>
-
+        
         <div class="detail">
             <dl class="first">
                 <dt>
