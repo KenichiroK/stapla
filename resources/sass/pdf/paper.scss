@@ -1,42 +1,41 @@
 #print {
-    margin: 0;
-    font-family: "IPAexGothic", sans-serif;
+  margin: 0;
+  font-family: -apple-system, Meiryo, "游ゴシック体", YuGothic, "游ゴシック";
 }
 .sheet {
-    margin: 0;
-    overflow: hidden;
-    position: relative;
-    box-sizing: border-box;
-    page-break-after: always;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  page-break-after: always;
 }
 
 /** Paper sizes **/
 #print.A4 .sheet {
-    width: 210mm;
-    height: 296mm;
+  width: 210mm;
+  height: 296mm;
 }
 
 /** Padding area **/
 .sheet.padding-10mm {
-    padding: 10mm;
+  padding: 10mm;
 }
 
 /** For screen preview **/
 @media screen {
-    body {
-        background: #e0e0e0;
-        height: 100%;
-    }
-    .sheet {
-        background: #ffffff;
-        /* margin: 5mm auto; */
-        padding: 5mm 0;
-    }
+  body {
+    background: #e0e0e0;
+    height: 100%;
+  }
+  .sheet {
+    background: #ffffff;
+    /* margin: 5mm auto; */
+    padding: 5mm 0;
+  }
 }
 
-
-.pageout{
-    position: fixed;
-    top: -9999px;  
-    left: -9999px;
+.pageout {
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
 }
