@@ -18,7 +18,7 @@
                 <div class="page-title-container__page-title">{{ $task->name }}詳細</div>
             </div>
         </div>
-
+        
         <div class="detail">
             <dl class="first">
                 <dt>
@@ -27,12 +27,6 @@
                 <dd>
                     {{ $task->project->name }}
                 </dd>
-            </dl>
-            <dl>
-                <dt>
-                    タスク作成日
-                </dt>
-                <dd>{{ date("Y年m月d日H時i分", strtotime($task->created_at)) }}</dd>
             </dl>
             <dl>
                 <dt>
@@ -105,9 +99,9 @@
                 </dt>
                 <dd class="status-desc">
                     @if(($task->status) === config('const.TASK_SUBMIT_PARTNER'))
-                        タスクパートナー確認中
+                        パートナー確認中
                     @elseif(($task->status) === config('const.ORDER_SUBMIT_PARTNER'))
-                        発注書パートナー確認中
+                        パートナー確認中
                     @elseif(($task->status) === config('const.ORDER_APPROVAL_PARTNER'))
                         作業前
                     @elseif(($task->status) === config('const.WORKING'))

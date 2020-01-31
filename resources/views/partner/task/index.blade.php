@@ -65,14 +65,14 @@
                                 <option value="">全てのステータス</option>
                                 <option value="">下書き</option>
                                 <option value="">タスク上長確認前</option>
-                                <option value="">タスク上長確認中</option>
-                                <option value="">タスクパートナー依頼前</option>
+                                <option value="">上長確認中</option>
+                                <option value="">パートナー依頼前</option>
                                 <option value="">タスクパートナー依頼中</option>
                                 <option value="">発注書作成中</option>
                                 <option value="">発注書作成完了</option>
-                                <option value="">発注書上長確認中</option>
-                                <option value="">発注書パートナー依頼前</option>
-                                <option value="">発注書パートナー確認中</option>
+                                <option value="">上長確認中</option>
+                                <option value="">パートナー依頼前</option>
+                                <option value="">パートナー確認中</option>
                                 <option value="">作業中</option>
                                 <option value="">請求書依頼中</option>
                                 <option value="">請求書確認中</option>
@@ -108,9 +108,9 @@
                                     <div id ="state" class="status">
                                         <div class="color02">
                                             @if($task->status === config('const.TASK_SUBMIT_PARTNER'))
-                                                <div class="color01">タスクパートナー確認中</div>
+                                                <div class="color01">パートナー確認中</div>
                                             @elseif($task->status === config('const.ORDER_SUBMIT_PARTNER'))
-                                                <div class="color01">発注書パートナー確認中</div>
+                                                <div class="color01">パートナー確認中</div>
                                             @elseif($task->status === config('const.ORDER_APPROVAL_PARTNER'))
                                                 <div class="color01">作業前</div>
                                             @elseif($task->status === config('const.WORKING'))

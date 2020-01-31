@@ -54,6 +54,7 @@ mix.js(["resources/js/pages/company/project/create/index.js"], "public/js/pages/
 // task
 mix.js(["resources/js/pages/company/task/index/index.js"], "public/js/pages/company/task/index/index.js");
 mix.js(["resources/js/pages/company/task/create/index.js"], "public/js/pages/company/task/create/index.js");
+mix.js(["resources/js/pages/partner/task/index/index.js"], "public/js/pages/partner/task/index/index.js");
 
 // order
 mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/index.js");

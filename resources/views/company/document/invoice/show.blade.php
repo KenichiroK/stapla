@@ -35,7 +35,7 @@
                     </div>
         
                     <div class="right">
-                        <p>発注日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
+                        <p>請求日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
                         <p>{{ $invoice->partner->name }}</p>
                         <p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
                     </div>
@@ -157,7 +157,7 @@
 				</div>
 	
 				<div class="right">
-					<p>発注日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
+					<p>請求日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
 					<p>{{ $invoice->partner->name }}</p>
 					<p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
 				</div>
@@ -266,7 +266,7 @@
 			<form action="{{ route('company.task.status.change') }}" method="POST">
 				@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-				<input type="hidden" name="status" value="{{ config('const.ACCEPTANCE') }}">
+				<input type="hidden" name="status" value="{{ config('const.INVOICE_DRAFT_CREATE') }}">
 				<div class="button-container">
 					<button type="submit" class="undone">請求書を拒否する</button>
 				</div>
@@ -293,7 +293,7 @@
 			<form action="{{ route('company.task.status.change') }}" method="POST">
 				@csrf
 				<input type="hidden" name="task_id" value="{{ $invoice->task->id }}">
-				<input type="hidden" name="status" value="{{ config('const.WORKING') }}">
+				<input type="hidden" name="status" value="{{ config('const.INVOICE_DRAFT_CREATE') }}">
 				<button class="undone" type="submit">請求書を拒否する</button>
 			</form>
 			<form action="{{ route('company.task.status.change')}}" method="POST">

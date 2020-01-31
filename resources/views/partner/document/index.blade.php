@@ -34,12 +34,16 @@
                                 <td class="task-data">{{ $purchaseOrder->task_name }}</td>
                                 <td>{{ date("Y年m月d日", strtotime($purchaseOrder->task_ended_at)) }}</td>
                                 <td class="staff-data">
-                                    <div class="imgbox">
-                                        <img src="{{ $purchaseOrder->companyUser->picture }}" alt="">
-                                    </div>
-                                    <div class="name">
-                                        {{ $purchaseOrder->companyUser->name }}
-                                    </div>
+                                    @isset($purchaseOrder->companyUser)
+                                        @isset($purchaseOrder->companyUser->picture)
+                                            <div class="imgbox">
+                                                <img src="{{ $purchaseOrder->companyUser->picture }}" alt="">
+                                            </div>
+                                        @endisset
+                                        <div class="name">
+                                            {{ $purchaseOrder->companyUser->name }}
+                                        </div>
+                                    @endisset
                                 </td>
                                 <td>{{ $purchaseOrder->task->price }}</td>
                                 <td>○</td>
@@ -83,12 +87,16 @@
                                 <td class="task-data">{{ $invoice->task->name }}</td>
                                 <td>{{ date("Y年m月d日", strtotime($invoice->task->ended_at)) }}</td>
                                 <td class="staff-data">
-                                    <div class="imgbox">
-                                        <img src="{{ $invoice->companyUser->picture }}" alt="">
-                                    </div>
-                                    <div class="name">
-                                        {{ $invoice->companyUser->name }}
-                                    </div>
+                                    @isset($invoice->companyUser)
+                                        @isset($invoice->companyUser->picture)
+                                            <div class="imgbox">
+                                                <img src="{{ $invoice->companyUser->picture }}" alt="">
+                                            </div>
+                                        @endisset
+                                        <div class="name">
+                                            {{ $invoice->companyUser->name }}
+                                        </div>
+                                    @endisset
                                 </td>
                                 <td>{{ $invoice->task->price }}</td>
                                 <td>○</td>

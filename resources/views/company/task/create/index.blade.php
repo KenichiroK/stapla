@@ -134,7 +134,7 @@
                 <div class="form-container__body">
                     <div class="select-arrow">
                         <select name="superior_id">
-                            <option selected></option>
+                            <option disabled selected></option>
                                 @foreach($company_users as $company_user)
                                     @if(isset($task->superior_id))
                                         <option value={{ $company_user->id }} {{ ($task->superior_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>
@@ -161,7 +161,7 @@
                 <div class="form-container__body">
                     <div class="select-arrow">
                         <select name="accounting_id">
-                            <option selected></option>
+                            <option disabled selected></option>
                                 @foreach($company_users as $company_user)
                                     @if(isset($task->accounting_id))
                                         <option value={{ $company_user->id }} {{ ($task->accounting_id === $company_user->id) ? 'selected' : '' }}>{{ $company_user->name }}</option>

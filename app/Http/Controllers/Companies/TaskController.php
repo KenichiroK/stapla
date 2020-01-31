@@ -257,15 +257,17 @@ class TaskController extends Controller
         $task->partner_id        = $request->partner_id;
         $task->name              = $request->task_name;
         $task->content           = $request->content;
-        $task->started_at        = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
-        $task->ended_at          = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
+        $task->started_at        = Carbon::createFromTimestamp(strtotime($request->started_at))
+                                    ->format('Y-m-d-H-i-s');
+        $task->ended_at          = Carbon::createFromTimestamp(strtotime($request->ended_at))
+                                    ->format('Y-m-d-H-i-s');
         $task->status            = config('const.TASK_SUBMIT_SUPERIOR');
         $task->purchaseorder     = false;
         $task->invoice           = false;
         $task->tax               = config('const.TEN_TAX');
         $task->price             = $request->order_price;
-        $task->delivery_date = Carbon::createFromTimestamp(strtotime($request->delivery_date))
-                                ->format('Y-m-d-H-i-s');  
+        $task->delivery_date     = Carbon::createFromTimestamp(strtotime($request->delivery_date))
+                                    ->format('Y-m-d-H-i-s');  
         $task->status_updated_at = Carbon::now();
         $task->save();
 
@@ -353,28 +355,51 @@ class TaskController extends Controller
     {
         $auth = Auth::user();
         $task = Task::findOrFail($id);
+        $purchase_order = PurchaseOrder::where('task_id', $task->id)->first();
         $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', 1)->get();
 
-        $companyUsers = CompanyUser::where('company_id', $auth->company_id)->get();
+        $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
         $partners = Partner::where('company_id', $auth->company_id)->get();
 
-        return view('company/task/edit', compact('task', 'projects','companyUsers', 'partners')); 
+        return view('company/task/edit/index', compact('task', 'purchase_order', 'projects','company_users', 'partners')); 
     }
 
-    public function update(TaskPreviewRequest $request, $id)
+    public function update(TaskPreviewRequest $request, $task_id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::findOrFail($task_id);
         $task->project_id      = $request->project_id;
-        $task->company_user_id = $request->company_user_id;
+        $task->company_user_id = $request->task_company_user_id;
         $task->superior_id     = $request->superior_id;
         $task->accounting_id   = $request->accounting_id;
-        $task->partner_id      = $request->partner_id;
-        $task->name            = $request->name;
-        $task->content         = $request->content;
-        $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))->format('Y-m-d-H-i-s');
-        $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))->format('Y-m-d-H-i-s');
-        $task->budget          = $request->budget;
-        $task->price           = $request->price;
+        $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))
+                                    ->format('Y-m-d-H-i-s');
+         $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))
+                                    ->format('Y-m-d-H-i-s');
+
+        if($task->status <= config('const.TASK_SUBMIT_SUPERIOR')){
+            $task->partner_id      = $request->partner_id;
+            $task->name            = $request->task_name;
+            $task->content         = $request->content;
+            $task->price           = $request->order_price;
+            $task->delivery_date     = Carbon::createFromTimestamp(strtotime($request->delivery_date))
+                                        ->format('Y-m-d-H-i-s');
+
+            $purchaseOrder = PurchaseOrder::where('task_id', $task->id)->firstOrFail();
+            $purchaseOrder->partner_id           = $request->partner_id;
+            $purchaseOrder->ordered_at           = $request->order_at;
+            $purchaseOrder->companyUser_name     = $request->order_company_user;
+            $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
+            if(isset($request->order_name)){
+                $purchaseOrder->task_name = $request->order_name;
+            } else{
+                $purchaseOrder->task_name = $task->name;
+            }
+            $purchaseOrder->task_ended_at        = $request->ended_at;
+            $purchaseOrder->task_price           = $request->order_price;
+            $purchaseOrder->task_tax             = $task->tax;
+            $purchaseOrder->save();
+        }
+
         $task->save();
 
         return redirect()->route('company.task.show', ['id' => $task->id])->with('completed', '変更しました。');

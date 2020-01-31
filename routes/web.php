@@ -185,9 +185,9 @@ Route::group(['prefix' => 'company'], function(){
 				// 納品関連ファイルのダウンロード
 		Route::post('/file-download', 'Companies\DeliverController@download')->name('company.fileDownload');
 			// task-edit
-		Route::get('/task/{id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');
+		Route::get('/task/{task_id}/edit', 'Companies\TaskController@edit')->name('company.task.edit');
 			// task-update
-		Route::patch('/task/{id}', 'Companies\TaskController@update')->name('company.task.update');
+		Route::post('/task/{task_id}/update', 'Companies\TaskController@update')->name('company.task.update');
 		
 		// task status change
 		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');
