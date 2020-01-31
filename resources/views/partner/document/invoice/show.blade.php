@@ -36,7 +36,7 @@
 					</div>
 		
 					<div class="right">
-						<p>発注日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
+						<p>請求日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
 						<p>{{ $invoice->partner->name }}</p>
 						<p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
 					</div>
@@ -158,7 +158,7 @@
 				</div>
 	
 				<div class="right">
-					<p>発注日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
+					<p>請求日: {{ date("Y年m月d日", strtotime($invoice->requested_at)) }}</p>
 					<p>{{ $invoice->partner->name }}</p>
 					<p>{{ $invoice->partner->prefecture }}{{ $invoice->partner->city }}{{ $invoice->partner->building }}</p>
 				</div>
