@@ -150,7 +150,7 @@
                                         発注単価<span class="tax">（税抜）</span>
                                     </div>
                                 </div>
-                                <p class="preview_p">{{ $request->order_price }}円</p>
+                                <p class="preview_p">￥ {{ $request->order_price }}</p>
                                 <input type="hidden" name="order_price" value="{{ $request->order_price }}">
                             </div>
                         </div>
