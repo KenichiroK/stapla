@@ -50,6 +50,7 @@ mix.js(["resources/js/pages/partner/dashboard/index/index.js"], "public/js/pages
 // project
 mix.js(["resources/js/pages/company/project/index/index.js"], "public/js/pages/company/project/index/index.js");
 mix.js(["resources/js/pages/company/project/create/index.js"], "public/js/pages/company/project/create/index.js");
+mix.js(["resources/js/pages/company/project/edit/index.js"], "public/js/pages/company/project/edit/index.js");
 
 // task
 mix.js(["resources/js/pages/company/task/index/index.js"], "public/js/pages/company/task/index/index.js");

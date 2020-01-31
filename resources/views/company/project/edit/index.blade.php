@@ -154,5 +154,5 @@
 @endsection
 
 @section('asset-js')
-<script src="{{ asset('js/pages/company/project/create/index.js') }}"></script>
+<script src="{{ asset('js/pages/company/project/edit/index.js') }}"></script>
 @endsection
