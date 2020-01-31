@@ -312,5 +312,5 @@
 @endsection
 
 @section('asset-js')
-<script src="{{ mix('js/pages/company/task/create/index.js') }}"></script>
+<script src="{{ mix('js/pages/company/task/edit/index.js') }}"></script>
 @endsection
