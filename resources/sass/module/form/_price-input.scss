@@ -1,0 +1,22 @@
+@import "./input";
+@import "../../setting/colors";
+@import "../../mixin/font/font";
+
+.price-input {
+  width: 100%;
+  position: relative;
+
+  &__input {
+    @extend .input;
+    padding-left: 24px;
+    text-align: right;
+  }
+
+  &__unit {
+    @include font(16px, bold);
+    color: colors(grayLighten1);
+    position: absolute;
+    top: 16px;
+    left: 8px;
+  }
+}
