@@ -105,9 +105,9 @@
                 </dt>
                 <dd class="status-desc">
                     @if(($task->status) === config('const.TASK_SUBMIT_PARTNER'))
-                        タスクパートナー確認中
+                        パートナー確認中
                     @elseif(($task->status) === config('const.ORDER_SUBMIT_PARTNER'))
-                        発注書パートナー確認中
+                        パートナー確認中
                     @elseif(($task->status) === config('const.ORDER_APPROVAL_PARTNER'))
                         作業前
                     @elseif(($task->status) === config('const.WORKING'))
