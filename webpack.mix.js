@@ -161,6 +161,7 @@ mix
   // renewal project
   .sass("resources/sass/page/project/index/style.scss", "public/css/page/project/index")
   .sass("resources/sass/page/project/create/style.scss", "public/css/page/project/create")
+  .sass("resources/sass/page/project/edit/style.scss", "public/css/page/project/edit")
   // renewal task
   .sass("resources/sass/page/task/index/style.scss", "public/css/page/task/index")
   .sass("resources/sass/page/task/create/style.scss", "public/css/page/task/create")
