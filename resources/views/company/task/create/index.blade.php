@@ -312,14 +312,14 @@
 
                 <div class="form-container__body">
                     <div class="price-container">
-                        <div class="price-container__input">
+                        <div class="price-input">
                             @if(isset($task->price))
-                                <input class="input" type="text" name="order_price" value="{{ old('order_price', $task->price) }}">
+                            <input class="price-input__input" type="text" name="order_price" value="{{ old('order_price', $task->price) }}">
                             @else
-                                <input class="input" type="text" name="order_price" value="{{ old('order_price') }}">
+                            <input class="price-input__input" type="text" name="order_price" value="{{ old('order_price') }}">
                             @endif
+                            <label class="price-input__unit">￥</label>
                         </div>
-                        <span class="unit">円</span>
                     </div>
                     @if ($errors->has('order_price'))
                         <div class="invalid-feedback error-msg" role="alert">

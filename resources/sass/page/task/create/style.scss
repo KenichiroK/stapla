@@ -3,6 +3,7 @@
 @import "../../../module/form/container";
 @import "../../../module/form/date";
 @import "../../../module/form/input";
+@import "../../../module/form/price-input";
 @import "../../../module/form/textarea";
 @import "../../../module/form/selectbox";
 @import "../../../module/button/button";
@@ -40,22 +41,7 @@
 }
 
 .price-container {
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  &__input {
-    width: 45%;
-
-    .input {
-      text-align: right;
-    }
-  }
-
-  .unit {
-    @include font(16px, bold);
-    margin-left: 10px;
-  }
+  width: 45%;
 }
 
 .negative-btn {
