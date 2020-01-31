@@ -102,25 +102,13 @@
                                     タスク期間
                                 </div>
                             </div>
-                            <div class="calendar-wrp">
-                                <!-- 開始日カレンダー -->
-                                <div class="calendar-item">                               
-                                    <div class="calendar-name start">
-                                        開始日<i class="fas fa-calendar-alt"></i>
-                                    </div>
-                                    <p>{{ date("Y年m月d日H時", strtotime($request->started_at)) }}</p>
-                                    <input type="hidden" name="started_at" value="{{ $request->started_at }}">
-                                </div>
-                                <!-- 終了日カレンダー -->
-                                <div class="calendar-item end">                               
-
-                                    <div class="calendar-name">
-                                        終了日<i class="fas fa-calendar-alt"></i>
-                                    </div>
-                                    <p>{{ date("Y年m月d日H時", strtotime($request->ended_at)) }}</p>
-                                    <input type="hidden" name="ended_at" value="{{ $request->ended_at }}">
-                                </div>
-                            </div>
+                            <p class="preview_p">
+                                {{ date("Y/m/d H:i", strtotime($request->started_at)) }}
+                                　〜　 
+                                {{ date("Y/m/d H:i", strtotime($request->ended_at)) }}
+                                <input type="hidden" name="started_at" value="{{ $request->started_at }}">
+                                <input type="hidden" name="ended_at" value="{{ $request->ended_at }}">
+                            </p>
                         </div>
                     </div>      
                 </div>
@@ -150,7 +138,7 @@
                                         発注単価<span class="tax">（税抜）</span>
                                     </div>
                                 </div>
-                                <p class="preview_p">{{ $request->order_price }}円</p>
+                                <p class="preview_p">{{ number_format($request->order_price) }}円</p>
                                 <input type="hidden" name="order_price" value="{{ $request->order_price }}">
                             </div>
                         </div>
@@ -162,7 +150,7 @@
                                     納期
                                 </div>
                             </div>
-                            <p class="preview_p">{{ date("Y年m月d日H時", strtotime($request->delivery_date)) }}</p>
+                            <p class="preview_p">{{ date("Y/m/d H:i", strtotime($request->delivery_date)) }}</p>
                             <input type="hidden" name="delivery_date" value="{{ $request->delivery_date }}">
                         </div>
                     </div>
