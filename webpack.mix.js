@@ -163,7 +163,8 @@ mix
   // renewal task
   .sass("resources/sass/page/task/index/style.scss", "public/css/page/task/index")
   .sass("resources/sass/page/task/create/style.scss", "public/css/page/task/create")
-  .sass("resources/sass/page/task/show/style.scss", "public/css/page/task/show");
+  .sass("resources/sass/page/task/show/style.scss", "public/css/page/task/show")
+  .sass("resources/sass/page/task/edit/style.scss", "public/css/page/task/edit");
 
 mix.options({
   publicPath: "public",

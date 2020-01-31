@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/style.css') }}">
-<link rel="stylesheet" href="{{ mix('css/page/task/create/style.css') }}">
+<link rel="stylesheet" href="{{ mix('css/page/task/edit/style.css') }}">
 @endsection
 
 @section('content')
@@ -262,10 +262,10 @@
 
                     <div class="form-container__body">
                         <div class="price-container">
-                            <div class="price-container__input">
-                                <input class="input" type="text" name="order_price" value="{{ old('order_price', $task->price) }}">
+                            <div class="price-input">
+                                <input class="price-input__input" type="text" name="order_price" value="{{ old('order_price', $task->price) }}">
+                                <label class="price-input__unit">￥</label>
                             </div>
-                            <span class="unit">円</span>
                         </div>
                         @if ($errors->has('order_price'))
                             <div class="invalid-feedback error-msg" role="alert">
