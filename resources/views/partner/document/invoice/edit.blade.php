@@ -228,7 +228,6 @@
 					</thead>
 					
 					<tbody id="expences">
-
                         @foreach($invoice->requestExpences as $requestExpence)
 						<tr>
 							<td class="del-expences-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>

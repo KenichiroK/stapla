@@ -164,10 +164,14 @@
 					<tbody id="taskRequest">
 						@for ($i = 0; $i < $task_count; $i++)
 						<tr>
-							<td></td>
+							@if($i == 0)
+								<td></td>
+							@else
+								<td class="del-task-record" name="expences_element" onclick="delExpenceRecord(this)">×</td>
+							@endif
 							<td class="item">
-								<input type="text" value="{{ $task->PurchaseOrder->task_name }}" disabled="disabled">
-								<input type="hidden" name="item_name[]" value="{{ $task->PurchaseOrder->task_name }}">
+								<input type="text" value="{{ old('item_name.' . $i, $task->PurchaseOrder->task_name) }}" disabled="disabled">
+								<input type="hidden" name="item_name[]" value="{{ old('item_name.' . $i, $task->PurchaseOrder->task_name) }}">
 							</td>
 							<td class="num"><input type="text" name="item_num[]" value="{{ old('item_num.' . $i, 1) }}" onchange="calculateSumPrice()"></td>
 							<td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price.' . $i, $task->PurchaseOrder->task_price) }}" onchange="calculateSumPrice()"><span>円</span></td>
