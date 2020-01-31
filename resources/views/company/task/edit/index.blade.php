@@ -303,7 +303,7 @@
             </div>
         @endif
 
-        <input type="text" name="task_status" value="{{ $task->status }}">
+        <input type="hidden" name="task_status" value="{{ $task->status }}">
         <div class="btn-container">
             <button type="submit" class="positive-btn">保存</button>
         </div>
