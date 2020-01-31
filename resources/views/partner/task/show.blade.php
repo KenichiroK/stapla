@@ -30,12 +30,6 @@
             </dl>
             <dl>
                 <dt>
-                    タスク作成日
-                </dt>
-                <dd>{{ date("Y年m月d日H時i分", strtotime($task->created_at)) }}</dd>
-            </dl>
-            <dl>
-                <dt>
                     タスク内容
                 </dt>
                 <dd>
