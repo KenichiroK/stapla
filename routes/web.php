@@ -21,12 +21,13 @@ Route::namespace('Partners')->as('partner.')->group(function() {
 	Auth::routes(['verify' => true]);
 });
 
-Route::group(['prefix' => 'partner'], function(){	
-	//login   
+Route::group(['prefix' => 'partner'], function(){
+
+	//login
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
-	
-	// register   
+
+	// register
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('passwordRegister', 'Partners\Auth\RegisterController@passwordRegister')->name('partner.passwordRegister');
 	Route::get('verify', 'Partners\Auth\RegisterController@verify')->name('partner.verify');
@@ -55,7 +56,7 @@ Route::group(['prefix' => 'partner'], function(){
 
 		// dashboard
 		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
-		
+
 		// project
 		Route::get('/project', 'Partners\ProjectController@index')->name('partner.project.index');
 		Route::get('/project/done', 'Partners\ProjectController@doneIndex')->name('partner.project.done.index');
@@ -71,33 +72,38 @@ Route::group(['prefix' => 'partner'], function(){
 
 		// document
 		Route::get('/document', 'Partners\DocumentController@index')->name('partner.document.index');
-		
+		Route::get('/document', 'Partners\DocumentController@index')->name('partner.document.index');
+
 		// task status change
 		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
 
 		// Deliver
 		Route::get('/deliver/{task_id}', 'Partners\DeliverController@create')->name('partner.deliver.create');
 		Route::post('/deliver', 'Partners\DeliverController@store')->name('partner.deliver.store');
-		
+
 		// profile
 		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
 		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
 		Route::get('setting/profile/email', 'Partners\ProfileController@email')->name('partner.profile.email');
 		Route::post('setting/profile/email', 'Partners\ProfileController@sendMail')->name('partner.profile.email.sendMail');
-		
+
 		//  invoice setting
 		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
 		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
 
 		// purchase-order
 		Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.document.purchaseOrder.show');
-		
+
 		// invoice
 		Route::get('document/invoice/create/{task_id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
 		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
 		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
 		Route::get('document/invoice/{id}/edit', 'Partners\InvoiceController@edit')->name('partner.document.invoice.edit');
 		Route::post('document/invoice/{id}/update', 'Partners\InvoiceController@update')->name('partner.document.invoice.update');
+
+		//outsource contract(業務委託契約書)
+		// HACK: outsource用のコントローラにしたいがPartnersディレクトリのリファクタが済むまではいったんDocumentControllerに書く
+		Route::get('/document/outsource-contracts/edit', 'Partners\DocumentController@editOutsource')->name('partner.document.outsource-contracts.edit');
 
 		// logout
 		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
@@ -143,7 +149,7 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
-		
+
 		// project
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
 		Route::get('/project/done', 'Companies\ProjectController@doneIndex')->name('company.project.done.index');
@@ -161,7 +167,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
 			// task statusIndex
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
-		
+
 			// 作成ページ
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
 			// 下書きがある場合の作成ページ
@@ -191,13 +197,13 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// task status change
 		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');
-		
+
 		// partner
 		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
-		
+
 		// document
 		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');
-	
+
 			// purchaseOrder
 		Route::get('/document/purchaseOrder/create/{task_id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.create');
 		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
@@ -234,5 +240,5 @@ Route::group(['prefix' => 'company'], function(){
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');
 
-	});  
+	});
 });
