@@ -12,7 +12,8 @@
     text-align: right;
   }
 
-  &__unit {
+  &:after {
+    content: "￥";
     @include font(16px, bold);
     color: colors(grayLighten1);
     position: absolute;

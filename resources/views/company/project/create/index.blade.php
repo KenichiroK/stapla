@@ -130,7 +130,6 @@
                     <div class="price-container">
                         <div class="price-input">
                             <input class="price-input__input" type="text" name="budget" value="{{ old('budget') }}">
-                            <label class="price-input__unit">￥</label>
                         </div>
                     </div>
                     @if ($errors->has('budget'))

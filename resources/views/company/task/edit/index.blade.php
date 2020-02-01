@@ -264,7 +264,6 @@
                         <div class="price-container">
                             <div class="price-input">
                                 <input class="price-input__input" type="text" name="order_price" value="{{ old('order_price', $task->price) }}">
-                                <label class="price-input__unit">￥</label>
                             </div>
                         </div>
                         @if ($errors->has('order_price'))
