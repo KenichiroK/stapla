@@ -19,5 +19,5 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
-# NOTE: vscodeの個人設定
-/.vscode
+# NOTE: phpstorm
+.idea
