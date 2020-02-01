@@ -318,7 +318,6 @@
                             @else
                             <input class="price-input__input" type="text" name="order_price" value="{{ old('order_price') }}">
                             @endif
-                            <label class="price-input__unit">￥</label>
                         </div>
                     </div>
                     @if ($errors->has('order_price'))
