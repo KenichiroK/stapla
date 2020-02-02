@@ -115,8 +115,8 @@
     </div>
 
     <div class="items-container">
-        <div class="item-title-container">
-            <p class="item-title-container__text">パートナー契約内容</p>
+        <div class="items-container__title">
+            <p class="items-container__title--text">パートナー契約内容</p>
         </div>
 
         <div class="item-container">
@@ -142,8 +142,8 @@
 
     @if($task->status >= config('const.DELIVERY_PARTNER'))
     <div class="items-container">
-        <div class="item-title-container">
-            <p class="item-title-container__text">納品</p>
+        <div class="items-container__title">
+            <p class="items-container__title--text">納品</p>
         </div>
 
         <div class="item-container">
