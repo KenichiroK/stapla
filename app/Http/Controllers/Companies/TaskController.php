@@ -249,51 +249,52 @@ class TaskController extends Controller
             $purchaseOrder = new PurchaseOrder;
         }
         // タスク
-        $task->company_id        = $auth->company_id;
-        $task->project_id        = $request->project_id;
-        $task->company_user_id   = $request->task_company_user_id;
-        $task->superior_id       = $request->superior_id;
-        $task->accounting_id     = $request->accounting_id;
-        $task->partner_id        = $request->partner_id;
-        $task->name              = $request->task_name;
-        $task->content           = $request->content;
-        $task->started_at        = Carbon::createFromTimestamp(strtotime($request->started_at))
+        $task->company_id      = $auth->company_id;
+        $task->project_id      = $request->project_id;
+        $task->company_user_id = $request->task_company_user_id;
+        $task->superior_id     = $request->superior_id;
+        $task->accounting_id   = $request->accounting_id;
+        $task->partner_id      = $request->partner_id;
+        $task->name            = $request->task_name;
+        $task->content         = $request->content;
+        $task->started_at      = Carbon::createFromTimestamp(strtotime($request->started_at))
                                     ->format('Y-m-d-H-i-s');
-        $task->ended_at          = Carbon::createFromTimestamp(strtotime($request->ended_at))
+        $task->ended_at        = Carbon::createFromTimestamp(strtotime($request->ended_at))
                                     ->format('Y-m-d-H-i-s');
-        $task->status            = config('const.TASK_SUBMIT_SUPERIOR');
-        $task->purchaseorder     = false;
-        $task->invoice           = false;
-        $task->tax               = config('const.TEN_TAX');
-        $task->price             = $request->order_price;
-        $task->delivery_date     = Carbon::createFromTimestamp(strtotime($request->delivery_date))
-                                    ->format('Y-m-d-H-i-s');  
+        $task->status          = config('const.TASK_SUBMIT_SUPERIOR');
+        $task->purchaseorder   = false;
+        $task->invoice         = false;
+        $task->tax             = config('const.TEN_TAX');
+        $task->price           = $request->order_price;
+        $task->delivery_date   = Carbon::createFromTimestamp(strtotime($request->delivery_date))
+                                    ->format('Y-m-d-H-i-s');
         $task->status_updated_at = Carbon::now();
         $task->save();
 
         // 発注書登録
-        $purchaseOrder->company_id           = $auth->company_id;
-        $purchaseOrder->partner_id           = $request->partner_id;
-        $purchaseOrder->task_id              = $task->id;
-        $purchaseOrder->status               = config('consts.order.CREATED');
-        $purchaseOrder->ordered_at           = $request->order_at;
-        $purchaseOrder->company_name         = $auth->company->company_name;
-        $purchaseOrder->company_tel          = $auth->company->tel;
-        $purchaseOrder->company_zip_code     = $auth->company->zip_code;
-        $purchaseOrder->company_prefecture   = $auth->company->address_prefecture;
-        $purchaseOrder->company_city         = $auth->company->address_city;
-        $purchaseOrder->company_building     = $auth->company->address_building;
-        $purchaseOrder->companyUser_name     = $request->order_company_user;
-        $purchaseOrder->partner_name         = Partner::findOrFail($request->partner_id)->name;
+        $purchaseOrder->company_id         = $auth->company_id;
+        $purchaseOrder->partner_id         = $request->partner_id;
+        $purchaseOrder->task_id            = $task->id;
+        $purchaseOrder->status             = config('consts.order.CREATED');
+        $purchaseOrder->ordered_at         = Carbon::createFromTimestamp(strtotime($request->ordered_at))
+                                                ->format('Y-m-d-H-i-s');  
+        $purchaseOrder->company_name       = $auth->company->company_name;
+        $purchaseOrder->company_tel        = $auth->company->tel;
+        $purchaseOrder->company_zip_code   = $auth->company->zip_code;
+        $purchaseOrder->company_prefecture = $auth->company->address_prefecture;
+        $purchaseOrder->company_city       = $auth->company->address_city;
+        $purchaseOrder->company_building   = $auth->company->address_building;
+        $purchaseOrder->companyUser_name   = $request->order_company_user;
+        $purchaseOrder->partner_name       = Partner::findOrFail($request->partner_id)->name;
         $task = Task::findOrFail($task->id);
         if(isset($request->order_name)){
             $purchaseOrder->task_name = $request->order_name;
         } else{
-            $purchaseOrder->task_name         = $task->name;
+            $purchaseOrder->task_name       = $task->name;
         }
-        $purchaseOrder->task_ended_at        = $request->ended_at;
-        $purchaseOrder->task_price           = $request->order_price;
-        $purchaseOrder->task_tax             = $task->tax;
+        $purchaseOrder->task_ended_at      = $request->ended_at;
+        $purchaseOrder->task_price         = $request->order_price;
+        $purchaseOrder->task_tax           = $task->tax;
         $purchaseOrder->save();
         
         \Log::info('タスク・発注書 新規作成', ['user_id(company)' => $auth->id, 'task_id' => $task->id, 'status' => $task->status, 'purchase_order_id' => $purchaseOrder->id]);
