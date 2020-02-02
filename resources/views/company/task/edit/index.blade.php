@@ -16,7 +16,7 @@
         @endif
 
         <div class="page-title-container">
-            <h3  class="page-title-container__text">タスク・発注書作成</h3>
+            <h3  class="page-title-container__text">「{{ $task->name }}」の編集</h3>
         </div>
 
         <div class="block-container">
