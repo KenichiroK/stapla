@@ -14,7 +14,7 @@
     @endif
 
     <div class="page-title-container">
-        <h3 class="page-title-container__text">タスク詳細</h3>
+        <h3 class="page-title-container__text">「{{ $task->name }}」詳細</h3>
         <a class="page-title-container__btn" href="{{ route('company.task.edit', ['task_id' => $task->id]) }}">タスク編集</a>
     </div>
 
@@ -110,6 +110,11 @@
         <div class="item-container">
             <p class="item-container__left">プロジェクト期間</p>
             <p class="item-container__right">{{ date('Y年m月d日', strtotime($task->started_at)) }}<span class="date-line"></span>{{ date('Y年m月d日', strtotime($task->ended_at)) }}</p>
+        </div>
+
+        <div class="item-container">
+            <p class="item-container__left">納期</p>
+            <p class="item-container__right">{{ date('Y年m月d日', strtotime($task->delivery_date)) }}</p>
         </div>
         
     </div>
