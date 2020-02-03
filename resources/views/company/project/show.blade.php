@@ -54,7 +54,7 @@
                     </li>
                     <li class="detail-container__list__item">
                         <div class="detail-container__list__item__name">予算</div>
-                        <div class="detail-container__list__item__content">{{ number_format($project->budget) }}円</div>
+                        <div class="detail-container__list__item__content">￥ {{ number_format($project->budget) }}</div>
                     </li>
                 </ul>
             </div>

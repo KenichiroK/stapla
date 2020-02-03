@@ -2,7 +2,7 @@
 
 @section('assets')
 <link rel="stylesheet" href="{{ mix('css/style.css') }}">
-<link rel="stylesheet" href="{{ mix('css/page/task/create/style.css') }}">
+<link rel="stylesheet" href="{{ mix('css/page/task/edit/style.css') }}">
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
         @endif
 
         <div class="page-title-container">
-            <h3  class="page-title-container__text">タスク・発注書作成</h3>
+            <h3  class="page-title-container__text">「{{ $task->name }}」の編集</h3>
         </div>
 
         <div class="block-container">
@@ -262,10 +262,9 @@
 
                     <div class="form-container__body">
                         <div class="price-container">
-                            <div class="price-container__input">
-                                <input class="input" type="text" name="order_price" value="{{ old('order_price', $task->price) }}">
+                            <div class="price-input">
+                                <input class="price-input__input" type="text" name="order_price" value="{{ old('order_price', $task->price) }}">
                             </div>
-                            <span class="unit">円</span>
                         </div>
                         @if ($errors->has('order_price'))
                             <div class="invalid-feedback error-msg" role="alert">
@@ -303,7 +302,7 @@
             </div>
         @endif
 
-        <input type="text" name="task_status" value="{{ $task->status }}">
+        <input type="hidden" name="task_status" value="{{ $task->status }}">
         <div class="btn-container">
             <button type="submit" class="positive-btn">保存</button>
         </div>
@@ -312,5 +311,5 @@
 @endsection
 
 @section('asset-js')
-<script src="{{ mix('js/pages/company/task/create/index.js') }}"></script>
+<script src="{{ mix('js/pages/company/task/edit/index.js') }}"></script>
 @endsection

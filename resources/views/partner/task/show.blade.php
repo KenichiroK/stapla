@@ -18,7 +18,7 @@
                 <div class="page-title-container__page-title">{{ $task->name }}詳細</div>
             </div>
         </div>
-
+        
         <div class="detail">
             <dl class="first">
                 <dt>
@@ -82,7 +82,7 @@
                     発注単価<span>(税抜)</span>
                 </dt>
                 <dd>
-                    {{ number_format($task->price) }}円
+                    ￥ {{ number_format($task->price) }}
                 </dd>
             </dl>
             <dl>
