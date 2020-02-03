@@ -186,9 +186,10 @@ return [
         'account_number' => '口座番号',
 
         // project
-        'project_id'      => 'プロジェクト',
-        'superior_id'      => '上長',
+        'project_id'         => 'プロジェクト',
+        'superior_id'        => '上長',
         'accounting_id'      => '経理',
+        'budget'             => '予算',
 
         // task
         'task_name'            => 'タスク名',

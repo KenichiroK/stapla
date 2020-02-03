@@ -91,12 +91,14 @@ class ProjectController extends Controller
 
     public function edit($project_id)
     {
-        $company_user = Auth::user();
-        $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
-        $partner_users = Partner::where('company_id', $company_user->company_id)->get();
+        $company_users = CompanyUser::where('company_id', Auth::user()->company_id)->get();
         $project = Project::findOrFail($project_id);
+        $assigned_project_company_user_ids = collect($project->projectCompanies)
+                                                ->map(function ($item, $key){
+                                                    return $item->user_id;
+                                                });
         
-        return view('company/project/create', compact('company_user', 'company_users', 'project'));
+        return view('company/project/edit/index', compact('company_users', 'project', 'assigned_project_company_user_ids'));
     }
 
     public function update(CreateProjectRequest $request, $project_id)
