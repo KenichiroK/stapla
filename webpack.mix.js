@@ -25,6 +25,9 @@ mix.webpackConfig({
 
 mix.js(
   [
+    // 共通
+    "resources/js/common/convert-character.js",
+
     //company
     "resources/js/app.js",
     "resources/js/company/dashboad/index.js",
