@@ -46,24 +46,15 @@
                     <li class="detail-container__list__item"><div class="detail-container__list__item__name">プロジェクト期間</div>
                         <div class="period__wrapper">
                             <div class="period__wrapper__container">
-                                <div class="period__wrapper__container__start">
-                                    開始日
-                                    <span class="period__wrapper__container__start__date">
-                                        {{ date("Y年m月d日", strtotime($project->started_at)) }}
-                                    </span>
-                                </div>
-                                <div class="period__wrapper__container__end">
-                                    終了日
-                                    <span class="period__wrapper__container__end__date">
-                                        {{ $project->ended_at->format('Y年m月d日') }}
-                                    </span>
-                                </div>
+                                {{ date("Y年m月d日", strtotime($project->started_at)) }}
+                                　〜　
+                                {{ $project->ended_at->format('Y年m月d日') }}
                             </div>
                         </div>
                     </li>
                     <li class="detail-container__list__item">
                         <div class="detail-container__list__item__name">予算</div>
-                        <div class="detail-container__list__item__content">{{ number_format($project->budget) }}円</div>
+                        <div class="detail-container__list__item__content">￥ {{ number_format($project->budget) }}</div>
                     </li>
                 </ul>
             </div>

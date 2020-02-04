@@ -128,10 +128,9 @@
 
                 <div class="form-container__body">
                     <div class="price-container">
-                        <div class="price-container__input">
-                            <input class="input" type="text" name="budget" value="{{ old('budget') }}">
+                        <div class="price-input">
+                            <input class="price-input__input" type="text" name="budget" value="{{ old('budget') }}">
                         </div>
-                        <span class="unit">円</span>
                     </div>
                     @if ($errors->has('budget'))
                     <div class="invalid-feedback error-msg" role="alert">

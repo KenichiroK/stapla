@@ -112,9 +112,9 @@ function setPostal(){
 							<span class="required-label row-label">( 必須 )</span>
 						</p>
 						<div class="zipcode-container__wrapper">
-							<input type="text" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front', mb_substr($partner->zip_code, 0, 3)) }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
+							<input type="text" class="js-c-zenkaku2hankaku" name="zip_code_front" id="postal_front" value="{{ old('zip_code_front', mb_substr($partner->zip_code, 0, 3)) }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 							<span class="hyphen"><hr></span>
-							<input type="text" name="zip_code_back" id="postal_back" value="{{ old('zip_code_back', mb_substr($partner->zip_code, 3)) }}" maxlength="4" onchange="setPostal()">
+							<input type="text" class="js-c-zenkaku2hankaku" name="zip_code_back" id="postal_back" value="{{ old('zip_code_back', mb_substr($partner->zip_code, 3)) }}" maxlength="4" onchange="setPostal()">
 							<input type="hidden" name="zip_code" id="postal" value="{{ old('zip_code') }}">
 						</div>
 						@if($errors->has('zip_code'))
@@ -194,7 +194,7 @@ function setPostal(){
 							<span class="required-label row-label">( 必須 )</span>
 						</p>
 						<div class="tel-container__wrapper">
-							<input type="text" name="tel" id="tel" value="{{ old('tel', $partner->tel) }}" maxlength="11">
+							<input type="text" class="js-c-zenkaku2hankaku" name="tel" id="tel" value="{{ old('tel', $partner->tel) }}" maxlength="11">
 						</div>
 						@if($errors->has('tel'))
 							<div class="error-msg">
@@ -227,4 +227,8 @@ function setPostal(){
 		</div>
 	</div>
 </main>
+@endsection
+
+@section('asset-js')
+<script src="{{ asset('js/app.js') }}" defer></script>
 @endsection

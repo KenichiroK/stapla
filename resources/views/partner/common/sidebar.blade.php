@@ -8,6 +8,65 @@
 					</div>
 				</div>
 			</a>
+
+			{{-- HACK: DRYじゃないところ --}}
+			@if (
+				Route::currentRouteName() === 'partner.notContract'
+				|| Route::currentRouteName() === 'partner.document.outsourceContracts.edit'
+			)
+			<ul class="menu-list menu menu__container__menu-list">
+				<li>
+					<a href="#" style="pointer-events: none; color: gray;">
+						<div class="icon-imgbox">
+							<img src="{{ env('AWS_URL') }}/common/icon_dashboard-active.png" alt="">
+						</div>
+						<div class="textbox">
+							ダッシュボード
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#" style="pointer-events: none; color: gray;">
+						<div class="icon-imgbox">
+							<img src="{{ env('AWS_URL') }}/common/icon_inbox.png" alt="">
+						</div>
+						<div class="textbox">
+							プロジェクト
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#" style="pointer-events: none; color: gray;">
+						<div class="icon-imgbox">
+							<img src="{{ env('AWS_URL') }}/common/icon_products.png" alt="">
+						</div>
+						<div class="textbox">
+							タスク
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#" style="pointer-events: none; color: gray;">
+						<div class="icon-imgbox">
+							<img src="{{ env('AWS_URL') }}/common/icon_invoices.png" alt="">
+						</div>
+						<div class="textbox">
+							書類
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#" style="pointer-events: none; color: gray;">
+						<div class="icon-imgbox">
+							<img src="{{ env('AWS_URL') }}/common/icon_setting.png" alt="">
+						</div>
+						<div class="textbox">
+							設定
+						</div>
+					</a>
+				</li>
+			</ul>
+			@else
 			<ul class="menu-list menu menu__container__menu-list">
 				<li>
 					<a href="{{ route('partner.dashboard') }}" class="{{ strpos(request()->route()->getName(), 'dashboard') ? 'isActive' : '' }}">
@@ -60,6 +119,7 @@
 					</a>
 				</li>
 			</ul>
+			@endif
 		</aside>
 	</div>
 </div>

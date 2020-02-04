@@ -186,9 +186,10 @@ return [
         'account_number' => '口座番号',
 
         // project
-        'project_id'      => 'プロジェクト',
-        'superior_id'      => '上長',
+        'project_id'         => 'プロジェクト',
+        'superior_id'        => '上長',
         'accounting_id'      => '経理',
+        'budget'             => '予算',
 
         // task
         'task_name'            => 'タスク名',
@@ -204,6 +205,7 @@ return [
         'deliver_comment'      => '自由記述欄',
         'deliver_files'        => '添付ファイル',
         'deliver_files.*'      => 'アップロードできるファイル',
+        'delivery_date'        => '納期',
 
         // doucment 作成
         'task_id'              => 'タスク',

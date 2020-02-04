@@ -19,7 +19,7 @@
     }
 }
 .item-name-wrapper {
-    width: 22%;
+    width: 14%;
     display: table;
     height: 48px;
     padding-right: 30px;
@@ -84,36 +84,21 @@
     margin-bottom: 60px;
     &__wrapper {
         background-color: #ffffff;
-        padding: 40px 16px 1px;
+        padding: 40px 30px 1px;
         border-radius: 4px;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
         .item-container {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-
-            // タスク期間
-            .calendar-item {
-                display: block;
-                .calendar-name {
-                    font-size: 16px;
-                    margin-bottom: 3px;
-                    i {
-                        color: #a5a4bf;
-                        padding-left: 26px;
-                    }
-                }
-                .calendar-name.start {
-                    padding-right: 180px;
-                }
-            }
+            border-bottom: 1px solid #f0f0f7;
         }
     }
 }
 .partner-container {
     width: 100%;
     background-color: #ffffff;
-    padding: 30px 20px;
+    padding: 30px 40px;
     border-radius: 4px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
     &__title {
@@ -135,8 +120,9 @@
             }
         }
         .item-container {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             display: flex;
+            border-bottom: 1px solid #f0f0f7;
     
             // 発注単価・件数
             .order-wrp {
@@ -191,6 +177,7 @@
 
 // プレビュー時のCSS
 .preview_p {
+    width: 86%;
     display: flex;
     align-items: center;
     margin-bottom: 0rem;

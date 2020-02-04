@@ -12,8 +12,50 @@
             <div class="page-title">書類一覧</div>
         </div>
         <div>
-             <!-- 発注書 -->
-             <div class="main-container">
+            <!-- 業務委託基本契約書 -->
+            <div class="main-container">
+                <div class="main-container__wrapper">
+                    <div class="item-name-wrapper icon-item-name-wrpper">
+                        <div class="item-name-wrapper__item-name">業務委託基本契約書</div>
+                    </div>
+                    <div class="table-container">
+                        <table class="outsource-table table01">
+                            <tr class="head-row">
+                                <th>パートナ名</th>
+                                <th>締結日</th>
+                                <th>ステータス</th>
+                                {{-- HACK: 発注書・請求書とスタイルを合わせるために空の列を追加してる --}}
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            @foreach ($outsourceContracts as $outsourceContract)
+                            <tr class="data-row">
+                                <td class="task-data">{{ $outsourceContract->partner_name }}</td>
+                                <td>{{ date("Y年m月d日", strtotime($outsourceContract->contarcted_at)) }}</td>
+                                <td>{{ config('consts.document.outsourceContract.statusToJp')[$outsourceContract->status] }}</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <div class="create-container">
+                                        <div class="btn-a-container">
+                                            <a href="{{ route('company.document.outsourceContracts.preview', ['outsource_contract_id' => $outsourceContract->id]) }}">詳細</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </table>
+                        <!-- Show More部分 -->
+                        <div class="more-container">
+                            <p id="outsource_show_more_btn" class="showmore">もっと見る</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 発注書 -->
+            <div class="main-container">
                 <div class="main-container__wrapper">
                     <div class="item-name-wrapper icon-item-name-wrpper">
                         <div class="icon-imgbox"><img src="{{ env('AWS_URL') }}/common/order.png" alt=""></div>

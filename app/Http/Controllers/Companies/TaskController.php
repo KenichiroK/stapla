@@ -67,7 +67,14 @@ class TaskController extends Controller
     {
         $auth = Auth::user();
         $company_users = CompanyUser::where('company_id', $auth->company_id)->get();
-        $partners = Partner::where('company_id', $auth->company_id)->get();
+        $partners = Partner::where('company_id', $auth->company_id)
+            ->where('is_agree', true)
+            // HACK: whereHasは重いので後々リファクタが必要
+            ->whereHas('outsourceContracts', function ($query) use ($auth) {
+                $query->where('company_id', $auth->company_id);
+                $query->where('status', 'complete');
+            })
+            ->get();
         $projects = Project::where('company_id', $auth->company_id)->where('status', '!=', config('consts.project.COMPLETED'))->get();
 
         if($request->query('pid')){
@@ -87,7 +94,14 @@ class TaskController extends Controller
         $company_user = Auth::user();
         $projects = Project::where('company_id', $company_user->company_id)->where('status', '!=', config('consts.project.COMPLETED'))->get();
         $company_users = CompanyUser::where('company_id', $company_user->company_id)->get();
-        $partners = Partner::where('company_id', $company_user->company_id)->get();
+        $partners = Partner::where('company_id', $company_user->company_id)
+            ->where('is_agree', true)
+            // HACK: whereHasは重いので後々リファクタが必要
+            ->whereHas('outsourceContracts', function ($query) use ($company_user) {
+                $query->where('company_id', $company_user->company_id);
+                $query->where('status', 'complete');
+            })
+            ->get();
         // 発注書
         $purchaseOrder = PurchaseOrder::where('task_id', $task->id)->first();
 

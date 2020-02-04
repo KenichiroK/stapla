@@ -41,4 +41,12 @@ class DashboardController extends Controller
 
         return view('partner/dashboard/index', compact(['projects', 'tasks', 'todos', 'passed_3days_todos', 'status_arr']));
     }
+
+    public function notContract()
+    {
+        $partner = Auth::user();
+        // NOTE: 最初に作成された業務委託契約書のステータスで判断する
+        $outsourceContract = $partner->outsourceContracts()->orderBy('created_at', 'desc')->first();
+        return view('partner/dashboard/notContract', compact('outsourceContract'));
+    }
 }
