@@ -1,10 +1,10 @@
-@import '../../components/label';
+@import "../../components/label";
 @import "../../mixin/button/button";
 
 body {
-  font-family: 'Source Sans Pro';
+  font-family: "Source Sans Pro";
   position: relative;
-  background-color: #F0F0F8;
+  background-color: #f0f0f8;
   min-height: 100vh;
 }
 
@@ -13,7 +13,7 @@ header {
   height: 64px;
   box-sizing: border-box;
   padding: 12px 0;
-  background-color: #43425D;
+  background-color: #43425d;
   display: flex;
   align-items: center;
   position: fixed;
@@ -41,16 +41,16 @@ main {
     padding: 40px;
     margin: 40px 100px;
     .terms-title {
-    text-align: left;
-    color: #43425d;
-    h3 {
-      margin: 0;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    p {
-      line-height: 1.5;
-    }
+      text-align: left;
+      color: #43425d;
+      h3 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      p {
+        line-height: 1.5;
+      }
     }
     .terms-box-wrapper {
       margin: 26px 0 37px;
@@ -65,16 +65,16 @@ main {
         letter-spacing: 0.5px;
         line-height: 1.5;
         .terms-box-inner-title {
-            color: #000;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 40px;
+          color: #000;
+          text-align: center;
+          font-weight: bold;
+          margin-bottom: 40px;
         }
         .sub-title {
-            color: #000;
-            font-weight: bold;
-            line-height: 2;
-            border-bottom: solid 1px #4d4f5c;
+          color: #000;
+          font-weight: bold;
+          line-height: 2;
+          border-bottom: solid 1px #4d4f5c;
         }
       }
     }
@@ -89,6 +89,10 @@ main {
         border-radius: 100px;
         padding: 16px 0;
         cursor: pointer;
+        &:disabled {
+          opacity: 0.5;
+          cursor: default;
+        }
       }
     }
 
@@ -126,4 +130,4 @@ main {
       }
     }
   }
-} 
+}
