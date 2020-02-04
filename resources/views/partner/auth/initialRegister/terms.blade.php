@@ -14,7 +14,7 @@
       </p>
     </div>
 
-    <div class="terms-box-wrapper">
+    <div id="terms" class="terms-box-wrapper">
       <div class="terms-box-inner">
       <p class="terms-box-inner-title">improパートナー利用規約</p>
       <p>株式会社HUMO（以下「当社」といいます。）が運営する、当社に登録した企業（以下「登録企業」といいます。）と、登録企業から一定の業務を委託する個人又は法人の受託者（以下「パートナー」といいます。）との間の業務委託に関するマネジメントプラットフォームである「impro」（以下「本サービス」といいます。）は、本利用規約（以下「本規約」といいます。）に従ってパートナーに提供されます。</p>
@@ -177,12 +177,12 @@
 
     <form action="{{ route('partner.register.terms.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-        <input class="agree-terms" type="checkbox" id="check" name="is_agree" value=1 onclick="isCheck('check',this.checked)" disabled>
-        <label for="check"> ご利用規約に同意する</label>
+        <input class="agree-terms" type="checkbox" id="checkbox" name="is_agree" value=1>
+        <label for="checkbox"> ご利用規約に同意する</label>
         <input type="hidden" name="partner_id" value="{{ $partner->id }}">
 
         <div class="btn-container">
-            <button class="button" type="button" id="registerBtn"  data-impro-button="once" onclick="submit();" disabled>登録</button>
+            <button class="button" type="button" id="register_btn"  data-impro-button="once" onclick="submit();">登録</button>
         </div>
     </form>
 
@@ -204,20 +204,5 @@
 @endsection
 
 @section('asset-js')
-<script>
-var box = document.getElementsByClassName('terms-box-wrapper');
-box[0].onscroll = (event) => {
-  if (event.target.clientHeight + event.target.scrollTop === event.target.scrollHeight) {
-    document.getElementById('check').disabled = false;
-  }       
-}
-function isCheck(check, isChecked){
-    var register_btn = document.getElementById('registerBtn');
-    if(isChecked == true) {
-        register_btn.disabled = false;
-    } else {
-        register_btn.disabled = true;
-    }
-}
-</script>
+<script src="{{ asset('js/pages/partner/initial-register/terms/index.js') }}"></script>
 @endsection
