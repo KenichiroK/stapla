@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Companies;
 
-use App\Models\Invoice;
-use App\Models\PurchaseOrder;
+
+use App\Http\Controllers\Controller;
 use App\Models\CompanyUser;
+use App\Models\Invoice;
+use App\Models\OutsourceContract;
+use App\Models\PurchaseOrder;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
@@ -19,7 +20,8 @@ class DocumentController extends Controller
         $company_user = Auth::user();
         $invoices = Invoice::where('company_id', $company_user->company_id)->get(); 
         $purchaseOrders = PurchaseOrder::where('company_id', $company_user->company_id)->get();
+        $outsourceContracts = OutsourceContract::where('company_id', $company_user->company_id)->get();
         
-        return view('company.document.index', compact('invoices', 'purchaseOrders', 'company_user'));
+        return view('company.document.index', compact('invoices', 'purchaseOrders', 'company_user', 'outsourceContracts'));
     }
 }

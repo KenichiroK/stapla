@@ -23,6 +23,7 @@ mix.webpackConfig({
  |
  */
 
+// HACK: appから分離する
 mix.js(
   [
     // 共通
@@ -66,6 +67,22 @@ mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/i
 
 // invoice
 mix.js(["resources/js/pages/invoice/show/index.js"], "public/js/pages/invoice/show/index.js");
+
+// company/document/outsource
+mix.js(
+  ["resources/js/pages/company/document/outsourceContract/create.js"],
+  "public/js/pages/company/document/outsourceContract/create.js",
+);
+mix.js(
+  ["resources/js/pages/company/document/outsourceContract/preview.js"],
+  "public/js/pages/company/document/outsourceContract/preview.js",
+);
+
+// partner/document/outsource
+mix.js(
+  ["resources/js/pages/partner/document/outsourceContract/edit.js"],
+  "public/js/pages/partner/document/outsourceContract/edit.js",
+);
 
 mix.js(
   [
@@ -138,6 +155,14 @@ mix
   .sass("resources/sass/company/document/purchaseOrder/index.scss", "public/css/company/document/purchaseOrder")
   .sass("resources/sass/company/document/invoice/show.scss", "public/css/company/document/invoice")
   .sass("resources/sass/company/document/purchaseOrder/show.scss", "public/css/company/document/purchaseOrder")
+  .sass(
+    "resources/sass/company/document/outsourceContract/create.scss",
+    "public/css/company/document/outsourceContract",
+  )
+  .sass(
+    "resources/sass/company/document/outsourceContract/preview.scss",
+    "public/css/company/document/outsourceContract",
+  )
   .sass("resources/sass/company/setting/general/index.scss", "public/css/company/setting/general")
   .sass("resources/sass/company/setting/companyElse/index.scss", "public/css/company/setting/companyElse")
   .sass("resources/sass/company/setting/account/index.scss", "public/css/company/setting/account")
@@ -156,6 +181,7 @@ mix
   .sass("resources/sass/partner/document/invoice/show.scss", "public/css/partner/document/invoice")
   .sass("resources/sass/partner/setting/invoice/index.scss", "public/css/partner/setting/invoice")
   .sass("resources/sass/partner/profile/index.scss", "public/css/partner/profile")
+  .sass("resources/sass/partner/document/outsourceContract/edit.scss", "public/css/partner/document/outsourceContract")
 
   // pdf
   .sass("resources/sass/pdf/paper.scss", "public/css/pdf")

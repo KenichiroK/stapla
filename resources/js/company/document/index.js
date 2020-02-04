@@ -1,8 +1,8 @@
-$(function () {
+$(function() {
   function invoiceShow() {
     let invoiceDefault = 5;
-    const allListCount = $('.invoice-table > tbody').children('tr').length;
-    const itemList = $('.invoice-table > tbody').children('tr');
+    const allListCount = $(".invoice-table > tbody").children("tr").length;
+    const itemList = $(".invoice-table > tbody").children("tr");
 
     function defaultShowList() {
       itemList.hide();
@@ -12,7 +12,7 @@ $(function () {
     }
 
     function showMoreList() {
-      $('#invoice_show_more_btn').on('click', () => {
+      $("#invoice_show_more_btn").on("click", () => {
         invoiceDefault += 4;
         for (let i = 0; i < invoiceDefault; i++) {
           $(itemList[i]).show();
@@ -23,7 +23,7 @@ $(function () {
 
     function hideShowMoreBtn() {
       if (invoiceDefault >= allListCount) {
-        $('#invoice_show_more_btn').hide();
+        $("#invoice_show_more_btn").hide();
       }
     }
     defaultShowList();
@@ -34,8 +34,8 @@ $(function () {
 
   function orderShow() {
     let orderDefault = 5;
-    const allListCount = $('.order-table > tbody').children('tr').length;
-    const itemList = $('.order-table > tbody').children('tr');
+    const allListCount = $(".order-table > tbody").children("tr").length;
+    const itemList = $(".order-table > tbody").children("tr");
 
     function defaultShowList() {
       itemList.hide();
@@ -45,7 +45,7 @@ $(function () {
     }
 
     function showMoreList() {
-      $('#order_show_more_btn').on('click', () => {
+      $("#order_show_more_btn").on("click", () => {
         orderDefault += 4;
         for (let i = 0; i < orderDefault; i++) {
           $(itemList[i]).show();
@@ -56,7 +56,7 @@ $(function () {
 
     function hideShowMoreBtn() {
       if (orderDefault >= allListCount) {
-        $('#order_show_more_btn').hide();
+        $("#order_show_more_btn").hide();
       }
     }
 
@@ -66,4 +66,37 @@ $(function () {
   }
   orderShow();
 
+  function oursourceShow() {
+    let outsourceDefault = 5;
+    const allListCount = $(".outsource-table > tbody").children("tr").length;
+    const itemList = $(".outsource-table > tbody").children("tr");
+
+    function defaultShowList() {
+      itemList.hide();
+      for (let i = 0; i < outsourceDefault; i++) {
+        $(itemList[i]).show();
+      }
+    }
+
+    function showMoreList() {
+      $("#outsource_show_more_btn").on("click", () => {
+        outsourceDefault += 4;
+        for (let i = 0; i < outsourceDefault; i++) {
+          $(itemList[i]).show();
+        }
+        hideShowMoreBtn();
+      });
+    }
+
+    function hideShowMoreBtn() {
+      if (outsourceDefault >= allListCount) {
+        $("#outsource_show_more_btn").hide();
+      }
+    }
+
+    defaultShowList();
+    showMoreList();
+    hideShowMoreBtn();
+  }
+  oursourceShow();
 });
