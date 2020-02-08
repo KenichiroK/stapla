@@ -18,12 +18,8 @@
                 <a href="{{ $url }}">{{ $url }}</a><br>
             </p>
             <p style="white-space: pre-line;">
-                （パートナーからのメッセージ)
-                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
+                （パートナーからのメッセージ)<br>
                 {{ $comment }}
-
-                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             </p>
             <p>
                 お忙しいとは存じますが、確認をどうぞよろしくお願いします。<br>
