@@ -105,7 +105,7 @@
 			<div class="control">
 				<label class="field__label">裁判所<span class="field__label--require">（必須）</span></label>
 				<div class="select is">
-					<select id="court" name="court" class="form-control">
+					<select id="court" name="court" class="form-control" style="font-size: 14px;">
 						@if (!empty( old('court')))
 						<option selected value="{{ old('court') }}">{{ old('court') }}</option>
 						@else

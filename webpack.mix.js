@@ -62,6 +62,16 @@ mix.js(["resources/js/pages/company/task/create/index.js"], "public/js/pages/com
 mix.js(["resources/js/pages/company/task/edit/index.js"], "public/js/pages/company/task/edit/index.js");
 mix.js(["resources/js/pages/partner/task/index/index.js"], "public/js/pages/partner/task/index/index.js");
 
+// initial register
+mix.js(
+  ["resources/js/pages/partner/initial-register/terms/index.js"],
+  "public/js/pages/partner/initial-register/terms/index.js",
+);
+mix.js(
+  ["resources/js/pages/company/initial-register/terms/index.js"],
+  "public/js/pages/company/initial-register/terms/index.js",
+);
+
 // order
 mix.js(["resources/js/pages/order/show/index.js"], "public/js/pages/order/show/index.js");
 

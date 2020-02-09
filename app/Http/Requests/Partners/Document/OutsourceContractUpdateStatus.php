@@ -39,7 +39,7 @@ class OutsourceContractUpdateStatus extends FormRequest
     {
         return [
             'id' => 'ID',
-            'status' => 'コメント',
+            'status' => 'ステータス',
         ];
     }
 }
