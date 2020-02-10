@@ -151,7 +151,7 @@
 								<td></td>
 								<td class="item">
 									<input type="text" value="{{ $requestTask->name }}" disabled="disabled">
-									<input type="hidden" name="item_name[]" value="{{ $task->PurchaseOrder->task_name }}">
+									<input type="hidden" name="item_name[]" value="{{ $task->name }}">
 								</td>
                                 <td class="num"><input type="text" name="item_num[]" value="{{ old('item_num.' . $loop->index, $requestTask->num) }}" onchange="calculateSumPrice()"></td>
                                 <td class="unit-price"><input type="text" name="item_unit_price[]" value="{{ old('item_unit_price.' . $loop->index,$requestTask->unit_price) }}" onchange="calculateSumPrice()"><span>円</span></td>
