@@ -15,48 +15,109 @@
         @endif
 
         <div class="top-container">
-            <h1 class="top-container__title">パートナー</h1>
-                <!-- <p class="control has-icons-left serch-wrp">
-                    <input class="search-name input" type="text" placeholder="パートナーを検索">
-                    <span class="icon">
-                    <img src="{{ env('AWS_URL') }}/common/searchicon.png" alt="serch">
-                    </span>
-                </p> -->
-                <div class="btn-a-container">
-                    <a href="{{ route('company.invite.partner') }}">パートナー追加</a>
-                </div>
-        </div>
-        
-        <div class="profile-list">
-            @foreach($partners as $partner)
-            <div class="profile-card-container">
-                <div class="profile-card-container__wrapper">
-                    <div class="main-content">
-                        <div class="main-content__img-container">
-                            <!-- <img class="main-content__img-container__img" src="" alt=""> -->
-                            <img src="{{ $partner->picture }}"  alt="">
-                        </div>
-                        <div class="main-content__info-list">
-                            <div class="main-content__info-list__name">{{ $partner->name }}</div>
-                            <div class="main-content__info-list__job">{{ $partner->occupations }}</div>
-                            <div class="main-content__info-list__assessment-achievement">
-                                <!-- <div class="assessment">⭐⭐⭐⭐</div> -->
-                                <!-- <div class="achievement">実績<span class="num">1</span><span class="ken">件</span></div> -->
-                            </div>
-                        </div>
-                        <!-- <div class="main-content__edit-icons">
-                            <div>
-                                <img src="{{ env('AWS_URL') }}/common/edit.png" alt="">
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
+            <h1 class="top-container__title">パートナ一覧</h1>
+            <div class="btn-a-container">
+                <a href="{{ route('company.invite.partner') }}">パートナー追加</a>
             </div>
-            @endforeach
-            
+        </div>
+
+        <div class="partner-content">
+            <h3 class="partner-content__title">ステータス</h3>
+            <ul class="partner-content__tab">
+                <li
+                    @if (is_null(Request::query('status')))
+                    class="is-active"
+                    @endif
+                >
+                    <a
+                        class="tab-btn"
+                        href="{{ route('company.partner.index') }}"
+                    >
+                        全て<span class="counter">({{ $outsourceContractCount['all'] }})</span>
+                    </a>
+                </li>
+                <li
+                    @if (Request::query('status') == 'complete')
+                    class="is-active"
+                    @endif
+                >
+                    <a
+                        class="tab-btn"
+                        href="{{ route('company.partner.index', ['status' => 'complete']) }}"
+                    >
+                        契約締結済<span class="counter">({{ $outsourceContractCount['complete'] }})</span>
+                    </a>
+                </li>
+                <li
+                    @if (Request::query('status') == 'progress')
+                    class="is-active"
+                    @endif
+                >
+                    <a
+                        class="tab-btn"
+                        href="{{ route('company.partner.index', ['status' => 'progress']) }}"
+                    >
+                        契約作業中<span class="counter">({{ $outsourceContractCount['progress'] }})</span>
+                    </a>
+                </li>
+                <li
+                    @if (Request::query('status') == 'uncontracted')
+                    class="is-active"
+                    @endif
+                >
+                    <a
+                        class="tab-btn"
+                        href="{{ route('company.partner.index', ['status' => 'uncontracted']) }}"
+                    >
+                        未契約<span class="counter">({{ $outsourceContractCount['uncontracted'] }})</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="partner-content__card-wrapper">
+                @foreach( $partners as $partner )
+                <div class="card">
+                    @if (!isset($partner->outsourceContract))
+                    <a href="{{ route('company.document.outsourceContracts.create', ['partner_id' => $partner->id]) }}">    
+                    @else
+                    <a href="{{ route('company.document.outsourceContracts.preview', [
+                        'outsource_contract_id' => $partner->outsourceContract->id
+                    ]) }}">
+                    @endif
+                        <div class="card__content">
+                            <div class="image-wrapper">
+                                @if (isset($partner->picture))
+                                <img class="profile-image" src="{{ $partner->picture }}">
+                                @else
+                                <img class="profile-image" src="{{ env('AWS_URL').'/common/dummy_profile_icon.png' }}">
+                                @endif
+                            </div>
+                            <div class="name-wrapper">
+                                <p class="name">{{ $partner->name }}</p>
+                                <p class="occupations">{{ $partner->occupations }}</p>
+                            </div>
+                        </div>
+                        <div class="card__footer">
+                            @if (!isset($partner->outsourceContract))
+                            <div class="circle uncontracted-color"></div>
+                            {{-- HACK: ステータスの定数化 --}}
+                            <p class="status">未契約</p>
+                            @elseif ($partner->outsourceContract->status == "complete")
+                            <div class="circle complete-color"></div>
+                            <p class="status">契約締結済</p>
+                            @else
+                            <div class="circle progress-color"></div>
+                            <p class="status">契約作業中</p>
+                            @endif
+                        </div>
+                    </a>
+                </div>
+                @endforeach
+            </div>
+
             <div class="pagenate-container">
                 <div class="pagenate-container__wrapper">
-                    {{ $partners->links() }}
+                    {{ $partners->links('components.pagination') }}
                 </div>
             </div>
         </div>

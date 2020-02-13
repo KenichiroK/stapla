@@ -21,6 +21,7 @@
         @yield('content')
     </div>
     <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     @yield('asset-js')
 </body>
 </html>

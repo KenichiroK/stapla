@@ -5,7 +5,7 @@
 
     <ul class="navbar-container">
         <li id="task_status_btn" class="navbar-container__text">タスク・発注書
-            <span id="task_status_num" class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.TASK_SUBMIT_SUPERIOR'), config('const.TASK_APPROVAL_PARTNER')) }})</span>
+            <span id="task_status_num" class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.TASK_SUBMIT_SUPERIOR'), config('const.ORDER_APPROVAL_PARTNER')) }})</span>
         </li>
         <li id="working_status_btn" class="navbar-container__text">作業中
             <span id="working_status_num" class="navbar-container__num">({{ countTaskStatus($status_arr, config('const.WORKING'), config('const.ACCEPTANCE')) }})</span>
@@ -32,6 +32,7 @@
             <span class="detail-container__content--num">{{ $status_arr[config('const.ORDER_APPROVAL_PARTNER')] }}</span>
         </li>
     </ul>
+
     <ul id="working_status_table" class="detail-container">
         <li class="detail-container__content">
             <span class="detail-container__content--title">作業中</span>
@@ -46,6 +47,7 @@
             <span class="detail-container__content--num">{{ $status_arr[config('const.ACCEPTANCE')] }}</span>
         </li>
     </ul>
+
     <ul id="invoice_status_table" class="detail-container">
         <li class="detail-container__content">
             <span class="detail-container__content--title">下書き</span>
@@ -64,6 +66,7 @@
             <span class="detail-container__content--num">{{ $status_arr[config('const.APPROVAL_ACCOUNTING')] }}</span>
         </li>
     </ul>
+
     <ul id="complete_status_table" class="detail-container">
         <li class="detail-container__content">
             <span class="detail-container__content--title">完了</span>

@@ -34,4 +34,9 @@ class Company extends BaseUuid
     {
         return $this->hasMany('App\Models\Invoice', 'company_id', 'id');
     }
+
+    public function outsourceContracts()
+    {
+        return $this->hasMany('App\Models\OutsourceContract', 'company_id', 'id');
+    }
 }

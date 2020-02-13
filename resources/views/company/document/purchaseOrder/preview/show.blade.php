@@ -197,7 +197,7 @@
                             </div>
                         </div>
                         <div class="sub-container">
-                            {{ $request->content }}
+                            {!! nl2br(e($request->content)) !!}
                             <input type="hidden" name="content" value="{{ $request->content }}">
                         </div>
                     </div>

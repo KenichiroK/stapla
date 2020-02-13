@@ -21,12 +21,13 @@ Route::namespace('Partners')->as('partner.')->group(function() {
 	Auth::routes(['verify' => true]);
 });
 
-Route::group(['prefix' => 'partner'], function(){	
-	//login   
+Route::group(['prefix' => 'partner'], function(){
+
+	//login
 	Route::get('login', 'Partners\Auth\LoginController@showLoginForm')->name('partner.login');
 	Route::post('login', 'Partners\Auth\LoginController@login')->name('partner.login');
-	
-	// register   
+
+	// register
 	Route::get('register', 'Partners\Auth\RegisterController@showRegisterForm')->name('partner.register');
 	Route::post('passwordRegister', 'Partners\Auth\RegisterController@passwordRegister')->name('partner.passwordRegister');
 	Route::get('verify', 'Partners\Auth\RegisterController@verify')->name('partner.verify');
@@ -53,51 +54,66 @@ Route::group(['prefix' => 'partner'], function(){
 
 	Route::group(['middleware' => ['partnerVerified:partner', 'auth:partner']], function() {
 
-		// dashboard
-		Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
-		
-		// project
-		Route::get('/project', 'Partners\ProjectController@index')->name('partner.project.index');
-		Route::get('/project/done', 'Partners\ProjectController@doneIndex')->name('partner.project.done.index');
-		Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
+		// dashboard 契約締結前
+		// HACK: statusがcompletedの場合はダッシュボードへリダイレクトするミドルウェアがあっても良き
+		Route::get('not-contract', 'Partners\DashboardController@notContract')->name('partner.notContract');
 
-		// task
-		Route::get('/task', 'Partners\TaskController@index')->name('partner.task.index');
-				// task-show-file_download
-		Route::post('/file-download', 'Partners\DeliverController@download')->name('partner.fileDownload');
-			// task statusIndex
-		Route::get('task/status/{task_status}', 'Partners\TaskController@statusIndex')->name('partner.task.status');
-		Route::get('/task/{task_id}', 'Partners\TaskController@show')->name('partner.task.show');
+		//document outsource contract(業務委託契約書)
+		// HACK: namespaceも付けたい
+		Route::prefix('/document/outsource-contracts')->name('partner.document.outsourceContracts.')->group(function () {
+			// HACK: outsource用のコントローラにしたいがPartnersディレクトリのリファクタが済むまではいったんDocumentControllerに書く
+			Route::get('edit/{outsource_contract_id}', 'Partners\DocumentController@editOutsource')->name('edit');
+			Route::post('update-comment', 'Partners\DocumentController@updateOutsourceComment')->name('updateComment');
+			Route::post('update-status', 'Partners\DocumentController@updateOutsourceStatus')->name('updateStatus');
+		});
 
-		// document
-		Route::get('/document', 'Partners\DocumentController@index')->name('partner.document.index');
-		
-		// task status change
-		Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
+		Route::group(['middleware' => ['redirectIfNotOutsourceContracted']], function() {
+			// dashboard
+			Route::get('dashboard', 'Partners\DashboardController@index')->name('partner.dashboard');
 
-		// Deliver
-		Route::get('/deliver/{task_id}', 'Partners\DeliverController@create')->name('partner.deliver.create');
-		Route::post('/deliver', 'Partners\DeliverController@store')->name('partner.deliver.store');
-		
-		// profile
-		Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
-		Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
-		Route::get('setting/profile/email', 'Partners\ProfileController@email')->name('partner.profile.email');
-		Route::post('setting/profile/email', 'Partners\ProfileController@sendMail')->name('partner.profile.email.sendMail');
-		
-		//  invoice setting
-		Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
-		Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
+			// project
+			Route::get('/project', 'Partners\ProjectController@index')->name('partner.project.index');
+			Route::get('/project/done', 'Partners\ProjectController@doneIndex')->name('partner.project.done.index');
+			Route::get('/project/{project_id}', 'Partners\ProjectController@show')->name('partner.project.show');
 
-		// purchase-order
-		Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.document.purchaseOrder.show');
-		
-		// invoice
-		Route::get('document/invoice/create/{task_id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
-		Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
-		Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
-		Route::get('document/invoice/{id}/edit', 'Partners\InvoiceController@edit')->name('partner.document.invoice.edit');
-		Route::post('document/invoice/{id}/update', 'Partners\InvoiceController@update')->name('partner.document.invoice.update');
+			// task
+			Route::get('/task', 'Partners\TaskController@index')->name('partner.task.index');
+					// task-show-file_download
+			Route::post('/file-download', 'Partners\DeliverController@download')->name('partner.fileDownload');
+				// task statusIndex
+			Route::get('task/status/{task_status}', 'Partners\TaskController@statusIndex')->name('partner.task.status');
+			Route::get('/task/{task_id}', 'Partners\TaskController@show')->name('partner.task.show');
+
+			// document
+			Route::get('/document', 'Partners\DocumentController@index')->name('partner.document.index');
+
+			// task status change
+			Route::post('/task/status', 'Partners\TaskStatusController@change')->name('partner.task.status.change');
+
+			// Deliver
+			Route::get('/deliver/{task_id}', 'Partners\DeliverController@create')->name('partner.deliver.create');
+			Route::post('/deliver', 'Partners\DeliverController@store')->name('partner.deliver.store');
+
+			// profile
+			Route::get('setting/profile', 'Partners\ProfileController@create')->name('partner.profile.create');
+			Route::post('setting/profile', 'Partners\ProfileController@store')->name('partner.profile.store');
+			Route::get('setting/profile/email', 'Partners\ProfileController@email')->name('partner.profile.email');
+			Route::post('setting/profile/email', 'Partners\ProfileController@sendMail')->name('partner.profile.email.sendMail');
+
+			//  invoice setting
+			Route::get('setting/invoice', 'Partners\Setting\InvoiceController@create')->name('partner.setting.invoice.create');
+			Route::post('setting/invoice', 'Partners\Setting\InvoiceController@store')->name('partner.setting.invoice.store');
+
+			// purchase-order
+			Route::get('document/order/{id}', 'Partners\PurchaseOrderController@show')->name('partner.document.purchaseOrder.show');
+
+			// invoice
+			Route::get('document/invoice/create/{task_id}', 'Partners\InvoiceController@create')->name('partner.document.invoice.create');
+			Route::post('invoice', 'Partners\InvoiceController@store')->name('partner.invoice.store');
+			Route::get('document/invoice/{id}', 'Partners\InvoiceController@show')->name('partner.document.invoice.show');
+			Route::get('document/invoice/{id}/edit', 'Partners\InvoiceController@edit')->name('partner.document.invoice.edit');
+			Route::post('document/invoice/{id}/update', 'Partners\InvoiceController@update')->name('partner.document.invoice.update');
+		});
 
 		// logout
 		Route::post('logout', 'Partners\Auth\LoginController@logout')->name('partner.logout');
@@ -125,7 +141,7 @@ Route::group(['prefix' => 'company'], function(){
 	Route::post('password/email', 'Companies\Auth\ForgotPasswordController@sendResetLinkEmail')->name('company.password.email');
 	Route::get('password/reset/{token}', 'Companies\Auth\ResetPasswordController@showResetForm')->name('company.password.reset');
 	Route::post('password/reset', 'Companies\Auth\ResetPasswordController@reset')->name('company.password.update');
-	
+
 	// register - 企業ユーザー本登録
 	Route::get('register', 'Companies\Auth\RegisterController@showRegisterForm')->name('company.register');
 	Route::post('passwordRegister', 'Companies\Auth\RegisterController@passwordRegister')->name('company.passwordRegister');
@@ -140,10 +156,10 @@ Route::group(['prefix' => 'company'], function(){
 
 
 	Route::group(['middleware' => ['verified:company', 'auth:company']], function() {
-		
+
 		// dashboard
 		Route::get('/dashboard', 'Companies\DashboardController@index')->name('company.dashboard');
-		
+
 		// project
 		Route::get('/project', 'Companies\ProjectController@index')->name('company.project.index');
 		Route::get('/project/done', 'Companies\ProjectController@doneIndex')->name('company.project.done.index');
@@ -161,7 +177,7 @@ Route::group(['prefix' => 'company'], function(){
 		Route::get('/task', 'Companies\TaskController@index')->name('company.task.index');
 			// task statusIndex
 		Route::get('task/status/{task_status}', 'Companies\TaskController@statusIndex')->name('company.task.status.statusIndex');
-		
+
 			// 作成ページ
 		Route::get('/task/create', 'Companies\TaskController@create')->name('company.task.create');
 			// 下書きがある場合の作成ページ
@@ -170,12 +186,12 @@ Route::group(['prefix' => 'company'], function(){
 		Route::post('/task/draft', 'Companies\TaskController@draft')->name('company.task.draft');
 			// 下書きを更新
 		Route::post('/task/update-draft', 'Companies\TaskController@updateDraft')->name('company.task.updateDraft');
-			
+
 		// タスクプレビュー
 		Route::post('/task/task-preview', 'Companies\TaskController@taskPreview')->name('company.task.taskPreview');
 			// 発注書プレビュー
 		Route::post('/task/purchase-order-preview', 'Companies\TaskController@purchaseOrderPreview')->name('company.task.purchaseOrderPreview');
-			
+
 		// タスク再編集
 		Route::post('/task/recreate', 'Companies\TaskController@reCreate')->name('company.task.reCreate');
 			// タスク登録
@@ -191,13 +207,13 @@ Route::group(['prefix' => 'company'], function(){
 		
 		// task status change
 		Route::post('task/status', 'Companies\TaskStatusController@change')->name('company.task.status.change');
-		
+
 		// partner
 		Route::get('/partner', 'Companies\PartnerController@index')->name('company.partner.index');
-		
+
 		// document
 		Route::get('/document', 'Companies\DocumentController@index')->name('company.document.index');
-	
+
 			// purchaseOrder
 		Route::get('/document/purchaseOrder/create/{task_id}', 'Companies\Document\PurchaseOrderController@create')->name('company.document.purchaseOrder.create');
 		Route::post('/document/purchaseOrder', 'Companies\Document\PurchaseOrderController@store')->name('company.document.purchaseOrder.store');
@@ -206,6 +222,17 @@ Route::group(['prefix' => 'company'], function(){
 		//document invoice
 		Route::get('/document/invoice/{invoice_id}', 'Companies\Document\InvoiceController@show')->name('company.document.invoice.show');
 
+		//document outsource contract(業務委託契約書)
+		// HACK: namespaceも付けたい
+		Route::prefix('/document/outsource-contracts')->name('company.document.outsourceContracts.')->group(function () {
+			// HACK: uriがrestでもなんでもないところ
+			Route::get('create/{partner_id}', 'Companies\Document\OutsourceContractController@create')->name('create');
+			Route::post('create', 'Companies\Document\OutsourceContractController@store')->name('store');
+			Route::get('edit/{outsource_contract_id}', 'Companies\Document\OutsourceContractController@edit')->name('edit');
+			Route::post('update', 'Companies\Document\OutsourceContractController@update')->name('update');
+			Route::post('update-status', 'Companies\Document\OutsourceContractController@updateStatus')->name('updateStatus');
+			Route::get('{outsource_contract_id}/preview', 'Companies\Document\OutsourceContractController@preview')->name('preview');
+		});
 
 		// setting
 		Route::get('/setting/general', 'Companies\Setting\GeneralController@create')->name('company.setting.general.create');
@@ -230,5 +257,5 @@ Route::group(['prefix' => 'company'], function(){
         // logout
 		Route::post('logout', 'Companies\Auth\LoginController@logout')->name('company.logout');
 
-	});  
+	});
 });

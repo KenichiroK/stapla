@@ -123,7 +123,7 @@
                         }
                     }
                     &__content.desc-item {
-                        width: 400px;
+                        width: 86%;
                     }
                     &__content.file-item {
                         .imgbox {
@@ -147,17 +147,6 @@
                         display: flex;
                         color: #4d4f5c;
                         font-size: 15px;
-                        &__start {
-                            &__date {
-                                margin-left: 28px;
-                            }
-                        }
-                        &__end {
-                            margin-left: 40px;
-                            &__date {
-                                margin-left: 28px;
-                            }
-                        }
                     }
                 }
             }
@@ -203,7 +192,7 @@
                     margin-bottom: 0;
                     li {
                         text-align: center;
-                        width: 140px;
+                        width: 14%;
                         font-size: 12px;
                         font-weight: bold;
                         color: #a3a6b4;

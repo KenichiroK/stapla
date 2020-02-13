@@ -67,11 +67,11 @@
 				<div class="zipcode-container">
 					<p>郵便番号</p>
 					<div class="zipcode-container__wrapper">
-						<input id="postal_front" class="top-input input" type="text" name="zip_code_front" value="{{ old('zip_code_front', isset(Auth::user()->zip_code) ? substr(Auth::user()->zip_code, 0, 3) : '') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
+						<input id="postal_front" class="top-input input js-c-zenkaku2hankaku" type="text" name="zip_code_front" value="{{ old('zip_code_front', isset(Auth::user()->zip_code) ? substr(Auth::user()->zip_code, 0, 3) : '') }}" maxlength="3" onKeyUp="nextField(this, 'zip_code_back', 3)" onchange="setPostal()">
 						<span class="hyphen">
 							<hr>
 						</span>
-						<input id="postal_back" type="text" name="zip_code_back" value="{{ old('zip_code_back', isset(Auth::user()->zip_code) ? substr(Auth::user()->zip_code, 3) : '') }}" maxlength="4" onchange="setPostal()">
+						<input id="postal_back" class="js-c-zenkaku2hankaku" type="text" name="zip_code_back" value="{{ old('zip_code_back', isset(Auth::user()->zip_code) ? substr(Auth::user()->zip_code, 3) : '') }}" maxlength="4" onchange="setPostal()">
 						<input id="postal" type="hidden" name="zip_code">
 					</div>
 					@if ($errors->has('zip_code'))
@@ -134,7 +134,7 @@
 				<div class="tel-container">
 					<p>電話番号</p>
 					<div class="tel-container__wrapper">
-                        <input type="text" name="tel" id="tel" value="{{ old('tel', isset(Auth::user()->tel) ? Auth::user()->tel : '') }}" maxlength="11">
+                        <input type="text" class="js-c-zenkaku2hankaku" name="tel" id="tel" value="{{ old('tel', isset(Auth::user()->tel) ? Auth::user()->tel : '') }}" maxlength="11">
 					</div>
 					@if ($errors->has('tel'))
 						<div class="error-msg">
@@ -184,7 +184,7 @@
 
 			<div class="accountNumber-container">
 				<p>口座番号</p>
-				<input type="text" id="account_number" name="account_number" value="{{ old('account_number', isset($partner_invoice->account_number) ? $partner_invoice->account_number : '') }}" maxlength="7" onblur="convert(this.value)">
+				<input type="text" class="js-c-zenkaku2hankaku" id="account_number" name="account_number" value="{{ old('account_number', isset($partner_invoice->account_number) ? $partner_invoice->account_number : '') }}" maxlength="7">
 				@if ($errors->has('account_number'))
 					<div class="error-msg">
 						<strong>{{ $errors->first('account_number') }}</strong>
@@ -222,14 +222,6 @@
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
-	}
-
-	function convert(account_number) {
-		var half_size_account_number = document.getElementById('account_number').value
-		half_size_account_number = account_number.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-			return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-		});
-		document.getElementById('account_number').value = half_size_account_number
 	}
 
 	// 郵便番号入力欄の自動遷移
