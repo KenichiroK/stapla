@@ -17,11 +17,11 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($guard == "partner" && Auth::guard($guard)->check()) {
-            return redirect('/partner/dashboard');
+        if ($guard == "owner" && Auth::guard($guard)->check()) {
+            return redirect('/owner/dashboard');
         }
-        if ($guard == "company" && Auth::guard($guard)->check()) {
-            return redirect('/company/dashboard');
+        if ($guard == "user" && Auth::guard($guard)->check()) {
+            return redirect('/user/dashboard');
         }
         if (Auth::guard($guard)->check()) {
             return redirect('/home');

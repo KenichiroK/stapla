@@ -12,9 +12,9 @@ class DevDatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-          CompaniesTableSeeder::class,
-          CompanyUsersTableSeeder::class,
-          PartnersTableSeeder::class,
+          // CompaniesTableSeeder::class,
+          // CompanyUsersTableSeeder::class,
+          // PartnersTableSeeder::class,
         ]);
     }
 }

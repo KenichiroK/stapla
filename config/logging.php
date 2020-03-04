@@ -52,15 +52,7 @@ return [
             'level' => 'debug',
             'days' => 14,
         ],
-
-        'slack' => [
-            'driver' => 'slack',
-            'url' => env('SLACK_ERROR_WEBHOOK_URL'),
-            'username' => env('SLACK_ERROR_NAME'),
-            'emoji' => ':boom:',
-            'level' => 'error',
-        ],
-
+        
         'papertrail' => [
             'driver' => 'monolog',
             'level' => 'debug',

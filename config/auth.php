@@ -46,14 +46,14 @@ return [
             'provider' => 'users',
         ],
 
-        'company' => [
+        'user' => [
             'driver' => 'session',
-            'provider' => 'companies',
+            'provider' => 'users',
         ],
 
-        'partner' => [
+        'owner' => [
             'driver' => 'session',
-            'provider' => 'partners',
+            'provider' => 'owners',
         ],
     ],
 
@@ -75,14 +75,14 @@ return [
     */
 
     'providers' => [
-        'companies' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\CompanyUser::class,
+            'model' => App\Models\User::class,
         ],
 
-        'partners' => [
+        'owners' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Partner::class,
+            'model' => App\Models\Owner::class,
         ],
     ],
 
@@ -102,14 +102,14 @@ return [
     */
 
     'passwords' => [
-        'companies' => [
-            'provider' => 'companies',
+        'users' => [
+            'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
         ],
         
-        'partners' => [
-            'provider' => 'partners',
+        'owners' => [
+            'provider' => 'owners',
             'table' => 'password_resets',
             'expire' => 60,
         ],

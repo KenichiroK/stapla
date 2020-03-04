@@ -8,9 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>impro</title>
+    <title>stapla</title>
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ env('AWS_URL') }}/common/favicon.ico">
+    <!-- <link rel="shortcut icon" href="{{ env('AWS_URL') }}/common/favicon.ico"> -->
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">

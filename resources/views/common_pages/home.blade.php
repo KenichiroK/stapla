@@ -2,7 +2,7 @@
 
 @section('assets')
 <style>
-    .login-wrapper {
+    /* .login-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -31,22 +31,49 @@
         text-align: center;
         width: 280px;
         margin: 100px 40px;
+    } */
+    .user-wrapper {
+        width: 400px;
+        /* padding: 24px;  */
+        margin: 40px;
+        border: #454952 1px solid;
+
+        text-align: center;
+    }
+
+    p {
+        font-size: 24px;
+        color: #454952;
+    }
+
+    .login-wrapper {
+        margin: 24px auto;
     }
     </style>
 @endsection
 
 @section('content')
-<div class="login-wrapper">
-    <div class="partner">
-        <a href="{{ route('partner.login') }}">パートナーの方用 ログイン画面</a>
+<div class="user-wrapper">
+    <p>User</p>
+    <div class="login-wrapper">
+        <a href="{{ route('user.register') }}">新規登録ページ</a>
     </div>
 
-    <div class="company">
-        <a href="{{ route('company.login') }}">企業の方用 ログイン画面</a>
+    <div class="login-wrapper">
+        <a href="{{ route('user.login') }}"> ログインページ</a>
     </div>
 </div>
 
-<div class="signup-wrapper">
-    <a href="{{ route('company.PreRegister') }}">新規登録はこちら</a>
+<div class="user-wrapper">
+    <p>Owner</p>
+    <div class="login-wrapper">
+        <a href="">新規登録ページ</a>
+    </div>
+
+    <div class="login-wrapper">
+        <a href=""> ログインページ</a>
+    </div>
 </div>
+
+
 @endsection
