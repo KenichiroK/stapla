@@ -67,11 +67,11 @@
 <div class="user-wrapper">
     <p>Owner</p>
     <div class="login-wrapper">
-        <a href="">新規登録ページ</a>
+        <a href="{{ route('owner.register') }}">新規登録ページ</a>
     </div>
 
     <div class="login-wrapper">
-        <a href=""> ログインページ</a>
+        <a href="{{ route('owner.login') }}"> ログインページ</a>
     </div>
 </div>
 

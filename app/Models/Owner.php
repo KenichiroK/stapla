@@ -6,9 +6,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Owner extends Authenticatable
 {
-    protected $table = 'users';
+    protected $table = 'owners';
 
     protected $fillable = [
         'email',
