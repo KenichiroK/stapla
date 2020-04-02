@@ -34,6 +34,7 @@ class PersonalInfoController extends Controller
         $user->building            = $request->user_address_building;
         $user->mobile_phone_number = $request->user_mobile_phone_number;
         $user->save();
+        // return 'test';
         return redirect()->route('user.dashboard.index');
     }
 

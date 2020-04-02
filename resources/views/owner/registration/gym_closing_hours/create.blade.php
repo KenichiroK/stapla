@@ -12,6 +12,18 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="gym_mobile_phone_number" class="col-md-4 col-form-label text-md-right">ジム名</label>
+                            <div class="col-md-6">
+                                <p>{{ $gym_info->name }}</p>
+                                <input 
+                                    type="hidden"
+                                    name="gym_id"
+                                    value="{{ $gym_info->id }}"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <div>
                                 <div>月</div>
                                 <div><input name="mon_open" type="time"></div>
@@ -39,8 +51,8 @@
                             </div>
                             <div>
                                 <div>土</div>
-                                <div><input name="sut_open" type="time"></div>
-                                <div><input name="sut_close" type="time"></div>
+                                <div><input name="sat_open" type="time"></div>
+                                <div><input name="sat_close" type="time"></div>
                             </div>
                             <div>
                                 <div>日</div>

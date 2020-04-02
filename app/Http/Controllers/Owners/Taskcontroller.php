@@ -3,18 +3,14 @@
 namespace App\Http\Controllers\Owners;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\GymInfo;
 
-class DashboardController extends Controller
+class Taskcontroller extends Controller
 {
     public function index()
     {
-        $auth = Auth::user();
-        $gyms = GymInfo::where('owner_id', $auth->id)->get();
-        // return $auth;
-        return view('owner.dashboard.index', compact('gyms'));
+        //
     }
 
     public function create()
@@ -27,9 +23,12 @@ class DashboardController extends Controller
         //
     }
 
-    public function show($id)
+    public function show($gym_id)
     {
-        //
+        return 'testtest';
+        // return 'test show';
+        $gym = GymInfo::findOrFail($gym_id);
+        return $gym; 
     }
 
     public function edit($id)

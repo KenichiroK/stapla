@@ -10,11 +10,6 @@ use App\Http\Controllers\Controller;
 
 class GymInfoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
@@ -41,52 +36,27 @@ class GymInfoController extends Controller
         $gym_info->closest_station       = $request->gym_closest_station;
         $gym_info->maximum_capacity      = $request->maximum_capacity;
         $gym_info->size                  = $request->gym_size;
-        $gym_info->size = Auth::user()->id;
+        // $gym_info->size = Auth::user()->id;
         $gym_info->save();
-        return redirect()->route('owner.opening_hour_setting.crete');
+        return redirect()->route('owner.opening_hour_setting.crete', ['gym_id' => $gym_info->id]);
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

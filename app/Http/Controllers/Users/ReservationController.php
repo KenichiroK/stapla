@@ -1,30 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Owners;
+namespace App\Http\Controllers\Users;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Models\GymInfo;
 
-class DashboardController extends Controller
+class ReservationController extends Controller
 {
     public function index()
     {
-        $auth = Auth::user();
-        $gyms = GymInfo::where('owner_id', $auth->id)->get();
-        // return $auth;
-        return view('owner.dashboard.index', compact('gyms'));
+        //
     }
 
     public function create()
     {
-        //
+        return view('user.reservation.create');
     }
 
     public function store(Request $request)
     {
-        //
+        // return 'te st1';
+        // return redirect()->route('user.dashboard.index')->with('completed', '「'.$task->name.'」を作成しました。');
+        return redirect()->route('user.dashboard.index')->with('completed', 'ジムを予約をしました。');
     }
 
     public function show($id)

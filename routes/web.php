@@ -36,15 +36,19 @@ Route::group(['prefix' => 'owner'], function () {
 
     // Route::group(['middleware' => ['partnerVerified:partner', 'auth:owner']], function () {
     Route::group(['middleware' => ['auth:owner']], function () {
-         // Registration
+        // Registration
         Route::get('/personal_info', 'Owners\Registration\PersonalInfoController@create')->name('owner.personalInfo.crete');
         Route::post('/personal_info', 'Owners\Registration\PersonalInfoController@store')->name('owner.personalInfo.store');
         Route::get('/gym_info', 'Owners\Registration\GymInfoController@create')->name('owner.gymInfo.crete');
         Route::post('/gym_info', 'Owners\Registration\GymInfoController@store')->name('owner.gymInfo.store');
-        Route::get('/opening_hour_setting', 'Owners\Registration\GymOpeningHoursController@create')->name('owner.opening_hour_setting.crete');
+        Route::get('/{gym_id}/opening_hour_setting', 'Owners\Registration\GymOpeningHoursController@create')->name('owner.opening_hour_setting.crete');
         Route::post('/opening_hour_setting', 'Owners\Registration\GymOpeningHoursController@store')->name('owner.opening_hour_setting.store');
+        
         // dashboard
         Route::get('/dashboard', 'Owners\DashboardController@index')->name('owner.dashboard.index');
+        
+        // GYM 詳細ページ
+        Route::get('/gym/{gym_id}', 'Owners\TaskController@show')->name('owner.gym.show');
 
 
     });
@@ -76,6 +80,9 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('/personal_info', 'Users\Registration\PersonalInfoController@store')->name('user.personalInfo.store');
         // dashboard
         Route::get('/dashboard', 'Users\DashboardController@index')->name('user.dashboard.index');
+        // reservation
+        Route::get('/reservation/create', 'Users\ReservationController@create')->name('user.reservation.create');
+        Route::post('/reservation/store', 'Users\ReservationController@store')->name('user.reservation.store');
 
         // logout
         Route::post('logout', 'Companies\Auth\LoginController@logout')->name('user.logout');
