@@ -19,7 +19,11 @@ class ReservationController extends Controller
 
     public function create(Request $request)
     {
-        // return $request;
+
+        $request->validate([
+            'date_of_use' => 'before:"today +14day"',
+        ]);
+        return $request;
         $gym = GymInfo::findOrFail($request->gym_id);
 
         $gym_reserved = GymReservation::where('reservation_date', Carbon::createFromTimestamp(strtotime($request->date_of_use))->format('Y-m-d'))
