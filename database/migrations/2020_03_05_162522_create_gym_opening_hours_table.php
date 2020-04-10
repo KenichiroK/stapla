@@ -8,8 +8,8 @@ class CreateGymOpeningHoursTable extends Migration
 {
     public function up()
     {
-        Schema::create('gym_closing_hours', function (Blueprint $table) {
-            $table->uuid('id');
+        Schema::create('gym_opening_hours', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->dateTime('opening_hour')->nullabel();
             $table->timestamps();
         });

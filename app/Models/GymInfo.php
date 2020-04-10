@@ -21,4 +21,9 @@ class GymInfo extends BaseUuid
         'maximum_capacity',
         'size',
     ];
+
+    public function gymReservations()
+    {
+        return $this->hasMany('App\Models\GymReservation', 'gym_id', 'id');
+    }
 }

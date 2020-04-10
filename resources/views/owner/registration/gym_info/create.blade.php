@@ -28,7 +28,7 @@
                         <div class="form-group row">
                             <label for="gym_address_prefecture" class="col-md-4 col-form-label text-md-right">都道府県</label>
                             <div class="col-md-6">
-                                <input 
+                                <!-- <input 
                                     id="gym_address_prefecture"
                                     type="text"
                                     class="form-control{{ $errors->has('gym_address_prefecture') ? ' is-invalid' : '' }}"
@@ -36,6 +36,13 @@
                                     value="{{ old('gym_address_prefecture') }}"
                                     required
                                     autofocus
+                                > -->
+                                <input 
+                                    id="gym_address_prefecture"
+                                    type="text"
+                                    class="form-control{{ $errors->has('gym_address_prefecture') ? ' is-invalid' : '' }}"
+                                    name="gym_address_prefecture"
+                                    value="{{ old('gym_address_prefecture') }}"
                                 >
                                 @if ($errors->has('gym_address_prefecture'))
                                     <span class="invalid-feedback" role="alert">
@@ -48,7 +55,7 @@
                         <div class="form-group row">
                             <label for="gym_address_city" class="col-md-4 col-form-label text-md-right">市区町村</label>
                             <div class="col-md-6">
-                                <input 
+                                <!-- <input 
                                     id="gym_address_city"
                                     type="text"
                                     class="form-control{{ $errors->has('gym_address_city') ? ' is-invalid' : '' }}"
@@ -56,6 +63,13 @@
                                     value="{{ old('gym_address_city') }}"
                                     required
                                     autofocus
+                                > -->
+                                <input 
+                                    id="gym_address_city"
+                                    type="text"
+                                    class="form-control{{ $errors->has('gym_address_city') ? ' is-invalid' : '' }}"
+                                    name="gym_address_city"
+                                    value="{{ old('gym_address_city') }}"
                                 >
                                 @if ($errors->has('gym_address_city'))
                                     <span class="invalid-feedback" role="alert">
@@ -68,7 +82,7 @@
                         <div class="form-group row">
                             <label for="gym_address_street" class="col-md-4 col-form-label text-md-right">住所1</label>
                             <div class="col-md-6">
-                                <input 
+                                <!-- <input 
                                     id="gym_address_street"
                                     type="text"
                                     class="form-control{{ $errors->has('gym_address_street') ? ' is-invalid' : '' }}"
@@ -76,6 +90,13 @@
                                     value="{{ old('gym_address_street') }}"
                                     required
                                     autofocus
+                                > -->
+                                <input 
+                                    id="gym_address_street"
+                                    type="text"
+                                    class="form-control{{ $errors->has('gym_address_street') ? ' is-invalid' : '' }}"
+                                    name="gym_address_street"
+                                    value="{{ old('gym_address_street') }}"
                                 >
                                 @if ($errors->has('gym_address_street'))
                                     <span class="invalid-feedback" role="alert">
@@ -101,7 +122,7 @@
                         <div class="form-group row">
                             <label for="gym_mobile_phone_number" class="col-md-4 col-form-label text-md-right">携帯番号</label>
                             <div class="col-md-6">
-                                <input 
+                                <!-- <input 
                                     id="gym_mobile_phone_number"
                                     type="text"
                                     class="form-control{{ $errors->has('gym_mobile_phone_number') ? ' is-invalid' : '' }}"
@@ -109,6 +130,13 @@
                                     value="{{ old('gym_mobile_phone_number') }}"
                                     required
                                     autofocus
+                                > -->
+                                <input 
+                                    id="gym_mobile_phone_number"
+                                    type="text"
+                                    class="form-control{{ $errors->has('gym_mobile_phone_number') ? ' is-invalid' : '' }}"
+                                    name="gym_mobile_phone_number"
+                                    value="{{ old('gym_mobile_phone_number') }}"
                                 >
                                 @if ($errors->has('gym_mobile_phone_number'))
                                     <span class="invalid-feedback" role="alert">

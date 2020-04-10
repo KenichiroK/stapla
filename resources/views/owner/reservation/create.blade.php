@@ -5,11 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('User - ジムの予約日を選択する') }}</div>
+                <div class="card-header">{{ __('Owner - ジム予約') }}</div>
 
-{{ $gym_reservation->id }}
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.reservation.store', ['gym_reservation_id' => $gym_reservation->id]) }}">
+                    <form method="POST" action="{{ route('owner.reservation.store', ['gym_reservation_id' => $gym_reservation->id]) }}">
                         @csrf
 
                         <div class="form-group row">

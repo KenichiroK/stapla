@@ -27,7 +27,6 @@ Route::namespace('Owners')->as('ownser.')->group(function () {
     Auth::routes(['verify' => true]);
 });
 
-
 Route::group(['prefix' => 'owner'], function () {
     Route::get('login', 'Owners\Auth\LoginController@index')->name('owner.login');
     Route::post('login', 'Owners\Auth\LoginController@login')->name('owner.login');
@@ -43,12 +42,19 @@ Route::group(['prefix' => 'owner'], function () {
         Route::post('/gym_info', 'Owners\Registration\GymInfoController@store')->name('owner.gymInfo.store');
         Route::get('/{gym_id}/opening_hour_setting', 'Owners\Registration\GymOpeningHoursController@create')->name('owner.opening_hour_setting.crete');
         Route::post('/opening_hour_setting', 'Owners\Registration\GymOpeningHoursController@store')->name('owner.opening_hour_setting.store');
-        
+
         // dashboard
         Route::get('/dashboard', 'Owners\DashboardController@index')->name('owner.dashboard.index');
-        
+
         // GYM 詳細ページ
-        Route::get('/gym/{gym_id}', 'Owners\TaskController@show')->name('owner.gym.show');
+        Route::get('/gym/{gym_id}', 'Owners\GymController@show')->name('owner.gym.show');
+
+        // Gym 予約
+        Route::get('reservation/{gym_id}/create', 'Owners\ReservationController@create')->name('owner.reservation.create');
+        Route::post('reservation/{gym_reservation_id}/store', 'Owners\ReservationController@store')->name('owner.reservation.store');
+        // Route::get('/reservation/create', function(){
+        //   return 'test';
+        // })->name('owner.reservation.create');
 
 
     });
@@ -81,8 +87,9 @@ Route::group(['prefix' => 'user'], function () {
         // dashboard
         Route::get('/dashboard', 'Users\DashboardController@index')->name('user.dashboard.index');
         // reservation
-        Route::get('/reservation/create', 'Users\ReservationController@create')->name('user.reservation.create');
-        Route::post('/reservation/store', 'Users\ReservationController@store')->name('user.reservation.store');
+        Route::get('/reservation/index', 'Users\ReservationController@index')->name('user.reservation.index');
+        Route::post('/reservation/create', 'Users\ReservationController@create')->name('user.reservation.create');
+        Route::post('/reservation/{gym_reservation_id}/store', 'Users\ReservationController@store')->name('user.reservation.store');
 
         // logout
         Route::post('logout', 'Companies\Auth\LoginController@logout')->name('user.logout');

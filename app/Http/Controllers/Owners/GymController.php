@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\GymInfo;
 
-class Taskcontroller extends Controller
+class GymController extends Controller
 {
     public function index()
     {
@@ -25,10 +25,9 @@ class Taskcontroller extends Controller
 
     public function show($gym_id)
     {
-        return 'testtest';
-        // return 'test show';
         $gym = GymInfo::findOrFail($gym_id);
-        return $gym; 
+        // return $gym;
+        return view('owner.gym.show', \compact('gym'));
     }
 
     public function edit($id)

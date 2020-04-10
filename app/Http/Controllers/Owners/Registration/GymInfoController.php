@@ -27,11 +27,16 @@ class GymInfoController extends Controller
         $gym_info = new GymInfo;
         $gym_info->owner_id              = Auth::user()->id;
         $gym_info->name                  = $request->gym_name;
-        $gym_info->prefecture            = $request->gym_address_prefecture;
-        $gym_info->city                  = $request->gym_address_city;
-        $gym_info->street                = $request->gym_address_street;
+        // $gym_info->name                  = 'test gym';
+        // $gym_info->prefecture            = $request->gym_address_prefecture;
+        $gym_info->prefecture            = '東京都';
+        // $gym_info->city                  = $request->gym_address_city;
+        $gym_info->city                  = '中央区';
+        // $gym_info->street                = $request->gym_address_street;
+        $gym_info->street                = '月島1-1-1';
         $gym_info->building              = $request->gym_address_building;
-        $gym_info->mobile_phone_number   = $request->gym_mobile_phone_number;
+        // $gym_info->mobile_phone_number   = $request->gym_mobile_phone_number;
+        $gym_info->mobile_phone_number   = '0120117117';
         $gym_info->landline_phone_number = $request->gym_landline_phone_number;
         $gym_info->closest_station       = $request->gym_closest_station;
         $gym_info->maximum_capacity      = $request->maximum_capacity;
@@ -42,9 +47,12 @@ class GymInfoController extends Controller
 
     }
 
-    public function show($id)
+    public function show($gym_id)
     {
-        //
+        return 'testtest';
+        // return 'test show';
+        $gym = GymInfo::findOrFail($gym_id);
+        return $gym; 
     }
 
     public function edit($id)

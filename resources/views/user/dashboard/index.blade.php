@@ -7,15 +7,15 @@
             <div class="card">
                 <div class="card-header">{{ __('User - Dashboard') }}</div>
                 
- @if (session('completed'))
-    <div class="complete-container">
-        <p>{{ session('completed') }}</p>
-    </div>
-    @endif
+                    @if (session('completed'))
+                        <div class="complete-container">
+                            <p>{{ session('completed') }}</p>
+                        </div>
+                    @endif
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <a href="/user/reservation/create">ジムを予約する</a>
+                                <a href="/user/reservation/index">ジムを予約する</a>
                             </div>
                         </div>   
                     </div>                     
